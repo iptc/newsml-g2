@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<newsItem 
+	xmlns="http://iptc.org/std/nar/2006-10-01/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+		./NewsML-G2_2.23-spec-All-Power.xsd"
+	standardversion="2.23"
+	guid="tag:example.com,2008:407624" 
+	version="9" 
+	standard="NewsML-G2"
+	conformance="power" 
+	xml:lang="en">
+	<catalogRef
+		href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_29.xml" />
+	<catalogRef
+		href="http://www.example.com/metadata/newsml-g2/catalog.NewsML-G2.xml" />
+	<rightsInfo>
+		<usageTerms>
+			Access only for Eurovision Members and EVN / EVS Sub-Licensees.
+			<br />
+			Coverage cannot be used by a national competitor of the contributing
+			broadcaster.
+		</usageTerms>
+	</rightsInfo>
+	<itemMeta>
+		<itemClass qcode="ninat:video" />
+		<provider qcode="providercode:EBU">
+			<name>European Broadcasting Union - EVN</name>
+			<organisationDetails>
+				<contactInfo>
+					<web>http://www.eurovision.net</web>
+					<phone>+41 22 717 2869</phone>
+					<email>features@eurovision.net</email>
+					<address role="AddressType:Office">
+						<line>Eurovision Sports News Exchanges</line>
+						<line>L Ancienne Route 17 A</line>
+						<line>CH-1218</line>
+						<locality>
+							<name>Grand-Saconnex</name>
+						</locality>
+						<country qcode="ISOCountryCode:ch">
+							<name xml:lang="en">Switzerland</name>
+						</country>
+					</address>
+				</contactInfo>
+			</organisationDetails>
+		</provider>
+		<versionCreated>2016-10-19T10:54:04Z</versionCreated>
+		<firstCreated>2008-11-06T10:22:28Z</firstCreated>
+		<pubStatus qcode="stat:usable" />
+		<service qcode="servicecode:EUROVISION">
+			<name>Eurovision services</name>
+		</service>
+		<edNote>Originally broadcast in Germany</edNote>
+		<link rel="irel:associatedWith" 
+			href="http://www.example.com/video/407624/index.html"/>
+	</itemMeta>
+	<contentMeta>
+		<contentCreated> 2008-11-05T19:04:00-08:00</contentCreated>
+		<located type="cptype:city" qcode="city:345678">
+			<name>Berlin</name>
+			<broader type="cptype:statprov" qcode="state:2365">
+				<name>Berlin</name>
+			</broader>
+			<broader type="cptype:country" qcode="iso3166-1a2:DE">
+				<name>Germany</name>
+			</broader>
+		</located>
+		<creator qcode="codesource:DEZDF">
+			<name>Zweites Deutsches Fernsehen</name>
+			<organisationDetails>
+				<location>
+					<name>MAINZ</name>
+				</location>
+			</organisationDetails>
+		</creator>
+		<contributor qcode="codeorigin:DEZDF" role="rolecode:TechnicalOrigin">
+			<name>Zweites Deutsches Fernsehen</name>
+		</contributor>
+		<creator qcode="codesource:GBRTV">
+			<name>Reuters Television Ltd</name>
+		</creator>
+		<language tag="en" role="langusecode:VoiceOver" >
+			<name>English</name>
+		</language>
+		<genre qcode="genre:biog">
+			<name xml:lang="en-GB">Biography</name>
+			<name xml:lang="fr">biographie</name>
+		</genre>
+		<subject type="cpnat:abstract" qcode="medtop:01000000">
+			<name xml:lang="en-GB">Arts, Culture and Entertainment</name>
+			<name xml:lang="fr">Arts, culture, et spectacles</name>
+			<narrower type="cpnat:abstract" qcode="medtop:20000003">
+				<name xml:lang="en-GB">Animation</name>
+				<name xml:lang="fr">Dessin animé</name>
+			</narrower>
+		</subject>
+		<headline>Loriot retrospective</headline>
+		<description role="descrole:dopesheet">
+			Yesterday evening (November 5) an exhibition opened in Berlin in
+			honour of German humorist Vicco von Bülow, better known under the
+			pseudonym "Loriot", to commemorate his 85th birthday. He was born
+			November 12, 1923 in Brandenburg an der Havel and comes from an old
+			German aristocratic family. He is most well-known for his cartoons,
+			television sketches alongside late German actress Evelyn Hammann and
+			a couple of movies. Under the name "Loriot" in 1971 he created a
+			cartoon dog named "Wum", which he voice acted himself. In 1976 the
+			first episode of the TV series "Loriot" was produced.
+			<br />
+		</description>
+		<description role="descrole:shotlist">
+			Berlin, 05/11/2008
+			<br />
+			- vs. Vicco von Bülow entering exhibition
+			<br />
+			- vs. Loriot and media
+			<br />
+			- sot Vicco von Bülow
+			<br />
+			"Since 85 years I didn't succeed in pursuing a job that could be
+			called a profession."
+			<br />
+			- vs exhibition
+			<br />
+			- sot Irm Herrmann, actress
+			<br />
+			"Loriot is timeless. You always can watch him and I can always
+			laugh."
+			<br />
+			- actor Ulrich Matthes in exhibition
+			<br />
+			sot Ulrich Matthes, actor
+			<br />
+			" I would say: one of the great German classics. Goethe, Kleist,
+			Schiller, Thomas Mann, Loriot. That's the way I would say it."
+			<br />
+		</description>
+	</contentMeta>
+	<partMeta partid="Part1_ID" seq="1">
+		<icon href=" http://www.example.com/video/Keyframes/407624.jpeg"/> 
+		<timeDelim start="0" end="446" timeunit="timeunit:editUnit"/> 
+		<language tag="en" role="langusecode:VoiceOver" />
+		<description>Vicco von Bülow entering exhibition </description>
+	</partMeta>
+	<partMeta partid="Part2_ID" seq="2">
+		<icon href="http://www.example.com/video/Keyframes/407624-447.jpeg"/> 
+		<timeDelim start="447" end="831" timeunit="timeunit:editUnit"/> 
+		<language tag="en" role="langusecode:VoiceOver" />
+		<description>Loriot and media </description>
+	</partMeta>
+	<partMeta partid="Part3_ID" seq="3">
+		<icon href="http://www.example.com/video/Keyframes/407624-832.jpeg"/> 
+		<timeDelim start="832" end="1081" timeunit="timeunit:editUnit"/> 
+		<language tag="en" role="langusecode:Interlocution" />
+		<description>Vicco von Bülow interview</description>
+	</partMeta>
+	<partMeta partid="Part4_ID" seq="4">
+		<icon href="http://www.example.com/video/Keyframes/407624-1082.jpeg"/> 
+		<timeDelim start="1082" end="1313" timeunit="timeunit:editUnit"/> 
+		<language tag="en" role="langusecode:NaturalSound" />
+		<description>Exhibition panorama </description>
+	</partMeta>
+	<partMeta partid="Part5_ID" seq="5">
+		<icon href="http://www.example.com/video/Keyframes/407624-1314.jpeg"/> 
+		<timeDelim start="1314" end="1616" timeunit="timeunit:editUnit"/> 
+		<language tag="en" role="langusecode:Interlocution" />
+		<description>Irm Herrmann, actress, interview</description>
+	</partMeta>
+	<partMeta partid="Part6_ID" seq="6">
+		<icon href="http://www.example.com/video/Keyframes/407624-1617.jpeg"/> 
+		<timeDelim start="1617" end="2109" timeunit="timeunit:editUnit"/> 
+		<language tag="en" role="langusecode:VoiceOver" />
+		<description>Ulrich Matthes, actor, in exhibition</description>
+	</partMeta>
+	<partMeta partid="Part7_ID" seq="7">
+		<icon href="http://www.example.com/video/Keyframes/407624-2110.jpeg"/> 
+		<timeDelim start="2110" end="2732" timeunit="timeunit:editUnit"/> 
+		<language tag="en" role="langusecode:Interlocution" />
+		<description>Ulrich Matthes, actor, interview</description>
+	</partMeta>
+	<partMeta partid="Part8_ID" seq="9">
+		<icon href="http://www.example.com/video/Keyframes/407624-2733.jpeg"/> 
+		<timeDelim start="2733" end="2774" timeunit="timeunit:editUnit"/> 
+		<language tag="en" role="langusecode:VoiceOver" />
+		<description>"I would say: one of the great German classics. Goethe, Kleist,
+			Schiller, Thomas Mann, Loriot. That's the way I would say it."</description>
+	</partMeta>
+	<contentSet>
+		<remoteContent href="http://www.example.com/video/407624.avi" 
+		format="fmt:avi"
+		duration="111" durationunit="timeunit:seconds"
+		videocodec="vcdc:c155"
+		videoframerate="25" 
+		videoaspectratio="16:9" />  
+	</contentSet>
+</newsItem>

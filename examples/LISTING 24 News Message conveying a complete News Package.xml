@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsMessage 
+xmlns="http://iptc.org/std/nar/2006-10-01/">
+	<header>
+		<sent>2016-10-19T11:17:00.150Z</sent>
+		<catalogRef href="http://www.example.com/std/catalog/NewsNessages_1.xml" />
+		<catalogRef href="http://www.iptc.org/std/catalog/IPTC-G2-Standards_29.xml" />
+		<sender>thomsonreuters.com</sender>
+		<transmitId>tag:reuters.com,2016:newsml_OVE48850O-PKG</transmitId>
+		<priority>4</priority>
+		<origin>MMS_3</origin>
+		<destination role="nmdest:foobar">UKI</destination>
+		<channel>TVS</channel>
+		<channel>TTT</channel>
+		<channel>WWW</channel>
+		<timestamp role="received">2016-10-19T11:17:00.000Z</timestamp>
+		<timestamp role="transmitted">2016-10-19T11:17:00.100Z</timestamp>
+		<signal qcode="nmsig:atomic" />
+	</header>
+	<itemSet>
+		<packageItem>
+			<itemRef residref="N1" />
+			<itemRef residref="N2" />
+			<itemRef residref="N3" />
+			<itemRef residref="N4" />
+		</packageItem>
+		<newsItem guid="N1"> ..... </newsItem>
+		<newsItem guid="N2"> ..... </newsItem>
+		<newsItem guid="N3"> ..... </newsItem>
+		<newsItem guid="N4"> ..... </newsItem>
+	</itemSet>
+</newsMessage>

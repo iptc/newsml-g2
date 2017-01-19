@@ -1,0 +1,137 @@
+<groupSet root="G1">
+	<group id="G1" role="group:main" mode="pgrmod:seq">
+		<groupRef idref="G2" />
+		<groupRef idref="G3" />
+		<groupRef idref="G4" />
+		<groupRef idref="G5" />
+		<groupRef idref="G6" />
+		<groupRef idref="G7" />
+		<groupRef idref="G8" />
+		<groupRef idref="G9" />
+		<groupRef idref="G10" />
+		<groupRef idref="G11" />
+	</group>
+	<group id="G2" role="group:top" >
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial-item-A"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="3452">
+			<itemClass qcode="ninat:text" />
+			<provider qcode="nprov:AcmeNews"/>
+			<pubStatus qcode="stat:usable"/>
+			<title>Bank cuts interest rates to record low</title>
+			<description role="drol:summary">London (Reuters) - The Bank of England cut 
+				interest rates by half a percentage point on Thursday to a record low of 
+				1.5 percent and economists expect it to cut again in February as it 
+				battles to prevent Britain from falling into a deep slump.
+			</description>
+		</itemRef>
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-B"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="230003">
+			<itemClass qcode="ninat:picture" />
+			<provider qcode="nprov:AcmeNews "/>
+			<pubStatus qcode="stat:usable"/>
+			<title>BoE Rate Decision</title>
+		</itemRef>
+	</group>
+	<group id="G3" role="group:two" >
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial-item-C"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="2345">
+			<itemClass qcode="ninat:text" />
+			<provider qcode="nprov:AcmeNews"/>
+			<pubStatus qcode="stat:usable"/>
+			<title>Government denies it will print more cash</title>
+			<description role="drol:summary">London (Reuters) – Chancellor
+				Alistair Darling dismissed reports on Thursday that the government was about
+				to	boost the money supply to ease the impact of recession.
+			</description>
+		</itemRef>
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-D"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="24065">
+			<itemClass qcode="ninat:picture" />
+			<provider qcode="nprov:AcmeNews "/>
+			<pubStatus qcode="stat:usable"/>
+			<title>Sterling notes and coin</title>
+		</itemRef>
+	</group>
+	<group id="G4" role="group:three" >
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial-item-E"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="2345">
+			<itemClass qcode="ninat:text" />
+			<provider qcode="nprov:AcmeNews"/>
+			<pubStatus qcode="stat:usable"/>
+			<title>Rugby's Mike Tindall banned for drink-driving</title>
+			<description role="drol:summary">London (Reuters) - England rugby player Mike
+				Tindall was banned from driving for three years and fined £500 on Thursday
+				for his second drink-drive offence.
+			</description>
+		</itemRef>
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-F"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="25346">
+			<itemClass qcode="ninat:picture" />
+			<provider qcode="nprov:AcmeNews "/>
+			<pubStatus qcode="stat:usable"/>
+			<title>Mike Tindall in rugby action for England</title>
+		</itemRef>
+	</group>
+	<group id="G5" role="group:four" >
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-G"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="3654">
+			<itemClass qcode="ninat:text" />
+			<title>Crunch forces employees to work unpaid overtime</title>
+		</itemRef>
+	</group>
+	<group id="G6" role="group:five" >
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-H"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="5123">
+			<itemClass qcode="ninat:text" />
+			<title>Government warns of tax fraudsters</title>
+		</itemRef>
+	</group>
+	<group id="G7" role="group:six" >
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-I"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="4323">
+			<itemClass qcode="ninat:text" />
+			<title>Nissan to cut 1,200 jobs at Sunderland plant</title>
+		</itemRef>
+	</group>
+	<group id="G8" role="group:seven" >
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-J"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="3122">
+			<itemClass qcode="ninat:text" />
+			<title>Sainsbury sales tops forecast</title>
+		</itemRef>
+	</group>
+	<group id="G9" role="group:eight" >
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-K"
+			contenttype="video/mp4-480x320"
+			size="322443">
+			<itemClass qcode="ninat:video" />
+			<title>Cause of wind turbine damage unknown</title>
+		</itemRef>
+	</group>
+	<group id="G10" role="group:nine" >
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-L"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="4123">
+			<itemClass qcode="ninat:text" />
+			<title>Muslims warn Gaza crisis could provoke extremism</title>
+		</itemRef>
+	</group>
+	<group id="G11" role="group:ten" >
+		<itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-M"
+			contenttype="application/vnd.iptc.g2.newsitem+xml"
+			size="8192">
+			<itemClass qcode="ninat:text" />
+			<title>Banks hiring young Britons to prepare for upturn</title>
+		</itemRef>
+	</group>
+</groupSet>
