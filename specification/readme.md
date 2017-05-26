@@ -2,12 +2,11 @@
 
 This folder includes these files
 
-- NewsML-G2_#.##-spec-All-Core.xsd = XML Schema, Core Conformance Level
 - NewsML-G2_#.##-spec-All-Power.xsd = XML Schema, Power Conformance Level
 - xml.xsd = basic XML Schema, required by some XML editors
-- NewsML-G2-2.23-spec.pdf = free text specification document for NewsML-G2
-- XML-Schema-Doc-Core.zip = XML Schema, Core Conformance Level, HTML documentation
 - XML-Schema-Doc-Power.zip = XML Schema, Power Conformance Level, HTML documentation
+
+Be aware: from version 2.25 on NewsML-G2 does not include new versions of the Core Conformance Level, XML Schemas for this Level are available as part of version 2.24.
 
 ... and these folders
 
