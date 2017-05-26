@@ -9,4 +9,4 @@ This folder includes these files
 - QuickStart-NewsML-G2-Text_9.0.1.pdf = Quick Start guide with details about news items for text
 - QuickStart-NewsML-G2-Video_9.0.1.pdf = Quick Start guide with details about news items for video
 - QuickStart-Receiving_NewsML-G2_1.0.1.pdf  = Quick Start guide for receivers of a NewsML-G2 feed
-- NewsML-G2_2.23-structMatrix.xls = matrix table (in Excel) showing which attributes are defined for each element
+- NewsML-G2_2.25-structMatrix.xls = matrix table (in Excel) showing which attributes are defined for each element
