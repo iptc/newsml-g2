@@ -1,2 +1,10 @@
-# newsml-g2
-Home of the IPTC NewsML-G2 standard for the exchange of news and news-releated information
+# NewsML-G2
+
+IPTC NewsML-G2 standard for the exchange of news and news-releated information, more about its features and who uses it at https://iptc.org/standards/newsml-g2/.
+
+This repository provides all NewsML-G2 files in the master branch. The current files are the ones of the latest version 2.24.
+The files of the current and of previous versions from 2.23 on can be retrieved as a release.
+
+A full history of versions and a list of all changes is available at http://dev.iptc.org/G2-Standards
+
+This is the public NewsML-G2 forum:  http://groups.yahoo.com/group/newsml-g2

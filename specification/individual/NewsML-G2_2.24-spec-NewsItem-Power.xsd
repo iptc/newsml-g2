@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?><!--
+IPTC - International Press Telecommunications Council
+25 Southampton Buildings, London WC2A 1AL, United Kingdom
+www.iptc.org
+
+This document is published under the Creative Commons Attribution 4.0 license - see the full license agreement at http://creativecommons.org/licenses/by/4.0/. 
+By obtaining, using and/or copying this document, you (the licensee) agree that you have read, understood, and will comply with the terms and conditions of the license.
+
+--><xs:schema targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.24" xml:lang="en" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/">
+	<xs:include schemaLocation="NewsML-G2_2.24-spec-Framework-Power.xsd" />
+	<xs:annotation>
+		<xs:documentation>NewsML-G2 2.24 News Item XML Schema, document version 1</xs:documentation>
+		<xs:documentation>Date of approval of this XML Schema version: 2016-10-26</xs:documentation>
+		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document version: 2016-11-04</xs:documentation>
+		<xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
+		<xs:documentation>Schema maintained for the IPTC by Michael Steidl (IPTC), prior to 2009 by Laurent Le Meur (AFP) </xs:documentation>
+	</xs:annotation>
+	<xs:element name="newsItem">
+		<xs:annotation>
+			<xs:documentation>An Item containing news-related information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="AnyItemType">
+					<xs:sequence>
+						<xs:element name="contentMeta" type="ContentMetadataAfDType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>A set of properties about the content</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="partMeta" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element ref="assert" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element ref="inlineRef" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element ref="derivedFrom" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element ref="contentSet" minOccurs="0" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!-- **** newsItem-specific specifications -->
+	<xs:annotation>
+		<xs:documentation>NewsML-G2 2.11: contentSet was made a global declaration</xs:documentation>
+	</xs:annotation>
+	<xs:element name="contentSet">
+		<xs:annotation>
+			<xs:documentation>A set of alternate renditions of the Item content</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="inlineXML">
+					<xs:annotation>
+						<xs:documentation>A rendition of the content using an XML language</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:any namespace="##any" processContents="lax" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>XML elements from any namespace</xs:documentation>
+								</xs:annotation>
+							</xs:any>
+						</xs:sequence>
+						<xs:attributeGroup ref="newsContentAttributes" />
+						<xs:attributeGroup ref="newsContentTypeAttributes" />
+						<xs:attributeGroup ref="newsContentCharacteristics" />
+						<xs:attributeGroup ref="i18nAttributes" />
+						<xs:anyAttribute namespace="##other" processContents="lax" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="inlineData">
+					<xs:annotation>
+						<xs:documentation>A rendition of the content using plain-text or encoded inline data</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attributeGroup ref="newsContentAttributes" />
+								<xs:attributeGroup ref="newsContentTypeAttributes" />
+								<xs:attribute name="encoding" type="QCodeType">
+									<xs:annotation>
+										<xs:documentation>The encoding applied to the content before inclusion - expressed by a QCode</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="encodinguri" type="IRIType">
+									<xs:annotation>
+										<xs:documentation>The encoding applied to the content before inclusion - expressed by a URI</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attributeGroup ref="newsContentCharacteristics" />
+								<xs:attributeGroup ref="i18nAttributes" />
+								<xs:anyAttribute namespace="##other" processContents="lax" />
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="remoteContent" type="RemoteContentPropType">
+					<xs:annotation>
+						<xs:documentation>A rendition of the content using a reference/link to a resource representing the content data at a remote location</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:attributeGroup ref="commonPowerAttributes" />
+			<xs:attribute name="original" type="xs:IDREF">
+				<xs:annotation>
+					<xs:documentation>A local reference to the original piece of content, from which all renditions have been derived</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>NewsML-G2 2.13:remoteContentPropType fleshed out from remoteContent / 2.14: signal added / 2.17: remoteContentExtProperty added</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="RemoteContentPropType">
+		<xs:annotation>
+			<xs:documentation> A type representing the structure of the remoteContent property</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="channel" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Information about a specific content channel.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attributeGroup ref="commonPowerAttributes" />
+					<xs:attribute name="chnlid" type="xs:positiveInteger">
+						<xs:annotation>
+							<xs:documentation>A logical identifier of the channel</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="type" type="QCodeType">
+						<xs:annotation>
+							<xs:documentation>The media type of the data conveyed by the channel - expressed by a QCode</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="typeuri" type="IRIType">
+						<xs:annotation>
+							<xs:documentation>The media type of the data conveyed by the channel - expressed by a URI</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="role" type="QCodeType">
+						<xs:annotation>
+							<xs:documentation>The role the data of this channel plays in the scope of  the full content - expressed by a QCode</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="roleuri" type="IRIType">
+						<xs:annotation>
+							<xs:documentation>The role the data of this channel plays in the scope of  the full content - expressed by a URI</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="language" type="xs:language">
+						<xs:annotation>
+							<xs:documentation>The  language associated with the content of the channel</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attributeGroup ref="newsContentCharacteristics" />
+					<xs:attribute name="g2flag" type="xs:string" use="optional" fixed="RCONT">
+						<xs:annotation>
+							<xs:documentation>DO NOT USE this attribute, for G2 internal maintenance purposes only.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<!-- NAR-EV-1.3.5 : add altId to remoteContent-->
+			<xs:element ref="altId" minOccurs="0" maxOccurs="unbounded" />
+			<!-- NAR-EV-1.3.4 : add altLoc to remoteContent-->
+			<xs:element ref="altLoc" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element ref="hash" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element ref="signal" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="remoteContentExtProperty" type="Flex2ExtPropType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Extension Property; the semantics are defined by the concept referenced by the rel attribute. The semantics of the Extension Property must have the same scope as the parent property.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
+				</xs:annotation>
+			</xs:any>
+		</xs:sequence>
+		<xs:attributeGroup ref="newsContentAttributes" />
+		<xs:attributeGroup ref="targetResourceAttributes" />
+		<xs:attributeGroup ref="timeValidityAttributes" />
+		<xs:attributeGroup ref="newsContentCharacteristics" />
+		<xs:attribute name="language" type="xs:language">
+			<xs:annotation>
+				<xs:documentation>The language of the remote content</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>NewsML-G2 2.10: newsContentAttributes: @hascontent added</xs:documentation>
+	</xs:annotation>
+	<xs:attributeGroup name="newsContentAttributes">
+		<xs:annotation>
+			<xs:documentation>A group of typical attributes associated with a content rendition</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="id" type="xs:ID" use="optional">
+			<xs:annotation>
+				<xs:documentation>The local identifier of the element which MUST be persistent for all versions of the item, i.e. for its entire lifecycle.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="creator" type="QCodeType" use="optional">
+			<xs:annotation>
+				<xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="creatoruri" type="IRIType" use="optional">
+			<xs:annotation>
+				<xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="modified" type="DateOptTimeType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The date (and, optionally, the time) when the property was last modified. The initial value is the date (and, optionally, the time) of creation of the property.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="custom" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>If set to true the corresponding property was added to the G2 Item for a specific customer or group of customers only. The default value of this property is false which applies when this attribute is not used with the property.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="how" type="QCodeType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Indicates by which means the value was extracted from the content - expressed by a QCode</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="howuri" type="IRIType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Indicates by which means the value was extracted from the content - expressed by a URI </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="why" type="QCodeType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Why the metadata has been included - expressed by a QCode</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="whyuri" type="IRIType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Why the metadata has been included - expressed by a URI</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rendition" type="QCodeType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The specific rendition of content this component represents - expressed by a QCode</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="renditionuri" type="IRIType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The specific rendition of content this component represents - expressed by a URI</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="generator" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The name and version of the software tool used to generate the content</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="generated" type="DateOptTimeType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The date (and, optionally, the time) when the content was generated</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hascontent" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Indicates if the digital data of this rendition is available or not. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="newsContentTypeAttributes">
+		<xs:annotation>
+			<xs:documentation>A group of attributes representing a content type</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="contenttype" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>An IANA MIME type</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="format" type="QCodeType" use="optional">
+			<xs:annotation>
+				<xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) - expressed by a QCode</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="formaturi" type="IRIType" use="optional">
+			<xs:annotation>
+				<xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) - expressed by a URI</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+</xs:schema><!--IPTC Schema Generator, v 1.3-->
