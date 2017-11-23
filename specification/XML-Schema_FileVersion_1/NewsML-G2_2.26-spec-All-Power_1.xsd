@@ -9,13 +9,13 @@ This document is published under the Creative Commons Attribution 4.0 license - 
 By obtaining, using and/or copying this document, you (the licensee) agree that you have read, understood, and will comply with the terms and conditions of the license.
 
 -->
-<xs:schema targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.25" xml:lang="en" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/" xmlns:iptc-ms="http://iptc.org/std/mergeschemas/">
+<xs:schema targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.26" xml:lang="en" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/" xmlns:iptc-ms="http://iptc.org/std/mergeschemas/">
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd" />
 	<xs:annotation>
-		<xs:documentation>NewsML-G2 2.25 XML Schema, document version 1</xs:documentation>
-		<xs:documentation>Approval of this DRAFT XML Schema version: 2017-05-17</xs:documentation>
+		<xs:documentation>NewsML-G2 2.26 XML Schema, document version 1</xs:documentation>
+		<xs:documentation>Approval of this XML Schema version: 2017-11-08</xs:documentation>
 		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-		<xs:documentation>Date of creation of this XML Schema document version: 2017-05-26</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document version: 2017-10-19</xs:documentation>
 		<xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
 		<xs:documentation>Schema maintained for the IPTC by Michael Steidl (IPTC), prior to 2009 by Laurent Le Meur (AFP) </xs:documentation>
 	</xs:annotation>
@@ -763,10 +763,10 @@ was sent</xs:documentation>
 		#####################################################################################################
 -->
 	<xs:annotation>
-		<xs:documentation>NewsML-G2 2.25 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
-		<xs:documentation>Approval of this DRAFT XML Schema version: 2017-05-17</xs:documentation>
+		<xs:documentation>NewsML-G2 2.26 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
+		<xs:documentation>Approval of this XML Schema version: 2017-11-08</xs:documentation>
 		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-		<xs:documentation>Date of creation of this XML Schema document version: 2017-05-26</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document version: 2017-10-19</xs:documentation>
 		<xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
 		<xs:documentation>Schema maintained for the IPTC by Michael Steidl (IPTC)</xs:documentation>
 	</xs:annotation>
@@ -2416,6 +2416,19 @@ The relationship of properties inside this partMeta and properties at a higher h
 		</xs:complexType>
 	</xs:element>
 	<xs:annotation>
+		<xs:documentation>NewsML-G2 2.26: mainConcept and facetConcept added</xs:documentation>
+	</xs:annotation>
+	<xs:element name="mainConcept" type="RelatedConceptType">
+		<xs:annotation>
+			<xs:documentation>The concept which is faceted by other concept(s) asserted by facetConcept</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="facetConcept" type="RelatedConceptType">
+		<xs:annotation>
+			<xs:documentation>A concept which is faceting another concept asserted by mainConcept</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:annotation>
 		<xs:documentation> NAR-1.3_4: create altLoc </xs:documentation>
 	</xs:annotation>
 	<xs:element name="altLoc">
@@ -3725,6 +3738,8 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 									<xs:documentation>The editorial urgency of the content, as scoped by the parent element.</xs:documentation>
 								</xs:annotation>
 							</xs:element>
+							<xs:element ref="audience" minOccurs="0" maxOccurs="unbounded" />
+							<xs:element ref="exclAudience" minOccurs="0" maxOccurs="unbounded" />
 							<xs:element name="planningExtProperty" type="Flex2ExtPropType" minOccurs="0" maxOccurs="unbounded">
 								<xs:annotation>
 									<xs:documentation>Extension Property; the semantics are defined by the concept referenced by the rel attribute. The semantics of the Extension Property must have the same scope as the parent property.</xs:documentation>
@@ -3831,6 +3846,9 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 		</xs:complexType>
 	</xs:element>
 	<!--===================== Hop History (added in NAR 1.9)-->
+	<xs:annotation>
+		<xs:documentation>NewsML-G2 2.26: datatype of action element changed</xs:documentation>
+	</xs:annotation>
 	<xs:element name="hopHistory">
 		<xs:annotation>
 			<xs:documentation> A history of the creation and modifications of the content object of this item, expressed as a sequence of hops.
@@ -3860,7 +3878,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 								</xs:annotation>
 								<xs:complexType>
 									<xs:complexContent>
-										<xs:extension base="QualPropType">
+										<xs:extension base="QualRelPropType">
 											<xs:attribute name="target" type="QCodeType">
 												<xs:annotation>
 													<xs:documentation>The target of the action in a content object - expressed by a QCode. If the target attribute is omitted the target of the action is the whole object.</xs:documentation>
@@ -4355,6 +4373,11 @@ value.</xs:documentation>
 		<xs:annotation>
 			<xs:documentation>A group of typical physical characteristics of media content </xs:documentation>
 		</xs:annotation>
+		<xs:attribute name="charcount" type="xs:nonNegativeInteger" use="optional">
+			<xs:annotation>
+				<xs:documentation>The count of characters of textual content.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="wordcount" type="xs:nonNegativeInteger" use="optional">
 			<xs:annotation>
 				<xs:documentation>The count of words of textual content.</xs:documentation>
@@ -5086,10 +5109,11 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
 			<xs:extension base="Flex1PropType">
 				<xs:sequence>
 					<xs:element ref="bag" minOccurs="0" />
+					<xs:element ref="mainConcept" minOccurs="0" />
+					<xs:element ref="facetConcept" minOccurs="0" maxOccurs="unbounded" />
 				</xs:sequence>
 				<xs:attributeGroup ref="quantifyAttributes" />
 			</xs:extension>
-			<!-- version 2: the about attribute is suppressed-->
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="FlexPersonPropType">
