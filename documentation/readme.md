@@ -1,12 +1,8 @@
-# Home of non-normative documentation of NewsML-G2
+# Note about the NewsML-G2 Guidelines
 
-This folder includes these files
+The IPTC NewsML-G2 Guidelines have been published as PDF files since the first release in 2009. As many users showed interest in the Guidelines as web document the NewsML-G2 Working Group has started the transformation of the existing Guidelines document to HTML and is working on an update of the content.
 
-- IPTC-NewsML-G2-Implementation_Guide_9.0.2.pdf = comprehensive guidelines for using NewsML-G2
-- QuickStart-NewsML-G2-ItemBasics_9.0.1.pdf = Quick Start guide with the basics of any NewsML-G2 item
-- QuickStart-NewsML-G2-Packages_9.0.1.pdf = Quick Start guide with details about packages
-- QuickStart-NewsML-G2-Pictures_9.0.1.pdf  = Quick Start guide with details about news items for pictures
-- QuickStart-NewsML-G2-Text_9.0.1.pdf = Quick Start guide with details about news items for text
-- QuickStart-NewsML-G2-Video_9.0.1.pdf = Quick Start guide with details about news items for video
-- QuickStart-Receiving_NewsML-G2_1.0.1.pdf  = Quick Start guide for receivers of a NewsML-G2 feed
-- NewsML-G2_2.25-structMatrix.xls = matrix table (in Excel) showing which attributes are defined for each element
+The final updated version of the Guidelines will be published in early December 2017 at this location:
+[https://www.iptc.org/std-dev/NewsML-G2/guidelines](https://www.iptc.org/std-dev/NewsML-G2/guidelines)
+
+Please check this URL, it shows the full Guidelines with all Quick Start variants for Text, Photo, Video and Packages integrated.
