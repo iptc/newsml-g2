@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem 
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ./NewsML-G2_2.25-spec-All-Power.xsd"
+    guid="tag:xmlteam.com,2016:xt.5932656-preview"
+    version="10"
+    xmlns:xts="www.xmlteam.com" 
+    standard="NewsML-G2" 
+    standardversion="2.25" 
+    conformance="power" 
+    xml:lang="en-US">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml" />
+    <catalogRef
+        href="http://www.xmlteam.com/specification/xts-SportsCodesCatalog_1.xml" />
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        <provider qcode="web:www.xmlteam.com" />
+        <versionCreated>2017-10-19T11:45:00-04:00</versionCreated>
+        <pubStatus qcode="stat:usable" />
+        <fileName>xt.5932656-preview.xml</fileName>
+    </itemMeta>
+    <contentMeta>
+        <contentCreated>2016-10-19T11:15:00-05:00</contentCreated>
+        <located qcode="city:Philadelphia">
+            <broader qcode="reg:Pennsylvania" />
+            <broader qcode="cntry:USA" />
+        </located>
+        <creator qcode="web:sportsnetwork.com">
+            <name>The Sports Network</name>
+        </creator>
+        <altId type="idtype:tsn-id" id="sportsnetwork.com-5932656" />
+        <altId type="idtype:revision-id"
+            id="l.mlb.com-2016-e.19358-pre-event-coverage-sportsnetwork.com" />
+        <genre type="spcpnat:spfixt" qcode="spfixt:pre-event-coverage">
+            <name xml:lang="en-US">Game Preview</name>
+            <broader qcode="dclass:event-summary" />
+        </genre>
+        <genre type="spcpnat:dclass" qcode="dclass:event-summary" />
+        <genre type="xts-genre:tsn-fixture" qcode="tsn-fixture:mlbpreviewxml" />
+        <language tag="en-US" />
+        <subject qcode="medtop:20000822">
+            <name xml:lang="en-US">sport</name>
+        </subject>
+        <subject qcode="medtop:20000849">
+            <name xml:lang="en-US">Baseball</name>
+            <broader qcode="medtop:20000822" />
+        </subject>
+        <subject qcode="league:l.mlb.com">
+            <name xml:lang="en-US">Major League Baseball</name>
+            <broader qcode="medtop:20000822" />
+            <sameAs qcode="subj:15007000" />
+        </subject>
+        <subject type="spcpnat:conf" qcode="conf:l.mlb.com-c.national">
+            <name xml:lang="en-US">National</name>
+            <broader qcode="league:l.mlb.com" />
+        </subject>
+        <subject type="cpnat:event" qcode="event:l.mlb.com-2016-e.19358" />
+        <subject type="spcpnat:team" qcode="team:l.mlb.com-t.19">
+            <name>Philadelphia Phillies</name>
+        </subject>
+        <subject type="spcpnat:team" qcode="team:l.mlb.com-t.26">
+            <name>Arizona Diamondbacks</name>
+        </subject>
+        <subject type="cpnat:person" qcode="person:l.mlb.com-p.456">
+            <name>Doug Davis</name>
+            <sameAs qcode="fssID:45679" />
+        </subject>
+        <subject type="cpnat:person" qcode="person:l.mlb.com-p.123">
+            <name>Freddy Garcia</name>
+            <sameAs qcode="fssID:45680" />
+        </subject>
+        <headline>Preview: Arizona Diamondbacks (29-23) at Philadelphia Phillies
+             (26-24), 7:05 p.m.</headline>
+        <slugline separator="-">AAV!PREVIEW-ARI-PHI</slugline>
+        <description role="drol:summary">A pair of teams coming off big weekend sweeps 
+            will     square off tonight at Citizens Bank Park, where the Philadelphia Phillies 
+            welcome the    Arizona Diamondbacks for the start of a three-game 
+            series.</description>
+    </contentMeta>
+    <contentSet>
+        <inlineXML contenttype="application/nitf+xml">
+            <nitf xmlns="http://iptc.org/std/NITF/2006-10-18/"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://iptc.org/std/NITF/2006-10-18/ 
+                ./nitf-3-6.xsd">
+                <body>
+                   <body.head>
+                       <hedline>
+                           <hl1>Arizona Diamondbacks (29-23) at Philadelphia Phillies (26-24), 
+                               7:05p.m.</hl1>
+                       </hedline>
+                       <byline>
+                   <byttl>Sports Network</byttl>
+               </byline>
+                       <abstract>
+                           <p>A pair of teams coming off big weekend sweeps will square off 
+                           tonight at Citizens Bank Park, where the Philadelphia Phillies 
+                           welcome the Arizona Diamondbacks for the start of a three-game 
+                           series.</p>
+                       </abstract>
+                   </body.head>
+                   <body.content>
+                       <p>(Sports Network) - A pair of teams coming off big weekend sweeps 
+                       will square off tonight at Citizens Bank Park, where the Philadelphia
+               Phillies welcome the Arizona Diamondbacks for the start of a three-game
+               series.</p>
+                       <p>The Phillies picked up some momentum with a three-game sweep of the
+               Atlanta Braves, while the Diamondbacks captured all four of their games
+               against the Houston Astros.</p>
+                       <p>On Sunday, Livan Hernandez threw his first complete game in almost 
+                       two years to lead the Diamondbacks to an 8-4 win over the Astros to 
+                       complete the sweep.</p>
+                       <p>Arizona sends Doug Davis to the hill tonight, and the lefty is 0-4 
+                       over his last five starts. That includes losses in each of his last 
+                       three outings.</p>
+                       <p>The Phillies, meanwhile, notched their first sweep of the year that
+               culminated with Sunday's 13-6 pounding of the Braves. Ryan Howard
+               flashed some of the power that won him the NL MVP last season, jacking 
+                       a pair of two-run homers in the win.</p>
+                       <p>Right-hander Freddy Garcia takes the hill for the Phillies and is 1-
+                       3 with a 4.81 earned run average on the year. Since winning his first 
+                       game in a Philadelphia uniform back on April 22, Garcia has gone 0-2 
+                       over his last six starts.</p>
+                   </body.content>
+                </body>
+            </nitf>
+        </inlineXML>
+    </contentSet>
+</newsItem>
