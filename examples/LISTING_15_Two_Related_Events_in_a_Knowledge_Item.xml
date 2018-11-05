@@ -3,26 +3,26 @@
     xmlns="http://iptc.org/std/nar/2006-10-01/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
-        ./NewsML-G2_2.25-spec-All-Power.xsd"
+        ./NewsML-G2_2.28-spec-All-Power.xsd"
     guid="urn:newsml:iptc.org:20101019:qqwpiruuew4712" 
-    version="10"
+    version="11"
     standard="NewsML-G2" 
-    standardversion="2.25" 
+    standardversion="2.28" 
     conformance="power"
     xml:lang="en">
-    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml" />
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
     <catalogRef href="http://www.example.com/events/event-catalog.xml" />
     <itemMeta>
         <itemClass qcode="cinat:concept" />
         <provider qcode="nprov:IPTC" />
-        <versionCreated>2017-10-18T13:05:00Z 
+        <versionCreated>2018-10-18T13:05:00Z 
         </versionCreated>
         <pubStatus qcode="stat:usable" />
     </itemMeta>
     <contentMeta>
         <urgency>5</urgency>
         <contentCreated>2016-01-16T12:15:00Z</contentCreated>
-        <contentModified>2017-10-12T13:35:00Z</contentModified>
+        <contentModified>2018-10-12T13:35:00Z</contentModified>
         <subject qcode="medtop:20000304">
             <name>media</name>
         </subject>
@@ -37,16 +37,16 @@
         <concept>
             <!--               FIRST EVENT!                -->
             <!--                      x                      -->
-            <conceptId created="2017-01-16T12:15:00Z" qcode="event:1234567" />
-            <name>IPTC Autumn Meeting 2017</name>
+            <conceptId created="2018-01-16T12:15:00Z" qcode="event:1234567" />
+            <name>IPTC Autumn Meeting 2018</name>
             <eventDetails>
                 <dates>
-                   <start>2017-10-26T09:00:00Z</start>
+                   <start>2018-10-26T09:00:00Z</start>
                    <duration>P2D</duration>
                 </dates>
                 <registration>Registration with the IPTC office is required. 
-                   A <a href="https://iptc.org/moz/events/annual-general-meeting-2017/">
-                   web form</a> may be used until 24 September 2017
+                   A <a href="https://iptc.org/moz/events/annual-general-meeting-2018/">
+                   web form</a> may be used until 24 September 2018
                 </registration>
                 <participationRequirement>
                    <name>Membership</name>
@@ -90,14 +90,14 @@
         <concept>
             <!--                SECOND EVENT!              -->
             <!--                       x                      -->
-            <conceptId created="2017-01-16T12:00:00Z" qcode="event:91011123" />
+            <conceptId created="2018-01-16T12:00:00Z" qcode="event:91011123" />
             <name>Newgathering and Verification Strategy </name>
             <broader type="cpnat:event" qcode="event:1234567">
-                <name>IPTC Autumn Meeting 2017</name>
+                <name>IPTC Autumn Meeting 2018</name>
             </broader>
             <eventDetails>
                 <dates>
-                   <start>2017-10-27T14:30:00Z</start>
+                   <start>2018-10-27T14:30:00Z</start>
                    <duration>PT30M</duration>
                 </dates>
                 <participationRequirement>

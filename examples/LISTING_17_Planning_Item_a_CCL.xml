@@ -3,26 +3,26 @@
     xmlns="http://iptc.org/std/nar/2006-10-01/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
-        ./NewsML-G2_2.24-spec-All-Core.xsd"
+       ./NewsML-G2_2.24-spec-All-Core.xsd"
     guid="urn:newsml:iptc.org:20101025:gbmrmdreis4711" 
-    version="10"
+    version="11"
     standard="NewsML-G2" 
     standardversion="2.24" 
     conformance="core"
     xml:lang="en">
-    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml" />
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
     <catalogRef href="http://www.example.com/events/event-catalog.xml" />
     <itemMeta>
         <itemClass qcode="plinat:newscoverage" />
         <provider qcode="nprov:IPTC" />
-        <versionCreated>2017-10-18T13:45:00Z 
+        <versionCreated>2018-10-18T13:45:00Z 
         </versionCreated>
         <pubStatus qcode="stat:usable" />
     </itemMeta>
     <contentMeta>
     <urgency>5</urgency>
     <contentCreated>2016-10-16T12:15:00Z</contentCreated>
-    <contentModified>2017-10-16T13:35:00Z</contentModified>
+    <contentModified>2018-10-16T13:35:00Z</contentModified>
     </contentMeta>
         <newsCoverageSet>
                 <newsCoverage>
@@ -32,7 +32,7 @@
                 </newsCoverage>
                 <newsCoverage>
                    <planning>
-                       <edNote>Picture scheduled 2017-11-06T13:00:00+02:00</edNote>
+                       <edNote>Picture scheduled 2018-11-06T13:00:00+02:00</edNote>
                    </planning>
                    <delivery>
                        <deliveredItemRef 

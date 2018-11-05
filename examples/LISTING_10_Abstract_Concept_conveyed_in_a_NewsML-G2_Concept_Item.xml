@@ -3,28 +3,27 @@
     xmlns="http://iptc.org/std/nar/2006-10-01/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
-        ./NewsML-G2_2.25-spec-All-Power.xsd"
+        ./NewsML-G2_2.24-spec-All-Core.xsd"
     guid="urn:newsml:iptc.org:20080229:ncdci-subjectcode"
-    version="10" 
+    version="11" 
     standard="NewsML-G2" 
-    standardversion="2.25">
+    standardversion="2.24">
     <catalogRef
-        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml" />
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
     <rightsInfo>
         <copyrightHolder>
             <name>IPTC International Press Telecommunications Council, 20 Garrick Street, London WC2E 9BT, UK</name>
         </copyrightHolder>
-        <copyrightNotice>Copyright 2016-17, IPTC, www.iptc.org, All
+        <copyrightNotice>Copyright 2017-18, IPTC, www.iptc.org, All
             Rights Reserved</copyrightNotice>
     </rightsInfo>
     <itemMeta>
         <itemClass qcode="cinat:concept" />
         <provider qcode="nprov:IPTC" />
-        <versionCreated>2017-11-07T12:35:21+01:00</versionCreated>
+        <versionCreated>2018-11-07T12:35:21+01:00</versionCreated>
         <firstCreated>2008-02-29T12:00:00+00:00</firstCreated>
         <pubStatus qcode="stat:usable" />
-        <title xml:lang="en">Concept Item delivering a
-             concept requested from the IPTC Media Topic NewsCodes</title>
+        <title xml:lang="en">Concept Item delivering a concept requested from the IPTC Media Topic NewsCodes</title>
     </itemMeta>
     <concept>
         <conceptId created="2000-10-30T12:00:00+00:00" qcode="medtop:01000000" />

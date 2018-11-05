@@ -5,29 +5,29 @@
     xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
         ./NewsML-G2_2.24-spec-All-Core.xsd"
     guid="urn:newsml:acmenews.com:20161121:US-FINANCE-FED"
-    version="10" 
+    version="11" 
     standard="NewsML-G2"
-    standardversion="2.24" 
+    standardversion="2.24"
     xml:lang="en-US">
     <catalogRef
-        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml" />
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
     <catalogRef
         href="http://catalog.acmenews.com/news/ANM_G2_CODES_2.xml" />
     <rightsInfo>
         <copyrightHolder uri="http://www.acmenews.com/about.html#copyright">
             <name>Acme News and Media LLC</name>
         </copyrightHolder>
-        <copyrightNotice>Copyright 2016-17 Acme News and Media LLC</copyrightNotice>
+        <copyrightNotice>Copyright 2017-18 Acme News and Media LLC</copyrightNotice>
     </rightsInfo>
     <itemMeta>
         <itemClass qcode="ninat:text" />
         <provider uri="http://www.acmenews.com/about/" />
-        <versionCreated>2017-11-21T16:25:32-05:00</versionCreated>
+        <versionCreated>2018-11-21T16:25:32-05:00</versionCreated>
         <pubStatus qcode="stat:usable" /> 
     </itemMeta>
     <contentMeta>
         <contentCreated>2016-11-21T15:21:06-05:00</contentCreated>
-        <contentModified>2017-11-21T16:22:45-05:00</contentModified>
+        <contentModified>2018-11-21T16:22:45-05:00</contentModified>
         <located qcode="geoloc:NYC">
             <name>New York, NY</name>
         </located>
