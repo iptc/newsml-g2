@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packageItem 
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ./NewsML-G2_2.28_2-spec-All-Power.xsd"
+    guid="urn:iptc.org:20161019:sports1" version="11"
+    xmlns:xts="www.xmlteam.com" 
+    conformance="power" 
+    standard="NewsML-G2"
+    standardversion="2.28" 
+    xml:lang="en-US">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
+    <catalogRef
+        href="http://www.xmlteam.com/specification/xts-SportsCodesCatalog_1.xml" />
+    <itemMeta>
+        <itemClass qcode="ninat:composite" />
+        <provider qcode="web:xmlteam.com" />
+        <versionCreated>2018-10-19T15:00:09Z</versionCreated>
+    </itemMeta>
+    <contentMeta>
+        <contentCreated>2016-02-02T11:45:00-05:00</contentCreated>
+        <located qcode="city:Philadelphia">
+            <broader qcode="reg:Pennsylvania" />
+            <broader qcode="cntry:USA" />
+        </located>
+        <creator qcode="web:sportsnetwork.com">
+            <name>The Sports Network</name>
+        </creator>
+        <altId type="idtype:tsn-id" id="sportsnetwork.com-5932656" />
+        <altId type="idtype:revision-id"
+            id="l.mlb.com-2016-e.19358-pre-event-coverage-sportsnetwork.com" />
+        <genre type="spcpnat:dclass" qcode="dclass:event-summary" />
+        <genre qcode="xts-package-type:pre-event-coverage" />
+        <language tag="en-US" />
+        <subject qcode="subj:15000000">
+            <name xml:lang="en-US">sport</name>
+        </subject>
+        <subject qcode="subj:15007000">
+            <name xml:lang="en-US">Baseball</name>
+            <broader qcode="subj:15000000" />
+        </subject>
+        <subject qcode="league:l.mlb.com">
+            <name xml:lang="en-US">Major League Baseball</name>
+            <broader qcode="subj:15007000" />
+            <sameAs qcode="subj:15007001" />
+        </subject>
+        <subject type="spcpnat:conf" qcode="conf:l.mlb.com-c.national">
+            <name xml:lang="en-US">National</name>
+            <broader qcode="league:l.mlb.com" />
+        </subject>
+        <subject type="cpnat:event" qcode="event:l.mlb.com-2016-e.19358" />
+        <subject type="spcpnat:team" qcode="team:l.mlb.com-t.19">
+            <name>Philadelphia Phillies</name>
+        </subject>
+        <subject type="spcpnat:team" qcode="team:l.mlb.com-t.26">
+            <name>Arizona Diamondbacks</name>
+        </subject>
+    </contentMeta>
+    <groupSet root="G1">
+        <group id="G1" role="group:main">
+            <itemRef residref="tag:xmlteam.com,2016:xt.5932656-pitcher-preview" 
+                contenttype="application/sportsml+xml">
+                <genre type="spcpnat:spfixt" qcode="spfixt:pitcher-preview">
+                   <name xml:lang="en-US">Game Pitcher Preview</name>
+                   <broader qcode="dclass:event-summary" />
+                </genre>
+                <genre type="spcpnat:dclass" qcode="dclass:event-summary" />
+                <genre type="xts-genre:tsn-fixture" qcode="tsn-fixture:mlbpreviewxml" />
+                <headline>Pitcher Preview: Arizona Diamondbacks (29-23) at Philadelphia 
+                   Phillies (26-24), 7:05 p.m.
+                </headline>
+                <description></description>
+            </itemRef>
+            <itemRef residref="tag:xmlteam.com,2016:xt.5932656-preview" contenttype="application/nitf+xml">
+                <genre type="spcpnat:spfixt" qcode="spfixt:pre-event-coverage">
+                   <name xml:lang="en-US">Game Preview</name>
+                   <broader qcode="dclass:event-summary" />
+                </genre>
+                <genre type="spcpnat:dclass" qcode="dclass:event-summary" />
+                <genre type="xts-genre:tsn-fixture" qcode="tsn-fixture:mlbpreviewxml" />
+                <headline>Preview: Arizona Diamondbacks (29-23) at Philadelphia 
+                   Phillies (26-24), 7:05 p.m.
+                </headline>
+                <description role="drol:summary">A pair of teams coming off big weekend 
+                   sweeps will square off tonight at Citizens Bank Park, where the 
+                   Philadelphia Phillies welcome the Arizona Diamondbacks for the start of a 
+                   three-game series.
+             </description>
+            </itemRef>
+        </group>
+    </groupSet>
+</packageItem>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledgeItem 
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ./NewsML-G2_2.28_2-spec-All-Power.xsd"
+    guid="urn:newsml:iptc.org:20101019:qqwpiruuew4712" 
+    version="11"
+    standard="NewsML-G2" 
+    standardversion="2.28" 
+    conformance="power"
+    xml:lang="en">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
+    <catalogRef href="http://www.example.com/events/event-catalog.xml" />
+    <itemMeta>
+        <itemClass qcode="cinat:concept" />
+        <provider qcode="nprov:IPTC" />
+        <versionCreated>2018-10-18T13:05:00Z 
+        </versionCreated>
+        <pubStatus qcode="stat:usable" />
+    </itemMeta>
+    <contentMeta>
+        <urgency>5</urgency>
+        <contentCreated>2016-01-16T12:15:00Z</contentCreated>
+        <contentModified>2018-10-12T13:35:00Z</contentModified>
+        <subject qcode="medtop:20000304">
+            <name>media</name>
+        </subject>
+        <subject qcode="medtop:20000309">
+            <name>news agency</name>
+        </subject>
+        <subject qcode="medtop:20000763">
+            <name>IT/computer sciences</name>
+        </subject>
+    </contentMeta>
+    <conceptSet>
+        <concept>
+            <!--               FIRST EVENT!                -->
+            <!--                      x                      -->
+            <conceptId created="2018-01-16T12:15:00Z" qcode="event:1234567" />
+            <name>IPTC Autumn Meeting 2018</name>
+            <eventDetails>
+                <dates>
+                   <start>2018-10-26T09:00:00Z</start>
+                   <duration>P2D</duration>
+                </dates>
+                <registration>Registration with the IPTC office is required. 
+                   A <a href="https://iptc.org/moz/events/annual-general-meeting-2018/">
+                   web form</a> may be used until 24 September 2018
+                </registration>
+                <participationRequirement>
+                   <name>Membership</name>
+                   <definition>Only members of the IPTC and their invited 
+                       guests may attend.
+                   </definition>
+                </participationRequirement>
+                <accessStatus qcode="accst:easy" />
+                <language tag="en" />
+                <organiser qcode="nprov:IPTC" role="eorol:general">
+                   <name>International Press Telecommunications Council</name>
+                   <organisationDetails>
+                       <founded>1965</founded>
+                   </organisationDetails>
+                </organiser>
+                <contactInfo>
+                <email>mdirector@ipct.org</email>
+                <note>Michael Steidl, Managing Director</note>
+                <web>http://www.iptc.org</web>
+                </contactInfo>
+                <location>
+                   <name>86, Edgeware Road, London W2 2EA, United Kingdom</name>
+                   <related rel="frel:venuetype" qcode="ventyp:confcentre" />
+                   <POIDetails>
+                       <position latitude="51.515659" longitude="-0.163346" />
+                       <contactInfo>
+                           <web>https://www.etcvenues.co.uk</web>
+                       </contactInfo>
+                   </POIDetails>
+                </location>
+                <participant qcode="eprol:moderator">
+                   <name>Stuart Myles</name>
+                   <definition>Chairman of the Board of the IPTC </definition>
+                </participant>
+                <participant qcode="eprol:director">
+                   <name>Michael Steidl</name>
+                   <definition>Managing Director</definition>
+                </participant>
+            </eventDetails>
+        </concept>
+        <concept>
+            <!--                SECOND EVENT!              -->
+            <!--                       x                      -->
+            <conceptId created="2018-01-16T12:00:00Z" qcode="event:91011123" />
+            <name>Newgathering and Verification Strategy </name>
+            <broader type="cpnat:event" qcode="event:1234567">
+                <name>IPTC Autumn Meeting 2018</name>
+            </broader>
+            <eventDetails>
+                <dates>
+                   <start>2018-10-27T14:30:00Z</start>
+                   <duration>PT30M</duration>
+                </dates>
+                <participationRequirement>
+                   <name>Registration</name>
+                   <definition>Pre-registration required for all attendees
+                   </definition>
+                </participationRequirement>
+                <accessStatus qcode="accst:easy" />
+                <language tag="en" />
+                <participant qcode="eprol:presenter">
+                   <name>Evi Varsou</name>
+                   <definition>Presenter</definition>
+                </participant>
+                <participant qcode="eprol:moderator">
+                   <name>Michael Steidl</name>
+                   <definition>Moderator</definition>
+                </participant>
+            </eventDetails>
+        </concept>
+    </conceptSet>
+</knowledgeItem>
