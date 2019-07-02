@@ -12,13 +12,13 @@ echo "Emptying folder in case it already existed"
 rm -fr releases/$NEWSMLG2_VERSION/*
 
 echo "Copying release files to the release folder"
-cp -r specification documentation examples releases/$NEWSMLG2_VERSION
+cp -r specification documentation examples LICENSE README.md releases/$NEWSMLG2_VERSION
 
 cd releases/$NEWSMLG2_VERSION
 echo "Creating ZIP file (version with no documentation)"
-zip -9 --exclude=XML-Schema-Doc-Power ../NewsML-G2_$NEWSMLG2_VERSION-noXMLdocu.zip documentation specification examples LICENSE README.md
+zip -r -9 --exclude=XML-Schema-Doc-Power ../NewsML-G2_$NEWSMLG2_VERSION-noXMLdocu.zip documentation specification examples LICENSE README.md
 echo "Creating ZIP file (version with documentation)"
-zip -9 ../NewsML-G2_$NEWSMLG2_VERSION.zip documentation specification examples LICENSE README.md
+zip -r -9 ../NewsML-G2_$NEWSMLG2_VERSION.zip documentation specification examples LICENSE README.md
 cd ../..
 
 echo "Done."
