@@ -21,7 +21,6 @@ Steps to release an update to the standard:
     `release-tools/test-newsml-examples.sh`
 6. Use XML Spy to create XML Schema documentation from the master XSD file. Save them to
 `specification/XML-Schema-Doc-Power`.
-7. print change requests to PDF and put in the numbered folder
-8. Move all files to the release folder:
-    cp -r examples specification documentation releases/2.28
-9. zip the folder to send to delegates
+7. Print change requests to PDF for inclusion in release pack to be sent to delegates
+8. Run the script to move all files to the release folder and create ZIP files to send to delegates:
+    `release-tools/create-release.sh`
