@@ -21,10 +21,13 @@ Steps to release an update to the standard:
     `release-tools/create-power-xsd-from-framework-xsd.sh`
 5. Run `xmllint` over the examples folder to make sure no errors have been introduced using a script:
     `release-tools/test-newsml-examples.sh`
-6. Use XML Spy to create XML Schema documentation from the master XSD file. Save them to
-    `specification/XML-Schema-Doc-Power`.
+6. Use XML Spy to create XML Schema documentation from the master XSD schema file and the
+   "individual" schemas. Save them to `specification/XML-Schema-Doc-Power`.
 7. Print change requests to PDF for inclusion in release pack to be sent to delegates.
 8. Run the script to move all files to the release folder and create ZIP files to send to delegates:
     `release-tools/create-release.sh`
 9. Commit and push all changes to GitHub: `git push origin -u my-new-branch`
    Our `.gitignore` file already suppresses sending ZIP files and the XML Schema docs to GitHub.
+10. Upload the "release/N.NN" folder and the ZIP files to the iptc.org server
+11. Update the redirects on iptc.org to point to the latest versions of XML Schema documentation.
+12. Update the http://dev.iptc.org/G2-Approved-Changes page documenting the changes made.
