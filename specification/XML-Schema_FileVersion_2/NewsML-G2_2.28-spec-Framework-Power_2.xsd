@@ -26,7 +26,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.28-spec-ConceptItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.28-spec-ConceptItem-Power_2.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -36,7 +36,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.28-spec-KnowledgeItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.28-spec-KnowledgeItem-Power_2.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -46,7 +46,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.28-spec-NewsItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.28-spec-NewsItem-Power_2.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -56,7 +56,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.28-spec-PackageItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.28-spec-PackageItem-Power_2.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -66,7 +66,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.28-spec-PlanningItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.28-spec-PlanningItem-Power_2.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -76,7 +76,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.28-spec-CatalogItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.28-spec-CatalogItem-Power_2.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -86,7 +86,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.28-spec-NewsMessage-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.28-spec-NewsMessage-Power_2.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 

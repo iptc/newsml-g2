@@ -9,7 +9,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/" targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.28" xml:lang="en">
-	<xs:include schemaLocation="NewsML-G2_2.28-spec-Framework-Power.xsd"/>
+	<xs:include schemaLocation="NewsML-G2_2.28-spec-Framework-Power_2.xsd"/>
 	<xs:annotation>
 		<xs:documentation>NewsML-G2 2.28 Package Item XML Schema, document version 2</xs:documentation>
 		<xs:documentation>Approval of this XML Schema version: 2018-10-17</xs:documentation>
