@@ -2,3 +2,4 @@ specification/XML-Schema-Doc-Power/
 specification/*.zip
 releases/*.zip
 releases/*/specification/XML-Schema-Doc-Power/
+releases/*/specification/*.zip

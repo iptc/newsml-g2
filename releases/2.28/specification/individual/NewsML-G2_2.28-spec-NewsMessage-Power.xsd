@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+IPTC - International Press Telecommunications Council
+25 Southampton Buildings, London WC2A 1AL, United Kingdom
+www.iptc.org
+
+This document is published under the Creative Commons Attribution 4.0 license - see the full license agreement at http://creativecommons.org/licenses/by/4.0/. 
+By obtaining, using and/or copying this document, you (the licensee) agree that you have read, understood, and will comply with the terms and conditions of the license.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/" targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.28" xml:lang="en">
+	<xs:include schemaLocation="NewsML-G2_2.28-spec-Framework-Power.xsd"/>
+	<xs:annotation>
+		<xs:documentation>NewsML-G2 2.28 News Message XML Schema, document version 2</xs:documentation>
+		<xs:documentation>Approval of this XML Schema version: 2018-10-17</xs:documentation>
+		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document revision: 2018-10-23</xs:documentation>
+		<xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
+		<xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (IPTC), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
+	</xs:annotation>
+	<xs:element name="newsMessage">
+		<xs:annotation>
+			<xs:documentation>A container to exchange one or more items</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header">
+					<xs:annotation>
+						<xs:documentation>A group of properties providing information about the exchange.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="sent" type="DateTimePropType">
+								<xs:annotation>
+									<xs:documentation>The date-and-time of transmission of the message</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:choice minOccurs="0" maxOccurs="unbounded">
+								<xs:element name="catalogRef">
+									<xs:annotation>
+										<xs:documentation>A reference to a remote catalog. A hyperlink to a set of scheme alias declarations.</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="title" minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation>A short natural language name for the catalog.</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="href" type="IRIType" use="required">
+											<xs:annotation>
+												<xs:documentation>A hyperlink to a remote Catalog.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attributeGroup ref="commonPowerAttributes"/>
+										<xs:anyAttribute namespace="##other" processContents="lax">
+											<xs:annotation>
+												<xs:documentation>Any other attributes from other namespaces.</xs:documentation>
+											</xs:annotation>
+										</xs:anyAttribute>
+									</xs:complexType>
+								</xs:element>
+								<xs:element ref="catalog"/>
+							</xs:choice>
+							<xs:element name="sender" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The sender of the items, which may be an organisation or a person</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="StringType">
+											<xs:attributeGroup ref="qualifyingAttributes"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="transmitId" type="StringType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The transmission identifier associated with the message</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="priority" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The priority of this message in the overall transmission process. A value of 1 corresponds to the highest priority, a value of 9 to the lowest.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="Int1to9Type">
+											<xs:attributeGroup ref="commonPowerAttributes"/>
+											<xs:anyAttribute namespace="##other" processContents="lax"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="origin" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The point of origin of the transmission of this message</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="StringType">
+											<xs:attributeGroup ref="qualifyingAttributes"/>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:choice minOccurs="0" maxOccurs="unbounded">
+								<xs:element name="timestamp">
+									<xs:annotation>
+										<xs:documentation>A date-and-time associated with the message, other than the date-and-time the message
+was sent</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:simpleContent>
+											<xs:extension base="DateTimePropType">
+												<xs:attribute name="role" type="xs:string" use="optional">
+													<xs:annotation>
+														<xs:documentation>A refinement of the semantics of the property. The string value may take a QCode. That the string should be interpreted as a QCode has to be defined outside of the G2 specification by the creator of the News Message.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:extension>
+										</xs:simpleContent>
+										<!-- NAR 1.2 erratum 1 correction: on timestamp, complexContent replaced by simpleContent -->
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="destination">
+									<xs:annotation>
+										<xs:documentation>A point of destination for this message.</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:complexContent>
+											<xs:extension base="StringType">
+												<xs:attributeGroup ref="qualifyingAttributes"/>
+											</xs:extension>
+										</xs:complexContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="channel">
+									<xs:annotation>
+										<xs:documentation>A transmission channel used by the message</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:complexContent>
+											<xs:extension base="StringType">
+												<xs:attributeGroup ref="qualifyingAttributes"/>
+												<xs:attribute name="g2flag" type="xs:string" use="optional" fixed="NMSG">
+													<xs:annotation>
+														<xs:documentation>DO NOT USE this attribute, for G2 internal maintenance purposes only.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:extension>
+										</xs:complexContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element ref="signal"/>
+								<xs:element name="headerExtProperty" type="Flex2ExtPropType">
+									<xs:annotation>
+										<xs:documentation>Extension Property; the semantics are defined by the concept referenced by the rel attribute. The semantics of the Extension Property must have the same scope as the parent property.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:choice>
+							<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
+								</xs:annotation>
+							</xs:any>
+						</xs:sequence>
+						<xs:attributeGroup ref="commonPowerAttributes"/>
+						<xs:anyAttribute namespace="##other" processContents="lax"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="itemSet">
+					<xs:annotation>
+						<xs:documentation>The set of items to be exchanged.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:any namespace="http://iptc.org/std/nar/2006-10-01/" processContents="lax" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Any item from the IPTC News Architecture namespace</xs:documentation>
+								</xs:annotation>
+							</xs:any>
+						</xs:sequence>
+						<xs:attributeGroup ref="commonPowerAttributes"/>
+						<xs:anyAttribute namespace="##other" processContents="lax"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:anyAttribute namespace="##other" processContents="lax"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>======= newsMessage-local types =====</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="StringType">
+		<xs:annotation>
+			<xs:documentation>The type of a string value. Type defined in this XML Schema only</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attributeGroup ref="commonPowerAttributes"/>
+				<xs:anyAttribute namespace="##other" processContents="lax"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>
+<!--IPTC Schema Generator, v 1.3-->

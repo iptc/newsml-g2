@@ -4,21 +4,39 @@
 echo "Loading shared environment variables including new NewsML-G2 version number"
 . release-tools/newsmlg2-config-vars.sh
 
-# create local vars
-echo "Creating release folder if it doesn't already exist"
-mkdir releases/$NEWSMLG2_VERSION
-
 echo "Emptying folder in case it already existed"
-rm -fr releases/$NEWSMLG2_VERSION/*
+rm -fr releases/$NEWSMLG2_VERSION
+rm -fr releases/NewsML-G2_$NEWSMLG2_VERSION*.zip
+
+echo "Creating release folder"
+mkdir -p releases/$NEWSMLG2_VERSION
 
 echo "Copying release files to the release folder"
-cp -r specification documentation examples LICENSE README.md releases/$NEWSMLG2_VERSION
+cp -r documentation examples LICENSE releases/$NEWSMLG2_VERSION/
+cp -r README.md releases/$NEWSMLG2_VERSION/NewsML-G2-README.md
+
+echo "Copying specification (minus XML Schema docs) to the release folder"
+mkdir -p releases/$NEWSMLG2_VERSION/specification
+cp -r specification/NewsML-G2_2*Power.xsd specification/XML-Schema_FileVersion_* specification/individual specification/xml.xsd releases/$NEWSMLG2_VERSION/specification/
+
+ZIP_PATH=`which zip`
 
 cd releases/$NEWSMLG2_VERSION
-echo "Creating ZIP file (version with no documentation)"
-zip -r -9 --exclude=XML-Schema-Doc-Power ../NewsML-G2_$NEWSMLG2_VERSION-noXMLdocu.zip documentation specification examples LICENSE README.md
-echo "Creating ZIP file (version with documentation)"
-zip -r -9 ../NewsML-G2_$NEWSMLG2_VERSION.zip documentation specification examples LICENSE README.md
+echo "Creating ZIP file (version with no documentation) using $ZIP_PATH"
+$ZIP_PATH -r -9 ../NewsML-G2_$NEWSMLG2_VERSION-noXMLdocu.zip documentation specification examples LICENSE NewsML-G2-README.md
 cd ../..
+
+echo "Copying XML Schema documentation to release folder"
+cp -r specification/XML-Schema-Doc-Power releases/$NEWSMLG2_VERSION/specification/
+
+echo "Creating ZIP file (version with documentation) using $ZIP_PATH"
+cd releases/$NEWSMLG2_VERSION
+$ZIP_PATH -r -9 ../NewsML-G2_$NEWSMLG2_VERSION.zip documentation specification examples LICENSE NewsML-G2-README.md
+cd ../..
+
+echo "Creating ZIP file of documentation alone using $ZIP_PATH"
+cd releases/$NEWSMLG2_VERSION/specification
+$ZIP_PATH -r -9 XML-Schema-Doc-Power.zip XML-Schema-Doc-Power
+cd ../../..
 
 echo "Done."
