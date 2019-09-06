@@ -8,7 +8,9 @@ Steps to release an update to the standard:
 
 1. Create a new GitHub branch for the changes: `git checkout -b my-new-branch`
 2. For a major or minor version change...
-   For a revision change, copy the XML-Schema_FileVersion_# folder e.g. to the appropriate revision number (the first release is always revision 1, the first fix is always revision 2)
+   For a revision change, copy the XML-Schema_FileVersion_# folder to the
+   appropriate revision number (the first release is always revision 1, the
+   first correction is always revision 2)
 3. Check that the version numbers are correct in `release-tools/newsmlg2-config-vars.sh`
 4. Update the version number in all files: (TODO: write a script for this based on Michael's C# tool)
     1. Update `release-tools/newsmlg2-config-vars.sh` to use the correct version number. This is
@@ -21,7 +23,9 @@ Steps to release an update to the standard:
     updated with version number and any date changes - can cut and paste from one section to the other.
 5. Make the XML schema changes that are needed in the `XML-Schema_FileVersion_#` folder, including
    any outstanding [change requests from the dev.iptc.org site](http://dev.iptc.org/G2-Change-Requests-HP)
-6. Copy from the XML-Schema_FileVersion_# folder to the specification/individual folder
+6. Copy from the XML-Schema_FileVersion_# folder to the specification/individual folder:
+   `release-tools/move_to_individual.sh`
+6a. change include filename references in all version to get rid of _<revision> numbers
 7. Run the script that uses an XSLT stylesheet to create the master version from the framework
    version in the specification/individual version:
     `release-tools/create-power-xsd-from-framework-xsd.sh`
