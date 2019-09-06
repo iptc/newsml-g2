@@ -14,9 +14,9 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 		<xs:documentation>NewsML-G2 2.28 Package Item XML Schema, document version 2</xs:documentation>
 		<xs:documentation>Approval of this XML Schema version: 2018-10-17</xs:documentation>
 		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-		<xs:documentation>Date of creation of this XML Schema document revision: 2018-10-23</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document revision: 2019-09-06</xs:documentation>
 		<xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
-		<xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (IPTC), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
+		<xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
 	</xs:annotation>
 	<xs:element name="packageItem">
 		<xs:annotation>
