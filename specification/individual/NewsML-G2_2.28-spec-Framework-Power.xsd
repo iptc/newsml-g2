@@ -3086,12 +3086,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 								<xs:complexType>
 									<xs:complexContent>
 										<xs:extension base="Flex1PartyPropType">
-											<xs:attribute name="coversfrom" type="xs:dateTime">
+											<xs:attribute name="coversfrom" type="DateOptTimeType">
 												<xs:annotation>
 													<xs:documentation>The starting date (and optionally, the time) by which this property applies to the news coverage planning</xs:documentation>
 												</xs:annotation>
 											</xs:attribute>
-											<xs:attribute name="coversto" type="xs:dateTime">
+											<xs:attribute name="coversto" type="DateOptTimeType">
 												<xs:annotation>
 													<xs:documentation>The end date (and optionally, the time) by which this property applies to the news coverage planning</xs:documentation>
 												</xs:annotation>
@@ -3145,12 +3145,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 							</xs:any>
 						</xs:sequence>
 						<xs:attributeGroup ref="commonPowerAttributes"/>
-						<xs:attribute name="coversfrom" type="xs:dateTime">
+						<xs:attribute name="coversfrom" type="DateOptTimeType">
 							<xs:annotation>
 								<xs:documentation>The starting date (and optionally, the time) by which this property applies to the news coverage planning</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
-						<xs:attribute name="coversto" type="xs:dateTime">
+						<xs:attribute name="coversto" type="DateOptTimeType">
 							<xs:annotation>
 								<xs:documentation>The end date (and optionally, the time) by which this property applies to the news coverage planning</xs:documentation>
 							</xs:annotation>
@@ -3282,7 +3282,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 													<xs:documentation>The target of the action in a content object - expressed by a URI. If the target attribute is omitted the target of the action is the whole object.</xs:documentation>
 												</xs:annotation>
 											</xs:attribute>
-											<xs:attribute name="timestamp" type="xs:dateTime">
+											<xs:attribute name="timestamp" type="DateOptTimeType">
 												<xs:annotation>
 													<xs:documentation>The date and optionally the time (with a time zone) when this action was performed on the target.</xs:documentation>
 												</xs:annotation>
@@ -3297,7 +3297,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 								<xs:documentation>The sequential value of this Hop in a sequence of Hops of a Hop History. Values need not to be consecutive. The sequence starts with the lowest value.</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
-						<xs:attribute name="timestamp" type="xs:dateTime">
+						<xs:attribute name="timestamp" type="DateOptTimeType">
 							<xs:annotation>
 								<xs:documentation>The date and optionally the time (with a time zone) when this item's content object was forwarded.</xs:documentation>
 							</xs:annotation>
