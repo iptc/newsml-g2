@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- File: http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_#.xml (# represents the version number of this file)
+
+	This file provides a Catalog for G2-Standards as defined by the common News Architecture
+	This catalog contains all currently existing IPTC maintained controlled vocabularies - branded as NewsCodes - 
+	and a set of new sets of NewsCodes for the G2-Standards - see the explanations in the headers below.
+
+	How to apply:
+	When creating an XML instance of any kind of item for a G2-Standard do this:
+	- either: copy and paste the <catalog> element from this file to the appropriate position in the item
+	- or: add a <catalogRef> element to the item and apply the URL of this file (wherever it is stored)
+		to the "href" attribute of the catalogRef element like: 
+		<catalogRef href="http://mydomain.org/files/catalog.IPTC-G2-Standards_99.xml" />
+
+	This file is provided as is by the International Press Telecommunication Council, IPTC - www.iptc.org
+	History / change log:
+	v 1 2008-03-04: initial version, derived from the draft versions, reflects the G2 NewsCodes approved on 2008-01-29
+	v 2 2008-05-02: the section of "existing IPTC NewsCodes" was reviewed to sort out taxonomies which do not comply with G2-Standards for formal technical reasons
+	v 3 2008-06-23: minor changes
+	v 4 2008-09-02: section 5 added: schemes used only for NewsML1
+	v 5 2008-11-07: section 6 added: IPTC-external vocabularies added
+    v 6 2008-11-11: changes in section 6
+	v 7 2009-04-29: added alias "ncostat" and "wldreg" and "medtop"
+	v8 2009-05-20: added News Provider and News Product (section 1)
+	v9 2009-06-19: added DigitalSourceType (section 1)
+	v10 2009-07-06: added TimeUnit (section 3.1)
+	v11 2009-10-01: added DimensionUnit (section 3.1), added Dummy (1) TimeUnit alias modified
+	v12 2010-07-23: added Concept Relation (crel), comments modified
+	v13 2010-12-16: added cwarn, app,sig, plinat
+	v14 2011-01-21: adding riaspect, riscope, hopaction, hatarget, hashtype, hashscope
+	v15 2011-08-16: adding skos, sov, colin, videodef, sev
+	v16 2011-11-04: adding howextr
+	v17 2011-12-13: adding nmsig and the ANPA1312 external CVs
+	v18 2011-12-23: error fixed: the MediaType CVs of G2 and NewsML 1 had the same scheme URI, 
+		for the CV of NewsML 1 with the alias "medtyp" the URI was changed to "http://cv.iptc.org/newscodes/mediatype1/"
+	v19 2012-09-12: external CV added: http://cvx.iptc.org/iso10383-mic
+	v20 2013-01-10: descriptions of schemes added. Generated from the IPTC concept management tool, schemes are sorted by their scheme URI
+-->
+<catalog xmlns="http://iptc.org/std/nar/2006-10-01/"  additionalInfo="http://www.iptc.org/goto?G2cataloginfo">
+	<scheme alias="app" uri="http://cv.iptc.org/newscodes/application/">
+		<definition xml:lang="en-GB">Indicates how the metadata value was applied.</definition>
+		<name xml:lang="en-GB">Application of Metadata Values</name>
+	</scheme>
+	<scheme alias="acdc" uri="http://cv.iptc.org/newscodes/audiocodec/">
+		<definition xml:lang="en-GB">Indicates a name of an audio-encoder/decoder. </definition>
+		<name xml:lang="en-GB">Audiocodec</name>
+		<note xml:lang="en-GB">Many of these encoders/decoders are controlled by international standards.</note>
+	</scheme>
+	<scheme alias="chprop" uri="http://cv.iptc.org/newscodes/characteristicsproperty/">
+		<definition xml:lang="en-GB">Defines the name and the semantics (not the value) of a physical characteristic of the content of a  NewsML 1 news item. </definition>
+		<name xml:lang="en-GB">Characteristics Property</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items. </note>
+	</scheme>
+	<scheme alias="cinat" uri="http://cv.iptc.org/newscodes/cinature/">
+		<definition xml:lang="en-GB">Indicates the nature of the concept in a G2 Concept Item or Knowledge Item.</definition>
+		<name xml:lang="en-GB">Nature of a G2 Concept Item</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items. </note>
+	</scheme>
+	<scheme alias="colsp" uri="http://cv.iptc.org/newscodes/colorspace/">
+		<definition xml:lang="en-GB">Indicates the colorspace of a digital image.</definition>
+		<name xml:lang="en-GB">Colorspace</name>
+	</scheme>
+	<scheme alias="colin" uri="http://cv.iptc.org/newscodes/colourindicator/">
+		<definition xml:lang="en-GB">Indicates the basic colouring of an image.</definition>
+		<name xml:lang="en-GB">Colour Indicator</name>
+	</scheme>
+	<scheme alias="ctech" uri="http://cv.iptc.org/newscodes/commtech/">
+		<definition xml:lang="en-GB">Indicates the communication technology used for this part of the contact info.</definition>
+		<name xml:lang="en-GB">Communication Technology</name>
+	</scheme>
+	<scheme alias="crel" uri="http://cv.iptc.org/newscodes/conceptrelation/">
+		<definition xml:lang="en-GB">The relationship between the current concept and the target concept.</definition>
+		<name xml:lang="en-GB">Concept Relation</name>
+	</scheme>
+	<scheme alias="conf" uri="http://cv.iptc.org/newscodes/confidence/">
+		<definition xml:lang="en-GB">Indicates the degree of certainty that an applied metadata value is correct. </definition>
+		<name xml:lang="en-GB">Confidence</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items. </note>
+	</scheme>
+	<scheme alias="ciprol" uri="http://cv.iptc.org/newscodes/contactinfopartrole/">
+		<definition xml:lang="en-GB">Indicates the role of a part of a contact info component.</definition>
+		<name xml:lang="en-GB">Role of a Part of the Contact Info</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items. </note>
+	</scheme>
+	<scheme alias="cwarn" uri="http://cv.iptc.org/newscodes/contentwarning/">
+		<definition xml:lang="en-GB">Indicates why the content of the item should be reviewed as it may be perceived as being offensive.
+</definition>
+		<name xml:lang="en-GB">Content Warning</name>
+	</scheme>
+	<scheme alias="cpnat" uri="http://cv.iptc.org/newscodes/cpnature/">
+		<definition xml:lang="en-GB">Indicates the basic nature of a concept.</definition>
+		<name xml:lang="en-GB">Nature of a Concept</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items.</note>
+	</scheme>
+	<scheme alias="drol" uri="http://cv.iptc.org/newscodes/descriptionrole/">
+		<definition xml:lang="en-GB">Indicates the role that a specific instance of a description takes among all descriptions.</definition>
+		<name xml:lang="en-GB">Description Role</name>
+	</scheme>
+	<scheme alias="digsrctype" uri="http://cv.iptc.org/newscodes/digitalsourcetype/">
+		<definition xml:lang="en-GB">Indicates from which source a digital image was created. </definition>
+		<name xml:lang="en-GB">Digital Source Type</name>
+	</scheme>
+	<scheme alias="dimensionunit" uri="http://cv.iptc.org/newscodes/dimensionunit/">
+		<definition xml:lang="en-GB">Indicates the unit used for measuring a dimension of content.</definition>
+		<name xml:lang="en-GB">Dimension Unit</name>
+	</scheme>
+	<scheme alias="dummy" uri="http://cv.iptc.org/newscodes/dummy/"/>
+	<scheme alias="erol" uri="http://cv.iptc.org/newscodes/edrole/">
+		<definition xml:lang="en-GB">Indicates the role this item takes in an editorial workflow.</definition>
+		<name xml:lang="en-GB">Editorial Role</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items.</note>
+	</scheme>
+	<scheme alias="encd" uri="http://cv.iptc.org/newscodes/encoding/">
+		<definition xml:lang="en-GB">Indicates an encoding scheme used to transform data. </definition>
+		<name xml:lang="en-GB">Encoding</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items.</note>
+	</scheme>
+	<scheme alias="ecirol" uri="http://cv.iptc.org/newscodes/eventcontactinforole/">
+		<definition xml:lang="en-GB">Indicates the class of the contact information.</definition>
+		<name xml:lang="en-GB">Event Contact Info Role</name>
+	</scheme>
+	<scheme alias="edconf" uri="http://cv.iptc.org/newscodes/eventdateconfirm/">
+		<definition xml:lang="en-GB">Indicates whether start and/or end dates and, optionally, times are confirmed.</definition>
+		<name xml:lang="en-GB">Event Date Confirmation</name>
+	</scheme>
+	<scheme alias="eocstat" uri="http://cv.iptc.org/newscodes/eventoccurstatus/">
+		<definition xml:lang="en-GB">Indicates how certain the occurrence of the event is.</definition>
+		<name xml:lang="en-GB">Event Occurence Status</name>
+	</scheme>
+	<scheme alias="eorol" uri="http://cv.iptc.org/newscodes/eventorganiserrole/">
+		<definition xml:lang="en-GB">Indicates the role an organiser takes in the event.</definition>
+		<name xml:lang="en-GB">Event Organiser Role</name>
+	</scheme>
+	<scheme alias="eprol" uri="http://cv.iptc.org/newscodes/eventparticipantrole/">
+		<definition xml:lang="en-GB">Indicates the role a participant takes in the event.</definition>
+		<name xml:lang="en-GB">Event Participant Role</name>
+	</scheme>
+	<scheme alias="eregrol" uri="http://cv.iptc.org/newscodes/eventregrole/">
+		<definition xml:lang="en-GB">Indicates the class of a registration.</definition>
+		<name xml:lang="en-GB">Event Registration Role</name>
+	</scheme>
+	<scheme alias="frmt" uri="http://cv.iptc.org/newscodes/format/">
+		<definition xml:lang="en-GB">Indicates the technical format of content.</definition>
+		<name xml:lang="en-GB">Format</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items. </note>
+	</scheme>
+	<scheme alias="genre" uri="http://cv.iptc.org/newscodes/genre/">
+		<definition xml:lang="en-GB">Indicates a nature, journalistic or intellectual characteristic of an item. </definition>
+		<name xml:lang="en-GB">Genre</name>
+	</scheme>
+	<scheme alias="hashscope" uri="http://cv.iptc.org/newscodes/hashscope/">
+		<definition xml:lang="en-GB">Indicates the scope of a hash value.</definition>
+		<name xml:lang="en-GB">Hash Scope</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items.</note>
+	</scheme>
+	<scheme alias="hashtype" uri="http://cv.iptc.org/newscodes/hashtype/">
+		<definition xml:lang="en-GB">Indicates the function by which a hash value was generated.</definition>
+		<name xml:lang="en-GB">Hash Type</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items.</note>
+	</scheme>
+	<scheme alias="hopaction" uri="http://cv.iptc.org/newscodes/hopaction/">
+		<definition xml:lang="en-GB">Indicates the action taken at a hop of the hop history.</definition>
+		<name xml:lang="en-GB">Hop Action</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items.</note>
+	</scheme>
+	<scheme alias="hatarget" uri="http://cv.iptc.org/newscodes/hopactiontarget/">
+		<definition xml:lang="en-GB">Indicates the target to which an action taken at a hop of the hop history applies.</definition>
+		<name xml:lang="en-GB">Hop Action Target</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items.</note>
+	</scheme>
+	<scheme alias="howextr" uri="http://cv.iptc.org/newscodes/howextracted/">
+		<definition xml:lang="en-GB">Indicates how a metadata value was extracted from the content.</definition>
+		<name xml:lang="en-GB">How Extracted</name>
+	</scheme>
+	<scheme alias="howpr" uri="http://cv.iptc.org/newscodes/howpresent/">
+		<definition xml:lang="en-GB">Indicates how a metadata property relates to the content of a NewsML 1 news item. </definition>
+		<name xml:lang="en-GB">How Present</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items.</note>
+	</scheme>
+	<scheme alias="impt" uri="http://cv.iptc.org/newscodes/importance/">
+		<definition xml:lang="en-GB">Indicates the importance of an item of metadata applied to a news item. </definition>
+		<name xml:lang="en-GB">Importance</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items. </note>
+	</scheme>
+	<scheme alias="isrol" uri="http://cv.iptc.org/newscodes/infosourcerole/">
+		<definition xml:lang="en-GB">Indicates the role of an information source.</definition>
+		<name xml:lang="en-GB">Information Source Role</name>
+	</scheme>
+	<scheme alias="irel" uri="http://cv.iptc.org/newscodes/itemrelation/">
+		<definition xml:lang="en-GB">Indicates the relationship between the current item and the target resource.</definition>
+		<name xml:lang="en-GB">Item-Relation</name>
+	</scheme>
+	<scheme alias="irep" uri="http://cv.iptc.org/newscodes/itemrepresentation/">
+		<definition xml:lang="en-GB">Indicates the way the target item is represented at this location.</definition>
+		<name xml:lang="en-GB">Item Representation</name>
+	</scheme>
+	<scheme alias="lbtyp" uri="http://cv.iptc.org/newscodes/labeltype/">
+		<definition xml:lang="en-GB">Indicates the type of a label. </definition>
+		<name xml:lang="en-GB">Label Type</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items.</note>
+	</scheme>
+	<scheme alias="lrol" uri="http://cv.iptc.org/newscodes/languagerole/">
+		<definition xml:lang="en-GB">Indicates the role of the language among all languages used by the content.</definition>
+		<name xml:lang="en-GB">Language Role</name>
+	</scheme>
+	<scheme alias="loctyp" uri="http://cv.iptc.org/newscodes/location/">
+		<definition xml:lang="en-GB">Indicates the type of a location.</definition>
+		<name xml:lang="en-GB">Location Type</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items. </note>
+	</scheme>
+	<scheme alias="medtop" uri="http://cv.iptc.org/newscodes/mediatopic/">
+		<definition xml:lang="en-GB">Indicates a subject of an item.</definition>
+		<name xml:lang="en-GB">Media Topic</name>
+		<note xml:lang="en-GB">The Media Topic NewsCodes is IPTC's new (as of December 2010) 1100-term taxonomy with a focus on text. The development started with the Subject Codes and extended the tree to 5 levels and reused the same 17 top level terms. The terms below the top level have been revised and rearranged. Each Media Topic provides a mapping back to one of the Subject Codes. </note>
+	</scheme>
+	<scheme alias="mtyp" uri="http://cv.iptc.org/newscodes/mediatype/">
+		<definition xml:lang="en-GB">Indicates a basic media type of news content.</definition>
+		<name xml:lang="en-GB">Media Type (G2)</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items. </note>
+	</scheme>
+	<scheme alias="medtype" uri="http://cv.iptc.org/newscodes/mediatype1/">
+		<definition xml:lang="en-GB">Indicates a basic media type of news content.</definition>
+		<name xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items. </name>
+		<note xml:lang="en-GB">Media Type (NewsML 1)</note>
+	</scheme>
+	<scheme alias="nprt" uri="http://cv.iptc.org/newscodes/namepart/">
+		<definition xml:lang="en-GB">Indicates the part of a name.</definition>
+		<name xml:lang="en-GB">Name Part</name>
+	</scheme>
+	<scheme alias="nrol" uri="http://cv.iptc.org/newscodes/namerole/">
+		<definition xml:lang="en-GB">Indicates the role this specific instance of a name takes among all names.</definition>
+		<name xml:lang="en-GB">Name Role</name>
+	</scheme>
+	<scheme alias="ncostat" uri="http://cv.iptc.org/newscodes/newscoveragestatus/">
+		<definition xml:lang="en-GB">Indicates the intention of the news provider to cover an event. </definition>
+		<name xml:lang="en-GB">News Coverage Status</name>
+	</scheme>
+	<scheme alias="nityp" uri="http://cv.iptc.org/newscodes/newsitemtype/">
+		<definition xml:lang="en-GB">Indicates, in a very broad way, the type of ContentItem carried by a NewsML 1 news item. </definition>
+		<name xml:lang="en-GB">News Item Type</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items.</note>
+	</scheme>
+	<scheme alias="nmsig" uri="http://cv.iptc.org/newscodes/newsmsgsignal/">
+		<definition xml:lang="en-GB">Indicates how the items conveyed by a News Message should be processed. </definition>
+		<name xml:lang="en-GB">News Message Signal</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 News Messages.</note>
+	</scheme>
+	<scheme alias="nprod" uri="http://cv.iptc.org/newscodes/newsproduct/">
+		<definition xml:lang="en-GB">Indicates a product of a News Provider.</definition>
+		<name xml:lang="en-GB">News Product</name>
+		<note xml:lang="en-GB">See also the News Provider NewsCodes </note>
+	</scheme>
+	<scheme alias="nprov" uri="http://cv.iptc.org/newscodes/newsprovider/">
+		<definition xml:lang="en-GB">Indicates a News Provider registered with the IPTC.</definition>
+		<name xml:lang="en-GB">News Provider</name>
+		<note xml:lang="en-GB">See also the News Product NewsCodes </note>
+	</scheme>
+	<scheme alias="ninat" uri="http://cv.iptc.org/newscodes/ninature/">
+		<definition xml:lang="en-GB">Indicates the nature of news in a News Item or Package Item.</definition>
+		<name xml:lang="en-GB">Nature of a News Item</name>
+		<note xml:lang="en-GB">Relates to the media type of the news content. / This vocabulary applies only to NewsML-G2 items.</note>
+	</scheme>
+	<scheme alias="not" uri="http://cv.iptc.org/newscodes/notation/">
+		<definition xml:lang="en-GB">Indicates the notation of a ContentItem. </definition>
+		<name xml:lang="en-GB">Notation</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items.</note>
+	</scheme>
+	<scheme alias="oito" uri="http://cv.iptc.org/newscodes/ofinterestto/">
+		<definition xml:lang="en-GB">Indicates a target audience for an item.</definition>
+		<name xml:lang="en-GB">Of Interest To</name>
+	</scheme>
+	<scheme alias="pgrmod" uri="http://cv.iptc.org/newscodes/pkggroupmode/">
+		<definition xml:lang="en-GB">Indicates whether the members of a Package Item group are complementary or alternative and whether their order is relevant.</definition>
+		<name xml:lang="en-GB">Packagegroup Mode</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items.</note>
+	</scheme>
+	<scheme alias="plinat" uri="http://cv.iptc.org/newscodes/plinature/">
+		<definition xml:lang="en-GB">Indicates the nature of the content of a Planning Item.</definition>
+		<name xml:lang="en-GB">Nature of a Planning Item</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items.</note>
+	</scheme>
+	<scheme alias="prio" uri="http://cv.iptc.org/newscodes/priority/">
+		<definition xml:lang="en-GB">Indicates the relative priority of an item for a distribution process. </definition>
+		<name xml:lang="en-GB">Priority</name>
+	</scheme>
+	<scheme alias="prop" uri="http://cv.iptc.org/newscodes/property/">
+		<definition xml:lang="en-GB">Indicates the type of a NewsML 1 Property element.</definition>
+		<name xml:lang="en-GB">Property Type</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items.</note>
+	</scheme>
+	<scheme alias="prov" uri="http://cv.iptc.org/newscodes/provider/">
+		<definition xml:lang="en-GB">Indicates a company, publication or service provider.</definition>
+		<name xml:lang="en-GB">Provider (deprecated)</name>
+		<note xml:lang="en-GB">The successors of this vocabulary are the News Product and News Provider NewsCodes.</note>
+	</scheme>
+	<scheme alias="stat" uri="http://cv.iptc.org/newscodes/pubstatusg2/">
+		<definition xml:lang="en-GB">Indicates the publishing status of a G2 item.</definition>
+		<name xml:lang="en-GB">Publishing Status (G2)</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items, NewsML 1 items use a different vocabulary. </note>
+	</scheme>
+	<scheme alias="rel" uri="http://cv.iptc.org/newscodes/relevance/">
+		<definition xml:lang="en-GB">Indicates the relevance of a NewsML 1 news item to the target audience specified by "OfInterestTo".</definition>
+		<name xml:lang="en-GB">Relevance</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items. </note>
+	</scheme>
+	<scheme alias="rnd" uri="http://cv.iptc.org/newscodes/rendition/">
+		<definition xml:lang="en-GB">Indicates a kind of content rendition.</definition>
+		<name xml:lang="en-GB">Content Rendition</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items.</note>
+	</scheme>
+	<scheme alias="riaspect" uri="http://cv.iptc.org/newscodes/riaspect/">
+		<definition xml:lang="en-GB">Indicates the aspect of intellectual property rights that are expressed by a rights info property in a G2 item.</definition>
+		<name xml:lang="en-GB">Rights Info Aspect</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items. </note>
+	</scheme>
+	<scheme alias="riscope" uri="http://cv.iptc.org/newscodes/riscope/">
+		<definition xml:lang="en-GB">Indicates the scope of a rights info property in a G2 item.</definition>
+		<name xml:lang="en-GB">Rights Info Scope</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items. </note>
+	</scheme>
+	<scheme alias="role1" uri="http://cv.iptc.org/newscodes/role1/">
+		<definition xml:lang="en-GB">Indicates the role of a NewsML 1 news item within a package of several news items.</definition>
+		<name xml:lang="en-GB">Role in Package</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items.</note>
+	</scheme>
+	<scheme alias="scn" uri="http://cv.iptc.org/newscodes/scene/">
+		<definition xml:lang="en-GB">Indicates a type of scene covered by an item.</definition>
+		<name xml:lang="en-GB">Scene</name>
+	</scheme>
+	<scheme alias="sev" uri="http://cv.iptc.org/newscodes/severity/">
+		<definition xml:lang="en-GB">Indicates how severe the impact from the signal is.</definition>
+		<name xml:lang="en-GB">Severity</name>
+		<note xml:lang="en-GB">This vocabulary applies only to G2 items.</note>
+	</scheme>
+	<scheme alias="sig" uri="http://cv.iptc.org/newscodes/signal/">
+		<definition xml:lang="en-GB">The signals are instructions to the processor of an item that the content may require special handling.
+</definition>
+		<name xml:lang="en-GB">Signal</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items.</note>
+	</scheme>
+	<scheme alias="pst1" uri="http://cv.iptc.org/newscodes/status1/">
+		<definition xml:lang="en-GB">Indicates the current usability of a NewsML 1 news item.</definition>
+		<name xml:lang="en-GB">Status (NewsML 1)</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items.</note>
+	</scheme>
+	<scheme alias="subj" uri="http://cv.iptc.org/newscodes/subjectcode/">
+		<definition xml:lang="en-GB">Indicates a subject of an item.</definition>
+		<name xml:lang="en-GB">Subject Code</name>
+		<note xml:lang="en-GB">The Subject Codes is IPTC 's original subject taxonomy, with a focus on text. It consists of about 1400 terms organized into 3 levels. </note>
+	</scheme>
+	<scheme alias="squ" uri="http://cv.iptc.org/newscodes/subjectqualifier/">
+		<definition xml:lang="en-GB">Indicates a narrower attribute-like context for a Subject Code,  e.g. for sports: the gender of participants, indoor/outdoor competition etc.</definition>
+		<name xml:lang="en-GB">Subject Qualifier</name>
+		<note xml:lang="en-GB">This vocabulary should be used with the Subject Codes</note>
+	</scheme>
+	<scheme alias="timeunit" uri="http://cv.iptc.org/newscodes/timeunit/">
+		<definition xml:lang="en-GB">Indicates the unit of time used for measuring the length of audio or video content. </definition>
+		<name xml:lang="en-GB">Time Unit</name>
+	</scheme>
+	<scheme alias="tpctyp" uri="http://cv.iptc.org/newscodes/topictype/">
+		<definition xml:lang="en-GB">Indicates the type of a concept represented by a topic.</definition>
+		<name xml:lang="en-GB">Topic Type</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML 1.x items.</note>
+	</scheme>
+	<scheme alias="urgy" uri="http://cv.iptc.org/newscodes/urgency/">
+		<definition xml:lang="en-GB">Indicates the editorial urgency of an item.</definition>
+		<name xml:lang="en-GB">Urgency</name>
+	</scheme>
+	<scheme alias="vcdc" uri="http://cv.iptc.org/newscodes/videocodec/">
+		<definition xml:lang="en-GB">Indicates a name of a video-encoder/decoder. </definition>
+		<name xml:lang="en-GB">Videocodec</name>
+		<note xml:lang="en-GB">Many of these encoders/decoders are controlled by international standards. </note>
+	</scheme>
+	<scheme alias="videodef" uri="http://cv.iptc.org/newscodes/videodefinition/">
+		<definition xml:lang="en-GB">Indicates the video definition by basic terms.</definition>
+		<name xml:lang="en-GB">Video Definition</name>
+	</scheme>
+	<scheme alias="sov" uri="http://cv.iptc.org/newscodes/videoscaling/">
+		<definition xml:lang="en-GB">Indicates how video content is scaled.</definition>
+		<name xml:lang="en-GB">Video Scaling</name>
+	</scheme>
+	<scheme alias="why" uri="http://cv.iptc.org/newscodes/whypresent/">
+		<definition xml:lang="en-GB">Indicates why the metadata value has been included.</definition>
+		<name xml:lang="en-GB">Why Present</name>
+		<note xml:lang="en-GB">This vocabulary applies only to NewsML-G2 items. </note>
+	</scheme>
+	<scheme alias="wldreg" uri="http://cv.iptc.org/newscodes/worldregion/">
+		<definition xml:lang="en-GB">Indicates a region of the world. </definition>
+		<name xml:lang="en-GB">World Region</name>
+	</scheme>
+	<scheme alias="a1312cat" uri="http://cvx.iptc.org/anpa1312-category/">
+		<definition xml:lang="en-GB">The category code of the story may be any of the single alpha characters from the vocabulary. (ANPA 1312 specs, section J)</definition>
+		<name xml:lang="en-GB">ANPA 1312 Category Codes</name>
+		<note xml:lang="en-GB">This vocabulary is owned by NAA - www.naa.org</note>
+	</scheme>
+	<scheme alias="a1312prio" uri="http://cvx.iptc.org/anpa1312-priority/">
+		<definition xml:lang="en-GB">The priority of a transmission is designated by any of the single alpha characters from the vocabulary.  (ANPA 1312 specs, section H)</definition>
+		<name xml:lang="en-GB">ANPA 1312 Priority Codes</name>
+		<note xml:lang="en-GB">The vocabulary is owned by NAA - www.naa.org</note>
+	</scheme>
+	<scheme alias="a1312svc" uri="http://cvx.iptc.org/anpa1312-servicelevel/">
+		<definition xml:lang="en-GB">The wire designator code will be an upper- or lowercase single alpha character that identifies the basic nature of the service. (ANPA 1312 specs, section B)</definition>
+		<name xml:lang="en-GB">ANPA 1312 Service Level Codes</name>
+		<note xml:lang="en-GB">The vocabulary is owned by NAA - www.naa.org</note>
+	</scheme>
+	<scheme alias="a1312vers" uri="http://cvx.iptc.org/anpa1312-version/">
+		<definition xml:lang="en-GB">The information in this field is designed to enable newspaper systems to distinguish new leads, inserts, corrections and adds, so that the process of automatically assembling separately transmitted portions of a story is not limited to putting the latest material at the bottom of the file. (ANPA 1312 specs, section O)</definition>
+		<name xml:lang="en-GB">ANPA 1312 Version Codes</name>
+		<note xml:lang="en-GB">The vocabulary is owned by NAA - www.naa.org</note>
+	</scheme>
+	<scheme alias="isin" uri="http://cvx.iptc.org/isin/">
+		<definition xml:lang="en-GB">Security numbers based on the ISO 6166 standard.</definition>
+		<name xml:lang="en-GB">ISIN (International Securities Identifying Number)</name>
+		<note xml:lang="en-GB">The ISO 6166 standard is owned by ISO - www.iso.ch</note>
+	</scheme>
+	<scheme alias="mic" uri="http://cvx.iptc.org/iso10383-mic/">
+		<definition xml:lang="en-GB">This International Standard specifies the structure for a three-letter alphabetic code and an equivalent three-digit numeric code for the representation of currencies and funds. For those currencies having minor units, it also shows the decimal relationship between such units and the currency itself.</definition>
+		<name xml:lang="en-GB">ISO Market Identifer Codes (MIC) -ISO 10383</name>
+		<note xml:lang="en-GB">This vocabulary is owned by ISO (www.iso.org)</note>
+	</scheme>
+	<scheme alias="iso3166-1a2" uri="http://cvx.iptc.org/iso3166-1a2/">
+		<definition xml:lang="en-GB">Codes for the representation of names of countries and their subdivisions -- Part 1: Country codes. The short country names from ISO 3166-1 and the alpha-2 codes are made available by ISO at no charge for internal use and non-commercial purposes.</definition>
+		<name xml:lang="en-GB">ISO 2-letter country name codes - ISO 3166-1 alpha-2</name>
+		<note xml:lang="en-GB">This vocabulary is owned by ISO - www.iso.ch</note>
+	</scheme>
+	<scheme alias="iso3166-1a3" uri="http://cvx.iptc.org/iso3166-1a3/">
+		<definition xml:lang="en-GB">Codes for the representation of names of countries and their subdivisions -- Part 1: Country codes. The short country names from ISO 3166-1 and the alpha-2 codes are made available by ISO at no charge for internal use and non-commercial purposes.</definition>
+		<name xml:lang="en-GB">ISO 3-letter country name codes - ISO 3166-1 alpha-3</name>
+		<note xml:lang="en-GB">This vocabulary is owned by ISO - www.iso.ch</note>
+	</scheme>
+	<scheme alias="iso4217a" uri="http://cvx.iptc.org/iso4217a/">
+		<definition xml:lang="en-GB">This International Standard specifies the structure for a three-letter alphabetic code and an equivalent three-digit numeric code for the representation of currencies and funds. For those currencies having minor units, it also shows the decimal relationship between such units and the currency itself.</definition>
+		<name xml:lang="en-GB">ISO currency codes - ISO 4217 - alpha codes</name>
+		<note xml:lang="en-GB">The vocabulary is owned by ISO - www.iso.ch</note>
+	</scheme>
+	<scheme alias="iso4217n" uri="http://cvx.iptc.org/iso4217n/">
+		<definition xml:lang="en-GB">This International Standard specifies the structure for a three-letter alphabetic code and an equivalent three-digit numeric code for the representation of currencies and funds. For those currencies having minor units, it also shows the decimal relationship between such units and the currency itself.</definition>
+		<name xml:lang="en-GB">ISO currency codes - ISO 4217 - numeric codes</name>
+		<note xml:lang="en-GB">This vocabulary is owned by ISO - www.iso.ch</note>
+	</scheme>
+	<scheme alias="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
+</catalog>
+<!--
+IPTC - International Press Telecommunications Council
+20 Garrick Street, London WC2E 9BT, United Kingdom
+www.iptc.org
+
+Non-Exclusive License Agreement for International Press
+Telecommunications Council Specifications and Related Documentation
+
+IMPORTANT: International Press Telecommunications Council (IPTC)
+standard specifications for news (the Specifications) and supporting
+software, documentation, technical reports, web sites and other
+material related to the Specifications (the Materials) including the
+document accompanying this license (the Document), whether in a paper
+or electronic format, are made available to you subject to the terms
+stated below. By obtaining, using and/or copying the Specifications or
+Materials, you (the licensee) agree that you have read, understood,
+and will comply with the following terms and conditions.
+
+1. The Specifications and Materials are licensed for use only on the
+condition that you agree to be bound by the terms of this license.
+Subject to this and other licensing requirements contained herein, you
+may, on a non-exclusive basis, use the Specifications and Materials.
+
+2. The IPTC openly provides the Specifications and Materials for
+voluntary use by individuals, partnerships, companies, corporations,
+organizations and any other entity for use at the entity's own risk.
+This disclaimer, license and release is intended to apply to the IPTC,
+its officers, directors, agents, representatives, members,
+contributors, affiliates, contractors, or co-venturers acting jointly
+or severally.
+
+3. The Document and translations thereof may be copied and furnished
+to others, and derivative works that comment on or otherwise explain
+it or assist in its implementation may be prepared, copied, published
+and distributed, in whole or in part, without restriction of any kind,
+provided that the copyright and license notices and references to the
+IPTC appearing in the Document and the terms of this Specifications
+License Agreement are included on all such copies and derivative
+works. Further, upon the receipt of written permission from the IPTC,
+the Document may be modified for the purpose of developing
+applications that use IPTC Specifications or as required to translate
+the Document into languages other than English.
+
+4. Any use, duplication, distribution, or exploitation of the Document
+and Specifications and Materials in any manner is at your own risk.
+
+5. NO WARRANTY, EXPRESSED OR IMPLIED, IS MADE REGARDING THE ACCURACY,
+ADEQUACY, COMPLETENESS, LEGALITY, RELIABILITY OR USEFULNESS OF ANY
+INFORMATION CONTAINED IN THE DOCUMENT OR IN ANY SPECIFICATION OR OTHER
+PRODUCT OR SERVICE PRODUCED OR SPONSORED BY THE IPTC. THE DOCUMENT AND
+THE INFORMATION CONTAINED HEREIN AND INCLUDED IN ANY SPECIFICATION OR
+OTHER PRODUCT OR SERVICE OF THE IPTC IS PROVIDED ON AN "AS IS" BASIS.
+THE IPTC DISCLAIMS ALL WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING, BUT NOT LIMITED TO, ANY ACTUAL OR ASSERTED WARRANTY OF NON-
+INFRINGEMENT OF PROPRIETARY RIGHTS, MERCHANTABILITY, OR FITNESS FOR A
+PARTICULAR PURPOSE. NEITHER THE IPTC NOR ITS CONTRIBUTORS SHALL BE
+HELD LIABLE FOR ANY IMPROPER OR INCORRECT USE OF INFORMATION. NEITHER
+THE IPTC NOR ITS CONTRIBUTORS ASSUME ANY RESPONSIBILITY FOR ANYONE'S
+USE OF INFORMATION PROVIDED BY THE IPTC. IN NO EVENT SHALL THE IPTC OR
+ITS CONTRIBUTORS BE LIABLE TO ANYONE FOR DAMAGES OF ANY KIND,
+INCLUDING BUT NOT LIMITED TO, COMPENSATORY DAMAGES, LOST PROFITS, LOST
+DATA OR ANY FORM OF SPECIAL, INCIDENTAL, INDIRECT, CONSEQUENTIAL OR
+PUNITIVE DAMAGES OF ANY KIND WHETHER BASED ON BREACH OF CONTRACT OR
+WARRANTY, TORT, PRODUCT LIABILITY OR OTHERWISE.
+
+6. The IPTC takes no position regarding the validity or scope of any
+Intellectual Property or other rights that might be claimed to pertain
+to the implementation or use of the technology described in the
+Document or the extent to which any license under such rights might or
+might not be available. The IPTC does not represent that it has made
+any effort to identify any such rights. Copies of claims of rights
+made available for publication, assurances of licenses to be made
+available, or the result of an attempt made to obtain a general
+license or permission for the use of such proprietary rights by
+implementers or users of the Specifications and Materials, can be
+obtained from the Managing Director of the IPTC.
+
+7. By using the Specifications and Materials including the Document in
+any manner or for any purpose, you release the IPTC from all
+liabilities, claims, causes of action, allegations, losses, injuries,
+damages, or detriments of any nature arising from or relating to the
+use of the Specifications, Materials or any portion thereof. You
+further agree not to file a lawsuit, make a claim, or take any other
+formal or informal legal action against the IPTC, resulting from your
+acquisition, use, duplication, distribution, or exploitation of the
+Specifications, Materials or any portion thereof. Finally, you hereby
+agree that the IPTC is not liable for any direct, indirect, special or
+consequential damages arising from or relating to your acquisition,
+use, duplication, distribution, or exploitation of the Specifications,
+Materials or any portion thereof.
+
+8. Specifications and Materials may be downloaded or copied provided
+that ALL copies retain the ownership, copyright and license notices.
+
+9. Materials may not be edited, modified, or presented in a context
+that creates a misleading or false impression or statement as to the
+positions, actions, or statements of the IPTC.
+
+10. The name and trademarks of the IPTC may not be used in
+advertising, publicity, or in relation to products or services and
+their names without the specific, written prior permission of the
+IPTC. Any permitted use of the trademarks of the IPTC, whether
+registered or not, shall be accompanied by an appropriate mark and
+attribution, as agreed with the IPTC.
+
+11. Specifications may be extended by both members and non-members to
+provide additional functionality (Extended Specifications) provided
+that there is a clear recognition of the IPTC IP and its ownership in
+the Extended Specifications and the related documentation and provided
+that the extensions are clearly identified and provided that a
+perpetual license is granted by the creator of the Extended
+Specifications for other members and non-members to use the Extended
+Specifications and to continue extensions of the Extended
+Specifications. The IPTC does not waive any of its rights in the
+Specifications and Materials in this context. The Extended
+Specifications may be considered the intellectual property of their
+creator. The IPTC expressly disclaims any responsibility for damage
+caused by an extension to the Specifications.
+
+12. Specifications and Materials may be included in derivative work of
+both members and non-members provided that there is a clear
+recognition of the IPTC IP and its ownership in the derivative work
+and its related documentation. The IPTC does not waive any of its
+rights in the Specifications and Materials in this context. Derivative
+work in its entirety may be considered the intellectual property of
+the creator of the work .The IPTC expressly disclaims any
+responsibility for damage caused when its IP is used in a derivative
+context.
+
+13. This Specifications License Agreement is perpetual subject to your
+conformance to the terms of this Agreement. The IPTC may terminate
+this Specifications License Agreement immediately upon your breach of
+this Agreement and, upon such termination you will cease all use,
+duplication, distribution, and/or exploitation in any manner of the
+Specifications and Materials.
+
+14. This Specifications License Agreement reflects the entire
+agreement of the parties regarding the subject matter hereof and
+supersedes all prior agreements or representations regarding such
+matters, whether written or oral. To the extent any portion or
+provision of this Specifications License Agreement is found to be
+illegal or unenforceable, then the remaining provisions of this
+Specifications License Agreement will remain in full force and effect
+and the illegal or unenforceable provision will be construed to give
+it such effect as it may properly have that is consistent with the
+intentions of the parties.
+
+15. This Specifications License Agreement may only be modified in
+writing signed by an authorized representative of the IPTC.
+
+16. This Specifications License Agreement is governed by the law of
+United Kingdom, as such law is applied to contracts made and fully
+performed in the United Kingdom. Any disputes arising from or relating
+to this Specifications License Agreement will be resolved in the
+courts of the United Kingdom. You consent to the jurisdiction of such
+courts over you and covenant not to assert before such courts any
+objection to proceeding in such forums.
+
+IF YOU DO NOT AGREE TO THESE TERMS YOU MUST CEASE ALL USE OF THE
+SPECIFICATIONS AND MATERIALS NOW. IF YOU HAVE ANY QUESTIONS ABOUT
+THESE TERMS, PLEASE CONTACT THE MANAGING DIRECTOR OF THE INTERNATIONAL
+PRESS TELECOMMUNICATION COUNCIL. AS OF THE DATE OF THIS REVISION OF
+THIS SPECIFICATIONS LICENSE AGREEMENT YOU MAY CONTACT THE IPTC at
+http://www.iptc.org.
+
+License agreement version of: 30 January 2006
+-->

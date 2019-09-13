@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- File: http://www.iptc.org/std/catalog/catalog.IPTC-Sports_#.xml (# represents the version number of this file)
+
+	This file provides a Catalog for G2-Standards as defined by the common News Architecture
+	This catalog contains all currently existing IPTC maintained controlled vocabularies for SportsML 
+	- see the explanations in the headers below.
+
+	How to apply:
+	When creating an XML instance of any kind of item for a G2-Standard do this:
+	- either: copy and paste the <catalog> element from this file to the appropriate position in the item
+	- or: add a <catalogRef> element to the item and apply the URL of this file (wherever it is stored)
+		to the "href" attribute of the catalogRef element like: 
+		<catalogRef href="http://mydomain.org/files/catalog.IPTC-G2-Sports_99.xml" />
+
+	This file is provided as is by the International Press Telecommunication Council, IPTC - www.iptc.org
+	History / change log:
+	v 1 2016-05-23: initial version, reflects vocabularies created for SportsML 3.0
+-->	
+
+<catalog xmlns="http://iptc.org/std/nar/2006-10-01/" additionalInfo="http://www.iptc.org/goto?G2cataloginfo">
+
+	<!-- General sport vocabularies appicable to all sports -->
+	
+	<scheme alias="spactionclass" uri="http://cv.iptc.org/newscodes/spactionclass/">
+		<definition xml:lang="en-GB">High-level categories of on-field action in all sports.</definition>
+		<name xml:lang="en-GB">Action Classifications</name>
+	</scheme>
+	<scheme alias="spaward" uri="http://cv.iptc.org/newscodes/spaward/">
+		<definition xml:lang="en-GB">Types of award in sport</definition>
+		<name xml:lang="en-GB">Award Types</name>
+	</scheme>
+	<scheme alias="spcompetitionscope" uri="http://cv.iptc.org/newscodes/spcompetitionscope/">
+		<definition xml:lang="en-GB">The types of singular or groups of opponents</definition>
+		<name xml:lang="en-GB">Scope of Competition</name>
+	</scheme>
+	<scheme alias="spct" uri="http://cv.iptc.org/newscodes/spct/">
+		<definition xml:lang="en-GB">General sports-related concepts such as team, player,
+			etc.</definition>
+		<name xml:lang="en-GB">Sports Concept</name>
+	</scheme>
+	<scheme alias="spdistanceunits" uri="http://cv.iptc.org/newscodes/spdistanceunits/">
+		<definition xml:lang="en-GB">Units of distance for shot, jump, etc.</definition>
+		<name xml:lang="en-GB">Distance Units</name>
+	</scheme>
+	<scheme alias="spdurationscope" uri="http://cv.iptc.org/newscodes/spdurationscope/">
+		<definition xml:lang="en-GB">Variations on standard duration of sporting events</definition>
+		<name xml:lang="en-GB">Duration Scope</name>
+	</scheme>
+	<scheme alias="speventoutcome" uri="http://cv.iptc.org/newscodes/speventoutcome/">
+		<definition xml:lang="en-GB">Whether the competitor won, lost, or tied.</definition>
+		<name xml:lang="en-GB">Event Outcome</name>
+	</scheme>
+	<scheme alias="speventoutcometype" uri="http://cv.iptc.org/newscodes/speventoutcometype/">
+		<definition xml:lang="en-GB">What type of outcome. Includes overtime, random (eg. by coin toss),
+			etc.</definition>
+		<name xml:lang="en-GB">Event Outcome Type</name>
+	</scheme>
+	<scheme alias="speventstatus" uri="http://cv.iptc.org/newscodes/speventstatus/">
+		<definition xml:lang="en-GB">The stage of the event, describing whether it has started, is in progress,
+			etc.</definition>
+		<name xml:lang="en-GB">Event Status</name>
+	</scheme>
+	<scheme alias="speventstatusreason" uri="http://cv.iptc.org/newscodes/speventstatusreason/">
+		<definition xml:lang="en-GB">The reason for the event status. Eg. why the cancellation, postponement,
+			etc.</definition>
+		<name xml:lang="en-GB">Event Status Reason</name>
+	</scheme>
+	<scheme alias="speventstyle" uri="http://cv.iptc.org/newscodes/speventstyle/">
+		<definition xml:lang="en-GB">Indicates whether competitors are trying to defeat each other or just outdo one
+			another.</definition>
+		<name xml:lang="en-GB">Event Style</name>
+	</scheme>
+	<scheme alias="spfixt" uri="http://cv.iptc.org/newscodes/spfixt/">
+		<definition xml:lang="en-GB">List of keys for document types.</definition>
+		<name xml:lang="en-GB">Fixture Keys</name>
+	</scheme>
+	<scheme alias="sphealth" uri="http://cv.iptc.org/newscodes/sphealth/">
+		<definition xml:lang="en-GB">An indication of the health of the player.</definition>
+		<name xml:lang="en-GB">Player Health</name>
+	</scheme>
+	<scheme alias="spparticipantcount" uri="http://cv.iptc.org/newscodes/spparticipantcount/">
+		<definition xml:lang="en-GB">Groupings of participants playing on a team or side in the events
+			covered.</definition>
+		<name xml:lang="en-GB">Participant Grouping</name>
+	</scheme>
+	<scheme alias="sppenaltyside" uri="http://cv.iptc.org/newscodes/sppenaltyside/">
+		<definition xml:lang="en-GB">Team squad which committed the penalty.</definition>
+		<name xml:lang="en-GB">Penalty Side</name>
+	</scheme>
+	<scheme alias="spphase" uri="http://cv.iptc.org/newscodes/spphase/">
+		<definition xml:lang="en-GB">Career phases of athletes</definition>
+		<name xml:lang="en-GB">Career Phase</name>
+	</scheme>
+	<scheme alias="spphasestatus" uri="http://cv.iptc.org/newscodes/spphasestatus/">
+		<definition xml:lang="en-GB">Status of an athlete</definition>
+		<name xml:lang="en-GB">Athlete Status</name>
+	</scheme>
+	<scheme alias="spplayerstatus" uri="http://cv.iptc.org/newscodes/spplayerstatus/">
+		<definition xml:lang="en-GB">Whether a player starts playing at the beginning of a sports-event, joins
+			mid-game, or is not available to participate.</definition>
+		<name xml:lang="en-GB">Player Status</name>
+	</scheme>
+	<scheme alias="spprofessionalstatus" uri="http://cv.iptc.org/newscodes/spprofessionalstatus/">
+		<definition xml:lang="en-GB">The professional-status of the events covered.</definition>
+		<name xml:lang="en-GB">Professional Status</name>
+	</scheme>
+	<scheme alias="sprecipienttype" uri="http://cv.iptc.org/newscodes/sprecipienttype/">
+		<definition xml:lang="en-GB">Types of recipients of penalization</definition>
+		<name xml:lang="en-GB">Recipient Type</name>
+	</scheme>
+	<scheme alias="sprecordmakingscope" uri="http://cv.iptc.org/newscodes/sprecordmakingscope/">
+		<definition xml:lang="en-GB">Scope of an achieved record</definition>
+		<name xml:lang="en-GB">Record Scope</name>
+	</scheme>
+	<scheme alias="spresulteffect" uri="http://cv.iptc.org/newscodes/spresulteffect/">
+		<definition xml:lang="en-GB">Describes the effect that the result of the event or rank changing has had on
+			the team. Example: Whether or not a team has qualified for the playoffs, or has been
+			promoted or demoted to a different division.</definition>
+		<name xml:lang="en-GB">Result Effect</name>
+	</scheme>
+	<scheme alias="spscoreunits" uri="http://cv.iptc.org/newscodes/spscoreunits/">
+		<definition xml:lang="en-GB">Describes how the score and score-opposing is valued.</definition>
+		<name xml:lang="en-GB">Score Units</name>
+	</scheme>
+	<scheme alias="spseasontype" uri="http://cv.iptc.org/newscodes/spseasontype/">
+		<definition xml:lang="en-GB">A subcategory of the season</definition>
+		<name xml:lang="en-GB">Season Type</name>
+	</scheme>
+	<scheme alias="spsitestyle" uri="http://cv.iptc.org/newscodes/spsitestyle/">
+		<definition xml:lang="en-GB">Whether it is an indoor or outdoor site.</definition>
+		<name xml:lang="en-GB">Site Style</name>
+	</scheme>
+	<scheme alias="spsitesurface" uri="http://cv.iptc.org/newscodes/spsitesurface/">
+		<definition xml:lang="en-GB">Describes the surface upon which events are played.</definition>
+		<name xml:lang="en-GB">Site Surface</name>
+	</scheme>
+	<scheme alias="spspecialgroup" uri="http://cv.iptc.org/newscodes/spspecialgroup/">
+		<definition xml:lang="en-GB">If the events covered are for special groups. Can be school-oriented,
+			age-oriented, or group names, like Firefighters.</definition>
+		<name xml:lang="en-GB">Special Group</name>
+	</scheme>
+	<scheme alias="spspecialneeds" uri="http://cv.iptc.org/newscodes/spspecialneeds/">
+		<definition xml:lang="en-GB">Events for persons with special-needs.</definition>
+		<name xml:lang="en-GB">Special Needs</name>
+	</scheme>
+	<scheme alias="spstat" uri="http://cv.iptc.org/newscodes/spstat/">
+		<definition xml:lang="en-GB">Vocabulary of general sports statistics</definition>
+		<name xml:lang="en-GB">Core Statistics</name>
+	</scheme>
+	<scheme alias="spstatscoverage" uri="http://cv.iptc.org/newscodes/spstatscoverage/">
+		<definition xml:lang="en-GB">Coverage type for statistics</definition>
+		<name xml:lang="en-GB">Statistics Coverage</name>
+	</scheme>
+	<scheme alias="spstatuschange" uri="http://cv.iptc.org/newscodes/spstatuschange/">
+		<definition xml:lang="en-GB">Reasons for change in status of player/athlete</definition>
+		<name xml:lang="en-GB">Status Change</name>
+	</scheme>
+	<scheme alias="spstreaktype" uri="http://cv.iptc.org/newscodes/spstreaktype/">
+		<definition xml:lang="en-GB">The type of streak of team or player: win, loss, etc.</definition>
+		<name xml:lang="en-GB">Streak Type</name>
+	</scheme>
+	<scheme alias="spteamcoverage" uri="http://cv.iptc.org/newscodes/spteamcoverage/">
+		<definition xml:lang="en-GB">Whether document pertains to single team or multiple teams</definition>
+		<name xml:lang="en-GB">Team Coverage</name>
+	</scheme>
+	<scheme alias="sptemporalunit" uri="http://cv.iptc.org/newscodes/sptemporalunit/">
+		<definition xml:lang="en-GB">The unit of performance to which the stats apply eg. single-event, season,
+			career.</definition>
+		<name xml:lang="en-GB">Temporal Unit</name>
+	</scheme>
+	<scheme alias="sptournamentform" uri="http://cv.iptc.org/newscodes/sptournamentform/">
+		<definition xml:lang="en-GB">The format type of tournament or tournament phase: group, elimination, etc.</definition>
+		<name xml:lang="en-GB">Tournament Format Type</name>
+	</scheme>
+	<scheme alias="sptournamentphase" uri="http://cv.iptc.org/newscodes/sptournamentphase/">
+		<definition xml:lang="en-GB">The phase of the tournament: semi-final, quarter-final, etc.</definition>
+		<name xml:lang="en-GB">Tournament Phase</name>
+	</scheme>
+	<scheme alias="spweatherprediction" uri="http://cv.iptc.org/newscodes/spweatherprediction/">
+		<definition xml:lang="en-GB">Describes expected weather conditions for event.</definition>
+		<name xml:lang="en-GB">Weather Terms</name>
+	</scheme>
+
+	<!-- Sport concepts for American Football (proceeding alphabetically through the sports) -->
+	
+	<scheme alias="spamfaction" uri="http://cv.iptc.org/newscodes/spamfaction/">
+        <definition xml:lang="en-GB">Types of play action in American Football</definition>
+        <name xml:lang="en-GB">American Football Actions</name>
+    </scheme>
+    <scheme alias="spamfcaller" uri="http://cv.iptc.org/newscodes/spamfcaller/">
+        <definition xml:lang="en-GB">Requestor of time out in American Football</definition>
+        <name xml:lang="en-GB">American Football time-out Caller</name>
+    </scheme>
+    <scheme alias="spamfdriveresult" uri="http://cv.iptc.org/newscodes/spamfdriveresult/">
+        <definition xml:lang="en-GB">Results of an american football drive.</definition>
+        <name xml:lang="en-GB">American Football Drive Results</name>
+    </scheme>
+    <scheme alias="spamfkick" uri="http://cv.iptc.org/newscodes/spamfkick/">
+        <definition xml:lang="en-GB">Types of kicking in American football.</definition>
+        <name xml:lang="en-GB">American Football Kick Types</name>
+    </scheme>
+    <scheme alias="spamfpenalty" uri="http://cv.iptc.org/newscodes/spamfpenalty/">
+        <definition xml:lang="en-GB">Types of penalty in american-football.</definition>
+        <name xml:lang="en-GB">American Football Penalty Types</name>
+    </scheme>
+    <scheme alias="spamfpenaltylevel" uri="http://cv.iptc.org/newscodes/spamfpenaltylevel/">
+        <definition xml:lang="en-GB">Levels of penalized infractions in American Football</definition>
+        <name xml:lang="en-GB">American Football Penalty Levels</name>
+    </scheme>
+    <scheme alias="spamfposition" uri="http://cv.iptc.org/newscodes/spamfposition/">
+        <definition xml:lang="en-GB">Player positions in american football</definition>
+        <name xml:lang="en-GB">American Football Positions</name>
+    </scheme>
+    <scheme alias="spamfresult" uri="http://cv.iptc.org/newscodes/spamfresult/">
+        <definition xml:lang="en-GB">Results of american football actions</definition>
+        <name xml:lang="en-GB">American Football Action Results</name>
+    </scheme>
+    <scheme alias="spamfrole" uri="http://cv.iptc.org/newscodes/spamfrole/">
+        <definition xml:lang="en-GB">Roles of American Football players</definition>
+        <name xml:lang="en-GB">American Football Player Roles</name>
+    </scheme>
+    <scheme alias="spamfscore" uri="http://cv.iptc.org/newscodes/spamfscore/">
+        <definition xml:lang="en-GB">Types of American Football scores</definition>
+        <name xml:lang="en-GB">American Football Score Types</name>
+    </scheme>
+    <scheme alias="spamfstat" uri="http://cv.iptc.org/newscodes/spamfstat/">
+        <definition xml:lang="en-GB">Vocabulary of statistics for American Football</definition>
+        <name xml:lang="en-GB">American Football Statistics</name>
+    </scheme>
+    <scheme alias="spamftimeout" uri="http://cv.iptc.org/newscodes/spamftimeout/">
+        <definition xml:lang="en-GB">Types of American Football timeouts</definition>
+        <name xml:lang="en-GB">American Football Timeout Type</name>
+    </scheme>
+    <scheme alias="spamftouchdown" uri="http://cv.iptc.org/newscodes/spamftouchdown/">
+        <definition xml:lang="en-GB">Types of touchdown in American football.</definition>
+        <name xml:lang="en-GB">American Football Touchdown Type</name>
+    </scheme>
+	
+	<!-- Sport concepts for Baseball -->
+	
+    <scheme alias="spbblaction" uri="http://cv.iptc.org/newscodes/spbblaction/">
+        <definition xml:lang="en-GB">Types of baseball actions</definition>
+        <name xml:lang="en-GB">Baseball Actions</name>
+    </scheme>
+    <scheme alias="spbblballlocation" uri="http://cv.iptc.org/newscodes/spbblballlocation/">
+        <definition xml:lang="en-GB">Location of baseball pitches</definition>
+        <name xml:lang="en-GB">Baseball Pitch Location</name>
+    </scheme>
+    <scheme alias="spbblballlocationhorizontal" uri="http://cv.iptc.org/newscodes/spbblballlocationhorizontal/">
+        <definition xml:lang="en-GB">Horizontal location of baseball pitches</definition>
+        <name xml:lang="en-GB">Baseball Pitch Horizontal Location</name>
+    </scheme>
+    <scheme alias="spbblballlocationvertical" uri="http://cv.iptc.org/newscodes/spbblballlocationvertical/">
+        <definition xml:lang="en-GB">Vertical location of baseball pitches</definition>
+        <name xml:lang="en-GB">Baseball Pitch Vertical Location</name>
+    </scheme>
+    <scheme alias="spbblhit" uri="http://cv.iptc.org/newscodes/spbblhit/">
+        <definition xml:lang="en-GB">Types of baseball hits</definition>
+        <name xml:lang="en-GB">Baseball Hit Types</name>
+    </scheme>
+    <scheme alias="spbblout" uri="http://cv.iptc.org/newscodes/spbblout/">
+        <definition xml:lang="en-GB">Types of baseball outs</definition>
+        <name xml:lang="en-GB">Baseball Out Types</name>
+    </scheme>
+    <scheme alias="spbblpitch" uri="http://cv.iptc.org/newscodes/spbblpitch/">
+        <definition xml:lang="en-GB">Types of baseball pitches</definition>
+        <name xml:lang="en-GB">Baseball Pitch Types</name>
+    </scheme>
+    <scheme alias="spbblposition" uri="http://cv.iptc.org/newscodes/spbblposition/">
+        <definition xml:lang="en-GB">Baseball player positions</definition>
+        <name xml:lang="en-GB">Baseball Player Positions</name>
+    </scheme>
+    <scheme alias="spbblrole" uri="http://cv.iptc.org/newscodes/spbblrole/">
+        <definition xml:lang="en-GB">Roles of Baseball players</definition>
+        <name xml:lang="en-GB">Baseball Player Roles</name>
+    </scheme>
+    <scheme alias="spbblstat" uri="http://cv.iptc.org/newscodes/spbblstat/">
+        <definition xml:lang="en-GB">Vocabulary of statistics for Baseball</definition>
+        <name xml:lang="en-GB">Baseball Statistics</name>
+    </scheme>
+    <scheme alias="spbbltrajectory" uri="http://cv.iptc.org/newscodes/spbbltrajectory/">
+        <definition xml:lang="en-GB">Trajectories of baseball hits</definition>
+        <name xml:lang="en-GB">Baseball Hit Trajectory</name>
+    </scheme>
+	
+	<!-- Sport concepts for Baseball -->
+	
+    <scheme alias="spbkbaction" uri="http://cv.iptc.org/newscodes/spbkbaction/">
+        <definition xml:lang="en-GB">Types of basketball actions</definition>
+        <name xml:lang="en-GB">Basketball Actions</name>
+    </scheme>
+    <scheme alias="spbkbpenaltylevel" uri="http://cv.iptc.org/newscodes/spbkbpenaltylevel/">
+        <definition xml:lang="en-GB">Types of penalty in basketball.</definition>
+        <name xml:lang="en-GB">Basketball Penalty Types</name>
+    </scheme>
+    <scheme alias="spbkbposition" uri="http://cv.iptc.org/newscodes/spbkbposition/">
+        <definition xml:lang="en-GB">Basketball player positions</definition>
+        <name xml:lang="en-GB">Basketball Player Positions</name>
+    </scheme>
+    <scheme alias="spbkbrole" uri="http://cv.iptc.org/newscodes/spbkbrole/">
+        <definition xml:lang="en-GB">Roles of basketball players</definition>
+        <name xml:lang="en-GB">Basketball Player Roles</name>
+    </scheme>
+    <scheme alias="spbkbscoreattempt" uri="http://cv.iptc.org/newscodes/spbkbscoreattempt/">
+        <definition xml:lang="en-GB">Types of shot in basketball.</definition>
+        <name xml:lang="en-GB">Basketball Score Attempt Types</name>
+    </scheme>
+    <scheme alias="spbkbscoreattemptresult" uri="http://cv.iptc.org/newscodes/spbkbscoreattemptresult/">
+        <definition xml:lang="en-GB">Types of scoring failure in basketball.</definition>
+        <name xml:lang="en-GB">Basketball Score Attempt Results</name>
+    </scheme>
+    <scheme alias="spbkbstat" uri="http://cv.iptc.org/newscodes/spbkbstat/">
+        <definition xml:lang="en-GB">Vocabulary of statistics for Basketball</definition>
+        <name xml:lang="en-GB">Basketball Statistics</name>
+    </scheme>
+	
+	<!-- Sport concepts for Curling -->
+	
+    <scheme alias="spcurposition" uri="http://cv.iptc.org/newscodes/spcurposition/">
+        <definition xml:lang="en-GB">Curling player positions</definition>
+        <name xml:lang="en-GB">Curling Player Positions</name>
+    </scheme>
+    <scheme alias="spcurresult" uri="http://cv.iptc.org/newscodes/spcurresult/">
+        <definition xml:lang="en-GB">Curling shot result scores</definition>
+        <name xml:lang="en-GB">Curling Shot Results</name>
+    </scheme>
+    <scheme alias="spcurshot" uri="http://cv.iptc.org/newscodes/spcurshot/">
+        <definition xml:lang="en-GB">Types of shot in curling.</definition>
+        <name xml:lang="en-GB">Curling Shot Types</name>
+    </scheme>
+	
+	<!-- Sport concepts for Golf -->
+	
+    <scheme alias="spgollanding" uri="http://cv.iptc.org/newscodes/spgollanding/">
+        <definition xml:lang="en-GB">The place or surface where a golf ball lands after being shot.</definition>
+        <name xml:lang="en-GB">Golf Shot Landings</name>
+    </scheme>
+    <scheme alias="spgolshot" uri="http://cv.iptc.org/newscodes/spgolshot/">
+        <definition xml:lang="en-GB">Types of shot in golf.</definition>
+        <name xml:lang="en-GB">Golf Shot Types</name>
+    </scheme>
+    <scheme alias="spgolstat" uri="http://cv.iptc.org/newscodes/spgolstat/">
+        <definition xml:lang="en-GB">Vocabulary of statistics for Golf</definition>
+        <name xml:lang="en-GB">Golf Statistics</name>
+    </scheme>
+	
+	<!-- Sport concepts for Ice Hockey -->
+	
+    <scheme alias="spichaction" uri="http://cv.iptc.org/newscodes/spichaction/">
+        <definition xml:lang="en-GB">Types of ice hockey actions</definition>
+        <name xml:lang="en-GB">Ice Hockey Actions</name>
+    </scheme>
+    <scheme alias="spichpenalty" uri="http://cv.iptc.org/newscodes/spichpenalty/">
+        <definition xml:lang="en-GB">Types of penalty in ice-hockey.</definition>
+        <name xml:lang="en-GB">Ice Hockey Penalty</name>
+    </scheme>
+    <scheme alias="spichpenaltylevel" uri="http://cv.iptc.org/newscodes/spichpenaltylevel/">
+        <definition xml:lang="en-GB">Levels of penalty in ice-hockey.</definition>
+        <name xml:lang="en-GB">Ice Hockey Penalty Levels</name>
+    </scheme>
+    <scheme alias="spichposition" uri="http://cv.iptc.org/newscodes/spichposition/">
+        <definition xml:lang="en-GB">Ice Hockey player positions</definition>
+        <name xml:lang="en-GB">Ice Hockey Player Positions</name>
+    </scheme>
+    <scheme alias="spichrole" uri="http://cv.iptc.org/newscodes/spichrole/">
+        <definition xml:lang="en-GB">Role of player in the described action.</definition>
+        <name xml:lang="en-GB">Ice Hockey Player Roles</name>
+    </scheme>
+    <scheme alias="spichscoreattempt" uri="http://cv.iptc.org/newscodes/spichscoreattempt/">
+        <definition xml:lang="en-GB">Types of scoring in ice-hockey.</definition>
+        <name xml:lang="en-GB">Ice Hockey Score Types</name>
+    </scheme>
+    <scheme alias="spichscoreattemptresult" uri="http://cv.iptc.org/newscodes/spichscoreattemptresult/">
+        <definition xml:lang="en-GB">Types of scoring failure in ice hockey</definition>
+        <name xml:lang="en-GB">Ice Hockey Score Attempt Types</name>
+    </scheme>
+    <scheme alias="spichstat" uri="http://cv.iptc.org/newscodes/spichstat/">
+        <definition xml:lang="en-GB">Vocabulary of statistics for Ice Hockey</definition>
+        <name xml:lang="en-GB">Ice Hockey Statistics</name>
+    </scheme>
+    <scheme alias="spichstrength" uri="http://cv.iptc.org/newscodes/spichstrength/">
+        <definition xml:lang="en-GB">Strength situations in ice hockey</definition>
+        <name xml:lang="en-GB">Ice Hockey Squad Strength</name>
+    </scheme>
+    <scheme alias="spichzone" uri="http://cv.iptc.org/newscodes/spichzone/">
+        <definition xml:lang="en-GB">Zones on ice hockey rinks</definition>
+        <name xml:lang="en-GB">Ice Hockey Rink Zones</name>
+    </scheme>
+	
+	<!-- Sport concepts for Motor Racing -->
+	
+    <scheme alias="spmcraction" uri="http://cv.iptc.org/newscodes/spmcraction/">
+        <definition xml:lang="en-GB">Actions in motor racing</definition>
+        <name xml:lang="en-GB">Motor Racing Actions</name>
+    </scheme>
+    <scheme alias="spmcrflag" uri="http://cv.iptc.org/newscodes/spmcrflag/">
+        <definition xml:lang="en-GB">Types of motor racing communication flags.</definition>
+        <name xml:lang="en-GB">Motor Racing Flag Types</name>
+    </scheme>
+    <scheme alias="spmcrstat" uri="http://cv.iptc.org/newscodes/spmcrstat/">
+        <definition xml:lang="en-GB">Vocabulary of statistics for Motor Racing</definition>
+        <name xml:lang="en-GB">Motor Racing Statistics</name>
+    </scheme>
+	
+	<!-- Sport concepts for Rugby -->
+	
+    <scheme alias="sprgxpenalty" uri="http://cv.iptc.org/newscodes/sprgxpenalty/">
+        <definition xml:lang="en-GB">Types of penalty in rugby.</definition>
+        <name xml:lang="en-GB">Rugby Penalties</name>
+    </scheme>
+    <scheme alias="sprgxpenaltylevel" uri="http://cv.iptc.org/newscodes/sprgxpenaltylevel/">
+        <definition xml:lang="en-GB">Levels of penalty in rugby.</definition>
+        <name xml:lang="en-GB">Rugby Penalty Levels</name>
+    </scheme>
+    <scheme alias="sprgxpenaltyresult" uri="http://cv.iptc.org/newscodes/sprgxpenaltyresult/">
+        <definition xml:lang="en-GB">Results of penalties in rugby.</definition>
+        <name xml:lang="en-GB">Rugby Penalty Results</name>
+    </scheme>
+    <scheme alias="sprgxposition" uri="http://cv.iptc.org/newscodes/sprgxposition/">
+        <definition xml:lang="en-GB">Positions of players in rugby</definition>
+        <name xml:lang="en-GB">Rugby Player Positions</name>
+    </scheme>
+    <scheme alias="sprgxrole" uri="http://cv.iptc.org/newscodes/sprgxrole/">
+        <definition xml:lang="en-GB">Role of player in the described action.</definition>
+        <name xml:lang="en-GB">Rugby Player Roles</name>
+    </scheme>
+    <scheme alias="sprgxscoreattempt" uri="http://cv.iptc.org/newscodes/sprgxscoreattempt/">
+        <definition xml:lang="en-GB">Types of scoring in rugby.</definition>
+        <name xml:lang="en-GB">Rugby Score Types</name>
+    </scheme>
+    <scheme alias="sprgxscoreattemptresult" uri="http://cv.iptc.org/newscodes/sprgxscoreattemptresult/">
+        <definition xml:lang="en-GB">Types of scoring failure in rugby.</definition>
+        <name xml:lang="en-GB">Rugby Score Attempt Types</name>
+    </scheme>
+    <scheme alias="sprgxstat" uri="http://cv.iptc.org/newscodes/sprgxstat/">
+        <definition xml:lang="en-GB">Vocabulary of statistics for Rugby</definition>
+        <name xml:lang="en-GB">Rugby Statistics</name>
+    </scheme>
+    <scheme alias="sprgxsubstitution" uri="http://cv.iptc.org/newscodes/sprgxsubstitution/">
+        <definition xml:lang="en-GB">Types of substitution in rugby</definition>
+        <name xml:lang="en-GB">Rugby Substitution Types</name>
+    </scheme>
+	
+	<!-- Sport concepts for Soccer -->
+	
+    <scheme alias="spsocaction" uri="http://cv.iptc.org/newscodes/spsocaction/">
+        <definition xml:lang="en-GB">Types of soccer actions</definition>
+        <name xml:lang="en-GB">Soccer Actions</name>
+    </scheme>
+    <scheme alias="spsocpenalty" uri="http://cv.iptc.org/newscodes/spsocpenalty/">
+        <definition xml:lang="en-GB">Types of penalty in soccer.</definition>
+        <name xml:lang="en-GB">Soccer Penalties</name>
+    </scheme>
+    <scheme alias="spsocpenaltylevel" uri="http://cv.iptc.org/newscodes/spsocpenaltylevel/">
+        <definition xml:lang="en-GB">Levels of penalty in soccer.</definition>
+        <name xml:lang="en-GB">Soccer Penalty Levels</name>
+    </scheme>
+    <scheme alias="spsocpenaltyresult" uri="http://cv.iptc.org/newscodes/spsocpenaltyresult/">
+        <definition xml:lang="en-GB">Results of penalties in soccer.</definition>
+        <name xml:lang="en-GB">Soccer Penalty Results</name>
+    </scheme>
+    <scheme alias="spsocposition" uri="http://cv.iptc.org/newscodes/spsocposition/">
+        <definition xml:lang="en-GB">Player positions in soccer</definition>
+        <name xml:lang="en-GB">Soccer Player Positions</name>
+    </scheme>
+    <scheme alias="spsocresult" uri="http://cv.iptc.org/newscodes/spsocresult/">
+        <definition xml:lang="en-GB">Results of soccer plays/actions</definition>
+        <name xml:lang="en-GB">Soccer Action Results</name>
+    </scheme>
+    <scheme alias="spsocrole" uri="http://cv.iptc.org/newscodes/spsocrole/">
+        <definition xml:lang="en-GB">Role of player in the described action.</definition>
+        <name xml:lang="en-GB">Soccer Player Roles</name>
+    </scheme>
+    <scheme alias="spsocscoreattempt" uri="http://cv.iptc.org/newscodes/spsocscoreattempt/">
+        <definition xml:lang="en-GB">Types of scoring in soccer.</definition>
+        <name xml:lang="en-GB">Soccer Score Types</name>
+    </scheme>
+    <scheme alias="spsocscoreattemptmethod" uri="http://cv.iptc.org/newscodes/spsocscoreattemptmethod/">
+        <definition xml:lang="en-GB">Methods of soccer scoring used by a player.</definition>
+        <name xml:lang="en-GB">Soccer Scoring Methods</name>
+    </scheme>
+    <scheme alias="spsocscoreattemptresult" uri="http://cv.iptc.org/newscodes/spsocscoreattemptresult/">
+        <definition xml:lang="en-GB">Results of scoring attempts in soccer.</definition>
+        <name xml:lang="en-GB">Soccer Score Attempt Types</name>
+    </scheme>
+    <scheme alias="spsocstat" uri="http://cv.iptc.org/newscodes/spsocstat/">
+        <definition xml:lang="en-GB">Vocabulary of statistics for Soccer</definition>
+        <name xml:lang="en-GB">Soccer Statistics</name>
+    </scheme>
+	
+	<!-- Sport concepts for Tennis -->
+	
+    <scheme alias="sptenaction" uri="http://cv.iptc.org/newscodes/sptenaction/">
+        <definition xml:lang="en-GB"/>
+        <name xml:lang="en-GB">Tennis Actions</name>
+    </scheme>
+    <scheme alias="sptengameresult" uri="http://cv.iptc.org/newscodes/sptengameresult/">
+        <definition xml:lang="en-GB">The score of the player or team presently serving, either love, 15, 30, 40,
+            game.</definition>
+        <name xml:lang="en-GB">Tennis Scoring</name>
+    </scheme>
+    <scheme alias="sptenshot" uri="http://cv.iptc.org/newscodes/sptenshot/">
+        <definition xml:lang="en-GB">Types of shot in tennis.</definition>
+        <name xml:lang="en-GB">Tennis Shot Types</name>
+    </scheme>
+    <scheme alias="sptenstat" uri="http://cv.iptc.org/newscodes/sptenstat/">
+        <definition xml:lang="en-GB">Vocabulary of statistics for Tennis</definition>
+        <name xml:lang="en-GB">Tennis Statistics</name>
+    </scheme>
+    <scheme alias="sptenwin" uri="http://cv.iptc.org/newscodes/sptenwin/">
+        <definition xml:lang="en-GB">Ways to win in tennis</definition>
+        <name xml:lang="en-GB">Tennis Win Types</name>
+    </scheme>
+	
+	<!-- Sport concepts for Volleyball -->
+	
+    <scheme alias="spvolstat" uri="http://cv.iptc.org/newscodes/spvolstat/">
+        <definition xml:lang="en-GB">Vocabulary of statistics for Volleyball</definition>
+        <name xml:lang="en-GB">Volleyball Statistics</name>
+    </scheme>
+</catalog>

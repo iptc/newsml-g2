@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- File: http://www.iptc.org/std/catalog/catalog.IPTC-G2-Experimental_#.xml (# represents the version number of this file)
+
+	This file provides a Catalog for controlled vocabularies supporting
+	experimental features to the G2-Standards as defined by the common
+	News Architecture.
+
+	This catalog contains all currently experimental IPTC maintained
+	controlled vocabularies - branded as NewsCodes - and new sets of
+	NewsCodes for the G2-Standards - see the explanations in the headers
+	below.
+
+	This file is provided as is by the International Press Telecommunications Council, IPTC - www.iptc.org
+
+	History / change log:
+	v 1 2018-07-19: initial version, based on work in News Architecture Working Group.
+-->
+<catalog xmlns="http://iptc.org/std/nar/2006-10-01/" additionalInfo="http://www.iptc.org/goto?G2cataloginfo">
+	<scheme alias="advice-lifetime" uri="http://cv.iptc.org/newscodes/advice-lifetime/" modified="2018-07-19T12:00:00+00:00">
+		<name xml:lang="en-GB">Lifetime Advice</name>
+		<definition xml:lang="en-GB">Advice regarding the length of time that the content is considered to be relevant for the target environment(s).</definition>
+		<note xml:lang="en-GB">This vocabulary is currently experimental and is subject to change. </note>
+	</scheme>
+	<scheme alias="advice-importance" uri="http://cv.iptc.org/newscodes/advice-importance/" modified="2018-07-19T12:00:00+00:00">
+		<name xml:lang="en-GB">Importance Advice</name>
+		<definition xml:lang="en-GB">Advice regarding the importance of a story from an emotional perspective.</definition>
+		<note xml:lang="en-GB">This vocabulary is currently experimental and is subject to change. </note>
+	</scheme>
+</catalog>

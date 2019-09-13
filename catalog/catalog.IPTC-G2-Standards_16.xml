@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- File: http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_#.xml (# represents the version number of this file)
+
+	This file provides a Catalog for G2-Standards as defined by the common News Architecture
+	This catalog contains all currently existing IPTC maintained controlled vocabularies - branded as NewsCodes - 
+	and a set of new sets of NewsCodes for the G2-Standards - see the explanations in the headers below.
+
+	How to apply:
+	When creating an XML instance of any kind of item for a G2-Standard do this:
+	- either: copy and paste the <catalog> element from this file to the appropriate position in the item
+	- or: add a <catalogRef> element to the item and apply the URL of this file (wherever it is stored)
+		to the "href" attribute of the catalogRef element like: 
+		<catalogRef href="http://mydomain.org/files/catalog.IPTC-G2-Standards_99.xml" />
+
+	This file is provided as is by the International Press Telecommunication Council, IPTC - www.iptc.org
+	History / change log:
+	v 1 2008-03-04: initial version, derived from the draft versions, reflects the G2 NewsCodes approved on 2008-01-29
+	v 2 2008-05-02: the section of "existing IPTC NewsCodes" was reviewed to sort out taxonomies which do not comply with G2-Standards for formal technical reasons
+	v 3 2008-06-23: minor changes
+	v 4 2008-09-02: section 5 added: schemes used only for NewsML1
+	v 5 2008-11-07: section 6 added: IPTC-external vocabularies added
+    v 6 2008-11-11: changes in section 6
+	v 7 2009-04-29: added alias "ncostat" and "wldreg" and "medtop"
+	v8 2009-05-20: added News Provider and News Product (section 1)
+	v9 2009-06-19: added DigitalSourceType (section 1)
+	v10 2009-07-06: added TimeUnit (section 3.1)
+	v11 2009-10-01: added DimensionUnit (section 3.1), added Dummy (1) TimeUnit alias modified
+	v12 2010-07-23: added Concept Relation (crel), comments modified
+	v13 2010-12-16: added cwarn, app,sig, plinat
+	v14 2011-01-21: adding riaspect, riscope, hopaction, hatarget, hashtype, hashscope
+	v15 2011-08-16: adding skos, sov, colin, videodef, sev
+	v16 2011-11-04: adding howextr
+-->
+<catalog xmlns="http://iptc.org/std/nar/2006-10-01/" additionalInfo="http://www.iptc.org/goto?G2cataloginfo">
+	<!-- section 1: NewsCodes which have been created prior to the G2-Standards and which can be used with the G2-Standards (and other standards) -->
+	<scheme alias="dummy" uri="http://cv.iptc.org/newscodes/dummy/" />
+	<scheme alias="acdc" uri="http://cv.iptc.org/newscodes/audiocodec/" />
+	<scheme alias="genre" uri="http://cv.iptc.org/newscodes/genre/" />
+	<scheme alias="medtop" uri="http://cv.iptc.org/newscodes/mediatopic/" />
+	<scheme alias="prov" uri="http://cv.iptc.org/newscodes/provider/" />
+	<scheme alias="nprov" uri="http://cv.iptc.org/newscodes/newsprovider/" />
+	<scheme alias="nprod" uri="http://cv.iptc.org/newscodes/newsproduct/" />
+	<scheme alias="scn" uri="http://cv.iptc.org/newscodes/scene/" />
+	<scheme alias="subj" uri="http://cv.iptc.org/newscodes/subjectcode/" />
+	<scheme alias="squ" uri="http://cv.iptc.org/newscodes/subjectqualifier/" />
+	<scheme alias="vcdc" uri="http://cv.iptc.org/newscodes/videocodec/" />
+	<scheme alias="wldreg" uri="http://cv.iptc.org/newscodes/worldregion/" />
+	<scheme alias="digsrctype" uri="http://cv.iptc.org/newscodes/digitalsourcetype/" />
+	<!-- section 2: NewsCodes which have been created for use with all G2-Standards -->
+	<scheme alias="ninat" uri="http://cv.iptc.org/newscodes/ninature/" />
+	<scheme alias="cinat" uri="http://cv.iptc.org/newscodes/cinature/" />
+	<scheme alias="plinat" uri="http://cv.iptc.org/newscodes/plinature/" />
+	<scheme alias="cpnat" uri="http://cv.iptc.org/newscodes/cpnature/" />
+	<scheme alias="crel" uri="http://cv.iptc.org/newscodes/conceptrelation/" />
+	<scheme alias="mtyp" uri="http://cv.iptc.org/newscodes/mediatype/" />
+	<scheme alias="drol" uri="http://cv.iptc.org/newscodes/descriptionrole/" />
+	<scheme alias="erol" uri="http://cv.iptc.org/newscodes/edrole/" />
+	<scheme alias="irel" uri="http://cv.iptc.org/newscodes/itemrelation/" />
+	<scheme alias="irep" uri="http://cv.iptc.org/newscodes/itemrepresentation/" />
+	<scheme alias="pgrmod" uri="http://cv.iptc.org/newscodes/pkggroupmode/" />
+	<scheme alias="stat" uri="http://cv.iptc.org/newscodes/pubstatusg2/" />
+	<scheme alias="rnd" uri="http://cv.iptc.org/newscodes/rendition/" />
+	<scheme alias="nrol" uri="http://cv.iptc.org/newscodes/namerole/" />
+	<scheme alias="nprt" uri="http://cv.iptc.org/newscodes/namepart/" />
+	<scheme alias="why" uri="http://cv.iptc.org/newscodes/whypresent/" />
+	<scheme alias="isrol" uri="http://cv.iptc.org/newscodes/infosourcerole/" />
+	<scheme alias="lrol" uri="http://cv.iptc.org/newscodes/languagerole/" />
+	<scheme alias="ciprol" uri="http://cv.iptc.org/newscodes/contactinfopartrole/" />
+	<scheme alias="ctech" uri="http://cv.iptc.org/newscodes/commtech/" />
+	<scheme alias="cwarn" uri="http://cv.iptc.org/newscodes/contentwarning/" />
+	<scheme alias="sig" uri="http://cv.iptc.org/newscodes/signal/" />
+	<scheme alias="app" uri="http://cv.iptc.org/newscodes/application/" />
+	<scheme alias="riaspect" uri="http://cv.iptc.org/newscodes/riaspect/" />
+	<scheme alias="riscope" uri="http://cv.iptc.org/newscodes/riscope/" />
+	<scheme alias="hopaction" uri="http://cv.iptc.org/newscodes/hopaction/" />
+	<scheme alias="hatarget" uri="http://cv.iptc.org/newscodes/hopactiontarget/" />
+	<scheme alias="hashtype" uri="http://cv.iptc.org/newscodes/hashtype/" />
+	<scheme alias="hashscope" uri="http://cv.iptc.org/newscodes/hashscope/" />
+	<scheme alias="sov" uri="http://cv.iptc.org/newscodes/videoscaling/" />
+	<scheme alias="colin" uri="http://cv.iptc.org/newscodes/colourindicator/" />
+	<scheme alias="videodef" uri="http://cv.iptc.org/newscodes/videodefinition/" />
+	<scheme alias="sev" uri="http://cv.iptc.org/newscodes/severity/" />
+	<scheme alias="howextr" uri="http://cv.iptc.org/newscodes/howextracted/" />
+	<!-- section 3: NewsCodes created for use with a specific scope -->
+	<!-- section 3.1: NewsCodes to be used for describing news content -->
+	<scheme alias="timeunit" uri="http://cv.iptc.org/newscodes/timeunit/" />
+	<scheme alias="dimensionunit" uri="http://cv.iptc.org/newscodes/dimensionunit/" />
+	<!-- section 3.2: NewsCodes to be used for describing events-->
+	<scheme alias="edconf" uri="http://cv.iptc.org/newscodes/eventdateconfirm/" />
+	<scheme alias="eocstat" uri="http://cv.iptc.org/newscodes/eventoccurstatus/" />
+	<scheme alias="eregrol" uri="http://cv.iptc.org/newscodes/eventregrole/" />
+	<scheme alias="eprol" uri="http://cv.iptc.org/newscodes/eventparticipantrole/" />
+	<scheme alias="eorol" uri="http://cv.iptc.org/newscodes/eventorganiserrole/" />
+	<scheme alias="ecirol" uri="http://cv.iptc.org/newscodes/eventcontactinforole/" />
+	<scheme alias="ncostat" uri="http://cv.iptc.org/newscodes/newscoveragestatus/" />
+	<!-- section 4: schemes used only for examples -->
+	<!-- Currently none are defined -->
+	<!-- section 5: NewsCodes used only with NewsML1 -->
+	<scheme alias="chprop" uri="http://cv.iptc.org/newscodes/characteristicsproperty/" />
+	<scheme alias="colsp" uri="http://cv.iptc.org/newscodes/colorspace/" />
+	<scheme alias="conf" uri="http://cv.iptc.org/newscodes/confidence/" />
+	<scheme alias="encd" uri="http://cv.iptc.org/newscodes/encoding/" />
+	<scheme alias="frmt" uri="http://cv.iptc.org/newscodes/format/" />
+	<scheme alias="howpr" uri="http://cv.iptc.org/newscodes/howpresent/" />
+	<scheme alias="impt" uri="http://cv.iptc.org/newscodes/importance/" />
+	<scheme alias="lbtyp" uri="http://cv.iptc.org/newscodes/labeltype/" />
+	<scheme alias="loctyp" uri="http://cv.iptc.org/newscodes/location/" />
+	<scheme alias="medtyp" uri="http://cv.iptc.org/newscodes/mediatype/" />
+	<scheme alias="nityp" uri="http://cv.iptc.org/newscodes/newsitemtype/" />
+	<scheme alias="not" uri="http://cv.iptc.org/newscodes/notation/" />
+	<scheme alias="oito" uri="http://cv.iptc.org/newscodes/ofinterestto/" />
+	<scheme alias="prio" uri="http://cv.iptc.org/newscodes/priority/" />
+	<scheme alias="prop" uri="http://cv.iptc.org/newscodes/property/" />
+	<scheme alias="rel" uri="http://cv.iptc.org/newscodes/relevance/" />
+	<scheme alias="role1" uri="http://cv.iptc.org/newscodes/role1/" />
+	<scheme alias="pst1" uri="http://cv.iptc.org/newscodes/status1/" />
+	<scheme alias="tpctyp" uri="http://cv.iptc.org/newscodes/topictype/" />
+	<scheme alias="urgy" uri="http://cv.iptc.org/newscodes/urgency/" />
+	<!-- section 6: non-IPTC/external schemes -->
+	<scheme alias="iso3166-1a2" uri="http://cvx.iptc.org/iso3166-1a2/" />
+	<scheme alias="iso3166-1a3" uri="http://cvx.iptc.org/iso3166-1a3/" />
+	<scheme alias="iso4217a" uri="http://cvx.iptc.org/iso4217a/" />
+	<scheme alias="iso4217n" uri="http://cvx.iptc.org/iso4217n/" />
+	<scheme alias="isin" uri="http://cvx.iptc.org/isin/" />
+	<scheme alias="skos" uri="http://www.w3.org/2004/02/skos/core#" />
+	
+</catalog>
+<!--
+IPTC - International Press Telecommunications Council
+20 Garrick Street, London WC2E 9BT, United Kingdom
+www.iptc.org
+
+Non-Exclusive License Agreement for International Press
+Telecommunications Council Specifications and Related Documentation
+
+IMPORTANT: International Press Telecommunications Council (IPTC)
+standard specifications for news (the Specifications) and supporting
+software, documentation, technical reports, web sites and other
+material related to the Specifications (the Materials) including the
+document accompanying this license (the Document), whether in a paper
+or electronic format, are made available to you subject to the terms
+stated below. By obtaining, using and/or copying the Specifications or
+Materials, you (the licensee) agree that you have read, understood,
+and will comply with the following terms and conditions.
+
+1. The Specifications and Materials are licensed for use only on the
+condition that you agree to be bound by the terms of this license.
+Subject to this and other licensing requirements contained herein, you
+may, on a non-exclusive basis, use the Specifications and Materials.
+
+2. The IPTC openly provides the Specifications and Materials for
+voluntary use by individuals, partnerships, companies, corporations,
+organizations and any other entity for use at the entity's own risk.
+This disclaimer, license and release is intended to apply to the IPTC,
+its officers, directors, agents, representatives, members,
+contributors, affiliates, contractors, or co-venturers acting jointly
+or severally.
+
+3. The Document and translations thereof may be copied and furnished
+to others, and derivative works that comment on or otherwise explain
+it or assist in its implementation may be prepared, copied, published
+and distributed, in whole or in part, without restriction of any kind,
+provided that the copyright and license notices and references to the
+IPTC appearing in the Document and the terms of this Specifications
+License Agreement are included on all such copies and derivative
+works. Further, upon the receipt of written permission from the IPTC,
+the Document may be modified for the purpose of developing
+applications that use IPTC Specifications or as required to translate
+the Document into languages other than English.
+
+4. Any use, duplication, distribution, or exploitation of the Document
+and Specifications and Materials in any manner is at your own risk.
+
+5. NO WARRANTY, EXPRESSED OR IMPLIED, IS MADE REGARDING THE ACCURACY,
+ADEQUACY, COMPLETENESS, LEGALITY, RELIABILITY OR USEFULNESS OF ANY
+INFORMATION CONTAINED IN THE DOCUMENT OR IN ANY SPECIFICATION OR OTHER
+PRODUCT OR SERVICE PRODUCED OR SPONSORED BY THE IPTC. THE DOCUMENT AND
+THE INFORMATION CONTAINED HEREIN AND INCLUDED IN ANY SPECIFICATION OR
+OTHER PRODUCT OR SERVICE OF THE IPTC IS PROVIDED ON AN "AS IS" BASIS.
+THE IPTC DISCLAIMS ALL WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING, BUT NOT LIMITED TO, ANY ACTUAL OR ASSERTED WARRANTY OF NON-
+INFRINGEMENT OF PROPRIETARY RIGHTS, MERCHANTABILITY, OR FITNESS FOR A
+PARTICULAR PURPOSE. NEITHER THE IPTC NOR ITS CONTRIBUTORS SHALL BE
+HELD LIABLE FOR ANY IMPROPER OR INCORRECT USE OF INFORMATION. NEITHER
+THE IPTC NOR ITS CONTRIBUTORS ASSUME ANY RESPONSIBILITY FOR ANYONE'S
+USE OF INFORMATION PROVIDED BY THE IPTC. IN NO EVENT SHALL THE IPTC OR
+ITS CONTRIBUTORS BE LIABLE TO ANYONE FOR DAMAGES OF ANY KIND,
+INCLUDING BUT NOT LIMITED TO, COMPENSATORY DAMAGES, LOST PROFITS, LOST
+DATA OR ANY FORM OF SPECIAL, INCIDENTAL, INDIRECT, CONSEQUENTIAL OR
+PUNITIVE DAMAGES OF ANY KIND WHETHER BASED ON BREACH OF CONTRACT OR
+WARRANTY, TORT, PRODUCT LIABILITY OR OTHERWISE.
+
+6. The IPTC takes no position regarding the validity or scope of any
+Intellectual Property or other rights that might be claimed to pertain
+to the implementation or use of the technology described in the
+Document or the extent to which any license under such rights might or
+might not be available. The IPTC does not represent that it has made
+any effort to identify any such rights. Copies of claims of rights
+made available for publication, assurances of licenses to be made
+available, or the result of an attempt made to obtain a general
+license or permission for the use of such proprietary rights by
+implementers or users of the Specifications and Materials, can be
+obtained from the Managing Director of the IPTC.
+
+7. By using the Specifications and Materials including the Document in
+any manner or for any purpose, you release the IPTC from all
+liabilities, claims, causes of action, allegations, losses, injuries,
+damages, or detriments of any nature arising from or relating to the
+use of the Specifications, Materials or any portion thereof. You
+further agree not to file a lawsuit, make a claim, or take any other
+formal or informal legal action against the IPTC, resulting from your
+acquisition, use, duplication, distribution, or exploitation of the
+Specifications, Materials or any portion thereof. Finally, you hereby
+agree that the IPTC is not liable for any direct, indirect, special or
+consequential damages arising from or relating to your acquisition,
+use, duplication, distribution, or exploitation of the Specifications,
+Materials or any portion thereof.
+
+8. Specifications and Materials may be downloaded or copied provided
+that ALL copies retain the ownership, copyright and license notices.
+
+9. Materials may not be edited, modified, or presented in a context
+that creates a misleading or false impression or statement as to the
+positions, actions, or statements of the IPTC.
+
+10. The name and trademarks of the IPTC may not be used in
+advertising, publicity, or in relation to products or services and
+their names without the specific, written prior permission of the
+IPTC. Any permitted use of the trademarks of the IPTC, whether
+registered or not, shall be accompanied by an appropriate mark and
+attribution, as agreed with the IPTC.
+
+11. Specifications may be extended by both members and non-members to
+provide additional functionality (Extended Specifications) provided
+that there is a clear recognition of the IPTC IP and its ownership in
+the Extended Specifications and the related documentation and provided
+that the extensions are clearly identified and provided that a
+perpetual license is granted by the creator of the Extended
+Specifications for other members and non-members to use the Extended
+Specifications and to continue extensions of the Extended
+Specifications. The IPTC does not waive any of its rights in the
+Specifications and Materials in this context. The Extended
+Specifications may be considered the intellectual property of their
+creator. The IPTC expressly disclaims any responsibility for damage
+caused by an extension to the Specifications.
+
+12. Specifications and Materials may be included in derivative work of
+both members and non-members provided that there is a clear
+recognition of the IPTC IP and its ownership in the derivative work
+and its related documentation. The IPTC does not waive any of its
+rights in the Specifications and Materials in this context. Derivative
+work in its entirety may be considered the intellectual property of
+the creator of the work .The IPTC expressly disclaims any
+responsibility for damage caused when its IP is used in a derivative
+context.
+
+13. This Specifications License Agreement is perpetual subject to your
+conformance to the terms of this Agreement. The IPTC may terminate
+this Specifications License Agreement immediately upon your breach of
+this Agreement and, upon such termination you will cease all use,
+duplication, distribution, and/or exploitation in any manner of the
+Specifications and Materials.
+
+14. This Specifications License Agreement reflects the entire
+agreement of the parties regarding the subject matter hereof and
+supersedes all prior agreements or representations regarding such
+matters, whether written or oral. To the extent any portion or
+provision of this Specifications License Agreement is found to be
+illegal or unenforceable, then the remaining provisions of this
+Specifications License Agreement will remain in full force and effect
+and the illegal or unenforceable provision will be construed to give
+it such effect as it may properly have that is consistent with the
+intentions of the parties.
+
+15. This Specifications License Agreement may only be modified in
+writing signed by an authorized representative of the IPTC.
+
+16. This Specifications License Agreement is governed by the law of
+United Kingdom, as such law is applied to contracts made and fully
+performed in the United Kingdom. Any disputes arising from or relating
+to this Specifications License Agreement will be resolved in the
+courts of the United Kingdom. You consent to the jurisdiction of such
+courts over you and covenant not to assert before such courts any
+objection to proceeding in such forums.
+
+IF YOU DO NOT AGREE TO THESE TERMS YOU MUST CEASE ALL USE OF THE
+SPECIFICATIONS AND MATERIALS NOW. IF YOU HAVE ANY QUESTIONS ABOUT
+THESE TERMS, PLEASE CONTACT THE MANAGING DIRECTOR OF THE INTERNATIONAL
+PRESS TELECOMMUNICATION COUNCIL. AS OF THE DATE OF THIS REVISION OF
+THIS SPECIFICATIONS LICENSE AGREEMENT YOU MAY CONTACT THE IPTC at
+http://www.iptc.org.
+
+License agreement version of: 30 January 2006
+-->
