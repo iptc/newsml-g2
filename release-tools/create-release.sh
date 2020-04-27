@@ -21,18 +21,18 @@ cp -r specification/NewsML-G2_2*Power.xsd specification/XML-Schema_FileVersion_*
 
 ZIP_PATH=`which zip`
 
-cd releases/$NEWSMLG2_VERSION
-echo "Creating ZIP file (version with no documentation) using $ZIP_PATH"
-$ZIP_PATH -r -9 ../NewsML-G2_$NEWSMLG2_VERSION-noXMLdocu.zip documentation specification examples LICENSE NewsML-G2-README.md
-cd ../..
+cd releases
+echo "Creating ZIP file (version without XML Schema documentation) using $ZIP_PATH"
+$ZIP_PATH -r -9 NewsML-G2_$NEWSMLG2_VERSION-noXMLdocu.zip $NEWSMLG2_VERSION/documentation $NEWSMLG2_VERSION/specification $NEWSMLG2_VERSION/examples $NEWSMLG2_VERSION/LICENSE $NEWSMLG2_VERSION/NewsML-G2-README.md
+cd ..
 
 echo "Copying XML Schema documentation to release folder"
 cp -r specification/XML-Schema-Doc-Power releases/$NEWSMLG2_VERSION/specification/
 
 echo "Creating ZIP file (version with documentation) using $ZIP_PATH"
-cd releases/$NEWSMLG2_VERSION
-$ZIP_PATH -r -9 ../NewsML-G2_$NEWSMLG2_VERSION.zip documentation specification examples LICENSE NewsML-G2-README.md
-cd ../..
+cd releases
+$ZIP_PATH -r -9 NewsML-G2_$NEWSMLG2_VERSION.zip $NEWSMLG2_VERSION/documentation $NEWSMLG2_VERSION/specification $NEWSMLG2_VERSION/examples $NEWSMLG2_VERSION/LICENSE $NEWSMLG2_VERSION/NewsML-G2-README.md
+cd ..
 
 echo "Creating ZIP file of documentation alone using $ZIP_PATH"
 cd releases/$NEWSMLG2_VERSION/specification

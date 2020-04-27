@@ -15,16 +15,16 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
            targetNamespace="http://iptc.org/std/nar/2006-10-01/"
            elementFormDefault="qualified"
            attributeFormDefault="unqualified"
-           version="2.28"
+           version="2.29"
            xml:lang="en">
    <xs:import namespace="http://www.w3.org/XML/1998/namespace"
               schemaLocation="xml.xsd"/>
    <!-- For a successfull validation of NewsML-G2 item is is required to place the xml.xsd file in the same folder as the NewsML-G2 XML schema -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.28 XML Schema, document version 2</xs:documentation>
+      <xs:documentation>NewsML-G2 2.29 XML Schema, document version 2</xs:documentation>
       <xs:documentation>Approval of this XML Schema version: 2018-10-17</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2019-09-06</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2020-04-27</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
       <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
@@ -153,6 +153,24 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
          <xs:attribute name="concepttype" type="QCodeListType">
             <xs:annotation>
                <xs:documentation>List of all concept types used within this Knowledge Item</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <!-- ====== schemecreated ====== (NewsML-G2 2.29 added)-->
+         <xs:attribute name="schemecreated" type="DateOptTimeType" use="optional">
+            <xs:annotation>
+               <xs:documentation>The date (and, optionally, the time) when the scheme was created. This must not be later than the creation timestamp of any concepts in the scheme (identified by the schemeMeta @uri).</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <!-- ====== schemecreated ====== (NewsML-G2 2.29 added)-->
+         <xs:attribute name="schememodified" type="DateOptTimeType" use="optional">
+            <xs:annotation>
+               <xs:documentation>The date (and, optionally, the time) when the scheme was last modified. The initial value is the date (and, optionally, the time) of creation of the scheme (identified by the schemeMeta @uri).</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <!-- ====== schemecreated ====== (NewsML-G2 2.29 added)-->
+         <xs:attribute name="schemeretired" type="DateOptTimeType" use="optional">
+            <xs:annotation>
+               <xs:documentation>The date (and, optionally, the time) after which the scheme should not be used anymore. If a scheme is marked as retired, then all concepts in that scheme (identified by the schemeMeta @uri) must also be retired.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
          <xs:anyAttribute namespace="##other" processContents="lax"/>
@@ -810,10 +828,10 @@ was sent</xs:documentation>
 		#####################################################################################################
 -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.28 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 2</xs:documentation>
+      <xs:documentation>NewsML-G2 2.29 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 2</xs:documentation>
       <xs:documentation>Approval of this XML Schema version: 2018-10-17</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2019-09-06</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2020-04-27</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
       <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
@@ -949,6 +967,24 @@ was sent</xs:documentation>
                   <xs:attribute name="authority" type="IRIType">
                      <xs:annotation>
                         <xs:documentation>Defines the authority controlling this scheme</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <!-- ====== schemecreated ====== (NewsML-G2 2.29 added)-->
+                  <xs:attribute name="schemecreated" type="DateOptTimeType" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>The date (and, optionally, the time) when the scheme was created. This must not be later than the creation timestamp of any concepts in the scheme.</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <!-- ====== schememodified ====== (NewsML-G2 2.29 added)-->
+                  <xs:attribute name="schememodified" type="DateOptTimeType" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>The date (and, optionally, the time) when the scheme was last modified. The initial value is the date (and, optionally, the time) of creation of the scheme.</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <!-- ====== schemeretired ====== (NewsML-G2 2.29 added)-->
+                  <xs:attribute name="schemeretired" type="DateOptTimeType" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>The date (and, optionally, the time) after which the scheme should not be used anymore. If a scheme is marked as retired, then all Concept Identifiers in that scheme (identified by the scheme @uri) must also be retired.</xs:documentation>
                      </xs:annotation>
                   </xs:attribute>
                   <xs:anyAttribute namespace="##other" processContents="lax"/>
@@ -3026,6 +3062,12 @@ The relationship of properties inside this partMeta and properties at a higher h
                      <xs:documentation>A place where the organisation is located.</xs:documentation>
                   </xs:annotation>
                </xs:element>
+               <!-- ====== affiliation ====== (NewsML-G2 2.29 added)-->
+               <xs:element name="affiliation" type="OrganisationAffiliationType">
+                  <xs:annotation>
+                     <xs:documentation>An affiliation of the organisation with another organisation.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
                <xs:element name="contactInfo" type="ContactInfoType">
                   <xs:annotation>
                      <xs:documentation>Information how to contact the organisation.</xs:documentation>
@@ -3568,6 +3610,17 @@ so on. May also hold accreditation information</xs:documentation>
    <xs:complexType name="PersonAffiliationType">
       <xs:annotation>
          <xs:documentation>The type for an affliation of a person to an organisation (Type defined in this XML Schema only)</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="FlexOrganisationPropType">
+            <xs:attributeGroup ref="timeValidityAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <!-- ====== OrganisationAffiliationType ====== (NewsML-G2 2.29 added)-->
+   <xs:complexType name="OrganisationAffiliationType">
+      <xs:annotation>
+         <xs:documentation>The type for an affliation of an organisation to another organisation (Type defined in this XML Schema only)</xs:documentation>
       </xs:annotation>
       <xs:complexContent>
          <xs:extension base="FlexOrganisationPropType">
@@ -5375,6 +5428,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
          </xs:any>
       </xs:sequence>
       <xs:attributeGroup ref="commonPowerAttributes"/>
+      <!-- 2.29 changed from qualifyingAttributes -->
       <xs:attributeGroup ref="flexAttributes"/>
       <xs:attributeGroup ref="i18nAttributes"/>
       <xs:anyAttribute namespace="##other" processContents="lax"/>
