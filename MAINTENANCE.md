@@ -29,7 +29,7 @@ Steps to create and release an update to the standard:
 3.  Don't forget to run it! `source release-tools/newsmlg2-config-vars.sh`
 4.  Run `release-tools/update-xsd-version-no.sh` to update
     `XML-Schema_FileVersion_N` files to refer to the new version
-5.  Run `release-tools/update-version-number-in-files.sh` to update version
+5.  Run `release-tools/update-version-no-in-files.sh` to update version
     numbers and dates in the schema documents
 6.  By hand, make the XML schema changes that are needed in the
     `XML-Schema_FileVersion_#` folder, including any outstanding [change
@@ -42,10 +42,10 @@ Steps to create and release an update to the standard:
 7.  Run the script that uses an XSLT stylesheet to create the master version
     from the framework version in the specification/individual folder:
     `release-tools/create-power-xsd-from-framework-xsd.sh`
-8.  Run `release-tools/move-to-individual.sh` which updates version number
-    references within each file in examples/*.xml (except for the older examples
-    which need to refer to 2.24 because that's the last version under the Core
-    version of the standard)
+8.  Run `release-tools/update-version-no-in-examples.sh` which updates version
+    number references within each file in examples/*.xml (except for the older
+    examples which need to refer to 2.24 because that's the last version
+    supported by the Core version of the standard)
 9.  Run `xmllint` over the examples folder to make sure no errors have been
     introduced:
     `release-tools/test-newsml-examples.sh`

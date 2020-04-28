@@ -19,9 +19,11 @@ do
     NEW_FILE="${NEW_XSD_PATH}/NewsML-G2_${NEW_VERSION}-spec-${component}-Power_${NEWSMLG2_REVISION}.xsd"
     echo "  Updating version number references in $NEW_FILE"
     sed -i '' "s/version=\\\"$OLD_VERSION\\\"/version=\\\"$NEW_VERSION\\\"/" $NEW_FILE
-    sed -i '' "s/documentation>NewsML\-G2\ $OLD_VERSION/documentation>NewsML\-G2\ $NEW_VERSION/" $NEW_FILE
-    sed -i '' "s/\\(Date of creation of this XML Schema document revision: \\)[0-9]*\-[0-9]*\-[0-9]*/\1$TODAY/" $NEW_FILE
-    sed -i '' "s/NewsML\-G2_${OLD_VERSION}\-spec\-Framework-Power_${OLD_NEWSMLG2_REVISION}/NewsML-G2_$NEW_VERSION-spec-Framework-Power_$NEWSMLG2_REVISION/" $NEW_FILE
+    sed -i '' "s/documentation>NewsML\-G2\ $OLD_VERSION/documentation>NewsML\-G2\ $NEW_VERSION/g" $NEW_FILE
+    sed -i '' "s/document version ${OLD_NEWSMLG2_REVISION}/document version ${NEWSMLG2_REVISION}/g" $NEW_FILE
+    sed -i '' "s/\\(Date of creation of this XML Schema document revision: \\)[0-9]*\-[0-9]*\-[0-9]*/\1$TODAY/g" $NEW_FILE
+    sed -i '' "s/\\(Approval of this XML Schema version: \\)[0-9]*\-[0-9]*\-[0-9]*/\1$APPROVAL_DATE/g" $NEW_FILE
+    sed -i '' "s/NewsML\-G2_${OLD_VERSION}\-spec\-Framework-Power_${OLD_NEWSMLG2_REVISION}/NewsML-G2_$NEW_VERSION-spec-Framework-Power_$NEWSMLG2_REVISION/g" $NEW_FILE
 done
 
 echo "Altering version and revision numbers in Framework XSD includes"

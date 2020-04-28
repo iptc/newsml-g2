@@ -10,6 +10,8 @@ export NEWSMLG2_REVISION="1"
 export OLD_NEWSMLG2_VERSION="2.28"
 export OLD_NEWSMLG2_REVISION="2"
 
+export APPROVAL_DATE="2020-xx-xx"
+
 ## we shouldn't need to alter anything below here
 
 # The date that these changes are being made - inserted into the XML Schema docs
