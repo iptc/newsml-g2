@@ -161,13 +161,13 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
                <xs:documentation>The date (and, optionally, the time) when the scheme was created. This must not be later than the creation timestamp of any concepts in the scheme (identified by the schemeMeta @uri).</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <!-- ====== schemecreated ====== (NewsML-G2 2.29 added)-->
+         <!-- ===== schememodified ====== (NewsML-G2 2.29 added)-->
          <xs:attribute name="schememodified" type="DateOptTimeType" use="optional">
             <xs:annotation>
                <xs:documentation>The date (and, optionally, the time) when the scheme was last modified. The initial value is the date (and, optionally, the time) of creation of the scheme (identified by the schemeMeta @uri).</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <!-- ====== schemecreated ====== (NewsML-G2 2.29 added)-->
+         <!-- ====== schemeretired ====== (NewsML-G2 2.29 added)-->
          <xs:attribute name="schemeretired" type="DateOptTimeType" use="optional">
             <xs:annotation>
                <xs:documentation>The date (and, optionally, the time) after which the scheme should not be used anymore. If a scheme is marked as retired, then all concepts in that scheme (identified by the schemeMeta @uri) must also be retired.</xs:documentation>
@@ -5428,8 +5428,8 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
          </xs:any>
       </xs:sequence>
       <xs:attributeGroup ref="commonPowerAttributes"/>
-      <!-- 2.29 changed from qualifyingAttributes -->
-      <xs:attributeGroup ref="flexAttributes"/>
+      <!-- 2.29 changed from flexAttributes -->
+      <xs:attributeGroup ref="qualifyingAttributes"/>
       <xs:attributeGroup ref="i18nAttributes"/>
       <xs:anyAttribute namespace="##other" processContents="lax"/>
    </xs:complexType>

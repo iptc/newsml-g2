@@ -4578,8 +4578,8 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
 			</xs:any>
 		</xs:sequence>
         <xs:attributeGroup ref="commonPowerAttributes"/>
-        <!-- 2.29 changed from qualifyingAttributes -->
-        <xs:attributeGroup ref="flexAttributes"/>
+        <!-- 2.29 changed from flexAttributes -->
+        <xs:attributeGroup ref="qualifyingAttributes"/>
         <xs:attributeGroup ref="i18nAttributes"/>
         <xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
