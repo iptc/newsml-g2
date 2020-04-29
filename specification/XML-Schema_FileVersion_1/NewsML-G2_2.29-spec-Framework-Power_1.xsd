@@ -4565,7 +4565,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
 	</xs:complexType>
 	<xs:complexType name="FlexOrganisationPropType">
 		<xs:annotation>
-			<xs:documentation>Flexible oraganisation data type for both controlled and uncontrolled values</xs:documentation>
+			<xs:documentation>Flexible organisation data type for both controlled and uncontrolled values</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:group ref="ConceptDefinitionGroup" minOccurs="0"/>
