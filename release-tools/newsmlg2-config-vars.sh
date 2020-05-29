@@ -10,7 +10,7 @@ export NEWSMLG2_REVISION="1"
 export OLD_NEWSMLG2_VERSION="2.28"
 export OLD_NEWSMLG2_REVISION="2"
 
-export APPROVAL_DATE="2020-xx-xx"
+export APPROVAL_DATE="2020-05-13"
 
 ## we shouldn't need to alter anything below here
 
