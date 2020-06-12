@@ -1,44 +1,74 @@
 # Maintenance notes
 
-Notes only used by the maintainers of NewsML-G2 at IPTC.
+These notes are only of relevance to the maintainers of NewsML-G2 at IPTC.
 
 ## Releasing a new version of NewsML-G2
 
-Steps to release an update to the standard:
+Steps to create and release an update to the standard:
 
-1. Create a new GitHub branch for the changes: `git checkout -b my-new-branch`
-2. For a major or minor version change...
-   For a revision change, copy the XML-Schema_FileVersion_# folder to the
-   appropriate revision number (the first release is always revision 1, the
-   first correction is always revision 2)
-3. Check that the version numbers are correct in `release-tools/newsmlg2-config-vars.sh`
-4. Update the version number in all files: (TODO: write a script for this based on Michael's C# tool)
-    1. Update `release-tools/newsmlg2-config-vars.sh` to use the correct version number. This is
-    used by the release scripts.
-    2. Change filenames of specification/individual XSDs to match the new version number using
-    `release-tools/update_xsd_version_no.sh`
-    3. Change version number references within each file in specification/individual/*.xsd
-    4. Change version number references within each file in examples/*.xml
-    5. `specification/individual/NewsML-xx-Framework` file has two headers - both need to be
-    updated with version number and any date changes - can cut and paste from one section to the other.
-5. Make the XML schema changes that are needed in the `XML-Schema_FileVersion_#` folder, including
-   any outstanding [change requests from the dev.iptc.org site](http://dev.iptc.org/G2-Change-Requests-HP)
-6. Copy from the XML-Schema_FileVersion_# folder to the specification/individual folder:
-   `release-tools/move_to_individual.sh`
-6a. change include filename references in all version to get rid of _<revision> numbers
-7. Run the script that uses an XSLT stylesheet to create the master version from the framework
-   version in the specification/individual version:
+### High-level overview of the steps required
+- Copy the latest version of schema files into the
+  `specification/FileVersion_<revision>` folder based on our new revision number
+- Update the files in `specification/FileVersion_<revision>` with new version
+  numbers and dates
+- Make the required schema changes to the `specification/FileVersion<revision>`
+  files
+- Create the "All" version from the individual versions in the
+  `FileVersion_<revision>` folder
+- Copy the new files to specification/individual folder, removing revision info
+  from the filenames
+- Check that the schema file works by validating against example documents
+- Create documentation using XML Spy
+- Make release version to be uploaded to iptc.org
+
+### In detail
+1.  Create a new GitHub branch for the changes: `git checkout -b newsmlN.NN`
+    (or `newsmlN.NN_N`)
+2.  Update the `release-tools/newsmlg2-config-vars.sh` file with the version
+    numbers of the old and new versions and revision
+3.  Don't forget to run it! `source release-tools/newsmlg2-config-vars.sh`
+4.  Run `release-tools/update-xsd-version-no.sh` to update
+    `XML-Schema_FileVersion_N` files to refer to the new version
+5.  Run `release-tools/update-version-no-in-files.sh` to update version
+    numbers and dates in the schema documents
+6.  By hand, make the XML schema changes that are needed in the
+    `XML-Schema_FileVersion_#` folder, including any outstanding [change
+    requests from the dev.iptc.org
+    site](http://dev.iptc.org/G2-Change-Requests-HP)
+7.  Run `release-tools/move-to-individual.sh`
+    This copies and renames the individual schema component files from the
+    `XML-Schema_FileVersion_#` folder to the `specification/individual` folder.
+    The script also removes a _<revision> reference inside the schema files.
+8.  Run the script that uses an XSLT stylesheet to create the master version
+    from the framework version in the specification/individual folder:
     `release-tools/create-power-xsd-from-framework-xsd.sh`
-8. Run `xmllint` over the examples folder to make sure no errors have been introduced using a script:
-    `release-tools/test-newsml-examples.sh`
-9. Use XML Spy to create XML Schema documentation from the master XSD schema file and the
-   "individual" schemas. Save them to `specification/XML-Schema-Doc-Power`.
-10. Print change requests from dev.iptc.org to PDF for inclusion in release pack to be sent to
-   delegates, if necessary.
-11. Run the script to move all files to the release folder and create ZIP files to send to delegates:
-    `release-tools/create-release.sh`
-12. Commit and push all changes to GitHub: `git push origin -u my-new-branch`
-   (Our `.gitignore` file already suppresses sending ZIP files and the XML Schema docs to GitHub.)
-13. Upload the "release/N.NN" folder and the ZIP files to the iptc.org server
-14. Update the redirects on iptc.org to point to the latest versions of XML Schema documentation.
-15. Update the http://dev.iptc.org/G2-Approved-Changes page documenting the changes made.
+9.  Run `release-tools/update-version-no-in-examples.sh` which updates version
+    number references within each file in examples/*.xml (except for the older
+    examples which need to refer to 2.24 because that's the last version
+    supported by the Core version of the standard)
+10. Run `release-tools/test-newsml-examples.sh` which runs `xmllint` over the
+    examples folder to make sure no errors have been introduced.
+11. Use XML Spy to create XML Schema documentation from the master XSD schema
+    file and the "individual" schemas. Save them to
+    `specification/XML-Schema-Doc-Power`.
+12. Print-to-PDF change requests from dev.iptc.org for inclusion in release pack
+    to be sent to delegates, if necessary.
+13. Run the script to move all files to the release folder and create ZIP files
+    of the release: `release-tools/create-release.sh`
+14. Commit and push all changes to GitHub: `git push origin -u my-new-branch`
+    (Our `.gitignore` file already suppresses sending ZIP files and the XML
+    Schema docs to GitHub.).
+15. Create a pull request from the branch on GitHub.com.
+
+### After the Standards Committee approves the new version:
+
+1.  Update the APPROVED_DATE in `release-tools/newsmlg2-config-vars.sh`
+2.  Run the above steps 3, 5, 7, 8, 10, 11, 13, 14 again to update files with
+    the approval date (this should be quick, just running scripts, except for
+    the XML Spy documentation step)
+3.  Merge the pull request into master on GitHub
+4.  Upload the "release/N.NN" folder and the ZIP files to the iptc.org server
+5.  Update the redirects on iptc.org to point to the latest versions of XML
+    Schema documentation.
+6.  Update the http://dev.iptc.org/G2-Approved-Changes page documenting the
+    changes made.

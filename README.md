@@ -2,20 +2,38 @@
 
 IPTC NewsML-G2 standard for the exchange of news and news-related information.
 
-Learn more about its features and who uses it at https://iptc.org/standards/newsml-g2/.
+Learn more about its features and who uses it at
+[https://iptc.org/standards/newsml-g2/](https://iptc.org/standards/newsml-g2/).
 
-The GitHub repository (https://github.com/iptc/newsml-g2) provides all NewsML-G2 files in the master branch.
+The GitHub repository
+([https://github.com/iptc/newsml-g2](https://github.com/iptc/newsml-g2)
+provides all NewsML-G2 files in the master branch.
 
-The current files are the ones of the latest version 2.28, revision 2.
+This is version 2.29, approved by the IPTC Standards Committee in May 2020.
 
-The files of the current and of previous versions from 2.23 on can be retrieved as GitHub releases from https://github.com/iptc/newsml-g2/releases, and also downloaded from https://www.iptc.org/std/NewsML-G2/
+The files of the current and of previous versions (from 2.23 on) can be retrieved
+as GitHub releases from
+[https://github.com/iptc/newsml-g2/releases](https://github.com/iptc/newsml-g2/releases),
+and also downloaded from
+[https://www.iptc.org/std/NewsML-G2/](https://www.iptc.org/std/NewsML-G2/).
 
-A full history of versions and a list of all changes is available at http://dev.iptc.org/G2-Standards
+A full history of versions and a list of all changes is available at
+[http://dev.iptc.org/G2-Standards](http://dev.iptc.org/G2-Standards)
 
-The NewsML-G2 Implementation Guidelines are available at https://www.iptc.org/std/NewsML-G2/guidelines 
+## Documentation
 
-The latest NewsML-G2 Specification in HTML is available at https://www.iptc.org/std/NewsML-G2/specification/
+The NewsML-G2 Implementation Guidelines are available at
+[https://www.iptc.org/std/NewsML-G2/guidelines](https://www.iptc.org/std/NewsML-G2/guidelines)
 
-XML Schema documentation of the latest version is available in this package under the folder `specification/XML-Schema-Doc-Power/`
+The latest NewsML-G2 Specification in HTML is available at
+[https://www.iptc.org/std/NewsML-G2/specification/](https://www.iptc.org/std/NewsML-G2/specification/)
 
-For any questions, comments or suggestions, please join the public NewsML-G2 forum at https://groups.io/g/iptc-newsml-g2
+XML Schema documentation of the latest version is available in this package
+under the folder 
+[specification/XML-Schema-Doc-Power/](specification/XML-Schema-Doc-Power/)
+
+## Further information and questions
+
+For any questions, comments or suggestions, please join the public NewsML-G2
+forum at
+[https://groups.io/g/iptc-newsml-g2](https://groups.io/g/iptc-newsml-g2).
