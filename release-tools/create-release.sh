@@ -13,7 +13,10 @@ mkdir -p releases/$NEWSMLG2_VERSION
 
 echo "Copying release files to the release folder"
 cp -r documentation examples LICENSE releases/$NEWSMLG2_VERSION/
-cp -r README.md releases/$NEWSMLG2_VERSION/NewsML-G2-README.md
+
+echo "Copying README files to the release folder"
+python -m markdown README.md >releases/$NEWSMLG2_VERSION/README.html 
+python -m markdown documentation/NewsML-G2-documentation.md >releases/$NEWSMLG2_VERSION/documentation/index.html
 
 echo "Copying specification (minus XML Schema docs) to the release folder"
 mkdir -p releases/$NEWSMLG2_VERSION/specification
@@ -40,3 +43,4 @@ $ZIP_PATH -r -9 XML-Schema-Doc-Power.zip XML-Schema-Doc-Power
 cd ../../..
 
 echo "Done."
+echo "Now copy releases/NewsML-G2_$NEWSMLG2_VERSION-noXMLdocu.zip, releases/NewsML-G2_$NEWSMLG2_VERSION.zip and the releases/$NEWSMLG2_VERSION folder to iptc.org/std."
