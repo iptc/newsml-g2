@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nar:newsItem xmlns:nar="http://iptc.org/std/nar/2006-10-01/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" standard="String" standardversion="0.0" guid="String" xsi:schemaLocation="https://iptc.org/std-dev/nar/ NewsML-G2dev_0.4_nar229.xsd" xmlns:ng2dev="https://iptc.org/std-dev/nar/">
+    <nar:catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_35.xml" />
+	<nar:itemMeta>
+		<nar:itemClass/>
+		<nar:provider/>
+		<nar:versionCreated>2020-06-25T12:00:00Z</nar:versionCreated>
+	</nar:itemMeta>
+	<nar:contentMeta>
+	<ng2dev:advice>
+	    <ng2dev:importance></ng2dev:importance>
+    	<ng2dev:lifetime></ng2dev:lifetime>
+	</ng2dev:advice>
+	</nar:contentMeta>
+</nar:newsItem>
