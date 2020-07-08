@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledgeItem xmlns="http://iptc.org/std/nar/2006-10-01/" standard="NewsML-G2" standardversion="2.18" conformance="power" guid="urn:newsml:iptc.org:20080229:srcncdki-medtop-TS201901110952144" version="1">
+  <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_33.xml"/>
+  <rightsInfo>
+    <copyrightHolder uri="http://cv.iptc.org/newscodes/newsprovider/IPTC">
+      <name>IPTC - International Press Telecommunications Council</name>
+    </copyrightHolder>
+  </rightsInfo>
+  <itemMeta>
+    <itemClass qcode="cinat:scheme"/>
+    <provider uri="http://cv.iptc.org/newscodes/newsprovider/IPTC">
+      <name>IPTC</name>
+    </provider>
+    <versionCreated>2020-05-12T12:00:00+00:00</versionCreated>
+    <firstCreated>2009-10-22T12:00:00+00:00</firstCreated>
+    <pubStatus qcode="stat:usable"/>
+  </itemMeta>
+  <schemeMeta uri="http://cv.iptc.org/newscodes/mediatopic/" authority="http://www.iptc.org" preferredalias="medtop"
+    schemecreated="2009-10-22T12:00:00+00:00"
+    schememodified="2020-05-12T12:00:00+00:00"
+    schemeretired="2020-05-12T12:00:00+00:00">
+    <definition xml:lang="en-GB">Indicates a subject of an item.</definition>
+    <name xml:lang="en-GB">Media Topic</name>
+    <note xml:lang="en-GB">The Media Topic NewsCodes has been IPTC's primary subject taxonomy since 2010, with a focus on classification of text. The development started with our previous Subject Codes taxonomy and extended the tree to 5 levels and reused the same 17 top level terms. The terms below the top level have been revised and rearranged. Most Media Topic concepts provide a mapping back to one of the Subject Codes, and many provide a mapping to Wikidata.</note>
+    <related qcode="medtop:01000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:02000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:03000000" rel="skos:hasTopConcept"/>
+  </schemeMeta>
+</knowledgeItem>

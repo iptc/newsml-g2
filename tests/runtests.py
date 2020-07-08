@@ -45,15 +45,116 @@ NEWSMLG2_DEV_SCHEMA = os.path.join(
     'NewsML-G2dev_0.4_nar229.xsd'
 )
 
-TEST_FILES_FOLDER = "unit_test_files"
-EXAMPLE_FILES_FOLDER = os.path.join(DIRNAME, '..', 'examples')
-SPECIFICATION_EXAMPLES_FOLDER = os.path.join(DIRNAME, '..', 'newsml-g2-guidelines', '_includes', 'GuidelinesCodeExamples')
-GUIDELINES_EXAMPLES_FOLDER = os.path.join(DIRNAME, '..', 'newsml-g2-guidelines', '_includes', 'GuidelinesCodeExamples')
+TEST_FILES_FOLDER = os.path.join(
+    DIRNAME, 'unit_test_files'
+)
+SCHEMA_FILES_FOLDER = os.path.join(
+    DIRNAME, 'schema_versions'
+)
 
+SCHEMA_VERSIONS = {
+    "dev": {
+        "schema_file": os.path.join(
+            DIRNAME, '..', 'dev-schema', 'NewsML-G2dev_0.4_nar229.xsd'
+        ),
+        "should_pass_folders": [
+            os.path.join(TEST_FILES_FOLDER, 'dev', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.29', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.28', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.27', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.26', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_pass')
+        ],
+        "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, 'dev', 'should_fail')
+        ],
+    },
+    "2.29": {
+        "schema_file": os.path.join(
+            DIRNAME, '..', 'specification', 'NewsML-G2_2.29-spec-All-Power.xsd'
+        ),
+        "should_pass_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.29', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.28', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.27', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.26', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_pass')
+        ],
+        "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.29', 'should_fail')
+        ],
+     },
+    "2.28": {
+        "schema_file": os.path.join(
+            SCHEMA_FILES_FOLDER, 'NewsML-G2_2.28-spec-All-Power.xsd'
+        ),
+        "should_pass_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.28', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.27', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.26', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_pass')
+        ],
+        "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.28', 'should_fail')
+        ],
+    },
+    "2.27": {
+        "schema_file": os.path.join(
+            SCHEMA_FILES_FOLDER, 'NewsML-G2_2.27-spec-All-Power.xsd'
+        ),
+        "should_pass_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.27', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.26', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_pass')
+        ],
+        "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.27', 'should_fail')
+        ],
+    },
+    "2.26": {
+        "schema_file": os.path.join(
+            SCHEMA_FILES_FOLDER, 'NewsML-G2_2.26-spec-All-Power.xsd'
+        ),
+        "should_pass_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.26', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_pass')
+        ],
+        "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.26', 'should_fail')
+        ],
+    },
+    "2.25": {
+        "schema_file": os.path.join(
+            SCHEMA_FILES_FOLDER, 'NewsML-G2_2.25-spec-All-Power.xsd'
+        ),
+        "should_pass_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_pass')
+        ],
+        "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_fail')
+        ],
+    }
+}
+
+"""
+We make extensive use of subTest, so we want to count the number of subTests
+run, not just the number of top-level tests (which is only 2 in our case!)
+"""
+class CountSubtestsResult(unittest.TextTestResult):
+    def addSubTest(self, test, subtest, outcome):
+        # handle failures calling base class
+        super(CountSubtestsResult, self).addSubTest(test, subtest, outcome)
+        # add to total number of tests run
+        self.testsRun += 1 
 
 class TestNewsMLSchema(unittest.TestCase):
     newsmlg2_schema = None
     newsmlg2_dev_schema = None
+    schemas = {}
+
+    # use the above helper class to count subtests
+    # def run(self, test_result=None):
+    #     return super(TestNewsMLSchema, self).run(CountSubtestsResult())
 
     def __init__(self, *args, **kwargs):
         """
@@ -62,33 +163,23 @@ class TestNewsMLSchema(unittest.TestCase):
         If we put this in setUp() rather than __init__(), it would
         load the schema for each test which is unnecessary.
         """
-        self.current_path = os.path.dirname(__file__)
+        self.current_path = DIRNAME
+        for schema_version, schema in SCHEMA_VERSIONS.items():
+            self.schemas[schema_version] = lxml.etree.XMLSchema(
+                file=schema['schema_file']
+            )
         with open(NEWSMLG2_SCHEMA) as schemafile:
             self.newsmlg2_schema = lxml.etree.XMLSchema(file=schemafile)
-        with open(NEWSMLG2_DEV_SCHEMA) as devschemafile:
-            self.newsmlg2_dev_schema = lxml.etree.XMLSchema(file=devschemafile)
         return super(TestNewsMLSchema, self).__init__(*args, **kwargs)
 
     # HELPER FUNCTIONS
 
     def get_files_in_folder(self, folder_name):
-        folder_name = os.path.join(
-                        self.current_path,
-                        folder_name
-                    )
         return [
             os.path.join(folder_name, file)
             for file in os.listdir(folder_name)
             if file.endswith('.xml')
         ]
-
-    def get_test_files_in_folder(self, test_folder_name):
-        return self.get_files_in_folder(
-                 os.path.join(
-                    TEST_FILES_FOLDER,
-                    test_folder_name
-                 )
-               )
 
     def load_test_file(self, file_name):
         with open(file_name, 'r') as xmlfile:
@@ -96,22 +187,19 @@ class TestNewsMLSchema(unittest.TestCase):
         return instance
 
     def folder_should_pass(self, schema=None, folder_name=None):
-        testfiles = self.get_test_files_in_folder(folder_name)
+        testfiles = self.get_files_in_folder(folder_name)
         for file in testfiles:
             with self.subTest(file=file):
                 instance = self.load_test_file(file)
-                self.newsmlg2_schema.assertValid(instance)
-                #self.assertTrue(
-                #    self.newsmlg2_schema.validate(instance)
-                #)
+                schema.assertValid(instance)
 
     def folder_should_fail(self, schema=None, folder_name=None):
-        testfiles = self.get_test_files_in_folder(folder_name)
+        testfiles = self.get_files_in_folder(folder_name)
         for file in testfiles:
             with self.subTest(file=file):
                 instance = self.load_test_file(file)
                 self.assertFalse(
-                    self.newsmlg2_schema.validate(instance)
+                    schema.validate(instance)
                 )
 
     # TESTS START HERE
@@ -148,43 +236,21 @@ class TestNewsMLSchema(unittest.TestCase):
         Run files in TEST_FILES_FOLDER/should_pass against the latest NewsML-G2
         schema. They should all pass (ie they are all valid against the schema).
 
-        We use "subTest" so we can see which file failed in test output.
+        Within folder_should_pass and folder_should_fail, we  use "subTest" so
+        we can see which file failed the test.
         """
-        self.folder_should_pass(
-            schema=self.newsmlg2_schema,
-            folder_name=os.path.join(LATEST_SCHEMA_VERSION, 'should_pass')
-        )
-
-    def test_failing_unit_test_files_against_latest_schema(self):
-        """
-        Run files in TEST_FILES_FOLDER/should_fail against the latest NewsML-G2
-        schema. They should all fail (ie they are all invalid in some way).
-        """
-        self.folder_should_fail(
-            schema=self.newsmlg2_schema,
-            folder_name=os.path.join(LATEST_SCHEMA_VERSION, 'should_fail')
-        )
-
-    def test_all_passing_unit_test_files_against_dev_schema(self):
-        """
-        Run files in TEST_FILES_FOLDER/dev/should_pass against the dev schema.
-        They should all pass (ie they are all valid against the schema).
-        """
-        self.folder_should_pass(
-            schema=self.newsmlg2_dev_schema,
-            folder_name=os.path.join(LATEST_SCHEMA_VERSION, 'should_pass')
-        )
-
-    def test_failing_unit_test_files_against_dev_schema(self):
-        """
-        Run files in TEST_FILES_FOLDER/dev/should_fail against the dev schema.
-        They should all fail (ie they are all invalid in some way).
-        """
-        #self.folder_should_fail(
-        #    schema=self.ninjsdev_schema,
-        #    folder_name=os.path.join('dev', 'should_fail')
-        #)
-
+        for schema_version, schema in SCHEMA_VERSIONS.items():
+            for should_pass_folder in schema['should_pass_folders']:
+                self.folder_should_pass(
+                    schema=self.schemas[schema_version],
+                    folder_name=should_pass_folder
+                )
+            for should_fail_folder in schema['should_fail_folders']:
+                self.folder_should_fail(
+                    schema=self.schemas[schema_version],
+                    folder_name=should_fail_folder
+                )
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(testRunner=unittest.TextTestRunner(resultclass=CountSubtestsResult))
+

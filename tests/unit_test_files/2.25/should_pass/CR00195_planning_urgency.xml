@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<planningItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.28"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://xml.media.reuters.com/g2-standards/catalogs/ReutersMedia_G2-Standards-Catalog_v1.xml"/>
+    <itemMeta>
+        <itemClass qcode="ninat:text"/>
+        <provider literal="reuters.com"/>
+        <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+    </itemMeta>
+    <newsCoverageSet>
+        <!-- CR00195/SGR355/NEVCR018: Planning Urgency.
+        - Picture Coverage has the highest Urgency (1)
+        - Text Coverage has a lower Urgency (5)
+        -->
+        <newsCoverage>
+            <planning coversfrom="2015-10-27T00:00:00.000Z" coversto="2015-10-28T00:00:00.000Z">
+                <itemClass qcode="icls:picture"/>
+                <!-- CR00195/SGR355/NEVCR018: Planning Urgency. -->
+                <urgency>1</urgency>
+            </planning>
+            <planning coversfrom="2015-10-27T00:00:00.000Z" coversto="2015-10-28T00:00:00.000Z">
+                <itemClass qcode="icls:text"/>
+                <!-- CR00195/SGR355/NEVCR018: Planning Urgency. -->
+                <urgency>5</urgency>
+            </planning>
+        </newsCoverage>
+    </newsCoverageSet>
+</planningItem>
