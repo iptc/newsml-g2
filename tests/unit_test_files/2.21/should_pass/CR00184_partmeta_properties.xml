@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.w3.org/ns/odrl/2/ ./ODRL22.xsd"
+    xmlns:other="http://other.com/other-namespace"
+    xmlns:o="http://www.w3.org/ns/odrl/2/"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.28"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml"/>
+    <itemMeta>
+        <itemClass qcode="ninat:text"/>
+        <provider literal="reuters.com"/>
+        <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+    </itemMeta>
+    <partMeta seq="1">
+        <timeDelim start="00:00:05.000" end="00:02:05.000" timeunit="timeunit:normalPlayTime"/>
+        <role qcode="partRole:shot"/>
+        <!-- Flag this partMeta as Major News -->
+        <signal qcode="N2:NEWS1"/>
+        <!-- CR00184/SGR233 : partMeta Properties: edNote, link
+            NB: Already supports: signal
+        -->
+        <edNote/>
+        <edNote>Note to editors: Updates previous version, adding more eye-witness reporting.</edNote>
+        <link/>
+        <link rel="irel:seeAlso" residref="tag:reuters.com,2015:newsml_ET1D4C557DF00" contenttype="application/vnd.iptc.g2.newsitem+xml"/>
+    </partMeta>
+</newsItem>
