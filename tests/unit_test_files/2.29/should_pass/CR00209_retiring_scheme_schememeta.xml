@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<knowledgeItem xmlns="http://iptc.org/std/nar/2006-10-01/" standard="NewsML-G2" standardversion="2.18" conformance="power" guid="urn:newsml:iptc.org:20080229:srcncdki-medtop-TS201901110952144" version="1">
+<knowledgeItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    standard="NewsML-G2"
+    standardversion="2.29"
+    conformance="power"
+    guid="urn:newsml:iptc.org:20080229:srcncdki-medtop-TS201901110952144"
+    version="1">
   <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_33.xml"/>
   <rightsInfo>
     <copyrightHolder uri="http://cv.iptc.org/newscodes/newsprovider/IPTC">

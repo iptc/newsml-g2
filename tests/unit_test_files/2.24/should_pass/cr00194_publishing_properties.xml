@@ -6,7 +6,7 @@
     xmlns:other="http://other.com/other-namespace"
     guid="simplest-test"
     standard="NewsML-G2"
-    standardversion="2.28"
+    standardversion="2.24"
     conformance="power"
     xml:lang="en-GB">
     <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml"/>

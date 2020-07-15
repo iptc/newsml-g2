@@ -6,7 +6,7 @@
     xmlns:other="http://other.com/other-namespace"
     guid="simplest-test"
     standard="NewsML-G2"
-    standardversion="2.24"
+    standardversion="2.18"
     conformance="power"
     xml:lang="en-GB">
     <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml"/>
@@ -16,8 +16,18 @@
         <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
     </itemMeta>
     <contentMeta>
-        <!-- CR00193/SGR353: Adding Role, Role URI, Version to Alt Id -->
-        <altId type="idType:USN" environment="sys:LYNXE" other:isOriginal="1">123456789</altId>
-        <altId type="idType:USN" environment="sys:LYNXE" role="idRole:isOriginal" version="1">123456789</altId>
+        <!-- CR00179/SGR311: Attribute Siblings for URIs -->
+        <creator
+            qcode="q:q" uri="http://example.com/q"
+            creator="c:c" creatoruri="uri"
+            how="h:h" howuri="uri"
+            jobtitle="j:j" jobtitleuri="uri"
+            pubconstraint="p:p" pubconstrainturi="uri"
+            role="r:r" roleuri="uri"
+            type="t:t" typeuri="uri"
+            why="w:w" whyuri="uri"/>
+        <contributor role="cRole:author" roleuri="http://example.com/author">
+            <name>name</name>
+        </contributor>
     </contentMeta>
 </newsItem>

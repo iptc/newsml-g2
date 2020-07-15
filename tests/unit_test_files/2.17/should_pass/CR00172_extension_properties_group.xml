@@ -2,27 +2,26 @@
 <packageItem
     xmlns="http://iptc.org/std/nar/2006-10-01/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:other="http://other.com/other-namespace"
     guid="simplest-test"
     standard="NewsML-G2"
-    standardversion="2.25"
+    standardversion="2.17"
     conformance="power"
     xml:lang="en-GB">
-    <catalogRef href="http://xml.media.reuters.com/g2-standards/catalogs/ReutersMedia_G2-Standards-Catalog_v1.xml"/>
+    <catalogRef href="http://xml.media.reuters.com/g2-standards/catalogs/ReutersMedia_G2-Standards-Catalog_v1.xml"/>    
     <itemMeta>
-        <itemClass qcode="ninat:text"/>
+        <itemClass qcode="cinat:scheme"/>
         <provider literal="reuters.com"/>
         <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
     </itemMeta>
-    <groupSet root="root">
-        <group role="grpRole:NEP" id="root">
-            <groupRef idref="main"/>
+    <groupSet root="G1">
+        <group id="G1" role="x:x">
         </group>
-        <group role="r:r">
+        <!-- -->
+        <group id="G2" role="r:r">
             <groupExtProperty rel="r:r" value="NPI">
                 <related rel="r:hasLang" value="en"/>
             </groupExtProperty>
-            <!-- CR00196/SGR357: XML Standard Version: Item Ref -->
-            <itemRef contenttype="application/xml" contenttypestandardversion="1.0" contenttypevariant="v" contenttypevariantstandardversion="1.0" format="fmt:sportsml" formatstandardversion="3.0"/>
         </group>
     </groupSet>
 </packageItem>

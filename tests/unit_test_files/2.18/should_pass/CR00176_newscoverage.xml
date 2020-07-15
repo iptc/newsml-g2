@@ -6,7 +6,7 @@
     xmlns:other="http://other.com/other-namespace"
     guid="simplest-test"
     standard="NewsML-G2"
-    standardversion="2.24"
+    standardversion="2.18"
     conformance="power"
     xml:lang="en-GB">
     <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml"/>
@@ -15,9 +15,9 @@
         <provider literal="reuters.com"/>
         <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
     </itemMeta>
-    <contentMeta>
-        <!-- CR00193/SGR353: Adding Role, Role URI, Version to Alt Id -->
-        <altId type="idType:USN" environment="sys:LYNXE" other:isOriginal="1">123456789</altId>
-        <altId type="idType:USN" environment="sys:LYNXE" role="idRole:isOriginal" version="1">123456789</altId>
-    </contentMeta>
+    <contentSet>
+        <!-- CR00176/SGR307 : Extending newsCoverage: linecount etc. -->
+        <remoteContent rendition="r:r" pagecount="3" linecount="333" other:xxx="xxx"/>
+        <remoteContent width="80" widthunit="dimensionunit:characters"/>
+    </contentSet>
 </newsItem>

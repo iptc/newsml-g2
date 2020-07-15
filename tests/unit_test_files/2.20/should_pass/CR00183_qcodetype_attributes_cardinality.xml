@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<knowledgeItem
+<newsItem
     xmlns="http://iptc.org/std/nar/2006-10-01/"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,7 +8,7 @@
     xmlns:o="http://www.w3.org/ns/odrl/2/"
     guid="simplest-test"
     standard="NewsML-G2"
-    standardversion="2.22"
+    standardversion="2.20"
     conformance="power"
     xml:lang="en-GB">
     <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml"/>
@@ -16,16 +16,12 @@
         <itemClass qcode="ninat:text"/>
         <provider literal="reuters.com"/>
         <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+        <!--- CR00183/SGR328: QCodeType cardinality -->
+        <signal/>
+        <signal qcode="sig:correction"/>
+        <signal qcode="sig:correction" uri="http://cv.iptc.org/newscodes/signal/correction"/>
+        <!-- Check with only @uri -->
+        <signal uri="http://cv.iptc.org/newscodes/signal/correction"/>
+        <signal/>
     </itemMeta>
-    <!-- CR00187/SGR340: Scheme Meta Properties @concepttype
-    Geography:
-      cptType:5   ... France (geoProp:5 = Country) / Europe (geoProp:3 = International Region)
-    Geography Type:
-      cptType:18  ... (geoProp:11 = Shipping Zone ) / (geoProp:15 = Agricultural Region)
-    -->
-    <schemeMeta
-        uri="https://permid.org/1-"
-        authority="http://tr.com/"
-        preferredalias="P"
-        concepttype="cptType:5 cptType:18"/>
-</knowledgeItem>
+</newsItem>

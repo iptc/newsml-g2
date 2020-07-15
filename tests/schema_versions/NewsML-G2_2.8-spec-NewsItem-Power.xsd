@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?><!--
+IPTC - International Press Telecommunications Council
+20 Garrick Street, London WC2E 9BT, United Kingdom
+www.iptc.org
+
+Check the License Agreement at the bottom of this file before using the G2-Standards
+
+--><xs:schema targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.9" xml:lang="en" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/">
+	<xs:include schemaLocation="NAR_1.9-spec-Framework-Power.xsd" />
+	<xs:annotation>
+		<xs:documentation>News Architecture (NAR) 1.9 for IPTC G2-Standards - News Item XML Schema, document version 1</xs:documentation>
+		<xs:documentation>NewsML-G2 2.8 - News Item XML Schema, document version 1</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema version: 2011-03-09</xs:documentation>
+		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document version: 2011-03-29</xs:documentation>
+		<xs:documentation>Schema created for the IPTC by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
+		<xs:documentation>Schema maintained for the IPTC by Michael Steidl (IPTC), previously by Laurent Le Meur (AFP)</xs:documentation>
+	</xs:annotation>
+	<xs:element name="newsItem">
+		<xs:annotation>
+			<xs:documentation>An Item containing news-related information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="AnyItemType">
+					<xs:sequence>
+						<xs:element name="contentMeta" type="ContentMetadataAfDType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>A set of properties about the content</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="partMeta" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element ref="assert" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element ref="inlineRef" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element name="contentSet" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>A set of alternate renditions of the Item content</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:choice minOccurs="0" maxOccurs="unbounded">
+									<xs:element name="inlineXML">
+										<xs:annotation>
+											<xs:documentation>A rendition of the content using an XML language</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:any namespace="##any" processContents="lax" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>XML elements from any namespace</xs:documentation>
+													</xs:annotation>
+												</xs:any>
+											</xs:sequence>
+											<xs:attributeGroup ref="newsContentAttributes" />
+											<xs:attributeGroup ref="newsContentTypeAttributes" />
+											<xs:attributeGroup ref="newsContentCharacteristics" />
+											<xs:attributeGroup ref="i18nAttributes" />
+											<xs:anyAttribute namespace="##other" processContents="lax" />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="inlineData">
+										<xs:annotation>
+											<xs:documentation>A rendition of the content using plain-text or encoded inline data</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:simpleContent>
+												<xs:extension base="xs:string">
+													<xs:attributeGroup ref="newsContentAttributes" />
+													<xs:attributeGroup ref="newsContentTypeAttributes" />
+													<xs:attribute name="encoding" type="QCodeType">
+														<xs:annotation>
+															<xs:documentation>The encoding applied to the content before inclusion</xs:documentation>
+														</xs:annotation>
+													</xs:attribute>
+													<xs:attributeGroup ref="newsContentCharacteristics" />
+													<xs:attributeGroup ref="i18nAttributes" />
+													<xs:anyAttribute namespace="##other" processContents="lax" />
+												</xs:extension>
+											</xs:simpleContent>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="remoteContent">
+										<xs:annotation>
+											<xs:documentation>A rendition of the content using a reference/link to a resource representing the content data at a remote location</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="channel" minOccurs="0" maxOccurs="unbounded">
+													<xs:annotation>
+														<xs:documentation>Information about a specific content channel.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:attribute name="chnlid" type="xs:positiveInteger">
+															<xs:annotation>
+																<xs:documentation>A logical identifier of the channel</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="type" type="QCodeType">
+															<xs:annotation>
+																<xs:documentation>The media type of the data conveyed by the channel</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="role" type="QCodeType">
+															<xs:annotation>
+																<xs:documentation>The role the data of this channel plays in the scope of  the full content</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attribute name="language" type="xs:language">
+															<xs:annotation>
+																<xs:documentation>The  language associated with the content of the channel</xs:documentation>
+															</xs:annotation>
+														</xs:attribute>
+														<xs:attributeGroup ref="newsContentCharacteristics" />
+													</xs:complexType>
+												</xs:element>
+												<!-- NAR-EV-1.3.5 : add altId to remoteContent-->
+												<xs:element ref="altId" minOccurs="0" maxOccurs="unbounded" />
+												<!-- NAR-EV-1.3.4 : add altLoc to remoteContent-->
+												<xs:element ref="altLoc" minOccurs="0" maxOccurs="unbounded" />
+												<xs:element ref="hash" minOccurs="0" maxOccurs="unbounded" />
+												<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
+													<xs:annotation>
+														<xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
+													</xs:annotation>
+												</xs:any>
+											</xs:sequence>
+											<xs:attributeGroup ref="newsContentAttributes" />
+											<xs:attributeGroup ref="targetResourceAttributes" />
+											<xs:attributeGroup ref="timeValidityAttributes" />
+											<xs:attributeGroup ref="newsContentCharacteristics" />
+											<xs:attribute name="language" type="xs:language">
+												<xs:annotation>
+													<xs:documentation>The language of the remote content</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+											<xs:anyAttribute namespace="##other" processContents="lax" />
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+								<xs:attribute name="original" type="xs:IDREF">
+									<xs:annotation>
+										<xs:documentation>A local reference to the original piece of content, from which all renditions have been derived</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:anyAttribute namespace="##other" processContents="lax" />
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="newsContentAttributes">
+		<xs:annotation>
+			<xs:documentation>A group of typical attributes associated with a content rendition</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="id" type="xs:ID">
+			<xs:annotation>
+				<xs:documentation>The local identifier of the element which MUST be persistent for all versions of the item, i.e. for its entire lifecycle.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rendition" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>The specific rendition of content this component represents</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="generator" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The name and version of the software tool used to generate the content</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="generated" type="DateOptTimeType">
+			<xs:annotation>
+				<xs:documentation>The date (and, optionally, the time) when the content was generated</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:annotation>
+		<xs:documentation>NewsML-G2 2.3r1: newsContentCharacteristics: @durationUnit added, NewsML-G2 2.4: @widthunit, @heightunit added</xs:documentation>
+	</xs:annotation>
+	<xs:attributeGroup name="newsContentCharacteristics">
+		<xs:annotation>
+			<xs:documentation>A group of typical physical characteristics of media content </xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="wordcount" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The count of words of textual content.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="width" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The image width for visual content.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="widthunit" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>If present defines the width unit for the width</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="height" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The height of visual content.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="heightunit" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>If present defines the height unit for the heigth</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="orientation" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The orientation of the visual content of an image in regard to the standard rendition of the digital image data</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="colourspace" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>The colour space of an image</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="resolution" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>The recommended printing resolution for an image in dots per inch</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="duration" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The clip duration in time units defined by durationUnit. The default time unit is seconds. Applies to audio-visual content.
+</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="durationunit" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>If present it defines the time unit for the duration attribute. Only codes for integer value time units of the recommended CV (available at http://cv.iptc.org/newscodes/timeunit/ )  must be applied.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audiocodec" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>The applicable codec for audio data</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audiobitrate" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>The audio bit rate in  bits per second</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audiovbr" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>An indication that the audio data is encoded with a variable bit rate</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audiosamplesize" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>The number of bits per audio sample</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audiosamplerate" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>The number of audio samples per second, expressed as a sampling frequency in Hz</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audiochannels" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>The audio sound system</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="videocodec" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>The applicable codec for video data</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="videoavgbitrate" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>The video average bit rate in bits per second. Used when the bit rate is variable</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="videovbr" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>An indication that video data is encoded with a variable bit rate</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="videoframerate" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>The number of video frames per second, i.e. the rate at which the material should be shown in order to achieve the intended visual effect</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="videoscan">
+			<xs:annotation>
+				<xs:documentation>The video scan technique, progressive or interlaced</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="progressive" />
+					<xs:enumeration value="interlaced" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="videoaspectratio" type="xs:normalizedString">
+			<xs:annotation>
+				<xs:documentation>The video aspect ratio</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="videosampling" type="xs:normalizedString">
+			<xs:annotation>
+				<xs:documentation>The video sampling method</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="newsContentTypeAttributes">
+		<xs:annotation>
+			<xs:documentation>A group of attributes representing a content type</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="contenttype" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>An IANA MIME type</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="format" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>A refinement of a generic content type (i.e. IANA MIME type)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+</xs:schema><!--
+IPTC - International Press Telecommunications Council
+20 Garrick Street, London WC2E 9BT, United Kingdom 
+www.iptc.org
+
+Non-Exclusive License Agreement for International Press
+Telecommunications Council Specifications and Related Documentation
+
+IMPORTANT: International Press Telecommunications Council (IPTC)
+standard specifications for news (the Specifications) and supporting
+software, documentation, technical reports, web sites and other
+material related to the Specifications (the Materials) including the
+document accompanying this license (the Document), whether in a paper
+or electronic format, are made available to you subject to the terms
+stated below. By obtaining, using and/or copying the Specifications or
+Materials, you (the licensee) agree that you have read, understood,
+and will comply with the following terms and conditions.
+
+1. The Specifications and Materials are licensed for use only on the
+condition that you agree to be bound by the terms of this license.
+Subject to this and other licensing requirements contained herein, you
+may, on a non-exclusive basis, use the Specifications and Materials.
+
+2. The IPTC openly provides the Specifications and Materials for
+voluntary use by individuals, partnerships, companies, corporations,
+organizations and any other entity for use at the entity's own risk.
+This disclaimer, license and release is intended to apply to the IPTC,
+its officers, directors, agents, representatives, members,
+contributors, affiliates, contractors, or co-venturers acting jointly
+or severally.
+
+3. The Document and translations thereof may be copied and furnished
+to others, and derivative works that comment on or otherwise explain
+it or assist in its implementation may be prepared, copied, published
+and distributed, in whole or in part, without restriction of any kind,
+provided that the copyright and license notices and references to the
+IPTC appearing in the Document and the terms of this Specifications
+License Agreement are included on all such copies and derivative
+works. Further, upon the receipt of written permission from the IPTC,
+the Document may be modified for the purpose of developing
+applications that use IPTC Specifications or as required to translate
+the Document into languages other than English.
+
+4. Any use, duplication, distribution, or exploitation of the Document
+and Specifications and Materials in any manner is at your own risk.
+
+5. NO WARRANTY, EXPRESSED OR IMPLIED, IS MADE REGARDING THE ACCURACY,
+ADEQUACY, COMPLETENESS, LEGALITY, RELIABILITY OR USEFULNESS OF ANY
+INFORMATION CONTAINED IN THE DOCUMENT OR IN ANY SPECIFICATION OR OTHER
+PRODUCT OR SERVICE PRODUCED OR SPONSORED BY THE IPTC. THE DOCUMENT AND
+THE INFORMATION CONTAINED HEREIN AND INCLUDED IN ANY SPECIFICATION OR
+OTHER PRODUCT OR SERVICE OF THE IPTC IS PROVIDED ON AN "AS IS" BASIS.
+THE IPTC DISCLAIMS ALL WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING, BUT NOT LIMITED TO, ANY ACTUAL OR ASSERTED WARRANTY OF NON-
+INFRINGEMENT OF PROPRIETARY RIGHTS, MERCHANTABILITY, OR FITNESS FOR A
+PARTICULAR PURPOSE. NEITHER THE IPTC NOR ITS CONTRIBUTORS SHALL BE
+HELD LIABLE FOR ANY IMPROPER OR INCORRECT USE OF INFORMATION. NEITHER
+THE IPTC NOR ITS CONTRIBUTORS ASSUME ANY RESPONSIBILITY FOR ANYONE'S
+USE OF INFORMATION PROVIDED BY THE IPTC. IN NO EVENT SHALL THE IPTC OR
+ITS CONTRIBUTORS BE LIABLE TO ANYONE FOR DAMAGES OF ANY KIND,
+INCLUDING BUT NOT LIMITED TO, COMPENSATORY DAMAGES, LOST PROFITS, LOST
+DATA OR ANY FORM OF SPECIAL, INCIDENTAL, INDIRECT, CONSEQUENTIAL OR
+PUNITIVE DAMAGES OF ANY KIND WHETHER BASED ON BREACH OF CONTRACT OR
+WARRANTY, TORT, PRODUCT LIABILITY OR OTHERWISE.
+
+6. The IPTC takes no position regarding the validity or scope of any
+Intellectual Property or other rights that might be claimed to pertain
+to the implementation or use of the technology described in the
+Document or the extent to which any license under such rights might or
+might not be available. The IPTC does not represent that it has made
+any effort to identify any such rights. Copies of claims of rights
+made available for publication, assurances of licenses to be made
+available, or the result of an attempt made to obtain a general
+license or permission for the use of such proprietary rights by
+implementers or users of the Specifications and Materials, can be
+obtained from the Managing Director of the IPTC.
+
+7. By using the Specifications and Materials including the Document in
+any manner or for any purpose, you release the IPTC from all
+liabilities, claims, causes of action, allegations, losses, injuries,
+damages, or detriments of any nature arising from or relating to the
+use of the Specifications, Materials or any portion thereof. You
+further agree not to file a lawsuit, make a claim, or take any other
+formal or informal legal action against the IPTC, resulting from your
+acquisition, use, duplication, distribution, or exploitation of the
+Specifications, Materials or any portion thereof. Finally, you hereby
+agree that the IPTC is not liable for any direct, indirect, special or
+consequential damages arising from or relating to your acquisition,
+use, duplication, distribution, or exploitation of the Specifications,
+Materials or any portion thereof.
+
+8. Specifications and Materials may be downloaded or copied provided
+that ALL copies retain the ownership, copyright and license notices.
+
+9. Materials may not be edited, modified, or presented in a context
+that creates a misleading or false impression or statement as to the
+positions, actions, or statements of the IPTC.
+
+10. The name and trademarks of the IPTC may not be used in
+advertising, publicity, or in relation to products or services and
+their names without the specific, written prior permission of the
+IPTC. Any permitted use of the trademarks of the IPTC, whether
+registered or not, shall be accompanied by an appropriate mark and
+attribution, as agreed with the IPTC.
+
+11. Specifications may be extended by both members and non-members to
+provide additional functionality (Extended Specifications) provided
+that there is a clear recognition of the IPTC IP and its ownership in
+the Extended Specifications and the related documentation and provided
+that the extensions are clearly identified and provided that a
+perpetual license is granted by the creator of the Extended
+Specifications for other members and non-members to use the Extended
+Specifications and to continue extensions of the Extended
+Specifications. The IPTC does not waive any of its rights in the
+Specifications and Materials in this context. The Extended
+Specifications may be considered the intellectual property of their
+creator. The IPTC expressly disclaims any responsibility for damage
+caused by an extension to the Specifications.
+
+12. Specifications and Materials may be included in derivative work of
+both members and non-members provided that there is a clear
+recognition of the IPTC IP and its ownership in the derivative work
+and its related documentation. The IPTC does not waive any of its
+rights in the Specifications and Materials in this context. Derivative
+work in its entirety may be considered the intellectual property of
+the creator of the work .The IPTC expressly disclaims any
+responsibility for damage caused when its IP is used in a derivative
+context.
+
+13. This Specifications License Agreement is perpetual subject to your
+conformance to the terms of this Agreement. The IPTC may terminate
+this Specifications License Agreement immediately upon your breach of
+this Agreement and, upon such termination you will cease all use,
+duplication, distribution, and/or exploitation in any manner of the
+Specifications and Materials.
+
+14. This Specifications License Agreement reflects the entire
+agreement of the parties regarding the subject matter hereof and
+supersedes all prior agreements or representations regarding such
+matters, whether written or oral. To the extent any portion or
+provision of this Specifications License Agreement is found to be
+illegal or unenforceable, then the remaining provisions of this
+Specifications License Agreement will remain in full force and effect
+and the illegal or unenforceable provision will be construed to give
+it such effect as it may properly have that is consistent with the
+intentions of the parties.
+
+15. This Specifications License Agreement may only be modified in
+writing signed by an authorized representative of the IPTC.
+
+16. This Specifications License Agreement is governed by the law of
+United Kingdom, as such law is applied to contracts made and fully
+performed in the United Kingdom. Any disputes arising from or relating
+to this Specifications License Agreement will be resolved in the
+courts of the United Kingdom. You consent to the jurisdiction of such
+courts over you and covenant not to assert before such courts any
+objection to proceeding in such forums.
+
+IF YOU DO NOT AGREE TO THESE TERMS YOU MUST CEASE ALL USE OF THE
+SPECIFICATIONS AND MATERIALS NOW. IF YOU HAVE ANY QUESTIONS ABOUT
+THESE TERMS, PLEASE CONTACT THE MANAGING DIRECTOR OF THE INTERNATIONAL
+PRESS TELECOMMUNICATION COUNCIL. AS OF THE DATE OF THIS REVISION OF
+THIS SPECIFICATIONS LICENSE AGREEMENT YOU MAY CONTACT THE IPTC at
+http://www.iptc.org.
+
+License agreement version of: 30 January 2006
+--><!--IPTC Schema Generator, v 1.3-->

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:other="http://other.com/other-namespace"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.17"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://xml.media.reuters.com/g2-standards/catalogs/ReutersMedia_G2-Standards-Catalog_v1.xml"/>    
+    <itemMeta>
+        <itemClass qcode="cinat:scheme"/>
+        <provider literal="reuters.com"/>
+        <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+    </itemMeta>
+    <!-- Content -->
+    <contentSet>
+        <remoteContent href="http://mediaexpress.reuters.com/api/preview/image/tag:reuters.com,2016:newsml_MT1ACI14508078:113599577/tag:reuters.com,2016:binary_MT1ACI14508078-VIEWIMAGE?dimensions=640x640" contenttype="image/jpeg" format="fmt:jpegBaseline" rendition="rend:viewImage" width="640" height="640" hascontent="false">
+            <remoteContentExtProperty rel="extCptRel:hasUrlScope" qcode="urlScope:internal"/>
+            <remoteContentExtProperty rel="extCptRel:isHostedOn" qcode="sys:RMC"/>
+        </remoteContent>
+    </contentSet>
+</newsItem>
