@@ -362,6 +362,112 @@ SCHEMA_VERSIONS = {
             os.path.join(TEST_FILES_FOLDER, '2.29', 'should_fail')
         ]
     },
+    "2.14": {
+        "schema_file": os.path.join(
+            SCHEMA_FILES_FOLDER, 'NewsML-G2_2.14-spec-All-Power.xsd'
+        ),
+        "should_pass_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.14', 'should_pass')
+        ],
+        "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.14', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.15', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.16', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.17', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.18', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.19', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.20', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.21', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.22', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.23', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.24', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.26', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.27', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.28', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.29', 'should_fail')
+        ]
+    },
+    "2.13": {
+        "schema_file": os.path.join(
+            SCHEMA_FILES_FOLDER, 'NewsML-G2_2.13-spec-All-Power.xsd'
+        ),
+        "should_pass_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.13', 'should_pass')
+        ],
+        "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.13', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.14', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.15', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.16', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.17', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.18', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.19', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.20', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.21', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.22', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.23', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.24', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.26', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.27', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.28', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.29', 'should_fail')
+        ]
+    },
+    "2.12": {
+        "schema_file": os.path.join(
+            SCHEMA_FILES_FOLDER, 'NewsML-G2_2.12-spec-All-Power.xsd'
+        ),
+        "should_pass_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.12', 'should_pass')
+        ],
+        "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.12', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.13', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.14', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.15', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.16', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.17', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.18', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.19', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.20', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.21', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.22', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.23', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.24', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.26', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.27', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.28', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.29', 'should_fail')
+        ]
+    },
+    "2.11": {
+        "schema_file": os.path.join(
+            SCHEMA_FILES_FOLDER, 'NewsML-G2_2.15-spec-All-Power.xsd'
+        ),
+        "should_pass_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.15', 'should_pass')
+        ],
+        "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.15', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.16', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.17', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.18', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.19', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.20', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.21', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.22', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.23', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.24', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.26', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.27', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.28', 'should_fail'),
+            os.path.join(TEST_FILES_FOLDER, '2.29', 'should_fail')
+        ]
+    },
     "2.10": {
         "schema_file": os.path.join(
             SCHEMA_FILES_FOLDER, 'NewsML-G2_2.10-spec-All-Power.xsd'
@@ -395,6 +501,7 @@ SCHEMA_VERSIONS = {
             os.path.join(TEST_FILES_FOLDER, '2.0', 'should_pass')
         ],
         "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.16', 'should_fail'),
             os.path.join(TEST_FILES_FOLDER, '2.17', 'should_fail'),
             os.path.join(TEST_FILES_FOLDER, '2.18', 'should_fail'),
             os.path.join(TEST_FILES_FOLDER, '2.19', 'should_fail'),
@@ -509,8 +616,8 @@ class TestNewsMLSchema(unittest.TestCase):
 
     def test_all_schema_versions_against_pass_and_fail_tests(self):
         """
-        Run files in TEST_FILES_FOLDER/should_pass against the latest NewsML-G2
-        schema. They should all pass (ie they are all valid against the schema).
+        Run files in TEST_FILES_FOLDER/should_pass against all NewsML-G2 schema
+        versions. They should all pass (ie they are all valid against the schema).
 
         Within folder_should_pass and folder_should_fail, we  use "subTest" so
         we can see which file failed the test.
