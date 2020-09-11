@@ -17,6 +17,8 @@
     </itemMeta>
     <contentMeta>
         <!-- CR00179/SGR311: Attribute Siblings for URIs -->
+        <!-- TODO there are more uri siblings that should be added to tests one day:
+            http://dev.iptc.org/G2-CR00179-add-attribute-siblings-for-URIs -->
         <creator
             qcode="q:q" uri="http://example.com/q"
             creator="c:c" creatoruri="uri"

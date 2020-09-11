@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.29"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_35.xml" />
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        <provider qcode="nprov:IPTC" />
+        <versionCreated>2020-06-22T12:00:00+03:00</versionCreated>
+        <!-- UNIT TEST NOTE: We wanted to include a "fail" test here, but including
+             bad characters doesn't fail schema validation, it just removes the extra
+             characters from the processed version of the document. -->
+        <!-- CR00169/SGR278: Change xs:normalizedString to g2normalizedString
+        <fileName>prev with invalid g2normalizedString chars: tab: '	', CRLF: '
+        '</fileName> -->
+        <fileName>now with valid g2normalizedString chars: tab: '', CRLF: ''</fileName>
+        <generator>gen</generator>
+    </itemMeta>
+    <contentSet>
+        <inlineXML contenttype="application/nitf+xml">
+        </inlineXML>
+    </contentSet>
+</newsItem>
