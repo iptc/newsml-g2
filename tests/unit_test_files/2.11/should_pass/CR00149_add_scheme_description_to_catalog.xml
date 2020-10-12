@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledgeItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:other="http://other.com/other-namespace"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.11"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalog>
+        <scheme uri="xxx" alias="x">
+            <!-- CR00149/SGR244: Scheme Qualification [2.11] -->
+            <sameAs>same-as</sameAs>
+            <sameAs>same-as</sameAs>
+            <name>nnn</name>
+            <name>n "  </name>
+            <definition>ddd</definition>
+            <definition role="defRole:main">Indicates the basic colouring of an image.<br/>For further information, please consult the <a href="http://cv.iptc.org/newscodes/colourindicator/">IPTC Colour Indicator</a> CV.</definition>
+            <definition>ddd</definition>
+            <note>nnn</note>
+            <note>nnn</note>
+            <sameAsScheme/>
+            <!-- v2.13_2: Allow element text -->
+            <sameAsScheme>http:/xxx/</sameAsScheme>
+        </scheme>
+        <scheme alias="colin" uri="http://cv.iptc.org/newscodes/colourindicator/">
+            <name xml:lang="en-GB">Colour Indicator</name>
+            <definition xml:lang="en-GB">Indicates the basic colouring of an image.</definition>
+            <note xml:lang="en-GB">Limited to simply indicating colour vs. black and white.</note>
+        </scheme>
+    </catalog>
+    <itemMeta>
+        <itemClass qcode="ninat:text"/>
+        <provider literal="reuters.com"/>
+        <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+    </itemMeta>
+</knowledgeItem>
