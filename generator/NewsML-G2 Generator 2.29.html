@@ -458,7 +458,13 @@ function sendEML (objForm){
 
     var xmlDoc = document.implementation.createDocument('http://iptc.org/std/nar/2006-10-01/', 'newsItem');
     newsItem = xmlDoc.documentElement
-    newsItem.setAttribute('guid', 'urn:newsml:testnewsprovider.com:20200801:STORY-SLUG');
+    todaysDate = new Date().toISOString().slice(0, 10)
+    if (document.indata.slugline.value) {
+        slugforguid = document.indata.slugline.value.toUpperCase();
+    } else {
+        slugforguid = "SLUGLINE";
+    }
+    newsItem.setAttribute('guid', 'urn:newsml:testnewsprovider.com:'+todaysDate+':'+slugforguid);
     newsItem.setAttribute('version', '1');
     newsItem.setAttribute('standard', 'NewsML-G2');
     newsItem.setAttribute('standardversion', '2.29');
@@ -586,8 +592,22 @@ function sendEML (objForm){
     var contentSet = document.createElementNS('http://iptc.org/std/nar/2006-10-01/', 'contentSet');
     var inlineXML = document.createElementNS('http://iptc.org/std/nar/2006-10-01/', 'inlineXML');
     inlineXML.setAttribute('contenttype', 'application/nitf+xml');
-    /* TODO: add more G2 fields to NITF section: ednote, copyright */
+    /* TODO: add more G2 fields to NITF section: copyright */
     var nitf = document.createElementNS('http://iptc.org/std/NITF/2006-10-18/', 'nitf');
+    var nitfHead = document.createElementNS('http://iptc.org/std/NITF/2006-10-18/', 'head');
+    var nitfDocdata = document.createElementNS('http://iptc.org/std/NITF/2006-10-18/', 'docdata');
+    if (document.indata.ednote.value != '') {
+        var nitfDocdataEdMsg = document.createElementNS('http://iptc.org/std/NITF/2006-10-18/', 'ed-msg');
+        nitfDocdataEdMsg.setAttribute('info', document.indata.ednote.value.replace(/(\r\n|\n|\r)/gm," "));
+        nitfDocdata.appendChild(nitfDocdataEdMsg);
+    }
+    if (document.indata.copyrightholder.value != '') {
+        var nitfDocdataDocCopyright = document.createElementNS('http://iptc.org/std/NITF/2006-10-18/', 'doc.copyright');
+        nitfDocdataDocCopyright.setAttribute('holder', document.indata.copyrightholder.value);
+        nitfDocdata.appendChild(nitfDocdataDocCopyright);
+    }
+    nitfHead.appendChild(nitfDocdata);
+    nitf.appendChild(nitfHead);
     var nitfBody = document.createElementNS('http://iptc.org/std/NITF/2006-10-18/', 'body');
     var nitfBodyHead = document.createElementNS('http://iptc.org/std/NITF/2006-10-18/', 'body.head');
     var nitfBodyHeadHedline = document.createElementNS('http://iptc.org/std/NITF/2006-10-18/', 'hedline');
@@ -607,7 +627,9 @@ function sendEML (objForm){
     }
     nitfBody.appendChild(nitfBodyHead);
     var nitfBodyContent = document.createElementNS('http://iptc.org/std/NITF/2006-10-18/', 'body.content');
-    nitfBodyContent.innerHTML = document.indata.bodytext.value;
+    var nitfBodyContentP = document.createElementNS('http://iptc.org/std/NITF/2006-10-18/', 'p');
+    nitfBodyContentP.innerHTML = document.indata.bodytext.value;
+    nitfBodyContent.appendChild(nitfBodyContentP);
     nitfBody.appendChild(nitfBodyContent);
     nitf.appendChild(nitfBody);
     inlineXML.appendChild(nitf);
