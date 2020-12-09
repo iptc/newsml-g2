@@ -72,3 +72,4 @@ Steps to create and release an update to the standard:
     Schema documentation.
 6.  Update the http://dev.iptc.org/G2-Approved-Changes page documenting the
     changes made.
+7.  Tag the release in GitHub (git tag N.NN.N, git push --tags)
