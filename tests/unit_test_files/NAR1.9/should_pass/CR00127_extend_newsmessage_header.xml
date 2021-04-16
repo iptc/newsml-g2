@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsMessage
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:other="http://other.com/other-namespace"
+    xml:lang="en-GB">
+    <header>
+        <sent>2010-01-01T12:34:56.000Z</sent>
+        <catalogRef href="http://xml.media.reuters.com/g2-standards/catalogs/ReutersMedia_G2-Standards-Catalog_v1.xml"/>
+        <sender>reuters.com</sender>
+        <transmitId>tag:uri</transmitId>
+        <priority>4</priority>
+        <origin/>
+        <!-- DateTimePropType: VALID #timestamp -->
+        <timestamp role="extsrole:origintimestamp">2010-01-01T12:34:56Z</timestamp>
+        <timestamp>2010-01-01T12:34:56Z</timestamp>
+        <timestamp>2010-01-01T12:34:56Z</timestamp>
+        <timestamp>2010-01-01T12:34:56.0000000000000000000000Z</timestamp>
+        <timestamp>2010-01-01T12:34:56.1Z</timestamp>
+        <timestamp>2010-01-01T12:34:56.01Z</timestamp>
+        <timestamp>2010-01-01T12:34:56.001Z</timestamp>
+        <timestamp>2010-01-01T12:34:56.0001Z</timestamp>
+        <timestamp>2010-01-01T12:34:56.00000000000000000000000001Z</timestamp>
+        <!-- -->
+        <timestamp>2010-01-01T12:34:56</timestamp>
+        <timestamp>2010-01-01T12:34:56.0</timestamp>
+        <timestamp>2010-01-01T12:34:56.0000000000000000000000</timestamp>
+        <timestamp>2010-01-01T12:34:56.1</timestamp>
+        <timestamp>2010-01-01T12:34:56.01</timestamp>
+        <timestamp>2010-01-01T12:34:56.001</timestamp>
+        <timestamp>2010-01-01T12:34:56.0001</timestamp>
+        <timestamp>2010-01-01T12:34:56.00000000000000000000000001</timestamp>
+        <!-- -->
+        <timestamp role="r:r">2010-01-01T07:34:56-05:00</timestamp>
+        <timestamp>2010-01-01T07:34:56.001-05:00</timestamp>
+        <!-- -->
+    </header>
+    <itemSet>
+        <newsItem
+            xmlns="http://iptc.org/std/nar/2006-10-01/"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            guid="simplest-test"
+            standard="NewsML-G2"
+            standardversion="2.10"
+            conformance="power"
+            xml:lang="en-GB">
+            <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_35.xml" />
+            <itemMeta>
+                <itemClass qcode="ninat:text" />
+                <provider qcode="nprov:IPTC" />
+                <versionCreated>2020-06-22T12:00:00+03:00</versionCreated>
+            </itemMeta>
+            <contentSet>
+                <inlineXML contenttype="application/nitf+xml">
+                </inlineXML>
+            </contentSet>
+        </newsItem>
+    </itemSet>
+</newsMessage>

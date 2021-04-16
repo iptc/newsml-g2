@@ -165,7 +165,7 @@ http://www.iptc.org.
 
 License agreement version of: 30 January 2006
 --><xs:schema targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.6" xml:lang="en" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/">
-	<xs:include schemaLocation="NAR_1.6-spec-Framework-Power.xsd" />
+	<xs:include schemaLocation="NAR_1.6-spec-Framework-Core.xsd" />
 	<xs:annotation>
 		<xs:documentation>News Architecture (NAR) 1.6 for IPTC G2-Standards - News Item XML Schema, document version 1</xs:documentation>
 		<xs:documentation>... is extended as NewsML-G2 2.5 - News Item XML Schema, document version 1</xs:documentation>
@@ -197,99 +197,13 @@ License agreement version of: 30 January 2006
 										</xs:annotation>
 									</xs:any>
 								</xs:sequence>
-								<xs:attributeGroup ref="i18nAttributes" />
+								
 								<xs:anyAttribute namespace="##other" processContents="lax" />
 							</xs:complexType>
 						</xs:element>
-						<xs:element name="partMeta" minOccurs="0" maxOccurs="unbounded">
-							<xs:annotation>
-								<xs:documentation>A set of properties associated with a specific part of the content of the Item</xs:documentation>
-							</xs:annotation>
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element ref="icon" minOccurs="0" maxOccurs="unbounded" />
-									<xs:element name="timeDelim" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>A delimiter for a piece of streaming media content, expressed in various time formats</xs:documentation>
-										</xs:annotation>
-										<xs:complexType>
-											<xs:attribute name="start" type="xs:string" use="required">
-												<xs:annotation>
-													<xs:documentation>The timestamp corresponding to the start of the part</xs:documentation>
-												</xs:annotation>
-											</xs:attribute>
-											<xs:attribute name="end" type="xs:string" use="required">
-												<xs:annotation>
-													<xs:documentation>The timestamp corresponding to the end of the part</xs:documentation>
-												</xs:annotation>
-											</xs:attribute>
-											<xs:attribute name="timeunit" type="QCodeType" use="required">
-												<xs:annotation>
-													<xs:documentation>The unit used for the start and end timestamps</xs:documentation>
-												</xs:annotation>
-											</xs:attribute>
-											<xs:attributeGroup ref="editAttributes" />
-											<xs:anyAttribute namespace="##other" processContents="lax" />
-										</xs:complexType>
-									</xs:element>
-									<xs:element name="regionDelim" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>A delimiter for a rectangular region in a piece of visual content</xs:documentation>
-										</xs:annotation>
-										<xs:complexType>
-											<xs:attribute name="x" type="xs:integer">
-												<xs:annotation>
-													<xs:documentation>The x-axis coordinate of the side of the rectangle which has the smaller x-axis coordinate value in the current user coordinate system</xs:documentation>
-												</xs:annotation>
-											</xs:attribute>
-											<xs:attribute name="y" type="xs:integer">
-												<xs:annotation>
-													<xs:documentation>The y-axis coordinate of the side of the rectangle which has the smaller y-axis coordinate value in the current user coordinate system</xs:documentation>
-												</xs:annotation>
-											</xs:attribute>
-											<xs:attribute name="width" type="xs:integer">
-												<xs:annotation>
-													<xs:documentation>The width of the rectangle</xs:documentation>
-												</xs:annotation>
-											</xs:attribute>
-											<xs:attribute name="height" type="xs:integer">
-												<xs:annotation>
-													<xs:documentation>The height of the rectangle</xs:documentation>
-												</xs:annotation>
-											</xs:attribute>
-											<xs:attributeGroup ref="editAttributes" />
-											<xs:anyAttribute namespace="##other" processContents="lax" />
-										</xs:complexType>
-									</xs:element>
-									<xs:element name="role" type="QualPropType" minOccurs="0">
-										<xs:annotation>
-											<xs:documentation>The role in the overall content stream.</xs:documentation>
-										</xs:annotation>
-									</xs:element>
-									<xs:group ref="AdministrativeMetadataGroup" />
-									<xs:group ref="DescriptiveMetadataGroup" />
-									<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
-										<xs:annotation>
-											<xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
-										</xs:annotation>
-									</xs:any>
-								</xs:sequence>
-								<xs:attribute name="partid" type="xs:ID">
-									<xs:annotation>
-										<xs:documentation>The identifier of the part</xs:documentation>
-									</xs:annotation>
-								</xs:attribute>
-								<xs:attribute name="seq" type="xs:nonNegativeInteger">
-									<xs:annotation>
-										<xs:documentation>The sequence number of the part</xs:documentation>
-									</xs:annotation>
-								</xs:attribute>
-								<xs:attributeGroup ref="i18nAttributes" />
-								<xs:anyAttribute namespace="##other" processContents="lax" />
-							</xs:complexType>
-						</xs:element>
-						<xs:element ref="assert" minOccurs="0" maxOccurs="unbounded" />
-						<xs:element ref="inlineRef" minOccurs="0" maxOccurs="unbounded" />
+						
+						
+						
 						<xs:element name="contentSet" minOccurs="0">
 							<xs:annotation>
 								<xs:documentation>A set of alternate renditions of the Item content</xs:documentation>
@@ -342,38 +256,11 @@ License agreement version of: 30 January 2006
 										</xs:annotation>
 										<xs:complexType>
 											<xs:sequence>
-												<xs:element name="channel" minOccurs="0" maxOccurs="unbounded">
-													<xs:annotation>
-														<xs:documentation>Information about a specific content channel.</xs:documentation>
-													</xs:annotation>
-													<xs:complexType>
-														<xs:attribute name="chnlid" type="xs:positiveInteger">
-															<xs:annotation>
-																<xs:documentation>A logical identifier of the channel</xs:documentation>
-															</xs:annotation>
-														</xs:attribute>
-														<xs:attribute name="type" type="QCodeType">
-															<xs:annotation>
-																<xs:documentation>The media type of the data conveyed by the channel</xs:documentation>
-															</xs:annotation>
-														</xs:attribute>
-														<xs:attribute name="role" type="QCodeType">
-															<xs:annotation>
-																<xs:documentation>The role the data of this channel plays in the scope of  the full content</xs:documentation>
-															</xs:annotation>
-														</xs:attribute>
-														<xs:attribute name="language" type="xs:language">
-															<xs:annotation>
-																<xs:documentation>The  language associated with the content of the channel</xs:documentation>
-															</xs:annotation>
-														</xs:attribute>
-														<xs:attributeGroup ref="newsContentCharacteristics" />
-													</xs:complexType>
-												</xs:element>
+												
 												<!-- NAR-EV-1.3.5 : add altId to remoteContent-->
-												<xs:element ref="altId" minOccurs="0" maxOccurs="unbounded" />
+												
 												<!-- NAR-EV-1.3.4 : add altLoc to remoteContent-->
-												<xs:element ref="altLoc" minOccurs="0" maxOccurs="unbounded" />
+												
 												<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
 													<xs:annotation>
 														<xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
@@ -382,7 +269,7 @@ License agreement version of: 30 January 2006
 											</xs:sequence>
 											<xs:attributeGroup ref="newsContentAttributes" />
 											<xs:attributeGroup ref="targetResourceAttributes" />
-											<xs:attributeGroup ref="timeValidityAttributes" />
+											
 											<xs:attributeGroup ref="newsContentCharacteristics" />
 											<xs:attribute name="language" type="xs:language">
 												<xs:annotation>
@@ -420,16 +307,8 @@ License agreement version of: 30 January 2006
 				<xs:documentation>The specific rendition of content this component represents</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="generator" type="xs:string">
-			<xs:annotation>
-				<xs:documentation>The name and version of the software tool used to generate the content</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="generated" type="DateOptTimeType">
-			<xs:annotation>
-				<xs:documentation>The date (and, optionally, the time) when the content was generated</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
+		
+		
 	</xs:attributeGroup>
 	<xs:annotation>
 		<xs:documentation>NewsML-G2 2.3r1: newsContentCharacteristics: @durationUnit added, NewsML-G2 2.4: @widthunit, @heightunit added</xs:documentation>
