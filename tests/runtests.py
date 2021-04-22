@@ -808,11 +808,14 @@ class TestNewsMLSchema(unittest.TestCase):
     # HELPER FUNCTIONS
 
     def get_files_in_folder(self, folder_name):
-        return [
-            os.path.join(folder_name, file)
-            for file in os.listdir(folder_name)
-            if file.endswith('.xml')
-        ]
+        if not os.path.isdir(folder_name):
+            return []
+        else:
+            return [
+                os.path.join(folder_name, file)
+                for file in os.listdir(folder_name)
+                if file.endswith('.xml')
+            ]
 
     def load_test_file(self, file_name):
         with open(file_name, 'r') as xmlfile:
