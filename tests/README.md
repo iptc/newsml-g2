@@ -1,5 +1,7 @@
 # NewsML-G2 Unit Test Suite
 
+[![IPTC](https://circleci.com/gh/iptc/newsml-g2.svg?style=svg)](https://app.circleci.com/pipelines/github/iptc/newsml-g2)
+
 We have created a set of unit tests for NewsML-G2, based on internal tests that the IPTC NewsML-G2 Working Group have used internally over the years.
 
 The tests fulfil multiple purposes:
