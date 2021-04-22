@@ -18,5 +18,6 @@ jobs:
       - run:
           name: Run NewsML-G2 unit tests using Python lxml
           command: |
+            . venv/bin/activate
             tests/runtests.py
 
