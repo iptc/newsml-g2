@@ -1,4 +1,4 @@
-= NewsML-G2 Unit Test Suite
+# NewsML-G2 Unit Test Suite
 
 We have created a set of unit tests for NewsML-G2, based on internal tests that the IPTC NewsML-G2 Working Group have used internally over the years.
 
@@ -14,7 +14,7 @@ The tests fulfil multiple purposes:
  *  They provide a clear way of showing what is possible in NewsML-G2 through
     valid example files.
 
-== File layout
+## File layout
 
 The `schema_versions` folder contains copies of the XML Schema files for every
 version of NewsML-G2 and NAR (IPTC's News Architecture).
@@ -28,7 +28,7 @@ For example all files in `unit_test_files/2.25/should_pass` should pass XML
 Schema validation against the schema file
 `schema_versions/NewsML-G2_2.25-spec-All-Power.xsd`.
 
-== Running the tests
+## Running the tests
 
 The test runner `run_tests.py` is a Python 3 script. It requires one
 Python module, the XML parser `lxml`. The `requirements.txt` file
@@ -50,12 +50,12 @@ Here is one way you can run the tests on your own machine:
 
     OK
 
-== Automated testing with CircleCI
+## Automated testing with CircleCI
 
 Thanks to CircleCI, we automatically run the unit tests on each commit
 to this repository.
 
-== Notes on the tests
+## Notes on the tests
 
 NewsML 2.23 introduced the concept of embedding RightsML documenets into
 NewsML-G2. The tests for this feature under
