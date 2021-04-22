@@ -1,16 +1,22 @@
 version: 2
   
-orbs:
-  python: circleci/python:3.7.7
-
 jobs:
   build:
-    executor: python/default
+    docker:
+      - image: circleci/python:3.8
+
+    working_directory: ~/repo
+
     steps:
       - checkout
-      - python/install-packages:
-          pip-dependency-file: tests/requirements.txt
-          pkg-manager: pip
       - run:
-          command: tests/runtests.py
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      - run:
           name: Run NewsML-G2 unit tests using Python lxml
+          command: |
+            tests/runtests.py
+
