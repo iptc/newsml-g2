@@ -1,0 +1,21 @@
+version: 2.1
+  
+orbs:
+  python: circleci/python@1.3.2
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          pip-dependency-file: tests/requirements.txt
+          pkg-manager: pip
+      - run:
+          command: tests/runtests.py
+          name: Run ninjs unit tests using Python lxml
+
+workflows:
+  main:
+    jobs:
+      - build-and-test
