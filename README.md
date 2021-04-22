@@ -32,6 +32,11 @@ XML Schema documentation of the latest version is available in this package
 under the folder 
 [specification/XML-Schema-Doc-Power/](specification/XML-Schema-Doc-Power/)
 
+## Tests
+
+A set of unit tests is included in the `tests` folder of this repository.
+See [tests/README.md](tests/README.md) for more information.
+
 ## Further information and questions
 
 For any questions, comments or suggestions, please join the public NewsML-G2
