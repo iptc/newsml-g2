@@ -1,10 +1,10 @@
 version: 2
   
 orbs:
-  python: circleci/python:3.6.4
+  python: circleci/python:3.7.7
 
 jobs:
-  build-and-test:
+  build:
     executor: python/default
     steps:
       - checkout
@@ -13,9 +13,4 @@ jobs:
           pkg-manager: pip
       - run:
           command: tests/runtests.py
-          name: Run ninjs unit tests using Python lxml
-
-workflows:
-  main:
-    jobs:
-      - build-and-test
+          name: Run NewsML-G2 unit tests using Python lxml
