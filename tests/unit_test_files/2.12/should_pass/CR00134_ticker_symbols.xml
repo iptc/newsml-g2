@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packageItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:rtr="http://other.com/"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.29"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_35.xml" />
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        <provider qcode="nprov:IPTC" />
+        <versionCreated>2020-06-22T12:00:00+03:00</versionCreated>
+    </itemMeta>
+    <assert qcode="R:RIO.L">
+        <name>Rio Tinto PLC</name>
+        <!-- RSFCR031/SGR346 Private Companies -->
+        <related rel="crel:isA" qcode="cpnyType:private"/>
+        <related rel="extCptRel:isPrivate"/>
+        <related rel="extCptRel:hasPrivateStatus" qcode="tfStatus:true"/>
+        <related rel="extCptRel:hasPrivateStatus" value="true" valuedatatype="xs:boolean"/>
+        <organisationDetails>
+            <!-- CR00134/SGR219: Ticker Symbol ... finally as hasInstrument -->
+            <hasInstrument symbol="RIO" market="mic:XLON" marketlabel="LSE" marketlabelsrc="mlsrc:MDNA" symbolsrc="symsrc:MDNA"/>
+            <hasInstrument symbol="RTP" market="mic:XNYS" marketlabel="NYS" marketlabelsrc="mlsrc:MDNA" symbolsrc="symsrc:MDNA"/>
+            <!-- -->
+            <rtr:hasInstrument symbol="RIO" market="mic:XLON" marketlabel="LSE" marketlabelsrc="mlsrc:MDNA" symbolsrc="symsrc:MDNA"/>
+            <rtr:hasInstrument symbol="RTP" market="mic:XNYS" marketlabel="NYS" marketlabelsrc="mlsrc:MDNA" symbolsrc="symsrc:MDNA"/>
+        </organisationDetails>
+    </assert>
+    <!-- CR00134/SGR219: Ticker Symbol
+    CR Properties:
+    symbol (1);  XML Schema string; A symbol for the financial instrument
+    symbolsrc (0..1); QCodeType; The  source of the financial instrument symbol
+    market (0..1); QCodeType; A venue in which this financial instrument is traded
+    marketlabel (0..1); XML Scheme string; The label used for the market
+    marketlabelsrc (0..1); QCodeType; The source of the market label
+    type (0..1); QCodeListType; The type of the financial instrument
+    -->
+    <assert qcode="R:RIO.L">
+        <name>Rio Tinto PLC</name>
+        <organisationDetails>
+            <!-- Rio Tinto has the @symbol 'RIO' as defined by the @symbolsrc (MDNA), for the market implied by the @market value (XLON => LSE). The @marketlabel is 'LSE', as defined by the @marketlabelsrc 'MDNA' -->
+            <hasInstrument symbol="RIO" market="mic:XLON" marketlabel="LSE" marketlabelsrc="mlsrc:MDNA" symbolsrc="symsrc:MDNA" type="symType:Ticker"/>
+            <!-- Rio Tinto has the @symbol 'RTP' as defined by the @symbolsrc (MDNA), for the market implied by the @market value (XNYS => NYSE). The @marketlabel is 'NYS', as defined by the @marketlabelsrc 'MDNA' -->
+            <hasInstrument symbol="RTP" market="mic:XNYS" marketlabel="NYS" marketlabelsrc="mlsrc:MDNA" symbolsrc="symsrc:MDNA" type="symType:Ticker"/>
+            <!-- ignore -->
+            <hasInstrument symbol="x" />
+            <rtr:internal/>
+        </organisationDetails>
+    </assert>
+</packageItem>

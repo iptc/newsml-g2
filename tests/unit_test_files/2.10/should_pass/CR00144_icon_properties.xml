@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:other="http://other.com/other-namespace"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.10"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://xml.media.reuters.com/g2-standards/catalogs/ReutersMedia_G2-Standards-Catalog_v1.xml"/>
+    <itemMeta>
+        <itemClass qcode="ninat:text"/>
+        <provider literal="reuters.com"/>
+        <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+    </itemMeta>
+    <contentMeta>
+        <!-- CR00144: Extend attributes: orientation, colourspace, colourindication, videocodec  -->
+        <icon contenttype="c" creator="c:c" format="f:f" height="1" heightunit="h:h" href="h" id="i" modified="2010-02-19T12:19:30.000Z" persistidref="z" rendition="r:r" residref="r" size="1" version="1" width="1" widthunit="w:w" orientation="1" colourspace="c:c" colourindicator="c:c" videocodec="v:v"/>
+        <subject confidence="1" relevance="0" why="w:w" creator="c:c"/>
+        <keyword>xxx</keyword>
+    </contentMeta>
+</newsItem>

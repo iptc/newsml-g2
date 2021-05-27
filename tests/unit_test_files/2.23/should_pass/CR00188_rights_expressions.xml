@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.w3.org/ns/odrl/2/ ./ODRL22.xsd"
+    xmlns:other="http://other.com/other-namespace"
+    xmlns:o="http://www.w3.org/ns/odrl/2/"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.23"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml"/>
+    <!-- CR00188/SGR348: Embedding Rights in G2 -->
+    <rightsInfo>
+        <!-- RML as XML : NB: @enctype not required, as the content is ... XML -->
+        <rightsExpressionXML langid="http://www.w3.org/ns/odrl/2/">
+            <o:Policy xmlns="http://www.w3.org/ns/odrl/2/" xsi:schemaLocation="../../schemaversions/ODRL22.xsd" uid="http://example.com/RightsML/policy/idGeog1" type="http://www.w3.org/ns/odrl/2/Set">
+                <o:permission>
+                    <o:asset uid="urn:newsml:example.com:20090101:120111-999-000013" relation="http://www.w3.org/ns/odrl/2/target"/>
+                    <o:action name="http://iptc.org/std/RightsML/2011-10-07/distribute"/>
+                    <o:constraint name="http://www.w3.org/ns/odrl/2/spatial" operator="http://www.w3.org/ns/odrl/2/eq" rightOperand="http://cvx.iptc.org/iso3166-1a3/DEU"/>
+                    <o:party uid="http://example.com/cv/party/epa" function="http://www.w3.org/ns/odrl/2/assigner"/>
+                    <o:party uid="http://example.com/cv/policy/group/epapartners" function="http://www.w3.org/ns/odrl/2/assignee"/>
+                </o:permission>
+            </o:Policy>
+        </rightsExpressionXML>
+        <rightsExpressionXML langid="other">
+            <o:Policy type="xxx" uid="xxx" xmlns:o="http://www.w3.org/ns/odrl/2/" xsi:schemaLocation="https://www.w3.org/ns/odrl/2/ODRL22.xsd" />
+        </rightsExpressionXML>
+        <!-- NO (Correct): Must contain ~some~ structured markup
+        <rightsExpressionXML langid="other"/>
+-->
+        <!-- RML as JSON
+{ "policytype": "http://w3.org/ns/odrl/2/Set", "policyid": "http://example.com/RightsML/policy/idGeog-ABW-Aruba-DENY", "permissions": [ { "target": "urn:newsml:example.com:20090101:120111-999-000013", "action": "http://iptc.org/std/RightsML/2011-10-07/distribute", "constraints": [ { "name": "http://w3.org/ns/odrl/2/spatial", "operator": "http://w3.org/ns/odrl/2/neq", "rightOperand": "http://cvx.iptc.org/iso3166-1a3/ABW" } ],"assigner": "http://example.com/cv/party/epa", "assignee": "http://example.com/cv/policy/group/epapartners" } ] }
+
+{ "policytype": "http://w3.org/ns/odrl/2/Set", "policyid": "http://example.com/RightsML/policy/idGeog1", "permissions": [ ... ] }
+-->
+        <rightsExpressionData enctype="application/json" langid="http://www.w3.org/ns/odrl/2/">{....JSON ....}</rightsExpressionData>
+        <rightsExpressionData enctype="application/json" langid="http://www.w3.org/ns/odrl/2/">{ "policytype": "http://w3.org/ns/odrl/2/Set", "policyid": "http://example.com/RightsML/policy/idGeog1", "permissions": [ ... ] }</rightsExpressionData>
+        <!-- NO (Correct): Does not support structured markup
+        <rightsExpressionData enctype="application/json" langid="http://www.w3.org/ns/odrl/2/"><rtr:xxx></rtr:xxx></rightsExpressionData>
+-->
+        <rightsExpressionData enctype="other" langid="other"/>
+    </rightsInfo>
+    <itemMeta>
+        <itemClass qcode="ninat:text"/>
+        <provider literal="reuters.com"/>
+        <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+    </itemMeta>
+</newsItem>

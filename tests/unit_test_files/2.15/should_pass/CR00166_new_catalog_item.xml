@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    guid="tag:iptc.org,2012:newsml_SOME-CID"
+    version="1"
+    standard="NewsML-G2"
+    standardversion="2.11"
+    xml:lang="en">
+    <catalogRef href="href"/>
+    <rightsInfo/>
+    <itemMeta>
+        <itemClass qcode="icls:TODO"/>
+        <provider literal="iptc.org"/>
+        <versionCreated>2007-02-16T12:19:30.000Z</versionCreated>
+    </itemMeta>
+    <contentMeta>
+        <contentCreated>2007-02-16T12:19:30.000Z</contentCreated>
+        <contentModified>2007-02-16T12:19:30.000Z</contentModified>
+        <creator qcode="q:q"/>
+        <contributor qcode="q:q"/>
+        <altId type="idType:USN" environment="x:x">CID001</altId>
+    </contentMeta>
+    <catalogContainer>
+        <catalog additionalInfo="more ...">
+            <scheme alias="QC" uri="http://xml.media.reuters.com/g2-standards/taxonomies/QC/"/>
+            <scheme uri="uri" alias="al" authority="auth" creator="c:c" custom="false" how="h:h" id="s1" pubconstraint="p:p" why="w:w" xml:lang="en">
+                <sameAsScheme>uri</sameAsScheme>
+                <!-- pre CR00167, no roleuri -->
+                <name role="role:role">pre-CR00167</name>
+                <name role="role:role">pre-CR00167</name>
+                <definition role="role:role">pre-CR00167</definition>
+                <definition role="role:role">pre-CR00167</definition>
+                <note role="role:role">pre-CR00167</note>
+                <note role="role:role">pre-CR00167</note>
+            </scheme>
+            <scheme uri="http://xml.media.reuters.com/g2-standards/taxonomies/N2/" alias="N2">
+                <sameAsScheme>http://www.thomsonreuters.com/schemes/N2/</sameAsScheme>
+            </scheme>
+        </catalog>
+    </catalogContainer>
+</catalogItem>

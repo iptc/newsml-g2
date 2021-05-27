@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:other="http://other.com/other-namespace"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.10"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://xml.media.reuters.com/g2-standards/catalogs/ReutersMedia_G2-Standards-Catalog_v1.xml"/>
+    <itemMeta>
+        <itemClass qcode="ninat:text"/>
+        <provider literal="reuters.com"/>
+        <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+    </itemMeta>
+    <contentMeta>
+        <!-- CR00145/SGR238: Subject and Keyword Properties
+                - Subject += @how
+                - Keyword += @confidence, @relevance, @how
+-->
+        <!-- Example: Subject with @how (@why="why:direct" is implicit) -->
+        <subject qcode="N2:FR" confidence="80" relevance="50" how="how:tool"/>
+        <!-- Code directly applied by a Journo -->
+        <subject qcode="N2:CANO" how="how:peson" why="why:direct"/>
+        <!-- Ancestor Code 'applied' by a mapping tool -->
+        <subject qcode="N2:SPO" how="how:tool" why="why:ancestor"/>
+        <!-- If you need to tie SPO to CANO *in the file*, you could use this -->
+        <subject qcode="N2:SPO" how="how:tool" why="why:ancestor" derivedfrom="N2:CANO"/>
+        <!-- Example: Subject with @how (@why="why:direct" is implicit) -->
+        <keyword confidence="100" relevance="50" how="how:person">LANDSCAPE</keyword>
+        <!-- Example: Directly applied Subject with Ancestors -->
+        <subject qcode="N2:GB" why="why:direct"/>
+        <subject qcode="N2:WEU" why="why:ancestor" derivedfrom="N2:GB"/>
+        <subject qcode="N2:EUROP" why="why:ancestor" derivedfrom="N2:WEU"/>
+        <!-- Example: Directly applied Genre with Ancestors -->
+        <genre qcode="N2:ASYS" why="why:direct">
+            <name>Analyses</name>
+        </genre>
+        <genre qcode="N2:ANV" why="why:ancestor" derivedfrom="N2:ASYS">
+            <name>Analyses / Viewpoints</name>
+        </genre>
+        <!-- Example: Entity 'Eurozone' directly identified by Calais;
+                - creator: Calais
+                - no code available, so literal
+                - why: direct (default, so can omit)
+                - how: tool
+                - trust: 0.5 -> confidence: 50
+                - relevancy: 0.2 -> relevance: 20
+        -->
+        <subject literal="EEC" how="how:tool" confidence="50" relevance="20" creator="app:calais">
+            <name>EEC</name>
+        </subject>
+        <!-- 2a. Journo adds GB directly
+                - why: direct (default, so can omit)
+                - how: person (default, so can omit)
+        -->
+        <subject qcode="N2:GB"/>
+        <!-- 2b.  WEU, EUROP added by lookup, e.g. RCS hierarchy
+                - creator: RCS
+                - why: ancestor
+                - how: tool
+        -->
+        <subject qcode="N2:WEU" why="why:ancestor" how="how:tool" creator="app:RCS"/>
+        <subject qcode="N2:EUROP" why="why:ancestor" how="how:tool" creator="app:RCS"/>
+        <!-- 3a. Journo adds RIC directly
+                - why: direct (default, so can omit)
+                - how: person (default, so can omit)
+        -->
+        <subject qcode="R:BT.L"/>
+        <!-- 3b. Country of headquarters added 'by association', e.g. via NDA data
+                - creator: NDA
+                - why: inferred
+                - how: tool
+        -->
+        <subject qcode="N2:GB" why="why:inferred" how="how:tool" creator="app:NDA"/>
+        <!-- 3a. Significance / relevance
+                TODO: Add bad example
+        -->
+        <subject qcode="N2:code"/>
+    </contentMeta>
+</newsItem>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    additionalInfo="http://www.iptc.org/goto?G2cataloginfo">
+    <scheme alias="freebase" uri="http://www.freebase.com" modified="2014-10-03T12:00:00+00:00">
+        <definition xml:lang="en-GB">Entities, categories or other resources from Freebase. Freebase is an open, Creative Commons Attribution (aka CC-BY) licensed collection of structured data.</definition>
+        <name xml:lang="en-GB">Freebase resource</name>
+    </scheme>
+    <scheme alias="skos" uri="http://www.w3.org/2004/02/skos/core#" modified="2013-02-21T12:00:00+00:00">
+        <name xml:lang="en-GB">W3C SKOS namespace</name>
+        <note xml:lang="en-GB">This vocabulary is owned by W3C - www.w3.org</note>
+    </scheme>
+    <scheme alias="wikidata" uri="http://www.wikidata.org/entity/" modified="2014-10-03T12:00:00+00:00">
+        <name xml:lang="en-GB">Wikidata/Wikipedia resource</name>
+        <definition xml:lang="en-GB">Wikidata is a free  database acting as central storage for structured data about Wikipedia and other Wikimedia sister projects like Wikivoyage, Wikisource, and others.</definition>
+    </scheme>
+    <scheme alias="QC" uri="http://xml.media.reuters.com/g2-standards/taxonomies/QC/"
+            schemecreated="2010-09-12T12:00:00.000Z"
+            schememodified="2012-02-06T11:30:00.000Z"
+            schemeretired="2020-04-15T11:00:00.000Z">
+        <name xml:lang="en-GB">Example scheme to be retired</name>
+        <definition xml:lang="en-GB">Example scheme to be retired</definition>
+        <note xml:lang="en-GB">This vocabulary is not really owned by reuters.com</note>
+    </scheme>
+</catalog>

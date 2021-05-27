@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    guid="invalid-document"
+    standard="NewsML-G2"
+    standardversion="2.29"
+    conformance="power"
+    xml:lang="en-GB">
+</newsItem>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:other="http://other.com/other-namespace"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.17"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://xml.media.reuters.com/g2-standards/catalogs/ReutersMedia_G2-Standards-Catalog_v1.xml"/>    
+    <itemMeta>
+        <itemClass qcode="cinat:scheme"/>
+        <provider literal="reuters.com"/>
+        <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+        <link>
+            <!-- All -->
+            <rightsInfoExtProperty/>
+            <itemMetaExtProperty/>
+            <contentMetaExtProperty/>
+            <remoteContentExtProperty/>
+            <conceptMetaExtProperty/>
+        </link>
+        <itemMetaExtProperty rel="x:x" qcode="x:x">
+            <related/>
+            <related rel="x:x" literal="text" qcode="x:x" rank="1" value="text" valuedatatype="xs:string" valueunit="v:v">
+                <!-- SGR364: Nested Related: Attributes: NO CR; Classified as an erratum -->
+                <!-- @value, @valuedatatype, @valueunit, @valueunituri NOT supported: i.e arbitraryValueAttributes  -->
+                <related rel="x:x" literal="text" qcode="x:x" rank="1"/>
+            </related>
+            <!-- zzz -->
+            <related rel="mediaCptRel:hasMediaSite" value="http://example.com/media/site/id3445" valuedatatype="xs:anyURI">
+                <related rel="mediaCptRel:hasChannelList"/>
+            </related>
+            <other:internal xmlns="http://www.reuters.com/ns/2003/08/content">
+                <itemMetaExtProperty rel="extCptRel:hasChannelId" qcode="mediaChannelId:{value}"/>
+            </other:internal>
+        </itemMetaExtProperty>
+    </itemMeta>
+</newsItem>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.29"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_35.xml" />
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        <provider qcode="nprov:IPTC" />
+        <versionCreated>2020-06-22T12:00:00+03:00</versionCreated>
+    </itemMeta>
+    <!-- CR00208 / SGR377: Affiliation for Org details: Person -> Org -->
+    <assert qcode="example-pers:22">
+        <name>John Smith</name>
+        <personDetails>
+            <affiliation creator="c:c" creatoruri="uri" custom="false" how="h:h" howuri="uri" id="id" modified="2020-04-01T01:00:00Z" pubconstraint="p:p" pubconstrainturi="uri" why="w:w" whyuri="uri" xml:lang="en" dir="ltr" literal="lit" qcode="q:q" type="t:t" typeuri="uri" uri="uri" validfrom="2020-04-01T01:00:00Z" validto="2020-04-01T01:00:00Z" role="r:r" roleuri="uri"/>
+            <!-- affiliation creator="c:c" creatoruri="uri" custom="false" how="h:h" howuri="uri" id="id" modified="2020-04-01T01:00:00Z" pubconstraint="p:p" pubconstrainturi="uri" why="w:w" whyuri="uri" xml:lang="en" dir="ltr" literal="lit" qcode="q:q" type="t:t" typeuri="uri" uri="uri" validfrom="2020-04-01T01:00:00Z" validto="2020-04-01T01:00:00Z" TODO2.29:role="r:r" TODO2.29:roleuri="uri" role="r:r" roleuri="uri"/ -->
+            <affiliation role="example-affrole:employedBy" type="cpnat:organisation" qcode="example-club:A"/>
+            <affiliation role="example-affrole:supporterOf" type="cpnat:organisation" qcode="example-club:B"/>
+        </personDetails>
+    </assert>
+</newsItem>

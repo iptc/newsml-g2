@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.w3.org/ns/odrl/2/ ./ODRL22.xsd"
+    xmlns:other="http://other.com/other-namespace"
+    xmlns:o="http://www.w3.org/ns/odrl/2/"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.19"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml"/>
+    <itemMeta>
+        <itemClass qcode="ninat:text"/>
+        <provider literal="reuters.com"/>
+        <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+            <!-- CR00180/SGR320: Primary Info Attribute for has Instrument -->
+            <!-- For: TR
+Exchange        MIC     Label   RIC
+NYSE:           XNYS    NYS     TRI.N
+Toronto:            XTSE                TRI.TO
+
+Ref: MIC: http://www.iso15022.org/MIC/homepageMIC.htm
+Ref: MDNA:
+Ref: http://www.reuters.com/finance/stocks/overview?symbol=TRI.TO
+Ref: http://www.reuters.com/finance/stocks/companyNews?symbol=TRI.N
+-->
+    </itemMeta>
+    <assert qcode="P:4295861160">
+        <name>THOMSON REUTERS CORPORATION</name>
+        <type qcode="cptType:8" other:z="1"/>
+        <organisationDetails other:z="1">
+            <founded other:z="1">1999</founded>
+            <dissolved other:z="1">2000</dissolved>
+            <location other:z="1"/>
+            <contactInfo other:z="1"/>
+            <contactInfo>
+                <other:z/>
+            </contactInfo>
+            <!-- -->
+            <hasInstrument symbol="TRI.N" type="symType:RIC" symbolsrc="symSrc:TR" market="mic:XNYS" marketlabel="NYS" marketlabelsrc="mktLblSrc:MDNA"/>
+            <!-- CR00180/SGR320: Primary Info via @rank -->
+            <hasInstrument symbol="TRI.TO" type="symType:RIC" symbolsrc="symSrc:TR" market="mic:XTSE" marketlabel="TODO:TSX" marketlabelsrc="mktLblSrc:MDNA" rank="1"/>
+        </organisationDetails>
+        <other:xxx/>
+    </assert>
+</newsItem>

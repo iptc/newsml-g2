@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.26"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://xml.media.reuters.com/g2-standards/catalogs/ReutersMedia_G2-Standards-Catalog_v1.xml"/>
+    <hopHistory>
+        <!-- CR00197/SGR358: Hop History Properties -->
+        <hop seq="2">
+            <party qcode="NS:RTRS"/>
+            <action qcode="trhopaction:expand-R-to-RCS" target="hatarget:metadata">
+                <name>Expand RIC To RCS</name>
+                <related rel="extCptRel:hasReferenceClassification" qcode="scheme:R"/>
+                <related rel="extCptRel:hasTargetClassification" qcode="classification:RCS" why="why:inferred" how="howextr:tool"/>
+                <!-- -->
+                <related rel="extCptRel:hasWorker" qcode="sys:RDS">
+                    <related rel="extCptRel:hasWorkerDetail" qcode="rdsMap:ricExpansion"/>
+                </related>
+            </action>
+        </hop>
+    </hopHistory>
+    <itemMeta>
+        <itemClass qcode="ninat:text"/>
+        <provider literal="reuters.com"/>
+        <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+    </itemMeta>
+</newsItem>

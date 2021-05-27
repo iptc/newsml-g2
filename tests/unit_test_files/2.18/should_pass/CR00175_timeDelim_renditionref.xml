@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:other="http://other.com/other-namespace"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.18"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml"/>
+    <itemMeta>
+        <itemClass qcode="ninat:text"/>
+        <provider literal="reuters.com"/>
+        <versionCreated>2019-09-09T08:00:00.000Z</versionCreated>
+    </itemMeta>
+    <partMeta>
+        <!-- CR00175/SGR304 : partMeta and different timeDelims : @renditionref -->
+        <timeDelim start="00:02:10.000" end="00:04:10.000" timeunit="timeunit:normalPlayTime" renditionref="r:r1"/>
+        <!-- CR00175/SGR304 : partMeta and different timeDelims : multiple timeDelims -->
+        <timeDelim start="00:02:10.000" end="00:04:10.000" timeunit="timeunit:normalPlayTime" renditionref="r:r2"/>
+        <timeDelim start="00:02:10.000" end="00:04:10.000" timeunit="timeunit:normalPlayTime" renditionref="r:r3"/>
+    </partMeta>
+</newsItem>

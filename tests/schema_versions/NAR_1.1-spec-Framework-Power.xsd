@@ -1,0 +1,2280 @@
+﻿<?xml version="1.0" encoding="utf-8"?><!--
+IPTC - International Press Telecommunications Council
+20 Garrick Street, London WC2E 9BT, United Kingdom
+www.iptc.org
+
+Non-Exclusive License Agreement for International Press
+Telecommunications Council Specifications and Related Documentation
+
+IMPORTANT: International Press Telecommunications Council (IPTC)
+standard specifications for news (the Specifications) and supporting
+software, documentation, technical reports, web sites and other
+material related to the Specifications (the Materials) including the
+document accompanying this license (the Document), whether in a paper
+or electronic format, are made available to you subject to the terms
+stated below. By obtaining, using and/or copying the Specifications or
+Materials, you (the licensee) agree that you have read, understood,
+and will comply with the following terms and conditions.
+
+1. The Specifications and Materials are licensed for use only on the
+condition that you agree to be bound by the terms of this license.
+Subject to this and other licensing requirements contained herein, you
+may, on a non-exclusive basis, use the Specifications and Materials.
+
+2. The IPTC openly provides the Specifications and Materials for
+voluntary use by individuals, partnerships, companies, corporations,
+organizations and any other entity for use at the entity's own risk.
+This disclaimer, license and release is intended to apply to the IPTC,
+its officers, directors, agents, representatives, members,
+contributors, affiliates, contractors, or co-venturers acting jointly
+or severally.
+
+3. The Document and translations thereof may be copied and furnished
+to others, and derivative works that comment on or otherwise explain
+it or assist in its implementation may be prepared, copied, published
+and distributed, in whole or in part, without restriction of any kind,
+provided that the copyright and license notices and references to the
+IPTC appearing in the Document and the terms of this Specifications
+License Agreement are included on all such copies and derivative
+works. Further, upon the receipt of written permission from the IPTC,
+the Document may be modified for the purpose of developing
+applications that use IPTC Specifications or as required to translate
+the Document into languages other than English.
+
+4. Any use, duplication, distribution, or exploitation of the Document
+and Specifications and Materials in any manner is at your own risk.
+
+5. NO WARRANTY, EXPRESSED OR IMPLIED, IS MADE REGARDING THE ACCURACY,
+ADEQUACY, COMPLETENESS, LEGALITY, RELIABILITY OR USEFULNESS OF ANY
+INFORMATION CONTAINED IN THE DOCUMENT OR IN ANY SPECIFICATION OR OTHER
+PRODUCT OR SERVICE PRODUCED OR SPONSORED BY THE IPTC. THE DOCUMENT AND
+THE INFORMATION CONTAINED HEREIN AND INCLUDED IN ANY SPECIFICATION OR
+OTHER PRODUCT OR SERVICE OF THE IPTC IS PROVIDED ON AN "AS IS" BASIS.
+THE IPTC DISCLAIMS ALL WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING, BUT NOT LIMITED TO, ANY ACTUAL OR ASSERTED WARRANTY OF NON-
+INFRINGEMENT OF PROPRIETARY RIGHTS, MERCHANTABILITY, OR FITNESS FOR A
+PARTICULAR PURPOSE. NEITHER THE IPTC NOR ITS CONTRIBUTORS SHALL BE
+HELD LIABLE FOR ANY IMPROPER OR INCORRECT USE OF INFORMATION. NEITHER
+THE IPTC NOR ITS CONTRIBUTORS ASSUME ANY RESPONSIBILITY FOR ANYONE'S
+USE OF INFORMATION PROVIDED BY THE IPTC. IN NO EVENT SHALL THE IPTC OR
+ITS CONTRIBUTORS BE LIABLE TO ANYONE FOR DAMAGES OF ANY KIND,
+INCLUDING BUT NOT LIMITED TO, COMPENSATORY DAMAGES, LOST PROFITS, LOST
+DATA OR ANY FORM OF SPECIAL, INCIDENTAL, INDIRECT, CONSEQUENTIAL OR
+PUNITIVE DAMAGES OF ANY KIND WHETHER BASED ON BREACH OF CONTRACT OR
+WARRANTY, TORT, PRODUCT LIABILITY OR OTHERWISE.
+
+6. The IPTC takes no position regarding the validity or scope of any
+Intellectual Property or other rights that might be claimed to pertain
+to the implementation or use of the technology described in the
+Document or the extent to which any license under such rights might or
+might not be available. The IPTC does not represent that it has made
+any effort to identify any such rights. Copies of claims of rights
+made available for publication, assurances of licenses to be made
+available, or the result of an attempt made to obtain a general
+license or permission for the use of such proprietary rights by
+implementers or users of the Specifications and Materials, can be
+obtained from the Managing Director of the IPTC.
+
+7. By using the Specifications and Materials including the Document in
+any manner or for any purpose, you release the IPTC from all
+liabilities, claims, causes of action, allegations, losses, injuries,
+damages, or detriments of any nature arising from or relating to the
+use of the Specifications, Materials or any portion thereof. You
+further agree not to file a lawsuit, make a claim, or take any other
+formal or informal legal action against the IPTC, resulting from your
+acquisition, use, duplication, distribution, or exploitation of the
+Specifications, Materials or any portion thereof. Finally, you hereby
+agree that the IPTC is not liable for any direct, indirect, special or
+consequential damages arising from or relating to your acquisition,
+use, duplication, distribution, or exploitation of the Specifications,
+Materials or any portion thereof.
+
+8. Specifications and Materials may be downloaded or copied provided
+that ALL copies retain the ownership, copyright and license notices.
+
+9. Materials may not be edited, modified, or presented in a context
+that creates a misleading or false impression or statement as to the
+positions, actions, or statements of the IPTC.
+
+10. The name and trademarks of the IPTC may not be used in
+advertising, publicity, or in relation to products or services and
+their names without the specific, written prior permission of the
+IPTC. Any permitted use of the trademarks of the IPTC, whether
+registered or not, shall be accompanied by an appropriate mark and
+attribution, as agreed with the IPTC.
+
+11. Specifications may be extended by both members and non-members to
+provide additional functionality (Extended Specifications) provided
+that there is a clear recognition of the IPTC IP and its ownership in
+the Extended Specifications and the related documentation and provided
+that the extensions are clearly identified and provided that a
+perpetual license is granted by the creator of the Extended
+Specifications for other members and non-members to use the Extended
+Specifications and to continue extensions of the Extended
+Specifications. The IPTC does not waive any of its rights in the
+Specifications and Materials in this context. The Extended
+Specifications may be considered the intellectual property of their
+creator. The IPTC expressly disclaims any responsibility for damage
+caused by an extension to the Specifications.
+
+12. Specifications and Materials may be included in derivative work of
+both members and non-members provided that there is a clear
+recognition of the IPTC IP and its ownership in the derivative work
+and its related documentation. The IPTC does not waive any of its
+rights in the Specifications and Materials in this context. Derivative
+work in its entirety may be considered the intellectual property of
+the creator of the work .The IPTC expressly disclaims any
+responsibility for damage caused when its IP is used in a derivative
+context.
+
+13. This Specifications License Agreement is perpetual subject to your
+conformance to the terms of this Agreement. The IPTC may terminate
+this Specifications License Agreement immediately upon your breach of
+this Agreement and, upon such termination you will cease all use,
+duplication, distribution, and/or exploitation in any manner of the
+Specifications and Materials.
+
+14. This Specifications License Agreement reflects the entire
+agreement of the parties regarding the subject matter hereof and
+supersedes all prior agreements or representations regarding such
+matters, whether written or oral. To the extent any portion or
+provision of this Specifications License Agreement is found to be
+illegal or unenforceable, then the remaining provisions of this
+Specifications License Agreement will remain in full force and effect
+and the illegal or unenforceable provision will be construed to give
+it such effect as it may properly have that is consistent with the
+intentions of the parties.
+
+15. This Specifications License Agreement may only be modified in
+writing signed by an authorized representative of the IPTC.
+
+16. This Specifications License Agreement is governed by the law of
+United Kingdom, as such law is applied to contracts made and fully
+performed in the United Kingdom. Any disputes arising from or relating
+to this Specifications License Agreement will be resolved in the
+courts of the United Kingdom. You consent to the jurisdiction of such
+courts over you and covenant not to assert before such courts any
+objection to proceeding in such forums.
+
+IF YOU DO NOT AGREE TO THESE TERMS YOU MUST CEASE ALL USE OF THE
+SPECIFICATIONS AND MATERIALS NOW. IF YOU HAVE ANY QUESTIONS ABOUT
+THESE TERMS, PLEASE CONTACT THE MANAGING DIRECTOR OF THE INTERNATIONAL
+PRESS TELECOMMUNICATION COUNCIL. AS OF THE DATE OF THIS REVISION OF
+THIS SPECIFICATIONS LICENSE AGREEMENT YOU MAY CONTACT THE IPTC at
+http://www.iptc.org.
+
+License agreement version of: 30 January 2006
+--><xs:schema targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1" xml:lang="en" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/">
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd" />
+	
+	<xs:annotation>
+		<xs:documentation>News Architecture (NAR) 1.1 for IPTC G2-Standards - Framework XML Schema, document version 3</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema version: 2007-09-28</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document version: 2008-02-21</xs:documentation>
+		<xs:documentation>Schema created for the IPTC by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
+		<xs:documentation>Schema maintained for the IPTC by Laurent Le Meur (AFP)</xs:documentation>
+	</xs:annotation>
+	
+	<!-- ==================== AnyItem ==================== -->
+	<xs:complexType name="AnyItemType" abstract="true" block="restriction">
+		<xs:annotation>
+			<xs:documentation>An abstract class. All G2 items are inherited from this class.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="http://www.w3.org/2000/09/xmldsig#" processContents="lax" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>W3C's XML Digital Signature</xs:documentation>
+				</xs:annotation>
+			</xs:any>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="catalogRef">
+					<xs:annotation>
+						<xs:documentation>A reference to a remote catalog. A hyperlink to a set of scheme alias declarations.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="title" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>A short natural language name for the catalog.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="href" type="IRIType" use="required">
+							<xs:annotation>
+								<xs:documentation>A hyperlink to a remote Catalog.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attributeGroup ref="editAttributes" />
+						<xs:anyAttribute namespace="##other" processContents="lax">
+							<xs:annotation>
+								<xs:documentation>Any other attributes from other namespaces.</xs:documentation>
+							</xs:annotation>
+						</xs:anyAttribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="catalog" />
+			</xs:choice>
+			<xs:element name="rightsInfo" type="RightsInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Expression of rights to be applied to content</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="itemMeta" type="ItemMetadataType">
+				<xs:annotation>
+					<xs:documentation>A set of properties directly associated with the Item</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="standard" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The IPTC standard with which the Item is conformant.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="standardversion" use="required">
+			<xs:annotation>
+				<xs:documentation>The major-minor version of the IPTC standard with which the Item is conformant.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[0-9]+\.[0-9]+" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="conformance" type="xs:string" default="core">
+			<xs:annotation>
+				<xs:documentation>The conformance level with which the Item is conformant.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="guid" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The persistent, universally unique identifier common for all versions of the Item.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="version" type="xs:positiveInteger" default="1">
+			<xs:annotation>
+				<xs:documentation>The version of the Item. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+		<!-- rev3 : schema renamed standardversion -->
+	</xs:complexType>
+	<!-- ==================== Catalog information ==================== -->
+	<xs:element name="catalog">
+		<xs:annotation>
+			<xs:documentation>A local or remote catalog.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="title" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>A short natural language name for the Catalog.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="scheme" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>A scheme alias-to-URI mapping.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="alias" type="xs:NCName" use="required">
+							<xs:annotation>
+								<xs:documentation>A short string used by the provider as a replacement for a scheme URI.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="uri" type="IRIType" use="required">
+							<xs:annotation>
+								<xs:documentation>The URI which identifies the scheme.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attributeGroup ref="editAttributes" />
+						<xs:anyAttribute namespace="##other" processContents="lax" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attributeGroup ref="editAttributes" />
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<!-- ==================== Rights Information ==================== -->
+	<xs:complexType name="RightsInfoType">
+		<xs:annotation>
+			<xs:documentation>The type for a set of properties representing the rights associated with the Item (Type defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="accountable" minOccurs="0" type="FlexPersonPropType">
+				<xs:annotation>
+					<xs:documentation>An individual accountable for the content in legal terms.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="copyrightHolder" minOccurs="0" type="FlexPartyPropType">
+				<xs:annotation>
+					<xs:documentation>The person or organisation claiming the intellectual property for the content.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="copyrightNotice" type="RightsLabelType">
+					<xs:annotation>
+						<xs:documentation>Any necessary copyright notice for claiming the intellectual property for the content.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="usageTerms" type="RightsLabelType">
+					<xs:annotation>
+						<xs:documentation>A natural-language statement about the usage terms pertaining to the content.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="idrefs" type="xs:IDREFS">
+			<xs:annotation>
+				<xs:documentation>The reference to the part(s) of the content the rights are about</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="timeValidityAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:complexType name="RightsLabelType">
+		<xs:annotation>
+			<xs:documentation>An expression of rights in natural language or as a reference to remote information</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Label1Type">
+				<xs:attribute name="href" type="IRIType" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ==================== Item Metadata ==================== -->
+	<xs:complexType name="ItemMetadataType">
+		<xs:annotation>
+			<xs:documentation>The type for a set of properties directly associated with the item (Type defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ItemManagementGroup" />
+			<xs:element name="link" minOccurs="0" maxOccurs="unbounded" type="Link1Type">
+				<xs:annotation>
+					<xs:documentation>A link from the current Item to a target Item or Web resource</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:group name="ItemManagementGroup">
+		<xs:annotation>
+			<xs:documentation>A group of properties for the management of the item</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="itemClass" type="QualPropType">
+				<xs:annotation>
+					<xs:documentation>The nature of the item, set in accordance with the structure of its content.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="provider" type="FlexPartyPropType">
+				<xs:annotation>
+					<xs:documentation>The party (person or organisation) responsible for the management of the Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="versionCreated" type="DateTimePropType">
+				<xs:annotation>
+					<xs:documentation>The date and time on which the current version of the Item was created.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="firstCreated" type="DateTimePropType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The date and time on which the first version of the Item was created.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="embargoed" type="DateTimePropType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The date and time before which all versions of the Item are embargoed. If absent, the Item is not embargoed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pubStatus" type="QualPropType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The publishing status of the Item, its value is "usable" by default.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="role" type="QualPropType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The role of the Item in the editorial workflow.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fileName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The recommended file name for this Item.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:normalizedString">
+							<xs:attributeGroup ref="editAttributes" />
+							<xs:anyAttribute namespace="##other" processContents="lax" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="generator" type="VersionedStringType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The name and version of the software tool used to generate the Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="profile" type="VersionedStringType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The name of the structural template (aka profile) used for the generation of the Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="service" type="QualPropType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>An editorial service to which an item is assigned by its provider.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="title" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A short natural language name for the Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="edNote" type="BlockType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A note addressed to the editorial people receiving the Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="memberOf" type="Flex1PropType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A set of Items around the same theme that this Item is part of.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="instanceOf" type="Flex1PropType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A frequently updating information object that this Item is an instance of.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="signal" type="QualPropType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>An instruction to the processor that the content requires special handling.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="altRep" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>An IRI which, upon dereferencing provides an alternative representation of the Item.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="IRIType">
+							<xs:attributeGroup ref="editAttributes" />
+							<xs:attributeGroup ref="timeValidityAttributes" />
+							<xs:attribute name="representation" type="QCodeType">
+								<xs:annotation>
+									<xs:documentation>A qualifier which specifies the way the target Item is represented at this location.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+							<xs:anyAttribute namespace="##other" processContents="lax" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<!-- ==================== Link datatype ==================== -->
+	
+	<xs:complexType name="Link1Type">
+		<xs:annotation>
+			<xs:documentation>The PCL-type of a link from the current Item to a target Item or Web resource</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="linkTypeAttributes" />
+		<xs:attribute name="rank" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The rank of the link among other links</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attributeGroup ref="timeValidityAttributes" />
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:attributeGroup name="linkTypeAttributes">
+		<xs:annotation>
+			<xs:documentation>A group of attributes pertaining to any kind of link (Group defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<!-- version 2 : guidref added, definition of @href modified.-->
+		<xs:attribute name="guidref" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The globally unique Identifier of the target Item.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="href" type="IRIType">
+			<xs:annotation>
+				<xs:documentation>The locator of the target Item or Web resource.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hreftype" type="xs:normalizedString">
+			<xs:annotation>
+				<xs:documentation>Contains the IANA (Internet Assigned Numbers Authority) MIME type of the target of the link.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="version" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>The version of the target Item identified by a target Item Identifier. By default, the latest revision is retrieved when the link is activated. Absent if the target is a Web resource.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rel" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>The identifier of the relationship between the current Item and the target resource.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="size" type="xs:nonNegativeInteger">
+			<xs:annotation>
+				<xs:documentation>The size in bytes of the target resource.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<!-- ==================== Content Metadata ==================== -->
+	<xs:complexType name="ContentMetadataType">
+		<xs:annotation>
+			<xs:documentation>The type for a  basic set of metadata properties about the content</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="AdministrativeMetadataGroup" />
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:group name="AdministrativeMetadataGroup">
+		<xs:annotation>
+			<xs:documentation>A group of properties associated with the administrative facet of content.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="urgency" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The editorial urgency of the content.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="Int1to9Type">
+							<xs:attributeGroup ref="editAttributes" />
+							<xs:anyAttribute namespace="##other" processContents="lax" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contentCreated" type="TruncatedDateTimePropType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The date (and optionally the time) on which the content was created.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contentModified" type="TruncatedDateTimePropType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The date (and optionally the time) on which the content was last modified.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="located" type="FlexLocationPropType">
+					<xs:annotation>
+						<xs:documentation>The location from which the content originates.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="infoSource" type="Flex1PartyPropType">
+					<xs:annotation>
+						<xs:documentation>A party (person or organisation) which originated some information used to create or enhance the content.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="creator" type="Flex1PartyPropType">
+					<xs:annotation>
+						<xs:documentation>A party (person or organisation) which created the content, preferably the name of a person (e.g. a photographer for photos, a graphic artist for graphics, or a writer for textual news).</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="contributor" type="Flex1PartyPropType">
+					<xs:annotation>
+						<xs:documentation>A party (person or organisation) which modified or enhanced the content, preferably the name of a person.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="audience" type="AudienceType">
+					<xs:annotation>
+						<xs:documentation>An intended audience for the content.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="exclAudience" type="AudienceType">
+					<xs:annotation>
+						<xs:documentation>An excluded audience for the content.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="altId">
+					<xs:annotation>
+						<xs:documentation>An alternative identifier assigned to the content.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="IntlStringType">
+								<xs:attribute name="type" type="QCodeType">
+									<xs:annotation>
+										<xs:documentation>A qualifier which indicates the context within which the alternative identifier has been allocated.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="DescriptiveMetadataGroup">
+		<xs:annotation>
+			<xs:documentation>A group of properties associated with the descriptive facet of content.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="language" />
+				<xs:element ref="genre" />
+				<xs:element ref="subject" />
+				<xs:element ref="slugline" />
+				<xs:element ref="headline" />
+				<xs:element ref="dateline" />
+				<xs:element ref="by" />
+				<xs:element ref="description" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:group>
+	<xs:element name="language">
+		<xs:annotation>
+			<xs:documentation>A language associated with the content. For news this is a language used by the news content, for events this is a language used at this event, for a Knowledge Item this is the major language used to describe the concepts.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="IntlStringType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>A name for a concept assigned as property value.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attributeGroup ref="editAttributes" />
+			<xs:attribute name="tag" type="xs:language" use="required">
+				<xs:annotation>
+					<xs:documentation>The language tag. Values must conform to BCP47</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="role" type="QCodeListType">
+				<xs:annotation>
+					<xs:documentation>A refinement of the semantics of the property</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="genre" type="Flex1ConceptPropType">
+		<xs:annotation>
+			<xs:documentation>A nature, intellectual or journalistic form of the content</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subject" type="Flex1ConceptPropType">
+		<xs:annotation>
+			<xs:documentation>An important topic of the content; what the content is about</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="slugline">
+		<xs:annotation>
+			<xs:documentation>A sequence of tokens associated with the content. The interpretation is provider specific</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="IntlStringType">
+					<xs:attribute name="separator" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The character string acting as a separator between the tokens in the slugline.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="headline" type="Label1Type">
+		<xs:annotation>
+			<xs:documentation>A brief and snappy introduction to the news content, designed to catch the reader's attention</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dateline" type="Label1Type">
+		<xs:annotation>
+			<xs:documentation>A natural-language statement of the date and/or place of creation of the content</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="by" type="Label1Type">
+		<xs:annotation>
+			<xs:documentation>A natural-language statement about the creator (author, photographer etc.) of the content</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="description" type="BlockType">
+		<xs:annotation>
+			<xs:documentation>A free-form textual description of the content of the item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- ==================== Assertion about a concept  ==================== -->
+	<xs:element name="assert" type="AssertType">
+		<xs:annotation>
+			<xs:documentation>An assertion about a concept</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AssertType">
+		<xs:annotation>
+			<xs:documentation>The type of an assertion about a concept (Type defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="qcode" type="QCodeType" use="required">
+			<xs:annotation>
+				<xs:documentation>A concept identifier.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<!-- ==================== Inline reference ==================== -->
+	<xs:element name="inlineRef">
+		<xs:annotation>
+			<xs:documentation>The concept represented by the content identified by the local identifier(s)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Flex1PropType">
+					<xs:attribute name="idrefs" type="xs:IDREFS" use="required">
+						<xs:annotation>
+							<xs:documentation>A set of local identifiers for inline content</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attributeGroup ref="quantifyAttributes" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!-- ====================  Concept  ==================== -->
+	<xs:element name="concept">
+		<xs:annotation>
+			<xs:documentation>A set of properties defining a concept</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="conceptId" type="ConceptIdType">
+					<xs:annotation>
+						<xs:documentation>The preferred unambiguous identifier for the concept.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="type" type="QualPropType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The nature of the concept.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="name" maxOccurs="unbounded" />
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="definition" />
+					<xs:element ref="note" />
+					<xs:element ref="facet" />
+				</xs:choice>
+				<xs:group ref="ConceptRelationshipsGroup" />
+				<xs:group ref="EntityDetailsGroup" minOccurs="0" />
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attributeGroup ref="i18nAttributes" />
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="name" type="ConceptNameType">
+		<xs:annotation>
+			<xs:documentation>A natural language name for the concept.</xs:documentation>
+		</xs:annotation>
+		<!-- rev3: name, definition, note and facet made global -->
+	</xs:element>
+	<xs:complexType name="ConceptNameType">
+		<xs:annotation>
+			<xs:documentation>The type of a natural language name for the concept (Type defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IntlStringType">
+				<xs:attribute name="role" type="QCodeListType" />
+				<xs:attribute name="part" type="QCodeType" />
+				<xs:attributeGroup ref="timeValidityAttributes" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="definition">
+		<xs:annotation>
+			<xs:documentation>A natural language definition of the semantics of the concept. This definition is normative only for the scope of the use of this concept.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="BlockType">
+					<xs:attributeGroup ref="timeValidityAttributes" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="note">
+		<xs:annotation>
+			<xs:documentation>Additional natural language information about the concept.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="BlockType">
+					<xs:attributeGroup ref="timeValidityAttributes" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="facet">
+		<xs:annotation>
+			<xs:documentation>An intrinsic property of the concept.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="TypedQualPropType">
+					<xs:attribute name="rel" type="QCodeType">
+						<xs:annotation>
+							<xs:documentation>The identifier of the relationship between the current concept (containing the facet) and the concept identified by the facet value.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attributeGroup ref="timeValidityAttributes" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:group name="ConceptDefinitionGroup">
+		<xs:annotation>
+			<xs:documentation>A group of properites required to define the concept</xs:documentation>
+		</xs:annotation>
+		<!-- rev3: name made optional in ConceptDefinitionGroup, elements made global, made PCL only-->
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="name" />
+				<xs:element ref="definition" />
+				<xs:element ref="note" />
+				<xs:element ref="facet" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="ConceptRelationshipsGroup">
+		<xs:annotation>
+			<xs:documentation>A group of properites required to indicate relationships of the concept to other concepts</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="sameAs" type="SameAsType">
+					<xs:annotation>
+						<xs:documentation>An identifier of a concept with equivalent semantics</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="broader" type="BroaderType">
+					<xs:annotation>
+						<xs:documentation>An identifier of a more generic concept.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="narrower" type="RelatedConceptType">
+					<xs:annotation>
+						<xs:documentation>An identifier of a more specific concept.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="related" type="RelatedConceptType">
+					<xs:annotation>
+						<xs:documentation>An identifier of a related concept, where the relationship is different from 'sameAs', 'broader' or 'narrower'.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="ConceptIdType">
+		<xs:annotation>
+			<xs:documentation>The type for a preferred unambiguous identifier for the concept.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="qcode" type="QCodeType" use="required" />
+		<xs:attribute name="created" type="DateOptTimeType">
+			<xs:annotation>
+				<xs:documentation>The date (and, optionally, the time) when the concept identifier was created.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="retired" type="DateOptTimeType">
+			<xs:annotation>
+				<xs:documentation>The date (and, optionally, the time) after which the concept identifier should not be applied as the value of a property anymore.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:complexType name="SameAsType">
+		<xs:annotation>
+			<xs:documentation>The type for an identifier of an equivalent concept (Type defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TypedQualPropType">
+				<xs:attributeGroup ref="timeValidityAttributes" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroaderType">
+		<xs:annotation>
+			<xs:documentation>The type for an identifier of a more generic concept (Type defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RelatedConceptType">
+				<xs:attribute name="rank" type="xs:nonNegativeInteger">
+					<xs:annotation>
+						<xs:documentation>Specifies the rank of the concept among the children of a given broader concept.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RelatedConceptType">
+		<xs:annotation>
+			<xs:documentation>The type for an identifier of a related concept </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TypedQualPropType">
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="facet" />
+				</xs:choice>
+				<xs:attribute name="rel" type="QCodeType">
+					<xs:annotation>
+						<xs:documentation>The identifier of the relationship between the current concept and the target concept.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attributeGroup ref="timeValidityAttributes" />
+			</xs:extension>
+			<!-- rev3: add facet in a choice-->
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ==================== Entity details ==================== -->
+	<xs:group name="EntityDetailsGroup">
+		<xs:annotation>
+			<xs:documentation>A group of properties to define the details of specific entities</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="personDetails" />
+			<xs:element ref="organisationDetails" />
+			<xs:element ref="geoAreaDetails" />
+			<xs:element ref="POIDetails" />
+		</xs:choice>
+	</xs:group>
+	<xs:element name="personDetails">
+		<xs:annotation>
+			<xs:documentation>A set of properties with details specific to a person</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="born" type="TruncatedDateTimePropType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The date the person was born.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="died" type="TruncatedDateTimePropType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The date the person died.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="affiliation" type="PersonAffiliationType">
+						<xs:annotation>
+							<xs:documentation>An affiliation of the person with an organisation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="contactInfo" type="ContactInfoType">
+						<xs:annotation>
+							<xs:documentation>Information how to contact the person.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="organisationDetails">
+		<xs:annotation>
+			<xs:documentation>A group of properties with details specific to an organisation</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="founded" type="TruncatedDateTimePropType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The date the organisation was founded/established.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dissolved" type="TruncatedDateTimePropType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The date the organisation was dissolved.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="location" type="FlexLocationPropType">
+						<xs:annotation>
+							<xs:documentation>A place where the organisation is located.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="contactInfo" type="ContactInfoType">
+						<xs:annotation>
+							<xs:documentation>Information how to contact the organisation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="geoAreaDetails">
+		<xs:annotation>
+			<xs:documentation>A group of properties with details specific to a geopolitical area</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="position" type="GeoCoordinatesType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The coordinates of the location</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="POIDetails">
+		<xs:annotation>
+			<xs:documentation>A group of properties with details specific to a point of interest</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="position" type="GeoCoordinatesType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The coordinates of the location</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="openHours" minOccurs="0" type="Label1Type">
+					<xs:annotation>
+						<xs:documentation>Opening hours of the point of interest expressed in natural language</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="capacity" minOccurs="0" type="Label1Type">
+					<xs:annotation>
+						<xs:documentation>Total capacity of the point of interest expressed in natural language</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="contactInfo" type="ContactInfoType">
+						<xs:annotation>
+							<xs:documentation>Information how to contact the point of interest.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="access" type="BlockType">
+						<xs:annotation>
+							<xs:documentation>Ways to access the place of the point of  interest, including directions.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="details" type="BlockType">
+						<xs:annotation>
+							<xs:documentation>Detailed information about the location of the point of interest.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<!-- ==================== Reused within entity details ==================== -->
+	<xs:complexType name="PersonAffiliationType">
+		<xs:annotation>
+			<xs:documentation>The type for an affliation of a person to an organisation (Type defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FlexOrganisationPropType">
+				<xs:attributeGroup ref="timeValidityAttributes" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrganisationLocationType">
+		<xs:annotation>
+			<xs:documentation>The type for a location of an organisation (Type defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FlexLocationPropType">
+				<xs:attributeGroup ref="timeValidityAttributes" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeoCoordinatesType">
+		<xs:annotation>
+			<xs:documentation>The type for geographic coordinates (Type defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="latitude" type="xs:decimal" use="required">
+			<xs:annotation>
+				<xs:documentation>The latitude in decimal degrees.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="longitude" type="xs:decimal" use="required">
+			<xs:annotation>
+				<xs:documentation>The longitude in decimal degrees.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="altitude" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>The altitude in meters above the zero elevation of the reference system (sea level).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="gpsdatum" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The GPS datum associated with the measure.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:complexType name="ContactInfoType">
+		<xs:annotation>
+			<xs:documentation>The type for information to get in contact with a party (Type defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="email" type="ElectronicAddressType">
+					<xs:annotation>
+						<xs:documentation>An email address.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="im" type="ElectronicAddressTechType">
+					<xs:annotation>
+						<xs:documentation>An instant messaging address.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="phone" type="ElectronicAddressTechType">
+					<xs:annotation>
+						<xs:documentation>A phone number, preferred in an international format.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="fax" type="ElectronicAddressType">
+					<xs:annotation>
+						<xs:documentation>A fax number, preferred in an international format.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="web">
+					<xs:annotation>
+						<xs:documentation>A web address.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="IRIType">
+								<xs:attribute name="role" type="QCodeListType">
+									<xs:annotation>
+										<xs:documentation>A refinement of the semantics of the web address.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:anyAttribute namespace="##other" processContents="lax" />
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="address">
+					<xs:annotation>
+						<xs:documentation>A postal address.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="line" type="IntlStringType" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>A line of address information, in the format expected by a recipient postal service. City, country area, country and postal code are expressed separately.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="locality" minOccurs="0" type="Flex1PropType">
+								<xs:annotation>
+									<xs:documentation>A city/town/village etc. part of the address.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="area" minOccurs="0" type="Flex1PropType">
+								<xs:annotation>
+									<xs:documentation>A subdivision of a country part of the address.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="country" minOccurs="0" type="Flex1PropType">
+								<xs:annotation>
+									<xs:documentation>A country part of the address.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="postalCode" type="IntlStringType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>A postal code part of the address.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="role" type="QCodeListType">
+							<xs:annotation>
+								<xs:documentation>A refinement of the semantics of the postal address.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:anyAttribute namespace="##other" processContents="lax" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="role" type="QCodeListType">
+			<xs:annotation>
+				<xs:documentation>A refinement of the semantics of a contact information.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+		<!-- version 2: flag power deleted on role-->
+	</xs:complexType>
+	<xs:complexType name="ElectronicAddressType">
+		<xs:annotation>
+			<xs:documentation>The type for an electronic address</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="role" type="QCodeListType">
+					<xs:annotation>
+						<xs:documentation>A refinement of the semantics of the electronic address.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:anyAttribute namespace="##other" processContents="lax" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ElectronicAddressTechType">
+		<xs:annotation>
+			<xs:documentation>The type for an electronic address with a technical qualifier</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="role" type="QCodeListType">
+					<xs:annotation>
+						<xs:documentation>A refinement of the semantics of the electronic address.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="tech" type="QCodeType">
+					<xs:annotation>
+						<xs:documentation>The technical variant of the electronic address.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:anyAttribute namespace="##other" processContents="lax" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- ==================== Commonly used elements  ==================== -->
+	<xs:element name="title" type="Label1Type">
+		<xs:annotation>
+			<xs:documentation>A short, natural-language name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- ==================== Datatype components - attribute groups ==================== -->
+	<xs:attributeGroup name="editAttributes">
+		<xs:annotation>
+			<xs:documentation>A group of attributes to keep track of by whom and when the property value was changed</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="id" type="xs:ID">
+			<xs:annotation>
+				<xs:documentation>The local identifier of the property.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="creator" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>If the element is empty, specifies which entity (person, organisation or system) will edit the property. If the element is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="modified" type="DateOptTimeType">
+			<xs:annotation>
+				<xs:documentation>The date (and, optionally, the time) when the property was last modified. The initial value is the date (and, optionally, the time) of creation of the property.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="i18nAttributes">
+		<xs:annotation>
+			<xs:documentation>A group of attributes for language and script related information</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="xml:lang">
+			<xs:annotation>
+				<xs:documentation>Specifies the language of this property and potentially all descendant properties. xml:lang values of descendant properties override this value. Values are determined by Internet BCP 47.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dir">
+			<xs:annotation>
+				<xs:documentation>The directionality of textual content.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="ltr" />
+					<xs:enumeration value="rtl" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="quantifyAttributes">
+		<xs:annotation>
+			<xs:documentation>A group of attriubutes quantifying the property value</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="confidence" type="Int100Type">
+			<xs:annotation>
+				<xs:documentation>The confidence with which the metadata has been assigned.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="relevance" type="Int100Type">
+			<xs:annotation>
+				<xs:documentation>The relevance of the metadata to the news content to which it is attached.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="why" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>Why the metadata has been included.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="timeValidityAttributes">
+		<xs:annotation>
+			<xs:documentation>A group of attributes expressing the time period of validity of a relationship</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="validfrom" type="DateOptTimeType">
+			<xs:annotation>
+				<xs:documentation>The date (and, optionally, the time) before which a relationship is not valid.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="validto" type="DateOptTimeType">
+			<xs:annotation>
+				<xs:documentation>The date (and, optionally, the time) after which a relationship is not valid.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="flexAttributes">
+		<xs:annotation>
+			<xs:documentation>A group of attributes associated with flexible properties</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="qcode" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>A qualified code which identifies a concept.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="literal" type="xs:normalizedString">
+			<xs:annotation>
+				<xs:documentation>A free-text value assigned as property value.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type" type="QCodeType">
+			<xs:annotation>
+				<xs:documentation>The type of the concept assigned as controlled property value.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<!-- ==================== Datatype components - Simple Types ==================== -->
+	<xs:simpleType name="DateOptTimeType">
+		<xs:annotation>
+			<xs:documentation>The type of a date (required) and a time (optional).</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:date xs:dateTime" />
+	</xs:simpleType>
+	<xs:simpleType name="TruncatedDateTimeType">
+		<xs:annotation>
+			<xs:documentation>The type of a calendar date with an optional time part which may be truncated from the second part to the month part</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:date xs:dateTime xs:gYearMonth xs:gYear" />
+	</xs:simpleType>
+	<xs:simpleType name="UnionDateTimeType">
+		<xs:annotation>
+			<xs:documentation>The base type for approximate dates.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:dateTime xs:date xs:gYearMonth xs:gYear xs:gMonth xs:gMonthDay xs:gDay" />
+	</xs:simpleType>
+	<xs:simpleType name="Int1to9Type">
+		<xs:annotation>
+			<xs:documentation>The type of an integer in the range 1...9.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1" />
+			<xs:maxInclusive value="9" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Int100Type">
+		<xs:annotation>
+			<xs:documentation>The type of an integer in the range 0...100.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0" />
+			<xs:maxInclusive value="100" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IRIType">
+		<xs:annotation>
+			<xs:documentation>The type of an Internationalized Resource Identifier Reference, as defined in RFC 3987. Identical to xs : anyURI.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:anyURI" />
+	</xs:simpleType>
+	<xs:simpleType name="QCodeType">
+		<xs:annotation>
+			<xs:documentation>The type of a qualified code, i.e. a scheme alias, followed by a colon (“:”), followed by a code. A string of this type cannot contain white space characters. The code may contain colons.</xs:documentation>
+			<xs:documentation>The Backus Naur Form (BNF) expression for this is:
+&lt;qcode&gt; ::= &lt;scheme&gt; ":" &lt;code&gt;
+&lt;scheme&gt; is a string containing any character except white space or the ':' character, required &lt;code&gt; is a string containing any character except white space, required </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[^\s:]+:[^\s]+" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="QCodeListType">
+		<xs:annotation>
+			<xs:documentation>The type of space separated strings of QCodes.</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="QCodeType" />
+	</xs:simpleType>
+	<!-- ==================== Datatype components - Complex Types ==================== -->
+	<xs:complexType name="DateTimePropType">
+		<xs:annotation>
+			<xs:documentation>The type of a property with date and time</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:dateTime">
+				<xs:attributeGroup ref="editAttributes" />
+				<xs:anyAttribute namespace="##other" processContents="lax" />
+			</xs:extension>
+			<!-- version 2: editAttributes added-->
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="DateOptTimePropType">
+		<xs:annotation>
+			<xs:documentation>The type of a property with a date (required) and a time (optional)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="DateOptTimeType">
+				<xs:attributeGroup ref="editAttributes" />
+				<xs:anyAttribute namespace="##other" processContents="lax" />
+			</xs:extension>
+			<!-- version 2: editAttributes added-->
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="TruncatedDateTimePropType">
+		<xs:annotation>
+			<xs:documentation>The type of a calendar date with an optional time part which may be truncated from the seconds part to the month part</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="TruncatedDateTimeType">
+				<xs:attributeGroup ref="editAttributes" />
+				<xs:anyAttribute namespace="##other" processContents="lax" />
+			</xs:extension>
+			<!-- version 2: editAttributes added-->
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ApproximateDateTimePropType">
+		<xs:annotation>
+			<xs:documentation>The type of a calendar date with an optional time part and with an optional approximation range for the date.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UnionDateTimeType">
+				<xs:attributeGroup ref="editAttributes" />
+				<xs:attribute name="approxstart" type="TruncatedDateTimeType" use="optional">
+					<xs:annotation>
+						<xs:documentation>The date (and optionally time) at which the approximation range begins.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="approxend" type="TruncatedDateTimeType" use="optional">
+					<xs:annotation>
+						<xs:documentation>The date (and optionally the time) at which the approximation range ends.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:anyAttribute namespace="##other" processContents="lax" />
+			</xs:extension>
+			<!-- version 2: editAttributes added-->
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="IntlStringType">
+		<xs:annotation>
+			<xs:documentation>The type for an internationalized string, where the language and directionality in which the information is writte are indirected</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:normalizedString">
+				<xs:attributeGroup ref="i18nAttributes" />
+				<xs:attributeGroup ref="editAttributes" />
+				<xs:anyAttribute namespace="##other" processContents="lax" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="VersionedStringType">
+		<xs:annotation>
+			<xs:documentation>The type extending IntlStringType by a version information</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="IntlStringType">
+				<xs:attribute name="versioninfo" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>The version of a processing resource.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="AudienceType">
+		<xs:annotation>
+			<xs:documentation>The type to cover all qualifers for an audience property</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Flex1PropType">
+				<xs:attributeGroup ref="quantifyAttributes" />
+				<xs:attribute name="significance" type="Int1to9Type">
+					<xs:annotation>
+						<xs:documentation>A qualifier which indicates the expected significance of the content for this specific audience.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ==================== NAR label Types ==================== -->
+	
+	<xs:complexType name="Label1Type" mixed="true">
+		<xs:annotation>
+			<xs:documentation>The PCL-type for information about the content as natural language string with minimal markup</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element ref="a" />
+			<xs:element ref="span" />
+			<xs:element ref="ruby" />
+			<xs:element ref="inline" />
+			<xs:any namespace="##other" processContents="lax" />
+		</xs:choice>
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:attribute name="role" type="QCodeListType">
+			<xs:annotation>
+				<xs:documentation>A refinement of the semantics of the label.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="media" type="xs:NMTOKENS">
+			<xs:annotation>
+				<xs:documentation>An indication of the target media type(s), values as defined by the Cascading Style Sheets specification [CSS].</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:complexType name="BlockType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>The type for nformation about the content as natural language string with minimal markup and line breaks</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element ref="a" />
+			<xs:element ref="span" />
+			<xs:element ref="ruby" />
+			<xs:element ref="br" />
+			<xs:element ref="inline" />
+			<xs:any namespace="##other" processContents="lax" />
+		</xs:choice>
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:attribute name="media" type="xs:NMTOKENS" />
+		<xs:attribute name="role" type="QCodeListType">
+			<xs:annotation>
+				<xs:documentation>A refinement of the semantics of the block.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<!-- ==================== NAR property types ==================== -->
+	<xs:complexType name="QCodePropType">
+		<xs:annotation>
+			<xs:documentation>The type for a property with a QCode value in a qcode attribute</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="qcode" type="QCodeType" use="required">
+			<xs:annotation>
+				<xs:documentation>A qualified code which identifies a concept.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:complexType name="QualPropType">
+		<xs:annotation>
+			<xs:documentation>Type type for a property with a  QCode value in a qcode attribute and optional names</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="QCodePropType">
+				<xs:sequence>
+					<!-- NAR1.1 rev3 : use newly defined global name -->
+					<xs:element ref="name" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+				<xs:attributeGroup ref="i18nAttributes" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TypedQualPropType">
+		<xs:annotation>
+			<xs:documentation>The type for a property with a QCode, a type and optional names</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="QualPropType">
+				<xs:attribute name="type" type="QCodeType">
+					<xs:annotation>
+						<xs:documentation>The type of the concept assigned as property value.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="Flex1PropType">
+		<xs:annotation>
+			<xs:documentation>Flexible generic PCL-type for both controlled and uncontrolled values</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ConceptDefinitionGroup" minOccurs="0" />
+			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0" />
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="flexAttributes" />
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:complexType name="Flex1ConceptPropType">
+		<xs:annotation>
+			<xs:documentation>Flexible generic PCL-type for both controlled and uncontrolled values, with optional attributes</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Flex1PropType">
+				<xs:sequence>
+					<xs:element name="bag" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>A group of existing concepts which express a new concept.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="bit" type="QCodePropType" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>An individual concept, part of a composite concept expressed by a bag.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+							<xs:attributeGroup ref="i18nAttributes" />
+							<xs:attributeGroup ref="editAttributes" />
+							<xs:anyAttribute namespace="##other" processContents="lax" />
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attributeGroup ref="quantifyAttributes" />
+			</xs:extension>
+			<!-- version 2: the about attribute is suppressed-->
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FlexPersonPropType">
+		<xs:annotation>
+			<xs:documentation>Flexible person data type for both controlled and uncontrolled values</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ConceptDefinitionGroup" minOccurs="0" />
+			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0" />
+			<xs:element ref="personDetails" minOccurs="0" />
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="flexAttributes" />
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:complexType name="FlexOrganisationPropType">
+		<xs:annotation>
+			<xs:documentation>Flexible oraganisation data type for both controlled and uncontrolled values</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ConceptDefinitionGroup" minOccurs="0" />
+			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0" />
+			<xs:element ref="organisationDetails" minOccurs="0" />
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="flexAttributes" />
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:complexType name="FlexGeoAreaPropType">
+		<xs:annotation>
+			<xs:documentation>Flexible geopolitical area data type for both controlled and uncontrolled values</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ConceptDefinitionGroup" minOccurs="0" />
+			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0" />
+			<xs:element ref="geoAreaDetails" minOccurs="0" />
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="flexAttributes" />
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:complexType name="FlexPOIPropType">
+		<xs:annotation>
+			<xs:documentation>Flexible point-of-intrerest data type for both controlled and uncontrolled values</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ConceptDefinitionGroup" minOccurs="0" />
+			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0" />
+			<xs:element ref="POIDetails" minOccurs="0" />
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="flexAttributes" />
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:complexType name="FlexPartyPropType">
+		<xs:annotation>
+			<xs:documentation>Flexible party (person or organisation) CCL-type for both controlled and uncontrolled values</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ConceptDefinitionGroup" minOccurs="0" />
+			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0" />
+			<xs:choice minOccurs="0">
+				<xs:element ref="personDetails" />
+				<xs:element ref="organisationDetails" />
+			</xs:choice>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="flexAttributes" />
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<xs:complexType name="Flex1PartyPropType">
+		<xs:annotation>
+			<xs:documentation>Flexible party (person or organisation) PCL-type for both controlled and uncontrolled values</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FlexPartyPropType">
+				<xs:attribute name="role" type="QCodeListType">
+					<xs:annotation>
+						<xs:documentation>A refinement of the semantics of the property.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FlexLocationPropType">
+		<xs:annotation>
+			<xs:documentation>Flexible location (geopolitical area of point-of-interest) data type for both controlled and uncontrolled values</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ConceptDefinitionGroup" minOccurs="0" />
+			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0" />
+			<xs:choice minOccurs="0">
+				<xs:element ref="geoAreaDetails" />
+				<xs:element ref="POIDetails" />
+			</xs:choice>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attributeGroup ref="flexAttributes" />
+		<xs:attributeGroup ref="editAttributes" />
+		<xs:attributeGroup ref="i18nAttributes" />
+		<xs:anyAttribute namespace="##other" processContents="lax" />
+	</xs:complexType>
+	<!-- ==================== NAR re-defined XHTML and W3C Ruby structure components ==================== -->
+	<xs:element name="br">
+		<xs:annotation>
+			<xs:documentation>A line break</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="a">
+		<xs:annotation>
+			<xs:documentation>An anchor for inline linking like in HTML</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="inline" />
+				<xs:element ref="span" />
+				<xs:element ref="ruby" />
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+			</xs:choice>
+			<xs:attributeGroup ref="editAttributes" />
+			<xs:attributeGroup ref="i18nAttributes" />
+			<xs:attribute name="class" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>An equivalent of the html class attribute</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="href" type="xs:anyURI">
+				<xs:annotation>
+					<xs:documentation>An equivalent of the html href attribute</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="hreflang" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>An equivalent of the html hreflang attribute</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>An equivalent of the html rel attribute</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rev" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>An equivalent of the html rev attribute</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="span">
+		<xs:annotation>
+			<xs:documentation>A generic mechanism for adding inline information to parts of the textual content</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="ruby" />
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+			</xs:choice>
+			<xs:attributeGroup ref="editAttributes" />
+			<xs:attributeGroup ref="i18nAttributes" />
+			<xs:attribute name="class" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>An equivalent of the html class attribute</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="inline">
+		<xs:annotation>
+			<xs:documentation>An inline markup tag to be used with any concept</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="span" />
+				<xs:element ref="ruby" />
+				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+			</xs:choice>
+			<xs:attributeGroup ref="flexAttributes" />
+			<xs:attributeGroup ref="editAttributes" />
+			<xs:attributeGroup ref="i18nAttributes" />
+			<xs:attributeGroup ref="quantifyAttributes" />
+			<xs:attribute name="class" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>An equivalent of the html class attribute</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ruby">
+		<xs:annotation>
+			<xs:documentation>Simple W3C Ruby Annotation - see http://www.w3.org/TR/ruby/#simple-ruby1</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Simple W3C Ruby Annotation - see http://www.w3.org/TR/ruby/. </xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="rb" />
+				<xs:choice>
+					<xs:element ref="rt" />
+					<xs:sequence>
+						<xs:element ref="rp" />
+						<xs:element ref="rt" />
+						<xs:element ref="rp" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attributeGroup ref="editAttributes" />
+			<xs:attributeGroup ref="i18nAttributes" />
+			<xs:anyAttribute namespace="##other" processContents="lax" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rb" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Ruby base</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="rp" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Visual parentheses for Ruby text</xs:documentation>
+		</xs:annotation>
+		<!--NAR1.1 rev3 : correction. datatype is xs:string, not empty -->
+	</xs:element>
+	<xs:element name="rt" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Ruby text</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- ==================== Other useful datatypes  ==================== -->
+	
+	<xs:group name="RecurrenceGroup">
+		<xs:annotation>
+			<xs:documentation>A group of elements to express a recurrence (Group defined in this XML Schema only)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>This choice and its cardinality requires that there is at least one rDate or rRule element present.</xs:documentation>
+				</xs:annotation>
+				<xs:element name="rDate" type="DateOptTimePropType">
+					<xs:annotation>
+						<xs:documentation>Explicit dates of recurrence.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="rRule">
+					<xs:annotation>
+						<xs:documentation>Rule for recurrence.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attributeGroup ref="recurrenceRuleAttributes" />
+						<xs:anyAttribute namespace="##other" processContents="lax" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="exDate" type="DateOptTimePropType">
+					<xs:annotation>
+						<xs:documentation>Explicit dates to be excluded from any recurrence.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="exRule">
+					<xs:annotation>
+						<xs:documentation>Rule for dates to be excluded from recurrence.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attributeGroup ref="recurrenceRuleAttributes" />
+						<xs:anyAttribute namespace="##other" processContents="lax" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:group>
+	<xs:attributeGroup name="recurrenceRuleAttributes">
+		<xs:annotation>
+			<xs:documentation>A group of attributes aligning with iCalendar RECUR - see http://www.ietf.org/rfc/rfc2445.txt</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="freq" use="required">
+			<xs:annotation>
+				<xs:documentation>The FREQ rule part identifies the type of recurrence rule.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="SECONDLY" />
+					<xs:enumeration value="MINUTELY" />
+					<xs:enumeration value="HOURLY" />
+					<xs:enumeration value="DAILY" />
+					<xs:enumeration value="WEEKLY" />
+					<xs:enumeration value="MONTHLY" />
+					<xs:enumeration value="YEARLY" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="interval" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>The INTERVAL rule part contains a positive integer representing how often the recurrence rule repeats.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="until" type="DateOptTimeType">
+			<xs:annotation>
+				<xs:documentation>The UNTIL rule part defines a date-time value which bounds the recurrence rule in an inclusive manner.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="count" type="xs:positiveInteger">
+			<xs:annotation>
+				<xs:documentation>The COUNT rule part defines the number of occurrences at which to range-bound the recurrence.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="bysecond">
+			<xs:annotation>
+				<xs:documentation>The BYSECOND rule part specifies a space separated list of seconds within a minute</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="BySecondListType">
+					<xs:minLength value="1" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="byminute">
+			<xs:annotation>
+				<xs:documentation>The BYMINUTE rule part specifies a space separated list of minutes within an hour.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="ByMinuteListType">
+					<xs:minLength value="1" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="byhour">
+			<xs:annotation>
+				<xs:documentation>The BYHOUR rule part specifies space separated list of hours of the day.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="ByHourListType">
+					<xs:minLength value="1" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="byday">
+			<xs:annotation>
+				<xs:documentation>The BYDAY rule part specifies a space separated list of days of the week</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="ByDayListType">
+					<xs:minLength value="1" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="bymonthday">
+			<xs:annotation>
+				<xs:documentation>The BYMONTHDAY rule part specifies a space separated list of days of the month.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="ByMonthDayListType">
+					<xs:minLength value="1" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="bymonth">
+			<xs:annotation>
+				<xs:documentation>The BYMONTH rule part specifies a space separated list of months of the year.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="ByMonthListType">
+					<xs:minLength value="1" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="byyearday">
+			<xs:annotation>
+				<xs:documentation>The BYYEARDAY rule part specifies a  space separated list of days of the year.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="ByYearDayListType">
+					<xs:minLength value="1" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="byweekno">
+			<xs:annotation>
+				<xs:documentation>The BYWEEKNO rule part specifies a space separated list of ordinals specifying weeks of the year.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="ByWeekNoListType">
+					<xs:minLength value="1" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="bysetpos">
+			<xs:annotation>
+				<xs:documentation>The BYSETPOS rule part specifies a space separated list of values which corresponds to the nth occurrence
+   within the set of events specified by the rule.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="BySetposListType">
+					<xs:minLength value="1" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="wkst">
+			<xs:annotation>
+				<xs:documentation>The WKST rule part specifies the day on which the workweek starts.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="MO" />
+					<xs:enumeration value="TU" />
+					<xs:enumeration value="WE" />
+					<xs:enumeration value="TH" />
+					<xs:enumeration value="FR" />
+					<xs:enumeration value="SA" />
+					<xs:enumeration value="SU" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:simpleType name="BySecondListType">
+		<xs:annotation>
+			<xs:documentation>The type for the BYSECOND rule part of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt</xs:documentation>
+		</xs:annotation>
+		<xs:list>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>the datatype for a single token in BYSECOND of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:nonNegativeInteger">
+					<xs:minInclusive value="0" />
+					<xs:maxInclusive value="59" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:list>
+	</xs:simpleType>
+	<xs:simpleType name="ByMinuteListType">
+		<xs:annotation>
+			<xs:documentation>The type for the BYMINUTE rule part of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt</xs:documentation>
+		</xs:annotation>
+		<xs:list>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>The datatype for a single token in BYMINUTE of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:nonNegativeInteger">
+					<xs:minInclusive value="0" />
+					<xs:maxInclusive value="59" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:list>
+	</xs:simpleType>
+	<xs:simpleType name="ByHourListType">
+		<xs:annotation>
+			<xs:documentation>The type for the BYHOUR rule part of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt</xs:documentation>
+		</xs:annotation>
+		<xs:list>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>The datatype for a single token in BYHOUR of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt.</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:nonNegativeInteger">
+					<xs:minInclusive value="0" />
+					<xs:maxInclusive value="23" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:list>
+	</xs:simpleType>
+	<xs:simpleType name="ByDayListType">
+		<xs:annotation>
+			<xs:documentation>The type for the BYDAY rule part of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt</xs:documentation>
+		</xs:annotation>
+		<xs:list>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>The datatype for a single token in BYDAY of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt.</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="(\-|\+)?([0-9]){0,2}(MO|TU|WE|TH|FR|SA|SU)" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:list>
+	</xs:simpleType>
+	<xs:simpleType name="ByMonthDayListType">
+		<xs:annotation>
+			<xs:documentation>The type for the BYMONTHDAY rule part of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt.</xs:documentation>
+		</xs:annotation>
+		<xs:list>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>The datatype for a single token in BYMONTHDAY of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt.</xs:documentation>
+				</xs:annotation>
+				<xs:union>
+					<xs:simpleType>
+						<xs:annotation>
+							<xs:documentation>bymonthdayPosType</xs:documentation>
+							<xs:documentation>Helper datatype for bymonthdayListType</xs:documentation>
+						</xs:annotation>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="1" />
+							<xs:maxInclusive value="31" />
+						</xs:restriction>
+					</xs:simpleType>
+					<xs:simpleType>
+						<xs:annotation>
+							<xs:documentation>bymonthdayNegType</xs:documentation>
+							<xs:documentation>Helper datatype for bymonthdayListType</xs:documentation>
+						</xs:annotation>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="-31" />
+							<xs:maxInclusive value="-1" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:union>
+			</xs:simpleType>
+		</xs:list>
+	</xs:simpleType>
+	<xs:simpleType name="ByMonthListType">
+		<xs:annotation>
+			<xs:documentation>The type for the BYMONTH rule part of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt.</xs:documentation>
+		</xs:annotation>
+		<xs:list>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>The datatype for a single token in BYMONTH of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt.</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:nonNegativeInteger">
+					<xs:minInclusive value="1" />
+					<xs:maxInclusive value="12" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:list>
+	</xs:simpleType>
+	<xs:simpleType name="ByYearDayListType">
+		<xs:annotation>
+			<xs:documentation>The type for the BYYEARDAY rule part of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt</xs:documentation>
+		</xs:annotation>
+		<xs:list>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>The datatype for a single token in BYYEARDAYof iCalendar - see http://www.ietf.org/rfc/rfc2445.txt</xs:documentation>
+				</xs:annotation>
+				<xs:union>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="1" />
+							<xs:maxInclusive value="366" />
+						</xs:restriction>
+					</xs:simpleType>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="-366" />
+							<xs:maxInclusive value="-1" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:union>
+			</xs:simpleType>
+		</xs:list>
+	</xs:simpleType>
+	<xs:simpleType name="ByWeekNoListType">
+		<xs:annotation>
+			<xs:documentation>The type for the BYWEEKNO rule part of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt.</xs:documentation>
+		</xs:annotation>
+		<xs:list>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>The datatype for a single token in BYWEEKNO of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt.</xs:documentation>
+				</xs:annotation>
+				<xs:union>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="1" />
+							<xs:maxInclusive value="53" />
+						</xs:restriction>
+					</xs:simpleType>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="-53" />
+							<xs:maxInclusive value="-1" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:union>
+			</xs:simpleType>
+		</xs:list>
+	</xs:simpleType>
+	<xs:simpleType name="BySetposListType">
+		<xs:annotation>
+			<xs:documentation>The type for the BYSETPOS rule part of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt.</xs:documentation>
+		</xs:annotation>
+		<xs:list>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>The datatype for a single token in BYSETPOS of iCalendar - see http://www.ietf.org/rfc/rfc2445.txt.</xs:documentation>
+				</xs:annotation>
+				<xs:union>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="1" />
+							<xs:maxInclusive value="366" />
+						</xs:restriction>
+					</xs:simpleType>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="-366" />
+							<xs:maxInclusive value="-1" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:union>
+			</xs:simpleType>
+		</xs:list>
+	</xs:simpleType>
+</xs:schema><!--IPTC Schema Generator, v 1.2-->
