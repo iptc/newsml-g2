@@ -6,10 +6,10 @@ echo "Loading shared environment variables including new NewsML-G2 version numbe
 
 # For a simple minor version bump, these two paths might be the same
 OLD_XSD_PATH="specification/XML-Schema_FileVersion_$OLD_NEWSMLG2_REVISION"
-NEW_XSD_PATH="specification/XML-Schema_FileVersion_$NEWSMLG2_REVISION"
+NEW_XSD_PATH="specification/XML-Schema_FileVersion_$NEW_NEWSMLG2_REVISION"
 
 OLD_VERSION=$OLD_NEWSMLG2_VERSION
-NEW_VERSION=$NEWSMLG2_VERSION
+NEW_VERSION=$NEW_NEWSMLG2_VERSION
 
 EXAMPLE_DIR="examples"
 

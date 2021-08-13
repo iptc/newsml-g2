@@ -6,10 +6,10 @@ echo "Loading shared environment variables including new NewsML-G2 version numbe
 
 # For a simple minor version bump, these two paths might be the same
 OLD_XSD_PATH="specification/XML-Schema_FileVersion_$OLD_NEWSMLG2_REVISION"
-NEW_XSD_PATH="specification/XML-Schema_FileVersion_$NEWSMLG2_REVISION"
+NEW_XSD_PATH="specification/XML-Schema_FileVersion_$NEW_NEWSMLG2_REVISION"
 
 OLD_VERSION=$OLD_NEWSMLG2_VERSION
-NEW_VERSION=$NEWSMLG2_VERSION
+NEW_VERSION=$NEW_NEWSMLG2_VERSION
 
 echo "Moving XML Schema files to temporary location for processing..."
 TEMP_OLD_PATH=$(mktemp -d)
@@ -31,7 +31,7 @@ for component in "CatalogItem" "ConceptItem" "Framework" "KnowledgeItem" \
                  "NewsItem" "NewsMessage" "PackageItem" "PlanningItem"
 do
     OLD_FILE="${TEMP_OLD_PATH}/XML-Schema_FileVersion_${OLD_NEWSMLG2_REVISION}/NewsML-G2_${OLD_VERSION}-spec-${component}-Power_${OLD_NEWSMLG2_REVISION}.xsd"
-    NEW_FILE="${NEW_XSD_PATH}/NewsML-G2_${NEW_VERSION}-spec-${component}-Power_${NEWSMLG2_REVISION}.xsd"
+    NEW_FILE="${NEW_XSD_PATH}/NewsML-G2_${NEW_VERSION}-spec-${component}-Power_${NEW_NEWSMLG2_REVISION}.xsd"
     # remove the target (including from git repo) if it exists already
     if [ -f "$NEW_FILE" ]; then
         echo "  Removing existing file $NEW_FILE"
