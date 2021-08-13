@@ -8,14 +8,14 @@ This document is published under the Creative Commons Attribution 4.0 license - 
 By obtaining, using and/or copying this document, you (the licensee) agree that you have read, understood, and will comply with the terms and conditions of the license.
 
 -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/" xmlns:iptc-ms="http://iptc.org/std/mergeschemas/" targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.29" xml:lang="en">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/" xmlns:iptc-ms="http://iptc.org/std/mergeschemas/" targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.30" xml:lang="en">
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	<!-- For a successfull validation of NewsML-G2 item is is required to place the xml.xsd file in the same folder as the NewsML-G2 XML schema -->
 	<xs:annotation>
-		<xs:documentation>NewsML-G2 2.29 XML Schema, document version 1</xs:documentation>
-		<xs:documentation>Approval of this XML Schema version: 2020-05-13</xs:documentation>
+		<xs:documentation>NewsML-G2 2.30 XML Schema, document version 1</xs:documentation>
+		<xs:documentation>Approval of this XML Schema version: XXXX-XX-XX</xs:documentation>
 		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-		<xs:documentation>Date of creation of this XML Schema document revision: 2020-05-29</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document revision: 2021-08-13</xs:documentation>
 		<xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
 		<xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
 	</xs:annotation>
@@ -26,7 +26,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.29-spec-ConceptItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.30-spec-ConceptItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -36,7 +36,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.29-spec-KnowledgeItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.30-spec-KnowledgeItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -46,7 +46,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.29-spec-NewsItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.30-spec-NewsItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -56,7 +56,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.29-spec-PackageItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.30-spec-PackageItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -66,7 +66,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.29-spec-PlanningItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.30-spec-PlanningItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -76,7 +76,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.29-spec-CatalogItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.30-spec-CatalogItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -86,7 +86,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.29-spec-NewsMessage-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.30-spec-NewsMessage-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -95,10 +95,10 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 		#####################################################################################################
 -->
 	<xs:annotation>
-		<xs:documentation>NewsML-G2 2.29 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
-		<xs:documentation>Approval of this XML Schema version: 2020-05-13</xs:documentation>
+		<xs:documentation>NewsML-G2 2.30 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
+		<xs:documentation>Approval of this XML Schema version: XXXX-XX-XX</xs:documentation>
 		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-		<xs:documentation>Date of creation of this XML Schema document revision: 2020-05-29</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document revision: 2021-08-13</xs:documentation>
 		<xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
 		<xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
 	</xs:annotation>
@@ -113,7 +113,10 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 					<xs:documentation>W3C's XML Digital Signature</xs:documentation>
 				</xs:annotation>
 			</xs:any>
-			<xs:choice maxOccurs="unbounded">
+            <xs:annotation>
+                <xs:documentation>NewsML-G2 2.30: relaxed schema to make catalogRef / catalog optional</xs:documentation>
+            </xs:annotation>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
 				<xs:element ref="catalogRef"/>
 				<xs:element ref="catalog"/>
 			</xs:choice>
