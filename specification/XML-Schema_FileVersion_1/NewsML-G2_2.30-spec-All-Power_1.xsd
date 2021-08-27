@@ -848,9 +848,7 @@ was sent</xs:documentation>
                <xs:documentation>W3C's XML Digital Signature</xs:documentation>
             </xs:annotation>
          </xs:any>
-         <xs:annotation>
-            <xs:documentation>NewsML-G2 2.30: relaxed schema to make catalogRef / catalog optional</xs:documentation>
-         </xs:annotation>
+         <!-- NewsML-G2 2.30: relaxed schema to make catalogRef / catalog optional -->
          <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element ref="catalogRef"/>
             <xs:element ref="catalog"/>
@@ -1611,6 +1609,16 @@ was sent</xs:documentation>
       <xs:attribute name="residref" type="xs:string" use="optional">
          <xs:annotation>
             <xs:documentation>The  provider’s identifier of the target resource.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="residrefformat" type="QCodeType" use="optional">
+         <xs:annotation>
+            <xs:documentation>The format of the provider's identifier of the target resource - expressed by a QCode. The recommended CV to be used is https://cv.iptc.org/newscodes/valueformat/.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="residrefformaturi" type="IRIType" use="optional">
+         <xs:annotation>
+            <xs:documentation>The format of the provider's identifier of the target resource - expressed by a URI. The recommended CV to be used is https://cv.iptc.org/newscodes/valueformat/.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="version" type="xs:positiveInteger" use="optional">
