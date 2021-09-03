@@ -53,7 +53,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="group" maxOccurs="unbounded">
+				<xs:element name="group" minOccurs="1" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>A mixed set of group references and references to items or Web resources</xs:documentation>
 					</xs:annotation>

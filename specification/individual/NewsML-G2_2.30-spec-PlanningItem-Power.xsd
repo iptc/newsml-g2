@@ -52,7 +52,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="newsCoverage" maxOccurs="unbounded"/>
+				<xs:element ref="newsCoverage" minOccurs="1" maxOccurs="unbounded"/>
 			</xs:sequence>
 			<xs:attributeGroup ref="commonPowerAttributes"/>
 			<xs:anyAttribute namespace="##other"/>

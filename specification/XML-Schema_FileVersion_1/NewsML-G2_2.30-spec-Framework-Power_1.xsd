@@ -173,7 +173,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 					</xs:annotation>
 				</xs:element>
 				<!--				NewsML-G2 2.15: @authority added  -->
-				<xs:element name="scheme" maxOccurs="unbounded">
+				<xs:element name="scheme" minOccurs="1" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>A scheme alias-to-URI mapping.</xs:documentation>
 					</xs:annotation>
@@ -1803,7 +1803,7 @@ The relationship of properties inside this partMeta and properties at a higher h
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="bit" maxOccurs="unbounded">
+				<xs:element name="bit" minOccurs="1" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>An individual concept, part of a composite concept expressed by a bag.</xs:documentation>
 					</xs:annotation>
@@ -1926,7 +1926,7 @@ The relationship of properties inside this partMeta and properties at a higher h
 			<xs:sequence>
 				<xs:element ref="conceptId"/>
 				<xs:element ref="type" minOccurs="0"/>
-				<xs:element ref="name" maxOccurs="unbounded"/>
+				<xs:element ref="name" minOccurs="1" maxOccurs="unbounded"/>
 				<xs:choice minOccurs="0" maxOccurs="unbounded">
 					<xs:element ref="definition"/>
 					<xs:element ref="note"/>
@@ -2222,6 +2222,7 @@ The relationship of properties inside this partMeta and properties at a higher h
 		<xs:annotation>
 			<xs:documentation>A group of properties to define the details of specific entities</xs:documentation>
 		</xs:annotation>
+        <!-- this xs:choice has minOccurs="1" and maxOccurs="1" by default, we're not allowed to specify explicitly here -->
 		<xs:choice>
 			<xs:element ref="personDetails"/>
 			<xs:element ref="organisationDetails"/>
@@ -2407,7 +2408,7 @@ The relationship of properties inside this partMeta and properties at a higher h
 						</xs:annotation>
 						<xs:complexType>
 							<xs:sequence>
-								<xs:element ref="position" maxOccurs="unbounded"/>
+								<xs:element ref="position" minOccurs="1" maxOccurs="unbounded"/>
 							</xs:sequence>
 							<xs:attributeGroup ref="commonPowerAttributes"/>
 						</xs:complexType>
@@ -2444,7 +2445,7 @@ The relationship of properties inside this partMeta and properties at a higher h
 						</xs:annotation>
 						<xs:complexType>
 							<xs:sequence>
-								<xs:element ref="position" maxOccurs="unbounded"/>
+								<xs:element ref="position" minOccurs="1" maxOccurs="unbounded"/>
 							</xs:sequence>
 							<xs:attributeGroup ref="commonPowerAttributes"/>
 						</xs:complexType>
@@ -2586,7 +2587,7 @@ The relationship of properties inside this partMeta and properties at a higher h
 									</xs:complexContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:choice minOccurs="0">
+							<xs:choice minOccurs="0" maxOccurs="1">
 								<xs:element name="end">
 									<xs:annotation>
 										<xs:documentation>The date the event ends.</xs:documentation>
@@ -2789,7 +2790,7 @@ so on. May also hold accreditation information</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="name" maxOccurs="unbounded"/>
+				<xs:element ref="name" minOccurs="1" maxOccurs="unbounded"/>
 				<xs:choice minOccurs="0" maxOccurs="unbounded">
 					<xs:element ref="definition"/>
 					<xs:element ref="note"/>
@@ -2808,7 +2809,7 @@ so on. May also hold accreditation information</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="event" maxOccurs="unbounded"/>
+				<xs:element ref="event" minOccurs="1" maxOccurs="unbounded"/>
 			</xs:sequence>
 			<xs:attributeGroup ref="commonPowerAttributes"/>
 			<xs:anyAttribute namespace="##other" processContents="lax"/>
@@ -3092,7 +3093,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="planning" maxOccurs="unbounded">
+				<xs:element name="planning" minOccurs="1" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>Details about the planned news coverage by a specific kind of G2 item.</xs:documentation>
 					</xs:annotation>
@@ -3269,7 +3270,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="deliveredItemRef" type="Link1Type" maxOccurs="unbounded">
+				<xs:element name="deliveredItemRef" type="Link1Type" minOccurs="1" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>A reference to a G2 item which has been delivered under this news coverage definition.</xs:documentation>
 					</xs:annotation>
@@ -3295,7 +3296,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="hop" maxOccurs="unbounded">
+				<xs:element name="hop" minOccurs="1" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>A single hop of the Hop History. The details of the hop entry should reflect the actions taken by a party.</xs:documentation>
 					</xs:annotation>
@@ -3364,7 +3365,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="published" maxOccurs="unbounded">
+				<xs:element name="published" minOccurs="1" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="timestamp" minOccurs="0">
@@ -4639,7 +4640,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
 		<xs:sequence>
 			<xs:group ref="ConceptDefinitionGroup" minOccurs="0"/>
 			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0"/>
-			<xs:choice minOccurs="0">
+			<xs:choice minOccurs="0" maxOccurs="1">
 				<xs:element ref="personDetails"/>
 				<xs:element ref="organisationDetails"/>
 			</xs:choice>
@@ -4713,7 +4714,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
 		<xs:sequence>
 			<xs:group ref="ConceptDefinitionGroup" minOccurs="0"/>
 			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0"/>
-			<xs:choice minOccurs="0">
+			<xs:choice minOccurs="0" maxOccurs="1">
 				<xs:element ref="geoAreaDetails"/>
 				<xs:element ref="POIDetails"/>
 			</xs:choice>
@@ -4743,7 +4744,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
 			<xs:documentation>An anchor for inline linking like in HTML</xs:documentation>
 		</xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:choice maxOccurs="unbounded">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
 				<xs:element ref="inline"/>
 				<xs:element ref="span"/>
 				<xs:element ref="ruby"/>
@@ -4811,7 +4812,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
 			<xs:documentation>An inline markup tag to be used with any concept</xs:documentation>
 		</xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:choice maxOccurs="unbounded">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
 				<xs:element ref="span"/>
 				<xs:element ref="ruby"/>
 				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
@@ -4842,7 +4843,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
 			</xs:annotation>
 			<xs:sequence>
 				<xs:element ref="rb"/>
-				<xs:choice>
+				<xs:choice minOccurs="1" maxOccurs="1">
 					<xs:element ref="rt"/>
 					<xs:sequence>
 						<xs:element ref="rp"/>
@@ -4878,7 +4879,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
 			<xs:documentation>A group of elements to express a recurrence (Group defined in this XML Schema only)</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:choice maxOccurs="unbounded">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>This choice and its cardinality requires that there is at least one rDate or rRule element present.</xs:documentation>
 				</xs:annotation>
