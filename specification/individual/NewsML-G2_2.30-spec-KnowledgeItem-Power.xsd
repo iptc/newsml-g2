@@ -97,17 +97,17 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 					<xs:documentation>The URI which identifies the scheme</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="preferredalias">
+			<xs:attribute name="preferredalias" use="optional">
 				<xs:annotation>
 					<xs:documentation>The alias preferred by the schema authority</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="authority" type="IRIType">
+			<xs:attribute name="authority" type="IRIType" use="optional">
 				<xs:annotation>
 					<xs:documentation>Defines the authority controlling the scheme </xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="concepttype" type="QCodeListType">
+			<xs:attribute name="concepttype" type="QCodeListType" use="optional">
 				<xs:annotation>
 					<xs:documentation>List of all concept types used within this Knowledge Item</xs:documentation>
 				</xs:annotation>

@@ -140,17 +140,17 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
                <xs:documentation>The URI which identifies the scheme</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="preferredalias">
+         <xs:attribute name="preferredalias" use="optional">
             <xs:annotation>
                <xs:documentation>The alias preferred by the schema authority</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="authority" type="IRIType">
+         <xs:attribute name="authority" type="IRIType" use="optional">
             <xs:annotation>
                <xs:documentation>Defines the authority controlling the scheme </xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="concepttype" type="QCodeListType">
+         <xs:attribute name="concepttype" type="QCodeListType" use="optional">
             <xs:annotation>
                <xs:documentation>List of all concept types used within this Knowledge Item</xs:documentation>
             </xs:annotation>
@@ -241,12 +241,12 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
                      <xs:extension base="xs:string">
                         <xs:attributeGroup ref="newsContentAttributes"/>
                         <xs:attributeGroup ref="newsContentTypeAttributes"/>
-                        <xs:attribute name="encoding" type="QCodeType">
+                        <xs:attribute name="encoding" type="QCodeType" use="optional">
                            <xs:annotation>
                               <xs:documentation>The encoding applied to the content before inclusion - expressed by a QCode</xs:documentation>
                            </xs:annotation>
                         </xs:attribute>
-                        <xs:attribute name="encodinguri" type="IRIType">
+                        <xs:attribute name="encodinguri" type="IRIType" use="optional">
                            <xs:annotation>
                               <xs:documentation>The encoding applied to the content before inclusion - expressed by a URI</xs:documentation>
                            </xs:annotation>
@@ -265,7 +265,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
             </xs:element>
          </xs:choice>
          <xs:attributeGroup ref="commonPowerAttributes"/>
-         <xs:attribute name="original" type="xs:IDREF">
+         <xs:attribute name="original" type="xs:IDREF" use="optional">
             <xs:annotation>
                <xs:documentation>A local reference to the original piece of content, from which all renditions have been derived</xs:documentation>
             </xs:annotation>
@@ -284,32 +284,32 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
             </xs:annotation>
             <xs:complexType>
                <xs:attributeGroup ref="commonPowerAttributes"/>
-               <xs:attribute name="chnlid" type="xs:positiveInteger">
+               <xs:attribute name="chnlid" type="xs:positiveInteger" use="optional">
                   <xs:annotation>
                      <xs:documentation>A logical identifier of the channel</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="type" type="QCodeType">
+               <xs:attribute name="type" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>The media type of the data conveyed by the channel - expressed by a QCode</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="typeuri" type="IRIType">
+               <xs:attribute name="typeuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>The media type of the data conveyed by the channel - expressed by a URI</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="role" type="QCodeType">
+               <xs:attribute name="role" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>The role the data of this channel plays in the scope of  the full content - expressed by a QCode</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="roleuri" type="IRIType">
+               <xs:attribute name="roleuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>The role the data of this channel plays in the scope of  the full content - expressed by a URI</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="language" type="xs:language">
+               <xs:attribute name="language" type="xs:language" use="optional">
                   <xs:annotation>
                      <xs:documentation>The  language associated with the content of the channel</xs:documentation>
                   </xs:annotation>
@@ -349,7 +349,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
       <xs:attributeGroup ref="targetResourceAttributes"/>
       <xs:attributeGroup ref="timeValidityAttributes"/>
       <xs:attributeGroup ref="newsContentCharacteristics"/>
-      <xs:attribute name="language" type="xs:language">
+      <xs:attribute name="language" type="xs:language" use="optional">
          <xs:annotation>
             <xs:documentation>The language of the remote content</xs:documentation>
          </xs:annotation>
@@ -519,12 +519,12 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
                      </xs:any>
                   </xs:choice>
                   <xs:attributeGroup ref="commonPowerAttributes"/>
-                  <xs:attribute name="role" type="QCodeType">
+                  <xs:attribute name="role" type="QCodeType" use="optional">
                      <xs:annotation>
                         <xs:documentation>The part this group plays within its container - expressed by a QCode / either the role or the roleuri attribute MUST be used</xs:documentation>
                      </xs:annotation>
                   </xs:attribute>
-                  <xs:attribute name="roleuri" type="IRIType">
+                  <xs:attribute name="roleuri" type="IRIType" use="optional">
                      <xs:annotation>
                         <xs:documentation>The part this group plays within its container - expressed by a URI / either the role or the roleuri attribute MUST be used</xs:documentation>
                      </xs:annotation>
@@ -965,7 +965,7 @@ was sent</xs:documentation>
                         <xs:documentation>The URI which identifies the scheme.</xs:documentation>
                      </xs:annotation>
                   </xs:attribute>
-                  <xs:attribute name="authority" type="IRIType">
+                  <xs:attribute name="authority" type="IRIType" use="optional">
                      <xs:annotation>
                         <xs:documentation>Defines the authority controlling this scheme</xs:documentation>
                      </xs:annotation>
@@ -992,27 +992,27 @@ was sent</xs:documentation>
                </xs:complexType>
             </xs:element>
          </xs:sequence>
-         <xs:attribute name="additionalInfo" type="IRIType">
+         <xs:attribute name="additionalInfo" type="IRIType" use="optional">
             <xs:annotation>
                <xs:documentation>A pointer to some additional information about the Catalog, and especially its evolution and latest version.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="url" type="IRIType">
+         <xs:attribute name="url" type="IRIType" use="optional">
             <xs:annotation>
                <xs:documentation>Defines the location of the catalog as remote resource. (Should be the same as the URL which is used with the href attribute of a catalogRef in an item.)</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="authority" type="IRIType">
+         <xs:attribute name="authority" type="IRIType" use="optional">
             <xs:annotation>
                <xs:documentation>Defines the authority controlling this catalog</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="guid" type="xs:anyURI">
+         <xs:attribute name="guid" type="xs:anyURI" use="optional">
             <xs:annotation>
                <xs:documentation>Globally Unique Identifier for this kind of catalog as managed by a provider. A version attribute should be used with it.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="version" type="xs:nonNegativeInteger">
+         <xs:attribute name="version" type="xs:nonNegativeInteger" use="optional">
             <xs:annotation>
                <xs:documentation>Version corresponding to the guid of the catalog. If a version attribute exists a guid attribute must exist too</xs:documentation>
             </xs:annotation>
@@ -1349,12 +1349,12 @@ was sent</xs:documentation>
       <xs:complexType>
          <xs:complexContent>
             <xs:extension base="VersionedStringType">
-               <xs:attribute name="role" type="QCodeType">
+               <xs:attribute name="role" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>Indentifies the stage at which this generator was used - expressed by a QCode</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="roleuri" type="IRIType">
+               <xs:attribute name="roleuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>Indentifies the stage at which this generator was used - expressed by a URI</xs:documentation>
                   </xs:annotation>
@@ -1419,17 +1419,17 @@ was sent</xs:documentation>
                <xs:attributeGroup ref="commonPowerAttributes"/>
                <xs:attributeGroup ref="timeValidityAttributes"/>
                <xs:attributeGroup ref="newsContentTypeAttributes"/>
-               <xs:attribute name="representation" type="QCodeType">
+               <xs:attribute name="representation" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>A qualifier which specifies the way the target Item is represented at this location - expressed by a QCode</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="representationuri" type="IRIType">
+               <xs:attribute name="representationuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>A qualifier which specifies the way the target Item is represented at this location - expressed by a URI</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="size" type="xs:nonNegativeInteger">
+               <xs:attribute name="size" type="xs:nonNegativeInteger" use="optional">
                   <xs:annotation>
                      <xs:documentation>The size in bytes of the target resource.</xs:documentation>
                   </xs:annotation>
@@ -1456,22 +1456,22 @@ was sent</xs:documentation>
       <xs:complexType>
          <xs:simpleContent>
             <xs:extension base="xs:string">
-               <xs:attribute name="hashtype" type="QCodeType">
+               <xs:attribute name="hashtype" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>The hash algorithm used for creating the hash value - expressed by a QCode / either the hashtype or the hashtypeuri attribute MUST be used</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="hashtypeuri" type="IRIType">
+               <xs:attribute name="hashtypeuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>The hash algorithm used for creating the hash value - expressed by a URI / either the hashtype or the hashtypeuri attribute MUST be used</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="scope" type="QCodeType">
+               <xs:attribute name="scope" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>The scope of a G2 item's content which is the reference for creating the hash value - expressed by a QCode. If the attribute is omitted http://cv.iptc.org/newscodes/hashscope/content is the default value.</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="scopeuri" type="IRIType">
+               <xs:attribute name="scopeuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>The scope of a G2 item's content which is the reference for creating the hash value - expressed by a URI. If the attribute is omitted http://cv.iptc.org/newscodes/hashscope/content is the default value.</xs:documentation>
                   </xs:annotation>
@@ -1500,22 +1500,22 @@ was sent</xs:documentation>
          <xs:simpleContent>
             <xs:extension base="IRIType">
                <xs:attributeGroup ref="commonPowerAttributes"/>
-               <xs:attribute name="accesstype" type="QCodeType">
+               <xs:attribute name="accesstype" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>A qualifier which indicates the technical variant for accessing this item (e.g. communication protocols) - expressed by a QCode</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="accesstypeuri" type="IRIType">
+               <xs:attribute name="accesstypeuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>A qualifier which indicates the technical variant for accessing this item (e.g. communication protocols) - expressed by a URI</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="reposrole" type="QCodeType">
+               <xs:attribute name="reposrole" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>A qualifier which indicates the role of the stated repository - expressed by a QCode</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="reposroleuri" type="IRIType">
+               <xs:attribute name="reposroleuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>A qualifier which indicates the role of the stated repository - expressed by a URI</xs:documentation>
                   </xs:annotation>
@@ -1531,12 +1531,12 @@ was sent</xs:documentation>
       <xs:complexType>
          <xs:complexContent>
             <xs:extension base="QCodePropType">
-               <xs:attribute name="role" type="QCodeType">
+               <xs:attribute name="role" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>A refinement of the semantics of the property - expressed by a QCode</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="roleuri" type="IRIType">
+               <xs:attribute name="roleuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>A refinement of the semantics of the property - expressed by a URI</xs:documentation>
                   </xs:annotation>
@@ -1829,12 +1829,12 @@ was sent</xs:documentation>
       <xs:complexType>
          <xs:attributeGroup ref="targetResourceAttributes"/>
          <xs:attributeGroup ref="commonPowerAttributes"/>
-         <xs:attribute name="rendition" type="QCodeType">
+         <xs:attribute name="rendition" type="QCodeType" use="optional">
             <xs:annotation>
                <xs:documentation>Identifies the rendition of the target resource - expressed by a QCode. If the target resource is an item providing multiple renditions then this attribute is used to identify the rendition to be used.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="renditionuri" type="IRIType">
+         <xs:attribute name="renditionuri" type="IRIType" use="optional">
             <xs:annotation>
                <xs:documentation>Identifies the rendition of the target resource - expressed by a URI. If the target resource is an item providing multiple renditions then this attribute is used to identify the rendition to be used.</xs:documentation>
             </xs:annotation>
@@ -1907,27 +1907,27 @@ was sent</xs:documentation>
                      <xs:documentation> A qualifier which indicates the business environment in which the identifier can be used to access the content - expressed by a URI</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="idformat" type="QCodeType">
+               <xs:attribute name="idformat" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>Indicates the format of the value of the element - expressed by a QCode</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="idformaturi" type="IRIType">
+               <xs:attribute name="idformaturi" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>Indicates the format of the value of the element - expressed by a URI</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="role" type="QCodeType">
+               <xs:attribute name="role" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>A refinement of what kind of alternative is provided by this identifier - expressed by a QCode</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="roleuri" type="IRIType">
+               <xs:attribute name="roleuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>A refinement of what kind of alternative is provided by this identifier - expressed by an URI</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="version" type="xs:string">
+               <xs:attribute name="version" type="xs:string" use="optional">
                   <xs:annotation>
                      <xs:documentation>The version of the object identified by the alternative id.</xs:documentation>
                   </xs:annotation>
@@ -1971,12 +1971,12 @@ was sent</xs:documentation>
                <xs:documentation>Indicates the value of the rating scale used for the highest/best rating.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="scaleunit" type="QCodeType">
+         <xs:attribute name="scaleunit" type="QCodeType" use="optional">
             <xs:annotation>
                <xs:documentation>The units which apply to the rating scale - expressed by a QCode / either the scaleunit or the scaleunituri attribute MUST be used</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="scaleunituri" type="IRIType">
+         <xs:attribute name="scaleunituri" type="IRIType" use="optional">
             <xs:annotation>
                <xs:documentation>The units which apply to the rating scale - expressed by a URI / either the scaleunit or the scaleunituri attribute MUST be used</xs:documentation>
             </xs:annotation>
@@ -1996,12 +1996,12 @@ was sent</xs:documentation>
                <xs:documentation>The type of the rating parties - expressed by a URI</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="ratingtype" type="QCodeType">
+         <xs:attribute name="ratingtype" type="QCodeType" use="optional">
             <xs:annotation>
                <xs:documentation>Full definition of the rating - expressed by a QCode</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="ratingtypeuri" type="IRIType">
+         <xs:attribute name="ratingtypeuri" type="IRIType" use="optional">
             <xs:annotation>
                <xs:documentation>Full definition of the rating - expressed by a URI</xs:documentation>
             </xs:annotation>
@@ -2020,12 +2020,12 @@ was sent</xs:documentation>
                <xs:documentation>The count of executed interactions.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="interactiontype" type="QCodeType">
+         <xs:attribute name="interactiontype" type="QCodeType" use="optional">
             <xs:annotation>
                <xs:documentation>The type of interaction which is reflected by this property - expressed by a QCode / either the interactiontype or the interactiontype uri attribute MUST be used</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="interactiontypeuri" type="IRIType">
+         <xs:attribute name="interactiontypeuri" type="IRIType" use="optional">
             <xs:annotation>
                <xs:documentation>The type of interaction which is reflected by this property - expressed by a URI  / either the interactiontype or the interactiontype uri attribute MUST be used</xs:documentation>
             </xs:annotation>
@@ -2319,22 +2319,22 @@ The relationship of properties inside this partMeta and properties at a higher h
                      <xs:documentation>The end time of the part in a timeline. The expressed time unit is included. Using the Edit Unit requires the frame rate or sampling rate to be known, this must be defined by the referenced rendition of the content.</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="timeunit" type="QCodeType">
+               <xs:attribute name="timeunit" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>The unit used for the start and end timestamps - expressed by a QCode / either the timeunit or the timeunituri attribute MUST be used</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="timeunituri" type="IRIType">
+               <xs:attribute name="timeunituri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>The unit used for the start and end timestamps - expressed by a URI / either the timeunit or the timeunituri attribute MUST be used</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="renditionref" type="QCodeType">
+               <xs:attribute name="renditionref" type="QCodeType" use="optional">
                   <xs:annotation>
                      <xs:documentation>Refers to the content rendition with this QCode as rendition attribute value - expressed by a QCode</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="renditionrefuri" type="IRIType">
+               <xs:attribute name="renditionrefuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>Refers to the content rendition with this QCode as rendition attribute value - expressed by a URI</xs:documentation>
                   </xs:annotation>
@@ -2348,22 +2348,22 @@ The relationship of properties inside this partMeta and properties at a higher h
             </xs:annotation>
             <xs:complexType>
                <xs:attributeGroup ref="commonPowerAttributes"/>
-               <xs:attribute name="x" type="xs:integer">
+               <xs:attribute name="x" type="xs:integer" use="optional">
                   <xs:annotation>
                      <xs:documentation>The x-axis coordinate of the side of the rectangle which has the smaller x-axis coordinate value in the current user coordinate system</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="y" type="xs:integer">
+               <xs:attribute name="y" type="xs:integer" use="optional">
                   <xs:annotation>
                      <xs:documentation>The y-axis coordinate of the side of the rectangle which has the smaller y-axis coordinate value in the current user coordinate system</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="width" type="xs:integer">
+               <xs:attribute name="width" type="xs:integer" use="optional">
                   <xs:annotation>
                      <xs:documentation>The width of the rectangle</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="height" type="xs:nonNegativeInteger">
+               <xs:attribute name="height" type="xs:nonNegativeInteger" use="optional">
                   <xs:annotation>
                      <xs:documentation>The height of the rectangle</xs:documentation>
                   </xs:annotation>
@@ -2524,7 +2524,7 @@ The relationship of properties inside this partMeta and properties at a higher h
       <xs:complexType>
          <xs:complexContent>
             <xs:extension base="Flex1PropType">
-               <xs:attribute name="idrefs" type="xs:IDREFS">
+               <xs:attribute name="idrefs" type="xs:IDREFS" use="optional">
                   <xs:annotation>
                      <xs:documentation>Refers to the ids of elements which values have been derived from the concept represented by this property</xs:documentation>
                   </xs:annotation>
@@ -2583,17 +2583,17 @@ The relationship of properties inside this partMeta and properties at a higher h
                <xs:complexType>
                   <xs:complexContent>
                      <xs:extension base="QCodePropType">
-                        <xs:attribute name="type" type="QCodeType">
+                        <xs:attribute name="type" type="QCodeType" use="optional">
                            <xs:annotation>
                               <xs:documentation>The type of the concept assigned as controlled property value - expressed by a QCode</xs:documentation>
                            </xs:annotation>
                         </xs:attribute>
-                        <xs:attribute name="typeuri" type="IRIType">
+                        <xs:attribute name="typeuri" type="IRIType" use="optional">
                            <xs:annotation>
                               <xs:documentation>The type of the concept assigned as controlled property value - expressed by a URI</xs:documentation>
                            </xs:annotation>
                         </xs:attribute>
-                        <xs:attribute name="significance" type="Int100Type">
+                        <xs:attribute name="significance" type="Int100Type" use="optional">
                            <xs:annotation>
                               <xs:documentation> Indicates how significant the event expressed by a bit of event concept type is to the concept expressed by this bit The scope of this relationship is limited to the bits of a single bag. See also the note below the table.</xs:documentation>
                            </xs:annotation>
@@ -2848,7 +2848,7 @@ The relationship of properties inside this partMeta and properties at a higher h
       <xs:annotation>
          <xs:documentation>The type for a preferred unambiguous identifier for the concept.</xs:documentation>
       </xs:annotation>
-      <xs:attribute name="qcode" type="QCodeType">
+      <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
             <xs:documentation>A qualified code which identifies a concept - either the  qcode or the uri attribute MUST be used</xs:documentation>
          </xs:annotation>
@@ -2944,7 +2944,7 @@ The relationship of properties inside this partMeta and properties at a higher h
                                  <xs:documentation>The identifier of the relationship between the current concept and the target concept - expressed by a URI</xs:documentation>
                               </xs:annotation>
                            </xs:attribute>
-                           <xs:attribute name="rank" type="xs:nonNegativeInteger">
+                           <xs:attribute name="rank" type="xs:nonNegativeInteger" use="optional">
                               <xs:annotation>
                                  <xs:documentation>The rank of the current concept among concepts having a relationship to the target concept.</xs:documentation>
                               </xs:annotation>
@@ -3095,52 +3095,52 @@ The relationship of properties inside this partMeta and properties at a higher h
                            <xs:documentation>A symbol for the financial instrument</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="symbolsrc" type="QCodeType">
+                     <xs:attribute name="symbolsrc" type="QCodeType" use="optional">
                         <xs:annotation>
                            <xs:documentation>The  source of the financial instrument symbol - expressed by a QCode</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="symbolsrcuri" type="IRIType">
+                     <xs:attribute name="symbolsrcuri" type="IRIType" use="optional">
                         <xs:annotation>
                            <xs:documentation>The  source of the financial instrument symbol - expressed by a URI</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="market" type="QCodeType">
+                     <xs:attribute name="market" type="QCodeType" use="optional">
                         <xs:annotation>
                            <xs:documentation>A venue in which this financial instrument is traded - expressed by a QCode</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="marketuri" type="IRIType">
+                     <xs:attribute name="marketuri" type="IRIType" use="optional">
                         <xs:annotation>
                            <xs:documentation>A venue in which this financial instrument is traded - expressed by a URI</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="marketlabel" type="xs:string">
+                     <xs:attribute name="marketlabel" type="xs:string" use="optional">
                         <xs:annotation>
                            <xs:documentation>The label used for the market</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="marketlabelsrc" type="QCodeType">
+                     <xs:attribute name="marketlabelsrc" type="QCodeType" use="optional">
                         <xs:annotation>
                            <xs:documentation>The source of the market label - expressed by a QCode</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="marketlabelsrcuri" type="IRIType">
+                     <xs:attribute name="marketlabelsrcuri" type="IRIType" use="optional">
                         <xs:annotation>
                            <xs:documentation>The source of the market label - expressed by a URI</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="type" type="QCodeListType">
+                     <xs:attribute name="type" type="QCodeListType" use="optional">
                         <xs:annotation>
                            <xs:documentation>The type(s) of the financial instrument - expressed by a QCode</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="typeuri" type="IRIListType">
+                     <xs:attribute name="typeuri" type="IRIListType" use="optional">
                         <xs:annotation>
                            <xs:documentation>The type(s) of the financial instrument - expressed by a URI</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="rank" type="xs:nonNegativeInteger">
+                     <xs:attribute name="rank" type="xs:nonNegativeInteger" use="optional">
                         <xs:annotation>
                            <xs:documentation>Indicates the relative importance among financial instruments of the same type.</xs:documentation>
                         </xs:annotation>
@@ -3208,12 +3208,12 @@ The relationship of properties inside this partMeta and properties at a higher h
                            <xs:documentation>The radius of the circle</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="radunit" type="QCodeType">
+                     <xs:attribute name="radunit" type="QCodeType" use="optional">
                         <xs:annotation>
                            <xs:documentation>The dimension unit of the radius - expressed by a QCode / either the radunit or the radunituri attribute MUST be used</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="radunituri" type="IRIType">
+                     <xs:attribute name="radunituri" type="IRIType" use="optional">
                         <xs:annotation>
                            <xs:documentation>The dimension unit of the radius - expressed by a URI / either the radunit or the radunituri attribute MUST be used</xs:documentation>
                         </xs:annotation>
@@ -3444,12 +3444,12 @@ so on. May also hold accreditation information</xs:documentation>
                   <xs:complexType>
                      <xs:complexContent>
                         <xs:extension base="Flex1PropType">
-                           <xs:attribute name="role" type="QCodeType">
+                           <xs:attribute name="role" type="QCodeType" use="optional">
                               <xs:annotation>
                                  <xs:documentation>Refinement of the semantics of the property - expressed by a QCode</xs:documentation>
                               </xs:annotation>
                            </xs:attribute>
-                           <xs:attribute name="roleuri" type="IRIType">
+                           <xs:attribute name="roleuri" type="IRIType" use="optional">
                               <xs:annotation>
                                  <xs:documentation>Refinement of the semantics of the property - expressed by a URI</xs:documentation>
                               </xs:annotation>
@@ -3470,12 +3470,12 @@ so on. May also hold accreditation information</xs:documentation>
                   <xs:complexType>
                      <xs:complexContent>
                         <xs:extension base="FlexLocationPropType">
-                           <xs:attribute name="role" type="QCodeType">
+                           <xs:attribute name="role" type="QCodeType" use="optional">
                               <xs:annotation>
                                  <xs:documentation>Refinement of the semantics of the location regarding the event - expressed by a QCode</xs:documentation>
                               </xs:annotation>
                            </xs:attribute>
-                           <xs:attribute name="roleuri" type="IRIType">
+                           <xs:attribute name="roleuri" type="IRIType" use="optional">
                               <xs:annotation>
                                  <xs:documentation>Refinement of the semantics of the location regarding the event - expressed by a URI</xs:documentation>
                               </xs:annotation>
@@ -3562,12 +3562,12 @@ so on. May also hold accreditation information</xs:documentation>
                            </xs:annotation>
                         </xs:any>
                      </xs:sequence>
-                     <xs:attribute name="role" type="QCodeType">
+                     <xs:attribute name="role" type="QCodeType" use="optional">
                         <xs:annotation>
                            <xs:documentation>A refinement of the semantics of the property - expressed by a QCode</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="roleuri" type="IRIType">
+                     <xs:attribute name="roleuri" type="IRIType" use="optional">
                         <xs:annotation>
                            <xs:documentation>A refinement of the semantics of the property - expressed by a URI</xs:documentation>
                         </xs:annotation>
@@ -3720,12 +3720,12 @@ so on. May also hold accreditation information</xs:documentation>
                   <xs:simpleContent>
                      <xs:extension base="IRIType">
                         <xs:attributeGroup ref="commonPowerAttributes"/>
-                        <xs:attribute name="role" type="QCodeListType">
+                        <xs:attribute name="role" type="QCodeListType" use="optional">
                            <xs:annotation>
                               <xs:documentation>A refinement of the semantics of the web address - expressed by a QCode</xs:documentation>
                            </xs:annotation>
                         </xs:attribute>
-                        <xs:attribute name="roleuri" type="IRIListType">
+                        <xs:attribute name="roleuri" type="IRIListType" use="optional">
                            <xs:annotation>
                               <xs:documentation>A refinement of the semantics of the web address - expressed by a URI</xs:documentation>
                            </xs:annotation>
@@ -3788,12 +3788,12 @@ so on. May also hold accreditation information</xs:documentation>
             <xs:complexType>
                <xs:complexContent>
                   <xs:extension base="IntlStringType">
-                     <xs:attribute name="role" type="QCodeType">
+                     <xs:attribute name="role" type="QCodeType" use="optional">
                         <xs:annotation>
                            <xs:documentation>Refines the semantics of line - expressed by a QCode</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
-                     <xs:attribute name="roleuri" type="IRIType">
+                     <xs:attribute name="roleuri" type="IRIType" use="optional">
                         <xs:annotation>
                            <xs:documentation>Refines the semantics of line - expressed by a URI</xs:documentation>
                         </xs:annotation>
@@ -3835,12 +3835,12 @@ so on. May also hold accreditation information</xs:documentation>
          </xs:element>
       </xs:sequence>
       <xs:attributeGroup ref="commonPowerAttributes"/>
-      <xs:attribute name="role" type="QCodeListType">
+      <xs:attribute name="role" type="QCodeListType" use="optional">
          <xs:annotation>
             <xs:documentation>A refinement of the semantics of the postal address - expressed by a QCode</xs:documentation>
          </xs:annotation>
       </xs:attribute>
-      <xs:attribute name="roleuri" type="IRIListType">
+      <xs:attribute name="roleuri" type="IRIListType" use="optional">
          <xs:annotation>
             <xs:documentation>A refinement of the semantics of the postal address - expressed by a URI</xs:documentation>
          </xs:annotation>
@@ -3947,12 +3947,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                         <xs:complexType>
                            <xs:complexContent>
                               <xs:extension base="Flex1PartyPropType">
-                                 <xs:attribute name="coversfrom" type="DateOptTimeType">
+                                 <xs:attribute name="coversfrom" type="DateOptTimeType" use="optional">
                                     <xs:annotation>
                                        <xs:documentation>The starting date (and optionally, the time) by which this property applies to the news coverage planning</xs:documentation>
                                     </xs:annotation>
                                  </xs:attribute>
-                                 <xs:attribute name="coversto" type="DateOptTimeType">
+                                 <xs:attribute name="coversto" type="DateOptTimeType" use="optional">
                                     <xs:annotation>
                                        <xs:documentation>The end date (and optionally, the time) by which this property applies to the news coverage planning</xs:documentation>
                                     </xs:annotation>
@@ -4018,12 +4018,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                      </xs:any>
                   </xs:sequence>
                   <xs:attributeGroup ref="commonPowerAttributes"/>
-                  <xs:attribute name="coversfrom" type="DateOptTimeType">
+                  <xs:attribute name="coversfrom" type="DateOptTimeType" use="optional">
                      <xs:annotation>
                         <xs:documentation>The starting date (and optionally, the time) by which this property applies to the news coverage planning</xs:documentation>
                      </xs:annotation>
                   </xs:attribute>
-                  <xs:attribute name="coversto" type="DateOptTimeType">
+                  <xs:attribute name="coversto" type="DateOptTimeType" use="optional">
                      <xs:annotation>
                         <xs:documentation>The end date (and optionally, the time) by which this property applies to the news coverage planning</xs:documentation>
                      </xs:annotation>
@@ -4154,17 +4154,17 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                         <xs:complexType>
                            <xs:complexContent>
                               <xs:extension base="QualRelPropType">
-                                 <xs:attribute name="target" type="QCodeType">
+                                 <xs:attribute name="target" type="QCodeType" use="optional">
                                     <xs:annotation>
                                        <xs:documentation>The target of the action in a content object - expressed by a QCode. If the target attribute is omitted the target of the action is the whole object.</xs:documentation>
                                     </xs:annotation>
                                  </xs:attribute>
-                                 <xs:attribute name="targeturi" type="IRIType">
+                                 <xs:attribute name="targeturi" type="IRIType" use="optional">
                                     <xs:annotation>
                                        <xs:documentation>The target of the action in a content object - expressed by a URI. If the target attribute is omitted the target of the action is the whole object.</xs:documentation>
                                     </xs:annotation>
                                  </xs:attribute>
-                                 <xs:attribute name="timestamp" type="DateOptTimeType">
+                                 <xs:attribute name="timestamp" type="DateOptTimeType" use="optional">
                                     <xs:annotation>
                                        <xs:documentation>The date and optionally the time (with a time zone) when this action was performed on the target.</xs:documentation>
                                     </xs:annotation>
@@ -4174,12 +4174,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                         </xs:complexType>
                      </xs:element>
                   </xs:sequence>
-                  <xs:attribute name="seq" type="xs:nonNegativeInteger">
+                  <xs:attribute name="seq" type="xs:nonNegativeInteger" use="optional">
                      <xs:annotation>
                         <xs:documentation>The sequential value of this Hop in a sequence of Hops of a Hop History. Values need not to be consecutive. The sequence starts with the lowest value.</xs:documentation>
                      </xs:annotation>
                   </xs:attribute>
-                  <xs:attribute name="timestamp" type="DateOptTimeType">
+                  <xs:attribute name="timestamp" type="DateOptTimeType" use="optional">
                      <xs:annotation>
                         <xs:documentation>The date and optionally the time (with a time zone) when this item's content object was forwarded.</xs:documentation>
                      </xs:annotation>
@@ -4229,7 +4229,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                      </xs:choice>
                   </xs:sequence>
                   <xs:attributeGroup ref="commonPowerAttributes"/>
-                  <xs:attribute name="qcode" type="QCodeType">
+                  <xs:attribute name="qcode" type="QCodeType" use="optional">
                      <xs:annotation>
                         <xs:documentation>A qualified code which identifies a concept  - either the  qcode or the uri attribute MUST be used</xs:documentation>
                      </xs:annotation>
@@ -4239,7 +4239,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                         <xs:documentation>A URI which identifies a concept  - either the  qcode or the uri attribute MUST be used</xs:documentation>
                      </xs:annotation>
                   </xs:attribute>
-                  <xs:attribute name="literal" type="g2normalizedString">
+                  <xs:attribute name="literal" type="g2normalizedString" use="optional">
                      <xs:annotation>
                         <xs:documentation>A free-text value assigned as property value.</xs:documentation>
                      </xs:annotation>
@@ -5164,7 +5164,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
             <xs:documentation>A refinement of the semantics of the block.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
-      <xs:attribute name="roleuri" type="IRIType">
+      <xs:attribute name="roleuri" type="IRIType" use="optional">
          <xs:annotation>
             <xs:documentation>A URI identifying the refined semantics of the definition.</xs:documentation>
          </xs:annotation>
@@ -5177,7 +5177,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
          <xs:documentation>The type for a property with a QCode value in a qcode attribute</xs:documentation>
       </xs:annotation>
       <xs:attributeGroup ref="commonPowerAttributes"/>
-      <xs:attribute name="qcode" type="QCodeType">
+      <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
             <xs:documentation>A qualified code which identifies a concept  - either the  qcode or the uri attribute MUST be used</xs:documentation>
          </xs:annotation>
@@ -5370,12 +5370,12 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
       </xs:annotation>
       <xs:complexContent>
          <xs:extension base="Flex1ExtPropType">
-            <xs:attribute name="rel" type="QCodeType">
+            <xs:attribute name="rel" type="QCodeType" use="optional">
                <xs:annotation>
                   <xs:documentation>The identifier of a concept defining the semantics of this property - expressed by a QCode / either the rel or the reluri attribute MUST be used</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="reluri" type="IRIType">
+            <xs:attribute name="reluri" type="IRIType" use="optional">
                <xs:annotation>
                   <xs:documentation>The identifier of a concept defining the semantics of this property - expressed by a URI / either the rel or the reluri attribute MUST be used</xs:documentation>
                </xs:annotation>
@@ -5520,12 +5520,12 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
       </xs:annotation>
       <xs:complexContent>
          <xs:extension base="FlexPartyPropType">
-            <xs:attribute name="role" type="QCodeListType">
+            <xs:attribute name="role" type="QCodeListType" use="optional">
                <xs:annotation>
                   <xs:documentation>A refinement of the semantics of the property - expressed by a QCode. In the scope of infoSource only: If a party did anything other than originate information a role attribute with one or more roles must be applied. The recommended vocabulary is the IPTC Information Source Roles NewsCodes at http://cv.iptc.org/newscodes/infosourcerole/ </xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="roleuri" type="IRIListType">
+            <xs:attribute name="roleuri" type="IRIListType" use="optional">
                <xs:annotation>
                   <xs:documentation>A refinement of the semantics of the property - expressed by a URI. In the scope of infoSource only: If a party did anything other than originate information a role attribute with one or more roles must be applied. The recommended vocabulary is the IPTC Information Source Roles NewsCodes at http://cv.iptc.org/newscodes/infosourcerole/ </xs:documentation>
                </xs:annotation>

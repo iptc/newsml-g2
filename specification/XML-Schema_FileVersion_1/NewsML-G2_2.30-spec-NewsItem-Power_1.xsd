@@ -82,12 +82,12 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 							<xs:extension base="xs:string">
 								<xs:attributeGroup ref="newsContentAttributes"/>
 								<xs:attributeGroup ref="newsContentTypeAttributes"/>
-								<xs:attribute name="encoding" type="QCodeType">
+								<xs:attribute name="encoding" type="QCodeType" use="optional">
 									<xs:annotation>
 										<xs:documentation>The encoding applied to the content before inclusion - expressed by a QCode</xs:documentation>
 									</xs:annotation>
 								</xs:attribute>
-								<xs:attribute name="encodinguri" type="IRIType">
+								<xs:attribute name="encodinguri" type="IRIType" use="optional">
 									<xs:annotation>
 										<xs:documentation>The encoding applied to the content before inclusion - expressed by a URI</xs:documentation>
 									</xs:annotation>
@@ -106,7 +106,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 				</xs:element>
 			</xs:choice>
 			<xs:attributeGroup ref="commonPowerAttributes"/>
-			<xs:attribute name="original" type="xs:IDREF">
+			<xs:attribute name="original" type="xs:IDREF" use="optional">
 				<xs:annotation>
 					<xs:documentation>A local reference to the original piece of content, from which all renditions have been derived</xs:documentation>
 				</xs:annotation>
@@ -128,32 +128,32 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 				</xs:annotation>
 				<xs:complexType>
 					<xs:attributeGroup ref="commonPowerAttributes"/>
-					<xs:attribute name="chnlid" type="xs:positiveInteger">
+					<xs:attribute name="chnlid" type="xs:positiveInteger" use="optional">
 						<xs:annotation>
 							<xs:documentation>A logical identifier of the channel</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
-					<xs:attribute name="type" type="QCodeType">
+					<xs:attribute name="type" type="QCodeType" use="optional">
 						<xs:annotation>
 							<xs:documentation>The media type of the data conveyed by the channel - expressed by a QCode</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
-					<xs:attribute name="typeuri" type="IRIType">
+					<xs:attribute name="typeuri" type="IRIType" use="optional">
 						<xs:annotation>
 							<xs:documentation>The media type of the data conveyed by the channel - expressed by a URI</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
-					<xs:attribute name="role" type="QCodeType">
+					<xs:attribute name="role" type="QCodeType" use="optional">
 						<xs:annotation>
 							<xs:documentation>The role the data of this channel plays in the scope of  the full content - expressed by a QCode</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
-					<xs:attribute name="roleuri" type="IRIType">
+					<xs:attribute name="roleuri" type="IRIType" use="optional">
 						<xs:annotation>
 							<xs:documentation>The role the data of this channel plays in the scope of  the full content - expressed by a URI</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
-					<xs:attribute name="language" type="xs:language">
+					<xs:attribute name="language" type="xs:language" use="optional">
 						<xs:annotation>
 							<xs:documentation>The  language associated with the content of the channel</xs:documentation>
 						</xs:annotation>
@@ -187,7 +187,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 		<xs:attributeGroup ref="targetResourceAttributes"/>
 		<xs:attributeGroup ref="timeValidityAttributes"/>
 		<xs:attributeGroup ref="newsContentCharacteristics"/>
-		<xs:attribute name="language" type="xs:language">
+		<xs:attribute name="language" type="xs:language" use="optional">
 			<xs:annotation>
 				<xs:documentation>The language of the remote content</xs:documentation>
 			</xs:annotation>

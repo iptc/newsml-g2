@@ -104,12 +104,12 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 							</xs:any>
 						</xs:choice>
 						<xs:attributeGroup ref="commonPowerAttributes"/>
-						<xs:attribute name="role" type="QCodeType">
+						<xs:attribute name="role" type="QCodeType" use="optional">
 							<xs:annotation>
 								<xs:documentation>The part this group plays within its container - expressed by a QCode / either the role or the roleuri attribute MUST be used</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
-						<xs:attribute name="roleuri" type="IRIType">
+						<xs:attribute name="roleuri" type="IRIType" use="optional">
 							<xs:annotation>
 								<xs:documentation>The part this group plays within its container - expressed by a URI / either the role or the roleuri attribute MUST be used</xs:documentation>
 							</xs:annotation>
