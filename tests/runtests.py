@@ -877,10 +877,10 @@ class TestNewsMLSchema(unittest.TestCase):
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     guid="simplest-test"
     standard="NewsML-G2"
-    standardversion="2.29"
+    standardversion="2.30"
     conformance="power"
     xml:lang="en-GB">
-    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_35.xml" />
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_36.xml" />
     <itemMeta>
         <itemClass qcode="ninat:text" />
         <provider qcode="nprov:REUTERS" />
