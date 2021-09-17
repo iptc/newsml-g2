@@ -2222,7 +2222,7 @@ The relationship of properties inside this partMeta and properties at a higher h
 		<xs:annotation>
 			<xs:documentation>A group of properties to define the details of specific entities</xs:documentation>
 		</xs:annotation>
-        <!-- this xs:choice has minOccurs="1" and maxOccurs="1" by default, we're not allowed to specify explicitly here -->
+        <!-- Note that minOccurs and maxOccurs is not definable for xs:choice within an xs:group but can be when the group is referenced -->
 		<xs:choice>
 			<xs:element ref="personDetails"/>
 			<xs:element ref="organisationDetails"/>
