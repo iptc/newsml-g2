@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     guid="tag:example.com,2021:packageitemexample2:202108061516" version="11"
     standard="NewsML-G2"
-    standardversion="2.29"
+    standardversion="2.30"
     conformance="power"
     xml:lang="en-GB">
     <catalogRef

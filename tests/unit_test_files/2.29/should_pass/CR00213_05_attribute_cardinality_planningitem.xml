@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CR00213 / SGR381: Explicit Attribute Cardinality 
+- Contains elements with optional elements and attibutes missing ... from the list in the CR
+-->
+<planningItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    standard="NewsML-G2"
+    standardversion="2.30"
+    guid="tag:thomsonreuters.com,2021:newsml_SOME-CID"
+    version="1"
+    xml:lang="en">
+    <catalogRef href="ref"/>
+    <itemMeta>
+        <itemClass/>
+        <provider/>
+        <versionCreated>2007-02-16T12:19:30.000Z</versionCreated>
+    </itemMeta>
+    <newsCoverageSet>
+        <newsCoverage>
+            <planning/>
+        </newsCoverage>
+    </newsCoverageSet>
+</planningItem>
