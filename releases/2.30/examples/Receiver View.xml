@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<newsItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ./NewsML-G2_2.30-spec-All-Power.xsd"
+    guid="urn:newsml:NAG.com:20161121:US-FINANCE-FED"
+    version="11" 
+    standard="NewsML-G2"
+    standardversion="2.30" 
+    xml:lang="en-US">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
+    <catalogRef
+        href="http://catalog.NAG.com/news/NAG_G2_CODES_2.xml" />
+    <rightsInfo>
+        <copyrightHolder uri="http://www.NAG.com/about.html#copyright">
+            <name>NAG </name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2017-18 NAG </copyrightNotice>
+        <usageTerms>NAG Example: Contact your local office for all commercial or
+            promotional uses. Full editorial rights UK, US, Ireland, Canada (not
+            Quebec). Restricted editorial rights for daily newspapers elsewhere,
+            please call.</usageTerms>
+    </rightsInfo>
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        <provider uri="http://www.NAG.com/about/" />
+        <versionCreated>2018-11-21T16:25:32-05:00</versionCreated>
+        <pubStatus qcode="stat:usable" /> 
+    </itemMeta>
+    <contentMeta>
+        <urgency>5</urgency>
+        <contentCreated>2016-11-21T15:21:06-05:00</contentCreated>
+        <contentModified>2018-11-21T16:22:45-05:00</contentModified>
+        <located qcode="geoloc:NYC">
+            <name>New York, NY</name>
+        </located>
+        <creator uri="http://www.NAG.com/staff/mjameson">
+            <name>Meredith Jameson</name>
+        </creator>
+        <infoSource qcode="is:AP">
+            <name>Associated Press</name>
+        </infoSource>
+        <language tag="en-US" />
+        <subject qcode="medtop:04000000">
+            <name>economy, business and finance</name>
+        </subject> 
+        <subject qcode="medtop:20000350">
+            <name>central bank</name>
+        </subject>
+        <subject qcode="medtop:20000379">
+            <name>money and monetary policy</name>
+        </subject>
+        <slugline>US-Finance-Fed</slugline>
+        <headline>Fed to halt QE to avert "bubble"</headline>
+    </contentMeta>
+    <contentSet>
+        <inlineXML contenttype="application/nitf+xml">
+            <nitf xmlns="http://iptc.org/std/NITF/2006-10-18/">
+                <body>
+                   <body.head>
+                       <hedline>
+                           <hl1>Fed to halt QE to avert "bubble"</hl1>
+                       </hedline>
+                       <byline>By Meredith Jameson, <byttl>NAG Reporter</byttl></byline>
+                   </body.head>
+                   <body.content>
+                       <p>(New York, NY - November 21) Et, sent luptat luptat, commy Nim
+                           zzriureet vendreetue modo dolenis ex euisis nosto et lan ullandit
+                           lum doloreet vulla.    </p>
+                       <p>Ugiating ea feugait utat, venim velent nim quis nulluptat num
+                           Volorem inci enim dolobor eetuer ercin utpatio dolorpercing.</p>
+                   </body.content>
+                </body>
+            </nitf>
+        </inlineXML>
+    </contentSet>
+</newsItem>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<newsItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nitf="http://iptc.org/std/NITF/2006-10-18/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" standard="NewsML-G2"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ./NewsML-G2_2.30-spec-All-Power.xsd"
+    standardversion="2.30" version="1" conformance="power" xml:lang="en-US"
+    guid="urn:newsml:sportsml.org:20160502:xt.prog.20150606005942-43710-16.068-event-stats-progressive">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-Sports_1.xml" />
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        <provider qcode="web:xmlteam.com">
+            <name>XML Team Solutions, Inc.</name>
+        </provider>
+        <versionCreated>2015-06-06T00:59:42-04:00</versionCreated>
+        <pubStatus qcode="stat:usable" />
+        <fileName>xt.prog.20150606005942-43710-16.068-event-stats-progressive</fileName>
+    </itemMeta>
+    <contentMeta>
+        <contentCreated>2015-06-06T00:59:42-04:00</contentCreated>
+        <located qcode="city:Philadelphia">
+            <broader qcode="reg:Pennsylvania" />
+            <broader qcode="cntry:CA" />
+        </located>
+        <creator qcode="web:sportsnetwork.com">
+            <name>The Sports Network, Inc.</name>
+        </creator>
+        <genre qcode="spfixt:event-stats-progressive">
+            <name xml:lang="en-US">Progressive Event Statistics</name>
+            <broader qcode="spct:event-summary" />
+        </genre>
+        <genre qcode="spct:event-summary" />
+        <language tag="en-US" />
+        <subject type="spct:season" literal="2015" />
+        <subject type="spct:season-type" qcode="spct:season-regular" />
+        <subject qcode="subj:15000000">
+            <name xml:lang="en-US">sport</name>
+        </subject>
+        <subject qcode="subj:15007000">
+            <name xml:lang="en-US">Baseball</name>
+            <broader qcode="subj:15000000" />
+        </subject>
+        <subject qcode="vendleague:l.mlb.com" type="spct:league">
+            <name xml:lang="en-US">Major League Baseball</name>
+            <broader qcode="subj:15007000" />
+            <sameAs qcode="subj:15007001" />
+        </subject>
+        <subject type="spct:conference" qcode="vendconf:l.mlb.com-c.national">
+            <name xml:lang="en-US">National</name>
+            <broader qcode="vendleague:l.mlb.com" />
+        </subject>
+        <subject type="cpnat:event" qcode="vendevent:l.mlb.com-2015-e.43710" />
+        <subject type="spct:team" qcode="vendteam:l.mlb.com-t.16">
+            <name>Miami Marlins</name>
+        </subject>
+        <subject type="spct:team" qcode="vendteam:l.mlb.com-t.27">
+            <name>Colorado Rockies</name>
+        </subject>
+        <headline>Troy Tulowitzki singled to third and advanced to second on
+            Martin
+            Prado's throwing error. Runner on second with one out and Carlos Gonzalez
+            due
+            up.
+        </headline>
+    </contentMeta>
+    <contentSet>
+        <inlineXML contenttype="application/sportsml+xml">
+            <sports-content class="SportsMLv3.0">
+                <sports-event>
+                   <event-metadata key="vendevent:l.mlb.com-2015-e.43710"
+                       event-status="speventstatus:mid-event" temporal-unit-value="vendor:l.mlb.com-2015-e.43710"
+                       start-date-time="2015-06-05T20:40:00-04:00">
+                       <event-metadata-baseball inning-value="8"
+                           inning-half="bottom" outs="1" strikes="2" balls="2"
+                           runner-on-first="false" runner-on-second="true"
+                           runner-on-second-idref="l.mlb.com-p.18606" runner-on-third="false"
+                           runs-this-inning-half="0" />
+                   </event-metadata>
+                   <team id="l.mlb.com-t.16">
+                       <team-metadata key="vendteam:l.mlb.com-t.16"
+                           alignment="away">
+                           <name role="nrol:full">Miami Marlins</name>
+                           <name part="nprt:common">Miami</name>
+                           <name part="nprt:nickname">Marlins</name>
+                       </team-metadata>
+                       <team-stats event-outcome="speventoutcome:undecided"
+                           score="6" score-opposing="1">
+                           <sub-score period-value="1" score="0" />
+                           <team-stats-baseball>
+                               <stats-baseball-offensive runs-scored="6"
+                                   hits="12" />
+                               <stats-baseball-defensive errors="1" />
+                           </team-stats-baseball>
+                       </team-stats>
+                       <player id="l.mlb.com-p.20339">
+                           <player-metadata key="vendperson:l.mlb.com-p.20339"
+                               position-event="spbblposition:4" lineup-slot="1" lineup-slot-sequence="1">
+                               <name role="nrol:full">Dee Gordon</name>
+                               <player-metadata-baseball batting-hand="left" />
+                           </player-metadata>
+                           <player-stats>
+                               <player-stats-baseball>
+                                   <stats-baseball-offensive runs-scored="0"
+                                       at-bats="5" hits="1" rbi="1" singles="0" doubles="1" triples="0"
+                                       home-runs="0" bases-on-balls="0" bases-on-balls-intentional="0"
+                                       strikeouts-against="1" strikeouts-looking="0" hit-by-pitch="0"
+                                       double-plays-against="0" triple-plays-against="0"
+                                       grounded-into-double-play="0"
+                                       reached-base-defensive-interference="0" reached-base-error="0"
+                                       reached-base-fielder-choice="0" outs-ground="2" outs-fly="1"
+                                       sac-flies="0" sacrifices="0" stolen-bases="0"
+                                       stolen-bases-caught="0" pick-offs-against="0" average=".364"
+                                       on-base-percentage=".391" slugging-percentage=".431" />
+                                   <stats-baseball-defensive putouts="0"
+                                       assists="8" errors="0" errors-passed-ball="0"
+                                       errors-catchers-interference="0" stolen-bases-average-defense="0"
+                                       stolen-bases-caught-defense="0" double-plays="2" triple-plays="0" />
+                               </player-stats-baseball>
+                           </player-stats>
+                       </player>
+                   </team>
+                   <team id="l.mlb.com-t.27">
+                       <team-metadata key="vendteam:l.mlb.com-t.27"
+                           alignment="home">
+                           <name role="nrol:full">Colorado Rockies</name>
+                           <name part="nprt:common">Colorado</name>
+                           <name part="nprt:nickname">Rockies</name>
+                           <team-metadata>
+                               <player id="l.mlb.com-p.16929">
+                                   <player-metadata key="vendperson:l.mlb.com-p.16929"
+                                       position-event="spbblposition:8" lineup-slot="1" lineup-slot-sequence="1">
+                                       <name role="nrol:full">Charlie Blackmon</name>
+                                   </player-metadata>
+                                   <player-stats>
+                                       <player-stats-baseball>
+                                           <stats-baseball-offensive
+                                               runs-scored="1" at-bats="4" hits="1" rbi="0" singles="1"
+                                               doubles="0" triples="0" />
+                                       </player-stats-baseball>
+                                   </player-stats>
+                               </player>
+                           </team-metadata>
+                       </team-metadata>
+                   </team>
+                </sports-event>
+            </sports-content>
+        </inlineXML>
+    </contentSet>
+</newsItem>
