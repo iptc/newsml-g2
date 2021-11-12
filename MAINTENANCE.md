@@ -56,8 +56,7 @@ Steps to create and release an update to the standard:
 13. Run the script to move all files to the release folder and create ZIP files
     of the release: `release-tools/create-release.sh`
 14. Commit and push all changes to GitHub: `git push origin -u my-new-branch`
-    (Our `.gitignore` file already suppresses sending ZIP files and the XML
-    Schema docs to GitHub.).
+    (Our `.gitignore` file already suppresses sending ZIP files to GitHub.)
 15. Create a pull request from the branch on GitHub.com.
 
 ### After the Standards Committee approves the new version:
@@ -67,7 +66,7 @@ Steps to create and release an update to the standard:
     the approval date (this should be quick, just running scripts, except for
     the XML Spy documentation step)
 3.  Merge the pull request into master on GitHub
-4.  Upload the "release/N.NN" folder and the ZIP files to the iptc.org server
+4.  Upload the "releases/N.NN" folder and the ZIP files to the iptc.org server
 5.  Update the redirects on iptc.org to point to the latest versions of XML
     Schema documentation.
 6.  Update the http://dev.iptc.org/G2-Approved-Changes page documenting the

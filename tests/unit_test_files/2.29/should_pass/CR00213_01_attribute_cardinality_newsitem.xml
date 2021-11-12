@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CR00213 / SGR381: Explicit Attribute Cardinality 
+- Contains elements with optional elements and attibutes missing ... from the list in the CR
+-->
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    standard="NewsML-G2"
+    standardversion="2.30"
+    guid="tag:thomsonreuters.com,2021:newsml_SOME-CID"
+    version="1"
+    xml:lang="en">
+    <catalog>
+        <scheme alias="x" uri=""/>
+    </catalog>
+    <hopHistory>
+        <hop>
+            <action/>
+        </hop>
+    </hopHistory>
+    <pubHistory>
+        <published/>
+    </pubHistory>
+    <itemMeta>
+        <itemClass/>
+        <provider/>
+        <versionCreated>2007-02-16T12:19:30.000Z</versionCreated>
+        <generator/>
+        <!-- BlockType -->
+        <edNote/>
+        <altRep/>
+        <hash/>
+        <origRep/>
+        <incomingFeedId/>
+        <!-- Flex2ExtPropType -->
+        <itemMetaExtProperty/>
+    </itemMeta>
+    <contentMeta>
+        <icon/>
+        <altId/>
+        <rating value="1" scalemin="1" scalemax="10"/>
+        <userInteraction interactions="1"/>
+        <genre>
+            <bag>
+                <bit/>
+            </bag>
+        </genre>
+    </contentMeta>
+    <partMeta>
+        <timeDelim start="" end=""/>
+        <regionDelim/>
+    </partMeta>
+    <assert>
+        <organisationDetails>
+            <hasInstrument symbol=""/>
+        </organisationDetails>
+        <geoAreaDetails>
+            <circle radius="1">
+                <position latitude="1" longitude="1"/>
+            </circle>
+        </geoAreaDetails>
+        <personDetails>
+            <!-- ContactInfoType -->
+            <contactInfo>
+                <!-- AddressType -->
+                <address>
+                    <line/>
+                </address>
+                <web/>
+            </contactInfo>
+        </personDetails>
+    </assert>
+    <derivedFrom/>
+    <contentSet>
+        <inlineData/>
+        <!-- RemoteContentPropType -->
+        <remoteContent>
+            <channel/>
+        </remoteContent>
+    </contentSet>
+</newsItem>
