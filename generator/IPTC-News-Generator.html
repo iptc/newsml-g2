@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"> 
+	<head> 
+		<title>IPTC News Generator: NewsML-G2 2.30</title> 
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Icons from Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+        <!-- link rel="stylesheet" type="text/css" href="newsml-generator-styles.css" / -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head> 
+  
+<body class="html5">
+    <div class="container-fluid">
+        <div class="row" id="header">
+            <div class="col">
+                <h1><span class="image"><img src="https://www.iptc.org/std/NewsML-G2/guidelines/images/iptc_sv_gradient_70x70.jpg" alt="IPTC logo"></span> IPTC News Generator: NewsML-G2 2.30</h1>
+                <p>Fill in the form and see the corresponding NewsML-G2 document as you type.</p>
+                <p>For more information about NewsML-G2, see the <a href="https://iptc.org/standards/NewsML-G2/">IPTC NewsML-G2 pages</a> or the <a href="https://iptc.org/std/NewsML-G2/guidelines/">NewsML-G2 Guidelines</a>.</p>
+            </div>
+        </div>
+        <div id="reactcontainer">
+        </div>
+    </div>
+    <!-- Load React -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js" -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Load our React component. (the text/babel part means that it contains JSX tags) -->
+    <script type="text/babel" src="news_generator.js"></script>
+    <!-- Bootstrap JS components -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body> 
+</html> 
+ 
