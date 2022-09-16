@@ -3001,8 +3001,8 @@ The relationship of properties inside this partMeta and properties at a higher h
       <!-- Note that minOccurs and maxOccurs is not definable for xs:choice within an xs:group but can be when the group is referenced -->
       <xs:sequence>
             <!-- NewsML v2.31: hasInstrument added to EntityDetailsGroup and deprecated in organisationDetails -->
-         <xs:element ref="hasInstrument" minOccurs="0"/>
-         <xs:choice>
+         <xs:element ref="hasInstrument" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:choice minOccurs="0">
             <xs:element ref="personDetails"/>
             <xs:element ref="organisationDetails"/>
             <xs:element ref="geoAreaDetails"/>
