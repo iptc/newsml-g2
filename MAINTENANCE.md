@@ -72,3 +72,10 @@ Steps to create and release an update to the standard:
 6.  Update the http://dev.iptc.org/G2-Approved-Changes page documenting the
     changes made.
 7.  Tag the release in GitHub (git tag N.NN.N, git push --tags)
+
+### To update unit tests:
+
+1.  Create a new dev schema referring to the latest schema version, in the
+    `dev-schema` folder.
+2.  Update the `tests/run-tests.PY` script to refer to the new version.
+3.  Make a new folder in `tests/unit_test_files` and put new tests there.

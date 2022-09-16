@@ -2,7 +2,8 @@
 
 [![IPTC](https://circleci.com/gh/iptc/newsml-g2.svg?style=svg)](https://app.circleci.com/pipelines/github/iptc/newsml-g2)
 
-We have created a set of unit tests for NewsML-G2, based on internal tests that the IPTC NewsML-G2 Working Group have used internally over the years.
+We have created a set of unit tests for NewsML-G2, based on a set of test files
+that the IPTC NewsML-G2 Working Group have used internally over the years.
 
 The tests fulfil multiple purposes:
 
@@ -59,7 +60,7 @@ to this repository.
 
 ## Notes on the tests
 
-NewsML 2.23 introduced the concept of embedding RightsML documenets into
+NewsML 2.23 introduced the concept of embedding RightsML documents into
 NewsML-G2. The tests for this feature under
 `unit_test_files/2.23/should_pass/` therefore require the XML Schema validator
 to validate against both the NewsML-G2 and the RightsML XML Schemas. To allow
