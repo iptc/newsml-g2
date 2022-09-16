@@ -9,22 +9,22 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 
 -->
 <xs:schema xmlns="http://iptc.org/std/nar/2006-10-01/"
-            xmlns:iptc-ms="http://iptc.org/std/mergeschemas/"
-            xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/"
-            xmlns:xs="http://www.w3.org/2001/XMLSchema"
-            targetNamespace="http://iptc.org/std/nar/2006-10-01/"
-            elementFormDefault="qualified"
-            attributeFormDefault="unqualified"
-            version="2.31"
-            xml:lang="en">
+           xmlns:iptc-ms="http://iptc.org/std/mergeschemas/"
+           xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://iptc.org/std/nar/2006-10-01/"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           version="2.30"
+           xml:lang="en">
    <xs:import namespace="http://www.w3.org/XML/1998/namespace"
-               schemaLocation="xml.xsd"/>
+              schemaLocation="xml.xsd"/>
    <!-- For a successfull validation of NewsML-G2 item is is required to place the xml.xsd file in the same folder as the NewsML-G2 XML schema -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.31 XML Schema, document version 1</xs:documentation>
-      <xs:documentation>Approval of this XML Schema version: 2022-10-19</xs:documentation>
+      <xs:documentation>NewsML-G2 2.30 XML Schema, document version 1</xs:documentation>
+      <xs:documentation>Approval of this XML Schema version: 2021-10-20</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2022-09-09</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2021-08-13</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
       <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
@@ -35,7 +35,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
    <xs:element name="conceptItem">
       <xs:annotation>
-         <xs:documentation>An Item containing information about a concept.</xs:documentation>
+         <xs:documentation><p>An Item containing information about a <b>concept</b>.</p><hr /><p>This is a second paragraph.</p></xs:documentation>
       </xs:annotation>
       <xs:complexType>
          <xs:complexContent>
@@ -126,9 +126,9 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
                </xs:element>
             </xs:choice>
             <xs:any namespace="##other"
-                     processContents="lax"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
+                    processContents="lax"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
                </xs:annotation>
@@ -329,17 +329,17 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
          <xs:element ref="hash" minOccurs="0" maxOccurs="unbounded"/>
          <xs:element ref="signal" minOccurs="0" maxOccurs="unbounded"/>
          <xs:element name="remoteContentExtProperty"
-                      type="Flex2ExtPropType"
-                      minOccurs="0"
-                      maxOccurs="unbounded">
+                     type="Flex2ExtPropType"
+                     minOccurs="0"
+                     maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension Property; the semantics are defined by the concept referenced by the rel attribute. The semantics of the Extension Property must have the same scope as the parent property.</xs:documentation>
             </xs:annotation>
          </xs:element>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -777,9 +777,9 @@ was sent</xs:documentation>
                         </xs:element>
                      </xs:choice>
                      <xs:any namespace="##other"
-                              processContents="lax"
-                              minOccurs="0"
-                              maxOccurs="unbounded">
+                             processContents="lax"
+                             minOccurs="0"
+                             maxOccurs="unbounded">
                         <xs:annotation>
                            <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
                         </xs:annotation>
@@ -796,8 +796,8 @@ was sent</xs:documentation>
                <xs:complexType>
                   <xs:sequence>
                      <xs:any namespace="http://iptc.org/std/nar/2006-10-01/"
-                              processContents="lax"
-                              maxOccurs="unbounded">
+                             processContents="lax"
+                             maxOccurs="unbounded">
                         <xs:annotation>
                            <xs:documentation>Any item from the IPTC News Architecture namespace</xs:documentation>
                         </xs:annotation>
@@ -828,10 +828,10 @@ was sent</xs:documentation>
 		#####################################################################################################
 -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.31 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
-      <xs:documentation>Approval of this XML Schema version: 2022-10-19</xs:documentation>
+      <xs:documentation>NewsML-G2 2.30 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
+      <xs:documentation>Approval of this XML Schema version: 2021-10-20</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2022-09-09</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2021-08-13</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
       <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
@@ -842,8 +842,8 @@ was sent</xs:documentation>
       </xs:annotation>
       <xs:sequence>
          <xs:any namespace="http://www.w3.org/2000/09/xmldsig#"
-                  processContents="lax"
-                  minOccurs="0">
+                 processContents="lax"
+                 minOccurs="0">
             <xs:annotation>
                <xs:documentation>W3C's XML Digital Signature</xs:documentation>
             </xs:annotation>
@@ -874,9 +874,9 @@ was sent</xs:documentation>
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="conformance"
-                     type="xs:string"
-                     use="optional"
-                     default="core">
+                    type="xs:string"
+                    use="optional"
+                    default="core">
          <xs:annotation>
             <xs:documentation>The conformance level with which the Item is conformant.</xs:documentation>
          </xs:annotation>
@@ -887,9 +887,9 @@ was sent</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="version"
-                     type="xs:positiveInteger"
-                     use="optional"
-                     default="1">
+                    type="xs:positiveInteger"
+                    use="optional"
+                    default="1">
          <xs:annotation>
             <xs:documentation>The version of the Item. </xs:documentation>
          </xs:annotation>
@@ -1098,9 +1098,9 @@ was sent</xs:documentation>
             <xs:element ref="rightsExpressionData"/>
          </xs:choice>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -1239,9 +1239,9 @@ was sent</xs:documentation>
          <xs:element ref="link" minOccurs="0" maxOccurs="unbounded"/>
          <xs:element ref="itemMetaExtProperty" minOccurs="0" maxOccurs="unbounded"/>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -1486,7 +1486,7 @@ was sent</xs:documentation>
    </xs:annotation>
    <xs:element name="expires" type="DateOptTimePropType">
       <xs:annotation>
-         <xs:documentation>The date and time after which the Item is no longer considered editorially relevant by its provider</xs:documentation>
+         <xs:documentation>The date and time after which the NewsItem is no longer considered valid by its publisher</xs:documentation>
       </xs:annotation>
    </xs:element>
    <xs:annotation>
@@ -1566,9 +1566,9 @@ was sent</xs:documentation>
       </xs:annotation>
       <xs:sequence>
          <xs:any namespace="##any"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Hint and Extension Point for properties from the NAR namespace or provider-specific properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -1648,8 +1648,8 @@ was sent</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="contenttypevariantstandardversion"
-                     type="xs:string"
-                     use="optional">
+                    type="xs:string"
+                    use="optional">
          <xs:annotation>
             <xs:documentation>Version of the standard identified by contenttypevariant.</xs:documentation>
          </xs:annotation>
@@ -1713,9 +1713,9 @@ was sent</xs:documentation>
          <xs:group ref="DescriptiveMetadataCoreGroup" minOccurs="0"/>
          <xs:element ref="contentMetaExtProperty" minOccurs="0" maxOccurs="unbounded"/>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -1736,9 +1736,9 @@ was sent</xs:documentation>
          <xs:group ref="DescriptiveMetadataGroup" minOccurs="0"/>
          <xs:element ref="contentMetaExtProperty" minOccurs="0" maxOccurs="unbounded"/>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -1762,9 +1762,9 @@ was sent</xs:documentation>
             <xs:element ref="altId"/>
          </xs:choice>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -2074,9 +2074,9 @@ was sent</xs:documentation>
       <xs:complexType>
          <xs:sequence>
             <xs:element name="name"
-                         type="IntlStringType"
-                         minOccurs="0"
-                         maxOccurs="unbounded">
+                        type="IntlStringType"
+                        minOccurs="0"
+                        maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>A name for a concept assigned as property value.</xs:documentation>
                </xs:annotation>
@@ -2379,9 +2379,9 @@ The relationship of properties inside this partMeta and properties at a higher h
          <xs:group ref="AdministrativeMetadataGroup"/>
          <xs:group ref="DescriptiveMetadataGroup"/>
          <xs:element name="partMetaExtProperty"
-                      type="Flex2ExtPropType"
-                      minOccurs="0"
-                      maxOccurs="unbounded">
+                     type="Flex2ExtPropType"
+                     minOccurs="0"
+                     maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension Property; the semantics are defined by the concept referenced by the rel attribute. The semantics of the Extension Property must have the same scope as the parent property.</xs:documentation>
             </xs:annotation>
@@ -2390,9 +2390,9 @@ The relationship of properties inside this partMeta and properties at a higher h
          <xs:element ref="edNote" minOccurs="0" maxOccurs="unbounded"/>
          <xs:element ref="link" minOccurs="0" maxOccurs="unbounded"/>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -2471,9 +2471,9 @@ The relationship of properties inside this partMeta and properties at a higher h
       </xs:annotation>
       <xs:sequence>
          <xs:any namespace="##any"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Hint and Extension Point for properties from the NAR namespace or provider-specific properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -2711,9 +2711,9 @@ The relationship of properties inside this partMeta and properties at a higher h
             <xs:group ref="EntityDetailsGroup" minOccurs="0"/>
             <xs:element ref="conceptExtProperty" minOccurs="0" maxOccurs="unbounded"/>
             <xs:any namespace="##other"
-                     processContents="lax"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
+                    processContents="lax"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
                </xs:annotation>
@@ -2999,18 +2999,14 @@ The relationship of properties inside this partMeta and properties at a higher h
          <xs:documentation>A group of properties to define the details of specific entities</xs:documentation>
       </xs:annotation>
       <!-- Note that minOccurs and maxOccurs is not definable for xs:choice within an xs:group but can be when the group is referenced -->
-      <xs:sequence>
-            <!-- NewsML v2.31: hasInstrument added to EntityDetailsGroup and deprecated in organisationDetails -->
-         <xs:element ref="hasInstrument" minOccurs="0"/>
-         <xs:choice>
-            <xs:element ref="personDetails"/>
-            <xs:element ref="organisationDetails"/>
-            <xs:element ref="geoAreaDetails"/>
-            <xs:element ref="POIDetails"/>
-            <xs:element ref="objectDetails"/>
-            <xs:element ref="eventDetails"/>
-         </xs:choice>
-      </xs:sequence>
+      <xs:choice>
+         <xs:element ref="personDetails"/>
+         <xs:element ref="organisationDetails"/>
+         <xs:element ref="geoAreaDetails"/>
+         <xs:element ref="POIDetails"/>
+         <xs:element ref="objectDetails"/>
+         <xs:element ref="eventDetails"/>
+      </xs:choice>
    </xs:group>
    <xs:element name="personDetails">
       <xs:annotation>
@@ -3041,9 +3037,9 @@ The relationship of properties inside this partMeta and properties at a higher h
                </xs:element>
             </xs:choice>
             <xs:any namespace="##other"
-                     processContents="lax"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
+                    processContents="lax"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
                </xs:annotation>
@@ -3054,7 +3050,7 @@ The relationship of properties inside this partMeta and properties at a higher h
       </xs:complexType>
    </xs:element>
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.12: element hasInstrument added to organisationDetails, v2.19: hasInstrument/@rank added, v2.31 hasInstrument deprecated in organisationDetails, added to EntityDetailsGroup</xs:documentation>
+      <xs:documentation>NewsML-G2 2.12: element hasInstrument added to organisationDetails, v2.19: hasInstrument/@rank added</xs:documentation>
    </xs:annotation>
    <xs:element name="organisationDetails">
       <xs:annotation>
@@ -3089,14 +3085,75 @@ The relationship of properties inside this partMeta and properties at a higher h
                      <xs:documentation>Information how to contact the organisation.</xs:documentation>
                   </xs:annotation>
                </xs:element>
-               <!-- NewsML v2.31: hasInstrument added to EntityDetailsGroup and deprecated in organisationDetails -->
-               <xs:element ref="hasInstrument"/>
-               <!-- DEPRECATED (but still allowed) in NewsML v2.31 -->
+               <xs:element name="hasInstrument">
+                  <xs:annotation>
+                     <xs:documentation>Defines a financial instrument which is related to a company</xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                     <xs:attributeGroup ref="commonPowerAttributes"/>
+                     <xs:attribute name="symbol" type="xs:string" use="required">
+                        <xs:annotation>
+                           <xs:documentation>A symbol for the financial instrument</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="symbolsrc" type="QCodeType" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>The  source of the financial instrument symbol - expressed by a QCode</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="symbolsrcuri" type="IRIType" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>The  source of the financial instrument symbol - expressed by a URI</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="market" type="QCodeType" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>A venue in which this financial instrument is traded - expressed by a QCode</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="marketuri" type="IRIType" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>A venue in which this financial instrument is traded - expressed by a URI</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="marketlabel" type="xs:string" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>The label used for the market</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="marketlabelsrc" type="QCodeType" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>The source of the market label - expressed by a QCode</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="marketlabelsrcuri" type="IRIType" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>The source of the market label - expressed by a URI</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="type" type="QCodeListType" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>The type(s) of the financial instrument - expressed by a QCode</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="typeuri" type="IRIListType" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>The type(s) of the financial instrument - expressed by a URI</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="rank" type="xs:nonNegativeInteger" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>Indicates the relative importance among financial instruments of the same type.</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:anyAttribute namespace="##other"/>
+                  </xs:complexType>
+               </xs:element>
             </xs:choice>
             <xs:any namespace="##other"
-                     processContents="lax"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
+                    processContents="lax"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
                </xs:annotation>
@@ -3104,73 +3161,6 @@ The relationship of properties inside this partMeta and properties at a higher h
          </xs:sequence>
          <xs:attributeGroup ref="commonPowerAttributes"/>
          <xs:anyAttribute namespace="##other" processContents="lax"/>
-      </xs:complexType>
-   </xs:element>
-   <xs:annotation>
-      <xs:documentation>NewsML-G2 2.12: element hasInstrument added to organisationDetails, v2.19: hasInstrument/@rank added, v2.31: moved to EntityDetailsGroup and reprecated in organisationDetails.</xs:documentation>
-   </xs:annotation>
-   <xs:element name="hasInstrument">
-      <xs:annotation>
-         <xs:documentation>Defines a financial instrument which is related to a company</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:attributeGroup ref="commonPowerAttributes"/>
-         <xs:attribute name="symbol" type="xs:string" use="required">
-            <xs:annotation>
-               <xs:documentation>A symbol for the financial instrument</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="symbolsrc" type="QCodeType" use="optional">
-            <xs:annotation>
-               <xs:documentation>The  source of the financial instrument symbol - expressed by a QCode</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="symbolsrcuri" type="IRIType" use="optional">
-            <xs:annotation>
-               <xs:documentation>The  source of the financial instrument symbol - expressed by a URI</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="market" type="QCodeType" use="optional">
-            <xs:annotation>
-               <xs:documentation>A venue in which this financial instrument is traded - expressed by a QCode</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="marketuri" type="IRIType" use="optional">
-            <xs:annotation>
-               <xs:documentation>A venue in which this financial instrument is traded - expressed by a URI</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="marketlabel" type="xs:string" use="optional">
-            <xs:annotation>
-               <xs:documentation>The label used for the market</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="marketlabelsrc" type="QCodeType" use="optional">
-            <xs:annotation>
-               <xs:documentation>The source of the market label - expressed by a QCode</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="marketlabelsrcuri" type="IRIType" use="optional">
-            <xs:annotation>
-               <xs:documentation>The source of the market label - expressed by a URI</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="type" type="QCodeListType" use="optional">
-            <xs:annotation>
-               <xs:documentation>The type(s) of the financial instrument - expressed by a QCode</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="typeuri" type="IRIListType" use="optional">
-            <xs:annotation>
-               <xs:documentation>The type(s) of the financial instrument - expressed by a URI</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:attribute name="rank" type="xs:nonNegativeInteger" use="optional">
-            <xs:annotation>
-               <xs:documentation>Indicates the relative importance among financial instruments of the same type.</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
-         <xs:anyAttribute namespace="##other"/>
       </xs:complexType>
    </xs:element>
    <xs:annotation>
@@ -3244,9 +3234,9 @@ The relationship of properties inside this partMeta and properties at a higher h
                </xs:element>
             </xs:choice>
             <xs:any namespace="##other"
-                     processContents="lax"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
+                    processContents="lax"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
                </xs:annotation>
@@ -3315,9 +3305,9 @@ The relationship of properties inside this partMeta and properties at a higher h
                </xs:annotation>
             </xs:element>
             <xs:any namespace="##other"
-                     processContents="lax"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
+                    processContents="lax"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
                </xs:annotation>
@@ -3348,9 +3338,9 @@ The relationship of properties inside this partMeta and properties at a higher h
                </xs:annotation>
             </xs:element>
             <xs:any namespace="##other"
-                     processContents="lax"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
+                    processContents="lax"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
                </xs:annotation>
@@ -3535,9 +3525,9 @@ so on. May also hold accreditation information</xs:documentation>
                         </xs:element>
                         <xs:element ref="itemClass" minOccurs="0"/>
                         <xs:element name="assignedTo"
-                                     type="Flex1PartyPropType"
-                                     minOccurs="0"
-                                     maxOccurs="unbounded">
+                                    type="Flex1PartyPropType"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded">
                            <xs:annotation>
                               <xs:documentation>The party which is assigned to cover the event and produce the planned G2 item.</xs:documentation>
                            </xs:annotation>
@@ -3548,26 +3538,26 @@ so on. May also hold accreditation information</xs:documentation>
                            </xs:annotation>
                         </xs:element>
                         <xs:element name="service"
-                                     type="QualPropType"
-                                     minOccurs="0"
-                                     maxOccurs="unbounded">
+                                    type="QualPropType"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded">
                            <xs:annotation>
                               <xs:documentation>An editorial service by which the planned G2 item will be distributed.</xs:documentation>
                            </xs:annotation>
                         </xs:element>
                         <xs:element name="edNote"
-                                     type="BlockType"
-                                     minOccurs="0"
-                                     maxOccurs="unbounded">
+                                    type="BlockType"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded">
                            <xs:annotation>
                               <xs:documentation>Additional natural language information about the planned coverage addressed to the editorial people receiving and processing the item.</xs:documentation>
                            </xs:annotation>
                         </xs:element>
                         <xs:group ref="DescriptiveMetadataGroup" minOccurs="0"/>
                         <xs:any namespace="##other"
-                                 processContents="lax"
-                                 minOccurs="0"
-                                 maxOccurs="unbounded">
+                                processContents="lax"
+                                minOccurs="0"
+                                maxOccurs="unbounded">
                            <xs:annotation>
                               <xs:documentation>Extension point for any provider specific properties for news coverage - from any other namespace</xs:documentation>
                            </xs:annotation>
@@ -3666,9 +3656,9 @@ so on. May also hold accreditation information</xs:documentation>
       </xs:annotation>
       <xs:sequence>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -3759,9 +3749,9 @@ so on. May also hold accreditation information</xs:documentation>
             </xs:element>
          </xs:choice>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -3814,17 +3804,17 @@ so on. May also hold accreditation information</xs:documentation>
             </xs:complexType>
          </xs:element>
          <xs:element name="locality"
-                      type="Flex1RolePropType"
-                      minOccurs="0"
-                      maxOccurs="unbounded">
+                     type="Flex1RolePropType"
+                     minOccurs="0"
+                     maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>A city/town/village etc. part of the address.</xs:documentation>
             </xs:annotation>
          </xs:element>
          <xs:element name="area"
-                      type="Flex1RolePropType"
-                      minOccurs="0"
-                      maxOccurs="unbounded">
+                     type="Flex1RolePropType"
+                     minOccurs="0"
+                     maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>A subdivision of a country part of the address.</xs:documentation>
             </xs:annotation>
@@ -3978,18 +3968,18 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                         </xs:annotation>
                      </xs:element>
                      <xs:element name="service"
-                                  type="QualPropType"
-                                  minOccurs="0"
-                                  maxOccurs="unbounded">
+                                 type="QualPropType"
+                                 minOccurs="0"
+                                 maxOccurs="unbounded">
                         <xs:annotation>
                            <xs:documentation>An editorial service by which the planned G2 item(s) will be distributed.</xs:documentation>
                         </xs:annotation>
                      </xs:element>
                      <xs:group ref="DescriptiveMetadataGroup" minOccurs="0"/>
                      <xs:element name="edNote"
-                                  type="BlockType"
-                                  minOccurs="0"
-                                  maxOccurs="unbounded">
+                                 type="BlockType"
+                                 minOccurs="0"
+                                 maxOccurs="unbounded">
                         <xs:annotation>
                            <xs:documentation>Additional natural language information about the planned coverage addressed to the editorial people receiving and processing the item.</xs:documentation>
                         </xs:annotation>
@@ -4012,17 +4002,17 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                      <xs:element ref="audience" minOccurs="0" maxOccurs="unbounded"/>
                      <xs:element ref="exclAudience" minOccurs="0" maxOccurs="unbounded"/>
                      <xs:element name="planningExtProperty"
-                                  type="Flex2ExtPropType"
-                                  minOccurs="0"
-                                  maxOccurs="unbounded">
+                                 type="Flex2ExtPropType"
+                                 minOccurs="0"
+                                 maxOccurs="unbounded">
                         <xs:annotation>
                            <xs:documentation>Extension Property; the semantics are defined by the concept referenced by the rel attribute. The semantics of the Extension Property must have the same scope as the parent property.</xs:documentation>
                         </xs:annotation>
                      </xs:element>
                      <xs:any namespace="##other"
-                              processContents="lax"
-                              minOccurs="0"
-                              maxOccurs="unbounded">
+                             processContents="lax"
+                             minOccurs="0"
+                             maxOccurs="unbounded">
                         <xs:annotation>
                            <xs:documentation>Extension point for any provider specific properties for news coverage planning - from any other namespace</xs:documentation>
                         </xs:annotation>
@@ -4043,17 +4033,17 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
             </xs:element>
             <xs:element ref="delivery" minOccurs="0"/>
             <xs:element name="newsCoverageExtProperty"
-                         type="Flex2ExtPropType"
-                         minOccurs="0"
-                         maxOccurs="unbounded">
+                        type="Flex2ExtPropType"
+                        minOccurs="0"
+                        maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension Property; the semantics are defined by the concept referenced by the rel attribute. The semantics of the Extension Property must have the same scope as the parent property.</xs:documentation>
                </xs:annotation>
             </xs:element>
             <xs:any namespace="##other"
-                     processContents="lax"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
+                    processContents="lax"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension point for any provider specific properties for news coverage - from any other namespace</xs:documentation>
                </xs:annotation>
@@ -4114,17 +4104,17 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       <xs:complexType>
          <xs:sequence>
             <xs:element name="deliveredItemRef"
-                         type="Link1Type"
-                         minOccurs="1"
-                         maxOccurs="unbounded">
+                        type="Link1Type"
+                        minOccurs="1"
+                        maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>A reference to a G2 item which has been delivered under this news coverage definition.</xs:documentation>
                </xs:annotation>
             </xs:element>
             <xs:any namespace="##other"
-                     processContents="lax"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
+                    processContents="lax"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension point for any provider specific properties for news coverage delivery - from any other namespace</xs:documentation>
                </xs:annotation>
@@ -4544,8 +4534,8 @@ value.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="contenttypevariantstandardversion"
-                     type="xs:string"
-                     use="optional">
+                    type="xs:string"
+                    use="optional">
          <xs:annotation>
             <xs:documentation>Version of the standard identified by contenttypevariant.</xs:documentation>
          </xs:annotation>
@@ -5315,9 +5305,9 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
          <xs:group ref="ConceptDefinitionGroup" minOccurs="0"/>
          <xs:group ref="ConceptRelationshipsGroup" minOccurs="0"/>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -5339,9 +5329,9 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
          <xs:group ref="ConceptDefinitionGroup" minOccurs="0"/>
          <xs:group ref="ConceptRelationshipsGroup" minOccurs="0"/>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -5422,9 +5412,9 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
          <xs:group ref="ConceptRelationshipsGroup" minOccurs="0"/>
          <xs:element ref="personDetails" minOccurs="0"/>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -5444,9 +5434,9 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
          <xs:group ref="ConceptRelationshipsGroup" minOccurs="0"/>
          <xs:element ref="organisationDetails" minOccurs="0"/>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -5467,9 +5457,9 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
          <xs:group ref="ConceptRelationshipsGroup" minOccurs="0"/>
          <xs:element ref="geoAreaDetails" minOccurs="0"/>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -5489,9 +5479,9 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
          <xs:group ref="ConceptRelationshipsGroup" minOccurs="0"/>
          <xs:element ref="POIDetails" minOccurs="0"/>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -5514,9 +5504,9 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
             <xs:element ref="organisationDetails"/>
          </xs:choice>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -5591,9 +5581,9 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
             <xs:element ref="POIDetails"/>
          </xs:choice>
          <xs:any namespace="##other"
-                  processContents="lax"
-                  minOccurs="0"
-                  maxOccurs="unbounded">
+                 processContents="lax"
+                 minOccurs="0"
+                 maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
             </xs:annotation>
@@ -5624,9 +5614,9 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
             <xs:element ref="span"/>
             <xs:element ref="ruby"/>
             <xs:any namespace="##other"
-                     processContents="lax"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
+                    processContents="lax"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
                </xs:annotation>
@@ -5694,9 +5684,9 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
             <xs:element ref="span"/>
             <xs:element ref="ruby"/>
             <xs:any namespace="##other"
-                     processContents="lax"
-                     minOccurs="0"
-                     maxOccurs="unbounded">
+                    processContents="lax"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
                <xs:annotation>
                   <xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
                </xs:annotation>

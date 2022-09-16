@@ -48,21 +48,24 @@ Steps to create and release an update to the standard:
     supported by the Core version of the standard)
 10. Run `release-tools/test-newsml-examples.sh` which runs `xmllint` over the
     examples folder to make sure no errors have been introduced.
-11. Use XML Spy to create XML Schema documentation from the master XSD schema
+11. Run `tests/runtests.py` to run the unit tests and make sure that the new
+    version doesn't break any old test cases. You should also write new unit
+    tests for the changes being added, if you haven't already.
+12. Use XML Spy to create XML Schema documentation from the mAster XSD schema
     file and the "individual" schemas. Save them to
     `specification/XML-Schema-Doc-Power`.
-12. Print-to-PDF change requests from dev.iptc.org for inclusion in release pack
+13. Print-to-PDF change requests from dev.iptc.org for inclusion in release pack
     to be sent to delegates, if necessary.
-13. Run the script to move all files to the release folder and create ZIP files
+14. Run the script to move all files to the release folder and create ZIP files
     of the release: `release-tools/create-release.sh`
-14. Commit and push all changes to GitHub: `git push origin -u my-new-branch`
+15. Commit and push all changes to GitHub: `git push origin -u my-new-branch`
     (Our `.gitignore` file already suppresses sending ZIP files to GitHub.)
-15. Create a pull request from the branch on GitHub.com.
+16. Create a pull request from the branch on GitHub.com.
 
 ### After the Standards Committee approves the new version:
 
 1.  Update the APPROVED_DATE in `release-tools/newsmlg2-config-vars.sh`
-2.  Run the above steps 3, 5, 7, 8, 10, 11, 13, 14 again to update files with
+2.  Run the above steps 3, 5, 7, 8, 10, 12, 14, 15 again to update files with
     the approval date (this should be quick, just running scripts, except for
     the XML Spy documentation step)
 3.  Merge the pull request into master on GitHub
@@ -71,7 +74,7 @@ Steps to create and release an update to the standard:
     Schema documentation.
 6.  Update the http://dev.iptc.org/G2-Approved-Changes page documenting the
     changes made.
-7.  Tag the release in GitHub (git tag N.NN.N, git push --tags)
+7.  Tag the release in GitHub: `git tag N.NN.N`, `git push --tags`)
 
 ### To update unit tests:
 

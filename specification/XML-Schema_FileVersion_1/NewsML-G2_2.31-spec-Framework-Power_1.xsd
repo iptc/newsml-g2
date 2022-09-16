@@ -739,7 +739,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 	</xs:annotation>
 	<xs:element name="expires" type="DateOptTimePropType">
 		<xs:annotation>
-			<xs:documentation>The date and time after which the NewsItem is no longer considered valid by its publisher</xs:documentation>
+			<xs:documentation>The date and time after which the Item is no longer considered editorially relevant by its provider</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:annotation>
