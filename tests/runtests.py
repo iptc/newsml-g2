@@ -37,11 +37,11 @@ DIRNAME = os.path.dirname(__file__)
 
 NEWSMLG2_SCHEMA = os.path.join(
     DIRNAME, '..', 'specification',
-    'NewsML-G2_2.30-spec-All-Power.xsd'
+    'NewsML-G2_2.31-spec-All-Power.xsd'
 )
 NEWSMLG2_DEV_SCHEMA = os.path.join(
     DIRNAME, '..', 'dev-schema',
-    'NewsML-G2dev_0.5_nar230.xsd'
+    'NewsML-G2dev_0.6_nar231.xsd'
 )
 
 TEST_FILES_FOLDER = os.path.join(
@@ -56,6 +56,7 @@ SCHEMA_VERSIONS = {
         "schema_file": NEWSMLG2_DEV_SCHEMA,
         "should_pass_folders": [
             os.path.join(TEST_FILES_FOLDER, 'dev', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.31', 'should_pass'),
             os.path.join(TEST_FILES_FOLDER, '2.30', 'should_pass'),
             os.path.join(TEST_FILES_FOLDER, '2.29', 'should_pass'),
             os.path.join(TEST_FILES_FOLDER, '2.28', 'should_pass'),
@@ -83,9 +84,41 @@ SCHEMA_VERSIONS = {
             os.path.join(TEST_FILES_FOLDER, 'dev', 'should_fail')
         ],
     },
-    "2.30": {
+    "2.31": {
         "schema_file": os.path.join(
-            DIRNAME, '..', 'specification', 'NewsML-G2_2.30-spec-All-Power.xsd'
+            DIRNAME, '..', 'specification', 'NewsML-G2_2.31-spec-All-Power.xsd'
+        ),
+        "should_pass_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.30', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.29', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.28', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.27', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.26', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.25', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.24', 'should_pass'),
+            # os.path.join(TEST_FILES_FOLDER, '2.23', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.22', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.21', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.20', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.19', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.18', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.17', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.16', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.15', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.14', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.13', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.12', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.11', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.10', 'should_pass'),
+            os.path.join(TEST_FILES_FOLDER, '2.9', 'should_pass')
+        ],
+        "should_fail_folders": [
+            os.path.join(TEST_FILES_FOLDER, '2.31', 'should_fail')
+        ],
+     },
+     "2.30": {
+        "schema_file": os.path.join(
+            SCHEMA_FILES_FOLDER, 'NewsML-G2_2.30-spec-All-Power.xsd'
         ),
         "should_pass_folders": [
             os.path.join(TEST_FILES_FOLDER, '2.30', 'should_pass'),

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packageItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:rtr="http://other.com/"
+    guid="simplest-test"
+    standard="NewsML-G2"
+    standardversion="2.29"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_35.xml" />
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        <provider qcode="nprov:IPTC" />
+        <versionCreated>2020-06-22T12:00:00+03:00</versionCreated>
+    </itemMeta>
+    <!-- in 2022 we realised that not all instruments are associated with organisations.
+         This construct technically validates but only because we have an xs:any extension
+         point on assert. We have deprecated hasInstrument on organisationDetails and
+         moved hasInstrument to assert for 2.31.
+     -->
+    <assert qcode="P:18040196349">
+        <name>Invesco Capital Appreciation Fund;R6</name>
+        <type qcode="cptType:97"/>
+        <hasInstrument symbol="OPTFX.O" type="symType:RIC" symbolsrc="symSrc:RFT"/>
+        <hasInstrument symbol="US00141G7328" symbolsrc="symSrc:ISO" type="symType:ISIN"/>
+        <anyOtherElementAlsoPermittedHere />
+    </assert>
+</packageItem>
