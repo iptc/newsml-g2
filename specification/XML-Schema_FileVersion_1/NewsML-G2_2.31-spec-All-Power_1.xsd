@@ -19,7 +19,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
             xml:lang="en">
    <xs:import namespace="http://www.w3.org/XML/1998/namespace"
                schemaLocation="xml.xsd"/>
-   <!-- For a successfull validation of NewsML-G2 item is is required to place the xml.xsd file in the same folder as the NewsML-G2 XML schema -->
+   <!-- For a successful validation of NewsML-G2 items, the xml.xsd file must be placed in the same folder as the NewsML-G2 XML schema -->
    <xs:annotation>
       <xs:documentation>NewsML-G2 2.31 XML Schema, document version 1</xs:documentation>
       <xs:documentation>Approval of this XML Schema version: 2022-10-19</xs:documentation>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<newsItem 
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ./NewsML-G2_2.31-spec-All-Power.xsd"
+    guid="urn:newsml:acmenews.com:20161019:201003230594296001"
+    version="11" 
+    standard="NewsML-G2" 
+    standardversion="2.31" 
+    conformance="power"
+    xml:lang="en-US">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
+    <catalogRef
+        href="http://www.acmenews.com/NewsML/acmenews_NewsML-G2_Catalog_1.xml" />
+    <rightsInfo>
+        <copyrightHolder uri="http://www.acmenews.com" />
+        <copyrightNotice>Copyright 2017-18 - Acme Newswire</copyrightNotice>
+        <usageTerms>Not for distribution in the United
+            States</usageTerms>
+    </rightsInfo>
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        <provider uri="http://www.acmenews.com" />
+        <versionCreated>2018-10-19T14:23:00Z</versionCreated>
+        <firstCreated>2016-10-19T13:15:00Z</firstCreated>
+        <pubStatus qcode="stat:usable" />
+    </itemMeta>
+    <contentMeta>
+        <contentCreated>2016-10-19T13:00:00Z</contentCreated>
+        <subject type="cpnat:organisation" literal="Acme Widget">
+            <name>Acme Widget Sales Inc</name>
+        </subject>
+            <headline>
+            Acme Widgets announces annual results
+        </headline>
+        <description role="ANDescRole:abstract">
+            Acme Widgets (XTSE:AWG), a leader in the
+            production of quality metal widgets, announced a six per cent increase in
+            profits....
+        </description>
+        <language tag="en-US" />
+    </contentMeta>
+    <assert literal="Acme Widget">
+        <organisationDetails>
+            <contactInfo>
+                <phone>+1 (416) 922 5834</phone>
+                <email>info@acmewidgets.com</email>
+            </contactInfo>
+            <hasInstrument 
+                symbol="AWG" 
+                symbolsrc="symsrc:MDNA" 
+                market="mic:XTSE" 
+                marketlabel="TSX" 
+                marketlabelsrc="mlsrc:MDNA" 
+                type="instrtype:share" />
+        </organisationDetails>
+    </assert>
+    <contentSet>
+        <inlineXML contenttype="application/xhtml+xml">
+        <!-- Story text -->
+        </inlineXML>
+    </contentSet>
+</newsItem>
