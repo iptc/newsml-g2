@@ -39,16 +39,17 @@ NEWSMLG2_SCHEMA = os.path.join(
     DIRNAME, '..', 'specification',
     'NewsML-G2_2.31-spec-All-Power.xsd'
 )
-NEWSMLG2_DEV_SCHEMA = os.path.join(
-    DIRNAME, '..', 'dev-schema',
-    'NewsML-G2dev_0.6_nar231.xsd'
-)
 
 TEST_FILES_FOLDER = os.path.join(
     DIRNAME, 'unit_test_files'
 )
 SCHEMA_FILES_FOLDER = os.path.join(
     DIRNAME, 'schema_versions'
+)
+
+NEWSMLG2_DEV_SCHEMA = os.path.join(
+    SCHEMA_FILES_FOLDER, 
+    'NewsML-G2dev_0.6_nar231.xsd'
 )
 
 SCHEMA_VERSIONS = {
