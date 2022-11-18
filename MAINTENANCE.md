@@ -51,7 +51,7 @@ Steps to create and release an update to the standard:
 11. Run `tests/runtests.py` to run the unit tests and make sure that the new
     version doesn't break any old test cases. You should also write new unit
     tests for the changes being added, if you haven't already.
-12. Use XML Spy to create XML Schema documentation from the mAster XSD schema
+12. Use XML Spy to create XML Schema documentation from the master XSD schema
     file and the "individual" schemas. Save them to
     `specification/XML-Schema-Doc-Power`.
 13. Print-to-PDF change requests from dev.iptc.org for inclusion in release pack
