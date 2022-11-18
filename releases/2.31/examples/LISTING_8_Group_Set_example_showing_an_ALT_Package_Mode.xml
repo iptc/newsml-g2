@@ -1,0 +1,58 @@
+<groupSet root="G1">
+    <group id="G1" role="group:main">
+        <itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-A"
+            contenttype="application/vnd.iptc.g2.newsitem+xml"
+            size="2345">
+            <itemClass qcode="ninat:text" />
+            <title>Obama annonce son équipe</title>
+        </itemRef>
+        <itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-B"
+            contenttype="application/vnd.iptc.g2.newsitem+xml"
+            size="1503">
+            <itemClass qcode="ninat:text" />
+            <title>Clinton reprend son rôle de chef de la santé</title>
+        </itemRef>
+        <groupRef idref="G2" />
+    </group>
+    <group id="G2" role="group:video" mode="pgrmod:alt">
+        <groupRef idref="G3" />
+        <groupRef idref="G4" />
+        <groupRef idref="G5" />
+    </group>
+    <group id="G3" role="group:mdpi">
+        <itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-C"
+            contenttype="video/mp4" width="480" height="320">
+            <itemClass qcode="ninat:video" />
+            <title>Barack Obama arrive à Washington</title>
+        </itemRef>
+        <itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-D"
+            contenttype="video/mp4" width="480" height="320">
+            <itemClass qcode="ninat:video" />
+            <title>Hillary Clinton à une rassemblement à New York</title>
+        </itemRef>
+    </group>
+    <group id="G4" role="group:hdpi">
+        <itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-E"
+            contenttype="video/mp4" width="720" height="480">
+            <itemClass qcode="ninat:video" />
+            <title>Barack Obama arrive à Washington</title>
+        </itemRef>
+        <itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-F"
+            contenttype="video/mp4" width="720" height="480">
+            <itemClass qcode="ninat:video" />
+            <title>Hillary Clinton à une rassemblement à New York</title>
+        </itemRef>
+    </group>
+    <group id="G5" role="group:xhdpi">
+        <itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-G"
+            contenttype="video/mp4" width="960" height="640">
+            <itemClass qcode="ninat:video" />
+            <title>Barack Obama arrive à Washington</title>
+        </itemRef>
+        <itemRef residref="urn:newsml:iptc.org:20081007:tutorial—item-H"
+            contenttype="video/mp4" width="960" height="640">
+            <itemClass qcode="ninat:video" />
+            <title>Hillary Clinton à une rassemblement à New York</title>
+        </itemRef>
+    </group>
+</groupSet>

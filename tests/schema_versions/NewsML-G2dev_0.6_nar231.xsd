@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+IPTC - International Press Telecommunications Council
+25 Southampton Buildings, London WC2A 1AL, United Kingdom
+www.iptc.org
+This document is published under the Creative Commons Attribution 4.0 licence.
+See the full license agreement at http://creativecommons.org/licenses/by/4.0/
+By obtaining, using and/or copying this document, you (the licensee) agree that
+you have read, understood, and will comply with the terms and conditions of the
+license.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="https://iptc.org/std-dev/nar/" xmlns:nar="http://iptc.org/std/nar/2006-10-01/" targetNamespace="https://iptc.org/std-dev/nar/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.6" xml:lang="en">
+	<xs:annotation>
+		<xs:documentation>This XML Schema is created for a NewsML-G2 development namespace with the URI https://iptc.org/std-dev/nar/. It imports a NewsML-G2 2.x XML Schema and its elements build on attributes, attribute groups and elements defined by it.
+		</xs:documentation>
+		<xs:documentation>NewsML-G2 Dev 0.6 XML Schema - UNDER CONSTRUCTION</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document revision: 2022-10-11</xs:documentation>
+		<xs:documentation>Last change: update to be based on 2.31 schema</xs:documentation>
+		<xs:documentation>Created by Michael Steidl</xs:documentation>
+		<xs:documentation>Revised by Brendan Quinn</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://iptc.org/std/nar/2006-10-01/" schemaLocation="NewsML-G2_2.31-spec-All-Power.xsd"/>
+	<!-- The NewsMLG2 schema contain the NAR building blocks used for experimental NewsML-G2 -->
+	<!-- ========================================================================================= -->
+	<!--   Advice element: a wrapper of child properties, is setting role and environment -->
+	<xs:element name="advice">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="importance" type="nar:Flex1ConceptPropType" minOccurs="0"/>
+				<xs:element name="lifetime" type="nar:Flex1ConceptPropType" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="nar:commonPowerAttributes"/>
+			<xs:attribute name="role" type="nar:QCodeType">
+				<xs:annotation>
+					<xs:documentation>A refinement of what kind of alternative is provided by this identifier - expressed by a QCode</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="roleuri" type="nar:IRIType">
+				<xs:annotation>
+					<xs:documentation>A refinement of what kind of alternative is provided by this identifier - expressed by an URI</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="environment" type="nar:QCodeListType" use="optional">
+				<xs:annotation>
+					<xs:documentation> A qualifier which indicates the business environment in which the identifier can be used to access the content - expressed by a QCode</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="environmenturi" type="nar:IRIListType" use="optional">
+				<xs:annotation>
+					<xs:documentation> A qualifier which indicates the business environment in which the identifier can be used to access the content - expressed by a URI</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- ========================================================================================= -->
+</xs:schema>

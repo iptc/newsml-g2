@@ -58,7 +58,7 @@ class NewsGenerator extends React.Component {
         newsItem.setAttribute('guid', 'urn:newsml:testnewsprovider.com:'+todaysDate+':'+slugforguid);
         newsItem.setAttribute('version', '1');
         newsItem.setAttribute('standard', 'NewsML-G2');
-        newsItem.setAttribute('standardversion', '2.30');
+        newsItem.setAttribute('standardversion', '2.31');
         newsItem.setAttribute('conformance', 'power');
         if (this.state.qcodeuri == 'qcodes') {
             var catalogRef = document.createElementNS('http://iptc.org/std/nar/2006-10-01/', 'catalogRef');
