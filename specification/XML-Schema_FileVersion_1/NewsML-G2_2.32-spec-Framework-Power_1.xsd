@@ -224,23 +224,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 								<xs:documentation>The URI which identifies the scheme.</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
-						<xs:attribute name="authority" type="IRIType" use="optional">
-							<xs:annotation>
-								<xs:documentation>Defines the authority controlling this scheme</xs:documentation>
-							</xs:annotation>
-						</xs:attribute>
-						<!-- ====== authoritystatus ====== (added in NewsML-G2 2.32)-->
-   						<xs:attribute name="authoritystatus" type="QCodeType" use="optional">
-							<xs:annotation>
-								<xs:documentation>The status of the Authority associated with the Scheme - expressed as a QCode.</xs:documentation>
-							</xs:annotation>
-						</xs:attribute>
-						<!-- ====== authoritystatusuri ====== (added in NewsML-G2 2.32)-->
-   						<xs:attribute name="authoritystatusuri" type="IRIType" use="optional">
-							<xs:annotation>
-								<xs:documentation>The status of the Authority associated with the Scheme - expressed as a URI.</xs:documentation>
-							</xs:annotation>
-						</xs:attribute>
+						<xs:attributeGroup ref="authorityAttributes"/>
 						<!-- ====== schemecreated ====== (NewsML-G2 2.29 added)-->
 						<xs:attribute name="schemecreated" type="DateOptTimeType" use="optional">
 							<xs:annotation>
@@ -273,23 +257,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 					<xs:documentation>Defines the location of the catalog as remote resource. (Should be the same as the URL which is used with the href attribute of a catalogRef in an item.)</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="authority" type="IRIType" use="optional">
-				<xs:annotation>
-					<xs:documentation>Defines the authority controlling this catalog</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<!-- ====== authoritystatus ====== (added in NewsML-G2 2.32)-->
-			<xs:attribute name="authoritystatus" type="QCodeType" use="optional">
-				<xs:annotation>
-					<xs:documentation>The status of the Authority associated with the Scheme - expressed as a QCode.</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<!-- ====== authoritystatusuri ====== (added in NewsML-G2 2.32)-->
-			<xs:attribute name="authoritystatusuri" type="IRIType" use="optional">
-				<xs:annotation>
-					<xs:documentation>The status of the Authority associated with the Scheme - expressed as a URI.</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
+			<xs:attributeGroup ref="authorityAttributes"/>
  			<xs:attribute name="guid" type="xs:anyURI" use="optional">
 				<xs:annotation>
 					<xs:documentation>Globally Unique Identifier for this kind of catalog as managed by a provider. A version attribute should be used with it.</xs:documentation>
@@ -3531,6 +3499,28 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 					<xs:enumeration value="rtl"/>
 				</xs:restriction>
 			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:annotation>
+		<xs:documentation>NewsML-G2 2.32: authorityAttributes added</xs:documentation>
+	</xs:annotation>
+	<xs:attributeGroup name="authorityAttributes">
+		<xs:attribute name="authority" type="IRIType" use="optional">
+			<xs:annotation>
+				<xs:documentation>Defines the authority controlling this catalog</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- ====== authoritystatus ====== (added in NewsML-G2 2.32)-->
+		<xs:attribute name="authoritystatus" type="QCodeType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The status of the Authority associated with the Scheme - expressed as a QCode.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- ====== authoritystatusuri ====== (added in NewsML-G2 2.32)-->
+		<xs:attribute name="authoritystatusuri" type="IRIType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The status of the Authority associated with the Scheme - expressed as a URI.</xs:documentation>
+			</xs:annotation>
 		</xs:attribute>
 	</xs:attributeGroup>
 	<xs:annotation>
