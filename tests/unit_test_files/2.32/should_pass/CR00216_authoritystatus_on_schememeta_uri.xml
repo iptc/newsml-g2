@@ -22,7 +22,7 @@
     <pubStatus qcode="stat:usable"/>
   </itemMeta>
   <schemeMeta preferredalias="a1312cat" uri="http://cvx.iptc.org/anpa1312-category/" 
-    authoritystatusuri="https://cv.iptc.org/newscodes/authoritystatus/nocurrentauthority" 
+    authoritystatusuri="http://cv.iptc.org/newscodes/authoritystatus/nocurrentauthority" 
     schemecreated="2009-10-22T12:00:00+00:00"
     schememodified="2020-05-12T12:00:00+00:00"
     schemeretired="2020-05-12T12:00:00+00:00">

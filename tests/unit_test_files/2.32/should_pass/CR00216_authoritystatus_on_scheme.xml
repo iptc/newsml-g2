@@ -6,7 +6,7 @@
         <name xml:lang="en-GB">Alternative Identifer Role</name>
     </scheme>
     <!-- URI version -->
-    <scheme alias="a1312cat" uri="http://cvx.iptc.org/anpa1312-category/" authoritystatusuri="https://cv.iptc.org/newscodes/authoritystatus/nocurrentauthority" modified="2021-09-24T12:00:00+00:00">
+    <scheme alias="a1312cat" uri="http://cvx.iptc.org/anpa1312-category/" authoritystatusuri="http://cv.iptc.org/newscodes/authoritystatus/nocurrentauthority" modified="2021-09-24T12:00:00+00:00">
         <definition xml:lang="en-GB">The category code of the story may be any of the single alpha characters from the vocabulary. (ANPA 1312 specs, section J)</definition>
         <name xml:lang="en-GB">ANPA 1312 Category Codes</name>
         <note xml:lang="en-GB">Body owning this CV: This vocabulary was previously owned by NAA</note>
