@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="http://iptc.org/std/nar/2006-10-01/"
+    additionalInfo="http://www.iptc.org/goto?G2cataloginfo"
+    authoritystatusuri="http://cv.iptc.org/newscodes/authoritystatus/nocurrentauthority">
+    <!-- typical IPTC-controlled scheme with authority set -->
+    <scheme alias="altidrole" uri="http://cv.iptc.org/newscodes/altidrole/" authority="https://iptc.org/" modified="2019-09-13T12:00:00+00:00">
+        <definition xml:lang="en-GB">Role of an alternative identifier.</definition>
+        <name xml:lang="en-GB">Alternative Identifer Role</name>
+    </scheme>
+</catalog>

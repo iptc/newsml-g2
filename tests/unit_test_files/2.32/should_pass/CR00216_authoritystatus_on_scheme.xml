@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="http://iptc.org/std/nar/2006-10-01/" additionalInfo="http://www.iptc.org/goto?G2cataloginfo">
+    <!-- typical IPTC-controlled scheme with authority set -->
+    <scheme alias="altidrole" uri="http://cv.iptc.org/newscodes/altidrole/" authority="https://iptc.org/" modified="2019-09-13T12:00:00+00:00">
+        <definition xml:lang="en-GB">Role of an alternative identifier.</definition>
+        <name xml:lang="en-GB">Alternative Identifer Role</name>
+    </scheme>
+    <!-- URI version -->
+    <scheme alias="a1312cat" uri="http://cvx.iptc.org/anpa1312-category/" authoritystatusuri="https://cv.iptc.org/newscodes/authoritystatus/nocurrentauthority" modified="2021-09-24T12:00:00+00:00">
+        <definition xml:lang="en-GB">The category code of the story may be any of the single alpha characters from the vocabulary. (ANPA 1312 specs, section J)</definition>
+        <name xml:lang="en-GB">ANPA 1312 Category Codes</name>
+        <note xml:lang="en-GB">Body owning this CV: This vocabulary was previously owned by NAA</note>
+    </scheme>
+    <!-- QCode version -->
+    <scheme alias="a1312prio" uri="http://cvx.iptc.org/anpa1312-priority/" authoritystatus="authoritystatus:nocurrentauthority" modified="2021-09-24T12:00:00+00:00">
+        <definition xml:lang="en-GB">The priority of a transmission is designated by any of the single alpha characters from the vocabulary.  (ANPA 1312 specs, section H)</definition>
+        <name xml:lang="en-GB">ANPA 1312 Priority Codes</name>
+        <note xml:lang="en-GB">Body owning this CV: This vocabulary was previously owned by NAA</note>
+    </scheme>
+    <!-- Another QCode example -->
+    <scheme alias="isin" uri="http://cvx.iptc.org/isin/" authoritystatus="authoritystatus:countryspecificauthority" modified="2021-09-24T12:00:00+00:00">
+        <definition xml:lang="en-GB">Security numbers based on the ISO 6166 standard.</definition>
+        <name xml:lang="en-GB">ISIN (International Securities Identifying Number)</name>
+        <note xml:lang="en-GB">Body owning this CV: Not a single body, by the specifications of the ISIN the NSINs (National Securities Identifying Number) is assigned by a local national body for each country.</note>
+        <note xml:lang="en-GB">Body owning the format of the ISIN codes: ISO - International Organization for Standardization - www.iso.org</note>
+    </scheme>
+</catalog>
