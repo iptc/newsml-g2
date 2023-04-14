@@ -49,7 +49,7 @@ SCHEMA_FILES_FOLDER = os.path.join(
 
 NEWSMLG2_DEV_SCHEMA = os.path.join(
     SCHEMA_FILES_FOLDER, 
-    'NewsML-G2dev_0.6_nar231.xsd'
+    'NewsML-G2dev_0.7_nar232.xsd'
 )
 
 SCHEMA_VERSIONS = {
