@@ -8,14 +8,14 @@ This document is published under the Creative Commons Attribution 4.0 license - 
 By obtaining, using and/or copying this document, you (the licensee) agree that you have read, understood, and will comply with the terms and conditions of the license.
 
 -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/" xmlns:iptc-ms="http://iptc.org/std/mergeschemas/" targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.31" xml:lang="en">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/" xmlns:iptc-ms="http://iptc.org/std/mergeschemas/" targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.32" xml:lang="en">
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	<!-- For a successful validation of NewsML-G2 items, the xml.xsd file must be placed in the same folder as the NewsML-G2 XML schema -->
 	<xs:annotation>
-		<xs:documentation>NewsML-G2 2.31 XML Schema, document version 1</xs:documentation>
-		<xs:documentation>Approval of this XML Schema version: 2022-10-19</xs:documentation>
+		<xs:documentation>NewsML-G2 2.32 XML Schema, document version 1</xs:documentation>
+		<xs:documentation>Approval of this XML Schema version: 2023-05-17</xs:documentation>
 		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-		<xs:documentation>Date of creation of this XML Schema document revision: 2022-09-09</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document revision: 2023-03-24</xs:documentation>
 		<xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
 		<xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv, an LSEG Company), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
 	</xs:annotation>
@@ -26,7 +26,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.31-spec-ConceptItem-Power_1.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.32-spec-ConceptItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -36,7 +36,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.31-spec-KnowledgeItem-Power_1.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.32-spec-KnowledgeItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -46,7 +46,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.31-spec-NewsItem-Power_1.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.32-spec-NewsItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -56,7 +56,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.31-spec-PackageItem-Power_1.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.32-spec-PackageItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -66,7 +66,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.31-spec-PlanningItem-Power_1.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.32-spec-PlanningItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -76,7 +76,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.31-spec-CatalogItem-Power_1.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.32-spec-CatalogItem-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -86,7 +86,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.31-spec-NewsMessage-Power_1.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.32-spec-NewsMessage-Power_1.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -95,10 +95,10 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 		#####################################################################################################
 -->
 	<xs:annotation>
-		<xs:documentation>NewsML-G2 2.31 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
-		<xs:documentation>Approval of this XML Schema version: 2022-10-19</xs:documentation>
+		<xs:documentation>NewsML-G2 2.32 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
+		<xs:documentation>Approval of this XML Schema version: 2023-05-17</xs:documentation>
 		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-		<xs:documentation>Date of creation of this XML Schema document revision: 2022-09-09</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document revision: 2023-03-24</xs:documentation>
 		<xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
 		<xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
 	</xs:annotation>
@@ -113,7 +113,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 					<xs:documentation>W3C's XML Digital Signature</xs:documentation>
 				</xs:annotation>
 			</xs:any>
-            <!-- NewsML-G2 2.30: relaxed schema to make catalogRef / catalog optional -->
+			<!-- NewsML-G2 2.30: relaxed schema to make catalogRef / catalog optional -->
 			<xs:choice minOccurs="0" maxOccurs="unbounded">
 				<xs:element ref="catalogRef"/>
 				<xs:element ref="catalog"/>
@@ -229,19 +229,31 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 								<xs:documentation>Defines the authority controlling this scheme</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
-                        <!-- ====== schemecreated ====== (NewsML-G2 2.29 added)-->
+						<!-- ====== authoritystatus ====== (added in NewsML-G2 2.32)-->
+   						<xs:attribute name="authoritystatus" type="QCodeType" use="optional">
+							<xs:annotation>
+								<xs:documentation>The status of the Authority associated with the Scheme - expressed as a QCode.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<!-- ====== authoritystatusuri ====== (added in NewsML-G2 2.32)-->
+   						<xs:attribute name="authoritystatusuri" type="IRIType" use="optional">
+							<xs:annotation>
+								<xs:documentation>The status of the Authority associated with the Scheme - expressed as a URI.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<!-- ====== schemecreated ====== (NewsML-G2 2.29 added)-->
 						<xs:attribute name="schemecreated" type="DateOptTimeType" use="optional">
 							<xs:annotation>
 								<xs:documentation>The date (and, optionally, the time) when the scheme was created. This must not be later than the creation timestamp of any concepts in the scheme.</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
-                        <!-- ====== schememodified ====== (NewsML-G2 2.29 added)-->
+						<!-- ====== schememodified ====== (NewsML-G2 2.29 added)-->
 						<xs:attribute name="schememodified" type="DateOptTimeType" use="optional">
 							<xs:annotation>
 								<xs:documentation>The date (and, optionally, the time) when the scheme was last modified. The initial value is the date (and, optionally, the time) of creation of the scheme.</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
-                        <!-- ====== schemeretired ====== (NewsML-G2 2.29 added)-->
+						<!-- ====== schemeretired ====== (NewsML-G2 2.29 added)-->
 						<xs:attribute name="schemeretired" type="DateOptTimeType" use="optional">
 							<xs:annotation>
 								<xs:documentation>The date (and, optionally, the time) after which the scheme should not be used anymore. If a scheme is marked as retired, then all Concept Identifiers in that scheme (identified by the scheme @uri) must also be retired.</xs:documentation>
@@ -266,7 +278,19 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 					<xs:documentation>Defines the authority controlling this catalog</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="guid" type="xs:anyURI" use="optional">
+			<!-- ====== authoritystatus ====== (added in NewsML-G2 2.32)-->
+			<xs:attribute name="authoritystatus" type="QCodeType" use="optional">
+				<xs:annotation>
+					<xs:documentation>The status of the Authority associated with the Scheme - expressed as a QCode.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<!-- ====== authoritystatusuri ====== (added in NewsML-G2 2.32)-->
+			<xs:attribute name="authoritystatusuri" type="IRIType" use="optional">
+				<xs:annotation>
+					<xs:documentation>The status of the Authority associated with the Scheme - expressed as a URI.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+ 			<xs:attribute name="guid" type="xs:anyURI" use="optional">
 				<xs:annotation>
 					<xs:documentation>Globally Unique Identifier for this kind of catalog as managed by a provider. A version attribute should be used with it.</xs:documentation>
 				</xs:annotation>
@@ -2222,19 +2246,19 @@ The relationship of properties inside this partMeta and properties at a higher h
 		<xs:annotation>
 			<xs:documentation>A group of properties to define the details of specific entities</xs:documentation>
 		</xs:annotation>
-        <!-- Note that minOccurs and maxOccurs is not definable for xs:choice within an xs:group but can be when the group is referenced -->
-        <xs:sequence>
-            <!-- NewsML v2.31: hasInstrument added to EntityDetailsGroup and deprecated in organisationDetails -->
-            <xs:element ref="hasInstrument" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:choice minOccurs="0">
-                <xs:element ref="personDetails"/>
-                <xs:element ref="organisationDetails"/>
-                <xs:element ref="geoAreaDetails"/>
-                <xs:element ref="POIDetails"/>
-                <xs:element ref="objectDetails"/>
-                <xs:element ref="eventDetails"/>
-            </xs:choice>
-        </xs:sequence>
+		<!-- Note that minOccurs and maxOccurs is not definable for xs:choice within an xs:group but can be when the group is referenced -->
+		<xs:sequence>
+			<!-- NewsML v2.31: hasInstrument added to EntityDetailsGroup and deprecated in organisationDetails -->
+			<xs:element ref="hasInstrument" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:choice minOccurs="0">
+				<xs:element ref="personDetails"/>
+				<xs:element ref="organisationDetails"/>
+				<xs:element ref="geoAreaDetails"/>
+				<xs:element ref="POIDetails"/>
+				<xs:element ref="objectDetails"/>
+				<xs:element ref="eventDetails"/>
+			</xs:choice>
+		</xs:sequence>
 	</xs:group>
 	<xs:element name="personDetails">
 		<xs:annotation>
@@ -2299,7 +2323,7 @@ The relationship of properties inside this partMeta and properties at a higher h
 							<xs:documentation>A place where the organisation is located.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-                    <!-- ====== affiliation ====== (NewsML-G2 2.29 added)-->
+					<!-- ====== affiliation ====== (NewsML-G2 2.29 added)-->
 					<xs:element name="affiliation" type="OrganisationAffiliationType">
 						<xs:annotation>
 							<xs:documentation>An affiliation of the organisation with another organisation.</xs:documentation>
@@ -2310,8 +2334,8 @@ The relationship of properties inside this partMeta and properties at a higher h
 							<xs:documentation>Information how to contact the organisation.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-                    <!-- NewsML v2.31: hasInstrument added to EntityDetailsGroup and deprecated in organisationDetails -->
-				    <xs:element ref="hasInstrument"/> <!-- DEPRECATED (but still allowed) in NewsML v2.31 -->
+					<!-- NewsML v2.31: hasInstrument added to EntityDetailsGroup and deprecated in organisationDetails -->
+					<xs:element ref="hasInstrument"/> <!-- DEPRECATED (but still allowed) in NewsML v2.31 -->
 				</xs:choice>
 				<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
@@ -2835,7 +2859,7 @@ so on. May also hold accreditation information</xs:documentation>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-    <!-- ====== OrganisationAffiliationType ====== (NewsML-G2 2.29 added)-->
+	<!-- ====== OrganisationAffiliationType ====== (NewsML-G2 2.29 added)-->
 	<xs:complexType name="OrganisationAffiliationType">
 		<xs:annotation>
 			<xs:documentation>The type for an affliation of an organisation to another organisation (Type defined in this XML Schema only)</xs:documentation>
@@ -2925,7 +2949,7 @@ so on. May also hold accreditation information</xs:documentation>
 							<xs:extension base="IRIType">
 								<xs:attributeGroup ref="commonPowerAttributes"/>
 								<xs:attribute name="role" type="QCodeListType" use="optional">
-                                    <xs:annotation>
+									<xs:annotation>
 										<xs:documentation>A refinement of the semantics of the web address - expressed by a QCode</xs:documentation>
 									</xs:annotation>
 								</xs:attribute>
@@ -4598,11 +4622,11 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
 				</xs:annotation>
 			</xs:any>
 		</xs:sequence>
-        <xs:attributeGroup ref="commonPowerAttributes"/>
-        <!-- 2.29 changed from flexAttributes -->
-        <xs:attributeGroup ref="qualifyingAttributes"/>
-        <xs:attributeGroup ref="i18nAttributes"/>
-        <xs:anyAttribute namespace="##other" processContents="lax"/>
+		<xs:attributeGroup ref="commonPowerAttributes"/>
+		<!-- 2.29 changed from flexAttributes -->
+		<xs:attributeGroup ref="qualifyingAttributes"/>
+		<xs:attributeGroup ref="i18nAttributes"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<xs:complexType name="FlexGeoAreaPropType">
 		<xs:annotation>

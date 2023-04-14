@@ -15,18 +15,18 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
             targetNamespace="http://iptc.org/std/nar/2006-10-01/"
             elementFormDefault="qualified"
             attributeFormDefault="unqualified"
-            version="2.31"
+            version="2.32"
             xml:lang="en">
    <xs:import namespace="http://www.w3.org/XML/1998/namespace"
                schemaLocation="xml.xsd"/>
    <!-- For a successful validation of NewsML-G2 items, the xml.xsd file must be placed in the same folder as the NewsML-G2 XML schema -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.31 XML Schema, document version 1</xs:documentation>
-      <xs:documentation>Approval of this XML Schema version: 2022-10-19</xs:documentation>
+      <xs:documentation>NewsML-G2 2.32 XML Schema, document version 1</xs:documentation>
+      <xs:documentation>Approval of this XML Schema version: 2023-05-17</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2022-09-09</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2023-03-24</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
-      <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
+      <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv, an LSEG Company), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
    <!-- 
 		#####################################################################################################
@@ -148,6 +148,18 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
          <xs:attribute name="authority" type="IRIType" use="optional">
             <xs:annotation>
                <xs:documentation>Defines the authority controlling the scheme </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <!-- ====== authoritystatus ====== (added in NewsML-G2 2.32)-->
+         <xs:attribute name="authoritystatus" type="QCodeType" use="optional">
+            <xs:annotation>
+               <xs:documentation>The status of the Authority associated with the Scheme - expressed as a QCode.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <!-- ====== authoritystatusuri ====== (added in NewsML-G2 2.32)-->
+         <xs:attribute name="authoritystatusuri" type="IRIType" use="optional">
+            <xs:annotation>
+               <xs:documentation>The status of the Authority associated with the Scheme - expressed as a URI.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
          <xs:attribute name="concepttype" type="QCodeListType" use="optional">
@@ -828,10 +840,10 @@ was sent</xs:documentation>
 		#####################################################################################################
 -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.31 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
-      <xs:documentation>Approval of this XML Schema version: 2022-10-19</xs:documentation>
+      <xs:documentation>NewsML-G2 2.32 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
+      <xs:documentation>Approval of this XML Schema version: 2023-05-17</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2022-09-09</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2023-03-24</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
       <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
@@ -970,6 +982,18 @@ was sent</xs:documentation>
                         <xs:documentation>Defines the authority controlling this scheme</xs:documentation>
                      </xs:annotation>
                   </xs:attribute>
+                  <!-- ====== authoritystatus ====== (added in NewsML-G2 2.32)-->
+                  <xs:attribute name="authoritystatus" type="QCodeType" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>The status of the Authority associated with the Scheme - expressed as a QCode.</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <!-- ====== authoritystatusuri ====== (added in NewsML-G2 2.32)-->
+                  <xs:attribute name="authoritystatusuri" type="IRIType" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>The status of the Authority associated with the Scheme - expressed as a URI.</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
                   <!-- ====== schemecreated ====== (NewsML-G2 2.29 added)-->
                   <xs:attribute name="schemecreated" type="DateOptTimeType" use="optional">
                      <xs:annotation>
@@ -1005,6 +1029,18 @@ was sent</xs:documentation>
          <xs:attribute name="authority" type="IRIType" use="optional">
             <xs:annotation>
                <xs:documentation>Defines the authority controlling this catalog</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <!-- ====== authoritystatus ====== (added in NewsML-G2 2.32)-->
+         <xs:attribute name="authoritystatus" type="QCodeType" use="optional">
+            <xs:annotation>
+               <xs:documentation>The status of the Authority associated with the Scheme - expressed as a QCode.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <!-- ====== authoritystatusuri ====== (added in NewsML-G2 2.32)-->
+         <xs:attribute name="authoritystatusuri" type="IRIType" use="optional">
+            <xs:annotation>
+               <xs:documentation>The status of the Authority associated with the Scheme - expressed as a URI.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
          <xs:attribute name="guid" type="xs:anyURI" use="optional">
@@ -3000,7 +3036,7 @@ The relationship of properties inside this partMeta and properties at a higher h
       </xs:annotation>
       <!-- Note that minOccurs and maxOccurs is not definable for xs:choice within an xs:group but can be when the group is referenced -->
       <xs:sequence>
-            <!-- NewsML v2.31: hasInstrument added to EntityDetailsGroup and deprecated in organisationDetails -->
+			<!-- NewsML v2.31: hasInstrument added to EntityDetailsGroup and deprecated in organisationDetails -->
          <xs:element ref="hasInstrument" minOccurs="0" maxOccurs="unbounded"/>
          <xs:choice minOccurs="0">
             <xs:element ref="personDetails"/>
