@@ -887,12 +887,12 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 		</xs:attribute>
 		<xs:attribute name="residrefformat" type="QCodeType" use="optional">
 			<xs:annotation>
-				<xs:documentation>The format of the provider's identifier of the target resource - expressed by a QCode. The recommended CV to be used is https://cv.iptc.org/newscodes/valueformat/.</xs:documentation>
+				<xs:documentation>The format of the provider's identifier of the target resource - expressed by a QCode. The recommended CV to be used is http://cv.iptc.org/newscodes/valueformat/.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="residrefformaturi" type="IRIType" use="optional">
 			<xs:annotation>
-				<xs:documentation>The format of the provider's identifier of the target resource - expressed by a URI. The recommended CV to be used is https://cv.iptc.org/newscodes/valueformat/.</xs:documentation>
+				<xs:documentation>The format of the provider's identifier of the target resource - expressed by a URI. The recommended CV to be used is http://cv.iptc.org/newscodes/valueformat/.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="version" type="xs:positiveInteger" use="optional">
