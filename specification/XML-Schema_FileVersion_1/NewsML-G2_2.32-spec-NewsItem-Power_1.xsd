@@ -208,12 +208,12 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 		</xs:attribute>
 		<xs:attribute name="creator" type="QCodeType" use="optional">
 			<xs:annotation>
-				<xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+                <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="creatoruri" type="IRIType" use="optional">
 			<xs:annotation>
-				<xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+                <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="modified" type="DateOptTimeType" use="optional">

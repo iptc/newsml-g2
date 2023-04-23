@@ -1627,12 +1627,12 @@ The relationship of properties inside this partMeta and properties at a higher h
 		</xs:attribute>
 		<xs:attribute name="creator" type="QCodeType" use="optional">
 			<xs:annotation>
-				<xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+				<xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="creatoruri" type="IRIType" use="optional">
 			<xs:annotation>
-				<xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+                <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="modified" type="DateOptTimeType" use="optional">
@@ -1710,7 +1710,7 @@ The relationship of properties inside this partMeta and properties at a higher h
 		</xs:attribute>
 		<xs:attribute name="literal" type="g2normalizedString" use="optional">
 			<xs:annotation>
-				<xs:documentation>A free-text text string assigned as property value</xs:documentation>
+				<xs:documentation>A concept identifier expressed as a free text string</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attributeGroup ref="commonPowerAttributes"/>
@@ -3224,12 +3224,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 			</xs:attribute>
 			<xs:attribute name="creator" type="QCodeType" use="optional">
 				<xs:annotation>
-					<xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+					<xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="creatoruri" type="IRIType" use="optional">
 				<xs:annotation>
-					<xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+					<xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="modified" type="DateOptTimeType" use="optional">
@@ -3407,7 +3407,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 						</xs:attribute>
 						<xs:attribute name="literal" type="g2normalizedString" use="optional">
 							<xs:annotation>
-								<xs:documentation>A free-text value assigned as property value.</xs:documentation>
+								<xs:documentation>A concept identifier expressed as a free text string</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
 					</xs:complexType>
@@ -3436,7 +3436,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 		</xs:attribute>
 		<xs:attribute name="creatoruri" type="IRIType" use="optional">
 			<xs:annotation>
-				<xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+                <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="modified" type="DateOptTimeType" use="optional">
@@ -3615,12 +3615,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 		</xs:attribute>
 		<xs:attribute name="creator" type="QCodeType" use="optional">
 			<xs:annotation>
-				<xs:documentation>If the element is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the element is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+                <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="creatoruri" type="IRIType" use="optional">
 			<xs:annotation>
-				<xs:documentation>If the element is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the element is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+                <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="modified" type="DateOptTimeType" use="optional">
