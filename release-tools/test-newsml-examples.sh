@@ -18,7 +18,7 @@ EXAMPLE_DIR="examples"
 # "LISTING_9_Group_Set_example_showing_a_SEQ_Package_Mode.xml" \
 # "LISTING_28_Illustrating_Located_Subject_and_Dateline.xml" \
 
-echo "Testing example files against the new schema (note that not all examples will validate properly)"
+echo "Testing example files against the new schema (note that we leave out some samples that do not validate properly)"
 for exfile in \
     "LISTING_1_A_NewsML-G2_News_Item.xml" \
     "LISTING_2_NewsML-G2_Text_Document.xml" \
