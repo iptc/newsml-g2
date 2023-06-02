@@ -2469,7 +2469,7 @@ The relationship of properties inside this partMeta and properties at a higher h
       </xs:sequence>
       <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A concept identifier.</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="uri" type="IRIType" use="optional">
@@ -2838,12 +2838,12 @@ The relationship of properties inside this partMeta and properties at a higher h
       </xs:annotation>
       <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A qualified code which identifies a concept - either the  qcode or the uri attribute MUST be used</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code. Either the qcode or the uri attribute MUST be used.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="uri" type="IRIType" use="optional">
          <xs:annotation>
-            <xs:documentation>A URI which identifies a concept - either the  qcode or the uri attribute MUST be used</xs:documentation>
+            <xs:documentation>A URI which identifies a concept. Either the qcode or the uri attribute MUST be used.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="created" type="DateOptTimeType" use="optional">
@@ -4233,7 +4233,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                   <xs:attributeGroup ref="commonPowerAttributes"/>
                   <xs:attribute name="qcode" type="QCodeType" use="optional">
                      <xs:annotation>
-                        <xs:documentation>A qualified code which identifies a concept  - either the  qcode or the uri attribute MUST be used</xs:documentation>
+                        <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code. Either the qcode or the uri attribute MUST be used.</xs:documentation>
                      </xs:annotation>
                   </xs:attribute>
                   <xs:attribute name="uri" type="IRIType" use="optional">
@@ -4403,7 +4403,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:annotation>
       <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A qualified code which identifies a concept.</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="uri" type="IRIType" use="optional">
@@ -4413,7 +4413,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
       <xs:attribute name="literal" type="g2normalizedString" use="optional">
          <xs:annotation>
-            <xs:documentation>A free-text value assigned as property value.</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a free text string</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="type" type="QCodeType" use="optional">
@@ -4496,7 +4496,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:annotation>
       <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A qualified code assigned as a property value.</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="uri" type="IRIType" use="optional">
@@ -4506,8 +4506,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
       <xs:attribute name="literal" type="g2normalizedString" use="optional">
          <xs:annotation>
-            <xs:documentation>A free-text value assigned as a property
-value.</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a free text string</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="type" type="QCodeType" use="optional">
@@ -5203,7 +5202,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
       <xs:attributeGroup ref="commonPowerAttributes"/>
       <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A qualified code which identifies a concept  - either the  qcode or the uri attribute MUST be used</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code. Either the qcode or the uri attribute MUST be used</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="uri" type="IRIType" use="optional">
