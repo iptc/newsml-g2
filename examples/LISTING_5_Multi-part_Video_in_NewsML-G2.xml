@@ -3,8 +3,8 @@
     xmlns="http://iptc.org/std/nar/2006-10-01/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
-        ./NewsML-G2_2.31-spec-All-Power.xsd"
-    standardversion="2.31"
+        ./NewsML-G2_2.32-spec-All-Power.xsd"
+    standardversion="2.32"
     guid="tag:example.com,2008:407624" 
     version="11" 
     standard="NewsML-G2"

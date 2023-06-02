@@ -2,11 +2,11 @@
 <newsItem xmlns="http://iptc.org/std/nar/2006-10-01/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
-        ./NewsML-G2_2.31-spec-All-Power.xsd"
+        ./NewsML-G2_2.32-spec-All-Power.xsd"
     guid="urn:newsml:NAG.com:20161121:US-FINANCE-FED"
     version="11" 
     standard="NewsML-G2"
-    standardversion="2.31" 
+    standardversion="2.32" 
     xml:lang="en-US">
     <catalogRef
         href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />

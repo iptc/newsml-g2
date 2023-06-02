@@ -15,18 +15,18 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
             targetNamespace="http://iptc.org/std/nar/2006-10-01/"
             elementFormDefault="qualified"
             attributeFormDefault="unqualified"
-            version="2.31"
+            version="2.32"
             xml:lang="en">
    <xs:import namespace="http://www.w3.org/XML/1998/namespace"
                schemaLocation="xml.xsd"/>
-   <!-- For a successfull validation of NewsML-G2 item is is required to place the xml.xsd file in the same folder as the NewsML-G2 XML schema -->
+   <!-- For a successful validation of NewsML-G2 items, the xml.xsd file must be placed in the same folder as the NewsML-G2 XML schema -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.31 XML Schema, document version 1</xs:documentation>
-      <xs:documentation>Approval of this XML Schema version: 2022-10-19</xs:documentation>
+      <xs:documentation>NewsML-G2 2.32 XML Schema, document version 1</xs:documentation>
+      <xs:documentation>Approval of this XML Schema version: 2023-05-17</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2022-09-09</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2023-03-24</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
-      <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
+      <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv, an LSEG Company), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
    <!-- 
 		#####################################################################################################
@@ -145,11 +145,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
                <xs:documentation>The alias preferred by the schema authority</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="authority" type="IRIType" use="optional">
-            <xs:annotation>
-               <xs:documentation>Defines the authority controlling the scheme </xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
+         <xs:attributeGroup ref="authorityAttributes"/>
          <xs:attribute name="concepttype" type="QCodeListType" use="optional">
             <xs:annotation>
                <xs:documentation>List of all concept types used within this Knowledge Item</xs:documentation>
@@ -367,12 +363,12 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
       </xs:attribute>
       <xs:attribute name="creator" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+            <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="creatoruri" type="IRIType" use="optional">
          <xs:annotation>
-            <xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+            <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="modified" type="DateOptTimeType" use="optional">
@@ -828,10 +824,10 @@ was sent</xs:documentation>
 		#####################################################################################################
 -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.31 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
-      <xs:documentation>Approval of this XML Schema version: 2022-10-19</xs:documentation>
+      <xs:documentation>NewsML-G2 2.32 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
+      <xs:documentation>Approval of this XML Schema version: 2023-05-17</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2022-09-09</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2023-03-24</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
       <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
@@ -965,11 +961,7 @@ was sent</xs:documentation>
                         <xs:documentation>The URI which identifies the scheme.</xs:documentation>
                      </xs:annotation>
                   </xs:attribute>
-                  <xs:attribute name="authority" type="IRIType" use="optional">
-                     <xs:annotation>
-                        <xs:documentation>Defines the authority controlling this scheme</xs:documentation>
-                     </xs:annotation>
-                  </xs:attribute>
+                  <xs:attributeGroup ref="authorityAttributes"/>
                   <!-- ====== schemecreated ====== (NewsML-G2 2.29 added)-->
                   <xs:attribute name="schemecreated" type="DateOptTimeType" use="optional">
                      <xs:annotation>
@@ -1002,11 +994,7 @@ was sent</xs:documentation>
                <xs:documentation>Defines the location of the catalog as remote resource. (Should be the same as the URL which is used with the href attribute of a catalogRef in an item.)</xs:documentation>
             </xs:annotation>
          </xs:attribute>
-         <xs:attribute name="authority" type="IRIType" use="optional">
-            <xs:annotation>
-               <xs:documentation>Defines the authority controlling this catalog</xs:documentation>
-            </xs:annotation>
-         </xs:attribute>
+         <xs:attributeGroup ref="authorityAttributes"/>
          <xs:attribute name="guid" type="xs:anyURI" use="optional">
             <xs:annotation>
                <xs:documentation>Globally Unique Identifier for this kind of catalog as managed by a provider. A version attribute should be used with it.</xs:documentation>
@@ -1486,7 +1474,7 @@ was sent</xs:documentation>
    </xs:annotation>
    <xs:element name="expires" type="DateOptTimePropType">
       <xs:annotation>
-         <xs:documentation>The date and time after which the NewsItem is no longer considered valid by its publisher</xs:documentation>
+         <xs:documentation>The date and time after which the Item is no longer considered editorially relevant by its provider</xs:documentation>
       </xs:annotation>
    </xs:element>
    <xs:annotation>
@@ -1613,12 +1601,12 @@ was sent</xs:documentation>
       </xs:attribute>
       <xs:attribute name="residrefformat" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>The format of the provider's identifier of the target resource - expressed by a QCode. The recommended CV to be used is https://cv.iptc.org/newscodes/valueformat/.</xs:documentation>
+            <xs:documentation>The format of the provider's identifier of the target resource - expressed by a QCode. The recommended CV to be used is http://cv.iptc.org/newscodes/valueformat/.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="residrefformaturi" type="IRIType" use="optional">
          <xs:annotation>
-            <xs:documentation>The format of the provider's identifier of the target resource - expressed by a URI. The recommended CV to be used is https://cv.iptc.org/newscodes/valueformat/.</xs:documentation>
+            <xs:documentation>The format of the provider's identifier of the target resource - expressed by a URI. The recommended CV to be used is http://cv.iptc.org/newscodes/valueformat/.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="version" type="xs:positiveInteger" use="optional">
@@ -2405,12 +2393,12 @@ The relationship of properties inside this partMeta and properties at a higher h
       </xs:attribute>
       <xs:attribute name="creator" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+            <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="creatoruri" type="IRIType" use="optional">
          <xs:annotation>
-            <xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+            <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="modified" type="DateOptTimeType" use="optional">
@@ -2481,7 +2469,7 @@ The relationship of properties inside this partMeta and properties at a higher h
       </xs:sequence>
       <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A concept identifier.</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="uri" type="IRIType" use="optional">
@@ -2491,7 +2479,7 @@ The relationship of properties inside this partMeta and properties at a higher h
       </xs:attribute>
       <xs:attribute name="literal" type="g2normalizedString" use="optional">
          <xs:annotation>
-            <xs:documentation>A free-text text string assigned as property value</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a free text string</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attributeGroup ref="commonPowerAttributes"/>
@@ -2850,12 +2838,12 @@ The relationship of properties inside this partMeta and properties at a higher h
       </xs:annotation>
       <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A qualified code which identifies a concept - either the  qcode or the uri attribute MUST be used</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code. Either the qcode or the uri attribute MUST be used.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="uri" type="IRIType" use="optional">
          <xs:annotation>
-            <xs:documentation>A URI which identifies a concept - either the  qcode or the uri attribute MUST be used</xs:documentation>
+            <xs:documentation>A URI which identifies a concept. Either the qcode or the uri attribute MUST be used.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="created" type="DateOptTimeType" use="optional">
@@ -3000,9 +2988,9 @@ The relationship of properties inside this partMeta and properties at a higher h
       </xs:annotation>
       <!-- Note that minOccurs and maxOccurs is not definable for xs:choice within an xs:group but can be when the group is referenced -->
       <xs:sequence>
-            <!-- NewsML v2.31: hasInstrument added to EntityDetailsGroup and deprecated in organisationDetails -->
-         <xs:element ref="hasInstrument"/>
-         <xs:choice>
+			<!-- NewsML v2.31: hasInstrument added to EntityDetailsGroup and deprecated in organisationDetails -->
+         <xs:element ref="hasInstrument" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:choice minOccurs="0">
             <xs:element ref="personDetails"/>
             <xs:element ref="organisationDetails"/>
             <xs:element ref="geoAreaDetails"/>
@@ -4066,12 +4054,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
          </xs:attribute>
          <xs:attribute name="creator" type="QCodeType" use="optional">
             <xs:annotation>
-               <xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+               <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
          <xs:attribute name="creatoruri" type="IRIType" use="optional">
             <xs:annotation>
-               <xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+               <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
             </xs:annotation>
          </xs:attribute>
          <xs:attribute name="modified" type="DateOptTimeType" use="optional">
@@ -4245,7 +4233,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                   <xs:attributeGroup ref="commonPowerAttributes"/>
                   <xs:attribute name="qcode" type="QCodeType" use="optional">
                      <xs:annotation>
-                        <xs:documentation>A qualified code which identifies a concept  - either the  qcode or the uri attribute MUST be used</xs:documentation>
+                        <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code. Either the qcode or the uri attribute MUST be used.</xs:documentation>
                      </xs:annotation>
                   </xs:attribute>
                   <xs:attribute name="uri" type="IRIType" use="optional">
@@ -4255,7 +4243,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                   </xs:attribute>
                   <xs:attribute name="literal" type="g2normalizedString" use="optional">
                      <xs:annotation>
-                        <xs:documentation>A free-text value assigned as property value.</xs:documentation>
+                        <xs:documentation>A concept identifier expressed as a free text string</xs:documentation>
                      </xs:annotation>
                   </xs:attribute>
                </xs:complexType>
@@ -4284,7 +4272,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
       <xs:attribute name="creatoruri" type="IRIType" use="optional">
          <xs:annotation>
-            <xs:documentation>If the attribute is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the attribute is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+            <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="modified" type="DateOptTimeType" use="optional">
@@ -4350,6 +4338,28 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
    </xs:attributeGroup>
    <xs:annotation>
+      <xs:documentation>NewsML-G2 2.32: authorityAttributes added</xs:documentation>
+   </xs:annotation>
+   <xs:attributeGroup name="authorityAttributes">
+      <xs:attribute name="authority" type="IRIType" use="optional">
+         <xs:annotation>
+            <xs:documentation>Defines the authority controlling this catalog</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <!-- ====== authoritystatus ====== (added in NewsML-G2 2.32)-->
+      <xs:attribute name="authoritystatus" type="QCodeType" use="optional">
+         <xs:annotation>
+            <xs:documentation>The status of the Authority associated with the Scheme - expressed as a QCode.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <!-- ====== authoritystatusuri ====== (added in NewsML-G2 2.32)-->
+      <xs:attribute name="authoritystatusuri" type="IRIType" use="optional">
+         <xs:annotation>
+            <xs:documentation>The status of the Authority associated with the Scheme - expressed as a URI.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:annotation>
       <xs:documentation>NewsML-G2 2.10: quantifyAttributes extended by @derivedfrom, v 2.12: use of @derivedfrom DEPRECATED, use element derivedFrom</xs:documentation>
    </xs:annotation>
    <xs:attributeGroup name="quantifyAttributes">
@@ -4393,7 +4403,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:annotation>
       <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A qualified code which identifies a concept.</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="uri" type="IRIType" use="optional">
@@ -4403,7 +4413,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
       <xs:attribute name="literal" type="g2normalizedString" use="optional">
          <xs:annotation>
-            <xs:documentation>A free-text value assigned as property value.</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a free text string</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="type" type="QCodeType" use="optional">
@@ -4441,12 +4451,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
       <xs:attribute name="creator" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>If the element is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the element is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+            <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a QCode. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="creatoruri" type="IRIType" use="optional">
          <xs:annotation>
-            <xs:documentation>If the element is empty, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the element is non-empty, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
+            <xs:documentation>If the property value is not defined, specifies which entity (person, organisation or system) will edit the property - expressed by a URI. If the property value is defined, specifies which entity (person, organisation or system) has edited the property.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="modified" type="DateOptTimeType" use="optional">
@@ -4486,7 +4496,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:annotation>
       <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A qualified code assigned as a property value.</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="uri" type="IRIType" use="optional">
@@ -4496,8 +4506,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
       <xs:attribute name="literal" type="g2normalizedString" use="optional">
          <xs:annotation>
-            <xs:documentation>A free-text value assigned as a property
-value.</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a free text string</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="type" type="QCodeType" use="optional">
@@ -5193,7 +5202,7 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
       <xs:attributeGroup ref="commonPowerAttributes"/>
       <xs:attribute name="qcode" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A qualified code which identifies a concept  - either the  qcode or the uri attribute MUST be used</xs:documentation>
+            <xs:documentation>A concept identifier expressed as a string of the form sss:ccc, where sss is a scheme alias and ccc is a code. Either the qcode or the uri attribute MUST be used</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="uri" type="IRIType" use="optional">

@@ -9,7 +9,7 @@ The GitHub repository
 ([https://github.com/iptc/newsml-g2](https://github.com/iptc/newsml-g2)
 provides all NewsML-G2 files in the master branch.
 
-This is version 2.31, approved by the IPTC Standards Committee in October 2022.
+This is version 2.32, approved by the IPTC Standards Committee in May 2023.
 
 The files of the current and of previous versions (from 2.23 on) can be retrieved
 as GitHub releases from
