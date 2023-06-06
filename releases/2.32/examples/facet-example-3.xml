@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/
+        ./NewsML-G2_2.32-spec-All-Power.xsd"
+    standardversion="2.32"
+    guid="tag:example.com,2008:407624"
+    version="11"
+    standard="NewsML-G2"
+    conformance="power"
+    xml:lang="en">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_34.xml" />
+    <itemMeta>
+        <itemClass qcode="ninat:text"/>
+        <provider qcode="nprov:AcmeNews"/>
+        <versionCreated>2020-02-04T12:00:00Z</versionCreated>
+    </itemMeta>
+    <contentMeta>
+        <subject>
+            <mainConcept uri="http://cv.iptc.org/newscodes/mediatopic/20001071">
+                <name xml:lang="en">swimming</name>
+            </mainConcept>
+            <facetConcept reluri="http://cv.iptc.org/newscodes/asportfacet/swimmingtype"
+                             uri="http://cv.iptc.org/newscodes/asportfacetvalue/breaststroke">
+                <name xml:lang="en">breaststroke</name>
+            </facetConcept>
+            <facetConcept reluri="http://cv.iptc.org/newscodes/asportfacet/distance">
+                <name xml:lang="en">200m</name>
+            </facetConcept>
+            <facetConcept reluri="http://cv.iptc.org/newscodes/asportfacet/gender"
+                             uri="http://cv.iptc.org/newscodes/asportfacetvalue/women">
+                <name xml:lang="en">women</name>
+            </facetConcept>
+            <facetConcept reluri="http://cv.iptc.org/newscodes/asportfacet/teamsize">
+                <name xml:lang="en">1</name>
+            </facetConcept>
+        </subject>
+    </contentMeta>
+    <contentSet>
+        <inlineXML xml:lang="en">
+            <p>Content goes here...</p>
+        </inlineXML>
+    </contentSet>
+</newsItem>
