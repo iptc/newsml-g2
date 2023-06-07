@@ -56,6 +56,9 @@ Steps to create and release an update to the standard:
     `specification/XML-Schema-Doc-Power`.
 13. Print-to-PDF change requests from dev.iptc.org for inclusion in release pack
     to be sent to delegates, if necessary.
+14. Update the documentation page in documentation/NewsML-G2-documentation.md to
+    point to the appropriate versions of the specs, XML Schema docs and
+    guidelines.
 14. Run the script to move all files to the release folder and create ZIP files
     of the release: `release-tools/create-release.sh`
 15. Commit and push all changes to GitHub: `git push origin -u my-new-branch`
@@ -70,8 +73,8 @@ Steps to create and release an update to the standard:
     the XML Spy documentation step)
 3.  Commit changes and merge the pull request into master on GitHub
 4.  Upload the "releases/N.NN" folder and the ZIP files to the iptc.org server
-5.  Update the redirects on iptc.org to point to the latest versions of XML
-    Schema documentation.
+5.  Update the redirects in iptc.org/std/.htaccess to point to the latest
+    versions of XML Schema documentation.
 6.  Update the http://dev.iptc.org/G2-Approved-Changes page documenting the
     changes made.
 7.  Tag the release in GitHub: `git tag N.NN.N`, `git push --tags`)
