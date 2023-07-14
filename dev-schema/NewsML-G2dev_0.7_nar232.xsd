@@ -9,7 +9,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that
 you have read, understood, and will comply with the terms and conditions of the
 license.
 -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="https://iptc.org/std-dev/nar/" xmlns:nar="http://iptc.org/std/nar/2006-10-01/" targetNamespace="https://iptc.org/std-dev/nar/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.6" xml:lang="en">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="https://iptc.org/std-dev/nar/" xmlns:nar="http://iptc.org/std/nar/2006-10-01/" targetNamespace="https://iptc.org/std-dev/nar/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.7" xml:lang="en">
 	<xs:annotation>
 		<xs:documentation>This XML Schema is created for a NewsML-G2 development namespace with the URI https://iptc.org/std-dev/nar/. It imports a NewsML-G2 2.x XML Schema and its elements build on attributes, attribute groups and elements defined by it.
 		</xs:documentation>
