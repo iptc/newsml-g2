@@ -15,16 +15,16 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
             targetNamespace="http://iptc.org/std/nar/2006-10-01/"
             elementFormDefault="qualified"
             attributeFormDefault="unqualified"
-            version="2.32"
+            version="2.33"
             xml:lang="en">
    <xs:import namespace="http://www.w3.org/XML/1998/namespace"
                schemaLocation="xml.xsd"/>
    <!-- For a successful validation of NewsML-G2 items, the xml.xsd file must be placed in the same folder as the NewsML-G2 XML schema -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.32 XML Schema, document version 1</xs:documentation>
-      <xs:documentation>Approval of this XML Schema version: 2023-05-17</xs:documentation>
+      <xs:documentation>NewsML-G2 2.33 XML Schema, document version 1</xs:documentation>
+      <xs:documentation>Approval of this XML Schema version: 2023-10-04</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2023-03-24</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2023-08-25</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
       <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv, an LSEG Company), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
@@ -824,10 +824,10 @@ was sent</xs:documentation>
 		#####################################################################################################
 -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.32 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
-      <xs:documentation>Approval of this XML Schema version: 2023-05-17</xs:documentation>
+      <xs:documentation>NewsML-G2 2.33 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
+      <xs:documentation>Approval of this XML Schema version: 2023-10-04</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2023-03-24</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2023-08-25</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
       <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
@@ -1770,6 +1770,7 @@ was sent</xs:documentation>
          <xs:element ref="urgency" minOccurs="0"/>
          <xs:element ref="contentCreated" minOccurs="0"/>
          <xs:element ref="contentModified" minOccurs="0"/>
+         <xs:element ref="digitalSourceType" minOccurs="0"/>
          <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element ref="located"/>
             <xs:element ref="infoSource"/>
@@ -2102,6 +2103,11 @@ was sent</xs:documentation>
             </xs:extension>
          </xs:complexContent>
       </xs:complexType>
+   </xs:element>
+   <xs:element name="digitalSourceType" type="FlexPropType">
+      <xs:annotation>
+         <xs:documentation>Indicates the source type from which the content was created. The recommended vocabulary is the IPTC Digital Source Type NewsCodes http://cv.iptc.org/newscodes/digitalsourcetype/</xs:documentation>
+      </xs:annotation>
    </xs:element>
    <xs:annotation>
       <xs:documentation>NAR-1.5_1: keyword element added</xs:documentation>
@@ -4338,7 +4344,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
    </xs:attributeGroup>
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.32: authorityAttributes added</xs:documentation>
+      <xs:documentation>NewsML-G2 2.33: authorityAttributes added</xs:documentation>
    </xs:annotation>
    <xs:attributeGroup name="authorityAttributes">
       <xs:attribute name="authority" type="IRIType" use="optional">

@@ -6,7 +6,8 @@ These notes are only of relevance to the maintainers of NewsML-G2 at IPTC.
 
 Steps to create and release an update to the standard:
 
-### High-level overview of the steps required
+### High-level overview of the steps required (see detailed steps below)
+
 - Copy the latest version of schema files into the
   `specification/FileVersion_<revision>` folder based on our new revision number
 - Update the files in `specification/FileVersion_<revision>` with new version
@@ -22,6 +23,7 @@ Steps to create and release an update to the standard:
 - Make release version to be uploaded to iptc.org
 
 ### In detail
+
 1.  Create a new GitHub branch for the changes: `git checkout -b newsmlN.NN`
     (or `newsmlN.NN_N`)
 2.  Update the `release-tools/newsmlg2-config-vars.sh` file with the version
@@ -78,10 +80,14 @@ Steps to create and release an update to the standard:
 6.  Update the http://dev.iptc.org/G2-Approved-Changes page documenting the
     changes made.
 7.  Tag the release in GitHub: `git tag N.NN.N`, `git push --tags`)
+8.  Move the CR page on dev.iptc.org to "G2 Approved Changes" area
+9.  Update the http://dev.iptc.org/G2-Approved-Changes page to refer to the
+    approved CR.
 
 ### To update unit tests:
 
-1.  Create a new dev schema referring to the latest schema version, in the
-    `dev-schema` folder.
+1.  Create a new schema referring to the latest schema version, in the
+    `tests/schema_versions` folder on the working branch.
 2.  Update the `tests/run-tests.py` script to refer to the new version.
-3.  Make a new folder in `tests/unit_test_files` and put new tests there.
+3.  Make a new folder in `tests/unit_test_files` with the new version number
+    and put new test files there.
