@@ -1,6 +1,7 @@
 <contentSet>
     <inlineXML contenttype="application/nitf+xml">
         <nitf xmlns="http://iptc.org/std/NITF/2006-10-18/"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://iptc.org/std/NITF/2006-10-18/ 
             ./nitf-3-6.xsd">
             <body>
