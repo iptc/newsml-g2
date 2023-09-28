@@ -1344,6 +1344,9 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+	<xs:annotation>
+		<xs:documentation>NewsML-G2 2.33: digitalSourceType added</xs:documentation>
+	</xs:annotation>
 	<xs:element name="digitalSourceType" type="FlexPropType">
 		<xs:annotation>
 			<xs:documentation>Indicates the source type from which the content was created. The recommended vocabulary is the IPTC Digital Source Type NewsCodes http://cv.iptc.org/newscodes/digitalsourcetype/</xs:documentation>
@@ -3508,7 +3511,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 		</xs:attribute>
 	</xs:attributeGroup>
 	<xs:annotation>
-		<xs:documentation>NewsML-G2 2.33: authorityAttributes added</xs:documentation>
+		<xs:documentation>NewsML-G2 2.32: authorityAttributes added</xs:documentation>
 	</xs:annotation>
 	<xs:attributeGroup name="authorityAttributes">
 		<xs:attribute name="authority" type="IRIType" use="optional">
