@@ -73,7 +73,7 @@ Steps to create and release an update to the standard:
 2.  Run the above steps 3, 5, 7, 8, 10, 12, 14, 15 again to update files with
     the approval date (this should be quick, just running scripts, except for
     the XML Spy documentation step)
-3.  Commit changes and merge the pull request into master on GitHub
+3.  Commit changes and merge the pull request into the main branch on GitHub
 4.  Upload the "releases/N.NN" folder and the ZIP files to the iptc.org server
 5.  Update the redirects in iptc.org/std/.htaccess to point to the latest
     versions of XML Schema documentation.
