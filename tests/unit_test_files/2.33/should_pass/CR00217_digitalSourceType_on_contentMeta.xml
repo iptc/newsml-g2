@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<newsItem 
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ../../../schema_versions/2.33/NewsML-G2_2.33-spec-All-Power.xsd"
+    guid="urn:newsml:acmenews.com:20231121:US-FINANCE-FED"
+    version="11" 
+    standard="NewsML-G2"
+    standardversion="2.33"
+    xml:lang="en-GB">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_37.xml" />
+    <rightsInfo>
+        <copyrightHolder uri="http://www.acmenews.com/about.html#copyright">
+            <name>Acme News and Media LLC</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2017-18 Acme News and Media LLC</copyrightNotice>
+    </rightsInfo>
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        <provider uri="http://www.acmenews.com/about/" />
+        <versionCreated>2018-11-21T16:25:32-05:00</versionCreated>
+        <pubStatus qcode="stat:usable" /> 
+    </itemMeta>
+    <contentMeta>
+        <contentCreated>2016-11-21T15:21:06-05:00</contentCreated>
+        <contentModified>2018-11-21T16:22:45-05:00</contentModified>
+        <digitalSourceType qcode="digsrctype:trainedAlgorithmicMedia" />
+        <located qcode="geoloc:NYC">
+            <name>New York, NY</name>
+        </located>
+        <creator uri="http://www.acmenews.com/staff/mjameson">
+            <name>Meredith Jameson</name>
+        </creator>
+        <infoSource qcode="is:AP">
+            <name>Associated Press</name>
+        </infoSource>
+        <language tag="en-US" />
+        <subject qcode="medtop:04000000">
+            <name>economy, business and finance</name>
+        </subject> 
+        <subject qcode="medtop:20000350">
+            <name>central bank</name>
+        </subject>
+        <subject qcode="medtop:20000379">
+            <name>money and monetary policy</name>
+        </subject>
+        <slugline>US-Finance-Fed</slugline>
+        <headline> Fed to halt QE to avert "bubble"</headline>
+    </contentMeta>
+    <contentSet>
+        <inlineXML contenttype="application/nitf+xml">
+            <nitf xmlns="http://iptc.org/std/NITF/2006-10-18/">
+                <body>
+                   <body.head>
+                       <hedline>
+                           <hl1>Fed to halt QE to avert "bubble"</hl1>
+                       </hedline>
+                       <byline>By Meredith Jameson, <byttl>Staff Reporter</byttl></byline>
+                   </body.head>
+                   <body.content>
+                       <p>(New York, NY - October 21) Et, sent luptat luptat, commy
+                           Nim zzriureet vendreetue modo
+                           dolenis ex euisis nosto et lan ullandit lum doloreet vulla
+                           feugiam coreet, cons eleniam il ute facin veril et aliquis ad
+                           minis et lor sum del iriure dit la feugiamcommy nostrud min ulla
+                           autpat velisl duisismodip ero dipit nit utpatum sandrer cipisim
+                           nit lortis augiat nulla faccum at am, quam velenis nulput la
+                           auguerostrud magna commolore eliquatie exerate facilis
+                           modiamconsed dion henisse quipit at. Ut la feu facilla feu
+                           faccumsan ecte modoloreet ad ex el utat.
+                       </p>
+                       <p>Ugiating ea feugait utat, venim velent nim quis nulluptat num
+                           Volorem inci enim dolobor eetuer sendre ercin utpatio dolorpercing
+                           Et accum nullan voluptat wisis alit dolessim zzrilla commy nonulpu
+                           tpatinis exer sequatueros adit verit am nonse exerili quismodion
+                           esto cons dolutpat, si.
+                       </p>
+                   </body.content>
+                </body>
+            </nitf>
+        </inlineXML>
+    </contentSet>
+</newsItem>
