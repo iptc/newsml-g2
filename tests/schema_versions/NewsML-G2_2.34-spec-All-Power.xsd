@@ -2104,6 +2104,9 @@ was sent</xs:documentation>
          </xs:complexContent>
       </xs:complexType>
    </xs:element>
+   <xs:annotation>
+      <xs:documentation>NewsML-G2 2.33: digitalSourceType added</xs:documentation>
+   </xs:annotation>
    <xs:element name="digitalSourceType" type="FlexPropType">
       <xs:annotation>
          <xs:documentation>Indicates the source type from which the content was created. The recommended vocabulary is the IPTC Digital Source Type NewsCodes http://cv.iptc.org/newscodes/digitalsourcetype/</xs:documentation>
@@ -2928,6 +2931,34 @@ The relationship of properties inside this partMeta and properties at a higher h
                   <xs:complexType>
                      <xs:complexContent>
                         <xs:extension base="FlexPropType">
+                           <xs:choice minOccurs="0" maxOccurs="unbounded">
+                              <!-- related/related/related: added in NewsML-G2 2.34 -->
+                              <xs:element name="related">
+                                 <xs:complexType>
+                                    <xs:complexContent>
+                                       <xs:extension base="FlexPropType">
+                                          <xs:attribute name="rel" type="QCodeType" use="optional">
+                                             <xs:annotation>
+                                                <xs:documentation>The identifier of the relationship between the current concept and the target concept - expressed by a QCode</xs:documentation>
+                                             </xs:annotation>
+                                          </xs:attribute>
+                                          <xs:attribute name="reluri" type="IRIType" use="optional">
+                                             <xs:annotation>
+                                                <xs:documentation>The identifier of the relationship between the current concept and the target concept - expressed by a URI</xs:documentation>
+                                             </xs:annotation>
+                                          </xs:attribute>
+                                          <xs:attribute name="rank" type="xs:nonNegativeInteger" use="optional">
+                                             <xs:annotation>
+                                                <xs:documentation>The rank of the current concept among concepts having a relationship to the target concept.</xs:documentation>
+                                             </xs:annotation>
+                                          </xs:attribute>
+                                          <xs:attributeGroup ref="timeValidityAttributes"/>
+                                          <xs:attributeGroup ref="arbitraryValueAttributes"/>
+                                       </xs:extension>
+                                    </xs:complexContent>
+                                 </xs:complexType>
+                              </xs:element>
+                           </xs:choice>
                            <xs:attribute name="rel" type="QCodeType" use="optional">
                               <xs:annotation>
                                  <xs:documentation>The identifier of the relationship between the current concept and the target concept - expressed by a QCode</xs:documentation>
@@ -4344,7 +4375,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
    </xs:attributeGroup>
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.33: authorityAttributes added</xs:documentation>
+      <xs:documentation>NewsML-G2 2.32: authorityAttributes added</xs:documentation>
    </xs:annotation>
    <xs:attributeGroup name="authorityAttributes">
       <xs:attribute name="authority" type="IRIType" use="optional">
