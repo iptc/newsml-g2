@@ -1085,6 +1085,7 @@ was sent</xs:documentation>
             <xs:element ref="rightsExpressionXML"/>
             <xs:element ref="rightsExpressionData"/>
          </xs:choice>
+         <xs:element ref="dataMining" minOccurs="0" maxOccurs="1" />
          <xs:any namespace="##other"
                   processContents="lax"
                   minOccurs="0"
@@ -1190,6 +1191,11 @@ was sent</xs:documentation>
             </xs:extension>
          </xs:simpleContent>
       </xs:complexType>
+   </xs:element>
+   <xs:element name="dataMining" type="FlexPropType">
+      <xs:annotation>
+         <xs:documentation>Data mining prohibition or permission, optionally with constraints</xs:documentation>
+      </xs:annotation>
    </xs:element>
    <xs:complexType name="RightsBlockType" mixed="true">
       <xs:annotation>
