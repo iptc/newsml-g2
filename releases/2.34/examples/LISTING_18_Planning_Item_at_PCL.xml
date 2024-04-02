@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<planningItem 
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ./NewsML-G2_2.34-spec-All-Power.xsd"
+    guid="urn:newsml:iptc.org:20101025:gbmrmdreis4711" 
+    version="11"
+    standard="NewsML-G2" 
+    standardversion="2.34" 
+    conformance="power"
+    xml:lang="en">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
+    <catalogRef href="http://www.example.com/events/event-catalog.xml" />
+    <itemMeta>
+        <itemClass qcode="plinat:newscoverage" />
+        <provider qcode="nprov:IPTC" />
+        <versionCreated>2018-10-18T13:45:00Z 
+        </versionCreated>
+        <pubStatus qcode="stat:usable" />
+    </itemMeta>
+    <contentMeta>
+        <urgency>5</urgency>
+        <contentCreated>2015-10-16T12:15:00Z</contentCreated>
+        <contentModified>2018-10-16T13:35:00Z</contentModified>
+        <headline>The 12 Days of Christmas</headline>
+    </contentMeta>
+        <newsCoverageSet>
+                <newsCoverage id="ID_1234568" modified="2018-09-26T13:19:11Z">
+                   <planning>
+                       <g2contentType>application/nitf+xml</g2contentType>
+                       <itemClass qcode="ninat:text"/>
+                       <assignedTo 
+                           coversfrom="2018-12-24T06:00:00Z"
+                           coversto="2018-12-24T23:00:00Z"
+                           qcode="santastaff:ceo">
+                           <name>Chief Elf Officer</name>
+                       </assignedTo>
+                       <scheduled>2018-12-24T23:30:00Z</scheduled>
+                       <headline>All Wrapped Up in Lapland</headline>
+                       <edNote>Text 250 words</edNote>
+                   </planning>
+                   <planning>
+                       <g2contentType>application/nitf+xml</g2contentType>
+                       <itemClass qcode="ninat:text"/>
+                       <assignedTo 
+                           coversfrom="2018-12-24T23:00:00Z"
+                           coversto="2018-12-25T12:00:00Z"
+                           qcode="santastaff:santa">
+                           <name>Santa Claus</name>
+                       </assignedTo>
+                       <scheduled>2018-12-25T06:30:00Z</scheduled>
+                       <headline>Santa’s Sleigh Ride</headline>
+                       <edNote>Text 250 words</edNote>
+                   </planning>
+                </newsCoverage>
+                <newsCoverage id="ID_1234569" modified="2018-09-26T15:19:11Z">
+                   <planning>
+                       <g2contentType>image/jpeg</g2contentType>
+                       <itemClass qcode="ninat:picture"></itemClass>
+                       <scheduled>2018-12-25T00:00:00Z</scheduled>
+                       <edNote>Picture will be Santa Claus departing with reindeer</edNote>
+                   </planning>
+                </newsCoverage>
+        </newsCoverageSet>
+</planningItem>

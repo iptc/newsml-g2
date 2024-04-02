@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ./NewsML-G2_2.34-spec-All-Power.xsd"
+    guid="urn:newsml:acmenews.com:20161019T1205:HOP-HISTORY-EXAMPLE"
+    version="11" 
+    standard="NewsML-G2"
+    standardversion="2.34" xml:lang="en-US">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
+    <catalogRef href="http://www.acmenews.com/synd/catalogs/anmcodes.xml" />
+    <hopHistory>
+        <hop seq="1" timestamp="2018-10-19T16:15:00Z">
+            <party qcode="comp:TR">
+                <name>Thomson Reuters</name>
+            </party>
+            <action qcode="hopaction:created" target="hatarget:content" />
+        </hop>
+        <hop seq="2" timestamp="2018-10-19T16:18:00Z">
+            <party qcode="comp:bwire" />
+            <!-- transformed content e.g. to a different format -->
+            <action qcode="hopaction:transformed" target="hatarget:content" />
+            <!-- enhanced existing metadata -->
+            <action qcode="hopaction:enhanced" target="hatarget:metadata" />
+        </hop>
+        <hop seq="3" timestamp="2018-10-19T18:15:00Z">
+            <party qcode="comp:aquiremedia" />
+            <!-- added metadata -->
+            <action qcode="hopaction:created" target="hatarget:metadata" />
+        </hop>
+        <hop seq="4" timestamp="2018-10-19T19:15:00Z">
+            <party qcode="comp:AP" />
+            <!-- enhanced content e.g. links to the text of the article -->
+            <action qcode="hopaction:enhanced" target="hatarget:content" />
+            <!-- enhanced existing metadata -->
+            <action qcode="hopaction:enhanced" target="hatarget:metadata" />
+        </hop>
+    </hopHistory>
+    <rightsInfo>
+        <copyrightHolder uri="http://www.thomsonreuters.com" />
+    </rightsInfo>
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        <provider qcode="nprov:reuters" />
+        <versionCreated>2018-10-19T20:15:00Z
+        </versionCreated>
+        <pubStatus qcode="stat:usable" />
+    </itemMeta>
+    <!-- metadata and content -->
+    <!-- metadata and content -->
+    <!-- metadata and content -->
+</newsItem>
