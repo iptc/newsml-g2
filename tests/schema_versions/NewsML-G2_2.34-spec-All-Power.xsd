@@ -1630,7 +1630,7 @@ was sent</xs:documentation>
       </xs:attribute>
       <xs:attribute name="contenttype" type="xs:string" use="optional">
          <xs:annotation>
-            <xs:documentation>The IANA (Internet Assigned Numbers Authority) MIME type of the target resource.</xs:documentation>
+            <xs:documentation>The IANA (Internet Assigned Numbers Authority) Media Type of the target resource.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="contenttypestandardversion" type="xs:string" use="optional">
@@ -1640,7 +1640,7 @@ was sent</xs:documentation>
       </xs:attribute>
       <xs:attribute name="contenttypevariant" type="xs:string" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) by a literal string value.
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) by a literal string value.
 </xs:documentation>
          </xs:annotation>
       </xs:attribute>
@@ -1653,13 +1653,13 @@ was sent</xs:documentation>
       </xs:attribute>
       <xs:attribute name="format" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) by a value from a controlled vocabulary - expressed by a QCode
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) by a value from a controlled vocabulary - expressed by a QCode
 </xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="formaturi" type="IRIType" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) by a value from a controlled vocabulary - expressed by a URI
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) by a value from a controlled vocabulary - expressed by a URI
 </xs:documentation>
          </xs:annotation>
       </xs:attribute>
@@ -1687,7 +1687,7 @@ was sent</xs:documentation>
       </xs:attribute>
       <xs:attribute name="hreftype" type="xs:string" use="optional">
          <xs:annotation>
-            <xs:documentation>The use of this attribute is DEPRECATED, use @contenttype instead. (was: An IANA MIME type.)</xs:documentation>
+            <xs:documentation>The use of this attribute is DEPRECATED, use @contenttype instead. (was: An IANA Media Type.)</xs:documentation>
          </xs:annotation>
       </xs:attribute>
    </xs:attributeGroup>
@@ -4585,7 +4585,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:annotation>
       <xs:attribute name="contenttype" type="xs:string" use="optional">
          <xs:annotation>
-            <xs:documentation>An IANA MIME type</xs:documentation>
+            <xs:documentation>An IANA Media Type</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="contenttypestandardversion" type="xs:string" use="optional">
@@ -4595,7 +4595,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
       <xs:attribute name="contenttypevariant" type="xs:string" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) by a literal string value.</xs:documentation>
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) by a literal string value.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="contenttypevariantstandardversion"
@@ -4607,12 +4607,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
       <xs:attribute name="format" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) - expressed by a QCode</xs:documentation>
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) - expressed by a QCode</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="formaturi" type="IRIType" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) - expressed by a URI</xs:documentation>
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) - expressed by a URI</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="formatstandardversion" type="xs:string" use="optional">
