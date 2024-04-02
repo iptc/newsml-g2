@@ -8,14 +8,14 @@ This document is published under the Creative Commons Attribution 4.0 license - 
 By obtaining, using and/or copying this document, you (the licensee) agree that you have read, understood, and will comply with the terms and conditions of the license.
 
 -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/" xmlns:iptc-ms="http://iptc.org/std/mergeschemas/" targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.33" xml:lang="en">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://iptc.org/std/nar/2006-10-01/" xmlns:iptc-x="http://iptc.org/std/nar/schemaextensions/" xmlns:iptc-ms="http://iptc.org/std/mergeschemas/" targetNamespace="http://iptc.org/std/nar/2006-10-01/" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.34" xml:lang="en">
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	<!-- For a successful validation of NewsML-G2 items, the xml.xsd file must be placed in the same folder as the NewsML-G2 XML schema -->
 	<xs:annotation>
-		<xs:documentation>NewsML-G2 2.33 XML Schema, document version 1</xs:documentation>
-		<xs:documentation>Approval of this XML Schema version: 2023-10-04</xs:documentation>
+		<xs:documentation>NewsML-G2 2.34 XML Schema, document version 1</xs:documentation>
+		<xs:documentation>Approval of this XML Schema version: 2024-04-17</xs:documentation>
 		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-		<xs:documentation>Date of creation of this XML Schema document revision: 2023-08-25</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document revision: 2024-04-02</xs:documentation>
 		<xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
 		<xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv, an LSEG Company), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
 	</xs:annotation>
@@ -26,7 +26,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.33-spec-ConceptItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.34-spec-ConceptItem-Power.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -36,7 +36,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.33-spec-KnowledgeItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.34-spec-KnowledgeItem-Power.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -46,7 +46,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.33-spec-NewsItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.34-spec-NewsItem-Power.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -56,7 +56,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.33-spec-PackageItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.34-spec-PackageItem-Power.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -66,7 +66,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.33-spec-PlanningItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.34-spec-PlanningItem-Power.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -76,7 +76,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.33-spec-CatalogItem-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.34-spec-CatalogItem-Power.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -86,7 +86,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 -->
 	<xs:annotation>
 		<xs:appinfo>
-			<iptc-ms:merge fname="NewsML-G2_2.33-spec-NewsMessage-Power.xsd"/>
+			<iptc-ms:merge fname="NewsML-G2_2.34-spec-NewsMessage-Power.xsd"/>
 		</xs:appinfo>
 	</xs:annotation>
 	<!-- 
@@ -95,10 +95,10 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 		#####################################################################################################
 -->
 	<xs:annotation>
-		<xs:documentation>NewsML-G2 2.33 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
-		<xs:documentation>Approval of this XML Schema version: 2023-10-04</xs:documentation>
+		<xs:documentation>NewsML-G2 2.34 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
+		<xs:documentation>Approval of this XML Schema version: 2024-04-17</xs:documentation>
 		<xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-		<xs:documentation>Date of creation of this XML Schema document revision: 2023-08-25</xs:documentation>
+		<xs:documentation>Date of creation of this XML Schema document revision: 2024-04-02</xs:documentation>
 		<xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
 		<xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
 	</xs:annotation>
@@ -348,6 +348,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 				<xs:element ref="rightsExpressionXML"/>
 				<xs:element ref="rightsExpressionData"/>
 			</xs:choice>
+			<xs:element ref="dataMining" minOccurs="0" maxOccurs="1" />
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
@@ -450,6 +451,14 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>NewsML-G2 2.34: dataMining added</xs:documentation>
+	</xs:annotation>
+	<xs:element name="dataMining" type="FlexPropType">
+		<xs:annotation>
+			<xs:documentation>Data mining prohibition or permission, optionally with constraints</xs:documentation>
+		</xs:annotation>
 	</xs:element>
 	<xs:complexType name="RightsBlockType" mixed="true">
 		<xs:annotation>
@@ -2157,8 +2166,36 @@ The relationship of properties inside this partMeta and properties at a higher h
 							<xs:documentation>A related concept, where the relationship is different from 'sameAs', 'broader' or 'narrower'.</xs:documentation>
 						</xs:annotation>
 						<xs:complexType>
-							<xs:complexContent>
-								<xs:extension base="FlexPropType">
+						<xs:complexContent>
+							<xs:extension base="FlexPropType">
+								<xs:choice minOccurs="0" maxOccurs="unbounded">
+                              <!-- related/related/related: added in NewsML-G2 2.34 -->
+									<xs:element name="related">
+										<xs:complexType>
+											<xs:complexContent> 
+												<xs:extension base="FlexPropType">
+													<xs:attribute name="rel" type="QCodeType" use="optional">
+														<xs:annotation>
+															<xs:documentation>The identifier of the relationship between the current concept and the target concept - expressed by a QCode</xs:documentation> 
+														</xs:annotation>
+													</xs:attribute>
+													<xs:attribute name="reluri" type="IRIType" use="optional">
+														<xs:annotation>
+															<xs:documentation>The identifier of the relationship between the current concept and the target concept - expressed by a URI</xs:documentation>
+														</xs:annotation> 
+													</xs:attribute>
+													<xs:attribute name="rank" type="xs:nonNegativeInteger" use="optional">
+														<xs:annotation>
+															<xs:documentation>The rank of the current concept among concepts having a relationship to the target concept.</xs:documentation>
+														</xs:annotation>
+													</xs:attribute>
+													<xs:attributeGroup ref="timeValidityAttributes"/>
+													<xs:attributeGroup ref="arbitraryValueAttributes"/>
+												</xs:extension>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
 									<xs:attribute name="rel" type="QCodeType" use="optional">
 										<xs:annotation>
 											<xs:documentation>The identifier of the relationship between the current concept and the target concept - expressed by a QCode</xs:documentation>

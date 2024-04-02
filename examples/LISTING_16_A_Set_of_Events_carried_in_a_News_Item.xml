@@ -3,9 +3,9 @@
     xmlns="http://iptc.org/std/nar/2006-10-01/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
-        ./NewsML-G2_2.33-spec-All-Power.xsd"
+        ./NewsML-G2_2.34-spec-All-Power.xsd"
     guid="urn:newsml:iptc.org:20090122:qqwpiruuew4711"
-    version="11" standard="NewsML-G2" standardversion="2.33" conformance="power"
+    version="11" standard="NewsML-G2" standardversion="2.34" conformance="power"
     xml:lang="en">
     <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
     <itemMeta>
