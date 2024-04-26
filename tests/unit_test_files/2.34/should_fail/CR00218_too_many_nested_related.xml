@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<newsItem 
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ../../../schema_versions/NewsML-G2_2.34-spec-All-Power.xsd"
+    guid="urn:newsml:acmenews.com:20240209:US-FINANCE-FED"
+    version="11" 
+    standard="NewsML-G2"
+    standardversion="2.34"
+    xml:lang="en-GB">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_39.xml" />
+    <rightsInfo>
+        <copyrightHolder uri="http://www.acmenews.com/about.html#copyright">
+            <name>Acme News and Media LLC</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2024 Acme News and Media LLC</copyrightNotice>
+    </rightsInfo>
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        <provider uri="http://www.acmenews.com/about/" />
+        <versionCreated>2024-02-09T12:25:32-05:00</versionCreated>
+        <pubStatus qcode="stat:usable" /> 
+    </itemMeta>
+    <contentMeta>
+        <contentCreated>2016-11-21T15:21:06-05:00</contentCreated>
+        <contentModified>2024-02-09T13:30:00+03:00</contentModified>
+        <located qcode="geoloc:NYC">
+            <name>New York, NY</name>
+        </located>
+        <creator uri="http://www.acmenews.com/staff/mjameson">
+            <name>Meredith Jameson</name>
+        </creator>
+        <infoSource qcode="is:AP">
+            <name>Associated Press</name>
+        </infoSource>
+        <language tag="en-US" />
+        <subject qcode="medtop:04000000">
+            <name>economy, business and finance</name>
+        </subject> 
+        <subject qcode="medtop:20000350">
+            <name>central bank</name>
+        </subject>
+        <subject qcode="medtop:20000379">
+            <name>money and monetary policy</name>
+        </subject>
+        <slugline>US-Finance-Fed</slugline>
+        <headline> Fed to halt QE to avert "bubble"</headline>
+    </contentMeta>
+    <assert qcode="G:21P">
+        <name>London</name>
+        <type qcode="cptType:5"/>
+        <related rel="crel:isA" qcode="geoProp:8"/>
+        <sameAs qcode="P:103229"/>
+        <POIDetails>
+            <!-- Define a point -->
+            <position latitude="51.507222" longitude="-0.1275" altitude="5"/>
+            <address>
+                <country qcode="x:x">
+                    <sameAs qcode="x:x"/>
+                    <related rel="q:q" qcode="x:x">
+                        <related rel="r:r" qcode="y:y">
+                            <related rel="s:s" qcode="z:z">
+                                <related rel="t:t" qcode="BROKEN:BROKEN" />
+                            </related>
+                        </related>
+                    </related>
+                </country>
+                <!-- CR00189/SGR349: Add World Region to Address: Flex1PropType as per country -->
+                <worldRegion qcode="worldregion:r150">
+                    <sameAs qcode="x:x"/>
+                    <related rel="r:r" qcode="x:x"/>
+                </worldRegion>
+            </address>
+        </POIDetails>
+    </assert>
+</newsItem>
