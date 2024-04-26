@@ -1,7 +1,7 @@
 # NewsML-G2 Documentation
 
-The latest version of NewsML-G2 is 2.33, approved by the IPTC Standards
-Committee in October 2023.
+The latest version of NewsML-G2 is 2.34, approved by the IPTC Standards
+Committee in April 2024.
 
 ## NewsML-G2 Quick Start guides
 
@@ -23,15 +23,15 @@ the
 and consulting the full
 [NewsML-G2 Specification](https://www.iptc.org/std/NewsML-G2/specification/)
 and
-[XML Schema documentation](https://www.iptc.org/std/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/)
+[XML Schema documentation](https://www.iptc.org/std/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/)
 for finer details.
 
 ## NewsML-G2 Specification document
 
-The latest version of the NewsML-G2 Specification in HTML is 2.31. A 2.33 version will be released soon.
+The latest version of the NewsML-G2 Specification in HTML is 2.33. A 2.34 version will be released soon.
 
-This 2.31 version is available at
-[https://www.iptc.org/std/NewsML-G2/2.31/specification/NewsML-G2-2.31-specification.html](https://www.iptc.org/std/NewsML-G2/2.31/specification/NewsML-G2-2.31-specification.html)
+This 2.33 version is available at
+[https://www.iptc.org/std/NewsML-G2/2.31/specification/NewsML-G2-2.33-specification.html](https://www.iptc.org/std/NewsML-G2/2.33/specification/NewsML-G2-2.33-specification.html)
 
 The latest version is always hosted at
 [https://www.iptc.org/std/NewsML-G2/specification/](https://www.iptc.org/std/NewsML-G2/specification/)
@@ -49,21 +49,21 @@ The last version to be published in PDF was the
 
 ## XML Schema documentation
 
-[NewsML-G2 XML Schema docs](https://www.iptc.org/std/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/)
+[NewsML-G2 XML Schema docs](https://www.iptc.org/std/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/)
 generated directly from the NewsML-G2 XML Schema are available in the
 specification folder:
-[https://www.iptc.org/std/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/](https://www.iptc.org/std/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/)
+[https://www.iptc.org/std/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/](https://www.iptc.org/std/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/)
 
 The XML Schema docs are separated into documentation for each of the major components of NewsML-G2:
 
-* [CatalogItem](https://www.iptc.org/std-dev/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/NewsML-G2_2.33-spec-CatalogItem-Power.html)
-* [ConceptItem](https://www.iptc.org/std-dev/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/NewsML-G2_2.33-spec-ConceptItem-Power.html)
-* [Framework](https://www.iptc.org/std-dev/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/NewsML-G2_2.33-spec-Framework-Power.html)
-* [KnowledgeItem](https://www.iptc.org/std-dev/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/NewsML-G2_2.33-spec-KnowledgeItem-Power.html)
-* [NewsItem](https://www.iptc.org/std-dev/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/NewsML-G2_2.33-spec-NewsItem-Power.html)
-* [NewsMessage](https://www.iptc.org/std-dev/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/NewsML-G2_2.33-spec-NewsMessage-Power.html)
-* [PackageItem](https://www.iptc.org/std-dev/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/NewsML-G2_2.33-spec-PackageItem-Power.html)
-* [PlanningItem](https://www.iptc.org/std-dev/NewsML-G2/2.33/specification/XML-Schema-Doc-Power/NewsML-G2_2.33-spec-PlanningItem-Power.html)
+* [CatalogItem](https://www.iptc.org/std-dev/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/NewsML-G2_2.34-spec-CatalogItem-Power.html)
+* [ConceptItem](https://www.iptc.org/std-dev/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/NewsML-G2_2.34-spec-ConceptItem-Power.html)
+* [Framework](https://www.iptc.org/std-dev/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/NewsML-G2_2.34-spec-Framework-Power.html)
+* [KnowledgeItem](https://www.iptc.org/std-dev/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/NewsML-G2_2.34-spec-KnowledgeItem-Power.html)
+* [NewsItem](https://www.iptc.org/std-dev/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/NewsML-G2_2.34-spec-NewsItem-Power.html)
+* [NewsMessage](https://www.iptc.org/std-dev/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/NewsML-G2_2.34-spec-NewsMessage-Power.html)
+* [PackageItem](https://www.iptc.org/std-dev/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/NewsML-G2_2.34-spec-PackageItem-Power.html)
+* [PlanningItem](https://www.iptc.org/std-dev/NewsML-G2/2.34/specification/XML-Schema-Doc-Power/NewsML-G2_2.34-spec-PlanningItem-Power.html)
 
 ## NewsML-G2 Structure Matrix
 
