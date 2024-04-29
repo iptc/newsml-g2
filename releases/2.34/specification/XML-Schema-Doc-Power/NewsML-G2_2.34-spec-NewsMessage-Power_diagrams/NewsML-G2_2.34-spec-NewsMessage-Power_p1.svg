@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="358" height="208">
+	<clipPath id="cl_52a">
+		<rect x="-10" y="-5" width="358" height="208"/>
+	</clipPath>
+	<g clip-path="url(#cl_52a)">
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M105 74L134 74"/>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M135 74L135 31"/>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M135 74L135 118"/>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M135 119L149 119"/>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M135 30L149 30"/>
+		<rect fill="silver" x="4" y="68" width="100" height="21"/>
+		<rect fill="white" y="64" width="100" height="21"/>
+		<rect fill="white" x="5" y="91" width="116" height="24"/>
+		<text fill="gray" font-size="9" font-family="Segoe UI" x="5, 10.805176, 13.270508, 17.427734, 22.701172, 27.794434, 30.844238, 35.42334, 37.603027, 42.696289, 47.402832, 50.531738, 52.99707, 56.046875, 61.320312, 63.785645, 68.492188, 72.623047, 76.780273, 81.873535, 86.452637, 91.545898, 96.845703, 101.55225, 104.01758, 109.29102, 114.38428, " y="101, ">
+				A container to exchange one
+		</text>
+		<text fill="gray" font-size="9" font-family="Segoe UI" x="5, 10.273438, 13.402344, 15.867676, 23.619629, 28.893066, 32.021973, 36.728516, 39.193848, 41.373535, 44.42334, 49.129883, 56.881836, " y="113, ">
+				or more items
+		</text>
+		<rect fill="white" x="9" y="66" width="79" height="16"/>
+		<text font-size="12" font-weight="600" font-family="Segoe UI" x="9, 16.259766, 22.751953, 32.320312, 37.599609, 49.083984, 55.576172, 60.855469, 66.134766, 72.591797, 80.021484, " y="79, ">
+				newsMessage
+		</text>
+		<rect fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" y="64" width="99" height="20"/>
+		<path fill="white" d="M227 19L227 0L150 0L150 19L150 59L253 59L253 19L227 19Z"/>
+		<rect fill="white" x="170" y="2" width="51" height="16"/>
+		<text font-size="12" font-style="italic" font-family="Segoe UI" x="170, 176.50391, 180.38281, 184.26172, 188.5332, 191.63867, 198.14258, 204.83984, 208.73047, 214.57227, " y="15, ">
+				attributes
+		</text>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M227 19L227 0L150 0L150 19L150 59L253 59L253 19L227 19Z"/>
+		<path fill="silver" d="M168 37L173 32L241 32L246 37L246 48L241 53L173 53L168 48L168 37Z"/>
+		<path fill="white" d="M164 33L169 28L237 28L242 33L242 44L237 49L169 49L164 44L164 33Z"/>
+		<rect fill="white" x="191" y="30" width="46" height="16"/>
+		<text font-size="12" font-weight="600" font-family="Segoe UI" x="191, 198.10742, 205.21484, 212.55078, 217.2207, 224.44531, 230.9375, " y="43, ">
+				##other
+		</text>
+		<rect fill="white" x="169" y="30" width="20" height="16"/>
+		<text fill="gray" font-size="12" font-family="Segoe UI" x="169, 175.10547, 181.89648, " y="43, ">
+				any
+		</text>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M164 33L169 28L236 28L241 33L241 43L236 48L169 48L164 43L164 33Z"/>
+		<rect x="155" y="5" width="11" height="11"/>
+		<rect fill="white" x="156" y="6" width="9" height="9"/>
+		<rect x="157" y="10" width="7" height="1"/>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M195 119L203 119"/>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M204 119L204 83"/>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M204 119L204 156"/>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M204 82L218 82"/>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M204 157L218 157"/>
+		<path fill="silver" d="M154 118L159 113L184 113L189 118L189 129L184 134L159 134L154 129L154 118Z"/>
+		<path fill="white" d="M150 114L155 109L180 109L185 114L185 125L180 130L155 130L150 125L150 114Z"/>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M155 119L179 119"/>
+		<rect x="161" y="118" width="3" height="3"/>
+		<rect x="166" y="118" width="3" height="3"/>
+		<rect x="171" y="118" width="3" height="3"/>
+		<path fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" d="M150 114L155 109L179 109L184 114L184 124L179 129L155 129L150 124L150 114Z"/>
+		<rect fill="silver" x="223" y="76" width="61" height="21"/>
+		<rect fill="white" x="219" y="72" width="61" height="21"/>
+		<rect fill="white" x="224" y="99" width="114" height="36"/>
+		<text fill="gray" font-size="9" font-family="Segoe UI" x="224, 229.80518, 232.27051, 237.57031, 240.69922, 245.97266, 251.06592, 256.35693, 258.82227, 264.0957, 266.9126, 269.37793, 274.66895, 277.79785, 283.07129, 288.3623, 293.06885, 296.19775, 299.24756, 301.42725, 306.13379, " y="109, ">
+				A group of properties
+		</text>
+		<text fill="gray" font-size="9" font-family="Segoe UI" x="224, 229.29102, 232.41992, 237.69336, 242.00439, 244.18408, 249.48389, 251.66357, 256.75684, 262.05664, 264.52197, 266.70166, 271.79492, 274.61182, 279.88525, 283.01416, 290.76611, 295.34521, 298.39502, 300.57471, 305.84814, 310.94141, 313.40674, 317.98584, 323.27686, 328.55029, 333.64355, " y="121, ">
+				providing information about
+		</text>
+		<text fill="gray" font-size="9" font-family="Segoe UI" x="224, 227.0498, 232.14307, 236.84961, 239.31494, 244.02148, 248.15234, 252.30957, 257.40283, 261.98193, 267.0752, 272.375, 277.08154, " y="133, ">
+				the exchange.
+		</text>
+		<rect fill="white" x="228" y="74" width="40" height="16"/>
+		<text font-size="12" font-weight="600" font-family="Segoe UI" x="228, 235.22461, 241.7168, 248.17383, 255.60352, 262.0957, " y="87, ">
+				header
+		</text>
+		<rect fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" x="219" y="72" width="60" height="20"/>
+		<rect x="274" y="77" width="11" height="11"/>
+		<rect fill="white" x="275" y="78" width="9" height="9"/>
+		<rect x="276" y="82" width="7" height="1"/>
+		<rect x="279" y="79" width="1" height="7"/>
+		<rect fill="silver" x="223" y="151" width="66" height="21"/>
+		<rect fill="white" x="219" y="147" width="66" height="21"/>
+		<rect fill="white" x="224" y="174" width="88" height="24"/>
+		<text fill="gray" font-size="9" font-family="Segoe UI" x="224, 228.71533, 233.80859, 238.51514, 240.98047, 244.79932, 249.50586, 252.55566, 255.021, 260.29443, 263.11133, 265.57666, 267.75635, 270.80615, 275.5127, 283.26465, 287.0835, 289.54883, 292.59863, 297.87207, 300.3374, 305.62842, " y="184, ">
+				The set of items to be
+		</text>
+		<text fill="gray" font-size="9" font-family="Segoe UI" x="224, 228.70654, 232.8374, 236.99463, 242.08789, 246.66699, 251.76025, 257.06006, 261.7666, 267.06641, " y="196, ">
+				exchanged.
+		</text>
+		<rect fill="white" x="228" y="149" width="45" height="16"/>
+		<text font-size="12" font-weight="600" font-family="Segoe UI" x="228, 231.41016, 236.0332, 242.52539, 253.51758, 260.24414, 266.73633, " y="162, ">
+				itemSet
+		</text>
+		<rect fill="none" stroke="black" stroke-width="1" stroke-linecap="square" stroke-miterlimit="4" transform="translate(0.5 0.5)" x="219" y="147" width="65" height="20"/>
+		<rect x="279" y="152" width="11" height="11"/>
+		<rect fill="white" x="280" y="153" width="9" height="9"/>
+		<rect x="281" y="157" width="7" height="1"/>
+		<rect x="284" y="154" width="1" height="7"/>
+		<rect x="184" y="114" width="11" height="11"/>
+		<rect fill="white" x="185" y="115" width="9" height="9"/>
+		<rect x="186" y="119" width="7" height="1"/>
+		<rect x="94" y="69" width="11" height="11"/>
+		<rect fill="white" x="95" y="70" width="9" height="9"/>
+		<rect x="96" y="74" width="7" height="1"/>
+	</g>
+</svg>
