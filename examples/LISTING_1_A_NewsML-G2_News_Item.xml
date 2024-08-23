@@ -3,11 +3,11 @@
     xmlns="http://iptc.org/std/nar/2006-10-01/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
-        ./NewsML-G2_2.34-spec-All-Power.xsd"
+        ./NewsML-G2_2.35-spec-All-Power.xsd"
     guid="urn:newsml:acmenews.com:20161018:US-FINANCE-FED"
     version="11" 
     standard="NewsML-G2" 
-    standardversion="2.34" 
+    standardversion="2.35" 
     conformance="power"
     xml:lang="en-GB">
     <catalogRef
