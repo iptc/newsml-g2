@@ -1193,7 +1193,7 @@ was sent</xs:documentation>
       </xs:complexType>
    </xs:element>
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.35: dataMining added</xs:documentation>
+      <xs:documentation>NewsML-G2 2.34: dataMining added</xs:documentation>
    </xs:annotation>
    <xs:element name="dataMining" type="FlexPropType">
       <xs:annotation>
