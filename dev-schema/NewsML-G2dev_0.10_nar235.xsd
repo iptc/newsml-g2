@@ -19,7 +19,7 @@ license.
 		<xs:documentation>Created by Michael Steidl</xs:documentation>
 		<xs:documentation>Revised by Brendan Quinn</xs:documentation>
 	</xs:annotation>
-	<xs:import namespace="http://iptc.org/std/nar/2006-10-01/" schemaLocation="NewsML-G2_2.34-spec-All-Power.xsd"/>
+	<xs:import namespace="http://iptc.org/std/nar/2006-10-01/" schemaLocation="NewsML-G2_2.35-spec-All-Power.xsd"/>
 	<!-- The NewsMLG2 schema contain the NAR building blocks used for experimental NewsML-G2 -->
 	<!-- ========================================================================================= -->
 	<!--   Advice element: a wrapper of child properties, is setting role and environment -->
