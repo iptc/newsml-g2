@@ -1369,7 +1369,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 			<xs:documentation>Free-text term to be used for indexing or finding the content of text-based search engines</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:complexContent>
+			<xs:simpleContent>
 				<xs:extension base="IntlStringType">
 					<xs:attribute name="role" type="QCodeListType" use="optional">
 						<xs:annotation>
@@ -1393,7 +1393,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 						</xs:annotation>
 					</xs:attribute>
 				</xs:extension>
-			</xs:complexContent>
+			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="subject">
@@ -1496,11 +1496,11 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 			<xs:documentation>A free-form expression of the credit(s) for the content</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:complexContent>
+			<xs:simpleContent>
 				<xs:extension base="IntlStringType">
 					<xs:attributeGroup ref="rankingAttributes"/>
 				</xs:extension>
-			</xs:complexContent>
+			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="description">
@@ -2109,7 +2109,7 @@ The relationship of properties inside this partMeta and properties at a higher h
 		<xs:annotation>
 			<xs:documentation>The type of a natural language name for the concept (Type defined in this XML Schema only)</xs:documentation>
 		</xs:annotation>
-		<xs:complexContent>
+		<xs:simpleContent>
 			<xs:extension base="IntlStringType">
 				<xs:attribute name="role" type="QCodeListType" use="optional">
 					<xs:annotation>
@@ -2133,7 +2133,7 @@ The relationship of properties inside this partMeta and properties at a higher h
 				</xs:attribute>
 				<xs:attributeGroup ref="timeValidityAttributes"/>
 			</xs:extension>
-		</xs:complexContent>
+		</xs:simpleContent>
 	</xs:complexType>
 	<xs:complexType name="SameAsType">
 		<xs:annotation>
@@ -2627,11 +2627,11 @@ The relationship of properties inside this partMeta and properties at a higher h
 									<xs:documentation>The date the event commences.</xs:documentation>
 								</xs:annotation>
 								<xs:complexType>
-									<xs:complexContent>
+									<xs:simpleContent>
 										<xs:extension base="ApproximateDateTimePropType">
 											<xs:attributeGroup ref="confirmationStatusAttributes"/>
 										</xs:extension>
-									</xs:complexContent>
+									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
 							<xs:choice minOccurs="0" maxOccurs="1">
@@ -2640,11 +2640,11 @@ The relationship of properties inside this partMeta and properties at a higher h
 										<xs:documentation>The date the event ends.</xs:documentation>
 									</xs:annotation>
 									<xs:complexType>
-										<xs:complexContent>
+										<xs:simpleContent>
 											<xs:extension base="ApproximateDateTimePropType">
 												<xs:attributeGroup ref="confirmationStatusAttributes"/>
 											</xs:extension>
-										</xs:complexContent>
+										</xs:simpleContent>
 									</xs:complexType>
 								</xs:element>
 								<xs:element name="duration">
@@ -3025,7 +3025,7 @@ so on. May also hold accreditation information</xs:documentation>
 					<xs:documentation>A line of address information, in the format expected by a recipient postal service. City, country area, country and postal code are expressed separately.</xs:documentation>
 				</xs:annotation>
 				<xs:complexType>
-					<xs:complexContent>
+					<xs:simpleContent>
 						<xs:extension base="IntlStringType">
 							<xs:attribute name="role" type="QCodeType" use="optional">
 								<xs:annotation>
@@ -3038,7 +3038,7 @@ so on. May also hold accreditation information</xs:documentation>
 								</xs:annotation>
 							</xs:attribute>
 						</xs:extension>
-					</xs:complexContent>
+					</xs:simpleContent>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="locality" type="Flex1RolePropType" minOccurs="0" maxOccurs="unbounded">
@@ -3420,9 +3420,9 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 									<xs:documentation>Time stamp representing an optionally truncated date and time</xs:documentation>
 								</xs:annotation>
 								<xs:complexType>
-									<xs:complexContent>
+									<xs:simpleContent>
 										<xs:extension base="TruncatedDateTimePropType"/>
-									</xs:complexContent>
+									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
 							<xs:choice minOccurs="0" maxOccurs="unbounded">

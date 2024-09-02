@@ -68,11 +68,11 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 									<xs:documentation>The sender of the items, which may be an organisation or a person</xs:documentation>
 								</xs:annotation>
 								<xs:complexType>
-									<xs:complexContent>
+									<xs:simpleContent>
 										<xs:extension base="StringType">
 											<xs:attributeGroup ref="qualifyingAttributes"/>
 										</xs:extension>
-									</xs:complexContent>
+									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="transmitId" type="StringType" minOccurs="0">
@@ -98,11 +98,11 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 									<xs:documentation>The point of origin of the transmission of this message</xs:documentation>
 								</xs:annotation>
 								<xs:complexType>
-									<xs:complexContent>
+									<xs:simpleContent>
 										<xs:extension base="StringType">
 											<xs:attributeGroup ref="qualifyingAttributes"/>
 										</xs:extension>
-									</xs:complexContent>
+									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
 							<xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -129,11 +129,11 @@ was sent</xs:documentation>
 										<xs:documentation>A point of destination for this message.</xs:documentation>
 									</xs:annotation>
 									<xs:complexType>
-										<xs:complexContent>
+										<xs:simpleContent>
 											<xs:extension base="StringType">
 												<xs:attributeGroup ref="qualifyingAttributes"/>
 											</xs:extension>
-										</xs:complexContent>
+										</xs:simpleContent>
 									</xs:complexType>
 								</xs:element>
 								<xs:element name="channel">
@@ -141,7 +141,7 @@ was sent</xs:documentation>
 										<xs:documentation>A transmission channel used by the message</xs:documentation>
 									</xs:annotation>
 									<xs:complexType>
-										<xs:complexContent>
+										<xs:simpleContent>
 											<xs:extension base="StringType">
 												<xs:attributeGroup ref="qualifyingAttributes"/>
 												<xs:attribute name="g2flag" type="xs:string" use="optional" fixed="NMSG">
@@ -150,7 +150,7 @@ was sent</xs:documentation>
 													</xs:annotation>
 												</xs:attribute>
 											</xs:extension>
-										</xs:complexContent>
+										</xs:simpleContent>
 									</xs:complexType>
 								</xs:element>
 								<xs:element ref="signal"/>
