@@ -3,8 +3,8 @@
 ## These vars must be edited for each new release:
 
 # The initial revision of a new version is 1, first change becomes revision 2
-export NEW_NEWSMLG2_VERSION="2.35"
-export NEW_NEWSMLG2_REVISION="1"
+export NEW_NEWSMLG2_VERSION="2.34"
+export NEW_NEWSMLG2_REVISION="2"
 
 # This should refer to the latest publicly released version and revision
 export OLD_NEWSMLG2_VERSION="2.34"

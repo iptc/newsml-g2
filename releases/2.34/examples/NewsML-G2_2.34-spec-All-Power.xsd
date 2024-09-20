@@ -21,10 +21,10 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
                schemaLocation="xml.xsd"/>
    <!-- For a successful validation of NewsML-G2 items, the xml.xsd file must be placed in the same folder as the NewsML-G2 XML schema -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.34 XML Schema, document version 1</xs:documentation>
-      <xs:documentation>Approval of this XML Schema version: 2024-04-17</xs:documentation>
+      <xs:documentation>NewsML-G2 2.34 XML Schema, document version 2</xs:documentation>
+      <xs:documentation>Approval of this XML Schema version: 2024-10-02</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2024-04-02</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2024-09-20</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
       <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv, an LSEG Company), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
@@ -680,11 +680,11 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
                            <xs:documentation>The sender of the items, which may be an organisation or a person</xs:documentation>
                         </xs:annotation>
                         <xs:complexType>
-                           <xs:complexContent>
+                           <xs:simpleContent>
                               <xs:extension base="StringType">
                                  <xs:attributeGroup ref="qualifyingAttributes"/>
                               </xs:extension>
-                           </xs:complexContent>
+                           </xs:simpleContent>
                         </xs:complexType>
                      </xs:element>
                      <xs:element name="transmitId" type="StringType" minOccurs="0">
@@ -710,11 +710,11 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
                            <xs:documentation>The point of origin of the transmission of this message</xs:documentation>
                         </xs:annotation>
                         <xs:complexType>
-                           <xs:complexContent>
+                           <xs:simpleContent>
                               <xs:extension base="StringType">
                                  <xs:attributeGroup ref="qualifyingAttributes"/>
                               </xs:extension>
-                           </xs:complexContent>
+                           </xs:simpleContent>
                         </xs:complexType>
                      </xs:element>
                      <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -741,11 +741,11 @@ was sent</xs:documentation>
                               <xs:documentation>A point of destination for this message.</xs:documentation>
                            </xs:annotation>
                            <xs:complexType>
-                              <xs:complexContent>
+                              <xs:simpleContent>
                                  <xs:extension base="StringType">
                                     <xs:attributeGroup ref="qualifyingAttributes"/>
                                  </xs:extension>
-                              </xs:complexContent>
+                              </xs:simpleContent>
                            </xs:complexType>
                         </xs:element>
                         <xs:element name="channel">
@@ -753,7 +753,7 @@ was sent</xs:documentation>
                               <xs:documentation>A transmission channel used by the message</xs:documentation>
                            </xs:annotation>
                            <xs:complexType>
-                              <xs:complexContent>
+                              <xs:simpleContent>
                                  <xs:extension base="StringType">
                                     <xs:attributeGroup ref="qualifyingAttributes"/>
                                     <xs:attribute name="g2flag" type="xs:string" use="optional" fixed="NMSG">
@@ -762,7 +762,7 @@ was sent</xs:documentation>
                                        </xs:annotation>
                                     </xs:attribute>
                                  </xs:extension>
-                              </xs:complexContent>
+                              </xs:simpleContent>
                            </xs:complexType>
                         </xs:element>
                         <xs:element ref="signal"/>
@@ -824,10 +824,10 @@ was sent</xs:documentation>
 		#####################################################################################################
 -->
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.34 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 1</xs:documentation>
-      <xs:documentation>Approval of this XML Schema version: 2024-04-17</xs:documentation>
+      <xs:documentation>NewsML-G2 2.34 News Architecture (NAR) for IPTC G2-Standards - Framework XML Schema, document version 2</xs:documentation>
+      <xs:documentation>Approval of this XML Schema version: 2024-10-02</xs:documentation>
       <xs:documentation>Any changes applied to this version of the XML Schema can be found at http://dev.iptc.org/G2-Approved-Changes</xs:documentation>
-      <xs:documentation>Date of creation of this XML Schema document revision: 2024-04-02</xs:documentation>
+      <xs:documentation>Date of creation of this XML Schema document revision: 2024-09-20</xs:documentation>
       <xs:documentation>Schema design created for the IPTC in 2008 by Jay Cousins, RivCom Ltd (jay.cousins@rivcom.com),  Ulf Wingstedt, CNet Svenska AB (ulf.wingstedt@cnet.se)</xs:documentation>
       <xs:documentation>Schema maintained for the IPTC by Brendan Quinn (IPTC) and Dave Compton (Refinitiv), version 2.6 to 2.27 by  Michael Steidl (IPTC), up to version 2.5 by Laurent Le Meur (AFP) </xs:documentation>
    </xs:annotation>
@@ -1344,7 +1344,7 @@ was sent</xs:documentation>
          <xs:documentation>The name and version of the software tool used to generate the Item.</xs:documentation>
       </xs:annotation>
       <xs:complexType>
-         <xs:complexContent>
+         <xs:simpleContent>
             <xs:extension base="VersionedStringType">
                <xs:attribute name="role" type="QCodeType" use="optional">
                   <xs:annotation>
@@ -1357,7 +1357,7 @@ was sent</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
             </xs:extension>
-         </xs:complexContent>
+         </xs:simpleContent>
       </xs:complexType>
    </xs:element>
    <xs:element name="profile" type="VersionedStringType">
@@ -1630,7 +1630,7 @@ was sent</xs:documentation>
       </xs:attribute>
       <xs:attribute name="contenttype" type="xs:string" use="optional">
          <xs:annotation>
-            <xs:documentation>The IANA (Internet Assigned Numbers Authority) MIME type of the target resource.</xs:documentation>
+            <xs:documentation>The IANA (Internet Assigned Numbers Authority) Media Type of the target resource.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="contenttypestandardversion" type="xs:string" use="optional">
@@ -1640,7 +1640,7 @@ was sent</xs:documentation>
       </xs:attribute>
       <xs:attribute name="contenttypevariant" type="xs:string" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) by a literal string value.
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) by a literal string value.
 </xs:documentation>
          </xs:annotation>
       </xs:attribute>
@@ -1653,13 +1653,13 @@ was sent</xs:documentation>
       </xs:attribute>
       <xs:attribute name="format" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) by a value from a controlled vocabulary - expressed by a QCode
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) by a value from a controlled vocabulary - expressed by a QCode
 </xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="formaturi" type="IRIType" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) by a value from a controlled vocabulary - expressed by a URI
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) by a value from a controlled vocabulary - expressed by a URI
 </xs:documentation>
          </xs:annotation>
       </xs:attribute>
@@ -1687,7 +1687,7 @@ was sent</xs:documentation>
       </xs:attribute>
       <xs:attribute name="hreftype" type="xs:string" use="optional">
          <xs:annotation>
-            <xs:documentation>The use of this attribute is DEPRECATED, use @contenttype instead. (was: An IANA MIME type.)</xs:documentation>
+            <xs:documentation>The use of this attribute is DEPRECATED, use @contenttype instead. (was: An IANA Media Type.)</xs:documentation>
          </xs:annotation>
       </xs:attribute>
    </xs:attributeGroup>
@@ -2114,7 +2114,7 @@ was sent</xs:documentation>
       </xs:complexType>
    </xs:element>
    <xs:annotation>
-      <xs:documentation>NewsML-G2 2.34: digitalSourceType added</xs:documentation>
+      <xs:documentation>NewsML-G2 2.33: digitalSourceType added</xs:documentation>
    </xs:annotation>
    <xs:element name="digitalSourceType" type="FlexPropType">
       <xs:annotation>
@@ -2129,7 +2129,7 @@ was sent</xs:documentation>
          <xs:documentation>Free-text term to be used for indexing or finding the content of text-based search engines</xs:documentation>
       </xs:annotation>
       <xs:complexType>
-         <xs:complexContent>
+         <xs:simpleContent>
             <xs:extension base="IntlStringType">
                <xs:attribute name="role" type="QCodeListType" use="optional">
                   <xs:annotation>
@@ -2153,7 +2153,7 @@ was sent</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
             </xs:extension>
-         </xs:complexContent>
+         </xs:simpleContent>
       </xs:complexType>
    </xs:element>
    <xs:element name="subject">
@@ -2256,11 +2256,11 @@ was sent</xs:documentation>
          <xs:documentation>A free-form expression of the credit(s) for the content</xs:documentation>
       </xs:annotation>
       <xs:complexType>
-         <xs:complexContent>
+         <xs:simpleContent>
             <xs:extension base="IntlStringType">
                <xs:attributeGroup ref="rankingAttributes"/>
             </xs:extension>
-         </xs:complexContent>
+         </xs:simpleContent>
       </xs:complexType>
    </xs:element>
    <xs:element name="description">
@@ -2881,7 +2881,7 @@ The relationship of properties inside this partMeta and properties at a higher h
       <xs:annotation>
          <xs:documentation>The type of a natural language name for the concept (Type defined in this XML Schema only)</xs:documentation>
       </xs:annotation>
-      <xs:complexContent>
+      <xs:simpleContent>
          <xs:extension base="IntlStringType">
             <xs:attribute name="role" type="QCodeListType" use="optional">
                <xs:annotation>
@@ -2905,7 +2905,7 @@ The relationship of properties inside this partMeta and properties at a higher h
             </xs:attribute>
             <xs:attributeGroup ref="timeValidityAttributes"/>
          </xs:extension>
-      </xs:complexContent>
+      </xs:simpleContent>
    </xs:complexType>
    <xs:complexType name="SameAsType">
       <xs:annotation>
@@ -3415,11 +3415,11 @@ The relationship of properties inside this partMeta and properties at a higher h
                            <xs:documentation>The date the event commences.</xs:documentation>
                         </xs:annotation>
                         <xs:complexType>
-                           <xs:complexContent>
+                           <xs:simpleContent>
                               <xs:extension base="ApproximateDateTimePropType">
                                  <xs:attributeGroup ref="confirmationStatusAttributes"/>
                               </xs:extension>
-                           </xs:complexContent>
+                           </xs:simpleContent>
                         </xs:complexType>
                      </xs:element>
                      <xs:choice minOccurs="0" maxOccurs="1">
@@ -3428,11 +3428,11 @@ The relationship of properties inside this partMeta and properties at a higher h
                               <xs:documentation>The date the event ends.</xs:documentation>
                            </xs:annotation>
                            <xs:complexType>
-                              <xs:complexContent>
+                              <xs:simpleContent>
                                  <xs:extension base="ApproximateDateTimePropType">
                                     <xs:attributeGroup ref="confirmationStatusAttributes"/>
                                  </xs:extension>
-                              </xs:complexContent>
+                              </xs:simpleContent>
                            </xs:complexType>
                         </xs:element>
                         <xs:element name="duration">
@@ -3831,7 +3831,7 @@ so on. May also hold accreditation information</xs:documentation>
                <xs:documentation>A line of address information, in the format expected by a recipient postal service. City, country area, country and postal code are expressed separately.</xs:documentation>
             </xs:annotation>
             <xs:complexType>
-               <xs:complexContent>
+               <xs:simpleContent>
                   <xs:extension base="IntlStringType">
                      <xs:attribute name="role" type="QCodeType" use="optional">
                         <xs:annotation>
@@ -3844,7 +3844,7 @@ so on. May also hold accreditation information</xs:documentation>
                         </xs:annotation>
                      </xs:attribute>
                   </xs:extension>
-               </xs:complexContent>
+               </xs:simpleContent>
             </xs:complexType>
          </xs:element>
          <xs:element name="locality"
@@ -4256,9 +4256,9 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
                            <xs:documentation>Time stamp representing an optionally truncated date and time</xs:documentation>
                         </xs:annotation>
                         <xs:complexType>
-                           <xs:complexContent>
+                           <xs:simpleContent>
                               <xs:extension base="TruncatedDateTimePropType"/>
-                           </xs:complexContent>
+                           </xs:simpleContent>
                         </xs:complexType>
                      </xs:element>
                      <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -4585,7 +4585,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:annotation>
       <xs:attribute name="contenttype" type="xs:string" use="optional">
          <xs:annotation>
-            <xs:documentation>An IANA MIME type</xs:documentation>
+            <xs:documentation>An IANA Media Type</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="contenttypestandardversion" type="xs:string" use="optional">
@@ -4595,7 +4595,7 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
       <xs:attribute name="contenttypevariant" type="xs:string" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) by a literal string value.</xs:documentation>
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) by a literal string value.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="contenttypevariantstandardversion"
@@ -4607,12 +4607,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
       </xs:attribute>
       <xs:attribute name="format" type="QCodeType" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) - expressed by a QCode</xs:documentation>
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) - expressed by a QCode</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="formaturi" type="IRIType" use="optional">
          <xs:annotation>
-            <xs:documentation>A refinement of a generic content type (i.e. IANA MIME type) - expressed by a URI</xs:documentation>
+            <xs:documentation>A refinement of a generic content type (i.e. IANA Media Type) - expressed by a URI</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="formatstandardversion" type="xs:string" use="optional">

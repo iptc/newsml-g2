@@ -3,12 +3,12 @@
     xmlns="http://iptc.org/std/nar/2006-10-01/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
-        ./NewsML-G2_2.35-spec-All-Power.xsd"
+        ./NewsML-G2_2.34-spec-All-Power.xsd"
     guid="urn:iptc.org:20161019:sports1" version="11"
     xmlns:xts="www.xmlteam.com" 
     conformance="power" 
     standard="NewsML-G2"
-    standardversion="2.35" 
+    standardversion="2.34" 
     xml:lang="en-US">
     <catalogRef
         href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />

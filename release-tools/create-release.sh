@@ -12,7 +12,7 @@ echo "Creating release folder releases/$NEW_NEWSMLG2_VERSION"
 mkdir -p releases/$NEW_NEWSMLG2_VERSION
 
 echo "Copying release files to the release folder"
-cp -r documentation examples LICENSE releases/$NEW_NEWSMLG2_VERSION/
+cp -r documentation examples LICENSE README.md releases/$NEW_NEWSMLG2_VERSION/
 
 echo "Copying README files to the release folder"
 python -m markdown README.md >releases/$NEW_NEWSMLG2_VERSION/README.html
