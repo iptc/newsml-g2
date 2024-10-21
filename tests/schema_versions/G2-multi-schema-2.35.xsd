@@ -1,0 +1,11 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<xs:schema xmlns  ="http://dummy.libxml2.validator"
+   targetNamespace="http://dummy.libxml2.validator"
+   xmlns:xs       ="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsi      ="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:nar      ="http://iptc.org/std/nar/2006-10-01/"
+   xmlns:o        ="http://www.w3.org/ns/odrl/2/"
+   version="1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://iptc.org/std/nar/2006-10-01/" schemaLocation="./NewsML-G2_2.35-spec-All-Power.xsd"/>
+    <xs:import namespace="http://www.w3.org/ns/odrl/2/" schemaLocation="./ODRL22.xsd"/>
+</xs:schema>

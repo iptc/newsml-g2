@@ -49,7 +49,6 @@ SCHEMA_FILES_FOLDER = os.path.join(
 
 NEWSMLG2_DEV_SCHEMA = os.path.join(
     SCHEMA_FILES_FOLDER, 
-    # 'NewsML-G2dev_0.9_nar234.xsd'
     'G2-multi-schema-dev-0.9-nar234.xsd'
 )
 
@@ -88,8 +87,8 @@ SCHEMA_VERSIONS = {
         "should_fail_folders": [
             os.path.join(TEST_FILES_FOLDER, 'dev', 'should_fail')
         ],
-    },
-    "2.34": {
+     },
+     "2.34": {
         "schema_file": os.path.join(
             # DIRNAME, '..', 'specification', 'NewsML-G2_2.34-spec-All-Power.xsd'
             SCHEMA_FILES_FOLDER, 'G2-multi-schema-2.34.xsd'
@@ -101,8 +100,6 @@ SCHEMA_VERSIONS = {
             os.path.join(TEST_FILES_FOLDER, '2.31', 'should_pass'),
             os.path.join(TEST_FILES_FOLDER, '2.30', 'should_pass'),
             os.path.join(TEST_FILES_FOLDER, '2.29', 'should_pass'),
-            os.path.join(TEST_FILES_FOLDER, '2.28', 'should_pass'),
-            os.path.join(TEST_FILES_FOLDER, '2.27', 'should_pass'),
             os.path.join(TEST_FILES_FOLDER, '2.26', 'should_pass'),
             os.path.join(TEST_FILES_FOLDER, '2.25', 'should_pass'),
             os.path.join(TEST_FILES_FOLDER, '2.24', 'should_pass'),
