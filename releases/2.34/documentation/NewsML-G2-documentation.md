@@ -1,7 +1,7 @@
 # NewsML-G2 Documentation
 
 The latest version of NewsML-G2 is 2.34, approved by the IPTC Standards
-Committee in April 2024 and updated (2.34_2) in October 2024..
+Committee in April 2024 and updated (2.34_2) in October 2024.
 
 ## NewsML-G2 Quick Start guides
 
