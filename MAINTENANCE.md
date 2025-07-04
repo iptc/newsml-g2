@@ -48,24 +48,26 @@ Steps to create and release an update to the standard:
     number references within each file in examples/*.xml (except for the older
     examples which need to refer to 2.24 because that's the last version
     supported by the Core version of the standard)
-10. Run `release-tools/test-newsml-examples.sh` which runs `xmllint` over the
+10. Run `release-tools/update-catalog-version-in-examples.sh` which updates
+    the catalog number referred from example files.
+11. Run `release-tools/test-newsml-examples.sh` which runs `xmllint` over the
     examples folder to make sure no errors have been introduced.
-11. Run `tests/runtests.py` to run the unit tests and make sure that the new
+12. Run `tests/runtests.py` to run the unit tests and make sure that the new
     version doesn't break any old test cases. You should also write new unit
     tests for the changes being added, if you haven't already.
-12. Use XML Spy to create XML Schema documentation from the master XSD schema
+13. Use XML Spy to create XML Schema documentation from the master XSD schema
     file and the "individual" schemas. Save them to
     `specification/XML-Schema-Doc-Power`.
-13. Print-to-PDF change requests from dev.iptc.org for inclusion in release pack
+14. Print-to-PDF change requests from dev.iptc.org for inclusion in release pack
     to be sent to delegates, if necessary.
-14. Update the documentation page in documentation/NewsML-G2-documentation.md to
+15. Update the documentation page in documentation/NewsML-G2-documentation.md to
     point to the appropriate versions of the specs, XML Schema docs and
     guidelines.
-14. Run the script to move all files to the release folder and create ZIP files
+16. Run the script to move all files to the release folder and create ZIP files
     of the release: `release-tools/create-release.sh`
-15. Commit and push all changes to GitHub: `git push origin -u my-new-branch`
+17. Commit and push all changes to GitHub: `git push origin -u my-new-branch`
     (Our `.gitignore` file already suppresses sending ZIP files to GitHub.)
-16. Create a pull request from the branch on GitHub.com.
+18. Create a pull request from the branch on GitHub.com.
 
 ### After the Standards Committee approves the new version:
 
