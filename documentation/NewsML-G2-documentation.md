@@ -5,16 +5,18 @@ Committee in May 2025.
 
 ## NewsML-G2 Quick Start guides
 
-We have created a set of Quick Start guides to help developers understand the
-key concepts behind NewsML-G2.
+The first few chapters of the NewsML-G2 Guidelines document act as "quick-start guides"
+to help you get quickly up to speed in the main concepts of NewsML-G2.
 
-There are currently five Quick Start guides:
+These are in five areas:
 
-* [NewsML-G2 Quick Start: Basics](https://iptc.atlassian.net/wiki/spaces/NEWSMLG2/pages/610041876/Basics+-+NewsML-G2+Quick+Start+Guide)
-* [NewsML-G2 Quick Start: Text](https://iptc.atlassian.net/wiki/spaces/NEWSMLG2/pages/610500617/Text+-+NewsML-G2+Quick+Start+Guide)
-* [NewsML-G2 Quick Start: Pictures](https://iptc.atlassian.net/wiki/spaces/NEWSMLG2/pages/610140166/Pictures+and+Graphics+-+NewsML-G2+Quick+Start+Guide)
-* [NewsML-G2 Quick Start: Video](https://iptc.atlassian.net/wiki/spaces/NEWSMLG2/pages/610304037/Video+-+NewsML-G2+Quick+Start+Guide)
-* [NewsML-G2 Quick Start: Packages](https://iptc.atlassian.net/wiki/spaces/NEWSMLG2/pages/610598929/Packages+-+NewsML-G2+Quick+Start+Guide)
+* [NewsML-G2 Basics](https://www.iptc.org/std/NewsML-G2/guidelines/#quick-start-guide-to-newsml-g2-basics)
+* [Text](https://www.iptc.org/std/NewsML-G2/guidelines/#quick-start-text)
+* [Pictures and Graphics](https://www.iptc.org/std/NewsML-G2/guidelines/#quick-start-pictures-and-graphics)
+* [Video](https://www.iptc.org/std/NewsML-G2/guidelines/#quick-start-video)
+* [Packages](https://www.iptc.org/std/NewsML-G2/guidelines/#quick-start-packages)
+
+We have also created a guide for receivers of NewsML-G2, who don't need to worry about creating NewsML-G2 docs but need to understand how to parse them:
 * [NewsML-G2 Quick Start: Receiving NewsML-G2](https://iptc.atlassian.net/wiki/spaces/NEWSMLG2/pages/622034945/Receiving+NewsML-+G2+-+NewsML-G2+Quick+Start+Guide)
 
 After reading the Quick Start guides, we recommend reading the rest of
@@ -28,10 +30,10 @@ for finer details.
 
 ## NewsML-G2 Specification document
 
-The latest version of the NewsML-G2 Specification in HTML is 2.34. A 2.35 version will be released soon.
+The latest version of the NewsML-G2 Specification in HTML is 2.35.
 
 The 2.35 version is available at
-[https://www.iptc.org/std/NewsML-G2/2.34/specification/NewsML-G2-2.34-specification.html](https://www.iptc.org/std/NewsML-G2/2.34/specification/NewsML-G2-2.34-specification.html)
+[https://www.iptc.org/std/NewsML-G2/2.35/specification/NewsML-G2-2.35-specification.html](https://www.iptc.org/std/NewsML-G2/2.35/specification/NewsML-G2-2.35-specification.html)
 
 The latest version is always hosted at
 [https://www.iptc.org/std/NewsML-G2/specification/](https://www.iptc.org/std/NewsML-G2/specification/)
