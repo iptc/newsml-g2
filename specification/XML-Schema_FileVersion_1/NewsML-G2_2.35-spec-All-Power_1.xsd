@@ -606,7 +606,7 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
                <xs:sequence>
                   <xs:element name="contentMeta" type="ContentMetadataCatType" minOccurs="0">
                      <xs:annotation>
-                        <xs:documentation>Content Metadata for a Planning Item</xs:documentation>
+                        <xs:documentation>Content Metadata for a Catalog Item</xs:documentation>
                      </xs:annotation>
                   </xs:element>
                   <xs:element ref="catalogContainer"/>
@@ -2654,7 +2654,7 @@ The relationship of properties inside this partMeta and properties at a higher h
                      <xs:documentation>A refinement of the semantics or business purpose of the property - expressed by a QCode</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="roleruri" type="IRIType" use="optional">
+               <xs:attribute name="roleuri" type="IRIType" use="optional">
                   <xs:annotation>
                      <xs:documentation>A refinement of the semantics or business purpose of the property - expressed by a URI</xs:documentation>
                   </xs:annotation>
