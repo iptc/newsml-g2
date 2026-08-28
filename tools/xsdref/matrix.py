@@ -9,8 +9,10 @@ elements, and which Item types each element can appear in.
 
 This replaces `documentation/NewsML-G2_2.26-structMatrix_1.xls` and the copies
 of it labelled 2.27 to 2.29. Those were maintained by hand and had drifted: the
-spreadsheet published as 2.29 is byte-identical to the 2.27 and 2.28 ones, and
-omits ten attributes and five elements that exist in the 2.29 schema.
+2.27, 2.28 and 2.29 spreadsheets are identical cell for cell, differing only in
+file metadata and, for 2.29, a renamed sheet. Only seven cells changed between
+2.26 and 2.27. So the matrix was republished three times without its content
+being revisited, and by 2.29 it was missing constructs the schema had gained.
 
 Output is CSV so it diffs in review and can be regenerated for any version whose
 schema is in the repository, rather than being edited cell by cell.
@@ -41,6 +43,41 @@ USE_CODES = {
     'optional': 'o',
     'prohibited': '-',
 }
+
+# An element name declared in more than one context does not necessarily carry
+# the same attributes in each. Rather than the spreadsheet's approach of
+# splitting those into separate rows with invented names (`nar:channelXxNMSG`,
+# `nar:channelXxREMCONT` — names that appear in no document), one row is kept
+# per name and cells that do not hold everywhere are parenthesised.
+#
+#   r      required in every context the element is declared in
+#   o      permitted in every context
+#   -      prohibited
+#   (r)    required, but only in some of its contexts
+#   (o)    permitted, but only in some of its contexts
+#   empty  not permitted in any context
+#
+# The `contexts` column gives the number of declarations, so a parenthesised
+# cell can be read against it.
+PARTIAL = '(%s)'
+
+
+def _cell(present, declaration_count):
+    """
+    Render one element/attribute cell from the declarations that carry it.
+    """
+    if not present:
+        return ''
+    uses = {attr.use for attr in present}
+    if uses == {'prohibited'}:
+        code = USE_CODES['prohibited']
+    elif uses == {'required'}:
+        code = USE_CODES['required']
+    else:
+        code = USE_CODES['optional']
+    if len(present) < declaration_count:
+        return PARTIAL % code
+    return code
 
 
 def reachable_from(schema, root):
@@ -81,7 +118,7 @@ def build(schema):
     membership = {root: reachable_from(schema, root) for root in ITEM_ROOTS}
 
     header = (
-        ['element', 'global', 'contexts']
+        ['element', 'global', 'deprecated', 'contexts']
         + ['in:%s' % root for root in ITEM_ROOTS]
         + ['@%s' % name for name in attribute_names]
     )
@@ -89,16 +126,22 @@ def build(schema):
     rows = []
     for name in element_names:
         ref = schema.elements[name]
-        applicable = {
-            attr.name: USE_CODES.get(attr.use, attr.use)
-            for attr in schema.attribute_closure(name)
-        }
+        per_declaration = schema.attribute_closure_by_declaration(name)
+        count = len(per_declaration)
+        cells = {}
+        for attribute in attribute_names:
+            present = [
+                found[attribute] for found in per_declaration
+                if attribute in found
+            ]
+            cells[attribute] = _cell(present, count)
         rows.append(
             ['nar:%s' % name,
              'Y' if ref.is_global else 'N',
+             'Y' if ref.is_deprecated else 'N',
              str(ref.context_count)]
             + ['Y' if name in membership[root] else 'N' for root in ITEM_ROOTS]
-            + [applicable.get(attr, '') for attr in attribute_names]
+            + [cells[attribute] for attribute in attribute_names]
         )
 
     return header, rows
@@ -171,7 +214,7 @@ def summarise(schema):
     header, rows = build(schema)
     attribute_columns = [column for column in header if column.startswith('@')]
     filled = sum(
-        1 for row in rows for cell in row[3 + len(ITEM_ROOTS):] if cell
+        1 for row in rows for cell in row[4 + len(ITEM_ROOTS):] if cell
     )
     return {
         'version': schema.version,

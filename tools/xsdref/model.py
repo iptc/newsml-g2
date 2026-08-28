@@ -139,6 +139,19 @@ class ElementRef:
         return len(self.declarations)
 
     @property
+    def is_deprecated(self):
+        """
+        True when any declaration's documentation marks the construct
+        deprecated. The hand-built spreadsheet carried this by appending
+        "(deprecated)" to the element name; it is recoverable from the schema,
+        so it is reported rather than dropped.
+        """
+        return any(
+            decl.doc and 'deprecat' in decl.doc.lower()
+            for decl in self.declarations
+        )
+
+    @property
     def has_varying_doc(self):
         """
         True when declarations of the same name carry different

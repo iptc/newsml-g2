@@ -50,10 +50,26 @@ def localname(tag):
 
 
 def strip_prefix(qname):
-    """Drop any namespace prefix. The schema is single-namespace throughout."""
+    """
+    Drop any namespace prefix. Correct for type and base references, which are
+    always in the target namespace.
+    """
     if qname is None:
         return None
     return qname.split(':', 1)[-1]
+
+
+def attribute_ref_name(qname):
+    """
+    The name an attribute reference carries in an instance document.
+
+    Unlike a type reference, the prefix matters: `<xs:attribute ref="xml:lang"/>`
+    appears in a document as `xml:lang`, not `lang`. Stripping it produced an
+    attribute the closure could name but the matrix had no column for, so
+    xml:lang — reachable from most of the schema via i18nAttributes — was
+    dropped from the matrix entirely.
+    """
+    return qname
 
 
 def occurs(node):
@@ -155,25 +171,53 @@ class Schema:
         are declared inside attributeGroups or complexTypes rather than
         globally, so a global-only lookup would miss almost all of them.
         """
-        return sorted({
-            node.get('name')
-            for node in self.root.iter(XS + 'attribute')
-            if node.get('name')
-        })
+        names = set()
+        for node in self.root.iter(XS + 'attribute'):
+            name = node.get('name') or attribute_ref_name(node.get('ref'))
+            if name:
+                names.add(name)
+        return sorted(names)
+
+    def attributes_for_declaration(self, decl):
+        """
+        Every attribute that can appear on one declaration, with attributeGroup
+        references expanded. Keyed by attribute name.
+        """
+        found = {}
+        for attr in decl.attributes:
+            found.setdefault(attr.name, attr)
+        for group in decl.attribute_groups:
+            for attr in self._expand_attribute_group(group):
+                found.setdefault(attr.name, attr)
+        return found
+
+    def attribute_closure_by_declaration(self, name):
+        """
+        One attribute mapping per declaration of `name`, in declaration order.
+
+        The Structure Matrix is built from this rather than from the union,
+        because a name declared in several contexts often carries different
+        attributes in each. `channel` is declared twice and one of those
+        declarations has 44 fewer attributes than the union; a matrix built on
+        the union asserts those 44 apply where they do not.
+        """
+        return [
+            self.attributes_for_declaration(decl)
+            for decl in self.elements[name].declarations
+        ]
 
     def attribute_closure(self, name):
         """
-        Every attribute that can appear on `name`, across all its declarations,
-        with attributeGroup references expanded. This is what the Structure
-        Matrix is built from.
+        Every attribute that can appear on `name` in *any* of its declarations.
+
+        This is the union, and is what a reference page lists. Anything that
+        needs to distinguish contexts — the Structure Matrix does — must use
+        attribute_closure_by_declaration instead.
         """
         found = {}
-        for decl in self.elements[name].declarations:
-            for attr in decl.attributes:
-                found.setdefault(attr.name, attr)
-            for group in decl.attribute_groups:
-                for attr in self._expand_attribute_group(group):
-                    found.setdefault(attr.name, attr)
+        for per_decl in self.attribute_closure_by_declaration(name):
+            for key, attr in per_decl.items():
+                found.setdefault(key, attr)
         return [found[key] for key in sorted(found)]
 
     # ------------------------------------------------------------------
@@ -301,7 +345,7 @@ class Schema:
         self._walk_content(node, _Ctx(), decl, parent_name, frozenset())
 
         for attr in node.findall(XS + 'attribute'):
-            name = attr.get('name') or strip_prefix(attr.get('ref'))
+            name = attr.get('name') or attribute_ref_name(attr.get('ref'))
             if name is None:
                 continue
             source = attr
@@ -386,7 +430,7 @@ class Schema:
         node = self.attribute_groups[name]
         found = []
         for attr in node.findall(XS + 'attribute'):
-            attr_name = attr.get('name') or strip_prefix(attr.get('ref'))
+            attr_name = attr.get('name') or attribute_ref_name(attr.get('ref'))
             if attr_name is None:
                 continue
             source = attr

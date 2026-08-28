@@ -43,7 +43,10 @@ HEADING_OVERRIDES = {
     'Postal Address of a Point of Interest – address (in POI structure)':
         [('address', 'element', 'POI')],
     'Recurrence Group': [('RecurrenceGroup', 'group', None)],
+    # Retained for specification revisions before the missing separator in
+    # this heading was corrected; newer revisions parse it normally.
     'Registration registration': [('registration', 'element', None)],
+    'Registration – registration': [('registration', 'element', None)],
     'DateOptTimePropType and DateOptTimeType':
         [('DateOptTimePropType', 'type', None), ('DateOptTimeType', 'type', None)],
     'TruncatedDateTimePropType and TruncatedDateTimeType':
