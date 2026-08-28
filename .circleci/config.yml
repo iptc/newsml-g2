@@ -17,7 +17,14 @@ jobs:
             pip install -r tests/requirements.txt
       - run:
           name: Run NewsML-G2 unit tests using Python lxml
+          # This also validates every document in examples/ against the current
+          # Power schema — see test_examples_folder_validates in tests/runtests.py.
           command: |
             . venv/bin/activate
             tests/runtests.py
+      - run:
+          name: Check the Structure Matrix matches the schemas
+          command: |
+            . venv/bin/activate
+            tools/xsdref/generate.py --verify-matrix --all-versions
 

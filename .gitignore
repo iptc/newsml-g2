@@ -1,3 +1,13 @@
 specification/*.zip
 releases/*.zip
 releases/*/specification/*.zip
+
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Generated reference output. The Structure Matrix under
+# documentation/structure-matrix/ IS committed and CI-verified; everything else
+# is rebuilt on demand.
+build/

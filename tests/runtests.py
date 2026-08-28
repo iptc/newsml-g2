@@ -47,6 +47,17 @@ SCHEMA_FILES_FOLDER = os.path.join(
     DIRNAME, 'schema_versions'
 )
 
+EXAMPLES_FOLDER = os.path.join(
+    DIRNAME, '..', 'examples'
+)
+
+# Examples that cannot be validated against the Power schema, with a reason for
+# each. Shared with release-tools/test-newsml-examples.sh so the two cannot
+# drift apart.
+EXAMPLES_EXCLUSIONS_FILE = os.path.join(
+    EXAMPLES_FOLDER, 'VALIDATION-EXCLUSIONS.txt'
+)
+
 NEWSMLG2_DEV_SCHEMA = os.path.join(
     SCHEMA_FILES_FOLDER, 
     'G2-multi-schema-dev-0.10-nar235.xsd'
@@ -1047,6 +1058,18 @@ class TestNewsMLSchema(unittest.TestCase):
                     schema.validate(instance)
                 )
 
+    def load_excluded_examples(self):
+        """
+        Read the shared exclusions list, ignoring blank lines and # comments.
+        """
+        excluded = set()
+        with open(EXAMPLES_EXCLUSIONS_FILE, 'r') as exclusions:
+            for line in exclusions:
+                name = line.split('#', 1)[0].strip()
+                if name:
+                    excluded.add(name)
+        return excluded
+
     # TESTS START HERE
 
     def test_simplest_instance_newsmlg2(self):
@@ -1075,6 +1098,38 @@ class TestNewsMLSchema(unittest.TestCase):
         self.assertIsNotNone(
             lxml.etree.fromstring(bytes(instance, encoding='utf-8'), parser)
         )
+
+    def test_examples_folder_validates(self):
+        """
+        Every example document in examples/ must validate against the current
+        Power schema, unless it is listed in examples/VALIDATION-EXCLUSIONS.txt.
+
+        This is what covers the examples in CI. release-tools/test-newsml-examples.sh
+        does the same check locally via xmllint and reads the same exclusions
+        file, and additionally reports exclusions that have become stale.
+        """
+        excluded = self.load_excluded_examples()
+
+        # An exclusion naming a file that no longer exists is dead weight and
+        # hides the fact that the list has not been reviewed.
+        for name in sorted(excluded):
+            with self.subTest(excluded=name):
+                self.assertTrue(
+                    os.path.isfile(os.path.join(EXAMPLES_FOLDER, name)),
+                    '%s is excluded from validation but does not exist' % name
+                )
+
+        examples = self.get_files_in_folder(EXAMPLES_FOLDER)
+        self.assertNotEqual(
+            examples, [], 'no example documents found in %s' % EXAMPLES_FOLDER
+        )
+
+        for file in examples:
+            if os.path.basename(file) in excluded:
+                continue
+            with self.subTest(file=file):
+                instance = self.load_test_file(file)
+                self.newsmlg2_schema.assertValid(instance)
 
     def test_all_schema_versions_against_pass_and_fail_tests(self):
         """
