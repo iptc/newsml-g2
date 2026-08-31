@@ -15,7 +15,10 @@ element declarations undocumented.
 
 ## Usage
 
-Requires `lxml`, already pinned in `tests/requirements.txt`.
+Requires `lxml`, already pinned in `tests/requirements.txt`. The HTML
+preview additionally needs `asciidoctor` on PATH (`gem install asciidoctor`);
+every other mode is pure Python, which is why CI runs those and not the
+preview.
 
 ```sh
 # Check Specification §14 annotations still match the schema. Exits 1 on a
@@ -31,7 +34,15 @@ tools/xsdref/generate.py --verify-matrix --all-versions
 
 # Write the AsciiDoc reference pages and the §14 note partials
 tools/xsdref/generate.py --pages --partials --output build/reference
+
+# Build the browsable HTML preview, including the search index
+tools/xsdref/generate.py --pages --partials --preview
+# then serve build/reference/pages/
 ```
+
+Everything is regenerated from the schema on every run and is
+reproducible byte for byte, so updating to a new schema version means
+re-running these rather than editing any output by hand.
 
 ## What it produces
 

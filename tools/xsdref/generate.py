@@ -29,9 +29,9 @@ import sys
 
 if __package__ in (None, ''):
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    from xsdref import matrix, notes, render, schema as schema_module
+    from xsdref import matrix, notes, preview, render, schema as schema_module
 else:
-    from . import matrix, notes, render
+    from . import matrix, notes, preview, render
     from . import schema as schema_module
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -133,8 +133,14 @@ def main(argv=None):
                         help='where committed Structure Matrix CSVs live')
     parser.add_argument('--output', default=os.path.join(REPO_ROOT, 'build', 'reference'),
                         help='output directory')
+    parser.add_argument('--preview', action='store_true',
+                        help='render the pages to a browsable HTML preview '
+                             '(implies --pages; needs asciidoctor on PATH)')
     parser.add_argument('--verbose', '-v', action='store_true')
     args = parser.parse_args(argv)
+
+    if args.preview:
+        args.pages = True
 
     if not any([args.check, args.matrix, args.pages, args.partials,
                 args.verify_matrix]):
@@ -228,6 +234,13 @@ def main(argv=None):
         render.write_nav(loaded, os.path.join(args.output, 'nav.adoc'))
         print('reference pages: %d -> %s'
               % (len(written), os.path.relpath(target, REPO_ROOT)))
+
+    if args.preview:
+        count = preview.build(args.output, schema=loaded)
+        print('html preview:   %d pages -> %s'
+              % (count, os.path.relpath(target, REPO_ROOT)))
+        print('                open %s'
+              % os.path.join(os.path.relpath(target, REPO_ROOT), 'index.html'))
 
     return exit_code
 
