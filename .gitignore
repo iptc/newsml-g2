@@ -11,3 +11,5 @@ venv/
 # documentation/structure-matrix/ IS committed and CI-verified; everything else
 # is rebuilt on demand.
 build/
+
+.DS_Store

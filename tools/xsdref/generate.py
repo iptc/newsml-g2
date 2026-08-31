@@ -133,6 +133,9 @@ def main(argv=None):
                         help='where committed Structure Matrix CSVs live')
     parser.add_argument('--output', default=os.path.join(REPO_ROOT, 'build', 'reference'),
                         help='output directory')
+    parser.add_argument('--xlsx', action='store_true',
+                        help='also write the Structure Matrix as a styled '
+                             'workbook (needs openpyxl)')
     parser.add_argument('--preview', action='store_true',
                         help='render the pages to a browsable HTML preview '
                              '(implies --pages; needs asciidoctor on PATH)')
@@ -143,7 +146,7 @@ def main(argv=None):
         args.pages = True
 
     if not any([args.check, args.matrix, args.pages, args.partials,
-                args.verify_matrix]):
+                args.verify_matrix, args.xlsx]):
         parser.error('nothing to do: pass --check, --matrix, --verify-matrix, '
                      '--pages or --partials')
 
@@ -165,6 +168,26 @@ def main(argv=None):
             print('%s  %d elements x %d columns  -> %s'
                   % (loaded.version, rows, columns, os.path.relpath(target, REPO_ROOT)))
         if not (args.check or args.pages or args.partials or args.verify_matrix):
+            return exit_code
+
+    if args.xlsx:
+        targets = release_schemas() if args.all_versions else [
+            args.schema or default_schema()]
+        for target in targets:
+            loaded_x = schema_module.load(target)
+            out = os.path.join(
+                args.matrix_dir,
+                'NewsML-G2_%s-structure-matrix.xlsx' % loaded_x.version)
+            count, uncategorised = matrix.write_xlsx(loaded_x, out)
+            print('%-5s %3d elements -> %s'
+                  % (loaded_x.version, count, os.path.relpath(out, REPO_ROOT)))
+            if uncategorised:
+                print('      no category yet — add to '
+                      'tools/xsdref/assets/element-categories.csv:')
+                for item in uncategorised:
+                    print('        %s' % item)
+        if not (args.check or args.pages or args.partials or args.verify_matrix
+                or args.matrix):
             return exit_code
 
     if args.verify_matrix:
@@ -236,7 +259,8 @@ def main(argv=None):
               % (len(written), os.path.relpath(target, REPO_ROOT)))
 
     if args.preview:
-        count = preview.build(args.output, schema=loaded)
+        count = preview.build(args.output, schema=loaded,
+                              matrix_dir=args.matrix_dir)
         print('html preview:   %d pages -> %s'
               % (count, os.path.relpath(target, REPO_ROOT)))
         print('                open %s'
