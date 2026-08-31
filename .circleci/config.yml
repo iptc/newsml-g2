@@ -27,4 +27,15 @@ jobs:
           command: |
             . venv/bin/activate
             tools/xsdref/generate.py --verify-matrix --all-versions
+      - run:
+          # The matrix check compares generated output against committed
+          # output, so it cannot catch a schema change that breaks page
+          # generation itself. This exercises the whole path — parsing, group
+          # inlining, cardinality, attribute closure, §14 binding — against
+          # the current schema. Pure Python; the HTML preview needs
+          # asciidoctor and stays a local step.
+          name: Check the reference pages still generate
+          command: |
+            . venv/bin/activate
+            tools/xsdref/generate.py --pages --partials --output /tmp/reference
 

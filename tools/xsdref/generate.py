@@ -213,6 +213,15 @@ def main(argv=None):
         print('§14 partials: %d -> %s'
               % (len(written), os.path.relpath(target, REPO_ROOT)))
 
+    if args.pages or args.check:
+        dangling = loaded.dangling_references()
+        if dangling:
+            for kind, name, where in dangling:
+                print('UNRESOLVED %s ref="%s" in %s' % (kind, name, where))
+            print('\n%d unresolved reference(s). Generated pages would be '
+                  'silently incomplete.' % len(dangling))
+            exit_code |= 1
+
     if args.pages:
         target = os.path.join(args.output, 'pages')
         written = render.write_pages(loaded, parsed, target)

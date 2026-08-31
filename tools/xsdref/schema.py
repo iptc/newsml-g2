@@ -178,6 +178,56 @@ class Schema:
                 names.add(name)
         return sorted(names)
 
+    def dangling_references(self):
+        """
+        Every ref= in the schema that does not resolve to a definition.
+
+        These fail silently by design elsewhere in this module: an unknown
+        attributeGroup expands to no attributes and an unknown model group
+        contributes no children, so generation succeeds and the pages are
+        simply missing things. That is the worst failure mode for a reference
+        document — plausible, complete-looking and wrong — so it is reported
+        explicitly instead.
+
+        Returns a list of (kind, name, context) tuples; empty means clean.
+        """
+        problems = []
+
+        def context(node):
+            parent = node.getparent()
+            while parent is not None:
+                if parent.get('name'):
+                    return '%s %s' % (localname(parent.tag), parent.get('name'))
+                parent = parent.getparent()
+            return 'schema'
+
+        for tag, defined in (('attributeGroup', self.attribute_groups),
+                             ('group', self.groups),
+                             ('attribute', self.global_attributes)):
+            for node in self.root.iter(XS + tag):
+                ref = node.get('ref')
+                if not ref:
+                    continue
+                # Foreign-namespace references (xml:lang) are resolved by the
+                # imported schema, not this one.
+                if ':' in ref and not ref.startswith('nar:'):
+                    continue
+                if strip_prefix(ref) not in defined:
+                    problems.append((tag, ref, context(node)))
+
+        for node in self.root.iter(XS + 'element'):
+            ref = node.get('ref')
+            if ref and strip_prefix(ref) not in self.global_elements:
+                problems.append(('element', ref, context(node)))
+            type_ref = node.get('type')
+            if not type_ref or type_ref.startswith('xs:'):
+                continue
+            name = strip_prefix(type_ref)
+            if name not in self.complex_types and name not in self.simple_types:
+                problems.append(('type', type_ref, context(node)))
+
+        return problems
+
     def attributes_for_declaration(self, decl):
         """
         Every attribute that can appear on one declaration, with attributeGroup
