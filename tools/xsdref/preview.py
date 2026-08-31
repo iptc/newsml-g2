@@ -170,12 +170,14 @@ def classify(names):
     place a reader starts; attribute groups are separated because they are a
     different kind of thing from an element.
     """
-    items, attribute_groups, elements = [], [], []
+    items, attribute_groups, datatypes, elements = [], [], [], []
     for name in names:
         if name == 'index':
             continue
         if name.startswith('attgroup-'):
             attribute_groups.append(name)
+        elif name.startswith('type-'):
+            datatypes.append(name)
         elif name in ITEM_TYPES:
             items.append(name)
         else:
@@ -185,12 +187,15 @@ def classify(names):
         ('Item types', items, True),
         ('Elements', sorted(elements, key=str.lower), False),
         ('Attribute groups', attribute_groups, False),
+        ('Datatypes', sorted(datatypes, key=str.lower), False),
     ]
 
 
 def _label(name):
     if name.startswith('attgroup-'):
         return name[len('attgroup-'):]
+    if name.startswith('type-'):
+        return name[len('type-'):]
     return '&lt;%s&gt;' % name
 
 

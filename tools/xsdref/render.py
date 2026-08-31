@@ -24,6 +24,10 @@ from __future__ import annotations
 
 import os
 
+from .schema import XS, documentation as schema_documentation
+
+XS_ELEMENT = XS + 'element'
+
 def _group_label(path):
     """
     The named model group a run of children arrived through, if any.
@@ -134,18 +138,7 @@ def element_page(schema, name, notes_by_target):
         out.append('Declared locally only; it is not a valid document root.')
         out.append('')
 
-    # Hand-written guidance from Specification §14 — the part that cannot be
-    # generated, merged in beside the generated material.
-    for note in notes_by_target.get(name, []):
-        heading = 'Usage note'
-        if note.context:
-            heading = 'Usage note (%s)' % note.context
-        out.append('[NOTE]')
-        out.append('.%s' % heading)
-        out.append('====')
-        out.append(note.body)
-        out.append('====')
-        out.append('')
+    out.extend(_notes_block(notes_by_target, 'element', name))
 
     if ref.context_count > 1:
         out.append('== Declared in %d contexts' % ref.context_count)
@@ -204,12 +197,17 @@ def element_page(schema, name, notes_by_target):
     return '\n'.join(out).rstrip() + '\n'
 
 
-def attribute_group_page(schema, name):
+def attribute_group_page(schema, name, notes_by_target=None):
     """Render the page an element's `Also carries` list points at."""
     attributes = schema._expand_attribute_group(name)
     out = ['= %s' % name, ':xsd-version: %s' % schema.version, '']
     out.append('An attribute group. Elements listing it carry every attribute below.')
     out.append('')
+    out.extend(_notes_block(notes_by_target, 'attributeGroup', name))
+    # An attribute documented in §14.8 that is not itself a group — orientation
+    # is the only one — belongs on the page of the group that carries it.
+    for attribute in attributes:
+        out.extend(_notes_block(notes_by_target, 'attribute', attribute.name))
     out.append('[cols="1,1,1,3",options="header"]')
     out.append('|===')
     out.append('| Attribute | Type | Use | Description')
@@ -240,10 +238,25 @@ def write_pages(schema, notes, output_dir):
     """Write every reference page. Returns the list of paths written."""
     os.makedirs(output_dir, exist_ok=True)
 
+    # Keyed by (kind, target). Previously only element notes were collected,
+    # which left the §14.7 datatype notes and the §14.8 attribute-group notes
+    # with nowhere to appear — 17 of the 112 notes rendered on no page at all.
     notes_by_target = {}
     for note in notes:
-        if note.kind == 'element':
-            notes_by_target.setdefault(note.target, []).append(note)
+        notes_by_target.setdefault((note.kind, note.target), []).append(note)
+
+    # A note on a model group has no page of its own to live on: named groups
+    # are inlined before parentage is computed precisely because they name
+    # nothing in an instance document. Attach it to each element the group
+    # contributes, which is who the guidance is actually about — the
+    # RecurrenceGroup note describes rDate, rRule, exDate and exRule.
+    for (kind, target), group_notes in list(notes_by_target.items()):
+        if kind != 'group' or target not in schema.groups:
+            continue
+        members = {node.get('ref') or node.get('name')
+                   for node in schema.groups[target].iter(XS_ELEMENT)}
+        for member in sorted(m for m in members if m in schema.elements):
+            notes_by_target.setdefault(('element', member), []).extend(group_notes)
 
     written = []
     for name in schema.element_names():
@@ -255,7 +268,13 @@ def write_pages(schema, notes, output_dir):
     for group in sorted(schema.attribute_groups):
         path = os.path.join(output_dir, 'attgroup-%s.adoc' % group)
         with open(path, 'w', encoding='utf-8') as page:
-            page.write(attribute_group_page(schema, group))
+            page.write(attribute_group_page(schema, group, notes_by_target))
+        written.append(path)
+
+    for name in schema.type_names():
+        path = os.path.join(output_dir, 'type-%s.adoc' % name)
+        with open(path, 'w', encoding='utf-8') as page:
+            page.write(datatype_page(schema, name, notes_by_target))
         written.append(path)
 
     return written
@@ -274,6 +293,11 @@ def write_nav(schema, path):
     out.append('')
     for group in sorted(schema.attribute_groups):
         out.append('** xref:attgroup-%s.adoc[%s]' % (group, group))
+    out.append('')
+    out.append('* Datatypes')
+    out.append('')
+    for name in schema.type_names():
+        out.append('** xref:type-%s.adoc[%s]' % (name, name))
     with open(path, 'w', encoding='utf-8') as nav:
         nav.write('\n'.join(out) + '\n')
 
@@ -398,3 +422,73 @@ def attribute_table(schema, declaration, suffix='', seen_anchors=None):
     out.append('|===')
     out.append('')
     return out
+
+
+def _notes_block(notes_by_target, kind, target):
+    """
+    Hand-written guidance from Specification §14, beside the generated
+    material. This is the part of the reference that cannot be derived, so it
+    is the part worth being careful not to lose.
+    """
+    if not notes_by_target:
+        return []
+    out = []
+    for note in notes_by_target.get((kind, target), []):
+        heading = 'Usage note'
+        if note.context:
+            heading = 'Usage note (%s)' % note.context
+        out.extend(['[NOTE]', '.%s' % heading, '====', note.body, '====', ''])
+    return out
+
+
+def datatype_page(schema, name, notes_by_target=None):
+    """
+    Render the page for one named type.
+
+    Types had no page at all, which left the eleven §14.7 datatype notes with
+    nowhere to live and meant a reader meeting `QCodeType` or `FlexPropType` in
+    an attribute table could not look it up.
+    """
+    node = schema.type_node(name)
+    is_complex = name in schema.complex_types
+    out = ['= %s' % name, ':xsd-version: %s' % schema.version, '']
+    out.append('A %s.' % ('complex type' if is_complex else 'simple type'))
+    out.append('')
+
+    doc = schema_documentation(node)
+    if doc:
+        out.extend([doc, ''])
+
+    out.extend(_notes_block(notes_by_target, 'type', name))
+
+    facets = schema.type_facets(name)
+    if facets:
+        if facets['base']:
+            out.extend(['Derived from `%s`.' % facets['base'], ''])
+        if facets['pattern']:
+            out.extend(['Values must match the pattern:', '',
+                        '[source,text]', '----', facets['pattern'], '----', ''])
+        if facets['enumerations']:
+            out.extend(['== Permitted values', ''])
+            out.extend('* `%s`' % value for value in facets['enumerations'])
+            out.append('')
+
+    elements, attributes, types = schema.type_users(name)
+    if elements or attributes or types:
+        out.extend(['== Used by', ''])
+        if elements:
+            out.append('Elements:: %s' % ', '.join(
+                'xref:%s.adoc[<%s>]' % (e, e) for e in elements))
+        if attributes:
+            # Attributes are where several types are used exclusively —
+            # QCodeType types 48 attributes and no element at all.
+            shown = attributes[:24]
+            more = ' and %d more' % (len(attributes) - len(shown)) if len(attributes) > len(shown) else ''
+            out.append('Attributes:: %s%s' % (
+                ', '.join('`@%s`' % a for a in shown), more))
+        if types:
+            out.append('Types:: %s' % ', '.join(
+                'xref:type-%s.adoc[%s]' % (t, t) for t in types))
+        out.append('')
+
+    return '\n'.join(out).rstrip() + '\n'

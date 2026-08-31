@@ -228,6 +228,66 @@ class Schema:
 
         return problems
 
+    def type_names(self):
+        """Every globally named type, complex and simple, in one sorted list."""
+        return sorted(set(self.complex_types) | set(self.simple_types))
+
+    def type_node(self, name):
+        # Explicit None checks: an lxml element with no children is falsey.
+        node = self.complex_types.get(name)
+        if node is None:
+            node = self.simple_types.get(name)
+        return node
+
+    def type_users(self, name):
+        """
+        Everything that refers to a named type.
+
+        Elements are only part of the answer. QCodeType is used by no element
+        at all — it types attributes — so a page listing only elements would
+        say a widely used type is used by nothing.
+        """
+        elements, attributes, types = [], [], []
+        for element, ref in self.elements.items():
+            for decl in ref.declarations:
+                if decl.type_ref == name or decl.base_type == name:
+                    elements.append(element)
+                    break
+        for node in self.root.iter(XS + 'attribute'):
+            if strip_prefix(node.get('type')) == name and node.get('name'):
+                attributes.append(node.get('name'))
+        for other in self.type_names():
+            node = self.type_node(other)
+            for derivation in list(node.iter(XS + 'extension')) + list(
+                    node.iter(XS + 'restriction')):
+                if strip_prefix(derivation.get('base')) == name:
+                    types.append(other)
+                    break
+        return sorted(set(elements)), sorted(set(attributes)), sorted(set(types))
+
+    def type_facets(self, name):
+        """
+        Base type, enumerations and pattern of a simple type — the part a
+        reader needs in order to know what values are legal.
+        """
+        node = self.type_node(name)
+        if node is None:
+            return None
+        restriction = node.find(XS + 'restriction')
+        if restriction is None:
+            simple = node.find(XS + 'simpleContent')
+            if simple is not None:
+                restriction = simple.find(XS + 'restriction')
+        if restriction is None:
+            return None
+        pattern = restriction.find(XS + 'pattern')
+        return {
+            'base': strip_prefix(restriction.get('base')),
+            'enumerations': [e.get('value')
+                             for e in restriction.findall(XS + 'enumeration')],
+            'pattern': pattern.get('value') if pattern is not None else None,
+        }
+
     def attributes_for_declaration(self, decl):
         """
         Every attribute that can appear on one declaration, with attributeGroup
