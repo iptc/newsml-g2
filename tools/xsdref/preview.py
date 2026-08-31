@@ -59,6 +59,9 @@ TOP_LINKS = (
 # inlined as a data URI, which would repeat it across all 224 pages.
 LOGO = 'iptc-logo.svg'
 
+# Filled in during build(), for the landing page's counts.
+SEARCH_COUNT = [0]
+
 HEADING_RE = re.compile(
     r'<h([23])\s+id="([^"]+)"[^>]*>(.*?)</h\1>', re.S)
 TAG_RE = re.compile(r'<[^>]+>')
@@ -205,13 +208,14 @@ def build(output_dir, schema=None):
     if schema is not None:
         index.extend(attribute_index(schema))
 
+    SEARCH_COUNT[0] = len(index)
     with open(os.path.join(pages_dir, 'search-index.json'), 'w',
               encoding='utf-8') as handle:
         json.dump(index, handle, separators=(',', ':'))
 
     with open(os.path.join(pages_dir, 'index.html'), 'w',
               encoding='utf-8') as handle:
-        handle.write(landing_html(groups, len(index)))
+        handle.write(landing_html(groups, len(index), schema))
 
     return len(index)
 
@@ -313,6 +317,21 @@ padding:9px 13px;font-size:13px;color:#6b5518;margin:0 0 20px}
 .landing .stat b{display:block;font-size:23px;color:var(--accent)}
 .landing .stat span{font-size:12px;color:var(--muted);text-transform:uppercase;
 letter-spacing:.06em}
+.landing{max-width:900px}
+.arch{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+gap:11px;margin:16px 0 22px}
+.arch .item.wide{grid-column:1/-1;text-align:center}
+.arch .item{display:block;text-decoration:none;color:var(--fg);
+border:1px solid var(--rule);border-top:3px solid var(--accent);
+border-radius:6px;padding:11px 13px;background:var(--sidebar)}
+.arch .item:hover{background:var(--accent-soft);border-color:var(--accent)}
+.arch .item code{background:none;padding:0;color:var(--accent);font-weight:600;
+font-size:13.5px}
+.arch .item .d{display:block;font-size:13px;margin:5px 0 7px;line-height:1.45}
+.arch .item .n{display:block;font-size:11.5px;color:var(--muted);
+text-transform:uppercase;letter-spacing:.05em}
+.landing kbd{background:var(--code);border:1px solid var(--rule);
+border-bottom-width:2px;border-radius:4px;padding:1px 6px;font-size:12px}
 @media(max-width:1100px){.shell{grid-template-columns:240px minmax(0,1fr)}nav.toc{display:none}}
 @media(max-width:760px){.shell{grid-template-columns:1fr}aside.left{display:none}}
 """
@@ -464,7 +483,54 @@ def page_html(name, title, body, headings, groups):
     return _document(title, shell)
 
 
-def landing_html(groups, page_count):
+def _architecture(schema):
+    """
+    The News Architecture family, generated rather than drawn.
+
+    The Guidelines carry this as a PNG (images/G2FamilyGenes.png). Deriving it
+    from the schema instead means every box links to its page, the definitions
+    are the schema's own and cannot drift from it, and it stays legible at any
+    size. It also shows what the drawing leaves out: newsMessage, which is not
+    an Item at all.
+
+    The relationship is real and checkable — all six Item types declare
+    AnyItemType as their base, and newsMessage declares none.
+    """
+    if schema is None:
+        return ''
+
+    derived, envelope = [], []
+    for name in ITEM_TYPES:
+        ref = schema.elements.get(name)
+        if ref is None:
+            continue
+        declaration = ref.declarations[0]
+        card = (name, ref.doc or '', len(declaration.children),
+                declaration.base_type)
+        (derived if declaration.base_type == 'AnyItemType' else envelope).append(card)
+
+    def cards(items, full_width=False):
+        out = []
+        for name, doc, children, _ in items:
+            out.append(
+                '<a class="item%s" href="%s.html">'
+                '<code>&lt;%s&gt;</code>'
+                '<span class="d">%s</span>'
+                '<span class="n">%d child elements</span></a>'
+                % (' wide' if full_width else '', name, name,
+                   html.escape(doc), children))
+        return ''.join(out)
+
+    return """
+<h2>The News Architecture family</h2>
+<p>Pick the one that matches what you are sending and follow its content model
+down. <code>&lt;newsMessage&gt;</code> is the transport envelope: it carries
+Items rather than content of its own.</p>
+<div class="arch">%s%s</div>
+""" % (cards(derived), cards(envelope, full_width=True))
+
+
+def landing_html(groups, page_count, schema=None):
     counts = {heading: len(names) for heading, names, _ in groups}
     body = """%s
 <div class="shell">
@@ -477,24 +543,21 @@ name in the schema has a page giving its definition, the contexts it is
 declared in, its content model and its attributes, with any User Note or
 Implementation Note from Specification &sect;14 merged in.</p>
 <p><span class="stat"><b>%d</b><span>pages</span></span>
-<span class="stat"><b>%d</b><span>item types</span></span>
 <span class="stat"><b>%d</b><span>elements</span></span>
-<span class="stat"><b>%d</b><span>attribute groups</span></span></p>
-<h2>Where to start</h2>
-<p>Pick a document root from <strong>Item types</strong> in the left index and
-follow the content model down; every element name links to its own page. Or
-press <kbd>/</kbd> and search.</p>
-<h2>What this is not</h2>
-<p>This preview replaces the hand-run XMLSpy schema documentation, whose
-<code>NewsItem</code> page alone was 12.4&nbsp;MB. The styling here is a review
-harness, not a design: the published version will use the IPTC design system and
-the same toolchain as the rest of iptc.org.</p>
+<span class="stat"><b>%d</b><span>attribute groups</span></span>
+<span class="stat"><b>%d</b><span>searchable names</span></span></p>
+%s
+<h2>Finding things</h2>
+<p>Press <kbd>/</kbd> to search. Both elements and attributes are indexed, so
+<code>@residref</code> finds the attribute and <code>residref</code> finds
+everything mentioning it; each result says where it is declared, because a name
+like <code>@role</code> appears in many places with different meanings.</p>
 </div>
 </main>
 <nav class="toc"></nav>
 </div>""" % (_top_bar(), _left_index(groups), PREVIEW_BANNER, page_count,
-             counts.get('Item types', 0), counts.get('Elements', 0),
-             counts.get('Attribute groups', 0))
+             counts.get('Elements', 0), counts.get('Attribute groups', 0),
+             SEARCH_COUNT[0], _architecture(schema))
     return _document('Element Reference', body)
 
 
