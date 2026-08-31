@@ -131,9 +131,34 @@ def _copy_assets(pages_dir):
     source = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets')
     if not os.path.isdir(source):
         return
+    # Only what the pages actually reference. The assets directory also holds
+    # build-time data — the element categories the matrix is shaded by — which
+    # is not for readers.
+    web = ('.svg', '.png', '.jpg', '.woff2', '.css')
     for name in os.listdir(source):
-        shutil.copyfile(os.path.join(source, name),
-                        os.path.join(pages_dir, name))
+        if name.endswith(web):
+            shutil.copyfile(os.path.join(source, name),
+                            os.path.join(pages_dir, name))
+
+
+def _copy_matrix(pages_dir, schema, matrix_dir):
+    """
+    Ship the Structure Matrix for this schema version alongside the pages.
+
+    Copied in rather than linked to GitHub so the preview stays usable
+    offline, which is the same reason the logo is a file here rather than a
+    remote URL. Returns the filename, or None if there is no matrix to ship.
+    """
+    if schema is None or not matrix_dir or not os.path.isdir(matrix_dir):
+        return None
+    shipped = {}
+    for kind in ('xlsx', 'csv'):
+        name = 'NewsML-G2_%s-structure-matrix.%s' % (schema.version, kind)
+        source = os.path.join(matrix_dir, name)
+        if os.path.isfile(source):
+            shutil.copyfile(source, os.path.join(pages_dir, name))
+            shipped[kind] = name
+    return shipped or None
 
 
 def classify(names):
@@ -169,10 +194,11 @@ def _label(name):
     return '&lt;%s&gt;' % name
 
 
-def build(output_dir, schema=None):
+def build(output_dir, schema=None, matrix_dir=None):
     pages_dir = os.path.join(output_dir, 'pages')
     names = render_fragments(pages_dir)
     _copy_assets(pages_dir)
+    matrix = _copy_matrix(pages_dir, schema, matrix_dir)
     groups = classify(names)
     index = []
 
@@ -215,7 +241,7 @@ def build(output_dir, schema=None):
 
     with open(os.path.join(pages_dir, 'index.html'), 'w',
               encoding='utf-8') as handle:
-        handle.write(landing_html(groups, len(index), schema))
+        handle.write(landing_html(groups, len(index), schema, matrix))
 
     return len(index)
 
@@ -318,9 +344,10 @@ padding:9px 13px;font-size:13px;color:#6b5518;margin:0 0 20px}
 .landing .stat span{font-size:12px;color:var(--muted);text-transform:uppercase;
 letter-spacing:.06em}
 .landing{max-width:900px}
-.arch{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
-gap:11px;margin:16px 0 22px}
+.arch{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:16px 0 22px}
 .arch .item.wide{grid-column:1/-1;text-align:center}
+@media(max-width:1150px){.arch{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.arch{grid-template-columns:1fr}}
 .arch .item{display:block;text-decoration:none;color:var(--fg);
 border:1px solid var(--rule);border-top:3px solid var(--accent);
 border-radius:6px;padding:11px 13px;background:var(--sidebar)}
@@ -330,6 +357,13 @@ font-size:13.5px}
 .arch .item .d{display:block;font-size:13px;margin:5px 0 7px;line-height:1.45}
 .arch .item .n{display:block;font-size:11.5px;color:var(--muted);
 text-transform:uppercase;letter-spacing:.05em}
+.landing .dls{display:flex;gap:12px;flex-wrap:wrap}
+.landing a.dl{display:inline-block;text-decoration:none;color:var(--fg);
+border:1px solid var(--rule);border-left:3px solid var(--accent);
+border-radius:6px;padding:10px 16px;background:var(--sidebar)}
+.landing a.dl:hover{background:var(--accent-soft);border-color:var(--accent)}
+.landing a.dl b{display:block;color:var(--accent);font-size:14px}
+.landing a.dl span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
 .landing kbd{background:var(--code);border:1px solid var(--rule);
 border-bottom-width:2px;border-radius:4px;padding:1px 6px;font-size:12px}
 @media(max-width:1100px){.shell{grid-template-columns:240px minmax(0,1fr)}nav.toc{display:none}}
@@ -530,14 +564,14 @@ Items rather than content of its own.</p>
 """ % (cards(derived), cards(envelope, full_width=True))
 
 
-def landing_html(groups, page_count, schema=None):
+def landing_html(groups, page_count, schema=None, matrix=None):
     counts = {heading: len(names) for heading, names, _ in groups}
     body = """%s
 <div class="shell">
 %s
 <main>%s
 <div class="landing">
-<h1>NewsML-G2 Element Reference</h1>
+<h1>NewsML-G2 Schema Reference</h1>
 <p>Generated from <code>NewsML-G2_2.35-spec-All-Power.xsd</code>. Every element
 name in the schema has a page giving its definition, the contexts it is
 declared in, its content model and its attributes, with any User Note or
@@ -546,6 +580,7 @@ Implementation Note from Specification &sect;14 merged in.</p>
 <span class="stat"><b>%d</b><span>elements</span></span>
 <span class="stat"><b>%d</b><span>attribute groups</span></span>
 <span class="stat"><b>%d</b><span>searchable names</span></span></p>
+%s
 %s
 <h2>Finding things</h2>
 <p>Press <kbd>/</kbd> to search. Both elements and attributes are indexed, so
@@ -557,8 +592,8 @@ like <code>@role</code> appears in many places with different meanings.</p>
 <nav class="toc"></nav>
 </div>""" % (_top_bar(), _left_index(groups), PREVIEW_BANNER, page_count,
              counts.get('Elements', 0), counts.get('Attribute groups', 0),
-             SEARCH_COUNT[0], _architecture(schema))
-    return _document('Element Reference', body)
+             SEARCH_COUNT[0], _architecture(schema), _matrix_section(matrix, schema))
+    return _document('Schema Reference', body)
 
 
 def attribute_index(schema):
@@ -612,3 +647,40 @@ def attribute_index(schema):
                 })
 
     return entries
+
+
+def _matrix_section(matrix, schema):
+    """
+    Point at the Structure Matrix, and say what it is for.
+
+    Useful for the attributes that reach many elements through a group. An
+    attribute declared on a single element is already answered by that
+    element's page; `@creator` arrives on 195 elements through
+    commonPowerAttributes, and no page lists them.
+    """
+    if not matrix:
+        return ''
+    version = schema.version if schema is not None else ''
+    links = []
+    if matrix.get('xlsx'):
+        links.append('<a class="dl" href="%s"><b>NewsML-G2 %s structure matrix</b>'
+                     '<span>Excel workbook &middot; shaded by attribute group and '
+                     'element category</span></a>' % (matrix['xlsx'], version))
+    if matrix.get('csv'):
+        links.append('<a class="dl" href="%s"><b>Same data in CSV format</b>'
+                     '<span>206 elements &times; 236 columns &middot; for scripts '
+                     'and diffs</span></a>' % matrix['csv'])
+    return """
+<h2>Structure matrix</h2>
+<p>Every element against every attribute. The pages above answer &ldquo;what
+can this element carry?&rdquo;; the matrix answers it in bulk, and records which
+document roots each element is reachable from. Most useful for the attributes
+that arrive through a group &mdash; <code>@creator</code> reaches 195 elements
+through <code>commonPowerAttributes</code>. It replaces the spreadsheet that was
+maintained by hand and last revised for 2.27.</p>
+<p class="dls">%s</p>
+<p>Matrices for 2.28 onwards are generated from each released schema and
+committed alongside them in
+<a href="https://github.com/iptc/newsml-g2/tree/main/documentation/structure-matrix"
+   target="_blank" rel="noopener">documentation/structure-matrix</a>.</p>
+""" % ''.join(links)
