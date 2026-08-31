@@ -35,6 +35,7 @@ import html
 import json
 import os
 import re
+import shutil
 import subprocess
 
 # The document roots, listed first because they are where a reader starts.
@@ -48,11 +49,15 @@ ITEM_TYPES = (
 TOP_LINKS = (
     ('Specification', 'https://iptc.org/std/NewsML-G2/specification/', False),
     ('Guidelines', 'https://iptc.org/std/NewsML-G2/guidelines/', False),
-    ('Reference', 'index.html', True),
+    ('Schema reference', 'index.html', True),
     ('Examples', 'https://github.com/iptc/newsml-g2/tree/main/examples', False),
     ('Schemas', 'https://github.com/iptc/newsml-g2/tree/main/specification', False),
-    ('IPTC', 'https://iptc.org/', False),
 )
+
+# The official mark from iptc.org/about-iptc/logos-and-design-assets/
+# (logo_iptc_white_text_gradient.svg). Copied into the output rather than
+# inlined as a data URI, which would repeat it across all 224 pages.
+LOGO = 'iptc-logo.svg'
 
 HEADING_RE = re.compile(
     r'<h([23])\s+id="([^"]+)"[^>]*>(.*?)</h\1>', re.S)
@@ -112,6 +117,22 @@ def render_fragments(pages_dir):
     return [name[:-5] for name in sources]
 
 
+def _copy_assets(pages_dir):
+    """
+    Place the static assets beside the pages.
+
+    Kept as files rather than inlined: a 31 KB data URI repeated across 224
+    pages would add roughly 7 MB for one small image, and the whole point of
+    replacing the XMLSpy output was to stop shipping pages that large.
+    """
+    source = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets')
+    if not os.path.isdir(source):
+        return
+    for name in os.listdir(source):
+        shutil.copyfile(os.path.join(source, name),
+                        os.path.join(pages_dir, name))
+
+
 def classify(names):
     """
     Group pages for the left index.
@@ -148,6 +169,7 @@ def _label(name):
 def build(output_dir, schema=None):
     pages_dir = os.path.join(output_dir, 'pages')
     names = render_fragments(pages_dir)
+    _copy_assets(pages_dir)
     groups = classify(names)
     index = []
 
@@ -207,15 +229,18 @@ header.top{position:sticky;top:0;z-index:20;background:var(--bar);color:#fff;
 display:flex;align-items:center;gap:22px;padding:0 18px;height:52px}
 header.top .brand{font-weight:600;letter-spacing:.2px;white-space:nowrap}
 header.top .brand span{opacity:.65;font-weight:400}
-header.top nav{display:flex;gap:16px;flex:1;overflow-x:auto}
+header.top nav{display:flex;gap:16px;flex:1;overflow-x:auto;justify-content:flex-end}
 header.top nav a{color:#c9d8ec;text-decoration:none;white-space:nowrap;
 padding:4px 2px;border-bottom:2px solid transparent;font-size:14px}
 header.top nav a:hover{color:#fff}
 header.top nav a.here{color:#fff;border-bottom-color:#5b9bd5}
+header.top .logo{display:flex;align-items:center;flex:none;line-height:0}
+header.top .logo img{display:block}
+@media(max-width:900px){header.top .logo{display:none}}
 header.top nav a.ext::after{content:"↗";font-size:10px;opacity:.6;margin-left:3px;
 vertical-align:super}
 .search{position:relative}
-.search input{width:230px;padding:6px 10px;border-radius:5px;
+.search input{width:300px;padding:6px 10px;border-radius:5px;
 border:1px solid #2c456b;background:#1a3358;color:#fff;font-size:13px}
 .search input::placeholder{color:#8fa6c4}
 .search input:focus{outline:2px solid #5b9bd5;outline-offset:-1px}
@@ -372,11 +397,15 @@ def _top_bar(current_is_reference=True):
   <div class="brand">NewsML-G2 <span>2.35</span></div>
   <nav>%s</nav>
   <div class="search">
-    <input id="q" type="search" placeholder="Search elements &hellip;  /"
-           autocomplete="off" spellcheck="false" aria-label="Search the reference">
+    <input id="q" type="search"
+           placeholder="Press / to search elements and attributes"
+           autocomplete="off" spellcheck="false"
+           aria-label="Search elements and attributes">
     <div class="results" id="r"></div>
   </div>
-</header>""" % ''.join(links)
+  <a class="logo" href="https://iptc.org/" target="_blank" rel="noopener"
+     title="IPTC home page"><img src="%s" alt="IPTC" width="30" height="30"></a>
+</header>""" % (''.join(links), LOGO)
 
 
 def _left_index(groups, current=None):
