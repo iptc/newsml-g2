@@ -24,17 +24,41 @@ from __future__ import annotations
 
 import os
 
-MARKERS = {
-    # (optional, repeatable) -> AsciiDoc-safe marker
-    (False, False): '',
-    (True, False): '?',
-    (False, True): '+',
-    (True, True): '*',
-}
+def _group_label(path):
+    """
+    The named model group a run of children arrived through, if any.
+
+    G2 readers know these by name — ItemManagementGroup,
+    DescriptiveMetadataCoreGroup — so naming the group is more useful than
+    describing the nesting that produced it.
+    """
+    for step in reversed(path):
+        if step.startswith('group:'):
+            return step.split(':', 1)[1]
+    return None
 
 
-def occurrence_marker(particle):
-    return MARKERS[(particle.is_optional, particle.is_repeatable)]
+def _runs(children):
+    """
+    Split a declaration's children into consecutive runs sharing a compositor
+    path. Each run is one `xs:sequence` or `xs:choice` as an author wrote it.
+
+    This is the unit a reader needs. A choice is a relationship between
+    siblings, so marking members individually says nothing about which
+    alternatives are being chosen between — and `contentMeta` alone has two
+    separate choices that a per-element marker renders identically.
+    """
+    runs = []
+    for particle in children:
+        if runs and runs[-1][0] == particle.path:
+            runs[-1][1].append(particle)
+        else:
+            runs.append((particle.path, [particle]))
+    return runs
+
+
+def _element_link(name):
+    return 'xref:%s.adoc[`<%s>`]' % (name, name)
 
 
 def content_tree(schema, declaration, depth=2):
@@ -136,6 +160,10 @@ def element_page(schema, name, notes_by_target):
                 particle.parent, particle.parent, particle.occurs))
         out.append('')
 
+    # An attribute name may reach a page through several groups; only the
+    # first occurrence carries the anchor, so ids stay unique per page.
+    seen_anchors = set()
+
     for index, declaration in enumerate(ref.declarations):
         suffix = ''
         if ref.context_count > 1:
@@ -144,49 +172,14 @@ def element_page(schema, name, notes_by_target):
         if declaration.children:
             out.append('== Content model%s' % suffix)
             out.append('')
-            out.append('[source,text]')
-            out.append('----')
-            out.extend(content_tree(schema, declaration))
-            out.append('----')
-            out.append('')
-            out.append('`?` optional, `+` one or more, `*` zero or more.')
-            out.append('')
+            out.extend(content_model(declaration))
         elif index == 0:
             out.append('== Content model%s' % suffix)
             out.append('')
             out.append('No child elements.')
             out.append('')
 
-        local = [attr for attr in declaration.attributes if attr.is_local]
-        inherited = [attr for attr in declaration.attributes if attr.via_base]
-
-        if local:
-            out.append('=== Attributes declared on this element%s' % suffix)
-            out.append('')
-            out.append('[cols="1,1,1,3",options="header"]')
-            out.append('|===')
-            out.append('| Attribute | Type | Use | Description')
-            for attr in local:
-                out.append('| `%s` | %s | %s a| %s' % (
-                    attr.name,
-                    '`%s`' % attr.type_ref if attr.type_ref else '',
-                    attr.use,
-                    _escape(attr.doc),
-                ))
-            out.append('|===')
-            out.append('')
-
-        if declaration.base_type or declaration.attribute_groups or inherited:
-            out.append('=== Also carries%s' % suffix)
-            out.append('')
-            if declaration.base_type:
-                out.append('* extends `%s`%s' % (
-                    declaration.base_type,
-                    ' (%s)' % ', '.join('`%s`' % a.name for a in inherited) if inherited else '',
-                ))
-            for group in declaration.attribute_groups:
-                out.append('* xref:attgroup-%s.adoc[`%s`]' % (group, group))
-            out.append('')
+        out.extend(attribute_table(schema, declaration, suffix, seen_anchors))
 
         if declaration.has_extension_point:
             out.append('This element is an extension point: properties from '
@@ -283,3 +276,125 @@ def write_nav(schema, path):
         out.append('** xref:attgroup-%s.adoc[%s]' % (group, group))
     with open(path, 'w', encoding='utf-8') as nav:
         nav.write('\n'.join(out) + '\n')
+
+
+def content_model(declaration):
+    """
+    Render one declaration's content model as grouped, linked AsciiDoc.
+
+    Emitted as prose and lists rather than a preformatted block, so every
+    element name links to its own page. The previous rendering was a
+    `[source,text]` block, which made linking impossible and forced a legend
+    for sigils that only repeated the occurrence range beside them.
+    """
+    out = []
+    runs = _runs(declaration.children)
+
+    for path, particles in runs:
+        label = _group_label(path)
+        is_choice = path and path[-1] == 'choice'
+
+        if is_choice:
+            occurs = {particle.occurs for particle in particles}
+            if len(occurs) == 1:
+                shape = 'Any of these, in any order, each %s' % occurs.pop()
+            else:
+                shape = 'Any of these, in any order'
+        else:
+            shape = 'These, in this order'
+
+        if label:
+            heading = '%s — from `%s`' % (shape, label)
+        else:
+            heading = shape
+
+        out.append('*%s:*' % heading)
+        out.append('')
+
+        if is_choice and len({p.occurs for p in particles}) == 1:
+            # Cardinality is stated once in the heading, so the members read as
+            # a list of alternatives rather than a column of identical ranges.
+            out.append(' +\n'.join(
+                _element_link(particle.child) for particle in particles
+            ))
+        else:
+            for particle in particles:
+                out.append('* %s — %s' % (
+                    _element_link(particle.child), particle.occurs))
+        out.append('')
+
+    if declaration.has_extension_point:
+        out.append('Also accepts elements from other namespaces '
+                   '(extension point).')
+        out.append('')
+
+    return out
+
+
+def attribute_table(schema, declaration, suffix='', seen_anchors=None):
+    """
+    One table of every attribute that can appear on this declaration, grouped by
+    where each arrives from.
+
+    Attributes used to be split between a table of locally declared ones and a
+    list of links to attributeGroup pages. That was defensible on size grounds
+    but wrong for the reader: finding out what `<remoteContent>` accepts meant
+    visiting four more pages and reassembling the answer by hand.
+
+    Expanding them is affordable. Fully expanded, the median page carries 17
+    attribute rows and the largest — `related` — carries 81. The 12 MB XMLSpy
+    pages were caused by inline diagrams and a whole-schema single document, not
+    by attribute expansion.
+
+    Provenance is kept, as a spanning heading row before each group's rows, so a
+    reader can still tell an element's own attributes from inherited ones and
+    follow the group link when they want its own page.
+    """
+    if seen_anchors is None:
+        seen_anchors = set()
+
+    local = [attr for attr in declaration.attributes if attr.is_local]
+    inherited = [attr for attr in declaration.attributes if attr.via_base]
+    groups = list(declaration.attribute_groups)
+
+    if not (local or inherited or groups):
+        return []
+
+    out = ['=== Attributes%s' % suffix, '']
+    out.append('[cols="1,1,1,3",options="header"]')
+    out.append('|===')
+    out.append('| Attribute | Type | Use | Description')
+
+    def rows(attributes):
+        for attr in attributes:
+            if attr.name in seen_anchors:
+                anchor = ''
+            else:
+                seen_anchors.add(attr.name)
+                anchor = '[[attr-%s]]' % attr.name.replace(':', '-')
+            out.append('| %s`%s` | %s | %s a| %s' % (
+                anchor,
+                attr.name,
+                '`%s`' % attr.type_ref if attr.type_ref else '',
+                attr.use,
+                _escape(attr.doc),
+            ))
+
+    if local:
+        out.append('4+s| Declared on this element')
+        rows(local)
+
+    if inherited and declaration.base_type:
+        out.append('4+s| Inherited from `%s`' % declaration.base_type)
+        rows(inherited)
+
+    for group in groups:
+        expanded = schema._expand_attribute_group(group)
+        if not expanded:
+            continue
+        out.append('4+s| From xref:attgroup-%s.adoc[%s]' % (group, group))
+        rows(expanded)
+
+    out.append('|===')
+    out.append('')
+    return out
