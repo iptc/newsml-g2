@@ -59,6 +59,42 @@ TOP_LINKS = (
 # inlined as a data URI, which would repeat it across all 224 pages.
 LOGO = 'iptc-logo.svg'
 
+# Which navigation groups roll up into which headline figure on the landing
+# page. A group absent from here is reported nowhere, which is how 77 datatype
+# pages came to be missing from the reference's own summary; the build now
+# refuses rather than quietly under-reporting.
+STAT_GROUPS = (
+    ('elements', ('Item types', 'Elements')),
+    ('datatypes', ('Datatypes',)),
+    ('attribute groups', ('Attribute groups',)),
+)
+
+
+def landing_stats(groups, page_count, search_count):
+    """
+    The landing page's headline figures, with the counts that produced them.
+
+    Kept in one place and derived from the same data the navigation is built
+    from. The figures drifted once already: page count was taken from the
+    search index, which stopped being one-entry-per-page the moment attributes
+    were indexed, so the page claimed 785 pages when there were 301.
+    """
+    counts = {heading: len(names) for heading, names, _ in groups}
+    reported = {group for _, sources in STAT_GROUPS for group in sources}
+    unreported = sorted(set(counts) - reported)
+    if unreported:
+        raise SystemExit(
+            'navigation group(s) %s appear in the left index but in no '
+            'landing-page figure.\nAdd them to STAT_GROUPS in preview.py, or '
+            'fold them into an existing figure.' % ', '.join(unreported))
+
+    stats = [('pages', page_count)]
+    for label, sources in STAT_GROUPS:
+        stats.append((label, sum(counts.get(source, 0) for source in sources)))
+    stats.append(('searchable names', search_count))
+    return stats
+
+
 # Filled in during build(), for the landing page's counts.
 SEARCH_COUNT = [0]
 
@@ -236,6 +272,11 @@ def build(output_dir, schema=None, matrix_dir=None):
         with open(path, 'w', encoding='utf-8') as handle:
             handle.write(page_html(name, title, body, headings, groups))
 
+    # Count pages before the index grows attribute entries: these are two
+    # different quantities and conflating them reported 785 pages when there
+    # are 301.
+    page_count = len(index)
+
     if schema is not None:
         index.extend(attribute_index(schema))
 
@@ -246,7 +287,7 @@ def build(output_dir, schema=None, matrix_dir=None):
 
     with open(os.path.join(pages_dir, 'index.html'), 'w',
               encoding='utf-8') as handle:
-        handle.write(landing_html(groups, len(index), schema, matrix))
+        handle.write(landing_html(groups, page_count, schema, matrix))
 
     return len(index)
 
@@ -570,7 +611,6 @@ Items rather than content of its own.</p>
 
 
 def landing_html(groups, page_count, schema=None, matrix=None):
-    counts = {heading: len(names) for heading, names, _ in groups}
     body = """%s
 <div class="shell">
 %s
@@ -581,10 +621,7 @@ def landing_html(groups, page_count, schema=None, matrix=None):
 name in the schema has a page giving its definition, the contexts it is
 declared in, its content model and its attributes, with any User Note or
 Implementation Note from Specification &sect;14 merged in.</p>
-<p><span class="stat"><b>%d</b><span>pages</span></span>
-<span class="stat"><b>%d</b><span>elements</span></span>
-<span class="stat"><b>%d</b><span>attribute groups</span></span>
-<span class="stat"><b>%d</b><span>searchable names</span></span></p>
+<p>%s</p>
 %s
 %s
 <h2>Finding things</h2>
@@ -595,9 +632,12 @@ like <code>@role</code> appears in many places with different meanings.</p>
 </div>
 </main>
 <nav class="toc"></nav>
-</div>""" % (_top_bar(), _left_index(groups), PREVIEW_BANNER, page_count,
-             counts.get('Elements', 0), counts.get('Attribute groups', 0),
-             SEARCH_COUNT[0], _architecture(schema), _matrix_section(matrix, schema))
+</div>""" % (_top_bar(), _left_index(groups), PREVIEW_BANNER,
+             ''.join('<span class="stat"><b>%d</b><span>%s</span></span>'
+                     % (value, label)
+                     for label, value in landing_stats(
+                         groups, page_count, SEARCH_COUNT[0])),
+             _architecture(schema), _matrix_section(matrix, schema))
     return _document('Schema Reference', body)
 
 
