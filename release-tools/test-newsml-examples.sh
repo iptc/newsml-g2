@@ -1,52 +1,91 @@
-#!/bin/zsh
+#!/usr/bin/env bash
+#
+# Validate the NewsML-G2 example documents against the current Power schema.
+#
+# Every .xml file in examples/ is validated unless it is listed in
+# examples/VALIDATION-EXCLUSIONS.txt, so a newly added example is covered
+# automatically rather than having to be added to a list by hand. That same
+# exclusions file is read by tests/runtests.py, which is what covers the
+# examples in CI.
+#
+# Exits non-zero if any example fails to validate. Run from anywhere.
 
-# load shared env vars
-echo "Loading shared environment variables including new NewsML-G2 version number"
+set -eu
+
+cd "$(dirname "$0")/.."
+
+# shellcheck source=newsmlg2-config-vars.sh
 . release-tools/newsmlg2-config-vars.sh
 
-# create local vars
 POWER_XSD="$COMBINED_XSD_NO_REVISION"
-
 EXAMPLE_DIR="examples"
+EXCLUSIONS_FILE="$EXAMPLE_DIR/VALIDATION-EXCLUSIONS.txt"
 
-# "LISTING_24_News_Message_conveying_a_complete_News_Package.xml" \
-# We don't include the NITF XSD so this fails \
-# "LISTING_25_An_NITF_marked-up_article_conveyed_in_inlineXML.xml" \
-# fragments
-# "LISTING_7_Group_Set_example_showing_Hierarchical_Package_Structure.xml" \
-# "LISTING_8_Group_Set_example_showing_an_ALT_Package_Mode.xml" \
-# "LISTING_9_Group_Set_example_showing_a_SEQ_Package_Mode.xml" \
-# "LISTING_28_Illustrating_Located_Subject_and_Dateline.xml" \
+if ! command -v xmllint >/dev/null 2>&1; then
+    echo "ERROR: xmllint not found. Install libxml2 (macOS: it ships with the" >&2
+    echo "       system; Debian/Ubuntu: apt-get install libxml2-utils)." >&2
+    echo "       CI validates the examples via tests/runtests.py instead." >&2
+    exit 1
+fi
 
-echo "Testing example files against the new schema (note that we leave out some samples that do not validate properly)"
-for exfile in \
-    "LISTING_1_A_NewsML-G2_News_Item.xml" \
-    "LISTING_2_NewsML-G2_Text_Document.xml" \
-    "LISTING_3A_Photo_in_NewsML-G2_(URI_sibling_attributes).xml" \
-    "LISTING_3_Photo_in_NewsML-G2.xml" \
-    "LISTING_4_Multiple_Renditions_of_a_Video_in_NewsML-G2.xml" \
-    "LISTING_5_Multi-part_Video_in_NewsML-G2.xml" \
-    "LISTING_6_Simple_NewsML-G2_Package.xml" \
-    "LISTING_10_Abstract_Concept_conveyed_in_a_NewsML-G2_Concept_Item.xml" \
-    "LISTING_11_Person_Concept_conveyed_in_a_NewsML-G2_Concept_Item.xml" \
-    "LISTING_12_Knowledge_Item_for_Access_Codes.xml" \
-    "LISTING_13_Complete_Catalog_Item.xml" \
-    "LISTING_14_Event_sent_as_a_Concept_Item.xml" \
-    "LISTING_15_Two_Related_Events_in_a_Knowledge_Item.xml" \
-    "LISTING_16_A_Set_of_Events_carried_in_a_News_Item.xml" \
-    "LISTING_17_Planning_Item_a_CCL.xml" \
-    "LISTING_18_Planning_Item_at_PCL.xml" \
-    "LISTING_19_Planning_Item_with_delivery_at_CCL.xml" \
-    "LISTING_20_Planning_Item_with_delivery_at_PCL.xml" \
-    "LISTING_21_A_complete_sample_SportsML-G2_document.xml" \
-    "LISTING_22_Sports_story_in_NewsML-G2NITF.xml" \
-    "LISTING_23_SportsML-G2_Package.xml" \
-    "LISTING_26_Embedded_photo_metadata_fields_mapped_to_NewsML-G2.xml" \
-    "LISTING_27_Company_Financial_Information.xml" \
-    "LISTING_29_Hop_History.xml" \
-    "Receiver View.xml";
-do
-    xmllint --noout --schema $POWER_XSD $EXAMPLE_DIR/$exfile;
+if [ ! -f "$POWER_XSD" ]; then
+    echo "ERROR: schema not found: $POWER_XSD" >&2
+    echo "       Check NEW_NEWSMLG2_VERSION in release-tools/newsmlg2-config-vars.sh" >&2
+    exit 1
+fi
+
+if [ ! -f "$EXCLUSIONS_FILE" ]; then
+    echo "ERROR: exclusions file not found: $EXCLUSIONS_FILE" >&2
+    exit 1
+fi
+
+# Strip comments and blank lines.
+EXCLUDED=$(sed -e 's/#.*//' -e '/^[[:space:]]*$/d' "$EXCLUSIONS_FILE")
+
+is_excluded() {
+    printf '%s\n' "$EXCLUDED" | grep -qxF "$1"
+}
+
+echo "Validating examples in $EXAMPLE_DIR against $POWER_XSD"
+
+failed=0
+validated=0
+skipped=0
+
+for path in "$EXAMPLE_DIR"/*.xml; do
+    name=$(basename "$path")
+
+    if is_excluded "$name"; then
+        skipped=$((skipped + 1))
+        # An excluded file that now validates means the exclusion is stale.
+        if xmllint --noout --schema "$POWER_XSD" "$path" >/dev/null 2>&1; then
+            echo "NOTE: $name is excluded but now validates."
+            echo "      Remove it from $EXCLUSIONS_FILE."
+        fi
+        continue
+    fi
+
+    if xmllint --noout --schema "$POWER_XSD" "$path"; then
+        validated=$((validated + 1))
+    else
+        failed=$((failed + 1))
+    fi
 done
+
+# Report any excluded entry that no longer exists, so the list cannot rot.
+printf '%s\n' "$EXCLUDED" | while IFS= read -r name; do
+    [ -n "$name" ] || continue
+    if [ ! -f "$EXAMPLE_DIR/$name" ]; then
+        echo "NOTE: excluded file no longer exists: $name"
+    fi
+done
+
+echo
+echo "$validated validated, $skipped skipped, $failed failed."
+
+if [ "$failed" -gt 0 ]; then
+    echo "FAILED: $failed example(s) do not validate against $POWER_XSD" >&2
+    exit 1
+fi
 
 echo "Done."
