@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:other="http://other.com/other-namespace"
+    standard="NewsML-G2"
+    standardversion="2.36"
+    conformance="power"
+    guid="tag:eee01s.com,2025:newsml_AI"
+    version="1"
+    xml:lang="en">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_42.xml"/>
+    <!-- -->
+    <itemMeta>
+        <itemClass qcode="icls:text" />
+        <provider literal="eee01s.com" />
+        <versionCreated>2025-02-07T12:34:56.000Z</versionCreated>
+    </itemMeta>
+    <contentMeta>
+        <digitalSourceType uri="https://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia" />
+        <aiInfo />
+        <!-- Test: Empty - with attrs-->
+        <aiInfo id="xxx" creator="cre:ator" how="x:x" why="x:x" custom="false" modified="2026-08-14" />
+        <!-- Test: Empty children - expected order -->
+        <aiInfo>
+          <system />
+          <promptInfo />
+          <promptWriter />
+          <other:x />
+        </aiInfo>
+        <!-- Test: Empty children - other order -->
+        <aiInfo>
+          <promptInfo />
+          <system />
+          <promptWriter />
+          <other:x />
+          <other:x />
+        </aiInfo>
+        <!-- Test: Some children -->
+        <aiInfo>
+          <system />
+        </aiInfo>
+        <!-- Test: Other -->
+        <aiInfo>
+          <system>
+            <remoteInfo />
+          </system>
+          <promptInfo />
+          <promptWriter />
+        </aiInfo>
+        <!-- Desc -->
+        <creator literal="Dave Compton">
+          <name>Dave Compton</name>
+          <name />
+        </creator>
+        <contributor literal="Dave Compton" role="cpprole:genAIPromptWriter">
+          <name>Dave Compton</name>
+        </contributor>
+        <contributor literal="ChatGPT" type="cpnat:software" role="cpprole:generator">
+          <name>ChatGPT</name>
+        </contributor>
+        <headline>Headline: AI Testing</headline>
+    </contentMeta>
+    <contentSet>
+        <remoteContent id="rc1-main" rendition="rend:main" href="https://example.com/autogen/pix/Image001.jpg" />
+        <remoteContent id="rc1-view" rendition="rend:viewImage" href="https://example.com/autogen/pix/Image001-view.jpg" />
+        <remoteContent id="rc1-thumb" rendition="rend:thumbnail" href="https://example.com/autogen/pix/Image001-thumb.jpg" />
+    </contentSet>
+</newsItem>

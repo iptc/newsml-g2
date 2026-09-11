@@ -1014,6 +1014,76 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 		<xs:attributeGroup ref="i18nAttributes"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
+	<!-- NewsML-G2 2.36: FlexSystemPropType added for AIInfo -->
+	<xs:complexType name="FlexSystemPropType">
+		<xs:annotation>
+			<xs:documentation>Flexible system data type for both controlled and uncontrolled values</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:group ref="ConceptDefinitionGroup" minOccurs="0"/>
+			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0"/>
+			<xs:element ref="provider" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
+				</xs:annotation>
+			</xs:any>
+		</xs:sequence>
+		<xs:attributeGroup ref="commonPowerAttributes"/>
+		<xs:attributeGroup ref="flexAttributes"/>
+		<xs:attributeGroup ref="i18nAttributes"/>
+		<xs:attribute name="versioninfo" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The version of the system.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!-- NewsML-G2 2.36: system element added for AIInfo -->
+	<xs:element name="system" type="FlexSystemPropType">
+		<xs:annotation>
+			<xs:documentation>A group of properties specific to a system</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- NewsML-G2 2.36: promptInfo element added for AIInfo -->
+	<xs:element name="promptInfo" type="IntlStringType2">
+		<xs:annotation>
+			<xs:documentation>The textual information for an AI prompt. Any details such as User vs. System prompt information is included in this property.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- NewsML-G2 2.36: promptWriter element added for AIInfo -->
+	<xs:element name="promptWriter" type="FlexAuthorPropType">
+		<xs:annotation>
+			<xs:documentation>A party (person or organisation) which created the AI prompt information.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- NewsML-G2 2.36: AIInfoType complex type added for AIInfo -->
+	<xs:complexType name="AIInfoType">
+		<xs:annotation>
+			<xs:documentation>The type for a set of properties representing the AI used to create or enhance the content</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<!-- TODO: Needs changing from xs:choice, but I can't see a quick way with XSD 1.0 to enable 'just one instance of each but all are optional' -->
+				<xs:element ref="system" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="promptInfo" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="promptWriter" minOccurs="0" maxOccurs="1"/>
+			</xs:choice>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
+				</xs:annotation>
+			</xs:any>
+		</xs:sequence>
+		<xs:attributeGroup ref="commonPowerAttributes"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!-- NewsML-G2 2.36: aiInfo element added -->
+	<xs:element name="aiInfo" type="AIInfoType">
+		<xs:annotation>
+			<xs:documentation>Information about the AI used to create or enhance the content</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 	<xs:group name="AdministrativeMetadataGroup">
 		<xs:annotation>
 			<xs:documentation>A group of properties associated with the administrative facet of content.</xs:documentation>
@@ -1037,6 +1107,8 @@ By obtaining, using and/or copying this document, you (the licensee) agree that 
 				<xs:element ref="altId"/>
 				<xs:element ref="rating"/>
 				<xs:element ref="userInteraction"/>
+				<!-- NewsML-G2 2.36: support aiInfo in AdministrativeMetadataGroup -->
+				<xs:element ref="aiInfo"/>
 			</xs:choice>
 		</xs:sequence>
 	</xs:group>
@@ -3386,6 +3458,12 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 											<xs:attribute name="timestamp" type="DateOptTimeType" use="optional">
 												<xs:annotation>
 													<xs:documentation>The date and optionally the time (with a time zone) when this action was performed on the target.</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+							    			<!-- NewsML-G2 v2.36: added idrefs to hop/action -->
+											<xs:attribute name="idrefs" type="xs:IDREFS" use="optional">
+												<xs:annotation>
+													<xs:documentation>Reference(s) to the element(s) of an Item associated with the action. </xs:documentation>
 												</xs:annotation>
 											</xs:attribute>
 										</xs:extension>
