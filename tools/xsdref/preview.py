@@ -108,6 +108,28 @@ def _text(fragment):
     return html.unescape(TAG_RE.sub('', fragment)).strip()
 
 
+def _source_title(pages_dir, name):
+    """The `= Title` line of the AsciiDoc page, which --embedded drops."""
+    source = os.path.join(pages_dir, name + '.adoc')
+    if not os.path.isfile(source):
+        return None
+    with open(source, encoding='utf-8') as handle:
+        for line in handle:
+            if line.startswith('= '):
+                return line[2:].strip()
+            if line.strip() and not line.startswith(':'):
+                break
+    return None
+
+
+def _label_text(name):
+    """Last resort: the filename without its page-kind prefix."""
+    for prefix in ('attgroup-', 'type-'):
+        if name.startswith(prefix):
+            return name[len(prefix):]
+    return name
+
+
 def _describe(name, schema):
     """
     A one-line description for a search result and its tooltip.
@@ -250,8 +272,16 @@ def build(output_dir, schema=None, matrix_dir=None):
         with open(path, encoding='utf-8') as handle:
             fragment = handle.read()
 
+        # `asciidoctor --embedded` omits the document title, so it has to come
+        # from the source. Falling back to the filename looked right only for
+        # elements, where the two coincide; every datatype and attribute-group
+        # page was titled `type-QCodeType` or `attgroup-commonPowerAttributes`
+        # in its heading, its tab and its search result.
         title_match = TITLE_RE.search(fragment)
-        title = _text(title_match.group(1)) if title_match else name
+        if title_match:
+            title = _text(title_match.group(1))
+        else:
+            title = _source_title(pages_dir, name) or _label_text(name)
         body = TITLE_RE.sub('', fragment, count=1)
 
         headings = [
