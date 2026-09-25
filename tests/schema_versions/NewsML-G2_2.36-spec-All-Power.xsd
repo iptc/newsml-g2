@@ -1823,12 +1823,9 @@ was sent</xs:documentation>
          <xs:documentation>The type for a set of properties representing the AI used to create or enhance the content</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:choice minOccurs="0" maxOccurs="unbounded">
-				<!-- TODO: Needs changing from xs:choice, but I can't see a quick way with XSD 1.0 to enable 'just one instance of each but all are optional' -->
-            <xs:element ref="system" minOccurs="0" maxOccurs="1"/>
-            <xs:element ref="promptInfo" minOccurs="0" maxOccurs="1"/>
-            <xs:element ref="promptWriter" minOccurs="0" maxOccurs="1"/>
-         </xs:choice>
+         <xs:element ref="system" minOccurs="0" maxOccurs="1"/>
+         <xs:element ref="promptInfo" minOccurs="0" maxOccurs="1"/>
+         <xs:element ref="promptWriter" minOccurs="0" maxOccurs="1"/>
          <xs:any namespace="##other"
                   processContents="lax"
                   minOccurs="0"

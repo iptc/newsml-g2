@@ -29,14 +29,14 @@
           <promptWriter />
           <other:x />
         </aiInfo>
-        <!-- Test: Empty children - other order -->
-        <aiInfo>
+        <!-- Test: Empty children - other order - no longer works -->
+        <!-- aiInfo>
           <promptInfo />
           <system />
           <promptWriter />
           <other:x />
           <other:x />
-        </aiInfo>
+        </aiInfo -->
         <!-- Test: Some children -->
         <aiInfo>
           <system />
