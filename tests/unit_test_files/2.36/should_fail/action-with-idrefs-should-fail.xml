@@ -14,30 +14,30 @@
     <hopHistory>
         <hop seq="1" timestamp="2019-10-13T12:34:56.000Z">
             <party qcode="NS:LSEG" />
-            <action qcode="action:applyAI" target="hatarget:content" detailrefs="gen1 gen2a gen2b">
+            <action qcode="action:applyAI" target="hatarget:content" idrefs="gen1 gen2a gen2b">
                 <related rel="extCptRel:hasWorker" qcode="sys:AIController">
                     <related rel="extCptRel:hasWorkerDetail" qcode="aiActor:applyUserPrompt" />
                 </related>
             </action>
             <!-- or just -->
-            <action qcode="action:applyAI" target="hatarget:content" detailrefs="gen1 gen2a gen2b" />
+            <action qcode="action:applyAI" target="hatarget:content" idrefs="gen1 gen2a gen2b" />
             <!-- or -->
-            <action qcode="action:applyAI" target="hatarget:content" detailrefs="gen1" />
-            <action qcode="action:applyAI" target="hatarget:content" detailrefs="gen2a" />
-            <action qcode="action:applyAI" target="hatarget:content" detailrefs="gen2b" />
+            <action qcode="action:applyAI" target="hatarget:content" idrefs="gen1" />
+            <action qcode="action:applyAI" target="hatarget:content" idrefs="gen2a" />
+            <action qcode="action:applyAI" target="hatarget:content" idrefs="gen2b" />
         </hop>
         <!-- or -->
         <hop seq="2" timestamp="2019-10-13T12:34:56.000Z">
-            <action qcode="action:applyAI" target="hatarget:content" detailrefs="gen1" />
+            <action qcode="action:applyAI" target="hatarget:content" idrefs="gen1" />
         </hop>
         <hop seq="3" timestamp="2019-10-13T13:34:56.000Z">
-            <action qcode="action:applyAI" target="hatarget:content" detailrefs="gen2a" />
+            <action qcode="action:applyAI" target="hatarget:content" idrefs="gen2a" />
         </hop>
         <!-- A: hopHistory: In different Items; ignore @seq, @timestamp -->
         <hop seq="1" timestamp="2019-10-13T12:34:56.000Z">
             <party qcode="NS:LSEG" />
             <!-- Note: action/@actiondetails can point to 1..N @ids-->
-            <action qcode="action:applyAI" target="hatarget:content" detailrefs="gen1">
+            <action qcode="action:applyAI" target="hatarget:content" idrefs="gen1">
                 <related rel="extCptRel:hasWorker" qcode="sys:AIController">
                     <related rel="extCptRel:hasWorkerDetail" qcode="aiActor:applyUserPrompt" />
                 </related>
@@ -46,21 +46,21 @@
         <!-- #ai#UC2: Multiple Gen Info #latest -->
         <hop seq="3" timestamp="2019-10-13T13:34:56.000Z">
             <party qcode="NS:BLMB" />
-            <action qcode="action:applyAI" target="hatarget:content" detailrefs="gen2a" />
+            <action qcode="action:applyAI" target="hatarget:content" idrefs="gen2a" />
         </hop>
         <hop seq="4" timestamp="2019-10-13T13:35:56.000Z">
             <party qcode="NS:BLMB" />
-            <action qcode="action:applyAI" target="hatarget:content" detailrefs="gen2b" />
+            <action qcode="action:applyAI" target="hatarget:content" idrefs="gen2b" />
         </hop>
         <!-- #ai#UC3: Simple AI gen Image #latest -->
         <hop seq="4" timestamp="2019-10-13T12:44:56.000Z">
             <party qcode="NS:AFP" />
-            <action qcode="action:applyAI" target="hatarget:content" id="act1" detailrefs="gen3" />
+            <action qcode="action:applyAI" target="hatarget:content" id="act1" idrefs="gen3" />
         </hop>
         <!-- older ... -->
         <hop seq="4" timestamp="2019-10-13T12:44:56.000Z">
             <party qcode="NS:AFP" />
-            <action qcode="action:applyAI" target="hatarget:content" detailrefs="gen3">
+            <action qcode="action:applyAI" target="hatarget:content" idrefs="gen3">
                 <related rel="extCptRel:hasWorker" qcode="sys:AIController">
                 <related rel="extCptRel:hasWorkerDetail" qcode="aiActor:createImage" />
                 </related>
@@ -93,7 +93,7 @@
           <promptWriter />
           <other:x />
         </aiInfo>
-        <!-- Test: Empty children - other order - this no longer works -->
+        <!-- Test: Empty children - other order - no longer works -->
         <!-- aiInfo>
           <promptInfo />
           <system />

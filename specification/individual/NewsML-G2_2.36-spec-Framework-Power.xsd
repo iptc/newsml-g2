@@ -3457,10 +3457,16 @@ This information is aimed at the editorial staff of the receiver</xs:documentati
 													<xs:documentation>The date and optionally the time (with a time zone) when this action was performed on the target.</xs:documentation>
 												</xs:annotation>
 											</xs:attribute>
-							    			<!-- NewsML-G2 v2.36: added idrefs to hop/action -->
-											<xs:attribute name="idrefs" type="xs:IDREFS" use="optional">
+							    			<!-- NewsML-G2 v2.36: added detailrefs to hop/action -->
+											<xs:attribute name="detailrefs" type="xs:IDREFS" use="optional">
 												<xs:annotation>
-													<xs:documentation>Reference(s) to the element(s) of an Item associated with the action. </xs:documentation>
+													<xs:documentation>Additional details relating to this action.</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+							    			<!-- NewsML-G2 v2.36: added targetrefs to hop/action -->
+											<xs:attribute name="targetrefs" type="xs:IDREFS" use="optional">
+												<xs:annotation>
+													<xs:documentation>Element(s) that have been manipulated by this action.</xs:documentation>
 												</xs:annotation>
 											</xs:attribute>
 										</xs:extension>
@@ -4753,25 +4759,6 @@ values as defined by the Cascading Style Sheets (CSS) specification.</xs:documen
 			<xs:group ref="ConceptDefinitionGroup" minOccurs="0"/>
 			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0"/>
 			<xs:element ref="geoAreaDetails" minOccurs="0"/>
-			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
-				</xs:annotation>
-			</xs:any>
-		</xs:sequence>
-		<xs:attributeGroup ref="commonPowerAttributes"/>
-		<xs:attributeGroup ref="flexAttributes"/>
-		<xs:attributeGroup ref="i18nAttributes"/>
-		<xs:anyAttribute namespace="##other" processContents="lax"/>
-	</xs:complexType>
-	<xs:complexType name="FlexPOIPropType">
-		<xs:annotation>
-			<xs:documentation>Flexible point-of-intrerest data type for both controlled and uncontrolled values</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:group ref="ConceptDefinitionGroup" minOccurs="0"/>
-			<xs:group ref="ConceptRelationshipsGroup" minOccurs="0"/>
-			<xs:element ref="POIDetails" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Extension point for provider-defined properties from other namespaces</xs:documentation>
