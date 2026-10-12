@@ -52,7 +52,9 @@ Steps to create and release an update to the standard:
     the catalog number referred from example files.
 11. Run `release-tools/test-newsml-examples.sh` which runs `xmllint` over the
     examples folder to make sure no errors have been introduced.
-12. Run `tests/runtests.py` to run the unit tests and make sure that the new
+12a. cp specification/NewsML-G2_2.36-spec-All-Power.xsd tests/schema_versions/
+    so that tests run on the correct version.
+12b. Run `tests/runtests.py` to run the unit tests and make sure that the new
     version doesn't break any old test cases. You should also write new unit
     tests for the changes being added, if you haven't already.
 13. Use XML Spy to create XML Schema documentation from the master XSD schema
