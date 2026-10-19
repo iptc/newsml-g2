@@ -31,6 +31,7 @@ It has to work offline on a laptop in a meeting.
 
 from __future__ import annotations
 
+import csv
 import html
 import json
 import os
@@ -44,11 +45,11 @@ ITEM_TYPES = (
     'planningItem', 'catalogItem', 'newsMessage',
 )
 
-# Cross-artefact links. Placeholders where a destination does not exist yet are
-# marked so the gap is visible rather than silently dropped.
+# Cross-artefact links. The books are sibling folders of the reference in the
+# assembled site (tools/docsite.py); in a bare --preview they do not exist yet.
 TOP_LINKS = (
-    ('Specification', 'https://iptc.org/std/NewsML-G2/specification/', False),
-    ('Guidelines', 'https://iptc.org/std/NewsML-G2/guidelines/', False),
+    ('Specification', '../specification/preface.html', None),
+    ('Guidelines', '../guidelines/preface.html', None),
     ('Schema reference', 'index.html', True),
     ('Examples', 'https://github.com/iptc/newsml-g2/tree/main/examples', False),
     ('Schemas', 'https://github.com/iptc/newsml-g2/tree/main/specification', False),
@@ -58,6 +59,11 @@ TOP_LINKS = (
 # (logo_iptc_white_text_gradient.svg). Copied into the output rather than
 # inlined as a data URI, which would repeat it across all 224 pages.
 LOGO = 'iptc-logo.svg'
+
+# The schema version the pages describe, set by build(). Every page carries it
+# in the header, and a hard-coded value went stale the first time the tool was
+# run against a newer schema.
+VERSION = ''
 
 # Which navigation groups roll up into which headline figure on the landing
 # page. A group absent from here is reported nowhere, which is how 77 datatype
@@ -216,6 +222,7 @@ def _copy_matrix(pages_dir, schema, matrix_dir):
         if os.path.isfile(source):
             shutil.copyfile(source, os.path.join(pages_dir, name))
             shipped[kind] = name
+            shipped[kind + '_path'] = source
     return shipped or None
 
 
@@ -257,7 +264,16 @@ def _label(name):
     return '&lt;%s&gt;' % name
 
 
+def _csv_shape(path):
+    """Data rows and columns in a matrix CSV, for the caption on its link."""
+    with open(path, encoding='utf-8', newline='') as handle:
+        rows = list(csv.reader(handle))
+    return len(rows) - 1, len(rows[0]) if rows else 0
+
+
 def build(output_dir, schema=None, matrix_dir=None):
+    global VERSION
+    VERSION = schema.version if schema is not None else ''
     pages_dir = os.path.join(output_dir, 'pages')
     names = render_fragments(pages_dir)
     _copy_assets(pages_dir)
@@ -515,15 +531,16 @@ def _top_bar(current_is_reference=True):
     links = []
     for label, href, internal in TOP_LINKS:
         classes = []
+        # True: this artefact. None: a sibling in the same site. False: off-site.
         if internal and current_is_reference:
             classes.append('here')
-        if not internal:
+        if internal is False:
             classes.append('ext')
         attr = ' class="%s"' % ' '.join(classes) if classes else ''
-        target = '' if internal else ' target="_blank" rel="noopener"'
+        target = ' target="_blank" rel="noopener"' if internal is False else ''
         links.append('<a href="%s"%s%s>%s</a>' % (href, attr, target, label))
     return """<header class="top">
-  <div class="brand">NewsML-G2 <span>2.35</span></div>
+  <div class="brand">NewsML-G2 <span>%s</span></div>
   <nav>%s</nav>
   <div class="search">
     <input id="q" type="search"
@@ -534,7 +551,7 @@ def _top_bar(current_is_reference=True):
   </div>
   <a class="logo" href="https://iptc.org/" target="_blank" rel="noopener"
      title="IPTC home page"><img src="%s" alt="IPTC" width="30" height="30"></a>
-</header>""" % (''.join(links), LOGO)
+</header>""" % (html.escape(VERSION), ''.join(links), LOGO)
 
 
 def _left_index(groups, current=None):
@@ -562,12 +579,13 @@ def _right_toc(headings):
     return '\n'.join(out)
 
 
-PREVIEW_BANNER = (
-    '<p class="preview-note"><strong>Preview.</strong> Generated from the '
-    'NewsML-G2 2.35 XML Schema by <code>tools/xsdref</code>. This layout is a '
-    'harness for reviewing structure and content — it is not the published '
-    'site.</p>'
-)
+def _preview_banner():
+    return (
+        '<p class="preview-note"><strong>Preview.</strong> Generated from the '
+        'NewsML-G2 %s XML Schema by <code>tools/xsdref</code>. This layout is a '
+        'harness for reviewing structure and content — it is not the published '
+        'site.</p>' % html.escape(VERSION)
+    )
 
 
 def _document(title, body, extra_head=''):
@@ -588,7 +606,7 @@ def page_html(name, title, body, headings, groups):
 %s
 </main>
 %s
-</div>""" % (_top_bar(), _left_index(groups, current=name), PREVIEW_BANNER,
+</div>""" % (_top_bar(), _left_index(groups, current=name), _preview_banner(),
              html.escape(title), body, _right_toc(headings))
     return _document(title, shell)
 
@@ -647,7 +665,7 @@ def landing_html(groups, page_count, schema=None, matrix=None):
 <main>%s
 <div class="landing">
 <h1>NewsML-G2 Schema Reference</h1>
-<p>Generated from <code>NewsML-G2_2.35-spec-All-Power.xsd</code>. Every element
+<p>Generated from <code>NewsML-G2_%s-spec-All-Power.xsd</code>. Every element
 name in the schema has a page giving its definition, the contexts it is
 declared in, its content model and its attributes, with any User Note or
 Implementation Note from Specification &sect;14 merged in.</p>
@@ -662,7 +680,8 @@ like <code>@role</code> appears in many places with different meanings.</p>
 </div>
 </main>
 <nav class="toc"></nav>
-</div>""" % (_top_bar(), _left_index(groups), PREVIEW_BANNER,
+</div>""" % (_top_bar(), _left_index(groups), _preview_banner(),
+             html.escape(VERSION),
              ''.join('<span class="stat"><b>%d</b><span>%s</span></span>'
                      % (value, label)
                      for label, value in landing_stats(
@@ -742,9 +761,10 @@ def _matrix_section(matrix, schema):
                      '<span>Excel workbook &middot; shaded by attribute group and '
                      'element category</span></a>' % (matrix['xlsx'], version))
     if matrix.get('csv'):
+        rows, columns = _csv_shape(matrix['csv_path'])
         links.append('<a class="dl" href="%s"><b>Same data in CSV format</b>'
-                     '<span>206 elements &times; 236 columns &middot; for scripts '
-                     'and diffs</span></a>' % matrix['csv'])
+                     '<span>%d elements &times; %d columns &middot; for scripts '
+                     'and diffs</span></a>' % (matrix['csv'], rows, columns))
     return """
 <h2>Structure matrix</h2>
 <p>Every element against every attribute. The pages above answer &ldquo;what

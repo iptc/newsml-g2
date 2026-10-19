@@ -100,3 +100,78 @@ def group_front_matter(chapters):
     preface = {'file': 'preface', 'anchor': 'preface', 'title': 'Preface',
                'heads': heads, 'body': ''.join(body)}
     return [preface] + chapters[len(lead):]
+
+
+ID_RE = re.compile(r'\bid="([^"]+)"')
+HREF_RE = re.compile(r'href="([^"]*)"')
+
+# Unversioned links between the two documents. Versioned ones such as
+# /std/NewsML-G2/2.35/specification/ point at a release's schema folder, not at
+# a book, and are left alone.
+BOOK_URL = re.compile(
+    r'^https?://(?:www\.)?iptc\.org/std/NewsML-G2/(specification|guidelines)/?'
+    r'(?:index\.html)?(?:#(.*))?$')
+
+
+def anchor_map(chapters):
+    """Every id in a split book, mapped to the chapter file that now holds it."""
+    found = {}
+    for chapter in chapters:
+        found[chapter['anchor']] = chapter['file']
+        for anchor in ID_RE.findall(chapter['body']):
+            found.setdefault(anchor, chapter['file'])
+    return found
+
+
+def book_href(folder, anchors, anchor, here=None):
+    """
+    The relative link to `anchor` in a book written to `../folder/`.
+
+    `here` is the folder of the page the link sits on, so a link within the
+    same book stays a sibling filename rather than climbing out and back.
+    """
+    target = anchors.get(anchor) if anchor else None
+    page = (target or 'preface') + '.html'
+    if target and anchor != target:
+        page += '#' + anchor
+    return page if folder == here else '../%s/%s' % (folder, page)
+
+
+def rewrite_links(chapters, folder, maps):
+    """
+    Point cross-references at the split pages instead of the single-page book.
+
+    `maps` holds the anchor map of every book in the site, keyed by output
+    folder. In the single-page book, `#the-data-model` is on the same page
+    wherever it is linked from; once split, it is only on one page, so the link
+    has to name it. Links to the published books on iptc.org become links to
+    the local pages, so a reader stays inside the build they are reviewing.
+    """
+    own = maps[folder]
+
+    def fix(match):
+        href = match.group(1)
+        if href.startswith('#'):
+            anchor = href[1:]
+            if anchor in own:
+                return 'href="%s"' % book_href(folder, own, anchor, here=folder)
+            return match.group(0)
+        book = BOOK_URL.match(href)
+        if book and book.group(1) in maps:
+            return 'href="%s"' % book_href(book.group(1), maps[book.group(1)],
+                                           book.group(2), here=folder)
+        return match.group(0)
+
+    for chapter in chapters:
+        chapter['body'] = HREF_RE.sub(fix, chapter['body'])
+    return chapters
+
+
+REVNUMBER = re.compile(r'<span id="revnumber">[^<\d]*([\d.]+)')
+
+
+def book_version(path):
+    """The standard version a rendered book states in its header, e.g. 2.35."""
+    with open(path, encoding='utf-8') as handle:
+        match = REVNUMBER.search(handle.read())
+    return match.group(1) if match else ''

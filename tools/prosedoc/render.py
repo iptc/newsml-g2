@@ -20,10 +20,13 @@ from __future__ import annotations
 import html
 import os
 
+# Relative to a chapter page. The books and the schema reference are written
+# as sibling folders of one site (see tools/docsite.py), so these hold wherever
+# that site is served from.
 TOP_LINKS = (
-    ('Specification', 'specification/preface.html'),
-    ('Guidelines', 'guidelines/preface.html'),
-    ('Schema reference', '../reference/pages/index.html'),
+    ('Specification', '../specification/preface.html'),
+    ('Guidelines', '../guidelines/preface.html'),
+    ('Schema reference', '../reference/index.html'),
     ('Examples', 'https://github.com/iptc/newsml-g2/tree/main/examples'),
     ('Schemas', 'https://github.com/iptc/newsml-g2/tree/main/specification'),
 )
@@ -95,15 +98,15 @@ padding-top:18px;border-top:1px solid var(--rule);font-size:14px}
 
 
 
-def _top_bar(docname):
+def _top_bar(docname, version):
     links = ''.join(
         '<a href="%s"%s>%s</a>'
         % (href, ' class="here"' if label == docname else '', label)
         for label, href in TOP_LINKS)
-    return ('<header class="top"><div class="brand">NewsML-G2 <span>2.35</span></div>'
+    return ('<header class="top"><div class="brand">NewsML-G2 <span>%s</span></div>'
             '<nav>%s</nav><div class="search"><input type="search" '
             'placeholder="Press / to search the %s"></div></header>'
-            % (links, docname.lower()))
+            % (html.escape(version), links, docname.lower()))
 
 
 def _left_index(chapters, current, docname):
@@ -150,15 +153,16 @@ def _pager(chapters, index):
     return '<div class="pager">%s%s</div>' % (previous, following)
 
 
-def write_pages(chapters, output_dir, docname):
+def write_pages(chapters, output_dir, docname, version=''):
     """Write one page per chapter. Returns the paths written."""
     os.makedirs(output_dir, exist_ok=True)
     written = []
     for index, chapter in enumerate(chapters):
         body = ('%s<div class="shell">%s<main><p class="note">%s</p>'
-                '<h1>%s</h1>%s%s</main>%s</div>'
-                % (_top_bar(docname), _left_index(chapters, chapter, docname),
-                   BANNER, html.escape(chapter['title']), chapter['body'],
+                '<h1 id="%s">%s</h1>%s%s</main>%s</div>'
+                % (_top_bar(docname, version), _left_index(chapters, chapter, docname),
+                   BANNER, chapter['anchor'], html.escape(chapter['title']),
+                   chapter['body'],
                    _pager(chapters, index), _right_toc(chapter)))
         page = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
                 '<meta name="viewport" content="width=device-width,initial-scale=1">'

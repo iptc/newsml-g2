@@ -38,6 +38,9 @@ tools/xsdref/generate.py --pages --partials --output build/reference
 # Build the browsable HTML preview, including the search index
 tools/xsdref/generate.py --pages --partials --preview
 # then serve build/reference/pages/
+
+# Build the reference with the Specification and Guidelines as one static site
+tools/docsite.py          # -> build/site/
 ```
 
 Everything is regenerated from the schema on every run and is

@@ -13,8 +13,13 @@ tools/prosedoc/generate.py --book ../newsml-g2-specification/index.html \
                            --name Specification
 ```
 
-Output goes to `build/docs/`, which is gitignored. Serve it with
-`python3 -m http.server` from there.
+Output goes to `build/site/`, which is gitignored. To build the books together
+with the schema reference as one site, with every link between them local, use
+`tools/docsite.py` instead; serve the result with `python3 -m http.server`.
+
+Cross-references are rewritten as the books are split: `#the-data-model` becomes
+`introduction.html#the-data-model`, and links to the published books on
+iptc.org become links to the local pages.
 
 ## This is provisional, and here is exactly why
 
