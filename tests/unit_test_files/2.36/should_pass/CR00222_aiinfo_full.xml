@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:other="http://other.com/other-namespace"
+    standard="NewsML-G2"
+    standardversion="2.36"
+    conformance="power"
+    guid="tag:eee01s.com,2025:newsml_AI"
+    version="1"
+    xml:lang="en">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_42.xml"/>
+    <itemMeta>
+        <itemClass qcode="icls:text" />
+        <provider literal="eee01s.com" />
+        <versionCreated>2025-02-07T12:34:56.000Z</versionCreated>
+    </itemMeta>
+    <contentMeta>
+        <digitalSourceType uri="https://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia" />
+        <userInteraction interactions="1" />
+        <aiInfo id="full1" creator="cre:ator" creatoruri="uri" custom="false" how="h:ow" howuri="uri" modified="2026-08-21" pubconstraint="x:x" pubconstrainturi="uri" why="w:hy" whyuri="uri" xml:lang="en">
+          <system qcode="ex-model:ModelABC" versioninfo="0.3" creator="cre:ator" creatoruri="uri" custom="false" how="h:ow" howuri="uri" modified="2026-08-21" pubconstraint="x:x" pubconstrainturi="uri" why="w:hy" whyuri="uri" xml:lang="en" dir="ltr" id="sss1" literal="lit" type="t:t" typeuri="uri" uri="uri">
+            <name id="nnn1" xml:lang="en" dir="ltr" creator="cre:ator" creatoruri="uri" custom="false" how="h:ow" howuri="uri" modified="2026-08-21" pubconstraint="x:x" pubconstrainturi="uri" why="w:hy" whyuri="uri" part="p:art" parturi="uri" role="r:r" roleuri="uri" validfrom="2026-08-21" validto="2027-08-21">Model ABC</name>
+            <name xml:lang="fr">La Model ABC</name>
+            <provider id="ppp1" qcode="ex-prov:XYZ" xml:lang="en" dir="ltr" creator="cre:ator" creatoruri="uri" custom="false" how="h:ow" howuri="uri" modified="2026-08-21" pubconstraint="x:x" pubconstrainturi="uri" why="w:hy" whyuri="uri" literal="lit" type="t:ype" typeuri="uri" uri="uri">
+              <name id="nnn2" xml:lang="en" dir="ltr" creator="cre:ator" creatoruri="uri" custom="false" how="h:ow" howuri="uri" modified="2026-08-21" pubconstraint="x:x" pubconstrainturi="uri" why="w:hy" whyuri="uri" part="p:art" parturi="uri" role="r:r" roleuri="uri" validfrom="2026-08-21" validto="2027-08-21">XYZ</name>
+              <name xml:lang="en-US">XYZee</name>
+            </provider>
+          </system>
+          <promptInfo id="pipipi1" xml:lang="en" dir="ltr" creator="cre:ator" creatoruri="uri" custom="false" how="h:ow" howuri="uri" modified="2026-08-21" pubconstraint="x:x" pubconstrainturi="uri" why="w:hy" whyuri="uri">Positive: Article about global warming. Negative: Impact on sea levels</promptInfo>
+          <promptWriter id="pwpwpw1" literal="persDC1" xml:lang="en" dir="ltr" creator="cre:ator" creatoruri="uri" custom="false" how="h:ow" howuri="uri" modified="2026-08-21" pubconstraint="x:x" pubconstrainturi="uri" why="w:hy" whyuri="uri" jobtitle="j:obtitle" jobtitleuri="uri" qcode="q:q" role="r:r" roleuri="uri" type="t:ype" typeuri="uri" uri="uri">
+            <name id="nnn3" role="ex-role:main" xml:lang="en-GB" dir="ltr" creator="cre:ator" creatoruri="uri" custom="false" how="h:ow" howuri="uri" modified="2026-08-21" pubconstraint="x:x" pubconstrainturi="uri" why="w:hy" whyuri="uri" part="p:art" parturi="uri" roleuri="uri" validfrom="2026-08-21" validto="2027-08-21">Dave Compton</name>
+          </promptWriter>
+          <other:x />
+        </aiInfo>
+        <!-- Desc -->
+        <creator literal="Dave Compton">
+          <name>Dave Compton</name>
+          <name />
+        </creator>
+        <contributor literal="Dave Compton" role="cpprole:genAIPromptWriter">
+          <name>Dave Compton</name>
+        </contributor>
+        <contributor literal="ChatGPT" type="cpnat:software" role="cpprole:generator">
+          <name>ChatGPT</name>
+        </contributor>
+        <headline>Headline: AI Testing</headline>
+    </contentMeta>
+    <contentSet>
+        <remoteContent id="rc1-main" rendition="rend:main" href="https://example.com/autogen/pix/Image001.jpg" />
+        <remoteContent id="rc1-view" rendition="rend:viewImage" href="https://example.com/autogen/pix/Image001-view.jpg" />
+        <remoteContent id="rc1-thumb" rendition="rend:thumbnail" href="https://example.com/autogen/pix/Image001-thumb.jpg" />
+    </contentSet>
+</newsItem>
