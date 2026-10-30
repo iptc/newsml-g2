@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conceptItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ./NewsML-G2_2.24-spec-All-Core.xsd"
+    guid="urn:newsml:iptc.org:20080229:ncdci-person"
+    version="11" 
+    standard="NewsML-G2" 
+    standardversion="2.24">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_32.xml" />
+    <rightsInfo>
+        <copyrightHolder>
+            <name>IPTC - International Press Telecommunications Council, 20 Garrick Street, London WC2E 9BT, UK</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2017-18, IPTC, www.iptc.org, All
+            Rights Reserved</copyrightNotice>
+    </rightsInfo>
+    <itemMeta>
+        <itemClass qcode="cinat:concept" />
+        <provider qcode="nprov:IPTC" />
+        <versionCreated>2018-11-07T12:38:18Z</versionCreated>
+        <firstCreated>2008-12-29T11:00:00Z</firstCreated>
+        <pubStatus qcode="stat:usable" />
+        <title xml:lang="en">Concept Item describing Mario Draghi</title>
+    </itemMeta>
+    <concept>
+        <conceptId created="2009-01-10T12:00:00Z" qcode="people:329465" />
+        <type qcode="cpnat:person" />
+        <name xml:lang="en-GB">Mario Draghi</name>
+        <definition xml:lang="en-GB" role="definitionrole:biog">
+            Mario Draghi, born 3 September 1947,
+            is an Italian banker and economist who succeeded Jean-Claude Trichet as the
+            President of the European Central Bank on 1 November 2011. He was previously
+            the governor of the Bank of Italy from January 2006 until October 2011. In 2013
+            Forbes nominated Draghi 9th most powerful person in the world.<br />
+        </definition>
+        <note xml:lang="en-GB" role="nrol:disambiguation">
+            Not Mario D’roggia, international powerboat racer
+        </note>
+        <related rel="relation:occupation" qcode="jobtypes:puboff" /> 
+        <sameAs type="cpnat:person" qcode="pers:567223">
+            <name>DRAGHI, Mario</name>
+        </sameAs>
+        <personDetails>
+            <born>1947-09-03</born>
+            <affiliation type="orgnat:employer" qcode="org:ECB">
+                <name>European Central Bank</name>
+            </affiliation>
+            <contactInfo>
+                <email role="ciprol:office">info@ecb.eu</email>
+                <im role="imsrvc:reuters">president.ecb.eu@reuters.net</im>
+                <phone role="ciprol:office">+49 69 13 44 0</phone>
+                <phone role="ciprol:mobile">+49 69 13 44 60 00</phone>
+                <web>www.ecb.eu</web>
+                <address role="ciprol:office">
+                   <line>Kaiserstrasse 29</line>
+                   <locality>
+                       <name>Frankfurt am Main</name>
+                   </locality>
+                   <country qcode="iso3166-1a2:DE">
+                       <name xml:lang="en">Germany</name>
+                   </country>
+                   <postalCode>D-60311</postalCode>
+                </address>
+            </contactInfo>
+        </personDetails>
+    </concept>
+</conceptItem>
