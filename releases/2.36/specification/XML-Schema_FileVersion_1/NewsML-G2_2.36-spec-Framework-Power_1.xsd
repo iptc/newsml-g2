@@ -1954,7 +1954,8 @@ The relationship of properties inside this partMeta and properties at a higher h
 							<xs:documentation>A refinement of the semantics or business purpose of the property - expressed by a QCode</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
-					<xs:attribute name="roleruri" type="IRIType" use="optional">
+                    <!-- Erratum: from NewsML-G2 v2.18 to 2.35, this was misspelled "roleruri" -->
+					<xs:attribute name="roleuri" type="IRIType" use="optional">
 						<xs:annotation>
 							<xs:documentation>A refinement of the semantics or business purpose of the property - expressed by a URI</xs:documentation>
 						</xs:annotation>
