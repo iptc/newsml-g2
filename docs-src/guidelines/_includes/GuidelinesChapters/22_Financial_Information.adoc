@@ -1,0 +1,221 @@
+[[expressing-company-financial-information]]
+Expressing company financial information
+----------------------------------------
+
+[[background]]
+Background
+~~~~~~~~~~
+
+Company financial information is a common feature of news distributed by
+many news providers; company information is typically indexed in news
+using a "ticker symbol", for example:
+
+Apple Inc (NYSE:AAPL) today announced the…
+
+However, this easy and widely-used "shorthand" for indexing company
+information has a number of traps for those creating machine-readable
+metadata, especially when dealing with global markets and diverse
+customer requirements.
+
+Ticker symbols are NOT unambiguous identifiers for companies; they
+identify specific financial instruments belonging to companies, usually
+tied to specific markets or exchanges. For example, the ticker symbol
+for Rio Tinto is "RIO" in London, but "RTP" in New York; similarly
+NYSE:AAPL identifies shares of Apple Inc. traded on the New York Stock
+Exchange, not the company. Other issues include:
+
+* A company may have many different financial instruments, all
+identified by specific ticker symbols.
+* A company’s shares may be traded on many different markets; the ticker
+symbols may or may not be the same across markets. For example IBM has
+the same ticker symbol IBM on the New York, Amsterdam, Frankfurt, London
+and Mexico Exchanges; as mentioned above, Rio Tinto has the ticker
+symbol RIO in London, but RTP on the New York, Frankfurt and Mexico
+exchanges.
+* There are many different schemes for labelling financial markets, for
+example the London Stock Exchange is variously identified as "LON",
+"LSE" and "LN" to give only three examples.
+
+The NewsML-G2 <hasInstrument> structure addresses these issues by
+enabling providers to use a globally unique identifier for companies,
+and linking each of the company ticker symbols to this identifier, while
+giving extensive and unambiguous information about each of the ticker
+symbol. It is a child of the Organisation Details
+wrapping element <organisationDetails>.
+
+[[hasinstrument-properties-as-attributes]]
+<hasInstrument> properties (as attributes)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+include::{includedir}/../../GuidelinesTables/HasInstrument.adoc[]
+
+[[examples]]
+Examples
+^^^^^^^^
+
+At its simplest, a symbol for the financial instrument and a label for
+the market on which it is traded may be sufficient:
+
+[source, xml]
+<hasInstrument
+    symbol="AAPL"
+    marketlabel="NYSE" />
+
+It is recommended that the optional @symbolsrc should be used to
+identify the authority for the symbol. This will disambiguate similar
+symbols that identify different financial instruments.
+
+[source, xml]
+<hasInstrument
+    symbol="AAPL"
+    symbolsrc="ex-symsrc:MDNA"
+    marketlabel="NYSE" />
+
+Other share identifiers may be used. In this example the ISIN
+(International Stock Identification Number) is used, and the authority
+for the symbol is identified as the ISO. Note that the CV only
+identifies the authority, not the authority’s scheme; which may not be
+available to the end user. This example does not give a market label,
+but unambiguously identifies the market on which the instrument is
+traded using @market and a value from the Market Identification Codes
+(an ISO scheme) using the scheme alias "mic".
+
+[source, xml]
+<hasInstrument
+    symbol="12345678"
+    symbolsrc="ex-symsrc:ISO"
+    market="mic:XLON" />
+
+The @marketlabel enables the provider to denote the market on which the
+financial instrument is traded from their own or another’s scheme, and
+to identify the scheme using the @marketlabelsrc. For example the
+following identifies the Toronto Stock Exchange from Bloomberg’s CV of
+market labels:
+
+[source, xml]
+<hasInstrument
+    symbol="12345678"
+    symbolsrc="ex-symsrc:ISO"
+    marketlabel="####@CN"
+    marketlabelsrc="_mlsrc:bbg"_ />
+
+Financial instruments are identified on many platforms and it may be
+necessary to indicate the preferred symbol amongst a group of symbols
+given for a single financial instrument. For example, if the symbols
+used on a proprietary news platform (for example Reuters or Bloomberg)
+link to further platform functions, the platform provider will wish to
+indicate that the use of their symbol is preferred. Rank is used to
+indicate this preference; in the following example, only one instrument
+has a rank:
+
+[source, xml]
+<hasInstrument
+    symbol="RTO.L"
+    symbolsrc="ex-symsrc:reuters"
+    marketlabel="LSE"
+    rank="1" />
+<hasInstrument
+    symbol="12345678"
+    symbolsrc="ex-symsrc:ISO"
+    marketlabel="XLON" />
+
+[[adding-hasinstrument-to-a-newsml-g2-item]]
+Adding <hasInstrument> to a NewsML-G2 item
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The <hasInstrument> property can be used within a NewsML-G2 News Item in
+two ways: by reference in Content Metadata from a <subject> element, or
+from the Content itself via <inlineRef>, In both cases, one or more
+<hasInstrument> elements are conveyed within an <assert> wrapper
+element. For more details on the use of <assert> see The Assert wrapper:
+in a nutshell assertions such as these enable supplementary information
+about a concept to be carried locally within a NewsML-G2 Item. Into the
+<assert> wrapper we can place a further wrapping element
+<organisationDetails> which can contain the <hasInstrument> information:
+
+[source, xml]
+<assert literal="Acme Widget">
+    <organisationDetails>
+        <contactInfo>
+            <phone>+1 (416) 922 5834</phone>
+            <email>info@acmewidgets.com</email>
+        </contactInfo>
+        <hasInstrument
+            symbol="AWG"
+            symbolsrc="ex-symsrc:MDNA"
+            market="mic:XTSE"
+            marketlabel="TSX"
+            marketlabelsrc="ex-mlsrc:MDNA"
+            type="ex-instrtype:share" />
+    </organisationDetails>
+</assert>
+
+The <assert> in this example is identified by a @literal, and is
+referenced by the same literal value in a <subject> element:
+
+[source, xml]
+<contentMeta>
+    <contentCreated>2011-12-06T07:55:00+00:00</contentCreated>
+    <subject type="cpnat:organisation" literal="Acme Widget">
+        <name>Acme Widget Sales Inc</name>
+    </subject>
+    <headline>
+        Acme Widgets announces annual results
+    </headline>
+    <description role="ex-ANDescRole:abstract">
+        Acme Widgets (XTSE:AWG), a leader in the
+        production of quality metal widgets, announced a six per cent increase in profits....
+    </description>
+    <language tag="en-US" />
+</contentMeta>
+
+Note that either a @qcode or @uri could have been used as the
+identifier, instead of @literal.
+
+Many companies may be mentioned in the content of the News Item; it
+would be limiting to have to place all of them into <subject> elements.
+Using <inlineRef>, the <hasInstrument> elements can be referenced from
+the content, but in order to do so, @idrefs must be added to the assert
+for each organisation that is referenced in the content:
+
+[source, xml]
+<assert idrefs="w001" literal="Acme Widget">
+    <organisationDetails>
+        <contactInfo>
+            <phone>+1 (416) 922 5834</phone>
+            <email>info@acmewidgets.com</email>
+        </contactInfo>
+        <hasInstrument
+            symbol="AWG"
+            symbolsrc="ex-symsrc:MDNA"
+            market="mic:XTSE"
+            marketlabel="TSX"
+            marketlabelsrc="ex-mlsrc:MDNA"
+            type="ex-instrtype:share" />
+    </organisationDetails>
+</assert>
+
+The organisation is tagged with the corresponding @id in the content (in
+this case as an attribute of the HTML <span> element).
+
+
+[source, xml]
+<h1>Acme Widgets announces annual results </h1>
+<p>TORONTO (Agencies) – Leading widget manufacturer <spanid="w001"> Acme Widgets +
+(XTSE:AWG)</span> today announced a six per cent jump in quarterly profits for +
+Q3 2016 on the back of heavy demand for its latest widget technologyfrom +
+automotive customers.</p>
+
+[[_Ref434903828]]
+
+.LISTING 23: Company Financial Information
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies, except for the following alias values: _ex-ANDescRole_,
+_ex-symsrc_, _ex-mlsrc_ and _ex-instrtype_.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_23_Company_Financial_Information.xml[]
+----
+

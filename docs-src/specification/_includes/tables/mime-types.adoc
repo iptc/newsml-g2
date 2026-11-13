@@ -1,0 +1,26 @@
+[%autowidth,options="header"]
+|===
+|IANA Media Type Identifier|Usage Note
+
+|application/vnd.iptc.g2.newsitem+xml
+|For all kinds of G2 News Items.
+
+|application/vnd.iptc.g2.conceptitem+xml
+|For all kinds of G2 Concept Items.
+
+|application/vnd.iptc.g2.packageitem+xml
+|For all kinds of G2 Package Items.
+
+|application/vnd.iptc.g2.knowledgeitem+xml
+|For all kinds of G2 Knowledge Items.
+
+|application/vnd.iptc.g2.planningitem+xml
+|For all kinds of G2 Planning Items.
+
+|application/vnd.iptc.g2.catalogitem+xml
+|For all kinds of G2 Catalog Items.
+
+|application/vnd.iptc.g2.newsmessage+xml
+|For the G2 News Message
+
+|===

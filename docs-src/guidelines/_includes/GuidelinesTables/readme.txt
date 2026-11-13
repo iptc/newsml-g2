@@ -1,0 +1,1 @@
+This folder contains output of Guidelines tables from Google Sheets into Asciidoc format.

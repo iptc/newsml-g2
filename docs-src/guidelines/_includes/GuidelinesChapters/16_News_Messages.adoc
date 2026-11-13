@@ -1,0 +1,306 @@
+[[exchanging-news-news-messages]]
+Exchanging News: News Messages
+------------------------------
+
+[[introduction-12]]
+Introduction
+~~~~~~~~~~~~
+
+News communication is often by means of a provider’s broadcast or
+multicast feed, with transactions carried out by a separate sub-system
+that has its own specific identification and transmission methods,
+independent of NewsML-G2.
+
+The News Message (<newsMessage>) facilitates these transactions,
+enabling the exchange of any number of NewsML-G2 Items by any kind of
+digital transmission system.
+
+The use of <newsMessage> is entirely optional: items may also be
+exchanged using SOAP, Atom Publishing Protocol (APP) or other suitable
+content syndication method.
+
+News Messages are a convenient wrapper when sending a Package Item and
+all of its referenced content in a single transaction (but note that it
+is not necessary to send packages and associated content together in
+this manner).
+
+The News Message properties are transient; they do not have to be
+permanently stored, although it may be useful if transmission/reception
+records are maintained, at least for a limited period during which
+requests for re-sending of messages may be made. If the content items
+carried by the message have a dependency on news message information,
+this information should be stored with the items themselves.
+
+[[structure-1]]
+Structure
+~~~~~~~~~
+
+A diagram of the structure of a News Message and its payload of Items is
+shown below.
+
+image::NewsMessage.png[width=341,height=439]
+
+.Figure: News Messages can convey any number of any kinds of NewsML-G2 Item
+
+A News Message MUST have a <header> component, which MUST contain a
+<sent> transmission timestamp. These are the only mandatory
+requirements.
+
+The News Message payload is the <itemSet> component, which may have an
+unbounded number of child <newsItem>, <packageItem>, <conceptItem> and
+<knowledgeItem> components in any combination and in any order.
+
+[[news-message-header-header]]
+News Message Header <header>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Header contains a set of properties useful for managing the
+transmission and reception of news. The simple implementation of News
+Message uses elements with string values, e.g.
+
+[source,xml]
+<sender>reuters.com</sender>
+
+Optionally, providers can use more semantically defined values for
+header properties, either using URI, QCode or literal values, and also
+use other QCode type properties to add further detailed information,
+e.g.:
+
+[source,xml]
+<sender qcode="ex-sndr:rtr">reuters.com</sender>
+
+or
+
+[source,xml]
+<sender literal="reuters">reuters.com</sender>
+
+If using controlled values for properties of the News Message, providers
+should note the following conditions:
+
+* If QCode values are used: either a <catalog> or a <catalogRef> child
+elements of <header> MUST be present to provide the required Scheme URIs
+of the controlled vocabularies used. (see xref:creating-and-managing-catalogs[Creating and Managing Catalogs] for details) The scope of the <header> catalog is limited to the News Message header only, and is NOT inherited by any of the Items under <itemSet>.
+
+* If a @literal attribute is used together with a string value for a
+property: the value of the @literal and of the string should be
+identical (as in the second example of <sender> above); if not, then the
+value of @literal takes precedence.
+
+NOTE: <catalog> or <catalogRef> are optional for News Messages, but mandatory for Items. 
+
+The child elements of <header> that may use qualifying attributes are:
+
+* sender
+* origin
+* channel
+* destination
+* timestamp (optional @role, see below)
+* signal (may use @qcode only)
+
+The following qualifying attributes are defined:
+
+include::{includedir}/../../GuidelinesTables/Message-Attributes.adoc[]
+
+Both string values of properties and the use of qualifying attributes
+are given as examples below. Note that unless stated otherwise, the
+scheme aliases used in QCode type properties are fictional.
+
+[[sent-timestamp-sent]]
+Sent timestamp <sent>
++++++++++++++++++++++
+
+Mandatory, non-repeatable. The transmission timestamp is in ISO8601
+format. Note that if a news message is re-transmitted, the sender is NOT
+required to update this property.
+
+[source,xml]
+<sent>2025-10-19T11:17:00.100Z</sent>
+
+[[catalog-catalog]]
+Catalog <catalog>
++++++++++++++++++
+
+An optional reference to the Scheme URI of a Controlled Vocabulary to
+enable the resolution of QCode values of properties used in the
+document:
+
+[source,xml]
+<catalog>
+    <scheme alias="nmsig" uri="http://cv.example.com/newscodes/newsmsgsignal/" />
+</catalog>
+
+[[remote-catalog-catalogref]]
+Remote Catalog <catalogRef>
++++++++++++++++++++++++++++
+
+An optional reference to a remote catalog containing one or more scheme
+URIs for the CVs used in the document:
+
+[source,xml]
+<catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_41.xml" />
+
+[[message-sender-sender]]
+Message Sender <sender>
++++++++++++++++++++++++
+
+An optional, non-repeatable string. Best practice is to identify the
+sender (not necessarily the same as the provider in <itemMeta>) by
+domain name:
+
+[source,xml]
+<sender>reuters.com</sender>
+
+[[transmission-id-transmitid]]
+Transmission ID <transmitId>
+++++++++++++++++++++++++++++
+
+An optional, non-repeatable string identifying the news message. The ID
+must be unique for every message on a given calendar day, except that if
+a message is re-transmitted, it may keep the same ID. The structure of
+the string is not specified by the IPTC.
+
+[source,xml]
+<transmitId>tag:reuters.com,2016:newsml_OVE48850O-PKG</transmitId>
+
+[[priority-priority]]
+Priority <priority>
++++++++++++++++++++
+
+Optional, non-repeatable. The sender’s indication of the message’s
+priority, restricted to the values 1-9 (inclusive), where 1 is the
+highest priority and 9 is the lowest. Priority would be used by a
+transmission system to determine the order in which a message is
+transmitted, relative to others in a queue. Urgency is an editorial
+judgement expressing the relative news value of an item.
+
+[source,xml]
+<priority>4</priority>
+
+Note that message Priority is not the same as the <urgency> of an
+individual Item within the news message, although they may be
+correlated. A typical example is that the Priority may be set to the
+highest Urgency value associated with any of the Items carried by the
+message.
+
+[[message-origin-origin]]
+Message Origin <origin>
++++++++++++++++++++++++
+
+An optional, non-repeatable string whose structure is not specified by
+the IPTC. It could denote the name of a channel, system or service, for
+example.
+
+[source,xml]
+<origin>MMS_3</origin>
+
+or
+
+[source,xml]
+<origin qcode="nmorgn:mms3 />
+
+[[channel-identifier-channel]]
+Channel Identifier <channel>
++++++++++++++++++++++++++++++
+
+An optional, repeatable string that gives the partners in news exchanges
+the ability to manage the content, for example as part of a permissions
+or routing scheme. The notion of a channel has its origins in
+multiplexed systems, but may be an analogy for a product – a virtual
+<channel> delivered within a physical stream identified by
+<destination>.
+
+[source,xml]
+<channel>email</channel>
+
+or
+
+[source,xml]
+<channel qcode="ex-nmchan:smtp" />
+
+[[destination-destination]]
+Destination <destination>
++++++++++++++++++++++++++
+
+An optional, repeatable, destination for the news message, using a
+provider-specific syntax. In broadcast delivery systems, this may be one
+or more physical delivery points:
+
+[source,xml]
+<destination>foo.bar@example.com</destination>
+
+or
+
+[source,xml]
+<destination role="ex-nmdest:foobar">UKI</destination>
+
+[[timestamps-timestamp]]
+Timestamps <timestamp>
+++++++++++++++++++++++
+
+An optional and repeatable <timestamp> property may be used to indicate
+the date-time that a <newsMessage> was received and/or transmitted. The
+values must be expressed as a date-time with time zone. The property may
+be refined using the optional @role, which may be a literal or QCode
+value, but note that if using a QCode the string that should be
+interpreted as a QCode MUST be defined outside the NewsML-G2
+specification by the provider of the News Message:
+
+[source,xml]
+<timestamp role="received">2025-10-18T11:17:00.000Z</timestamp>
+<timestamp role="transmitted">2025-10-19T11:17:00.100Z</timestamp>
+
+[[signal-signal]]
+Signal <signal>
++++++++++++++++
+
+Optional, repeatable; the <signal> element can be used to
+indicate any special handling instruction to the receiver’s NewsML-G2
+processor:
+
+[source,xml]
+<signal qcode="nmsig:atomic" />
+
+There is a recommended IPTC News Message Signal NewsCodes CV with a
+Scheme URI of: http://cv.iptc.org/newscodes/newsmsgsignal/
+
+The recommended scheme alias is "nmsig" and there is currently one
+member of the CV: "atomic" which signals to the receiving processor that
+the content of the News Message should be processed together. This
+enables providers to indicate that a Package Item and all of the Items
+that are referenced by that Package should be processed as a single
+"atomic" (i.e. indivisible) bundle.
+
+[[news-message-payload-itemset]]
+News Message payload <itemSet>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each <newsMessage> MUST have one <itemSet> component, which wraps the
+NewsML-G2 Items that are to be transmitted.
+
+The contents of <itemSet> can be "any" component or property from the
+NAR namespace. This is to enable schema-based validation of the content
+of the Items in the message.
+
+The IPTC recommends that the child elements of <itemSet> be any number
+of <newsItem>, <packageItem>, <conceptItem>, and/or <knowledgeItem>
+components, in any combination, in any order.
+
+The listing below shows a "skeleton" News Message containing a Package
+Item that references four News Items, together with the referenced items
+themselves, as an "atomic" package, with some of the <header> properties
+using a QCode value, which requires a reference to a Catalog (in this
+case two Remote Catalogs referenced using <catalogRef>).
+
+[[_Ref222628004]][[_Ref435560582]]
+
+.LISTING 20: News Message conveying a complete News Package
+
+QCodes used in listing below are from IPTC NewsCodes vocabularies,
+except for _ex-nmdest_.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_20_News_Message_conveying_a_complete_News_Package.xml[]
+----
+
+

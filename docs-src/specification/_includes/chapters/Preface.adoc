@@ -1,0 +1,75 @@
+[[copyrights-and-license]]
+Copyright and License
+----------------------
+
+Copyright © 2026 IPTC, the International Press Telecommunications Council. All Rights Reserved.
+
+The IPTC NewsML-G2/EventsML-G2 specification is published under the Creative Commons Attribution 4.0 license (see the full license agreement at http://creativecommons.org/licenses/by/4.0/). By obtaining, using and/or copying this Specification, you (the licensee) agree that you have read, understood, and will comply with the terms and conditions of the license.
+
+The Specification uses supporting materials that are either in the public domain or are available by the permission for their respective copyright holders. All materials of this IPTC standard covered by copyright shall be licensable at no charge.
+
+[[acknowledgments]]
+Acknowledgments
+---------------
+
+This Specification is the result of a team effort by members of the International Press Telecommunications Council (past and present), with input and assistance from other contributors.
+
+The standard is currently maintained by the IPTC NewsML-G2 Working Group. 
+
+The Technical Writer of the initial version of the Specification was Scott Meltzer; this version was created by Michael Steidl and is maintained by Kelvin Holland and Brendan Quinn.
+
+[[about-the-standards]]
+About the Standards
+-------------------
+
+[[specification-versioning-history]]
+Specification Versioning History
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+include::{includedir}/../../tables/version-history.adoc[]
+
+The specifications of NewsML-G2 and EventsML-G2 have been published separately up to the standard versions EventsML-G2 1.7 and NewsML-G2 2.8. As the design and a vast majority of the specified structures are shared between both standards the IPTC decided in June 2011 to merge the specifications under the main branding NewsML-G2 and in the NewsML-G2 folders of the IPTC web server, see below link:#the-full-set-of-specification-documents[The Full Set of Specification Documents].
+
+This step has no impact on the structure of EventsML-G2 or NewsML-G2.
+
+About this Specification
+------------------------
+
+This Specification documents the IPTC news exchange standard NewsML-G2 and its event focused sibling EventsML-G2, which are a conceptual and processing model making freely available the IPTC membership's collective knowledge of the most effective ways to structure, describe, manage and exchange news and events data.
+
+It is published under the governance of the IPTC News Architecture Working Group, endorsed by the IPTC membership, and may be updated, replaced or obsoleted by other documents at any time.
+
+Public comments should be sent to the forum and mailing list at: https://groups.io/g/iptc-newsml-g2/
+
+[[_bookmark2]][[the-full-set-of-specification-documents]]
+
+The Full Set of Specification Documents
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The latest release of the IPTC NewsML-G2 Specification and all supporting files can always be accessed for following the links from the IPTC web page https://iptc.org/standards/newsml-g2/
+
+* The XML Schema file for the version of NewsML-G2 represented in this Specification document is `NewsML-G2_2.36-spec-All-Power.xsd` and can be found at https://www.iptc.org/std/NewsML-G2/2.36/specification/ 
+
+* The Specification for this release in `html` format is `NewsML-G2-2.36-specification.html` and is available at the above location.
+
+* The XML Schema file applicable to the Core Conformance Level, development of which was frozen at version 2.24 (see link:#conformance-levels[Conformance Levels)], is `NewsML-G2_2.24-spec-All-Core.xsd` and can be obtained from: http://www.iptc.org/std/NewsML-G2/2.24/specification/ 
+
+[[note-on-the-xml-schema-file-names]]
+Note on the XML Schema File Names
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+XML Schemas are revised for two reasons:
+
+. The NewsML-G2 specifications have been changed: this results in a new version of the standard, this will be reflected by a new path to files and a new standard version number which is reflected in the filename, for example "2.36" in `NewsML-G2_2.36-spec-All-Power.xsd`.
+
+. The XML Schema has been edited to fix errors or to change non-normative parts, like the wording of an element's annotation; this is reflected by a new revision number at the end of the filename, for example “_3” in `NewsML-G2_2.24-spec-Framework-Core_3.xsd`. 
+
+The XML Schema files without the document revision number (e.g. “_3”) at the end of the filename are true copies of the latest document revision. This allows the application of a persistent reference to the latest XML Schema file version regardless of any edits.
+
+[[terminology]]
+Terminology
+~~~~~~~~~~~
+
+This document uses the terms MUST (NOT), SHOULD (NOT) and MAY as defined in [RFC2119].
+
+

@@ -1,0 +1,925 @@
+[[concepts-and-concept-items]]
+Concepts and Concept Items
+--------------------------
+
+[[introduction-8]]
+Introduction
+~~~~~~~~~~~~
+
+Concepts in NewsML-G2 are a method of describing real-world entities,
+such as people, events and organisations, and also to describe thoughts
+or ideas: abstract notions such as subject classifications, facial
+expressions. Using concepts, we can classify news, and the entities and
+ideas found in news, to make the content more accessible and relevant to
+people’s particular information needs.
+
+Content originators who make up the IPTC membership constantly strive to
+increase the value proposition of their products. The need to extract
+and properly express the meaning of news using concepts is a major
+reason for moving to NewsML-G2.
+
+Clear and unambiguously-defined concepts enable receivers of information
+to categorize and otherwise handle news more effectively, routing
+content and archiving it accurately and quickly using automated
+processes.
+
+NewsML-G2 Concepts are powerful because they bring meaning to news
+content in a way that can be understood by humans and processed by
+machines. The concept model aligns with work being done at the W3C and
+elsewhere to realize the Semantic Web.
+
+Concepts are conveyed individually in Concept Items, or (more commonly)
+are collected as groups of Concepts in Knowledge Items. These can be
+collections with a common purpose, such as Controlled Vocabularies.
+
+This Chapter gives details of the Concept element that is common to both
+types of Item, and also describes the Concept Item. The Chapter
+<<knowledge-items>>, succeeding this one, describes Knowledge Items in
+detail.
+
+Concepts are also used to convey event information, which is described
+in detail in <<events-in-newsml-g2>>.
+
+[[what-is-a-concept]]
+What is a Concept?
+~~~~~~~~~~~~~~~~~~
+
+A NewsML-G2 Concept is anything about which we can be express knowledge
+in some formal way, and which may also have a named relationship with
+other concepts:
+
+* "Mario Draghi" is a concept about which, or whom, we can express
+knowledge, for example, date of birth (September 3, 1947), job title
+(President of the European Central Bank).
+* "The European Central Bank" is a concept. It has an address, a
+telephone number, and other inherent characteristics of an organisation.
+* We can express a named relationship: "Mario Draghi" _is a member of_
+"The European Central Bank" NewsML-G2 concept expressions thus conform
+with an RDF triple of subject, predicate and object
+
+Concepts are either global in scope, when they are identified by a URI
+using a @uri, optionally taking the format of a QCode attribute @qcode,
+or their scope is local to the containing document when identified by a
+string value using @literal (where permitted) The use of @literal
+identifier is a special case that matches the identifier of an <assert>
+in the NewsML-G2 document that contains a localised concept structure.
+See 20.2 The Assert Wrapper for more details. This Chapter describes
+Concepts identified by QCodes and URIs.
+
+[[creating-concepts-the-concept-element]]
+Creating Concepts – the <concept> element
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The <concept> element contains the properties that express the concept
+in detail and identify it so that it can be used and re-used:
+
+[[concept-id-conceptid]]
+Concept ID <conceptId>
+^^^^^^^^^^^^^^^^^^^^^^
+
+A concept MUST contain a <conceptId> which takes the form of a QCode
+(@qcode) attribute. Optionally the full URI may be added using a @uri.
+If the URI resolved from the @qcode is not the same as the @uri value,
+then the URI resolved from the @qcode takes precedence. Optionally, this
+can be refined using date-time for @created and @retired.
+
+[source,xml]
+<concept>
+    <conceptId created="2009-01-01T12:00:00Z" qcode="ex-foo:bar" />
+    ...
+</concept>
+
+When a concept is created the @created attribute SHOULD be defined for the <conceptId>; there is no @created attribute at the <concept> level, as its creation is coincident with the mandatory <conceptId>.
+
+Any change to a <concept>, including to its descendant properties, should be reflected in the @modified attribute of the property being updated, and in the @modified attribute of the <concept>.
+
+Even though <conceptId> supports the @modified attribute, the <conceptId> should NOT be modified; if there is the need for a <conceptId> to be updated, the existing concept should be retired, and a new <conceptId> created.
+
+When a concept is retired by use of the @retired attribute of
+<conceptId>, the authority behind the concept is indicating that it is
+no longer actively using this concept (for example it may have been
+merged with another concept), but resources that were created before the
+change must continue to be able to resolve the concept.
+
+[[concept-name-name]]
+Concept Name <name>
+^^^^^^^^^^^^^^^^^^^
+
+A concept MUST contain at least one <name>, a natural language name for
+the concept, with optional attributes of @xml:lang and @dir (text
+direction):
+
+[source,xml]
+<concept>
+    <conceptId qcode="ex-foo:bar" />
+        <name>Mario Draghi</name>
+</concept>
+
+Concepts are designed to be useable in multiple languages:
+
+[source,xml]
+<concept>
+    <conceptId created="2000-10-30T12:00:00+00:00" qcode="medtop:01000000" />
+    <type qcode="cpnat:abstract" />
+    <name xml:lang="en-GB">arts, culture and entertainment</name>
+    <name xml:lang="de">Kultur, Kunst, Unterhaltung</name>
+    <name xml:lang="fr">Arts, culture, et spectacles</name>
+    <name xml:lang="es">arte, cultura y espectáculos</name>
+    <name xml:lang="ja-JP">文化</name>
+    <name xml:lang="it">Arte, cultura, intrattenimento</name>
+</concept>
+
+[[concept-type]]
+Concept Type
+^^^^^^^^^^^^
+
+The optional <type> element expresses the "nature of the Concept", for
+example, using the recommended IPTC Concept Nature NewsCodes to identify
+this concept is of type "abstract". We can also use <related> to extend
+this notion into further characteristics of the concept (see
+xref:relationships-between-concepts[Relationships between Concepts], below).
+
+<type> demonstrates the use of the subject, predicate, object triple of
+RDF to express a named relationship with another concept; <type> can
+only express one kind of relationship – "is a(n)". It is used to express
+the most obvious, or primary, inherent characteristic of a concept, as
+in:
+
+`arts, culture and entertainment` _(Subject)_ `is a(n)` _(Predicate)_
+`abstract concept` _(Object)_:
+
+[source,xml]
+<type qcode="cpnat:abstract" />
+
+The current types agreed by the IPTC and contained in the "concept
+nature" CV at http://cv.iptc.org/newscodes/cpnature/ are:
+
+* abstract concept (cpnat:abstract),
+* person (cpnat:person),
+* organisation (cpnat:organisation),
+* geopolitical area (cpnat:geoArea),
+* point of interest (cpnat:poi),
+* object (cpnat:object)
+* event (cpnat:event).
+
+[[concept-definition]]
+Concept Definition
+^^^^^^^^^^^^^^^^^^
+
+The optional <definition> element allows more extensive natural language
+information with some mark-up, if required. Block type elements may use
+an optional @role QCode to differentiate repeating Definition statements
+such as "summary" and "long":
+
+[source,xml]
+<definition xml:lang="en-GB" role="ex-definitionrole:short">
+    Matters pertaining to the advancement and refinement of the human mind,
+    of interests, skills, tastes and emotions
+</definition>
+
+Note that although much of this information could be, and may be,
+duplicated in machine-readable XML, it is still useful to carry some
+core information in human-readable form.
+
+[[note]]
+Note
+^^^^
+
+The <note> element may be used to add supplemental natural-language
+information on the concept as a block of text with some optional
+mark-up, again with an optional @role:
+
+[source,xml]
+<note>
+    This is a top-level concept from the IPTC Media Topic NewsCodes
+</note>
+
+[[conveying-concepts-the-concept-item-structure]]
+Conveying Concepts: the Concept Item structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A Concept Item conveys knowledge about a single concept, whether a
+real-world entity such as a person, or an abstract concept such as a
+subject. It shares the basic structure of all NewsML-G2 Items and
+therefore uses the same methods for identification and versioning.
+
+Item Metadata is mandatory and contains the mandatory properties for
+Item Class, Provider and Version Created (note that Publication Status
+is optional but the Item’s publication status must be assumed to be the
+default "usable" if the property is absent).
+
+Content Metadata is optional and is not included in this example:
+
+Note the <itemClass> property for a Concept Item must use the IPTC
+Concept Item Nature NewsCodes with a recommended Scheme Alias of "cinat"
+and denotes this Item conveys a NewsML-G2 Concept.
+
+[[completed-concept-item]]
+Completed Concept Item
+^^^^^^^^^^^^^^^^^^^^^^
+
+This example is a Concept Item that describes one of the IPTC Media
+Topic NewsCodes:
+
+[[abstract-concept-in-concept-item]]
+
+.LISTING 10: Abstract Concept conveyed in a NewsML-G2 Concept Item
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_10_Abstract_Concept_conveyed_in_a_NewsML-G2_Concept_Item.xml[]
+----
+
+[[concepts-for-real-world-entities]]
+Concepts for real-world entities
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For each of the types of named entities agreed by the IPTC: person,
+organisation, geographical area, point of interest, object and event,
+there is a specific group of additional properties. The following
+example is a Concept Item for a person.
+
+[[document-structure-4]]
+Document Structure
+^^^^^^^^^^^^^^^^^^
+
+The document structure is as previously described, with a root
+<conceptItem> element and <itemMeta>. The <contentMeta> element is
+optional and may only contain Administrative metadata properties, such
+as <contentModified> (not included in the example)
+
+[source,xml]
+<?xml version="1.0" encoding="UTF-8"?>
+<conceptItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    guid="urn:newsml:iptc.org:20080229:ncdci-person"
+    version="1010181123618"
+    standard="NewsML-G2"
+    standardversion="2.35"
+    conformance="power">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_41.xml"
+    />
+    <rightsInfo>
+        <copyrightHolder>
+            <name>IPTC - International Press Telecommunications Council, 20 Garrick Street, London WC2E 9BT, UK</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2025, IPTC, www.iptc.org, All
+        Rights Reserved</copyrightNotice>
+    </rightsInfo>
+    <itemMeta>
+        <itemClass qcode="cinat:concept" />
+        <provider qcode="nprov:IPTC" />
+        <versionCreated>2025-11-07T12:38:18Z</versionCreated>
+        <firstCreated>2008-12-29T11:00:00Z</firstCreated>
+        <pubStatus qcode="stat:usable" />
+        <title xml:lang="en">Concept Item describing Mario Draghi</title>
+    </itemMeta>
+
+[[top-level-concept-details]]
+Top-level concept details
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The <concept> wrapper starts with the properties common to all types of
+concepts:
+
+[source,xml]
+<concept>
+    <conceptId created="2009-01-10T12:00:00Z" qcode="ex-people:329465"/>
+    <type qcode="cpnat:person" />
+    <name xml:lang="en-GB">Mario Draghi</name>
+    <definition xml:lang="en-GB" role="ex-definitionrole:biog">
+        Mario Draghi, born 3 September 1947,
+        is an Italian banker and economist who succeeded Jean-Claude Trichet as the
+        President of the European Central Bank on 1 November 2011. He was previously
+        the governor of the Bank of Italy from January 2006 until October 2011.
+        In 2014 Forbes nominated Draghi 9th most powerful person in the world.<br />
+    </definition>
+    <note xml:lang="en-GB">
+        Not Mario D’roggia, international powerboat racer
+    </note>
+    <related rel="ex-relation:occupation" qcode="ex-jobtypes:puboff" />
+        <sameAs type="cpnat:person" qcode="ex-pers:567223">
+            <name>DRAGHI, Mario</name>
+        </sameAs>
+    ....
+</concept>
+
+Note the inclusion of Concept Relationship properties: the <related>
+element indicates that the person who is the subject of the concept "has
+occupation of" the related concept expressed in by the @qcode
+"ex-jobtypes:puboff". The <sameAs> element indicates that this concept is
+the same as AFP’s (note: fictitious) concept expressed by the @qcode
+"ex-pers:567223".
+
+[[person-details]]
+Person details
+^^^^^^^^^^^^^^^
+
+The <personDetails> element is a container for additional properties
+that are specifically designed to convey information about people:
+
+[[born-born-and-died-died]]
+Born <born> and Died <died>
++++++++++++++++++++++++++++
+
+The date of birth and date of death of the person, for example:
+
+[source,xml]
+<born>1947-09-03</born>
+
+[[TruncatedDateTime]]The data type is "TruncatedDateTime", which means that the value is a
+date, with an optional time part. The date value may be truncated from
+the right to a minimum of YYYY. If used, the time must be present in
+full, with time zone, and ONLY in the presence of the full date.
+
+[source,xml]
+<born>1947</born>
+
+[[affiliation-affiliation]]
+Affiliation <affiliation>
+++++++++++++++++++++++++++
+
+An affiliation of the person to an organisation.
+
+[source,xml]
+<affiliation type="ex-orgnat:employer" qcode="ex-org:ECB">
+    <name>European Central Bank</name>
+</affiliation>
+
+Note that the @type refers to the type of organisation – not the type of
+relationship with the person. In the example we use scheme "orgnat" to
+describe the Nature of the Organisation as a Bank.
+
+[[contact-info-contactinfo]]
+Contact Info <contactInfo>
+++++++++++++++++++++++++++
+
+Contact information associated with the person. The <contactInfo>
+element wraps a structure with the properties outlined below. A "person"
+concept may have many instances of <contactInfo>, each with @role
+indicating their purpose, or example work or home. These are controlled
+values, so a provider may create their own CV of address types if
+required. The IPTC NewsCodes for the roles of parts of <contactInfo> is http://cv.iptc.org/newscodes/contactinfopartrole/ with a recommended scheme alias of "ciprol" (used in the example below)
+
+Each of the child elements of <contactInfo> may be repeated as often as
+needed to express different @roles, for example different "office" and
+"mobile" phone numbers.
+
+include::{includedir}/../../GuidelinesTables/Contact.adoc[]
+
+For example:
+
+[source,xml]
+<contactInfo>
+    <email role="ciprol:office">info@ecb.eu</email>
+    <im role="ctech:rm">president.ecb.eu@reuters.net</im>
+    <phone role="ciprol:office">+49 69 13 44 0</phone>
+    <phone role="ciprol:mobile">+49 69 13 44 60 00</phone>
+    <web>www.ecb.eu</web>
+    <address role="ciprol:office">
+        <!--  see below  -->
+    </address>
+</contactInfo>
+
+[[postal-address-address]]
+Postal address <address>
+++++++++++++++++++++++++
+
+The Address Type property may have a @role to indicate its purpose, The
+following table shows the available child properties. Apart from <line>,
+which is repeatable, each element may be used once for each <address>
+
+include::{includedir}/../../GuidelinesTables/Address.adoc[]
+
+For example:
+
+[source,xml]
+<address role="ciprol:office">
+    <line>Postfach 16 03 19</line>
+    <locality>
+        <name>Frankfurt am Main</name>
+    </locality>
+    <country qcode="iso3166-1a2:DE">
+        <name xml:lang="en">Germany</name>
+    </country>
+    <postalCode>D-60066</postalCode>
+    <worldRegion qcode="ex-maxmindcc:EU">Europe</worldRegion>
+</address>
+
+[[putting-it-together]]
+Putting it together
+^^^^^^^^^^^^^^^^^^^
+
+The complete concept listing for this example:
+
+.LISTING 11: Person Concept conveyed in a NewsML-G2 Concept Item
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies, except for the following alias values:
+_ex-definitionrole_, _ex-imsrvc_ _ex-jobtypes_, _ex-maxmindcc_,
+_ex-orgnat_, _ex-org_, _ex-pers_ and _ex-relation_.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_11_Person_Concept_conveyed_in_a_NewsML-G2_Concept_Item.xml[]
+----
+
+[[more-real-world-entities]]
+More real-world entities
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[organisation-details-organisationdetails]]
+Organisation Details <organisationDetails>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A concept of type "organisation" may hold the following additional
+properties:
+
+[[founded-founded-and-dissolved-dissolved]]
+Founded <founded> and Dissolved <dissolved>
++++++++++++++++++++++++++++++++++++++++++++
+
+The date of foundation / dissolution of the organisation, equivalent to
+born/died for a person, for example
+
+[source,xml]
+<founded>1998-06-01</founded>
+
+Or
+
+[source,xml]
+<founded>1998</founded>
+
+See note on xref:TruncatedDateTime[Truncated Date Time Property Type]
+
+[[location-location]]
+Location <location>
++++++++++++++++++++
+
+A place where the organisation is located, expressed as Flexible
+Property, NOT an address, repeated as many times as needed. For example:
+
+[source,xml]
+<location type="loctyp:City" qcode="ex-poi:75001">
+    <name>Paris</name>
+</location>
+
+[[contact-information-contactinfo]]
+Contact Information <contactInfo>
++++++++++++++++++++++++++++++++++
+
+Contact information associated with the organisation, uses the same
+structure as described in xref:contact-info-contactinfo[Contact Information].
+
+[[geopolitical-area-details-geoareadetails]]
+Geopolitical Area Details <geoAreaDetails>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A "geoArea" concept may have the following additional properties:
+
+[[position-position]]
+Position <position>
++++++++++++++++++++
+
+This expresses the coordinates of the concept using the following
+attributes:
+
+include::{includedir}/../../GuidelinesTables/Position.adoc[]
+
+[[founded]]
+Founded
++++++++
+
+The Date and optionally the time plus time zone, that the geopolitical
+area was founded
+
+[source,xml]
+<founded>1998</founded>
+
+[[dissolved]]
+Dissolved
++++++++++
+
+The Date and optionally the time plus time zone, that the geopolitical
+area was dissolved.
+
+[[point-of-interest-poidetails]]
+Point of Interest <poiDetails>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A Point of Interest (POI) is a place "on the map" of interest to people,
+which is not necessarily a geographical feature, for example concert
+venue, cinema, sports stadium. As such is has different properties to a
+purely-geographical point. POI may have the additional properties listed
+below.
+
+[[address]]
+Address
++++++++
+
+The location of the point of interest expressed as a postal address. The
+<address> element is a wrapper for child elements described in xref:postal-address-address[Postal Address] 
+In this context, the address is expressly the location of the POI,
+whereas the <address> wrapper when used as a child of <contactInfo> (see
+xref:contact-info-contactinfo[Contact Information]) expresses the address of the entity who should be contacted about
+the POI, which could be an office some distance away.
+
+[[position-position-1]]
+Position <position>
++++++++++++++++++++
+
+The coordinates of the location as described in xref:position-position[Position]
+
+[[opening-hours-openhours]]
+Opening Hours <openHours>
+++++++++++++++++++++++++++
+
+The opening hours of the POI are expressed as a Label type, which is an
+internationalized string – a natural language expression – extended to
+include @role if required. Example:
+
+[source,xml]
+<openHours>9.30am to 5.30pm, closed for lunch from 1pm to
+2pm</openHours>
+
+[[capacity-capacity]]
+Capacity <capacity>
++++++++++++++++++++
+
+The capacity of the POI is expressed as a Label:
+
+[source,xml]
+<capacity>10,000 seats</capacity>
+
+[[contact-information-contactinfo-1]]
+Contact Information <contactInfo>
++++++++++++++++++++++++++++++++++
+
+Contact information for the POI uses the <contactInfo> structure as
+described in xref:contact-info-contactinfo[Contact Information]. It expresses who should be contacted regarding
+the POI. This could be an organisation located miles away from the
+location of the POI.
+
+[[access-details-access]]
+Access details <access>
++++++++++++++++++++++++
+
+Methods of accessing the POI, including directions. This is a Block type
+of element, allowing some mark-up and may be repeated as often as
+needed:
+
+[source,xml]
+<access role="ex-traveltype:public">
+    The Jubilee Line is recommended as the quickest route to ExCeL London. At Canning
+    Town change to the DLR (upstairs on platform 3) for the quick two-stop journey
+    to Custom House for ExCeL Station.
+</access>
+<access role="ex-traveltype:road">
+    When driving to ExCeL London follow signs for Royal Docks, City Airport and ExCeL
+    There is easy access to the M25, M11, A406 and A13.
+</access>
+
+[[detailed-information-details]]
+Detailed Information <details>
++++++++++++++++++++++++++++++++
+
+Detailed information about the location of the POI expressed as a Block
+type:
+
+[source,xml]
+<details>Room M345, 3rd Floor</details>
+
+[[creation-of-poi-created]]
+Creation of POI <created>
++++++++++++++++++++++++++
+
+The date (and optionally a time) on which the Point Of Interest was
+created.
+
+[source,xml]
+<created>2016-06-23</created>
+
+[[destruction-or-teardown-of-poi-ceasedtoexist]]
+Destruction or teardown of POI <ceasedToExist>
+++++++++++++++++++++++++++++++++++++++++++++++
+
+The date (and optionally a time) on which the Point Of Interest ceased
+to exist; perhaps in reference to a temporary POI:
+
+[source,xml]
+<ceasedToExist>2016-06-23</ceasedToExist>
+
+[[object-details-objectdetails]]
+Object Details <objectDetails>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Objects that may be expressed as a concept include works of art, books,
+inventions and industrial artefacts. The IPTC provides three properties
+for Objects as part of NewsML-G2, but as with any of the types of
+concept discussed, providers are able to extend the standard. Note these
+are properties of the object described by the Concept, NOT properties of
+<itemMeta> which apply to the Concept Item conveying the Concept. The
+standard additional properties of an Object concept are:
+
+[[creation-date-created]]
+Creation Date <created>
++++++++++++++++++++++++
+
+The date and, optionally, the time and time zone when the object was
+created. Non-repeatable.
+
+[source,xml]
+<created>1994-06-14</created>
+
+[[creator-creator]]
+Creator <creator>
++++++++++++++++++
+
+A party (person or organisation) that created the object, expressed as a
+Flexibly Property type. Repeatable.
+
+[source,xml]
+<creator type="cpnat:organisation" qcode="ex-nyse:ba">
+    <name>The Boeing Company</name>
+</creator>
+
+In this case, the object is a Boeing 777 airliner.
+
+[[copyright-notice-copyrightnotice]]
+Copyright Notice <copyrightNotice>
+++++++++++++++++++++++++++++++++++
+
+Any necessary copyright notice for claiming the intellectual property of
+the object. A repeatable Label type:
+
+[source,xml]
+<copyrightNotice role="ex-iprole:company>
+    Copyright 2025 Boeing Aircraft, all rights reserved
+</copyrightNotice>
+
+[[relationships-between-concepts]]
+Relationships between Concepts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is a group of four properties, <broader> <narrower> <related> and
+<sameAs> that enable the creation of particular types of relationship to
+another concept. For example, our subject was born in Rome. We could
+create a concept for Rome as follows, with a <broader> property that
+denotes that the city as part the region of Lazio:
+
+[source,xml]
+<concept>
+    <conceptId qcode="ex-urban:roma" />
+    <type qcode="cpnat:geoArea" />
+    <definition role="ex-definitionrole:short">
+        Rome (Italian: Roma) is a city and special commune
+        (named "Roma Capitale") in Italy. Rome is the capital of Italy and also
+        homonymous province and of the region of Lazio.<br />
+    </definition>
+    <broader type="cpnat:geoArea" qcode="ex-locale:lazio">
+        <name xml:lang="en">Lazio (region)</name>
+    </broader>
+</concept>
+
+<narrower> expresses the reverse relationship. A concept for Rhône could
+have a <narrower> property linking it to Lyon, and a <broader> link to
+the concept of its parent region, or to the concept of the country,
+France.
+
+<sameAs> allows the provider to inform the recipient that this concept
+has an equivalent concept in some other taxonomy. For example, we may
+know that AFP’s knowledge base of people has an entry for Mario Draghi
+that can be referenced using the appropriate alias.
+
+[source,xml]
+<sameAs type="cpnat:person" qcode="ex-AFPpers:567223">
+    <name>DRAGHI, Mario</name>
+</sameAs>
+
+The sameAs property also assists inter-operability because it can be
+used to enable recipients to choose the CV, or standard, they employ.
+
+For example, the document may have a concept for Germany identified by
+the provider’s QCode "ex-country:de". Some recipients may have standardized
+on using ISO-3166 Country Codes to classify nationality. The provider
+can assist recipients to make a direct reference to their preferred
+scheme using "sameAs":
+
+[source,xml]
+<sameAs qcode="iso3166-1a2:DE" />
+<sameAs qcode="iso3166-1a3:DEU" />
+<sameAs qcode="ex-iso3166n:276" />
+
+<related> allows the expression of a relationship with another concept
+that cannot be expressed using <broader>, <narrower>, or <sameAs>. For
+example, the "European Central Bank" may be "related to" "Mario Draghi"
+– thus the ECB concept may include:
+
+[source,xml]
+<related rel="ex-relation:hasPresident" type="cpnat:person" qcode="ex-people:329465">
+    <name>Mario Draghi</name>
+</related>
+
+The nature of the relationship is expressed using @rel; the example
+above indicates that the European Central Bank "has a President" Mario
+Draghi. This relationship must be part of a CV of relationships, which
+might include "has a CEO", "has a Finance Director". The IPTC recommends
+that the <related> property should always contain a @rel.
+
+The property may be extended by adding @rank, a numeric ranking
+of the current concept amongst other concepts related to the target
+concept.
+
+For example, if the European Central Bank is the second most important
+concept related to Mario Draghi, amongst other concepts related to him,
+we can express this as follows:
+
+[source,xml]
+<related rank="2" rel="ex-relation:hasPresident" type="cpnat:person" qcode="ex-people:329465">
+    <name>Mario Draghi</name>
+</related>
+
+[[expressing-quantitative-values-using-related]]
+Expressing quantitative values using <related>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The <related> property also allows the expression of quantitative
+values, for example a share price or a sport score, in addition to the
+concept relationships described above.
+
+The three attributes of <related> that enable this feature are @value,
+@valueunit and @valuedatatype. Implementers can type the @value by
+applying an XML Schema datatype, and optionally to declare the units of
+the value (e.g. the currency) using @valueunit and @valuedatatype.
+
+For example, to express scores in a sports game where the named team won
+by 4 goals to 2 and gained 3 points:
+
+[source,xml]
+<concept xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <conceptId qcode="ex-ukprem:WBA" />
+    <name>West Bromwich Albion</name>
+    ...
+    <related rel="ex-crel:scoreFor" value="4" 
+        valueunit="ex-valunits:goals"
+        valuedatatype="xs:nonNegativeInteger" />
+    <related rel="ex-crel:scoreAgainst" value="2"
+        valueunit="ex-valunits:goals"
+        valuedatatype="xs:nonNegativeInteger" />
+    <related rel="ex-crel:pointsAdded" value="3"
+        valueunit="ex-valunits:points"
+        valuedatatype="xs:nonNegativeInteger" />
+    ...
+</concept>
+
+A further example expresses a recommendation from an analyst in the
+financial markets where the EUR changes from 39 to 44 (expressed as a
+value), and the rank changes from Hold to Buy (expressed as a value or
+QCode):
+
+[source,xml]
+<concept xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    ...
+    <related rel="ex-crel:price_new" value="44"
+        valueunit="iso4217a:EUR"
+        valuedatatype="xs:decimal" />
+    <related rel="ex-crel:price_old" value="39"
+        valueunit="iso4217a:EUR"
+        valuedatatype="xs:decimal" />
+    <related rel="ex-crel:rank_old" value="Hold"
+        valueunit="ex-valunits:trRanks"
+        valuedatatype="xs:string" />
+    <related rel="ex-crel:rank_new" value="Buy"
+        valueunit="ex-valunits:trRanks"
+        valuedatatype="xs:string" />
+    <related rel="ex-crel:rank_new" qcode="ex-trRanks:Buy" />
+        ...
+</concept>
+
+The attributes of <related> are optional: @qcode and @uri may be used on their own or together, OR @literal, OR @value may be used. ALL of @qcode, @uri, @literal, AND @value may be omitted if a blank node with just a @rel is used, e.g. as a wrapper node. 
+
+The @value has a datatype XML Schema String. If using @value, a
+@valuedatatype MUST also be used and its datatype must be one of the
+data types defined by the W3C XML Schema specification. The inclusion of
+@valueunit is optional, for example if @rel="ex-crel:noOfSiblings" and
+@value="2" the type of units is obvious.
+
+[[supplementary-information-about-a-concept]]
+Supplementary information about a Concept
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Links can be used to enhance the information carried by a NewsML-G2
+Concept. For example, a Concept may represent a person in the news; it
+may also contain some key facts about the person and relationships to
+other concepts (e.g. membership of an organisation). Links to other
+resources can also be used to add articles, pictures and other objects
+to the Concept.
+
+However, the use of <link> as a child of <itemMeta> in a Concept Item
+would create a problem if a number of Concept Items containing Links
+were to be aggregated into a Knowledge Item: only the content of the
+<concept> wrapper would be carried across into the Knowledge Item and
+the Concept Item Metadata and any Links, would be lost.
+
+To resolve this issue, a <remoteInfo> property may be added to
+<concept>, with a datatype of Link1Type,
+matching that of <link>. This enables implementers to provide links to
+supplementary information inside the <concept> wrapper, and thus into a
+Knowledge Item:
+
+[source,xml]
+<concept>
+    <conceptId created="2009-01-10T12:00:00Z" qcode="ex-people:329465"/>
+    <type qcode="cpnat:person" />
+    <name xml:lang="en-GB">Mario Draghi</name>
+    <definition xml:lang="en-GB" role="ex-definitionrole:biog">
+        Mario Draghi, born 3 September
+        1947, is an Italian banker and economist who succeeded Jean-Claude Trichet
+        as President of the European Central Bank on 1 November 2011.<br />
+    </definition>
+    <related rel="ex-relation:occupation" qcode="ex-jobtypes:puboff" />
+    <remoteInfo "link" start
+        rel="irel:seeAlso"
+        contenttype="image/jpeg">
+        residref="tag:acmenews.com,2008:TX-PAR:20090529:JYC90" // Item ref
+        <title>ECB official portrait picture of Mario Draghi</title>
+    </remoteInfo> "link" end
+    <personDetails>
+        <born>1942-12-20</born>
+    ....
+        <contactInfo role="ex-contactrole:official">
+    ....
+        </contactInfo>
+    </personDetails>
+</concept>
+
+Using the rules given in xref:hints-and-extension-points-in-newsml-g2[[Hints and Extension Points]] when adding properties of the target NewsML-G2 Item, the parent property must be included if it is not from
+either <contentMeta> or <itemMeta>. For example, a <description> element extracted from <contentMeta> (no parent needed):
+
+[source,xml]
+<remoteInfo
+    rel="irel:seeAlso"
+    contenttype="video/mpeg">
+    residref="tag:acmenews.com,2008:TX-PAR:20090529:JYC90" 
+    <description>
+        ECB official video of Mario Draghi working with senior colleagues at the Bank
+    </description>
+        
+Contrast with a <description> from <partMeta>, which must be included as
+the parent element:
+
+[source,xml]
+<remoteInfo>
+    <partMeta partid="part1" seq="1"
+        <description>The first part shows...</description>
+    </partMeta>
+    <partMeta partid="part2" seq="2"
+        <description>The second part shows...</description>
+    </partMeta>
+</remoteInfo>
+
+[[faceted-concepts]]
+
+Faceted Concepts
+^^^^^^^^^^^^^^^^
+
+The elements <mainConcept> and <facetConcept> are members of the Flex1ConceptPropType which is currently used by <genre> and <subject>.
+
+This enables faceted concepts to be expressed as a combination of a main concept (which requires a facet) and another concept which provides the facet to the main concept, for example:
+
+[source, xml]
+----
+<subject>
+    <mainConcept qcode=”medtop:20001057”>
+        <name xml:lang="en">alpine skiing</name>
+    </mainConcept>
+    <facetConcept qcode=”aspfacetvalue:women”>
+        <name xml:l-ng="en">women</name>
+    </facetConcept>
+    <facetConcept qcode=”aspfacetvalue:slalom-alpineskiing”>
+        <name xml:lang="en">alpine skiing slalom</name>
+    </facetConcept>
+</subject>
+----
+
+Faceted concepts were added to the link:http://cv.iptc.org/newscodes/mediatopic/[IPTC Media Topics] taxonomy in 2017, hence the requirement to support this in NewsML-G2.
+
+Standard taxonomies of sports facets and values are provided by the IPTC to support interoperability. These are link:http://cv.iptc.org/newscodes/asportfacet[a Sport Facet] CV and link:http://cv.iptc.org/newscodes/asportfacetvalue[a Sport Facet Value] CV.  
+
+
+[[concepts-in-practice]]
+Concepts in Practice
+~~~~~~~~~~~~~~~~~~~~
+
+The more common method of exchanging Concepts is as part of a Controlled
+Vocabulary (otherwise known as Taxonomy, Thesaurus, Dictionary, for
+example), which are conveyed in NewsML-G2 as a set of concepts in a
+Knowledge Item. This is discussed in Knowledge Items.
+
+The use of Concepts to convey Event information is discussed in Events
+in NewsML-G2.
+
+

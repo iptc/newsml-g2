@@ -1,0 +1,17 @@
+[%autowidth,options="header"]
+|===
+|expert|expert|The persons who rated are experts in what they rated.
+
+|user
+|user
+|The persons who rated are using what they rated.
+
+|customer
+|customer
+|The persons who rated have bought and are using what they rated.
+
+|mixed
+|mixed
+|The persons who rated are not of the same rater type.
+
+|===

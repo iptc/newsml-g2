@@ -1,0 +1,77 @@
+[[managing-individual-concepts---conceptitem]]
+Managing Individual Concepts - conceptItem
+------------------------------------------
+
+An XML Schema file corresponding to the specifications for this item is available (see The Full Set of link:#_bookmark2[Specification Documents].
+
+[[description-1]]
+Description
+~~~~~~~~~~~
+
+A `conceptItem` aims to convey knowledge about a single concept, a named entity such as an organisation or an abstract notion such as a news subject (see link:#representing-concept-information---concept-component[Representing Concept Information concept Component)]. Typically a conceptItem holds only a rather limited set of metadata about the concept and the structured concept data as content of the item.
+
+Typical characteristics of a conceptItem are:
+
+* It focuses on a single concept or entity.
+* It will usually be updated infrequently but over a long period of time, when the information about the concept evolves.
+* Its content is of long term interest.
+* It may be referenced by other items.
+
+Different Concept Items, managed by different providers, may contain structured information about the same concept.
+
+[[structure-of-a-concept-item]]
+Structure of a Concept Item
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The model of a conceptItem is very similar to the model of a newsItem. Both share the same indicators of compliance with a standard and conformance level, Identification and versioning, Signature, Rights Information, Item Metadata, Item links. Please review the corresponding specification of a newsItem for more information.
+
+[[Note_about_the_different_identifie]][[_bookmark63]]
+
+Note about the different identifiers for a concept and a conceptItem
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each concept has its globally unique concept identifier, a `conceptId` which is part of the concept structure and defined by the authority of the scheme.
+
+Additionally, a `conceptItem` has its globally unique identifier (_guid_) attribute which is assigned by a system managing G2 items.
+
+Be aware that these two identifiers must not be mixed up, all references to a concept MUST use the concept identifier and not the _guid_ of the conceptItem.
+
+[[item-class]]
+Item Class
+^^^^^^^^^^
+
+The IPTC provides a mandatory standardised scheme applicable to the link:#item-class-itemclass[itemClass] property, identified by the URI: http://cv.iptc.org/newscodes/cinature/.
+
+[[concept-related-metadata]]
+Concept related Metadata
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The set of administrative metadata is common to all classes of Items.
+
+The set of descriptive metadata for a Concept Item is listed below. All properties are optional, repeatable and may be inserted in any order.
+
+_Table 8. Descriptive Metadata Core Group Elements_
+
+include::{includedir}/../../tables/descriptive-meta-core.adoc[]
+
+Each provider may add a set of metadata properties which have to be defined in a non-IPTC-G2 namespace. See also link:#_bookmark121[XML Namespaces] and link:#_bookmark123[Extension Points in XML].
+
+Please review link:#news-content-metadata[News Content Metadata] of the News Item chapter for more information.
+
+[[metadata-helpers]]
+Metadata Helpers
+^^^^^^^^^^^^^^^^
+
+The conceptItem includes three properties which are available to help make metadata assertions:
+
+* the assert property: helps to bundle and extend details of concepts, see link:#assertions-about-concepts[Assertions About Concepts]
+* the inlineRef property: helps to reference concepts which are inline, within free text properties of type label, see link:#references-to-inline-concepts[References to Inline Concepts]
+* the derivedFrom property: helps to document from which concept a concept, used as property value in this item, has been derived, see link:#document-derivation-of-concepts[Document Derivation of Concepts]
+
+[[conceptitem-content]]
+conceptItem Content
+~~~~~~~~~~~~~~~~~~~
+
+The content of a conceptItem is a concept component (see link:#concept-component[Concept Component]).
+
+

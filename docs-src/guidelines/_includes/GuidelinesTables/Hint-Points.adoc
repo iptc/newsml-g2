@@ -1,0 +1,29 @@
+[%autowidth,options="header"]
+|===
+|Element|Description|Further information
+
+|<assert>
+|Assertion about a concept
+|Assert Wrapper
+
+|<itemRef>
+|Reference in a Package to an external NewsML-G2 Item or web resource
+|Item Reference
+
+|<deliverableOf>
+|Reference from an Item to a News coverage property of a Planning Item
+|Delivery wrapper
+
+|<deliveredItemRef>
+|Reference from a News Coverage element to Item(s) that have been delivered
+|Delivery wrapper
+
+|<remoteInfo>
+|Link from a Concept to an Item or web resource providing further information
+|Remote Info
+
+|<link>
+|Link from the current Item to an external Item or web resource
+|Using Links
+
+|===

@@ -1,0 +1,9 @@
+[%autowidth,options="header"]
+|===
+|Namespace URI|Recommended Alias|Usage Note
+
+|http://iptc.org/std/nar/2006-10-01/
+|nar
+|For all common components of the family of IPTC G2-Standards
+
+|===

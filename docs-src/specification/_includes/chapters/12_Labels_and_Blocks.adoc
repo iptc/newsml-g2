@@ -1,0 +1,28 @@
+[[dealing-with-labels-and-blocks]]
+Dealing with Labels and Blocks
+------------------------------
+
+[[introduction]]
+Introduction
+~~~~~~~~~~~~
+
+Labels are assertions that expose aspects of news, expressed as natural language strings intended to be consumed by human beings. They are typically displayed alongside the content of an Item or in place of Items in a list, providing a means of selection among them.
+
+Blocks are simply labels with an additional line break. They are primarily used for notes, comments or instructions created by a news provider for use by recipient editorial teams.
+
+Labels and blocks MAY have a _role_ attribute, which refines the semantics of the property.
+
+Labels and blocks MAY have a _media_ attribute. When present, the value MUST conform to the CSS (link:https://www.w3.org/Style/CSS/Overview.en.html[Cascading Style Sheets]) specification. Several media types can be given as space separated values.
+
+All labels and blocks support rich text, that is text interspersed with some specific markup, identical to XHTML1.1 markup: the anchor `a` for the inclusion of hyperlinks, the `span` as a generic mechanism for adding information to text, simple link:#ruby-ruby[ruby] markup used in Japanese publications and `inline` for semantic inline markup.
+
+The inline property identifies a concept present in a label or block either by a qualified code (_qcode_) or a _literal_ value, plus an optional _type_. Additional information about this concept can be represented using an link:#assertion---assert[assert] property value, plus a basic set of properties defining the concept.
+
+[[internationalization-attributes]]
+Internationalization Attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In an international news workflow, fine grained control of language information is needed for the hierarchy of nodes that constitutes an Item.
+
+For this purpose, all labels – and all ancestors of such an element – share an International Attributes Group, which includes an optional language tag (`xml:lang`) and indication of the directionality of textual content (_dir_).
+

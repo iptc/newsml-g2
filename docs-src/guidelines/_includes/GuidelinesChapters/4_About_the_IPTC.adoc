@@ -1,0 +1,7 @@
+[[about-the-iptc]]
+About the IPTC
+--------------
+
+IPTC members are technologists and thought leaders from the world’s main news agencies and leading media players. They are expert in the field of news production and dissemination. IPTC Standards today play an essential role in efficient news exchange between the world’s news and media organisations.
+
+The text transmission standards IPTC7901 and its cousin ANPA1312 have been a key enabler of news exchange for news agencies and their newspaper and broadcaster customers, as has the IIM standard for pictures. All media organisations have benefited from these standards; they have been essential to the adoption of digital production technologies. NewsML was first launched in 2000, and the G2 version of NewsML in 2006.

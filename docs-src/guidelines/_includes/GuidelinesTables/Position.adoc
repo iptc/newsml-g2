@@ -1,0 +1,45 @@
+[%autowidth,options="header"]
+|===
+|Attribute Name|Attribute|Type|Notes/Example
+
+|Latitude
+|@latitude
+|XML Decimal
+|The latitude in decimal degrees
+
+|
+|
+|
+|Positive value = north of the Equator
+
+|
+|
+|
+|Negative value = south of the Equator
+
+|Longitude
+|@longitude
+|XML Decimal
+|The longitude in decimal degrees
+
+|
+|
+|
+|Positive value = east of the Greenwich Meridian
+
+|
+|
+|
+|Negative value = west of the Greenwich Meridian
+
+|Altitude
+|@altitude
+|XML Integer
+|The absolute altitude in metres with reference to mean sea level
+
+|GPS Datum
+|@gpsdatum
+|XML String
+|The GPS datum associated with the position measurement, default is WGS84
+
+|===

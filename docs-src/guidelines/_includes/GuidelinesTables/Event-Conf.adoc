@@ -1,0 +1,17 @@
+[%autowidth,options="header"]
+|===
+|Code|Name|Definition
+
+|approximate
+|approximate
+|The confirmation status of the date/period/duration is: approximate
+
+|confirmed
+|confirmed
+|The status of the date/period/duration is: confirmed.
+
+|undefined
+|undefined
+|The confirmation status of the date/period/duration is undefined.
+
+|===

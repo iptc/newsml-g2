@@ -1,0 +1,13 @@
+[%autowidth,options="header"]
+|===
+|Code|Definition|Note
+
+|update
+|This version of the Item includes an update of some part of the previous version of the Item.
+|Implies that this version of the Item is not the initial version
+
+|correction
+|This version of the Item corrects some part of a previous version of the Item.
+|Implies that this version of the Item is not the initial version. This Correction signal does not indicate in which version(s) of the Item the corrected error existed.
+
+|===

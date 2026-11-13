@@ -1,0 +1,49 @@
+[[exchanging-items---newsmessage]]
+Exchanging Items - newsMessage
+------------------------------
+
+An XML Schema file corresponding to the specifications for this item is available (see The Full Set of link:#_bookmark2[Specification Documents]).
+
+[[description-5]]
+Description
+~~~~~~~~~~~
+
+A `newsMessage` facilitates the exchange of all kinds of items by any kind of digital transmission, especially in a broadcast or multicast network.
+
+The content of a newsMessage is an link:#item-set---itemset[itemSet] component, containing NewsML-G2 Items: newsItems, packageItems, conceptItems and/or knowledgeItems. The model assigns no significance to the order of Items within the News Message.
+
+The use of a News Message is totally optional in a news workflow. Items may also be exchanged using, for example, SOAP, WebDAV, ICE, the Atom Publication Protocol (using Atom feeds, and items as payload of an Atom entry) or any other possible syndication protocol.
+
+It may be useful for a recipient to store the metadata of a News Message itself, but this is not mandatory. Usually the messaging information will be maintained separately from the information relative to the contained Items.
+
+[[message-information]]
+Message Information
+~~~~~~~~~~~~~~~~~~~
+
+All the information about the newsMessage as a wrapper of conveyed NewsML-G2 Items is collected under the link:#news-message-header-header[header] element which MUST be present.
+
+A newsMessage MUST have a date of transmission – `sent`. The date of transmission MAY not be updated in case of retransmission of the message.
+
+If any QCode is used within the header then a catalog and/or a catalogRef property MUST be included in the header. (See warning on use of catalogs link:#about-using-schemes-in-a-newsmessage[below])
+
+A newsMessage MAY have a link:#sender-sender[sender] child element, which may be an organisation or a person. The structure of this string is not specified by the IPTC. Best practice is to identify a sender by its domain name.
+
+It MAY have a transmission identifier – link:#transmission-identifier-transmitid[transmitId] – and a priority of transmission. No two newsMessages sent by the same sender on the same date can have the same identifier. In case of retransmission it is not required to update this identifier. The structure of this string is not specified by the IPTC.
+
+It MAY have a `priority` property to control the overall message transmission process. It MAY indicate the point of link:#origin-origin[origin] of the message, using a provider defined syntax.
+
+It MAY have one or more `timestamp` elements associated with the message. The exact meaning of this timestamp may be refined by a _role_ attribute.
+
+It MAY have one or more link:#destination-destination[destination] properties using a provider defined syntax, and the indication of one or more channels – link:#channel-for-news-message-channel[channel] – of transmission.
+
+It MAY have one or more link:#signal-signal[signal] properties to instruct the news message processor that the content requires a specific handling.
+
+NOTE: To this set, individual providers may add information of their own by mutual agreement with recipients.
+
+[[about-using-schemes-in-a-newsmessage]]
+About Using Schemes in a newsMessage
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+WARNING: The scope of the scheme elements of the local and/or remote catalog(s) in a News Message is limited to the header element and its descendants and explicitly does NOT extend to the children of itemSet. It is also important to note that a newsMessage does not define any catalog that would be common to the Items it contains. There is no interaction between the scheme declarations present in different Items exchanged in a newsMessage. 
+
+

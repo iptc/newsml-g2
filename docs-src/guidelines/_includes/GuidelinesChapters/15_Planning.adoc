@@ -1,0 +1,538 @@
+[[editorial-planning-the-planning-item]]
+Editorial Planning – the Planning Item
+--------------------------------------
+
+News-gathering is not an ad-hoc process; as outlined in xref:how-news-happens[How
+News Happens], professional news organisations need to be well-organised
+so that resources are used effectively, customers get the news they
+need, in time, and editorial standards and quality are maintained.
+
+News planning information can improve collaboration, and thus
+efficiency, in B2B news exchange, and for some news agencies and their
+media customers, this has become an important area of development.
+
+The Planning Item addresses this need. As a "top level" NewsML-G2 Item,
+it is a sibling of News Item, Concept Item, Package Item and Knowledge
+Item.
+
+The Planning Item carries the News Coverage information that was
+previously expressed by Event Concept Items under the <eventDetails>
+wrapper, and has also been expanded to include additional features, such
+as the ability to track news deliverables against a previously-announced
+manifest of objects.
+
+There are a number of advantages to the separation of Events and
+Planning information, including:
+
+* News coverage information may change frequently in response to a news
+event. Previously, this would have meant re-sending all of the event
+information whenever the news planning changed. Now only the planning
+information is re-sent – a lighter processing overhead.
+* News coverage is not always in response to a news event taking place
+at a specific place and time; it is also topic-based, such as "The best
+ski resorts for this winter". Without the Planning Item, topic-based
+coverage such as this would require the creation of a "dummy" event as a
+placeholder for the coverage information. Now, no event information is
+required, merely a Planning Item that can carry the description of the
+topic and can be linked to the content once it is created.
+* Organisations needed a way to announce planned coverage of an event,
+in terms of (say) a number of pictures, then inform receivers of
+progress and fulfilment. A Planning Item can provide a list of Items
+that have been delivered. The complementary "Delivery Of" property,
+which has been added as a property of other Items, can also link
+individual Items back to a Planning Item.
+* Having news coverage information tightly-bound to an event caused
+issues when events span more than one news cycle. A single event may
+have multiple Planning Items spanning different time periods, so multiple <planning> child elements of <newsCoverage> can specify @coversfrom and @coversto attributes.
+
+Planning Items typically focus on the delivery of coverage for a single
+event or topic, but can be linked to other Planning Items to facilitate
+the coverage of more complex or long-term events.
+
+The structure of a Planning Item is common to other NewsML-G2 Items:
+
+* The top level <planningItem> properties of conformance, identification
+and versioning that we associate with "anyItem"
+* Item Metadata contained in the <itemMeta> wrapper
+* Administrative and Descriptive information related to the content
+wrapped in the <contentMeta> element.
+* Special-purpose elements <assert> and <inlineRef> to group details of
+concepts and to provide references from content to metadata 
+(see 25.2 and 25.3 for details on the use of these elements)
+* Extension Points for providers to add properties from non-IPTC
+namespaces.
+* A wrapper for the content payload, in this case a <newsCoverageSet>.
+
+[[item-metadata-itemmeta-4]]
+Item Metadata <itemMeta>
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The standard properties of <itemMeta> are available for use in a
+Planning Item. The <itemClass> property uses a mandatory
+planning-specific IPTC "Planning Item Nature" NewsCodes. The Scheme URI
+is: http://cv.iptc.org/newscodes/plinature/ and recommended Scheme Alias
+is "plinat":
+
+[source,xml]
+<itemClass qcode="plinat:newscoverage" />
+
+[[content-metadata-contentmeta-4]]
+Content Metadata <contentMeta>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The standard properties of the Administrative Metadata group may be
+used; a restricted set of Descriptive Metadata properties (the Core
+Descriptive Metadata Group, may be used. The Core Group is: <language>,
+<keyword>, <subject>, <slugline>, <headline>, <description>
+
+[[newscoverageset]]
+<newsCoverageSet>
+~~~~~~~~~~~~~~~~~
+
+The <newsCoverageSet> wraps one or more <newsCoverage> components (see
+the diagram below). Typically, each <newsCoverage> component is bound to each
+different class of Item to be delivered, i.e. a Planning Item for two
+texts, ten pictures and one graphic could have three <newsCoverage>
+components.
+
+image::PlanningItemStructure.png[Structure of Planning Item]
+
+.Figure: Planning Item: the newsCoverageSet has one or more newsCoverage components
+
+[[newscoverage]]
+<newsCoverage>
+~~~~~~~~~~~~~~
+
+Each <newsCoverage> component MUST contain at least one <planning>
+element and optionally a <delivery> element.
+
+[[planning]]
+<planning>
+~~~~~~~~~~
+
+At its simplest level of implementation, planning information may be expressed using a repeatable Block type
+<edNote> to give a natural language description of the planned coverage, optionally with some mark-up:
+
+[source,xml]
+<edNote>Picture scheduled 2025-11-06T13:00:00+02:00</edNote>
+
+Below is a complete example:
+
+.Listing 17: Simple Planning Item
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_17_Simple_Planning_Item.xml[]
+----
+
+[[advanced-planning]]
+Advanced features of <planning>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Planning is able to populate a customer’s resource management applications with machine-readable information and detailed descriptive metadata, ready to be inherited by the arriving content, thus speeding up news handling and potentially increasing consistency and quality.
+
+Used in this way, the Planning Item can bridge the workflows of provider and customer: the provider is seen as an available resource on the customer system with coverage information and news metadata capable of being updated in near real-time.
+
+A key feature of the <planning> element is the ability to use <newsContentCharacteristics> to express comprehensive information about physical characteristics of the planned content, using the News Content Characteristics group of attributes. These are described in detail in the _News Content Characteristics_ section of the NewsML-G2 Specification Document, which may be obtained by following the link at the https://iptc.org/standards/newsml-g2/using-newsml-g2/[IPTC NewsML-G2 resource page].
+
+The attributes include physical properties of still images, video and audio, the line count of text content and the page count for content rendered as pages. Examples of their usage are given in the table below.
+
+The cardinality of <planning>  is (1..∞), enabling the planning of events to be split into multiple parts. This may be needed if, for example, a long-running event spans more than one news cycle. The attributes @coversfrom and @coversto of both the <planning> and <assignedTo> elements in the <newsCoverage> wrapper express the date (and optionally the time) of the start and end of coverage. See the code listing below for example usage.
+
+[[additional-properties-of-planning]]
+
+Additional properties of <planning>:
+
+[cols="20,20,60",options="header",]
+|=======================================================================
+|Property |Type |Notes/Example
+|<g2ContentType> |String a|
+Optional, non-repeatable element to indicate the Media Type of the
+intended coverage. The example below indicates that the content to be
+delivered is a NewsML-G2 News Item.
+
+[source,xml]
+<g2ContentType>
+    application/vnd.iptc.g2.newsitem+xml
+</g2ContentType>
+
+|<itemClass> |QCode a|
+Optional, non-repeatable element indicates the type of content to be
+delivered, using the IPTC News Item Nature NewsCodes. Since the example
+will show a text article, the Item Class is "text"
+
+[source,xml]
+<itemClass qcode="ninat:text"/>
+
+|<itemCount> |Empty a|
+The number of items to be delivered, expressed as a range:
+
+[source,xml]
+<itemCount rangefrom="1" rangeto="1" />
+
+Both attributes @rangefrom (non-negative integer) and @rangeto (positive
+integer) MUST be used. The values are inclusive: rangefrom="2"
+rangeto="5" means 2 to 5 items will be delivered.
+
+|<assignedTo> |Flex1 Party Property a|
+The Flex1 Party Property Type extends the Flex Party Property Type by
+allowing a @role attribute to be a space separated list of QCodes.
+
+<assignedTo> is an optional, non-repeatable element that holds the
+details of a person or organisation who has been assigned to create the
+announced content. It may hold as child elements any property from
+<personDetails> or <organisationDetails>, and properties from the
+Concept Definitions Group, and Concepts Relationships Group (see
+Concepts and Concept Items for details.
+
+The example shows the details of a person assigned to create the
+content:
+
+[source,xml]
+<assignedTo
+    role="cpprole:editor"
+    type="cpnat:person"
+    qcode="ex-pers:54321"
+    coversfrom="2025-11-17T09:30:00Z"
+    coversto="2025-11-17T17:30:00Z">
+    <name>Stilton Cheesewright</name>
+    <personDetails>
+        <contactInfo>
+            <phone>1-418-4567</phone>
+            <email>stilton@iptc.org</email>
+        </contactInfo>
+    </personDetails>
+</assignedTo>
+
+This information may be required internally by a news organisation as
+part of its event planning process, but perhaps may not be distributed
+to customers.
+
+Customers may be informed of the intended author/creator of planned
+coverage using the <by> property (see below)
+
+|<scheduled> |Approx. Date Time a|
+Optional, non-repeatable. Indicates the scheduled time of delivery, and
+may be truncated if the precise date and time is not known. For example,
+if the content is scheduled to arrive at some unspecified time on a day,
+the value would be, for example:
+
+[source,xml]
+<scheduled>2025-10-16</scheduled>
+
+|<service> |Qualified Property a|
+Optional, repeatable. The editorial service to which the content has
+been assigned by the provider and on which the receiver should expect to
+receive the planned content.
+
+[source,xml]
+<service qcode="ex-srv:intwire">
+    <name>International Wire Service</name>
+</service>
+
+|<newsContentCharacteristics> |Empty a|
+An element that enables providers to express physical properties of the
+planned item using attributes from the News Content Characteristics
+group:
+
+- charcount. The count of the number of characters in text content
+
+[source,xml]
+<newsContentCharacteristics charcount="6365" />
+
+- wordcount. The count of the number of words in text content
+
+[source,xml]
+<newsContentCharacteristics wordcount="1933" />
+
+- linecount. The count of the number of lines in text content
+
+[source,xml]
+<newsContentCharacteristics linecount="205" />
+
+- pagecount. The number of pages of the planned content.
+
+[source,xml]
+<newsContentCharacteristics pagecount="4" />
+
+|<urgency> | a|
+Optional, non-repeatable. The editorial urgency of the planned coverage, as scoped by the parent element, for example:
+
+[source,xml]
+<urgency>3</urgency>
+
+|<audience>
+
+<exclAudience> | a|
+To support further information about the intended content of a Planning Item, and in alignment with <contentMeta>, the one or more <audience> and/or <exclAudience> properties may be added as shown in the example below:
+
+[source, xml]
+----
+<newsCoverageSet>
+    <newsCoverage>
+        <planning>
+            <itemClass qcode="ninat:video" />
+            <scheduled>
+              2018-10-12T11:00:00.000Z
+            </scheduled>
+            ...
+            <urgency ... />
+            <audience qcode='dpasrv:bdt'/> 
+            <exclAudience qcode='dpacat:sp'/> 
+            <planningExtProperty ... />
+        </planning>
+    </newsCoverage>
+    ...
+</newsCoverageSet>
+----
+
+
+|<planningExtProperty> | a|
+For example, the planned item has a proprietary content rating. The
+rating is expressed using @rel with a QCode indicating the nature of the
+proprietary property, a @value and a @valuedatatype:
+
+<planningExtProperty rel="ex-mediarel:hasParentalAdvisory"
+value="6" valuedatatype="xs:positiveInteger"/>
+
+|=======================================================================
+
+[[descriptive-metadata-for-planning]]
+Descriptive Metadata for <planning>
++++++++++++++++++++++++++++++++++++
+
+Metadata "hints" may also be added to assist receivers in preparing for
+the planned item, using the Descriptive Metadata Properties group:
+
+[cols="20,20,60",options="header",]
+|=======================================================================
+|Property |Type |Notes/Example
+|<by> |Label a|
+Optional, repeatable. Natural language author/creator information:
+
+[source,xml]
+<by>By Stilton Cheesewright</by>
+
+|<creditline> |String a|
+Optional, repeatable. A freeform expression of the credit(s) for the
+content:
+
+[source,xml]
+<creditline>Additional reporting by Bertram Wooster</creditline>
+
+|<dateline> |Label a|
+Optional, repeatable. Natural language information traditionally placed
+at the start of a text by some news agencies, indicating the place and
+time that the content was created:
+
+[source,xml]
+<dateline>
+    Totley Towers, January 27, 2025.(Reuters)
+</dateline>
+
+|<description> |Block a|
+Optional, repeatable. A free form textual description of the intended
+news coverage, with minimal mark-up permitted. The optional @role may
+use a value from the IPTC Description Role NewsCodes:
+
+[source,xml]
+<description role="drol:summary">
+    Stilton Cheesewright will report on the proceedings from the NewsCodes Working Party
+</description>
+
+|<genre> |Flex1 Concept Property a|
+Optional, repeatable. The nature of the journalistic content that is
+intended for the news coverage. May be expressed by a QCode or URI
+value, with optional @type.
+
+Child elements may be any from the Concept Definition Group and the
+Concept Relationships Group (see Concepts and Concept Items):
+
+[source,xml]
+<genre qcode="ex-mygenre:main">
+    <name>Main article </name>
+</genre>
+
+|<headline> |Label a|
+Optional, repeatable. Headline that will apply to the content:
+
+[source,xml]
+<headline>NewsCodes Working Party</headline>
+
+|<keyword> |String a|
+Optional, repeatable. A freeform term to assist in indexing the content:
+
+[source,xml]
+<keyword>IPTC</keyword>
+
+|<language> |- a|
+Optional, repeatable. The language of the intended coverage, May have a
+@role to inform the receiver of the use of the language. The IPTC
+Language Role NewsCodes currently has two values, "Subtitle" and "Voice
+Over" that apply to video content.
+
+The language @tag MUST be expressed using IETF BCP 47 and may have a
+child element of <name>:
+
+[source,xml]
+<language tag="en-GB">
+    <name>UK English</name>
+</language>
+
+|<slugline> |Internationalised String a|
+Optional, repeatable. May have a @role and a @separator which indicates
+the character used as a delimiter between words or tokens used in the
+slugline:
+
+[source,xml]
+<slugline separator="-">US-AUTO-BAILOUT</slugline>
+
+|<subject> |Flex1 Concept Property a|
+Optional, repeatable. Indicates the subject matter of the intended
+coverage. Child elements may be any from the Concept Definition Group
+and the Concept Relationships Group (see Concepts and Concept Items):
+
+[source,xml]
+<subject qcode="medtop:20000304">
+    <name>media</name>
+subject>
+<subject qcode="medtop:20000309">
+    <name>news agency</name>
+</subject>
+<subject qcode="medtop:20000763">
+    <name>IT/computer sciences</name>
+</subject>
+
+Or
+
+[source,xml]
+<subject qcode="medtop:20000309">
+    <name>news agency</name>
+    <broader qcode="medtop:20000304">
+        <name>Media</name>
+    </broader>
+</subject>
+<subject qcode="medtop:20000763">
+    <name>IT/computer sciences</name>
+</subject>
+
+|=======================================================================
+
+[[_Ref281567774]]
+.LISTING 18: Advanced Planning Item
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_18_Advanced_Planning_Item.xml[]
+----
+
+[[the-delivery-component]]
+The <delivery> component
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The optional <delivery> component tells the receiver which parts of the
+planned coverage has been delivered. The delivered item(s) are
+referenced by one or more <deliveredItemRef> elements, each of which
+points to a delivered Item.
+
+The complementary <deliverableOf> property may be added to the <itemMeta> of the corresponding delivered Item. This enables receivers to track back from delivered content to a specific News Coverage component. Although providers should keep the item references synchronised, it provides a bi-directional method for receivers to track the deliverables of a Planning Item, for example, if a News Item is delivered before the associated Planning Item is updated.
+
+[[delivered-items---delivereditemref]]
+Delivered Items - <deliveredItemRef>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A set of properties to identify, locate and describe the delivered Item. In addition to the properties listed below, a child <title> element may be added as metadata "hint" to the receiver.
+
+[cols="20,20,60",options="header",]
+|=======================================================================
+|Property |Type |Notes/Example
+|@rel |QCode |Indicates the relationship between the current Planning
+Item and the target Item
+
+|@href |URL a|
+Locator for the target resource:
+
+[source,xml]
+href="http://example.com/2008-12-20/pictures/foo.jpg"
+
+|@residref |String a|
+The provider’s identifier for the target resource, i.e. the @guid of the
+Item:
+
+[source,xml]
+residref="tag:example.com,2008:PIX:FOO20081220098658"
+
+|@version |String |The version of the target resource: the @version of
+the Item
+
+|@contenttype |String a|
+The Media Type of the target resource:
+
+[source,xml]
+contenttype="image/jpeg"
+
+|@format |QCode |A refinement of the Media Type, taken from a CV
+
+|@size |String a|
+Indicates the size of the target resource in bytes:
+
+[source,xml]
+size="3764418"
+
+|@persistentidref |String |Reference to an element *inside* the target
+resource bearing an @id attribute, whose value must be persistent for
+all versions, i.e. for its entire lifecycle.
+
+|@validfrom, @validto |DateOpt +
+Time a|
+Date range (with optional time) for which the Item Reference is valid:
+
+[source,xml]
+validto="2010-11-20T17:30:00Z"
+
+|@id |XML ID |A local identifier for the <deliveredItemRef>
+
+|@creator +
+@creatoruri |QCode +
+uri |If the property value is not defined, specifies which entity (person, organisation or system) will edit the <deliveredItemRef> value - expressed by a QCode or IRI. If the property value is defined, specifies which entity (person, organisation or system) has edited the <deliveredItemRef> value.
+
+|@modified |DateOpt +
+Time |The date with optional time that this <deliveredItemRef> was last
+changed
+
+|@xml:lang |BCP47 |The language used for this <deliveredItemRef>
+
+|@dir |Enumeration |The directionality of text, either "ltr" or "rtl"
+(left-to-right or right-to-left)
+
+|@rank |Non-negative +
+integer |The rank of the <deliveredItemRef> among others in the Planning
+Item
+|=======================================================================
+
+[[hint-and-extension-point]]
+Hint and Extension Point
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Child elements from the NAR namespace or any other namespace may
+optionally be added. When using elements from the NAR, follow the rules
+set out in Adding Hints from the NAR namespace.
+
+[[_Ref281567887]]
+.LISTING 19: Planning Item with delivery 
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_19_Planning_Item_with_delivery.xml[]
+----
+
+

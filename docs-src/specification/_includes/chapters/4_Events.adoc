@@ -1,0 +1,111 @@
+[[events]]
+Events
+------
+
+[[the-core-information-about-events]]
+The Core Information about Events
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Both topical or persistent events use the same mark-up structure (see link:#_bookmark47[The Data Model], and the information includes a set of generic properties:
+ 
+* A natural language `name` for the event. This name should be concise and can be expressed in different languages.
+* A natural language `definition` for the event which can be more extensive than the name; it can explain facets in detail.
++
+The _role_ attribute of a definition could be used to provide variants of an explanation, e.g. a short one for overviews and an extensive one for a detailed presentation.
+
+* A natural language `note` about the event. This could be an explanation of details or background information regarding the definition. Again this note can be expressed in different languages and can be qualified by a _role_ attribute.
+* The properties `sameAs` {Relationship}, `broader`, `narrower` and `related` can be used to define a relationship between this event and another event or concept.
+
+In particular `broader` may be used to express that this event is a sub-event to another event, e.g. a break-out session of a big conference, one competition of the Olympic Games or one of the concerts of a festival.
+
+A `related` property may be used to further qualify the nature of the event. Related can take either an arbitrary literal value or a value from a controlled vocabulary and could be used to express e.g. that this event is a concert, a hockey game or a press conference.
+
+Additionally, a set of event-specific properties wrapped by the `eventDetails` property:
+
+* A `dates` sub-structure expresses the start date and the end date or duration of the event. This includes using the “approximative dates”, i.e. a range of dates, this range as a kind of best guess or most likely date.
+
+If this event is recurring this can be expressed by means of recurrence properties which align to equivalent properties of the iCalendar standard RFC 2445 (see link:#eventsml-g2-and-icalendar[iCalendar to EventsML-G2 mapping]).
+
+* `occurStatus` indicates whether this is an unplanned or planned event, and if it is planned how likely it is to occur.
+* A set of `registration` information which defines how persons may register for the event, for example this may include accreditation for journalists.
+* A set of `accessStatus` information.
+* A set of `participationRequirement` properties, for example for expressing age limits (think of required parental guidance for movies) or for formal requirements for training course events.
+* A set of `subject` properties expressing what the event is about. Be aware of the difference between a related and a subject property: related should indicate the nature of the event, what the event is, while a subject indicates applicable categories for what the event is about. For example, "concert" is a related concept, while "music" or "Wolfgang Amadeus Mozart" is a matching subject.
+* A set of `location` properties. In most cases it will be the single location where the event will take place but for example festivals could have more than one location.
+* A set of `participant` properties to list all kinds of parties appearing in different roles at the event. The particular role can be expressed by the _role_ attribute.
+* A set of `organiser` properties to list all parties involved in organising the event. The specific role can be expressed again by the _role_ attribute
+* A set of `contactInfo` properties for the event. Be aware that the location, the participant and the organiser properties may contain contactInfo structures that pertain only to their specific scope while this contactInfo is to be used for the event as a whole.
+* A set of `language` properties reflecting all “official” languages at the event.
+* A `newsCoverage` \{Concept} property is still present in the specifications, purely for backwards compatibility; be aware that its status has changed to DEPRECATED in EventsML-G2 1.6. Conveying information about the planned coverage of an event should now use the generic link:#planning-news-coverage---planningitem[Planning news coverage - planningItem].
+* As for many wrapping elements in G2-Standards, the information about an event can also be extended by provider-specific properties.
+
+[[event-information-in-items]]
+Event Information in Items
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[An_Event_Concept_in_a_Concept_Item]][[_bookmark52]]
+
+An Event Concept in a Concept Item or Many Events in a Knowledge Item
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Persisting knowledge about an Event is represented as a Concept (see *link:#representing-concept-information---concept-component[Representing Concept Information - concept Component)]
+
+As with all other concepts a single Event Concept can be managed by a Concept Item, see link:#managing-individual-concepts---conceptitem[(Managing Individual Concepts - conceptItem)], and subsequently many Event Concepts  by a Knowledge Item, see link:#managing-sets-of-concepts---knowledgeitem[(Managing Sets of Concepts - knowledgeItem).]
+
+Any Concept Item or Knowledge Item provides a group of generic definitions and a set of details specific to a kind of concept, in this case specific to an event.
+
+Event concepts use the generic part of a concept in order to define:
+
+* The Concept Identifier for this event.
+* A name, a definition, explanatory notes and refining related concepts.
+* Relationships to other events.
+
+In Event Concept Items the value of the type of a concept (conceptItem/concept/type) must be set to the concept URI of http://cv.iptc.org/newscodes/cpnature/event which may translate to a QCode of cpnat:event.
+
+_Figure 2. Event Information in a concept element_
+image:image5.png[image,width=638,height=317]
+
+The event specific details are expressed by an `eventDetails` structure plugged into the “concept” of a Concept Item or a Knowledge Item. The eventDetails used there are completely identical to the structure with the same name used for the “event” element in the content set of a News Item.
+
+The Concept Identifier of an event can be used by other items (e.g. News Items or Concept Items) to reference this event. From a purely technical view this Concept Identifier can be used as the value of any property referring to a concept. At a *semantic* level is is required that the semantics of this property permits the expression of an event as a concept – for example NOT a property that is limited to persons or locations by its semantics.
+
+Examples are:
+
+* Using an event's Concept Identifier as QCode for the “subject” property of a News Item. This indicates that the content of the News Item is about this event, the News Item's content may be text, photo, audio or video covering the event.
+* Using an event's Concept Identifier with the `sameAs`, `broader`, `narrower`, and `related` properties of another Concept Item. By these means a structure or network of events can be created, e.g. to link individual performances with a cultural festival or different talks to a conference.
+
+Knowledge Items with event concepts should be used to distribute event information if this information is planned to be updated as this requires an identifier for each event.
+
+A provider could think of this use case scenario: a "top events of the next weekend" Knowledge Item is circulated with event concepts on Monday. On Wednesday, a new version of this Knowledge Item is sent with updated events, and cancelled events removed.
+
+[[Events_in_a_NewsItem]][[_bookmark53]]
+
+Events in a NewsItem
+^^^^^^^^^^^^^^^^^^^^
+
+Topical event information may be conveyed by using the NewsML-G2 NewsItem see (link:#representing-news---newsitem[Representing News newsItem]). The structure of a NewsItem defines a special node where content plug-ins can be attached: the inlineXML element.
+
+For EventsML-G2 an `events` element is added as a child of inlineXML as a wrapper of one-to-many `event` elements, each representing the topical information of a single event.
+
+_Figure 3. Event Information in a News Item_
+
+image:image6.png[image,width=628,height=339]
+
+The event element wraps a group of more generic descriptions and a couple of details about an event. The first group is made of a short name which can be displayed as a one-liner, a more comprehensive definition of the event and a note with supplemental information.
+
+A sibling to this generic group is `eventsDetails`, which wraps all the details of the event, when and where it happens, who is involved and how to get there.
+
+Finally optional information about the planned news coverage of this Item may be added.
+
+News Metadata
++++++++++++++
+
+In general the News Metadata section of a NewsItem is wrapped by the `contentMeta` {News Item} element, which should be populated and used as specified for NewsML-G2.
+
+Further to this general recommendation these event specific considerations apply:
+
+* If more than a single event is conveyed by a NewsItem the content metadata applies to the set of events as a whole. In most cases this set will be selected from a larger repository by some rules, like “events of next week”, or “music events”. This could be reflected by e.g. the headline, the description or even the subject property.
+* Genre property: an appropriate value should be applied, like “almanac” or “daybook” from the IPTC Genre NewsCodes
+* Language property: be aware of the difference between the language property of the content metadata it reflects the languages used in the content, in this case in the description of the events and the language property of the event structure it reflects a language which is used at an event.
+
+

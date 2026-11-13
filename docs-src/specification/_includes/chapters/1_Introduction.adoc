@@ -1,0 +1,57 @@
+[[introduction-to-newsml-g2]]
+Introduction to NewsML-G2
+-------------------------
+
+NewsML™ is a media-independent news exchange format for general news.
+
+News exchange is a method of moving around not only the core news content, but also data that describe the content in an abstract way (i.e. metadata), information about how to handle news in an appropriate way (i.e.news management data), information about the packaging of news information, and finally information about the technical transfer itself.
+
+[[history]]
+History
+~~~~~~~
+
+The initial version of NewsML, version 1.0, was approved in October 2000.  There were subsequent minor revisions: version 1.1 was approved in October 2002; version 1.2 was approved in October 2003.
+
+In 2004, the user-experience with NewsML was evaluated by the IPTC, and it was decided to create a consistent set of complementary standards as a comprehensive and inter-operable way to move all types of data between media systems in order to make news exchange efficient and reliable. This set of standards is now the IPTC family of G2-Standards, it includes NewsML-G2, EventsML-G2 and SportsML-G2; NewsML-G2 is the brand name for all of them.
+
+The family of IPTC G2-Standards is built on a common structural and function framework called the IPTC News Architecture (NAR). For this reason many components are common across the members of the G2-Standards.
+
+To better understand the terminology used in the G2-Standards specifications we recommend the link:#glossary[Glossary] as a reference, as it provides an extensive set of terms and their definitions.
+
+Since the initial release of NewsML-G2 in 2008 many news providers have adopted this standard and IPTC has extended and slightly modified the specifications by raised change requests.
+
+To reflect implementations IPTC has conducted a survey of the properties used in practice in 2013 and the resulting “mainstream profile” is shown in the https://www.iptc.org/std/NewsML-G2/guidelines/[NewsML-G2 Implementation Guide], see also below in link:#supporting-documents[Supporting Documents].
+
+[[conformance-levels]]
+Conformance Levels
+~~~~~~~~~~~~~~~~~~
+
+Different conformance levels are defined in the model, each of them related to a level of complexity (at the conceptual and processing level) of the related Items. This feature adds modularity to the model.
+
+The current model defines two conformance levels:
+
+* Core Conformance Level (CCL) is focused on simplicity and interoperability.
+
+* Power Conformance Level (PCL) is an extension of the Core Conformance Level which gives more flexibility to providers, at the cost of added complexity for the recipient processors.
+
+In practice, most providers use PCL and this has been the focus of development of the standard. The IPTC has therefore decided to freeze development of the Core level schema; the last available version being 2.24.
+
+NOTE: The Conformance Level defaults to a value of "core" if the _conformance_ attribute is omitted and this must be maintained for backwards compatibility with previous versions of NewsML-G2. See link:#indication-of-compliance-with-a-standard-and-conformance-level[Indication of Compliance with a Standard and Conformance Level] 
+
+A NewsML-G2 processor MUST assert supporting either Core or Power functionality.
+
+As the Power features are an extension of the Core features, a Core compliant processor SHOULD process Power Items by ignoring the information pertaining to the Power Conformance Level.
+
+[[supporting-documents]]
+Supporting documents
+~~~~~~~~~~~~~~~~~~~~
+
+This Specification, in conjunction with the XML Schema files, document the formal specification of NewsML-G2.
+
+The IPTC also provides documents supporting the implementation of the standard in subfolders of http://www.iptc.org/std/NewsML-G2/2.36/
+
+* The https://iptc.org/std/NewsML-G2/guidelines/[NewsML-G2 Implementation Guide]: a comprehensive guideline covering also special work areas like the management of controlled vocabularies and migrating from existing standards to NewsML-G2. The Guielines also contain NewsML-G2 Quick Start Guides, self-contained chapters that explain how to take the first steps for successfully start with text, photos, video and news packages using NewsML-G2. 
+* A set of almost 30 https://iptc.org/std/NewsML-G2/2.36/examples[NewsML-G2 example XML documents] covering all types of news content, events, news planning and sport (SportML-G2).
+* A https://www.iptc.org/std/NewsML-G2/2.26/documentation/NewsML-G2_2.26-structMatrix_1.xls[Structure Matrix table] showing for each property its attributes (last updated for NewsML-G2 2.26). _Note: link downloads the file to your device._
+
+

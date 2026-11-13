@@ -1,0 +1,90 @@
+[[packaging-items---packageitem]]
+Packaging Items - packageItem
+-----------------------------
+
+An XML Schema file corresponding to the specifications for this item is available (see The Full Set of link:#_bookmark2[Specification Documents]).
+
+A `packageItem` facilitates the packaging of all kinds of Items, from really simple constructs to the highly hierarchical structures created by some news providers.
+
+Examples of packageItems are a collection of pictures, a “top ten” list of newsItems, an unordered set of newsItems relative to the same event, the representation of a newspaper section or page.
+
+Typical characteristics of a Package Item are:
+
+* It provides some structure to news related information, and is expressed via a hierarchy of items.
+* The Items found in a packageItem stay independent from the package: they can be managed individually, and the package keeps only references to them.
+* Its content is of medium term interest.
+
+[[structure-of-a-package-item]]
+Structure of a Package Item
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The model of a packageItem is very similar to the model of a link:#representing-news---newsitem[newsItem]. Both share the same indicators of compliance with a Standard and Conformance level, Identification and Versioning, Signature, Rights Information, Item Metadata, and Item Links. Please review the corresponding specification of a News Item for more information.
+
+[[item-class-2]]
+Item Class
+^^^^^^^^^^
+
+The IPTC provides mandatory standardised schemes applicable to the `itemClass` property of a packageItem, identified by the URI http://cv.iptc.org/newscodes/ninature/[http://cv.iptc.org/newscodes/ninature/] and http://cv.iptc.org/newscodes/cinature/[http://cv.iptc.org/newscodes/cinature/].
+
+[[package-related-metadata]]
+Package Related Metadata
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The set of administrative and descriptive metadata is common between packageItems and newsItems. Please review link:#news-content-metadata[News Content Metadata] of the News Item chapter for more information.
+
+[[metadata-helpers-2]]
+Metadata Helpers
+^^^^^^^^^^^^^^^^
+
+The packageItem includes three properties which are available to help make metadata assertions:
+
+* the `assert` property helps to bundle and extend details of concepts, see link:#assertions-about-concepts[Assertions About Concepts].
+* the `inlineRef` property references concepts which are inline within text content, see link:#references-to-inline-concepts[References to Inline Concepts].
+* the `derivedFrom` property indicates the concept from which a concept used as property value in this item has been derived, see link:#document-derivation-of-concepts[Document Derivation of Concepts].
+
+[[packageitem-content]]
+packageItem Content
+^^^^^^^^^^^^^^^^^^^
+
+A `groupSet` represents a tree of components, a component can be:
+
+* a `group` element which contains one to many of the components below.
+* an `itemRef` element referring to a package-external G2 item or a web resource.
+* a `groupRef` element referring to another group of this Package Item
+
+All G2 items included into a package are included by reference, as physical inclusion would break the capability to manage inner Items independently of the outer Package Item.
+
+The groupSet is optional. This allows for a lightweight and progressive representation of information.
+
+There MUST be at least one group element in the groupSet but there could also be many of them. In any case the value of _root_ attribute of the groupSet element MUST be the _id_ attribute value of the group acting as a root.
+
+A group component may contain references to other group components (using a groupRef element with its _idref_ attribute) of the same package item and/or references to Items or Web resource (using the itemRef element with its _guidref_ and _href_ attributes), in any order.
+
+Each group MUST have an _id_ attribute which identifies this group, and each group MUST have a _role_
+attribute which indicates the part this group plays within its container.
+
+The order of the sub-groups and references to Items MAY be significant; a _mode_ attribute indicates whether the elements in the group are complementary and unordered, complementary and ordered or a set of alternative elements. In the absence of a _mode_ attribute the group is treated as complementary and unordered implementing the mode “bag”.
+
+The itemRef element MAY contain metadata extracted from the target Item or Web resource. The recipient MUST NOT consider that such hints constitute a complete representation of the Item.
+
+The itemRef element MAY have a _rank_ attribute which represents the rank of the Item among other Items in each group.
+
+The itemRef element MAY also have time validity attributes (_validfrom_ and _validto_) which express the date and time between which the reference is active.
+
+Other attributes are available, please see the schema documentation for a complete list and details. The following is an example of `groupSet`:
+
+[source, xml]
+----
+<<groupSet root="g1">
+    <group id="g1" mode="mode:seq" role="grouprole:main"> 
+        <groupRef idref="g2"/>
+            <itemRef guidref="urn:newsml:iptc.org:20070530:tutorial-text-xhtml"/>
+    </group>
+    <group id="g2" role="grouprole:gallery">
+        <itemRef guidref="urn:newsml:iptc.org:20070530:tutorial-iptc-logo"/>
+        <itemRef guidref="urn:newsml:iptc.org:20070530:tutorial-video"/>
+    </group>
+</groupSet>
+----
+
+

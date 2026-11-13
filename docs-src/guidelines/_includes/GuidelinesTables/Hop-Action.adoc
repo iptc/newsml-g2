@@ -1,0 +1,14 @@
+[%autowidth,options="header"]
+|===
+|Code|Definition
+
+|created
+|A Party has created the target of the action.
+
+|transformed
+|A Party has transformed the target of the action. Transforming means that an existing target was changed in data format.
+
+|enhanced
+|A Party has enhanced the target of the action.
+
+|===

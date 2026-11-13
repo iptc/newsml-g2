@@ -1,0 +1,13 @@
+[%autowidth,options="header"]
+|===
+|NewsCode|Name|Definition
+
+|star
+|star
+|Star rating
+
+|number
+|number
+|Numeric rating
+
+|===

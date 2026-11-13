@@ -1,0 +1,11 @@
+[%autowidth,options="header"]
+|===
+|Code|Definition
+
+|content
+|Content only (Default case, if @scope omitted)
+
+|provmix
+|Provider specific mix of content and metadata
+
+|===

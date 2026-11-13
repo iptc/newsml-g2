@@ -1,0 +1,14 @@
+[%autowidth,options="header"]
+|===
+|Code|Definition
+
+|MD5
+|The MD5 hash function
+
+|SHA-1
+|The SHA-1 hash function
+
+|SHA-2
+|The SHA-2 hash function
+
+|===

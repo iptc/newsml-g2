@@ -1,0 +1,114 @@
+[[how-to-index]]
+How-To Index
+------------
+
+The Implementation Guide is written using worked examples and use cases in order to give implementers an insight into the practical application of NewsML-G2 features. It may be helpful to have the NewsML-G2 Specification at hand; this will contain further detailed information about features discussed. This document can be downloaded by visiting http://www.newsml-g2.org/spec[www.newsml-g2.org/spec].
+
+After reading the introductory chapters on
+<<quick-start-guide-to-newsml-g2-basics,NewsML-G2 Basics>>,
+<<quick-start-text,handling text>>,
+<<quick-start-pictures-and-graphics,pictures and graphics>>,
+<<quick-start-video,video>> and <<quick-start-packages,packages>>,
+implementers may wish to go straight to the How To topics for answers to specific questions.
+
+[[general-design]]
+General design
+~~~~~~~~~~~~~~~
+
+* link:#quick-start-guide-to-newsml-g2-basics[Learn the *shared basics* of all types of a NewsML-G2 Item]
+
+* link:#designing-a-newsml-g2-feed-from-scratch[Get advice on designing a *NewsML-G2 feed from scratch*]
+
+* link:#property-usage[View *frequently used* NewsML-G2 properties]
+
+* link:#implied-values-of-newsml-g2[Reveal *implied values* of NewsML-G2 properties]
+
+* link:#hints-and-extension-points-in-newsml-g2[Add *proprietary properties* to NewsML-G2]
+
+[[implement-semantic-technology-concepts]]
+Implement semantic technology concepts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* link:#concepts-and-concept-items[Express *structured metadata* about people, organisations, places and objects]
+
+* link:#controlled-vocabularies-and-qcodes[Create and manage *Controlled Vocabularies*]
+
+* link:#how-qcodes-work[Processing *QCodes*]
+
+[[manage-all-kinds-of-content]]
+Manage all kinds of content
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* link:#quick-start-text[Manage *text content* of a News Item]
+
+* link:#quick-start-pictures-and-graphics[Manage *picture content* of a News Item]
+
+* link:#quick-start-video[Manage *video content* of a News Item]
+
+* link:#quick-start-packages[Manage content of a *Package Item*]
+
+* link:#exchanging-news-news-messages[*Exchange news* using News Messages]
+
+* link:#events-in-newsml-g2[Create, send and update information about *news events*]
+
+* link:#editorial-planning-the-planning-item[Share *news planning and fulfilment* information with partners and customers]
+
+* link:#sportsml-g2[Convey *sports* information]
+
+[[in-more-detail]]
+In more detail
+~~~~~~~~~~~~~~~
+
+* link:#timestamps-1[Learn about *timestamps* of a NewsML-G2 item]
+
+* link:#publishing-status[Apply the *Publishing Status* of a NewsML-G2 Item]
+
+* link:#embargo[Apply *embargo* to news]
+
+* link:#processing-updates-and-corrections[Process *updates*]
+
+* link:#processing-updates-and-corrections[Process *corrections*]
+
+* link:#content-warning[Express *warnings* about content]
+
+* link:#editorial-note[Apply *Editorial Notes* to a NewsML-G2 Item]
+
+* link:#rights-metadata[Express *rights metadata*, from simple to fine-grained]
+
+* link:#subject[*Categorize content* of a News Item]
+
+* link:#expressing-company-financial-information[Express *financial market information* about companies]
+
+* link:#expressing-quantitative-values-using-related[Convey *quantitative data*, such as currency amounts]
+
+* link:#hashtags[Assign *social media tags* to news]
+
+* link:#working-with-social-media[Add *social media ratings* to content]
+
+* link:#identifying-sources-and-workflow-actors[Identify *sources and workflow actors*]
+
+* link:#inline-reference[Create links from content to *inline metadata*]
+
+* link:#adding-customer-specific-metadata[Add *user-customized metadata* to a NewsML-G2 ltem]
+
+[[migrate-to-newsml-g2-from-legacy-formats]]
+Migrate to NewsML-G2 from legacy formats
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* link:#migrating-iptc-7901-to-newsml-g2[Migrate a news feed from *IPTC7901* to NewsML-G2]
+
+* link:#mapping-embedded-photo-metadata-to-newsml-g2[Migrate *embedded photo metadata* to NewsML-G2]
+
+* link:#news-industry-text-format-nitf[Migrate *NITF management metadata* to NewsML-G2]
+
+[[history-of-changes]]
+History of changes
+~~~~~~~~~~~~~~~~~~
+
+* link:#changes-to-newsml-g2-and-related-standards[View *changes to NewsML-G2* Standards from previous versions]
+
+[[receiver-view]]
+Receiver view
+~~~~~~~~~~~~~
+
+We have created a Quick Start guide to Receiving NewsML-G2. The content is not included in the full Guidelines document, but as a separate document which can be accessed at https://iptc.atlassian.net/wiki/spaces/NEWSMLG2/pages/622034945/Receiving+NewsML-+G2+-+NewsML-G2+Quick+Start+Guide or in PDF form at https://www.iptc.org/std/NewsML-G2/2.25/documentation/QuickStart-Receiving_NewsML-G2_1.0.1.pdf . It is intended that this standalone document can be used by NewsML-G2 Providers as a template to create customer guides to their own implementations of NewsML-G2.

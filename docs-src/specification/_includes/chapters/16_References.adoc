@@ -1,0 +1,15 @@
+[[references]]
+References
+----------
+
+IPTC Documents
+~~~~~~~~~~~~~~
+
+include::{includedir}/../../tables/iptc-spec-docs.adoc[]
+
+Other References
+~~~~~~~~~~~~~~~~
+
+include::{includedir}/../../tables/other-refs.adoc[]
+
+

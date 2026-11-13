@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<newsItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/ 
+        ./NewsML-G2_2.35-spec-All-Power.xsd"
+    guid="tag:acmenews.com,2008:WORLD-NEWS:USA20081208098658"
+    version="18" 
+    standard="NewsML-G2" 
+    standardversion="2.35" 
+    conformance="power">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_41.xml" />
+    <catalogRef href="http:/www.acmenews.com/customer/cv/catalog4customers-1.xml" />
+    <rightsInfo>
+        <copyrightHolder qcode="ex-prov:TR">
+            <name>Thomson Reuters</name>
+        </copyrightHolder>
+        <copyrightNotice>
+            Copyright 2025 Thomson Reuters
+        </copyrightNotice>
+        <usageTerms>NO ARCHIVAL OR WIRELESS USE</usageTerms>
+    </rightsInfo>
+    <itemMeta>
+        <itemClass qcode="ninat:picture" />
+        <provider qcode="ex-prov:acmenews" />
+        <versionCreated>2025-10-19T02:20:00Z</versionCreated>
+        <pubStatus qcode="stat:usable" />
+        <fileName>2016-09-21T152911Z_1417736630_S1BEUCPFFZAB_USA-CRASH-MILITARY.xml</fileName>
+        <title>USA-CRASH/MILITARY</title>
+        <edNote />
+    </itemMeta>
+    <contentMeta>
+        <urgency>4</urgency>
+        <contentCreated>2008-12-08T17:30:00-08:00</contentCreated>
+        <infoSource role="cpprole:imgSupplier">
+            <name>Acme News LLC</name>
+        </infoSource>
+        <creator qcode="ex-pers:JS001">
+            <name>John Smith</name>
+            <related rel="ex-personrel:jobtitle" qcode="ex-stafftitles:photo">
+                <name>Staff Photographer</name>
+            </related>
+        </creator>
+        <altId type="ex-idtype:systemRef" environment="ex-acmesys:mdn ex-acmesys:iim">SAD02</altId>
+        <contributor role="cpprole:descrWriter" qcode="ex-pers:CK" />
+        <subject type="cpnat:poi" literal="int001" />
+        <headline xml:lang="en-US">A firefighter walks past the remains of a military
+         jet that crashed into homes in the University City neighborhood of San Bernardino
+         </headline>
+        <description xml:lang="en-US" role="drol:caption">A firefighter in a flameproof 
+         suit walks past the remains of a military jet that crashed into homes in the
+          University City neighborhood of San Bernardino, California October 18, 2025. The
+           military F-18 jet crashed on Monday into the California neighborhood after the 
+           pilot ejected, igniting at least one home, officials said.
+        </description>
+        <creditline>Acme/John Smith</creditline>
+        <keyword role="ex-krole:index">us</keyword>
+        <keyword role="ex-krole:index">military</keyword>
+        <keyword role="ex-krole:index">aviation</keyword>
+        <keyword role="ex-krole:index">crash</keyword>
+        <keyword role="ex-krole:index">fire</keyword>
+        <slugline>USA-CRASH/MILITARY</slugline>
+    </contentMeta>
+    <assert literal="int001">
+        <POIDetails>
+            <address>                                       
+                <line>University City</line>
+                <locality qcode="ex-city:int002" type="ex-cpnatexp:geoAreaCity">
+                   <name>San Diego</name>
+                </locality>
+                <area qcode="ex-state:int003" type="ex-cpnatexp:geoAreaProvState">
+                   <name>California</name>
+                </area>
+                <country qcode="iso3166-1a2:US" type="ex-cpnatexp:geoAreaCountry">
+                   <name>United States</name>
+                </country>
+            </address>
+        </POIDetails>
+    </assert>
+    <contentSet>
+        <remoteContent
+            href="http://www.acmenews.com/content/pictures/hires/20081208/USA-CRASH-MILITARY_001_HI.jpg"
+            rendition="rnd:highRes" size="3764418" contenttype="image/jpeg" width="2500"
+            height="1445" colourspace="colsp:USSWOPv2" />
+    </contentSet>
+</newsItem>

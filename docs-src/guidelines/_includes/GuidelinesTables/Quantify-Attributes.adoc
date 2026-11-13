@@ -1,0 +1,13 @@
+[%autowidth,options="header"]
+|===
+|Name|Datatype|Note
+
+|confidence
+|Int100
+|An integer from 0 to 100 expressing the provider’s confidence in the information provided. A value of 100 indicates the highest confidence
+
+|relevance
+|Int100
+|An integer from 0 to 100 expressing the relevance of the information provided. A value of 100 indicates the highest relevance.
+
+|===

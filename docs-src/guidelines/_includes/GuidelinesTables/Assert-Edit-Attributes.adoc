@@ -1,0 +1,17 @@
+[%autowidth,options="header"]
+|===
+|Name|Datatype
+
+|id
+|XML Schema ID
+
+|creator
+|QCode
+
+|creatoruri
+|IRI
+
+|modified
+|DateOptTime
+
+|===

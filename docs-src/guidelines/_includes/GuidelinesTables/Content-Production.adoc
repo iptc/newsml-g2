@@ -1,0 +1,57 @@
+[%autowidth,options="header"]
+|===
+|Code|Name|Definition
+
+|author
+|Author
+|The creator of the content
+
+|cameraOperator
+|Camera Operator
+|A person who operates the camera that records the content of the item
+
+|contentSource
+|Content Source	
+|A party which contributed to the content of the item as a source
+
+|correspondent
+|Correspondent
+|A person who is reporting information that contributes to the content of the item
+
+|descrWriter
+|Description Writer
+|The person or party editing the description of content
+
+|editor
+|Editor
+|The person or party editing the content and/or metadata of the item
+
+|factChecker
+|Fact Checker
+|Specifies the person who fact-checked the news item to ensure its accuracy
+
+|imgSupplier
+|Image Supplier
+|A party which supplied an image as content of the item
+
+|interviewee
+|Interviewee
+|A person being interviewed for the item
+
+|mediaOffice
+|Media Office
+|The media relationships office of a person, organisation or company
+
+|origcont
+|Content Originator
+|A party which originated the content of the item
+
+|originfo
+|Information Originator
+|A party which provided some information used to create or enhance the content of the item
+
+|spokesperson
+|Spokesperson
+|The spokesperson of a person, organisation or company
+
+|===

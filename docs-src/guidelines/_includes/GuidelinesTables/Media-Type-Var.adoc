@@ -1,0 +1,50 @@
+[%autowidth,options="header"]
+|===
+|Attribute|@contenttype|@contenttype
+standardversion|@contenttype
+variant|@contenttype
+variant
+standardversion|@format|@format
+standardversion
+
+|Current definition by the XML Schema
+|The IANA (Internet Assigned Numbers Authority) MIME type of the target resource.
+|
+|A refinement of a generic content type (i.e. IANA MIME type) by a literal string value
+|
+|A refinement of a generic content type (i.e. IANA MIME type) by a value from a controlled vocabulary - expressed by a QCode
+| 
+
+|Use Case Examples: the content is ...
+| 
+| 
+| 
+| 
+| 
+| 
+
+|NITF 3.4
+|text/vnd.IPTC.NITF
+|3.4
+| 
+| 
+| 
+| 
+
+|G2 v2.24 News Item
+|application/vnd.iptc.g2.newsitem+xml
+|2.24
+| 
+| 
+| 
+| 
+
+|SportsML 3
+|application/xml
+|1.0 (for xml)
+|
+|
+|fmt:SportsML
+|3.0 (for SportsML)
+
+|===

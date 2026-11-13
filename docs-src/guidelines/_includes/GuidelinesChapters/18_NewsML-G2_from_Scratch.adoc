@@ -1,0 +1,261 @@
+[[designing-a-newsml-g2-feed-from-scratch]]
+Designing a NewsML-G2 feed from scratch
+---------------------------------------
+
+[[introduction-14]]
+Introduction
+~~~~~~~~~~~~
+
+When designing a NewsML-G2 feed, some fundamental questions need to be
+asked, such as:
+
+* What is the provider’s business value proposition and how must this be
+supported by the NewsML-G2 implementation?
+* What are the needs and capabilities of customers? It may be the
+customer who is driving the move the NewsML-G2, but customers will often have issues that need to be resolved and which require sympathetic handling.
+* What limitations – if any – do the provider’s existing systems and
+processes impose on the NewsML-G2 project?
+
+This chapter gives general guidance on the issues an implementer of a
+feed might encounter, and where necessary points to more detailed
+information on specific topics described elsewhere in the Guidelines.
+
+As a general principle, the IPTC recommends that providers strive for
+inter-operability, so where possible, stick to using the recommended
+"mainstream" properties as identified by the Property Usage sheet below.
+The sheet lists the NewsML-G2 properties which are most widely used by
+currently existing NewsML-G2 feeds. As there may be more than one way to
+implement a feature; in such cases the IPTC recommends choosing the most
+widely-used property as indicated by the sheet.
+
+Also consider using existing IPTC NewsCodes Schemes for property values
+where appropriate, in preference to creating proprietary schemes that
+accomplish a similar purpose. A table showing IPTC Controlled Vocabulary
+Usage is shown below.
+
+[[content-driven-design]]
+Content-driven design
+~~~~~~~~~~~~~~~~~~~~~
+
+The design of a NewsML-G2 feed will depend on the content type being
+conveyed, since each type will have specific metadata and processing
+needs.
+
+For all content types, note the basic NewsML-G2 rule: a single logical
+item of content per News Item, which can be represented by more than one
+technical representation. For multiple pieces of content in a named
+relationship, use the <<quick-start-packages,Package Item>>, and for
+sending one or more NewsML-G2 Items in a transmission workflow, the
+<<exchanging-news-news-messages,News Message>> may be used.
+
+[[content-choices]]
+Content choices
+^^^^^^^^^^^^^^^
+
+[[text]]
+Text
+++++
+
+The most commonly-used NewsML-G2 container for text is <inlineXML>
+wrapping XHMTL content, although NITF is also used. Note that any
+well-formed XML may be conveyed in <inlineXML> so this can be aligned to
+a more specific business purpose such as XBRL (Extended Business
+Reporting Language).
+
+It is also possible to convey a text-based object as binary content, for
+example as a PDF, using <remoteContent> or as plain text using
+<inlineData>.
+
+When converting from legacy text formats such as IPTC7901, the initial
+advantages of NewsML-G2 include the ability to separate metadata from
+the content, and the use of globally-unique controlled values to
+classify content.
+
+Going further, there are more specialised structures available for
+implementers to provide financial information, express quantitative
+data, and give precise geographic details in a machine-readable form.
+
+[[pictures]]
+Pictures
+++++++++
+
+As binary content, pictures (and graphics) are conveyed using the
+<remoteContent> wrapper. The <<quick-start-pictures-and-graphics>> chapter
+gives an overview of NewsML-G2 features and the relationship between
+NewsML-G2 metadata and embedded metadata such as the "IPTC Core" fields
+in JPEG/TIFF files. There is also a chapter on <<mapping-embedded-photo-metadata-to-newsml-g2>>
+that provides more detailed information on this issue.
+
+[[video]]
+Video
++++++
+
+The first consideration for video is the business requirement, since
+this drives the technical design in one of two directions:
+
+* Simple one-part video – probably delivered in multiple formats to suit
+different technical platforms
+* Multi-part video delivered as a reference to a single file (and
+potentially multiple technical renditions) that requires each part or
+shot to have its own administrative and descriptive metadata.
+
+NewsML-G2 serves both of these content models, which are described in
+the <<quick-start-video>> chapter.
+
+[[the-basics]]
+The Basics
+~~~~~~~~~~
+
+The Chapter on <<quick-start-guide-to-newsml-g2-basics>> has
+a description of the mandatory and commonly-used properties.
+
+[[identification-and-version-control]]
+Identification and version control
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Choose a scheme for generating the @guid of NewsML-G2 Items. The IPTC
+has registered a namespace urn "newsml" and a specification for this
+purpose (see <<item-identifier>>) but other schemes such as TAG URI are
+available.
+
+Decide how Item version will be generated: it must start at "1" and
+ideally should increment by "1" each time a new version is published,
+although a new version may have any number that is greater than the
+previous version number. Providers may also use <link> to inform
+receivers of the previous version and provide a location or id for it
+(see Using Links for more details on this)
+
+[[conformance-1]]
+Conformance
+~~~~~~~~~~~
+
+Since version 2.24, NewsML-G2 supports only one schema (the "All-Power" schema), therefore the conformance attribute must be present with a value of "power".
+
+[[validation]]
+Validation
+~~~~~~~~~~
+
+When designing and testing the feed, validation against the IPTC scheme
+files will be essential. The IPTC recommends that validation should not
+be required in production: it can be resource intensive and introduces a
+potential point of failure. If a provider chooses to validate production
+documents, they must NOT validate against the schema files hosted by the
+IPTC.
+
+[[catalogs-and-controlled-vocabularies]]
+Catalogs and Controlled Vocabularies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Even after following the advice about using NewsCodes (above) it is
+almost certain that some provider specific schemes will be needed. See
+the section on <<controlled-vocabularies-and-qcodes>> for detailed
+information on how to create and maintain CVs and Catalogs.
+
+[[rights-information]]
+Rights Information
+~~~~~~~~~~~~~~~~~~
+
+See Chapter on <<rights-metadata>> to go beyond the basics of expressing
+rights information.
+
+[[management-metadata]]
+Management Metadata
+~~~~~~~~~~~~~~~~~~~
+
+[[timestamps-1]]
+Timestamps
+^^^^^^^^^^
+
+There are four timestamps available in NewsML-G2 documents, two are
+properties of Item Metadata and relate to management of the Item; two
+are properties of Content Metadata and are part of the Administrative
+properties of the Item’s content. The four properties are:
+
+* itemMeta/firstCreated
+* itemMeta/versionCreated
+* contentMeta/contentCreated
+* contentMeta/contentModified
+
+NewsML-G2 timestamps in Item Metadata express the full date and time of
+the creation or update of the Item. Content Metadata timestamps may be
+truncated from the right because the precise date and time of the
+creation of content (for example an historic photograph) may be unknown.
+Note that any timestamp that contains the time MUST contain a time
+offset or Z for UTC, for example the format
+YYYY-MM-DDThh:mm:ss(+-)hh:mm:ss, or YYYY-MM-DDThh:mm:ssZ.
+
+The single mandatory timestamp for a NewsML-G2 document is
+<versionCreated>, but the following rules MUST be followed when any
+other timestamp is present.
+
+[[data-value-rules]]
+Data Value rules
+++++++++++++++++
+
+1.  If <contentCreated> is used, it MUST NOT be later than
+<versionCreated>.
+2.  If <contentModified> is present, <contentCreated> SHOULD also be
+present and MUST be earlier than <contentModified>.
+3.  If <contentModified> is present, it MUST NOT be later than
+<versionCreated>.
+4.  If <firstCreated> is present, it MUST NOT be later than
+<versionCreated>.
+
+[[data-processing-rules]]
+Data Processing rules
++++++++++++++++++++++
+
+1.  The recipient processor MUST first check if a <contentModified>
+element is present.
+2.  If not it MUST check if a <contentCreated> element is present.
+3.  If not it SHOULD assume that the content was created at the time
+indicated by <versionCreated> element in itemMeta.
+
+For a full description of the timestamps and processing rules, see the
+NewsML-G2 Specification, which may be downloaded. This can be downloaded
+by visiting http://www.newsml-g2.org/spec[newsml-g2.org/spec].
+
+A number of existing implementations use only itemMeta/versionCreated
+for text, but for picture, graphics and video, it is generally accepted
+that contentMeta/contentCreated and contentMeta/contentModified should
+be used as, for example, the moment when a picture is taken is
+considered significant.
+
+[[publishing-statusembargoed]]
+Publishing Status/Embargoed
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Both properties of <itemMeta> have "implied" values, in that there are
+default values that are assumed if the actual properties are absent.
+Publishing Status defaults to "usable" and Embargoed to "none". There
+are separate topics for these properties in the chapter on
+<<generic-processes-and-conventions>>.
+
+[[links]]
+Links
+^^^^^
+
+Links identify and can also locate NewsML-G2 Items and other non-G2
+resources that may be used to supplement the understanding of an Item’s
+content. The default relationship to the target Item is "See Also" but
+other relationships such as "Translated From" and "Derived From" are
+defined in the IPTC Item Relationship NewsCodes.
+
+[[property-usage]]
+Property Usage
+~~~~~~~~~~~~~~
+
+The following property usage table was compiled from a survey of IPTC
+members.
+
+include::{includedir}/../../GuidelinesTables/Property-Usage-colour.adoc[]
+
+[[iptc-controlled-vocabulary-usage]]
+IPTC Controlled Vocabulary Usage
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The table below compares the usage of IPTC CVs (where available) and proprietary CVs for commonly-used and mandatory properties, compiled from a survey of IPTC members.
+
+include::{includedir}/../../GuidelinesTables/CV-Usage.adoc[]
+
+include::{includedir}/../../GuidelinesTables/CV-Usage-Key.adoc[]

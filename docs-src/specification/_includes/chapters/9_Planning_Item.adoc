@@ -1,0 +1,81 @@
+[[planning-news-coverage---planningitem]]
+Planning news coverage - planningItem
+-------------------------------------
+
+An XML Schema file corresponding to the specifications for this item is available (see The Full Set of link:#_bookmark2[Specification Documents)].
+
+[[description-3]]
+Description
+~~~~~~~~~~~
+
+The `planningItem` facilitates conveying the planning of news and topic coverage from the editorial department of the news provider to the editorial teams of its clients. This Item type was introduced with the EventsML-G2 1.6 and NewsML-G2 2.7 (both based on the News Architecture version 1.8). It is intended to replace the information about planned news coverage provided by the `newsCoverage` component inside the Event Details of an Event Concept Item. This component is now DEPRECATED; it is still present to support compatibility with earlier versions of the standard. As the Planning Item is part of the common News Architecture framework it can be used in the scope of EventsML-G2 and NewsML-G2.
+
+Typical characteristics of a planningItem are:
+
+* It focuses on planning and delivering the coverage of a single event or topic but may be linked to other Planning Items to facilitate the coverage of e.g. large or long-lasting events or a group of topics.
+* It will usually be updated frequently until all planned coverage is delivered
+* Its content is a structured representation of typical parameters of editorial planning and further may provide a list of G2 Items which have been delivered to fulfil the intended coverage.
+* It may refer to the event it covers: examples are media events like press conferences, political events like an election, cultural events like an open-air concert, or sport events.
+* It may refer to the topic(s) it covers: examples are topics like "The current housing market", "The cultural festival summer season in Europe", "The best skiing resorts in the Rocky Mountains".
+
+[[structure-of-planning-item]]
+Structure of Planning Item
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The model of a Planning Item is very similar to the other NewsML-G2 Items: It shares the indicators of compliance with a Standard and a Conformance level, Identification and Versioning, Signature, Rights Information, Item Metadata and Item links. Please review link:#representing-news---newsitem[Representing News - newsItem] for more information.
+
+[[item-class-3]]
+Item Class
+^^^^^^^^^^
+
+The IPTC provides a mandatory standardised scheme applicable to the itemClass property of a planningItem, identified by the URI http://cv.iptc.org/newscodes/plinature/.
+
+[[planning-related-metadata]]
+Planning Related Metadata
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The set of administrative metadata is common to all classes of Items.
+
+The set of descriptive metadata is listed below. All properties are optional, repeatable and may be inserted in any order.
+
+_Table 10. Descriptive Metadata Core Group Elements_
+
+include::{includedir}/../../tables/descriptive-meta-core.adoc[]
+
+Each provider may add a set of metadata properties which have to be defined in a non-IPTC-G2 namespace. See also link:#_bookmark121[XML Namespaces] and link:#_bookmark123[Extension Points in XML].
+
+Please review link:#news-content-metadata[News Content Metadata] of the News Item chapter for more information.
+
+[[metadata-helpers-3]]
+Metadata Helpers
+^^^^^^^^^^^^^^^^
+
+The planningItem includes three properties which are available to help make metadata assertions:
+
+* the `assert` property helps to bundle and extend details of concepts, see link:#assertions-about-concepts[Assertions About Concepts].
+* the `inlineRef` property references concepts which are inline within text content, see link:#references-to-inline-concepts[References to Inline Concepts].
+* the `derivedFrom` property indicates the concept from which *this* concept used in the Item was derived, see link:#document-derivation-of-concepts[Document Derivation of Concepts].
+
+[[planning-item-content]]
+Planning Item Content
+^^^^^^^^^^^^^^^^^^^^^
+
+A `newsCoverageSet` wrapper element contains a set of `newsCoverage` components (see below). Their order of appearance in `conceptSet` is not relevant. The major reason for having multiple newsCoverage components in this set is that each newsCoverage may be bound, for example, to a specific itemClass. Thus, to express the coverage of an event by two text stories, 10 photos and one graphic, one would used three newsCoverage components.
+
+The link:#newscoverage-of-planning-item-newscoverage[newsCoverage \{Planning}] component holds the mandatory `planning` property and the optional `delivery` property.
+
+At least one `planning` property must be present; this wrapper provides a rich set of properties to inform the receiver what kind of coverage to expect from the provider:
+
+The `g2contentType` and the `itemClass` properties tell what type of G2 deliverables to expect, and the `itemCount` adds how many of them to expect. The properties `scheduled` and `service` add when and by which service, or feed, the coverage will be delivered. A group of link:#_descriptive_metadata[Descriptive Metadata] gives a hint for the metadata which will be used with the delivered Items, allowing the receiver to build a filter or to forward this planning information to the proper editorial destination. The repeatable `assignedTo` property holds the person, organisation or company responsible for the content; this property can be used internally by the news provider or may be used to let receivers know that, for example, a particular named journalist will write a review of a cultural event. Both `planning` and `assignedTo` properties have the optional attributes _coversfrom_ and _coversto_ to express the date, and optionally the time, of the start and end of coverage, either generally, or for the `assignedTo` resource.   For information that cannot be expressed by these machine readable properties, the natural language `edNote` property may be used.
+
+The `delivery` property specifies which Items of the planned coverage have been delivered, using a set of `deliveredItemRef` properties.
+
+NOTE: The itemMeta wrapper of all G2 items includes a link:#deliverableOf[deliverableOf] property. This property is used to be a link back to the referenced Planning Item and a specific News Coverage component; the receiver can check using the deliveredItemRef properties whether an Item indicated as "delivered" has actually been received. Conversely when a NewsML-G2 Item that is specified as being a deliverable of a planned coverage can be handled accordingly. Providers should take care to update Planning Items in sync with the delivery of their "child" deliverable Items.
+
+[[processing-considerations]]
+Processing Considerations
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It can be expected that Planning Items will have a high frequency of updates. The first version may be sent when the first outline of covering an event or a topic has been completed by the editorial of the news provider. Updates could and should be sent when types of planned G2 Items is extended, for example when text only coverage is planned, later extended to text plus photos. Updates should also be sent when the number of planned Items changes or when typical metadata values for the Items are assigned. In the course of creating and delivering the Items the Planning Item should be updated each time an Item, or group of items, is released.
+
+

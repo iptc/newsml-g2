@@ -1,0 +1,29 @@
+[%autowidth,options="header"]
+|===
+|NewsCode|Name|Definition
+
+|amean
+|arithmetic mean
+|Indicates that the numeric value was calculated by applying the arithmetic mean algorithm to a sample.
+
+|gmean
+|geometric mean
+|Indicates that the numeric value was calculated by applying the geometric mean algorithm to a sample.
+
+|hmean
+|harmonic mean
+|Indicates that the numeric value was calculated by applying the harmonic mean algorithm to a sample.
+
+|median
+|median
+|Indicates that the numeric value is the middle value in a sorted list of sample values.
+
+|sum
+|sum
+|Indicates that the numeric value was calculated as the sum of a sample.
+
+|unknown
+|unknown
+|Indicates that the algorithm for calculating the numeric value from a sample is not known.
+
+|===

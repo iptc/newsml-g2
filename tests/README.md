@@ -1,6 +1,6 @@
 # NewsML-G2 Unit Test Suite
 
-[![IPTC](https://circleci.com/gh/iptc/newsml-g2.svg?style=svg)](https://app.circleci.com/pipelines/github/iptc/newsml-g2)
+[![CI](https://github.com/iptc/newsml-g2/actions/workflows/ci.yml/badge.svg)](https://github.com/iptc/newsml-g2/actions/workflows/ci.yml)
 
 We have created a set of unit tests for NewsML-G2, based on a set of test files
 that the IPTC NewsML-G2 Working Group have used internally over the years.
@@ -53,10 +53,11 @@ Here is one way you can run the tests on your own machine:
 
     OK
 
-## Automated testing with CircleCI
+## Automated testing with GitHub Actions
 
-Thanks to CircleCI, we automatically run the unit tests on each commit
-to this repository.
+The workflow in `.github/workflows/ci.yml` runs the unit tests, the Structure
+Matrix and §14 checks, and a full build of the documentation site on every
+pull request and every push to `main`.
 
 ## Notes on the tests
 
