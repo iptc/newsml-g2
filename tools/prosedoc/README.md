@@ -32,7 +32,8 @@ thing to fix.
 
 It is a deliberate trade rather than an oversight. Rendering chapter files
 individually loses everything the master document supplies — above all the
-section numbering, which other specifications cite. Reconstructing `2.6.1`
+section numbering, which IPTC's own documents (the errata page, for one)
+cite. Reconstructing `2.6.1`
 from chapter sources means reimplementing Asciidoctor's numbering and hoping
 the two agree. Splitting the rendered book keeps those strings byte for byte.
 
@@ -54,8 +55,11 @@ still balance, so the damage is invisible to a count and obvious in a browser,
 which reparents whatever follows — in this case swallowing the right-hand
 navigation into the body text.
 
-**Section numbering comes from the rendered book.** Other documents cite
-NewsML-G2 by section number, so those strings are load-bearing.
+**Section numbering comes from the rendered book.** IPTC's own documents
+cite NewsML-G2 by section number; we found no outside specification that does.
+What outside documents do rely on is section anchors — the ninjs Guidelines
+link to `specification/#introduction-to-eventsml-g2` — so a production build
+must redirect old single-page anchors to the chapter page that now holds them.
 
 **Sections are `h3`, not `h2`.** Both documents use exactly one `h2` per
 chapter — the chapter title. Expanding `h2` in the navigation shows a single

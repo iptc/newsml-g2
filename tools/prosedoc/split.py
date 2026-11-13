@@ -10,7 +10,7 @@ The input is the single-page HTML that `asciidoctor-to-html.sh` already
 produces in the specification and guidelines repositories, not the AsciiDoc
 sources. That is a deliberate, and temporary, choice — see README.md.
 
-Working from the rendered book keeps the section numbering people cite
+Working from the rendered book keeps the section numbering IPTC documents cite
 (2.6.1 and so on) byte for byte, because it is the same string Asciidoctor
 produced. Reconstructing it from chapter sources would mean reimplementing
 Asciidoctor's numbering and hoping the two agree.
