@@ -40,11 +40,8 @@ DEFAULT_SCHEMA_GLOB = os.path.join(
     REPO_ROOT, 'specification', 'NewsML-G2_*-spec-All-Power.xsd'
 )
 
-# The specification lives in a sibling repository, so its location is a flag
-# rather than an assumption. --check is skipped with a clear message when it is
-# not present, instead of failing a build for something outside this repo.
 DEFAULT_SPEC_CHAPTER = os.path.join(
-    REPO_ROOT, os.pardir, 'newsml-g2-specification',
+    REPO_ROOT, 'docs-src', 'specification',
     '_includes', 'chapters', '14_Specification_Reference.adoc',
 )
 
@@ -79,10 +76,8 @@ def _version_key(version):
 def run_check(schema, spec_chapter, verbose=False):
     """Report §14 annotations that do not bind to the schema."""
     if not os.path.isfile(spec_chapter):
-        print('skipping --check: specification chapter not found at\n  %s'
-              % spec_chapter)
-        print('Pass --spec-chapter to point at it.')
-        return 0
+        print('specification chapter not found at\n  %s' % spec_chapter)
+        return 1
 
     parsed, unbound = notes.parse(spec_chapter)
 
@@ -230,11 +225,7 @@ def main(argv=None):
 
     parsed = []
     if args.pages or args.partials:
-        if os.path.isfile(args.spec_chapter):
-            parsed, _ = notes.parse(args.spec_chapter)
-        else:
-            print('note: §14 annotations not merged (chapter not found at %s)'
-                  % args.spec_chapter)
+        parsed, _ = notes.parse(args.spec_chapter)
 
     if args.partials:
         target = os.path.join(args.output, 'partials', 'notes')

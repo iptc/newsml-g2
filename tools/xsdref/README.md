@@ -21,9 +21,8 @@ every other mode is pure Python, which is why CI runs those and not the
 preview.
 
 ```sh
-# Check Specification §14 annotations still match the schema. Exits 1 on a
-# mismatch. Needs the newsml-g2-specification repo checked out alongside this
-# one; skips with a message if it is not there.
+# Check Specification §14 annotations (docs-src/specification/) still match
+# the schema. Exits 1 on a mismatch (this runs in CI)
 tools/xsdref/generate.py --check
 
 # Regenerate the committed Structure Matrix for every version in releases/
