@@ -21,7 +21,7 @@ schema reference) is built from these sources by
 tools/docsite.py
 ```
 
-which writes `build/site/`. CI runs the same build on every push. Needs
+which writes `build/site/`. CI runs the same build on every pull request. Needs
 `asciidoctor` on `PATH`; see `tools/prosedoc/README.md`.
 
 To preview one book as a single page while editing, run Asciidoctor on its

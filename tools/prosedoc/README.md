@@ -16,7 +16,7 @@ tools/prosedoc/generate.py --book docs-src/specification/IPTC-G2-Specification.a
 Output goes to `build/site/`, which is gitignored. To build the books together
 with the schema reference as one site, with every link between them local, use
 `tools/docsite.py` instead; serve the result with `python3 -m http.server`.
-CI runs `tools/docsite.py` on every push and keeps the site as a build
+CI runs `tools/docsite.py` on every pull request and keeps the site as a build
 artifact.
 
 Each book is rendered from its master document by Asciidoctor, split into
@@ -26,7 +26,7 @@ as the books are split: `#the-data-model` becomes
 iptc.org become links to the local pages. Chapters with STEM (maths) content
 get the book's MathJax scripts back, which splitting would otherwise drop.
 
-Needs `asciidoctor` on PATH. CI pins the version (see `.circleci/config.yml`),
+Needs `asciidoctor` on PATH. CI pins the version (see `.github/workflows/ci.yml`),
 because the splitter reads Asciidoctor's HTML; upgrade it deliberately and
 check the output. Any Asciidoctor warning, such as an include or image that
 does not resolve, fails the build.

@@ -103,9 +103,9 @@ The AsciiDoc sources of both books are in `docs-src/` (moved from the
 2026). Edit them there, on a branch, like any other change.
 
 - `tools/docsite.py` builds the whole documentation site, both books and the
-  schema reference, into `build/site/`. CI runs the same build on every push
-  and fails on any Asciidoctor warning; the built site is kept as a CircleCI
-  artifact, so reviewers can read a change as rendered pages.
+  schema reference, into `build/site/`. CI runs the same build on every pull
+  request and fails on any Asciidoctor warning; the built site is kept as a
+  GitHub Actions artifact, so reviewers can read a change as rendered pages.
 - `tools/xsdref/generate.py --check` (also in CI) checks that every §14 note in
   the Specification still names an element, attribute or datatype in the
   schema.
