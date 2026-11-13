@@ -3,19 +3,19 @@
 ## These vars must be edited for each new release:
 
 # The initial revision of a new version is 1, first change becomes revision 2
-export NEW_NEWSMLG2_VERSION="2.35"
+export NEW_NEWSMLG2_VERSION="2.36"
 export NEW_NEWSMLG2_REVISION="1"
 
 # This should refer to the latest publicly released version and revision
-export OLD_NEWSMLG2_VERSION="2.34"
-export OLD_NEWSMLG2_REVISION="2"
+export OLD_NEWSMLG2_VERSION="2.35"
+export OLD_NEWSMLG2_REVISION="1"
 
 # Actual or expected approval date
-export APPROVAL_DATE="2025-05-16"
+export APPROVAL_DATE="2026-10-21"
 
 # Latest catalog version
 # translates to http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_##.xml
-export CATALOG_VERSION="40"
+export CATALOG_VERSION="42"
 
 ## we shouldn't need to alter anything below here
 
