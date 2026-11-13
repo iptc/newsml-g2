@@ -6,14 +6,12 @@
 """
 Split a rendered NewsML-G2 book into per-chapter fragments.
 
-The input is the single-page HTML that `asciidoctor-to-html.sh` already
-produces in the specification and guidelines repositories, not the AsciiDoc
-sources. That is a deliberate, and temporary, choice — see README.md.
-
-Working from the rendered book keeps the section numbering IPTC documents cite
-(2.6.1 and so on) byte for byte, because it is the same string Asciidoctor
-produced. Reconstructing it from chapter sources would mean reimplementing
-Asciidoctor's numbering and hoping the two agree.
+The input is the single-page HTML Asciidoctor renders from the book's master
+document (see generate.py), not the chapter sources one by one. Rendering the
+whole book keeps the section numbering IPTC documents cite (2.6.1 and so on)
+byte for byte, because the master document is what numbers the chapters.
+Rendering each chapter file on its own would mean reimplementing Asciidoctor's
+numbering and hoping the two agree.
 """
 
 from __future__ import annotations
@@ -57,15 +55,47 @@ def split_book(path):
                  for sub in sect.xpath('.//h3|.//h4')]
         title = ' '.join(heading.text_content().split())
         sect.remove(heading)
+        body = ''.join(LH.tostring(child, encoding='unicode') for child in sect)
         chapters.append({
             'file': slug(anchor),
             'anchor': anchor,
             'title': title,
             'heads': heads,
-            'body': ''.join(LH.tostring(child, encoding='unicode')
-                            for child in sect),
+            'body': body,
+            'stem': bool(STEM.search(body)),
         })
     return chapters
+
+
+# AsciiMath as Asciidoctor leaves it for MathJax: \$...\$ inline, or a block.
+STEM = re.compile(r'\\\$|class="stemblock"')
+
+
+def stem_scripts(path):
+    """
+    The MathJax configuration and loader from the end of a rendered book.
+
+    Asciidoctor emits them once, after the content, so splitting the book
+    leaves them behind; a chapter with STEM content needs them back.
+    """
+    root = LH.parse(path).getroot()
+    return ''.join(LH.tostring(script, encoding='unicode')
+                   for script in root.iter('script')
+                   if 'mathjax' in ((script.get('src') or '') +
+                                    (script.get('type') or '')).lower())
+
+
+IMG_SRC = re.compile(r'<img\b[^>]*\bsrc="([^"]+)"')
+
+
+def image_paths(chapters):
+    """Relative image paths used in the chapter bodies, e.g. ./images/x.png."""
+    found = set()
+    for chapter in chapters:
+        for src in IMG_SRC.findall(chapter['body']):
+            if not re.match(r'^[a-z][a-z0-9+.-]*:', src, re.I) and not src.startswith('/'):
+                found.add(src)
+    return sorted(found)
 
 
 def group_front_matter(chapters):

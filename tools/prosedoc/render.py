@@ -31,8 +31,8 @@ TOP_LINKS = (
     ('Schemas', 'https://github.com/iptc/newsml-g2/tree/main/specification'),
 )
 
-BANNER = ('<strong>Preview.</strong> Built from the published NewsML-G2 '
-          'documents by <code>tools/prosedoc</code>. This layout is a harness '
+BANNER = ('<strong>Preview.</strong> Built from the NewsML-G2 AsciiDoc '
+          'sources by <code>tools/prosedoc</code>. This layout is a harness '
           'for reviewing structure — it is not the published site.')
 
 CSS = """
@@ -153,8 +153,12 @@ def _pager(chapters, index):
     return '<div class="pager">%s%s</div>' % (previous, following)
 
 
-def write_pages(chapters, output_dir, docname, version=''):
-    """Write one page per chapter. Returns the paths written."""
+def write_pages(chapters, output_dir, docname, version='', stem=''):
+    """
+    Write one page per chapter. Returns the paths written.
+
+    `stem` is the book's MathJax markup, added only to chapters that use it.
+    """
     os.makedirs(output_dir, exist_ok=True)
     written = []
     for index, chapter in enumerate(chapters):
@@ -166,8 +170,9 @@ def write_pages(chapters, output_dir, docname, version=''):
                    _pager(chapters, index), _right_toc(chapter)))
         page = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
                 '<meta name="viewport" content="width=device-width,initial-scale=1">'
-                '<title>%s</title><style>%s</style></head><body>%s</body></html>'
-                % (html.escape(chapter['title']), CSS, body))
+                '<title>%s</title><style>%s</style></head><body>%s%s</body></html>'
+                % (html.escape(chapter['title']), CSS, body,
+                   stem if chapter.get('stem') else ''))
         path = os.path.join(output_dir, chapter['file'] + '.html')
         with open(path, 'w', encoding='utf-8') as handle:
             handle.write(page)

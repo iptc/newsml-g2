@@ -5,45 +5,48 @@ reference: artefact links and search across the top, chapters down the left
 with the current chapter's sections expanded, sub-headings on the right.
 
 ```sh
-# both books, from the sibling repositories
+# both books, from their AsciiDoc sources in docs-src/
 tools/prosedoc/generate.py --all
 
-# one book, explicitly
-tools/prosedoc/generate.py --book ../newsml-g2-specification/index.html \
+# one book, explicitly (a master .adoc, or an already rendered .html)
+tools/prosedoc/generate.py --book docs-src/specification/IPTC-G2-Specification.adoc \
                            --name Specification
 ```
 
 Output goes to `build/site/`, which is gitignored. To build the books together
 with the schema reference as one site, with every link between them local, use
 `tools/docsite.py` instead; serve the result with `python3 -m http.server`.
+CI runs `tools/docsite.py` on every push and keeps the site as a build
+artifact.
 
-Cross-references are rewritten as the books are split: `#the-data-model` becomes
+Each book is rendered from its master document by Asciidoctor, split into
+chapters, and written with the images it uses. Cross-references are rewritten
+as the books are split: `#the-data-model` becomes
 `introduction.html#the-data-model`, and links to the published books on
-iptc.org become links to the local pages.
+iptc.org become links to the local pages. Chapters with STEM (maths) content
+get the book's MathJax scripts back, which splitting would otherwise drop.
 
-## This is provisional, and here is exactly why
+Needs `asciidoctor` on PATH. CI pins the version (see `.circleci/config.yml`),
+because the splitter reads Asciidoctor's HTML; upgrade it deliberately and
+check the output. Any Asciidoctor warning, such as an include or image that
+does not resolve, fails the build.
 
-**It reads the built HTML, not the AsciiDoc sources.** The input is
-`index.html` from the specification and guidelines repositories — the file
-`asciidoctor-to-html.sh` produces when somebody runs it by hand. So the build
-depends on a working copy of two other repositories being checked out next
-door and up to date. That is the least maintainable thing here and the first
-thing to fix.
+## Still to do
 
-It is a deliberate trade rather than an oversight. Rendering chapter files
-individually loses everything the master document supplies — above all the
-section numbering, which IPTC's own documents (the errata page, for one)
-cite. Reconstructing `2.6.1`
-from chapter sources means reimplementing Asciidoctor's numbering and hoping
-the two agree. Splitting the rendered book keeps those strings byte for byte.
+**Old links into the single-page books.** Outside documents link to section
+anchors on the single-page books — the ninjs Guidelines link to
+`specification/#introduction-to-eventsml-g2` — and once split, that section is
+on its own page. Publishing needs a redirect from each old `#anchor` to the
+chapter page that now holds it.
 
 **The layout is a review harness, not a design.** The published site is a
 Phase 3 decision and will use the IPTC design system. What is worth settling
 now is the information architecture — how chapters divide, what each
 navigation level carries — because that is renderer-independent.
 
-**Nothing checks the output.** No link checking, no comparison against the
-source document, no CI. The schema reference has all three; this does not yet.
+**No link check.** The build fails on a broken include or image, but nothing
+yet checks the links in the finished site. A dozen cross-references are
+already broken in the sources (e.g. `#_bookmark911` in §14).
 
 ## What it gets right, and why those were not obvious
 
@@ -55,11 +58,12 @@ still balance, so the damage is invisible to a count and obvious in a browser,
 which reparents whatever follows — in this case swallowing the right-hand
 navigation into the body text.
 
-**Section numbering comes from the rendered book.** IPTC's own documents
-cite NewsML-G2 by section number; we found no outside specification that does.
-What outside documents do rely on is section anchors — the ninjs Guidelines
-link to `specification/#introduction-to-eventsml-g2` — so a production build
-must redirect old single-page anchors to the chapter page that now holds them.
+**It renders the whole book, then splits it.** IPTC's own documents cite
+NewsML-G2 by section number (the errata page, for one), and the master document
+is what numbers the sections. Rendering each chapter file on its own loses that
+numbering; reconstructing `2.6.1` would mean reimplementing Asciidoctor's
+numbering and hoping the two agree. Splitting the rendered book keeps those
+strings byte for byte.
 
 **Sections are `h3`, not `h2`.** Both documents use exactly one `h2` per
 chapter — the chapter title. Expanding `h2` in the navigation shows a single
@@ -79,6 +83,6 @@ first of them.
 
 | File | Purpose |
 |---|---|
-| `split.py` | Parse a rendered book into chapters; fold front matter |
+| `split.py` | Parse a rendered book into chapters; fold front matter; find images and STEM |
 | `render.py` | Emit the page shell, navigation and styling |
-| `generate.py` | Command line entry point |
+| `generate.py` | Render the master documents; command line entry point |

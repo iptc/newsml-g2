@@ -20,15 +20,16 @@ The result is flat static HTML with only relative links between its parts:
                             plus the search index and the Structure Matrix
 
 so the folder can be copied as-is to any path on any web server. (Opened from
-disk the pages read fine, but the reference search needs HTTP.) Needs asciidoctor on PATH (for the reference pages) and the
-specification and guidelines repositories checked out with their single-page
-index.html built.
+disk the pages read fine, but the reference search needs HTTP.) Everything is
+built from this repository: the schema in specification/ and the book sources
+in docs-src/. Needs asciidoctor on PATH.
 """
 
 from __future__ import annotations
 
 import argparse
 import os
+import re
 import shutil
 import sys
 import tempfile
@@ -41,9 +42,10 @@ from xsdref.generate import default_schema                             # noqa: E
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COMMITTED_MATRICES = os.path.join(REPO_ROOT, 'documentation', 'structure-matrix')
-SPEC_CHAPTER = os.path.join('newsml-g2-specification', '_includes', 'chapters',
-                            '14_Specification_Reference.adoc')
+SPEC_CHAPTER = os.path.join(REPO_ROOT, 'docs-src', 'specification', '_includes',
+                            'chapters', '14_Specification_Reference.adoc')
 PARTS = ('specification', 'guidelines', 'reference')
+IMG_SRC_RE = re.compile(r'(?<=<img )src="([^"]+)"')
 
 INDEX = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
@@ -55,12 +57,7 @@ INDEX = """<!doctype html>
 
 def build_reference(loaded, spec_chapter, work, target):
     """Generate the reference pages into `work`, then copy the HTML to `target`."""
-    parsed = []
-    if os.path.isfile(spec_chapter):
-        parsed, _ = notes.parse(spec_chapter)
-    else:
-        print('note: §14 annotations not merged (chapter not found at %s)'
-              % spec_chapter)
+    parsed, _ = notes.parse(spec_chapter)
     notes.write_partials(parsed, os.path.join(work, 'partials', 'notes'))
     pages = os.path.join(work, 'pages')
     render.write_pages(loaded, parsed, pages)
@@ -87,7 +84,7 @@ def build_reference(loaded, spec_chapter, work, target):
 
 def link_reference_to_books(target, maps):
     """
-    Point the reference's links into the books at the local pages.
+    Point the reference's links and images into the books at the local pages.
 
     §14 notes are rendered on reference pages, but their cross-references were
     written for the single-page Specification: `#the-data-model` names an
@@ -95,8 +92,10 @@ def link_reference_to_books(target, maps):
     left alone.
     """
     spec = maps['specification']
+    spec_images = os.path.join(os.path.dirname(target), 'specification', 'images')
     rewritten = 0
-    for name in os.listdir(target):
+    local_files = set(os.listdir(target))
+    for name in sorted(local_files):
         if not name.endswith('.html'):
             continue
         path = os.path.join(target, name)
@@ -114,7 +113,18 @@ def link_reference_to_books(target, maps):
                     book.group(1), maps[book.group(1)], book.group(2))
             return match.group(0)
 
+        def fix_image(match):
+            # §14 notes can include Specification tables with images (the
+            # orientation values), written relative to the book's imagesdir.
+            # The Specification build has already copied them.
+            src = match.group(1)
+            if (src not in local_files and '/' not in src
+                    and os.path.isfile(os.path.join(spec_images, src))):
+                return 'src="../specification/images/%s"' % src
+            return match.group(0)
+
         fixed = split.HREF_RE.sub(fix, page)
+        fixed = IMG_SRC_RE.sub(fix_image, fixed)
         if fixed != page:
             with open(path, 'w', encoding='utf-8') as handle:
                 handle.write(fixed)
@@ -126,9 +136,6 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.strip().split('\n')[0])
     parser.add_argument('--schema', help='path to an All-Power XSD '
                                          '(default: the one in specification/)')
-    parser.add_argument('--repos', default=os.path.dirname(REPO_ROOT),
-                        help='folder holding the specification and guidelines '
-                             'repositories (default: beside this one)')
     parser.add_argument('--output', default=os.path.join(REPO_ROOT, 'build', 'site'))
     args = parser.parse_args(argv)
 
@@ -140,17 +147,14 @@ def main(argv=None):
 
     loaded = schema_module.load(args.schema or default_schema())
     with tempfile.TemporaryDirectory() as work:
-        count = build_reference(loaded, os.path.join(args.repos, SPEC_CHAPTER),
+        count = build_reference(loaded, SPEC_CHAPTER,
                                 work, os.path.join(args.output, 'reference'))
     print('Reference      %3d pages    -> reference/ (schema %s)'
           % (count, loaded.version))
 
-    books = [(name, os.path.join(args.repos, relative), folder)
+    books = [(name, os.path.join(REPO_ROOT, relative), folder)
              for name, relative, folder in prose.BOOKS]
-    if prose.build_books(books, args.output):
-        return 1
-    maps = {folder: split.anchor_map(split.group_front_matter(split.split_book(path)))
-            for _, path, folder in books}
+    maps = prose.build_books(books, args.output)
     print('Reference pages linked into the books: %d'
           % link_reference_to_books(os.path.join(args.output, 'reference'), maps))
 
