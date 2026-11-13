@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:other="http://other.com/other-namespace"
+    standard="NewsML-G2"
+    standardversion="2.36"
+    conformance="power"
+    guid="tag:eee01s.com,2025:newsml_AI"
+    version="1"
+    xml:lang="en">
+    <catalogRef href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_42.xml"/>
+    <!-- -->
+    <itemMeta>
+        <itemClass qcode="icls:text" />
+        <provider literal="eee01s.com" />
+        <versionCreated>2025-02-07T12:34:56.000Z</versionCreated>
+    </itemMeta>
+    <contentMeta>
+        <digitalSourceType uri="https://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia" />
+        <userInteraction interactions="1" />
+        <aiInfo id="gen1">
+          <system qcode="ex-model:ModelABC" versioninfo="0.3">
+            <name xml:lang="en">Model ABC</name>
+            <name xml:lang="fr">La Model ABC</name>
+            <provider qcode="ex-prov:XYZ">
+              <name xml:lang="en">XYZ</name>
+              <name xml:lang="en-US">XYZee</name>
+            </provider>
+          </system>
+          <promptInfo>Positive: Article about global warming. Negative: Impact on sea levels</promptInfo>
+          <promptWriter literal="persDC1">
+            <name role="ex-role:main" xml:lang="en-GB">Dave Compton</name>
+          </promptWriter>
+          <other:x />
+        </aiInfo>
+        <aiInfo id="gen2a">
+          <system qcode="ex-model:AI-sys1" versioninfo="x.y">
+            <provider qcode="ex-prov:ABC">
+              <name xml:lang="en">ABC</name>
+            </provider>
+          </system>
+          <promptInfo>System Prompt: You are an editorial assistant that translates … User Prompt: Translate this press release from Japanese to English…</promptInfo>
+          <promptWriter qcode="ex-pers:Journo123" />
+        </aiInfo>
+        <aiInfo id="gen2b">
+          <system qcode="ex-model:AI-sys2" versioninfo="2.1b5">
+            <provider qcode="ex-prov:ABCD">
+              <name xml:lang="en">ABCD</name>
+            </provider>
+          </system>
+          <promptInfo>System Prompt: You are an editorial assistant that summarises … User Prompt: Summarise this press release ...</promptInfo>
+          <promptWriter qcode="ex-pers:Editor123" />
+        </aiInfo>
+        <!-- #ai#UC3: Simple AI gen Image -->
+        <aiInfo id="gen3">
+          <system qcode="ex-model:DALL-E" versioninfo="v1.0.2">
+            <name xml:lang="en">DALL-E</name>
+            <provider qcode="ex-prov:OpenAI">
+              <name xml:lang="en">OpenAI</name>
+            </provider>
+          </system>
+          <promptInfo>Create an image of a field of sunflowers</promptInfo>
+          <promptWriter uri="http://cv.iptc.org/newscodes/newsprovider/AFP">
+            <name role="ex-role:main">Agence France-Presse</name>
+          </promptWriter>
+        </aiInfo>
+        <!-- Desc -->
+        <creator literal="Dave Compton">
+          <name>Dave Compton</name>
+          <name />
+        </creator>
+        <contributor literal="Dave Compton" role="cpprole:genAIPromptWriter">
+          <name>Dave Compton</name>
+        </contributor>
+        <contributor literal="ChatGPT" type="cpnat:software" role="cpprole:generator">
+          <name>ChatGPT</name>
+        </contributor>
+        <headline>Headline: AI Testing</headline>
+    </contentMeta>
+    <derivedFrom idrefs="gen1 gen2a">
+        <broader qcode="mduAction:enrichMetadata" />
+        <related rel="extCptRel:hasWorker" qcode="sys:AIController">
+            <related rel="extCptRel:hasWorkerDetail" qcode="aiActor:applyUserPrompt" />
+        </related>
+    </derivedFrom>
+    <derivedFrom idrefs="act1 rc1-main">
+        <broader qcode="mduAction:enrichMetadata" />
+        <related rel="extCptRel:hasWorker" qcode="sys:AIController">
+            <related rel="extCptRel:hasWorkerDetail" qcode="aiActor:applyUserPrompt" />
+            <related rel="extCptRel:hasGenerationInfo" value="gen1" valuedatatype="xs:ID" />
+        </related>
+    </derivedFrom>
+    <!-- #ai#UC3B: content: derivedFrom -->
+    <!-- 2026-01-30 -->
+    <derivedFrom idrefs="rc1-main">
+        <broader qcode="mduAction:enrichMetadata" />
+        <related rel="extCptRel:hasWorker" qcode="sys:AIController">
+            <related rel="extCptRel:hasWorkerDetail" qcode="aiActor:applyUserPrompt" />
+            <related rel="extCptRel:hasGenerationInfo" value="gen1" valuedatatype="xs:ID" />
+        </related>
+        <!-- -->
+        <related rel="extCptRel:hasGenerator">
+            <related rel="extCptRel:hasRole" qcode="xxx:someRole" />
+            <related rel="extCptRel:hasSystem" qcode="xxx:DALL-E">
+                <name xml:lang="en">DALL-E</name>
+                <related rel="extCptRel:hasVersion" value="v3" valuedatatype="xs:string" />
+            </related>
+            <related rel="extCptRel:hasPromptInfo">
+                <related rel="extCptRel:hasPromptRole" qcode="xxx:userPrompt" />
+                <related rel="extCptRel:hasPrompt" value="Create an image of a field of sunflowers" valuedatatype="xs:string" />
+                <related rel="extCptRel:hasPromptWriter" literal="afp" />
+            </related>
+        </related>
+    </derivedFrom>
+    <!-- -->
+    <contentSet>
+        <!-- #ai#UC3B: content -->
+        <!-- #afp -->
+        <!-- NB: Assume 'main' is the only AI-generated rendition -->
+        <remoteContent id="rc1-main" rendition="rend:main" href="https://example.com/autogen/pix/Image001.jpg" />
+        <remoteContent id="rc1-view" rendition="rend:viewImage" href="https://example.com/autogen/pix/Image001-view.jpg" />
+        <remoteContent id="rc1-thumb" rendition="rend:thumbnail" href="https://example.com/autogen/pix/Image001-thumb.jpg" />
+    </contentSet>
+</newsItem>
