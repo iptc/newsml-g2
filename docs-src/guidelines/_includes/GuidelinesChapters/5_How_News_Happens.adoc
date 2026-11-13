@@ -1,0 +1,91 @@
+[[how-news-happens]]
+How News Happens
+----------------
+
+[[how-news-happens-introduction]]
+Introduction
+~~~~~~~~~~~~
+
+NewsML-G2 represents a content and processing model for news that aligns with the way that professional news organisations work. It is therefore important that implementers have at least a high-level understanding of how the news business works, in order to appreciate the rationale behind its features.
+
+An event becomes news when someone decides to create a record of it, and place that record in the public domain. Professional news production is not a haphazard or random process, but a highly organised activity, shaped by a number of influences:
+
+* The publishing of news originally centred on printing, an industrial process which imposes time and logistical constraints. Print remains an important channel for news dissemination.
+* The selection of what is, and what is not, news to any given audience is vital to the success of any publishing venture, whether in print, broadcasting, web or other media.
+* For legal and ethical reasons, professional news organisations ensure that standards are maintained in the selection and production of news, and that content is reviewed before being authorised for release to the public
+
+These constraints and considerations lead to the news production process being divided into five generic domains:
+
+* Planning and Assignment
+* Information Gathering
+* Verification
+* Dissemination
+* Archiving
+
+[[assignment]]
+Assignment
+~~~~~~~~~~
+
+News organisations need to plan their operations, based on prior knowledge of newsworthy events that are expected to occur in any given time frame (daily, weekly, monthly and so on). The resulting schedule of events is called a variety of names, according to custom, such as schedule, budget, day book or diary.
+
+Unexpected events (breaking news) will cause this schedule to change at short notice.
+
+According to the schedule, people and resources will be assigned to “cover” the news events, and those who are dependent on the timely gathering of the news, such as co-workers and customers, will be kept informed of expected coverage, deadlines and any updates,
+
+Large organisations may have several schedules for different categories of news, for example General News, Sport, Finance, Features etc.
+
+Increasingly, text and pictures are being augmented by dynamic content: video, audio, animated graphics, and the availability of this material needs to be signalled in the schedule to interested parties in a way that is amenable to software processing.
+
+These business processes are addressed by Events in NewsML-G2 and Editorial Planning – the Planning Item.
+
+[[information-gathering]]
+Information Gathering
+~~~~~~~~~~~~~~~~~~~~~
+
+Most people recognise the model – beloved of Hollywood – of reporters, photographers, film/video and sound personnel rushing to the scene of a news event and generating content based on material they are able to obtain as the event unfolds.
+
+In fact, news is gathered by an endless variety of means, such as press releases, reports from news agencies and freelance journalists, tip-offs from the public, statements on web sites, blogs etc. Generally, information gathered in this way is incomplete and needs to be augmented by additional material. Sometimes this material is gathered and prepared by contributors, working with the original creator.
+
+This information gathering process ultimately results in journalists submitting event coverage: written copy, photographs, video footage and so on, to the Verification Stage of an editorial workflow.
+
+[[verification]]
+Verification
+~~~~~~~~~~~~
+
+The process of verifying the authenticity of news often starts before the content is generated, as part of the selection and assignment process. However, the detail of the content needs to be checked before the content can be released.
+
+Responsible news organisations take steps to ensure that the facts of any news coverage are correct, and that they are presented in a fair, balanced and impartial way. It is also surprisingly easy to break the law by the inappropriate release of content. Lawyers or legally-trained staff routinely work with editors to ensure that content does not transgress the civil or criminal law, and that it is not gratuitously offensive to individuals or groups.
+
+Clear and consistent writing, spelling and grammar are considered important and an organisation’s rules will often be written down in a Style Guide which journalists are required to use when writing and editing.
+
+Only when content meets all of the required standards will it be authorised for release. Completing these essential tasks under time pressure is one of the major operational challenges faced by news organisations.
+
+[[dissemination]]
+Dissemination
+~~~~~~~~~~~~~
+
+Although seen conceptually as a physical “publication” process, the dissemination of information and news assets in digital form is pre-eminent today.
+
+When news is received electronically, the recipient needs to be able to process the information quickly and reliably. When one considers that each day, a large news organisation may receive, from multiple sources, thousands of images, and hundreds of thousands of words of text, plus video, audio and graphics, the scale of the processing required becomes apparent.
+
+The management of news requires organisations to know whether any given piece of content is useable, and in what context. Media organisations often receive content under _embargo_. This is information that has been released to professional journalists in advance so that they may complete any work needed to make it ready for dissemination to the public. Only when the _embargo time_ has passed may the content be published. These informal protocols work because it is in the interests of all parties to co-operate. If they break an embargo, journalists know that their job may become more difficult because the provider will withhold information in future.
+
+When content is transmitted electronically, it cannot be physically deleted by the provider. There must therefore be a means for providers to inform their customers that a piece of content must be deleted, (“cancelled” or “killed”) and it is vital that any examples of the content are deleted from all systems, including archives, often for copyright or serious legal reasons.
+
+The right to use a piece of content is an important aspect of news. Picture and video rights can be particularly complex. Although formal rights languages that are machine-readable, such as RightsML, (http://www.rightsml.org/[www.rightsml.org]) are available, many organisations continue to indicate rights using a natural-language statement.
+
+This management and administrative information must also be accompanied by descriptive information – metadata – that enables the receiver to direct the content to the appropriate workflow and users, retrieve related content, and if necessary re-purpose it for a variety of media channels.
+
+Descriptive metadata will include some type of classification of the news so that its relevance to a sphere of interest(s) can be determined. Ad-hoc tags or keywords are useful, but their value is increased if they form part of a formal classification scheme, or taxonomy.
+
+The use of taxonomies enables searches to yield consistent predictable results across a wide range of content and further enables accurate processing of content by software.
+
+[[archiving]]
+Archiving
+~~~~~~~~~
+
+A comprehensive digital archive of news, people and organisations plays an increasingly active role in the news process because of the features offered by electronic media such as the World Wide Web.
+
+Today it is desirable to publish news which contains links to related news and information assets, allowing the consumer to view any aspect of a news story, including details of the people and organisations involved, and the concepts at issue.
+
+The archiving process completes the news production cycle and accurate, comprehensive metadata is the key to unlocking the value of this information asset. The value of content is in direct proportion to the quality and quantity of its metadata; one can imagine that content with no metadata could be almost valueless.

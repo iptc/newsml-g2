@@ -1,0 +1,768 @@
+[[generic-processes-and-conventions]]
+Generic Processes and Conventions
+---------------------------------
+
+This Chapter discusses some processes, procedures and conventions which
+are generic to all NewsML-G2 Items, and relate to best practice in the
+wider context of news processing.
+
+[[processing-rules-for-newsml-g2-items]]
+Processing Rules for NewsML-G2 Items
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+NewsML-G2 is designed for maximum inter-operability, however,
+providers are strongly recommended to document their implementations of
+NewsML-G2 and the provider-specific rules and conventions used.
+
+This information must be provided to receivers so that generic NewsML-G2
+processors can be parameterised accordingly
+
+An obvious example is Packages (see Package Processing Considerations)
+where the structure and content types must be pre-arranged between
+provider and receivers in order to facilitate correct processing.
+
+Another example is the use of property attributes such as @role and
+@type which refine the semantic of the property. There needs to be a
+clear understanding of the concepts being used in these circumstances
+for the full value of the information to be useful.
+
+[[using-links]]
+Using Links
+~~~~~~~~~~~
+
+[[introduction-18]]
+Introduction
+^^^^^^^^^^^^
+
+The <link> property is used in the <itemMeta> section of a NewsML-G2
+document to create a navigable link between the Item and a related
+resource. Examples of the target of a link could be a Web page, a
+discrete object such as an image file, or another NewsML-G2 Item.
+
+Valid uses of <link> include:
+
+* To indicate a supplementary resource, for example a picture of a
+person mentioned in an article.
+* To identify the resource that an Item is derived from, for example if
+providing a translation.
+* where systems do not support versioning, to provide a link to the
+previous version of an Item.
+* To identify the previous "take" of a multi-page article, or the
+previous Item in a series of Items. (Note that these use cases are not
+explicitly supported by the current version of the IPTC Item
+Relationship NewsCodes. The <memberOf> property of Item Metadata
+expresses that an Item is part of a series of Items, but not its
+sequence.)
+* Where a News Item conveys formatted text which references an
+illustration, a dependency link from the article to the illustration is
+indicated using <link>.
+
+[[link-properties]]
+Link properties
+^^^^^^^^^^^^^^^
+
+Link uses the Link1Type datatype, with optional attributes for Item
+Relation (@rel) and the Target Resource Attributes group, optionally with more extensive
+attributes which permit any property consistent with the structure of
+the target resource to be used as a processing Hint. See link:#adding-hints-from-the-nar-namespace[Adding Hints from the NAR namespace]
+
+[[item-relation-rel-and-the-item-relationship-newscodes]]
+Item Relation @rel and the Item Relationship NewsCodes
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+A QCode indicating the relationship of the current Item to the target
+resource. For example, if the current Item is a translation from an
+original article, the relationship may be indicated using the IPTC Item
+Relation NewsCodes, for example:
+
+[source, xml]
+<link rel="irel:translatedFrom">
+
+The default relationship between the host Item and a resource identified
+by a <link> is "See also". The CV broadly defines three types of
+relationship:
+
+* Navigation: "See Also".
+* Dependency: "Depends On".
+* Derivation: includes "Derived From" and other refinements of
+derivation relationships.
+
+The IPTC recommends that for derivation relationships, implementers
+should use the most specific available representation. For example if a
+picture conveyed by the item is a crop of the image indicated by <link>,
+"Derived From" is not inaccurate, but "Cropped From" is preferred as it
+is more specific.
+
+[[iptc-item-relationship-cv-scheme-uri-httpcv.iptc.orgnewscodesitemrelation]]
+It is recommended to use the IPTC Item Relationship NewsCodes (Scheme URI http://cv.iptc.org/newscodes/itemrelation/)
+
+[[target-resource-attributes-2]]
+Target Resource Attributes
+++++++++++++++++++++++++++
+
+These are property attributes that enable the receiver to accurately
+identify the remote resource, its content type and size. See Target
+Resource Attributes for further information.
+
+[[item-title-title]]
+Item Title <title>
+++++++++++++++++++
+
+A short natural language name describing the link, intended to be
+displayed to users. It is not necessary that this <title> should be
+extracted from the target resource. For example, a journalist may wish
+to add a link and write a title for it.
+
+[source, xml]
+<title xml:lang="en-GB">File picture of President Obama</title>
+
+[[hint-and-extension-point-1]]
+Hint and Extension Point
+++++++++++++++++++++++++
+
+Any number of metadata properties from the IPTC’s News
+Architecture (NAR) namespace may be included. For example, a picture
+referenced by a link may have the recommended filename extracted from
+the target resource as an aid to processing. See link:#hints-and-extension-points-in-newsml-g2[Hints and Extension Points in NewsML-G2] for detailed guidance on this feature.
+
+[[link-examples]]
+ Link examples
+^^^^^^^^^^^^^^
+
+[[a-supplemental-picture-with-a-text-article-ccl]]
+A supplemental picture with a text article
+++++++++++++++++++++++++++++++++++++++++++
+
+The sender of a News Item containing a text article wishes to include a
+link to a picture that may optionally be retrieved to illustrate the
+article. The relationship to the target resource is "see also".
+
+[source, xml]
+<newsItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    guid="tag:acmenews.com,2008:TX-PAR:20090529:JYC85"
+    version="1"
+    ...>
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        ...
+        <edNote>With picture</edNote>
+        <link
+            rel="irel:seeAlso" <!-- Item relation -->
+            residref="tag:acmenews.com,2008:TX-PAR:20090529:JYC80"> <!--Item ref -->
+            <title>
+                File picture of President Obama
+            <title />
+        <link />
+        ...
+    </itemMeta>
+    ...
+</newsItem>
+
+[[a-required-picture-with-a-text-article-pcl]]
+A required picture with a text article
+++++++++++++++++++++++++++++++++++++++
+
+A News Item contains a text article which is marked up explicitly to
+reference a picture (for example in XHTML). The picture is required for
+correct display of the text-with-picture story, therefore the
+relationship to the target resource is "depends on".
+
+A NewsML-G2 processor should pre-fetch this required
+target resource before the content of the News Item is processed. As
+shown in the example below, the path to the linked resource is established using `href` and <fileName> defines the name of the pre-fetched resource that will ensure that the content of the parent News Item will display correctly. In this example, we have also added the `contenttype` property.
+
+[source, xml]
+<newsItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    guid="tag:acmenews.com,2008:TX-PAR:20090529:JYC85"
+    version="1"
+    standard="NewsML-G2" standardversion="2.35" conformance="power"
+    ...>
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        ...
+        <edNote>With picture</edNote>
+        <link
+            rel="irel:dependsOn" <!-- Item relation -->
+            href="https://acmenews.com/2008/TX-PAR/20090529/JYC85/obama-omaha-20090529130135.jpg"
+            contenttype="image/jpeg">
+            <fileName>
+                obama-omaha-20090529130135.jpg
+            </fileName>
+        </link>
+        ...
+    </itemMeta>
+    <contentSet>
+        <inlineXML>
+            <html xmlns="http://www.w3.org/1999/xhtml">
+            ...
+            <p>At Omaha Beach, President Obama led a ceremony to mark the landing of
+            thousands of U.S. troops on D-Day.</p>
+            <img style="position: absolute; left: 0px; top: 0px;"
+            src="file:///obama-omaha-20090529130135.jpg"> <!-- embedded picture ref -->
+            ...
+        </inlineXML>
+    </contentSet>
+</newsItem>
+
+[[linking-to-previous-versions-of-an-item]]
+Linking to previous versions of an Item
++++++++++++++++++++++++++++++++++++++++
+
+(See also link:#processing-updates-and-corrections[Processing Updates and Corrections]) Some content management systems do not maintain a common identifier for successive versions of an information asset (such as text or picture), but maintain a link to
+the identifier of the previous version of the asset. In these
+circumstances, a <link> can inform recipients that the current Item is a
+new version of a previously published Item, and provide a navigation to
+retrieve the previous version of the Item, if required. The relationship between the current item and the previous version is "previousVersion".
+
+NOTE: Even where providers use the same ID, it is not mandatory to use a
+consecutive ascending sequence of numbers to indicate successive
+versions of an Item. Where it is required to positively identify the
+previous version of an Item, a provider SHOULD add a <link> to the
+previous version.
+
+[source, xml]
+<newsItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    guid="tag:acmenews.com,2008:TX-PAR:20090529:JYC85"
+    version="1"
+    ...> <!-- new Item, first version -->
+    <itemMeta>
+        <itemClass qcode="ninat:text" />
+        ...
+        <edNote>Replaces previous version. MUST correction, updates name of
+            minister</edNote>
+        <signal qcode="sig:correction" />
+        <link
+            rel="irel:previousVersion"
+            residref="tag:acmenews.com,2008:TX-PAR:20090529:JYC80"
+            version="1"/> <!-- previous Item, first version -->
+        ...
+    </itemMeta>
+    ...
+</newsItem>
+
+Using this method, other target resources such as previous "takes" of a
+multi-page article, the original picture from which the current item was
+cropped, or the original text from which a translation has been made,
+can be expressed using <link>
+
+[[publishing-status]]
+Publishing Status
+~~~~~~~~~~~~~~~~~
+
+The NewsML-G2 <pubStatus> property uses a mandatory IPTC CV that
+contains three values:
+
+* usable
+* withheld
+* canceled
+
+These terms have a specific meaning in a professional news workflow, and
+it is the IPTC’s intention in designing NewsML-G2 that they be
+interpreted by software systems. They are NOT intended as advisory
+notices to journalists, although of course the Publishing Status may
+well be a read-only property displayed by an editing system.
+
+If no <pubStatus> property is present in an Item, the default value is
+"usable", meaning that the item and its contents may be published.
+
+If an Item has a publishing status of "withheld", this signals that the
+Item and its contents MUST NOT be made public by whatever means until further notice, and if the Item has been published, the publisher MUST take immediate action to withdraw or retract it. The Item
+ may be made public ONLY after receipt of a new version of the Item
+– using the same GUID – that has a status of "usable".
+
+For example, a provider may send an item of news (version 1), and
+subsequently decided that a correction or amplification is needed, which
+requires the sending of a new version of the Item. If the new version
+will not be ready for an appreciable time, the provider may send a new
+version (version 2) of the Item with a status of "withheld". When the corrected version is
+ready, it will be sent – using the same GUID – with a status of "usable"
+(version 3).
+
+If an Item cannot be corrected, or the Item needs to be permanently withdrawn for some other reason, the provider should use "canceled" the third value of <pubStatus> (note U.S. spelling). An Item that is "canceled" MUST NOT be made public by whatever means. If the Item has been published the publisher MUST take immediate action to withdraw or retract it. All versions of the Item MUST be deleted from all locations, including archives. News organisations have faced legal action arising from the inadvertent re-publication of defamatory content from an archive. 
+
+image::PubStatus.png[PubStatus.png]
+
+.Figure: State Transition Diagram for <pubStatus>
+
+As the State Transition diagram shows, an Item that is "withheld" may have its Publication Status changed to "usable" or "canceled" in subsequent versions, but a "canceled" Item CANNOT have its status changed back to "usable" or "withheld".
+
+The <pubStatus> property is part of the <itemMeta> component, and uses a
+QCode value. The scheme alias for the IPTC Publishing Status NewsCodes
+is "stat":
+
+[source, xml]
+<pubStatus qcode="stat:usable" />
+
+[[embargo]]
+Embargo
+~~~~~~~
+
+Professional, or business-to-business, news organisations often make use
+of an _embargo_ to release information in advance, on the strict
+understanding that it may not be released into the public domain until
+after the _embargo time_ has expired, or until some other form of
+permission has been given.
+
+Embargo is NOT the same as the Publishing Status. Some systems process
+the embargo time using software in order to trigger the release of
+content when the embargo time is passed, but the intention of embargo is
+also as an information management feature for journalists.
+
+Embargos are generally an unwritten agreement and have no legal force.
+Their success depends on cooperation between parties not to abuse the
+system. Possible abuses include imposing unnecessary embargos in order
+to manage the impact of news, or by breaking embargos and releasing news
+into the public domain too early.
+
+NewsML-G2 uses the optional <embargoed> property in <itemMeta> to
+indicate whether an item is under an embargo. If the property is absent
+there is no embargo:
+
+[source, xml]
+<embargoed>2025-10-23T12:00:00Z</embargoed>
+
+If the property is present AND empty, this enables providers to release
+an item under embargo when the precise date and time that the embargo
+expires is not known. In these circumstances, an <edNote> or some
+contractual agreement between the provider and customer will specify the
+conditions under which the embargo may be lifted.
+
+For example, a provider may release an advance copy of a speech which
+may not be released to the public until the speaker has finished
+delivering it. The provider would have no way of knowing exactly when
+this would be. Therefore some other means of authorising the release may
+be negotiated between the parties, such as email or a phone call:
+
+[source, xml]
+<embargoed />
+<edNote>
+    Note to editors: STRICTLY EMBARGOED. Not for release until authorised.
+    Our +
+    News Desk will advise your duty editor by email. Release expected
+    about +
+    12noon on Monday, February 9.
+</edNote>
+
+The processing model is illustrated in the diagram below.
+
+image::Embargo.png[Embargo.png]
+
+.Figure: Receiver-side rules for processing <embargoed>
+
+Check the corresponding NewsML-G2 Specification Document for further
+information regarding processing rules for <embargoed>. 
+
+[[geographical-location]]
+Geographical Location
+~~~~~~~~~~~~~~~~~~~~~
+
+There are two properties of <contentMeta> that express the geographic
+location(s) associated with a NewsML-G2 Item, with a distinction between
+their uses.
+
+The Located <located> property expresses the origin of the content:
+where the content was created, for example a text article written or a
+picture taken. The intention of <located> is as a machine-readable
+equivalent to the location given in a Dateline. (The NewsML-G2
+<dateline> property is also available as a natural-language string. for
+example "MOSCOW, Monday (Reuters)")
+
+The accepted convention, which in some news organisations is formalised
+as part of a code of practice, is that the Dateline identifies the place
+where content is created, NOT the place where an event takes place. They
+may be the same, but this is not necessarily the case.
+
+* In conflict zones, journalists may not have access to the area where
+reported events are taking place.
+* Even when physical access is not an issue, journalists may have relied
+on interviewing people by telephone or on reports from freelance
+correspondents in order to get the material used to write an article.
+
+The Located property is therefore provided to express the place of
+origin of content as part of _Administrative_ Metadata:
+
+[source, xml]
+<located type="loctyp:City" qcode="ex-city:75000">
+    <name>Paris</name>
+</located>
+
+To express the geographical information that is important in the context
+of the article or picture, the Subject property <subject> is used,
+optionally using a Concept type (@type) In the example below
+"cpnat:geoArea" from the IPTC Concept Nature NewsCodes, is used, but
+providers may have their own scheme(s).
+
+The Subject property is _Descriptive_ Metadata:
+
+[source, xml]
+<subject type="cpnat:geoArea" qcode="ex-city:Tblisi">
+    <broader qcode="ex-cntry:Georgia">
+        <name>Georgia</name>
+    </broader>
+</subject>
+
+This news story fragment from Reuters and the accompanying code listing
+illustrate the use of <located> and <subject>. The geographical subjects
+of the report are Georgia and South Ossetia, but the report was written
+in Moscow:
+
+ MOSCOW, Monday (Reuters) - The breakaway Georgian region of South
+ Ossetia alleged today that two unexploded Georgian shells landed in its
+ capital Tskhinvali, but Tbilisi dismissed the claim as nonsense.
+ 
+ Both sides have regularly...
+
+.LISTING 24: Illustrating Located, Subject and Dateline
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies, except for the following alias values: _ex-city_, _ex-cntry_,
+_ex-reg_ and _ex-web_.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_24_Illustrating_Located_Subject_and_Dateline.xml[]
+----
+
+[[processing-updates-and-corrections]]
+Processing Updates and Corrections
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By its nature, news may need frequent updating, and in some cases
+correcting, as new facts emerge. The simplest NewsML-G2 mechanism for
+dealing with updated content is to re-issue an Item using the same GUID
+with a new Version.
+
+In the absence of any specific instructions from the provider, a
+"usable" item should be regarded as replacing any previous version of
+the Item with the same GUID. In practice, a provider is likely to
+provide some supplementary information in the form of a human-readable
+<edNote> which can be displayed to inform recipients of the reason for
+the update.
+
+NewsML-G2 also provides machine-readable features to express whether a
+new version updates or corrects previous versions of an Item and a
+further indication of the impact of the change, using the <signal>
+property under Item Metadata.
+
+Signal may use a QCode to identify an action from a CV. To promote interoperability, the IPTC maintains the link:http://cv.iptc.org/newscodes/signal/[Signal NewsCodes] (see below) for this purpose, but note it is up to the provider to specify the rules for applying the codes so that their end-users can correctly process the instruction.
+
+[[signalling-an-update-or-correction]]
+Signalling an Update or Correction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Any version of an Item except the initial version is implicitly an
+update of the previous version. It is not required to use the update
+signal, but it is not always possible to infer from the version number
+whether a document is an initial version or is implicitly an update.
+Therefore the IPTC recommends that <signal> is used with the IPTC Signal
+NewsCodes (Scheme URI http://cv.iptc.org/newscodes/signal/ and
+recommended Schema Alias "sig"). The relevant members of the Scheme are:
+
+include::{includedir}/../../GuidelinesTables/Signal.adoc[]
+
+In addition, the Editorial Note <edNote> property under Item Metadata
+may be used to provide natural language details about the update or
+correction, such as specifying a name in the text that has been
+corrected or whether a paragraph with updated information has been added
+to the text.
+
+[source, xml]
+<newsItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    guid="tag:afp.com,2008:TX-PAR:20090529:JYC80" <!-- current item -->
+    version="2" new version
+    ...>
+    <itemMeta>
+        ...
+        <edNote>Updates previous version by appending these paragraphs</edNote>
+        <signal qcode="sig:update" />
+        ...
+
+[[signalling-the-impact-of-an-update]]
+Signalling the impact of an update
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It’s possible to express the impact of an update or correction using
+@severity and one of the Severity NewsCodes
+(http://cv.iptc.org/newscodes/severity/), recommended Scheme Alias "sev"
+. 
+
+The two (self-explanatory) NewsCodes for Severity are:
+
+* Major
+* Minor
+
+For example:
+
+[source, xml]
+<newsItem xmlns="http://iptc.org/std/nar/2006-10-01/" 
+    guid="tag:afp.com,2008:TX-PAR:20090529:JYC80" // <1>
+    version="234256" // <2>
+    ...>
+    <itemMeta>
+        ...
+        <link
+            guidref="tag:afp.com,2008:TX-PAR:20090529:JYC80"
+            version="1234" />
+        <edNote>URGENT: Appends judge’s statement to previous version</edNote>
+        <signal qcode="sig:update" severity="sev:major" />
+        ...
+
+<1> current item
+<2> new version
+        
+[[Warning]]
+
+[[content-warning]]
+Content Warning
+~~~~~~~~~~~~~~~
+
+The <signal> property in Item Metadata may be used to inform end-users
+that the nature of the content being sent may be perceived as being
+offensive to some audiences. This uses the IPTC Signal NewsCodes, with
+Scheme URI http://cv.iptc.org/newscodes/signal and recommended Schema
+Alias "sig" with a code of "cwarn" (Content Warning):
+
+[source, xml]
+<signal qcode="sig:cwarn" />
+
+Optionally, the nature of the warning can be expressed using the Exclude
+Audience property <exclAudience> and using the IPTC Content Warning
+NewsCodes. The Scheme URI is
+http://cv.iptc.org/newscodes/contentwarning/  and recommended Scheme
+Alias is "cwarn". The Scheme values are:
+
+include::{includedir}/../../GuidelinesTables/Content-Warning.adoc[]
+
+For example:
+
+[source, xml]
+<signal qcode="sig:cwarn" />
+    <exclAudience qcode="cwarn:nudity"/>
+    <exclAudience qcode="cwarn:language"/>
+
+[[Ratings]][[_Ref340666204]][[_Ref375077249]][[_Ref375077257]]
+
+[[working-with-social-media]]
+Working with Social Media
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[ratings]]
+Ratings
+^^^^^^^
+
+The ability for end-users to rate or interact with content has undergone
+enormous growth as part of social media and the "socialising" of the
+Web, and has led to a clear business need that user actions and ratings
+must be expressed as part of the metadata for all kinds of content.
+
+G2 provides a set of properties for implementers for a flexible use in
+expressing actions and ratings:
+
+* The <userInteraction> element can be used to express interactions with
+the content of this item such as Facebook "likes", tweets, and page
+views.
+* The <rating> element contains means to express a rating value that
+applies to the content of this item, such as a star rating, and includes
+the ability to convey how many "raters" led to the rating, plus
+information about how the rating system is constructed and how the
+rating value was calculated.
+
+Both elements are children of <contentMeta> in any type of NewsML-G2
+Item, and of <partMeta> in any NewsML-G2 Item except for Concept Items
+and Planning Items.
+
+[[the-userinteraction-element]]
+The <userInteraction> element
++++++++++++++++++++++++++++++
+
+This element expresses the number of times that end-users have
+interacted with content in the form of "Likes", votes, tweets and other
+metrics. If the element is used, it has two mandatory attributes:
+
+* interactions: the count of executed interactions (expressed as a
+non-negative integer)
+* interactiontype: a QCode indicating the type of interaction which is
+reflected by this property. The proposed IPTC CV is User Interaction
+Type, Scheme URI http://cv.iptc.org/newscodes/useractiontype/ with a
+recommended Scheme Alias of "useracttype"
+
+The example below expresses the number of Facebook "Likes", Google+ "+1"
+and tweets garnered by the content conveyed in the NewsML-G2 document.
+
+[source, xml]
+<contentMeta>
+    ...
+    <userInteraction
+        interactions="36"
+        interactiontype="useracttype:fblike" />
+    <userInteraction
+        interactions="22"
+        interactiontype="useracttype:googleplus" />
+    <userInteraction
+        interactions="1203"
+        interactiontype="useracttype:tweets" />
+    ...
+</contentMeta>
+
+The User Action Type NewsCodes have a Scheme URI of
+http://cv.iptc.org/newscodes/useractiontype/ and a recommended Scheme
+Alias of "useracttype". NewsCodes in the scheme are:
+
+include::{includedir}/../../GuidelinesTables/User-Action.adoc[]
+
+[[the-rating-element]]
+The <rating> element
+++++++++++++++++++++
+
+Ratings such as "five stars" have existed for many years, in the news
+domain they have been a long-standing feature of image management
+software. Now they are used on the Web for all kinds of content as
+providers seek to engage audiences and promote feedback. However,
+different types of rating are needed – for example content may be rated
+in terms of how "useful" it was to the user – so the NewsML-G2 <rating>
+element is a wrapper for attributes that can define different rating
+models, including :
+
+* How the rating is expressed
+* How many individual ratings exist
+* How the rating was calculated
+
+For ease of reading, the full attributes of <rating> are tabulated
+below:
+
+include::{includedir}/../../GuidelinesTables/Content-Rating.adoc[]
+
+The following example expresses a star rating with a minimum rating of
+one star and a maximum of 5. The rating is 4.5 (the provider and
+end-user may need to agree on how to handle values that are not a whole
+star, for example by rounding and/or using half-stars). The rating was
+calculated from the arithmetic mean of ratings by 123 users.
+
+<contentMeta>
+    ...
+    <rating
+        value="4.5"
+        valcalctype="rcalctype:amean"
+        scalemin="0"
+        scalemax="5"
+        scaleunit="rscaleunit:star"
+        raters="123"
+        ratertype="rtype:user" />
+    ...
+</contentMeta>
+
+[[content-rating-newscodes]]
+Content Rating NewsCodes
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+As an aid to interoperability, the IPTC has created Controlled
+Vocabularies (NewsCodes) for the properties @valcalctype, @scaleunit and
+@ratertype:
+
+[[rating-calculation-type-newscodes]]
+Rating Calculation Type NewsCodes
++++++++++++++++++++++++++++++++++
+
+These NewsCodes indicate how the applied numeric rating value was
+calculated from a sample of values. The Scheme URI is
+http://cv.iptc.org/newscodes/rcalctype/ and the recommended Scheme Alias
+is "rcalctype". NewsCodes in the scheme are:
+
+include::{includedir}/../../GuidelinesTables/Rating-Calc.adoc[]
+
+[[rating-scale-unit-newscodes]]
+Rating Scale Unit NewsCodes
++++++++++++++++++++++++++++
+
+These NewsCodes indicate the units used to express the rating value. The
+Scheme URI is http://cv.iptc.org/newscodes/rscaleunit/ and the
+recommended Scheme Alias is "rscaleunit". NewsCodes in the scheme are:
+
+include::{includedir}/../../GuidelinesTables/Rating-Scale.adoc[]
+
+[[rater-type-newscodes]]
+Rater Type NewsCodes
+++++++++++++++++++++
+
+These indicate the type of the party or parties that contributed to a
+rating. The Scheme URI is http://cv.iptc.org/newscodes/ratertype/,
+recommended Scheme Alias: "rtype". Scheme NewsCodes are:
+
+include::{includedir}/../../GuidelinesTables/Rater-Type.adoc[]
+
+[[hashtags]]
+Hashtags
+^^^^^^^^^
+
+As these are essentially uncontrolled values, at least within the scope
+of NewsML-G2, so the recommended way to add these social media tags is
+by using the <keyword> property with a @role to indicate their purpose.
+A new NewsCode has been added to the IPTC Description
+Role scheme to enable implementers to do this in a standard way:
+
+[cols="%autowidth",options="header",]
+|=======================================================================
+|NewsCode |Name |Definition
+|hashtag |Hashtag |A word or phrase (with no spaces) which is prefixed
+with the hash character "#" 
+|=======================================================================
+
+NOTE: Description Role NewsCodes may be used with other elements
+when a descriptive qualifier is required. 
+
+The Scheme URI is http://cv.iptc.org/newcodes/descriptionrole/ and the
+recommended Scheme Alias is "drol", thus:
+
+[source, xml]
+<contentMeta>
+    ...
+    <keyword role="drol:hashtag">#iptcrocks</keyword>
+    ...
+</contentMeta>
+
+[[_Ref340665630]]
+
+[[indicating-that-a-news-item-has-specific-content]]
+Indicating that a News Item has specific content
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In some workflows, the content of a News Item may not be available at
+the time of the distribution of its first version. For example, if an
+organisation normally provides a video in HD and SD, but the HD
+rendition is not yet available, there is a lightweight way to inform
+end-users that the content is planned, using @hascontent.
+
+This optional attribute may be added to any child element of
+<contentSet> (inlineXML, inlineData, remoteContent) as a flag to
+indicate whether the element contains content/content reference or is
+either empty/only metadata . @hascontent is simply a Boolean flag with a
+default of "1" or "true", and "0" or "false" to indicate that this
+element contains no content.
+
+The example below is a <remoteContent> showing that an HD rendition of
+the existing SD rendition of a video will follow soon. To make the
+receiver aware of the planned release of the additional rendition, the
+wrapper has been added to contentSet with only metadata defined, no
+actual content being provided, and a @hascontent value of "false":
+
+[source, xml]
+<contentSet>
+    <remoteContent
+        href="http://www.example.com/video/2008-12-22/20081222-PNN-1517-
+            407624/20081222-PNN-1517-407624.avi"
+        format="frmt:MPEG"
+        duration="111" durationunit="timeunit:seconds"
+        videocharacteristic="videodef:SD"
+        videoframerate="25"
+        videoaspectratio="16:9" />
+    <remoteContent
+        hascontent="false"
+        format="frmt:MPEG"
+        duration="111" durationunit="timeunit:seconds"
+        videocharacteristic="videodef:HD"
+        videoframerate="25"
+        videoaspectratio="16:9" />
+</contentSet>
+
+[[_Ref243460693]][[_Ref245987872]]
+

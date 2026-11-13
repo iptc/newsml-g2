@@ -1,0 +1,21 @@
+[%autowidth,options="header"]
+|===
+|Field Name|Example|NewsML-G2 Property and Example
+
+|Day and Time
+|91230
+|Six digits are be used to express the day and time in IPTC 7901, in practice this means a format of DDHHMM, where DD is the day of the month, HH is the hour, MM minutes. In NewsML-G2, there are more timestamp fields available,
+
+|Time Zone
+|GMT
+|Three-alpha character field. Optional in IPTC 7901. No separate equivalent in NewsML-G2 (none needed)
+
+|Month of Transmission
+|Feb
+|Three-alpha character field. Optional in IPTC 7901. No separate equivalent in NewsML-G2 (none needed)
+
+|Year of Transmission
+|9
+|Two-digit field. Optional in IPTC 7901. No separate equivalent in NewsML-G2 (none needed)
+
+|===

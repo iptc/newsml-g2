@@ -1,0 +1,37 @@
+[%autowidth,options="header"]
+|===
+|NITF element|NewsML-G2 equivalent|Comment
+
+|<hedline>
+|<headline>
+|NewsML-G2 <headline> is contained in <contentMeta> and may appear any number of times. It can be refined by using @role to express the NITF notions of main headline <hl1> and subhead <hl2>
+
+|<note>
+|Various
+|An advisory for editors may be equivalent to NewsML-G2 <edNote>in <itemMeta>, but NITF <note> has a number of uses, including expressing copyright, and may also be publishable.  Provider’s migrating from NITF to NewsML-G2 will need to identify the intention of their use of <note> and choose from several NewsML-G2 properties that express this intention, for example <rightsInfo> (a property of an Item root element), or <description> (part of <contentMeta>) with a @role defining its purpose.  Customers converting an NITF service to NewsML-G2 will need to consult with their provider, either directly or via documentation.
+
+|<rights>
+|< rightsInfo>
+|See section on <docdata>
+
+|<byline>
+|<by>
+|Part of <contentMeta>
+
+|<distributor>
+|<provider>
+|<provider> is a mandatory property of NewsML-G2 <itemMeta>
+
+|<dateline>
+|< dateline>
+|NewsML-G2 <dateline> is part of <contentMeta>
+
+|< abstract>
+|< description>
+|NewsML-G2 <description> is part of <contentMeta> and may be refined by @role. The IPTC Description Role NewsCodes value would be “summary”
+
+|<series>
+|<memberOf>
+|See section on <docdata>
+
+|===

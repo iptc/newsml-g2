@@ -1,0 +1,33 @@
+[%autowidth,options="header"]
+|===
+|Field Name|Example|NewsML-G2 Property and Example
+
+|Source Identification
+|FRS
+|The 7901 definition is “to identify the news service of the originator and the message.” An equivalent NewsML-G2 property would be the <destination> property of News Message:   <destination>FRS</destination>  An alternative property would be <channel>   <channel>FRS</channel>  Within a News Item, there is a <service> property that may also be used, however, the IPTC recommends that Source Identification expressed a distribution intention, not merely a service description. Therefore its natural home is in News Message.
+
+|Message Number
+|9999
+|In IPTC 7901, this may be up to four digits and therefore cannot be guaranteed to be unique. Some providers reset the counter to zero every 24 hours. The intention is to be able to identify a message within a sequence of messages.  The equivalent NewsML-G2 field would be <transmitId> of News Message  IPTC 7901 specifies a single digit of value 1 to 6 inclusive.
+
+|Priority of Story
+|3
+|NewsML-G2 has two equivalents:  <urgency> in the Administrative Metadata group of <contentMeta>  <urgency>3</urgency>  <priority> in the <header> of News Message.  <priority>3</priority>  If the 7901 field is mapped from an editorial system and is under the control of journalists, then <urgency> would seem to be appropriate, since this expresses a journalistic intention.
+
+|Category of Story
+|POL
+|In IPTC7901, this could be up to three characters. A provider converting its categories for NewsML-G2 would create a Controlled Vocabulary mapping the legacy codes to a Knowledge Item – thus allowing the receiver to get more information about the code, or to download all of the codes in order to populate a GUI menu. The CV would be expressed using <subject> in Content Metadata  <subject type=“cpnat:abstract” qcode=“cat:POL”>  <name>Politics</name>  </subject>
+
+|Word Count
+|195
+|The maximum value allowed in IPTC 7901 is 9999.  Word Count is one of the properties of News Content Characteristics group of properties.  (The NewsML-G2 Specification can be downloaded by visiting www.newsml-g2.org/spec.)  The plain text of IPTC 7901 is an attribute of the Inline Data component <inlineData>  <inlineData wordcount=“195”>  Text text text  </inlineData>  There is no limit to the number of words that can be conveyed in NewsML-G2
+
+|Optional Information
+|(optional)
+|These two fields are sometimes used by providers in their own specific format or syntax, so it is not possible to give a definitive mapping from IPTC 7901 to NewsML-G2.  Providers converting from IPTC 7901 to NewsML-G2 should determine the source of the information that is being put into the 7901 fields, and map to the appropriate NewsML-G2 property.  Customers converting an IPTC 5901 service into NewsML-G2 and who are unsure about which of NewsML-G2’s properties to populate with the 7901 information should consult the provider’s documentation, or inquire of the provider.  Part of the content of the Keyword/Catch-Line field may be equivalent to the NewsML-G2 <slugline> property in the Descriptive Metadata group of <contentMeta>.
+
+|Keyword/Catch-Line
+|
+| <slugline separator=“-”>US-POLITICS/BUSH</slugline>
+
+|===

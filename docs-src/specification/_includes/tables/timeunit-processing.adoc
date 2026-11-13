@@ -1,0 +1,21 @@
+[%autowidth,options="header"]
+|===
+|Time Unit Type [@timeunit]|Start/End Timestamp [@start / @end]|How to Process
+
+|Invalid value
+|None
+|Ignore the Time Delimiter.
+
+|Invalid value
+|One or both
+|The default Time Unit Type value of editUnit MUST be used; the related format is used to parse the Timestamp value(s).
+
+|Valid value
+|None
+|Ignore the Time Delimiter.
+
+|Valid value
+|One or both
+|The defined Time Unit Type value MUST be used; the related format is used to parse the Timestamp value(s).
+
+|===

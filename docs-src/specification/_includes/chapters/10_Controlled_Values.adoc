@@ -1,0 +1,336 @@
+[[dealing-with-controlled-values]]
+Dealing with Controlled Values
+------------------------------
+
+[[scheme-code-pair-scheme-uri-and-concept-uri]]
+{scheme, code} Pair, Scheme URI and Concept URI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Many properties usually have their value taken from a well defined scheme such as a controlled vocabulary (that is, a classification system, authority list, taxonomy, or thesaurus for example).
+
+These values are represented by a formal combination a {scheme, code} pair primarily intended to be consumed by processing software. A scheme is logically a closed set of related concepts, and a {scheme, code} pair unambiguously identifies a single concept.
+
+A scheme is in practice a list of codes managed by a specific authority (which we shall refer to as the Scheme Authority), which may be the IPTC or any other well-known standardisation body, or may be an individual news provider or knowledge management company. A {scheme, code} pair therefore fully identifies a term from a scheme, also known as a controlled vocabulary. A code MUST be persistent over time in order to avoid ambiguities when processing archived documents.
+
+A scheme is fully and unambiguously identified by a scheme URI. The concept represented by a code is fully and unambiguously identified by a concept URI. The concept URI is obtained by appending the code to the scheme URI. link:#qualified-code-qcode[Qualified Code (QCode)] shows how a more compact form of a concept identifier is used in the news workflow.
+
+As an example, an IPTC scheme for news categories might be identified by the URI http://cv.iptc.org/newscodes/mediatopic[http://cv.iptc.org/newscodes/mediatopic/15000000]. If the code “15000000” represents the concept of “Sport”, then the concept URI for “Sport” would be http://cv.iptc.org/newscodes/mediatopic/15000000[http://cv.iptc.org/newscodes/mediatopic/15000000].
+
+It is not mandatory that the Scheme Authority maintains the complete list of codes making up a given scheme in any particular form, for example as an XML file. It is sufficient that an unambiguous identifier is defined for each scheme a provider uses, and that this identifier is known by a Catalog (see link:#catalog-of-controlled-vocabularies[Catalog of Controlled Vocabularies)] to the customers of the news feed this provider offers.
+
+Common needs are:
+
+* To access human readable information about a scheme.
+* To retrieve all terms of a scheme (e.g. to display a list of choice).
+* To access human readable information about a qualified code.
+* To check that a qualified code belongs to a scheme.
+* To retrieve the definition of the concept identified by a qualified code in a given scheme.
+
+Therefore the scheme URI SHOULD resolve to a web resource (or resources) containing information about the scheme in both human-readable and machine-readable forms. Meeting this requirement is mandatory for schemes which are to be compliant with the Semantic Web.
+
+The concept URI SHOULD also resolve to a web resource (or resources) containing information about the concept in both human-readable and machine-readable forms. Meeting this requirement is mandatory for concept URIs which are to be compliant with the Semantic Web.
+
+If content negotiation is implemented using HTTP, then the HTTP Accept header should be used to request information in the required format and the HTTP Accept-Language header should be used to request information in the required human language.
+
+When designing a scheme URI, the following points should be taken into consideration:
+
+* Each scheme URI must end with a suitable terminating character, e.g. “/” or “#”. Each of these has various advantages and disadvantages, which are discussed extensively in documents available on the Web.
+* One point worth mentioning here is that not all strings which can be used to construct a legal URI are automatically legal in the context of HTML. For example, “http://cv.iptc.org/newscodes/theme.html#15000000” is not a legal HTML URI, as an HTML fragment name cannot start with a digit.
+
+[[qualified-code-qcode]]
+Qualified Code (QCode)
+~~~~~~~~~~~~~~~~~~~~~
+
+In order to manipulate controlled values in an efficient manner, a compact representation of a concept identifier is needed, a syntax which allows the use of a {scheme, code} pair as the value of an XML attribute.
+
+For this purpose a short string called scheme alias (aka prefix) is defined by a provider as a substitute for a scheme URI in the scope of a single Item, and a compact notation of a scheme-code pair is defined, called Qualified Code or QCode.
+
+The datatype for a compact notation of a scheme-code pair is called qualified code or more simply QCode. QCodes are the mandatory way to express controlled values in properties like link:#item-class-itemclass[itemClass] or link:#publish-status-pubstatus[pubStatus].
+
+QCodes are notated by the following syntax: a scheme alias acting as a first part, followed by a colon (:) character, followed by a code from the scheme. They are case sensitive.
+
+The value space of the `QCodeType` datatype is a set of {scheme, code} pairs which identify concepts.
+
+Note that:
+
+* This is similar to the value space of the QName datatype: a set of {namespace, local part} pairs which identify element or attribute names.
+
+NOTE: QNames cannot be used for this purpose, because the local part of QNames cannot be a numeric, but the News industry and the Financial industry are full of taxonomies making use of numeric codes. They aren't alone in this aspect (consider ISBN and ISSN).
+
+* QCodes allow any sequence of legal URI characters in the code part, including, for example, digits only, dashes, slashes, and so on.
+* QCodes MUST have a non-empty scheme alias.
+
+QCodes can be viewed to a certain extent as short, lexical representations of URIs. Be careful: the mapping from a qualified code to a URI is not bijective: a URI cannot be mapped back to a qualified code, because the separator of the tuple is not explicitly defined in the URI.
+
+In order to resolve a qualified code, a processor MUST loop through the `scheme` elements defined in the scope of the Item. If the QCode scheme alias is found as value of the _alias_ attribute of a scheme element, the scheme URI is the associated _uri_ attribute and the controlled value is the resulting {scheme URI, code} pair. If no corresponding scheme alias is found, the processor SHOULD raise an error and consider that the property has no value.
+
+[[Lexical_Space_Specification_and_P]][[_bookmark92]]
+
+Lexical Space Specification and Processing Model for Scheme URIs, Scheme Aliases, Codes, and QCodes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[[lexical-space]]
+
+Lexical Space
++++++++++++++
+
+* Lexical space for scheme URIs: conforms with the Unreserved Characters of RFC 3986, section 2.3. Reserved Characters as per RFC 3986, section 2.2 must be considered depending on the selected URI scheme.
+
+* Lexical space for Aliases: all characters except colon (#u003A) and white space (#u0020 | #u0009 | #u000D | #u000A).
+
+* Lexical space for Codes:
+** All Unreserved Characters of RFC 3986, section 2.3.
+** Reserved Characters as per RFC 3986, section 2.2 must be considered depending on the selected URI scheme. See also section link:#creating-codes[Creating Codes] below.
+** As an alternative to percent-encoding whitespace characters (#u0020 | #u0009 | #u000D | #u000A) as defined by RFC 3986, these characters may be replaced by a sequence of one or more unreserved characters like e.g. underscore or hyphen that is reused for this purpose according to the practices of the provider; it is recommended that such a sequence is not part of the any of the codes used by the provider in that scheme.
+
+Processing Model
+++++++++++++++++
+
+[[creating-scheme-URIs]]
+
+*_Creating Scheme URIs_*
+
+Define a URI complying with the rules defined in link:#scheme-code-pair-scheme-uri-and-concept-uri[{scheme, code} Pair, Scheme URI and Concept URI] and link:#lexical-space[Lexical Space].
+
+NOTE: every scheme URI must comply with the RFC defining URIs (3986) or IRIs (3987).
+
+[[creating-codes]]
+
+*_Creating Codes_*
+ 
+As defined in link:#scheme-code-pair-scheme-uri-and-concept-uri[{scheme, code} Pair, Scheme URI and Concept URI] a concept URI is created by appending the code of a concept to the scheme URI of the vocabulary.
+
+Therefore, appending a Code to a valid Scheme URI must make a valid URI, in particular, the Code must only contain characters that are legal URI characters (RFC 3986). As defined in RFC 3986, the Scheme Authority MAY percent encode reserved characters as well as the percent ("%") character depending on the role of each character as defined by that specific publisher for this Concept URI. Any percent encoding which is applied to characters in the code of a Concept URI MUST be used also by the corresponding QCode.
+
+Generally, the Scheme Authority is responsible for ensuring that all concept URIs it defines can be properly resolved. To allow for schemes that are no longer maintained, the `authoritystatus` attribute was added along with the Authority Status vocabulary (http://cv.iptc.org/newscodes/authoritystatus) in NewsML-G2 v2.32.
+
+The examples below show how to deal with a string which should be used as code and includes a reserved character:
+
+Example without encoding a slash in the code: String to be used as Code: `ebc13/14`
+
+_Code:_ `ebc13/14`
+
+_Scheme URI:_ `http://cv.example.org/schemeA/` 
+
+_Scheme Alias:_ `schA`
+
+_QCode:_ `schA:ebc13/14`
+
+_Concept URI:_ `http://cv.example.org/schemeA/ebc13/14`
+
+NOTE: Generally, the Scheme Authority is responsible for ensuring that all concept URIs it defines can be properly resolved. To allow for schemes that are no longer maintained, the authoritystatus attribute was added along with the Authority Status Vocabulary (http://cv.iptc.org/newscodes/authoritystatus) in NewsML-G2 v2.32.
+
+Example with encoding a slash in the code: String to be used as Code: `ebc13/14`
+
+_Code:_ `ebc13%2F14` (with applied percent encoding)
+
+_Scheme URI:_ `http://cv.example.org/schemeB/` 
+
+_Scheme Alias:_ `schB`
+
+_QCode:_ `schB:ebc13%2F14`
+
+_Concept URI:_ `http://cv.example.org/schemeB/ebc13%2F14`
+
+QCodes
+~~~~~~
+
+Creating QCodes
+^^^^^^^^^^^^^^^
+
+Concatenate the Scheme Alias, a colon and the Code to form a QCode.
+
+Inserting a QCode as the value of an attribute in a G2 XML document
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+. Take a QCode as created in the preceding section and apply any required XML encoding to this string (Note: this is typically done by the XML processor software).
+. Insert the resulting string into an attribute as the QCode value.
+
+Receiving/Parsing QCodes from an XML Document (any G2 Item)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+. Retrieve the QCode value from the XML document
+. Apply any required XML decoding (Note: this is typically done by the XML processor software).
+. To split a QCode into a Scheme Alias and a Code, identify the first colon, searching from left to right. The string to the left of the colon is the Scheme Alias; the string to the right is the Code. If no colon is found, the QCode is invalid.
+. Check whether the alias is defined in the catalog. If it is not, the QCode is invalid.
+
+Concept URIs
+~~~~~~~~~~~~
+
+G2 processors should be able to process Internationalized Resource Identifiers (IRIs) as per RFC 3987.
+
+Creating a Concept URI/IRI
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Concatenate the Scheme URI and the Code to obtain the Concept URI.
+
+Comparing Concept URIs/IRIs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If provided Concept URIs are IRIs per RFC 3987 then they must be compared for equivalence as defined per RFC 3987, section 5.
+
+If provided Concept URIs are URIs per RFC 3986 then they must be compared for equivalence as defined per RFC 3986, section 6.
+
+[[processing-catalogs]]
+
+Processing Catalogs
+~~~~~~~~~~~~~~~~~~~
+
+NOTE: In NewsML-G2 2.30, the `catalog` and `catalogRef` elements were declared optional. This is because for NewsML-G2 users who choose exclusively to use fully-expanded URIs instead of QCodes, there is no benefit in specifying a <catalog> or <catalogRef>. The following section assumes the use of QCodes and that Catalogs will need to be processed.  
+
+[[Structure_of_a_Catalog]][[_bookmark94]]
+
+Structure of a Catalog
+^^^^^^^^^^^^^^^^^^^^^^
+
+A `catalog` MUST have one or more `scheme` elements. A catalog MAY have one or more titles in different languages. It MAY also have a pointer to some additional information available on the Web, and especially its evolution by identifiers of a web location from where it can be retrieved, an identifier of the catalog and the version, and an identifier of the authority which manages this catalog. Such information will help people follow the evolution of a shared catalog like the IPTC G2 catalog, and include in their Items a reference to the latest version if they wish. A catalog may be managed by a provider by using a Catalog Item (available only at PCL) see link:#managing-catalogs---catalogitem[Managing Catalogs - catalogItem].
+
+The mandatory scheme element MUST have a scheme _alias_ attribute and a corresponding scheme _uri_ attribute. It MAY have a `name`, a `definition` and a `note` element to provide human readable information about the scheme. And the authority governing the scheme MAY be indicated by the _authority_ attribute. A link:sameas-scheme-sameasscheme[sameAsScheme] element MAY be used by applying a URI which identifies another scheme with concepts that use the same codes and are semantically equivalent to the concept of this scheme.
+
+Each instance of an Item defines its own set of scheme definitions, and there is no interaction between scheme definitions in different Items. Scheme alias declarations are local to the Item in which they appear and cannot be overridden in a given Item.
+
+In NewsML-G2 v2.29, the attributes _schemecreated_, _schememodified_ and _schemeretired_ were added to both `scheme` and `schemeMeta` elements. When using _schemeretired_ note that ALL members of the scheme must be retired. (The `schemeMeta` element is an optional child element of `contentSet` in a Knowledge Item.)
+
+
+[[Processing_Remote_Catalogs]][[_bookmark95]]
+
+Processing Remote Catalogs
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By activating the hyperlink of a remoteCatalog using `catalogRef`, a plain catalog structure is returned, and MUST be processed as if were locally defined.
+
+[[Caching_a_Catalog]][[_bookmark96]]
+
+Caching a Catalog
+^^^^^^^^^^^^^^^^^
+
+The IPTC makes NewsML-G2 resources, including XML Schema files, IPTC Catalog and controlled vocabularies, available on its public web servers on an "as is" basis; 24/7 availability of these resources is not guaranteed.
+
+When the IPTC Catalog is required for NewsML-G2 processing to enable the resolution of mandatory properties such as `pubstatus` expressed as a QCode, it MUST be retrieved and cached (or otherwise stored locally) by the processor. Each version of the IPTC Catalog (_catalog.IPTC-G2-Standards_nn.xml_) may be retained in the cache indefinitely as its contents will never change. It is best practice to retain a local copy of the Catalog indefinitely in order to continue operations should the remote Catalog be unavailable.
+
+When a processor opens an Item, it MUST check the URL(s) of the catalog(s) found in its header. If a catalog has not been previously retrieved, the processor MUST fetch it, check it, and store its content in cache/local storage.
+
+Different remote catalogs MAY define different mappings for a given scheme alias. An entry in a remote catalog cache is therefore a triple {remote catalog URL, scheme alias, scheme URI}.
+
+NOTE: Controlled Vocabularies (_IPTC NewsCodes_) referenced as Scheme URIs in the IPTC Catalog may be retrieved and cached daily; their contents are subject to change as IPTC Schemes are updated and this happens not more frequently than daily. See link:#Retrieving_All_Terms_of_a_Scheme[Retrieving All Terms of a Scheme] below. 
+
+[[Checking_a_Catalog]][[_bookmark97]]
+
+Checking a Catalog
+^^^^^^^^^^^^^^^^^^
+
+It is OK for one scheme URI to have two aliases. It is an error if one alias is mapped to two different URIs in the scope of a single Item (an issue called alias collision). Note that this error may arise within a catalog, as well as across a set of catalogs (local or remote) declared in a given Item.
+
+Before processing an Item, a processor MUST check its catalogs. If an alias collision is found, the processor MUST reject the Item as it can lead to misinterpretation of the information.
+
+NOTE: If an aggregator finds an alias collision (i.e. the same alias associated with two URIs) while creating a packageItem which aggregates content from various providers, the aggregator MUST change one or both of the aliases before publishing the packageItem. This can be done by creating and publishing one or more non-clashing external catalogs (which replace the original external catalogs) and/or by replacing one or more external catalogs with non-clashing in-line scheme declarations.
+
+[[processing-schemes]]
+
+Processing Schemes
+~~~~~~~~~~~~~~~~~~
+
+[[Evolution_of_Scheme_URIs]][[_bookmark99]]
+
+Evolution of Scheme URIs
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Schemes evolve: terms are added, names are changed, terms are retired. An authority will release a new version after each update. A provider may not want to adopt the latest version of a scheme. The scheme URI MUST be stable as long as the evolution does not break backward compatibility rules.
+
+
+[[Retrieving_All_Terms_of_a_Scheme]][[_bookmark100]]
+
+Retrieving All Terms of a Scheme
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Here we are interested in schemes defined as an explicit list of terms. Schemes defined via an algorithm are out of scope of this section. A scheme definition is defined as the finite set of terms composing a scheme. A scheme definition MAY be a subset of an original scheme, for example maintained by an external authority.
+
+NOTE: An authority is not necessarily able to make scheme definitions available for operational use, and a provider may use only a subset of the scheme defined by an authority.
+
+A provider SHOULD make a scheme definition available for its users for operational use as the content of a knowledgeItem, where each term is represented as a concept component, i.e. a concept identifier, a list of names in one or more languages, plus additional properties of the concept (all but the identifier being optional).
+
+An authority MAY provide different variants of a scheme definition, e.g. a list of codes, a list of codes plus a name in a specific language, a list of codes plus names in all available languages.
+
+For each variant of a scheme definition, the URL of the corresponding knowledgeItem SHOULD be available using e.g. content negotiation.
+
+Selection from among the renditions MAY be performed automatically (if the processor is capable of doing so) or manually by the user selecting from a hypertext menu.
+
+[[qualified-and-typed-properties]]
+
+Qualified and Typed Properties
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Qualified properties – of datatype `QualPropType` – only support controlled values in the short format of QCodes or full URIs.
+
+Rule for using a QCode (_qcode_ attribute) and a full URI (_uri_ attribute) in property:
+
+* An element MUST use a _qcode_ or a _uri_, optionally both may be used. This rule applies to all qualified and typed properties except conceptId.
+* If both the _qcode_ and _uri_ are present, the _uri_ MUST be the same as the concept URI corresponding to the _qcode_.
+
+A large subset of these properties supports concepts of different types as a value. Therefore typed qualified properties – of datatype `TypedQualPropType` – additionally provide a concept type relative to the value of the property.
+
+For example, the type of the concept assigned as subject of a news story may be a theme (e.g. sport or football), a person, an organisation, a geographical area, a point of interest, an event, a business sector, a currency etc. The concept type of a link:#creator[creator], link:#contributor[contributor] and link:#information-source-infosource[infoSource] of an Item may be a person or an organisation
+
+Qualified properties MAY be complemented by one or more names associated with the underlying concept. Names can be expressed in different languages or variants.
+
+[[flexible-properties]]
+
+Flexible Properties
+~~~~~~~~~~~~~~~~~~~
+
+It is not always possible or sensible to use a concept identifier (either as QCode or full URI) as metadata value. As an example, few news organisations maintain a formal listing of their editors, and therefore using a controlled value for the creator property is not always possible.
+
+In order to fulfil this need, a large number of properties allow that literal identifiers or no identifiers at all to be applied instead of controlled identifiers. Additionally, a free-text value in the _literal_ attribute is an identifier of a concept and NOT a human readable description. Therefore flexible properties of datatype Flexible Property Type or a derived datatype support both controlled (_qcode_ or _uri_) and uncontrolled (_literal_) identifiers or no identifier at all.
+
+QCodes or URIs on one side (find more about their use in link:#qualified-and-typed-properties[Qualified and Typed Properties]) and literals on the other are mutually exclusive for any given property; if one of them exists the other one MUST NOT exist. (The term qcode/uri below indicates that the _qcode_ or the _uri_ or even both attributes can be used to express a controlled value.)
+
+The rules for using the qcode/uri or the literal attribute or no concept-identifying attribute at all with a property are:
+
+* If a bag is used with a property then qcode/uri and literal attributes MUST NOT be used with the property.
+* If a bag is not used with a property then the property MAY have a qcode/uri attribute OR a literal attribute or neither.
+* If a literal is used with an assert property then all instances of that literal in that item MUST identify the same concept.
+* If a literal is not used with an assert property then it is NOT required that all instances of that literal in that item identify the same concept.
+
+Literals MAY be used in the following cases:
+
+. As an identifier for linking with an assert element inside a NewsML-G2 item: The value could be a random one. If a literal value is used with an assert property then all instances of that literal value in that item must identify the same concept.
+. When a code from a vocabulary which is known to the provider and the recipient is used without a reference to the vocabulary: The details of the vocabulary are communicated outside of the NewsML-G2 Standards specifications. Such a contract could express that a specific vocabulary of literals is used with a specific property.
+. When importing metadata: The values of literals may contain codes which have not yet been checked to be from an identified vocabulary.
+
+The value of a flexible property identifies a given concept with a specific type. It is useful to express e.g. that the provider of a news item is a person or an organisation. The _type_ of the concept MAY be indicated as an attribute of the flexible property.
+
+One or more additional name properties MAY be provided in different languages and variants for display. If the value of the property is a literal and no additional name is given, the recipient MAY use the literal value for direct display. But as the primary use of a literal is being an identifier it may not tell much about the meaning of the metadata.
+
+Flexible properties MAY also be complemented by other information about the concept, like properties from the Concept Relationships Group and Concept Definition Group.
+
+Flexible properties which value specifically identifies a person, an organisation or any other entity for which detailed properties are defined in this specification, MAY contain detailed information about this entity, e.g. a date of birth for a person of a location for an organisation.
+
+Such information constitutes “hints” about the concept, which may be useful for display or indexing, but which should not be used to convey knowledge stored as-is in a knowledge repository. A specific mechanism, based on conceptItems and knowledgeItems, is set-up in the News Architecture for managing knowledge.
+
+[[composite-concepts]]
+Composite Concepts
+~~~~~~~~~~~~~~~~~~
+
+Concepts of datatype link:#flexproptype-multiple[Flexible 1 Concept Property Type] (`subject`, `genre` or `eventDetails\subject`) support composite concepts. Composite concepts are created by “glueing” together constituent concepts to create a new concept:
+
+. Using a `bag` child element which is used to express the new concept from multiple existing concepts. The description of each existing concept is placed in a link:#bag-item-bit[bit] child element of the bag wrapper.
+
+. More precisely, using one or more `facetConcept` elements to further qualify a `mainConcept`. This feature of NewsML-G2 supports the use of facet concepts which were introduced into the link:http://cv.iptc.org/newscodes/mediatopic/[IPTC Media Topics Taxononomy] 
+
+Examples of composite concepts:
+
+* John Doe Smiling {John Doe + Smiling } 
+* Women's 100m Swimming Final {Women + Swimming + 100m + Final}
+* Positive pre-announcement by Citigroup {Citigroup + Pre-announcement + Positive}
+* Microsoft's share price has moved up {Microsoft + Share price + Up}
+* The Clintons {Bill Clinton + Hillary Clinton}
+
+[[editing-attributes]]
+Editing Attributes
+^^^^^^^^^^^^^^^^^^
+
+In a professional and collaborative news workflow, it makes sense to identify all elements defined by the model in order to later act on them individually. Also, metadata is not always entered by one person at one time, but may be entered by different people, organisations or systems at different time. Therefore it may be needed to keep track of who is assigned the editing of specific properties, and when and by whom a property has been given a value.
+
+For this purpose, all metadata properties share the Common Power Attributes Group, which includes an optional local identifier (id) and the optional indication of the creator and the date (and, optionally, the time) when the property was last modified. (Beyond that the group includes more attributes for other purposes.)
+
+

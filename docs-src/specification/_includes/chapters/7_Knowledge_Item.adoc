@@ -1,0 +1,77 @@
+[[managing-sets-of-concepts---knowledgeitem]]
+Managing Sets of Concepts - knowledgeItem
+-----------------------------------------
+
+An XML Schema file corresponding to the specifications for this item is available (see The Full Set of link:#_bookmark2[Specification Documents]).
+
+[[description-2]]
+Description
+~~~~~~~~~~~
+
+A `knowledgeItem` bundles a set of concept components which are managed and exchanged as a whole. A knowledgeItem is used best where a provider wants to circulate a snapshot of a set of entries from one or more controlled vocabularies.
+
+The concepts represented in a knowledgeItem can be of different types, and their identifiers may come from different schemes. A “scheme definition” is therefore a particular case of structure, where all concepts support a concept identifier from a same specific scheme.
+
+Examples of knowledgeItems are the taxonomy of IPTC Subject NewsCodes or an authority list of people’s descriptions maintained by a given provider. Typical characteristics of a knowledgeItem are:
+
+* It contains a set of concepts components covering a specific purpose, e.g. concepts from a single scheme, concept from different schemes and relevent in the context of a specific topic.
+* It will usually be updated infrequently but over a long period of time, for example when a controlled vocabulary evolves.
+* Its content is of long term interest.
+
+[[structure-of-a-knowledge-item]]
+Structure of a Knowledge Item
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The model of a knowledgeItem is very similar to the model of a newsItem. Both share the same indicators of compliance with a standard and conformance level, Identification and Versioning, Signature, Rights Information, Item Metadata and Item links. Please review link:#representing-news---newsitem[Representing News - newsItem] for more information.
+
+[[item-class-1]]
+
+Item Class
+^^^^^^^^^^
+
+The IPTC provides a mandatory standardised scheme applicable to the link:#item-class-itemclass[itemClass] property, identified by the URI http://cv.iptc.org/newscodes/cinature/.
+
+[[knowledge-related-metadata]]
+
+Knowledge Related Metadata
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Metadata about the whole set of concepts held by a Knowledge Item are wrapped by the contentMeta element.
+
+Metadata about specific concepts held by a Knowledge Item are wrapped by one to many partMeta elements. A typical use case of partMeta is to indicate when several concepts were modified at the same time, by associating those concepts with a specific partMeta which has the associated contentModified property.
+
+The set of administrative metadata is common to all classes of Items.
+
+The set of descriptive metadata for a Knowledge Item is listed below. All properties are optional, repeatable and may be inserted in any order.
+
+_Table 9. Descriptive Metadata Core Group Elements_
+
+include::{includedir}/../../tables/descriptive-meta-core.adoc[]
+
+Each provider may add a set of metadata properties which have to be defined in a non-IPTC-G2 namespace. See also link:#_bookmark121[XML Namespaces] and link:#_bookmark123[Extension Points in XML].
+
+Please review link:#news-content-metadata[News Content Metadata] of the News Item chapter for more information.
+
+[[metadata-helpers-1]]
+
+Metadata Helpers
+^^^^^^^^^^^^^^^^
+
+The knowledgeItem includes three properties which are available to help make metadata assertions:
+
+* the assert property: helps to bundle and extend details of concepts, see link:#assertions-about-concepts[Assertions About Concepts]
+* the inlineRef property: helps to reference concepts which are inline, within free text properties of type label, see link:#references-to-inline-concepts[References to Inline Concepts].
+* the derivedFrom property: helps to document from which concept a concept, used as property value in this item, has been derived, see link:#document-derivation-of-concepts[Document Derivation of Concepts].
+
+[[knowledgeitem-content]]
+
+Knowledge Item Content
+^^^^^^^^^^^^^^^^^^^^^
+
+A `conceptSet` wrapper element contains a set of concept components link:#concept-component[(see Concept Component)]. Their order of appearance in conceptSet is not relevant.
+
+Additionally the Concept Set may have an optional `schemeMeta` child element, which must only be used when the Knowledge Item conveys ALL members of a Scheme. The `schemeMeta` element supports all attributes of `scheme`, with the exception of _alias_ and includes the attributes _schemecreated_, _schememodified_ and _schemeretired_ introduced in NewsML-G2 v2.29.
+
+NOTE: All concept definitions share the same catalog of schemes, declared at the top of the Knowledge Item.
+
+

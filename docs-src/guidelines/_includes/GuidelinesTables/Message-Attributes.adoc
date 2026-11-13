@@ -1,0 +1,30 @@
+[%autowidth,options="header"]
+|===
+|Name|Cardinality|Datatype|Definition
+
+|qcode
+|0..1
+|QCodeType
+|A qualified code assigned as a property value.
+
+|uri
+|0..1
+|XML Schema anyURI
+|A URI which identifies a concept.
+
+|literal
+|0..1
+|XML Schema normalizedString
+|A free-text value assigned as a property value.
+
+|type
+|0..1
+|QCodeType
+|The type of the concept assigned as a controlled or an uncontrolled property value.
+
+|role
+|0..1
+|QCodeType
+|A refinement of the semantics of the property.
+
+|===

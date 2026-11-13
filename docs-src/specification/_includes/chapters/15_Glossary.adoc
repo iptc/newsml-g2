@@ -1,0 +1,7 @@
+[[glossary]]
+Glossary
+--------
+
+include::{includedir}/../../tables/glossary.adoc[]
+
+

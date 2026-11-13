@@ -1,0 +1,21 @@
+[%autowidth,options="header"]
+|===
+|Property|Type|Notes
+
+|<broader>
+|Related Concept
+|Repeatable. The event may be part of another event, in which case this can be denoted by <broader>.
+
+|<narrower>
+|Related Concept
+|Repeatable. May be used to indicate that the event has related child events. In this case we want to notify the receiver that a child of this event is the scheduled medal ceremony.
+
+|<related>
+|Related Concept
+|Repeatable. May be used to denote a relationship to another concept or event. In this case, we want to link the event to an organisation which is not a participant, but may later form part of the coverage of the event. We qualify the relationship using @rel and the IPTC Item Relation NewsCodes:
+
+|<sameAs>
+|Related Concept
+|Repeatable. May be used to denote that this event is the same event in another taxonomy, for example another governing body’s taxonomy of events:
+
+|===

@@ -1,0 +1,47 @@
+[[additional-resources]]
+Additional Resources
+--------------------
+
+[[on-the-web]]
+On the Web
+~~~~~~~~~~
+
+The IPTC web site https://www.iptc.org/[www.iptc.org] has a wealth of
+resources for implementers. Visit
+https://iptc.org/standards/[www.iptc.org/standards] for a summary and links to all of the IPTC’s standards. These include:
+
+* link:https://iptc.org/standards/ninjs/[ninjs]: standardising the representation of news in json.
+* link:https://iptc.org/standards/media-topics/[Media Topics]: Subject Taxonomy for the media.
+* link:https://iptc.org/standards/photo-metadata/[Photo Metadata]: industry standard for administrative, descriptive, and copyright information about images.
+* link:https://iptc.org/standards/video-metadata-hub/[Video Metadata Hub]: common ground for video management: a set of video metadata properties, which can be expressed by multiple technical standards.
+
+There are also user groups at Groups.io for those with questions about the NewsML-G2 Standards, and for those who would like to join in development work:
+
+* https://groups.io/g/iptc-newsml-g2/ is the public group
+for NewsML-G2 and Events in NewsML-G2 topics.
+* https://groups.io/g/iptc-sportsml/ is the public group
+for SportsML-G2. There is also a GitHub repository for SportsML-G2
+development at https://github.com/iptc/sportsml-3.
+* https://groups.io/g/iptc-news-architecture-dev/ is
+the developer group for NewsML-G2 which is open to IPTC members only,
+see below.
+* https://groups.io/g/iptc-sportsml-dev/ is the
+developer group for SportsML-G2 which is open to IPTC members only, see
+below.
+
+[[join-the-iptc]]
+Join the IPTC
+~~~~~~~~~~~~~
+
+The IPTC welcomes new members. Membership is the backbone of the IPTC,
+and levels vary for both organizations and individuals. Additionally,
+several "working parties" and "working groups" focus on specific topic
+areas and standards. IPTC also hosts two face-to-face meetings a year
+around the globe, where its working parties discuss and develop their
+ideas to support information exchange and the rapid innovation of media.
+
+To find out more, visit
+https://iptc.org/participate/[www.iptc.org/participate]
+
+ 
+

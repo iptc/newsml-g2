@@ -1,0 +1,58 @@
+[%autowidth,options="header"]
+|===
+|Element Title|Element Name|Card
+
+|Urgency
+|link:#urgency-urgency[urgency]
+|(0..1)
+
+|Date Content Created
+|link:#date-content-created---contentcreated[contentCreated]
+|(0..1)
+
+|Date Content Modified
+|link:#date-content-modified-contentmodified[contentModified]
+|(0..1)
+
+|Digital Source Type
+|link:#digitalsourcetype[digitalSourceType]
+|(0..1)
+
+|Located
+|link:#located-located[located]
+|(0..unbounded)
+
+|Information Source
+|link:#information-source-infosource[infoSource]
+|(0..unbounded)
+
+|Creator
+|link:#creator[creator]
+|(0..unbounded)
+
+|Contributor
+|link:#contributor[contributor]
+|(0..unbounded)
+
+|Audience
+|audience
+|(0..unbounded)
+
+|Excluded Audience
+|exclAudience
+|(0..unbounded)
+
+|Alternative Identifier
+|link:#alternative-identifier-altid[altId]
+|(0..unbounded)
+
+|Rating
+|link:#rating-rating[rating]
+|(0..unbounded)
+
+|User Interaction
+|link:#userinteraction-userinteraction[userInteraction]
+|(0..unbounded)
+
+
+|===

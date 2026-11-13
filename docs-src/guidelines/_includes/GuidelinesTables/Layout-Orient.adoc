@@ -1,0 +1,17 @@
+[%autowidth,options="header"]
+|===
+|Code|Definition
+
+|horizontal
+|The human interpretation of the top of the image is aligned to the long side.
+
+|vertical
+|The human interpretation of the top of the image is aligned to the short side.
+
+|Square
+|Both sides of the image are about identical, there is no short and long side.
+
+|unaligned
+|There is no human interpretation of the top of the image.
+
+|===

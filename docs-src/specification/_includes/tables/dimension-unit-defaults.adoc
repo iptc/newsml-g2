@@ -1,0 +1,23 @@
+[%autowidth,options="header"]
+|===
+|Content Type|Height Unit
+ (default)|Width Unit
+ (default)
+
+|Picture
+|pixels
+|pixels
+
+|Graphic: Still / Animated
+|points
+|points
+
+|Video (Analog)
+|lines
+|pixels
+
+|Video (Digital)
+|pixels
+|pixels
+
+|===

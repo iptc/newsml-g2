@@ -1,0 +1,679 @@
+[[mapping-embedded-photo-metadata-to-newsml-g2]]
+Mapping Embedded Photo Metadata to NewsML-G2
+---------------------------------------------
+
+[[introduction-16]]
+Introduction
+~~~~~~~~~~~~
+
+Embedded metadata in JPEG and other file formats have been a _de facto_
+standard since the 1990s. In fact, the metadata schema adopted by Adobe
+Systems Inc for the original "File Info" dialog box in Photoshop is
+based on the IPTC Information Interchange Model (IIM). This standard for
+exchanging all types of news assets and metadata pre-dates XML-based
+standards such as NewsML-G2. The IIM-based embedded properties in images
+became known as the "IPTC Fields" or "IPTC Header" and they were widely
+adopted in professional workflows.
+
+In about 2001, in order to overcome some technical limitations imposed
+by this legacy model, Adobe introduced the Extensible Metadata Platform,
+or XMP, to its suite of applications that includes Photoshop. Adobe also worked
+with the IPTC to migrate the properties of the legacy "IPTC Header" to
+XMP. Most of the original IIM-based metadata properties are contained in
+the IPTC Core Schema for XMP. Further IPTC properties that are derived
+from NewsML-G2 properties are available in the IPTC Extension Schema for
+XMP.
+
+NOTE: Although developed by Adobe, XMP is an open technology
+like its IIM-based predecessor, and has been adopted by other software
+vendors and manufacturers. Adobe and others, including Microsoft, Apple
+and Canon, have formed the Metadata Working Group, a consortium that
+promotes preservation and inter-operability of digital image metadata.
+The MWG web site is http://www.metadataworkinggroup.org[www.metadataworkinggroup.org].
+
+However, when IIM-based properties were added to software packages such
+as Photoshop, the original semantic definitions of IIM were left behind,
+and in the absence of formal definitions, the use of these properties
+among vendors and agencies began to diverge as semantics of the labels
+were interpreted differently. The IPTC addressed this in 2005 by
+bringing interested parties together to agree the IPTC Photo Metadata
+Standard, based on recognised current industry practice. The latest
+version (as of this edition of the Guidelines) was approved in 2016.
+(For more information on the Standard visit the IPTC website
+https://iptc.org[www.iptc.org] and navigate to Photo Metadata.)
+
+A mapping of IIM legacy properties to NewsML-G2 is given
+below in xref:iim-to-newsml-g2-field-mapping-reference[IIM to NewsML-G2 Field Mapping Reference], but this can only be regarded as "the basics". A full
+mapping of the IPTC Photo Metadata Standard backwards to IIM (where
+feasible) and forwards to NewsML-G2 may be found at
+https://www.iptc.org/std/photometadata/specification/mapping/iptc-pmd-newsmlg2.html[IPTC Photo Metadata Mapping]
+on the IPTC website. Note that because the photo metadata world has
+moved on since the original IIM specification, the semantic
+interpretation of IIM in the mapping guide follows the Photo Metadata
+Standard, which is in some cases slightly different to the IIM 4.2
+Specification.
+
+[[iptc-metadata-for-xmp]]
+IPTC Metadata for XMP
+~~~~~~~~~~~~~~~~~~~~~
+
+To use the IPTC Photo Metadata in Adobe CS3 and CS4 a set of custom
+panels for Bridge must be downloaded from the IPTC web site and
+installed on your Windows or Mac OS X computer. Adobe CS5 and higher
+provides built-in File Info panels covering both IPTC Core and
+Extension. Be aware that these custom panels only work up to version CS
+5.5 of Bridge. To download visit https://www.iptc.org[www.iptc.org] and
+navigate to Photo Metadata.
+
+The IPTC web site also lists image manipulation software packages that
+synchronize the legacy IIM-based header fields and XMP properties. The
+IPTC Custom Panels User Guide tabulates the field labels used by IIM,
+IPTC Core, and the equivalent fields of software packages such as
+Photoshop, iViewMedia, Thumbs, and Irfanview.
+
+[[synchronizing-xmp-and-legacy-metadata]]
+Synchronizing XMP and legacy metadata
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When opening an image that contains the legacy IIM-based IPTC metadata,
+using an application that supports XMP, users may need to be aware of
+synchronization issues. Digital images that pre-date XMP contain the
+legacy IIM-based metadata in a special area of the JPEG, TIFF or PSD
+file called the Image Resource Block (IRB). XMP-aware applications store
+metadata in the file differently, in the XMP Packet.
+
+image::file-info-css.png[file-info-css.png,width=503,height=459]
+
+.Figure: The IPTC Core metadata panel for an image opened in Adobe Photoshop.
+
+Current versions of Adobe’s software such as Photoshop write the
+metadata to the IIM-header wrapped by the IRB, and to the XMP packet,
+when saving a file. Therefore, an image which contained only legacy
+metadata when opened could have metadata written to a new XMP packet
+(where an IIMXMP mapping exists) when saved.
+
+If a picture with XMP metadata is modified by a non-compliant
+application (i.e. the IRB only is changed), this should be detected by
+the next XMP-compliant processor that opens the picture, using a
+checksum. The Metadata Working Group guidance document has a detailed
+chapter on these synchronization issues.
+
+There is no guarantee that the synchronization of legacy and XMP
+metadata will be supported in future versions of Adobe software, or
+applications from other vendors.
+
+[[picture-services-using-iimxmp]]
+Picture services using IIM/XMP
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Many news and picture agencies deliver images to their customers using
+IIM. Customers receive these services in three variants:
+
+* As binary files such as JPEG that support embedded IIM metadata in the
+file header as "IPTC Fields" and/or XMP.
+* As binary files such as JPEG with additional embedded IIM fields
+beyond the set adopted by Adobe that are used by proprietary
+image-management software applications. These fields are not read by
+off-the-shelf software packages such as Photoshop. This format is used
+by the photo departments of many news agencies.
+* As binary IIM files which consist of the IIM envelope and associated
+object (picture) data. The conveyed picture may also contain embedded
+IPTC-IIM fields, but this metadata may not be synchronized with the IIM
+envelope in all instances. Providers’ synchronization practices vary.
+
+[[rationale-for-moving-to-newsml-g2]]
+Rationale for moving to NewsML-G2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is probable that providers will continue to embed metadata in image
+and graphics files, but both providers and customers may derive benefits
+from exchanging this content using NewsML-G2:
+
+* metadata carried in a NewsML-G2 document is accessible without the
+need to retrieve and open the associated image file;
+* in some business applications, editors have to modify picture metadata
+but have no access or permission to modify the metadata in the image
+file, and the provider needs therefore to instruct receivers to use the
+NewsML-G2 metadata;
+* partners in an information exchange can standardise on a common method
+for managing all kinds of news objects.
+* Some news providers’ picture services are already being migrated to
+NewsML-G2. Some are already using NewsML-G2 as their internal standard
+for storing and exchanging all types of news objects; it makes sense to
+migrate to a common standard for customer-facing applications too.
+* IIM is a legacy format and has some inherent issues, such as limits on
+field lengths and difficulty with internationalization.
+
+[[iim-resources]]
+IIM resources
+~~~~~~~~~~~~~
+
+The IPTC web site has an IIM Home page. Visit
+https://iptc.org/standards/[www.iptc.org/standards] and follow the link
+to IIM to view the Specification and other documents. These include a
+list of software packages that support IIM metadata fields, and a link
+to a document that maps IIM fields IPTC Core (XMP) Software Package
+labels, maintained by David Riecks at
+http://www.controlledvocabulary.com[www.controlledvocabulary.com].
+
+More about the use of IIM for photos can be found in the "Photo
+Metadata" section of the IPTC website.
+
+[[approach]]
+Approach
+~~~~~~~~
+
+Although IIM can handle any type of media object, its use for media
+types other than pictures is now rare, so this section will focus on the
+issue of migrating IIM picture metadata, chiefly those found in Adobe’s
+Photoshop "IPTC Header", to NewsML-G2 properties. It is NOT intended to
+describe a mapping of the complete IIM envelope or IPTC Photo Metadata
+Standard to NewsML-G2. (Available at https://www.iptc.org/std/photometadata/specification/mapping/iptc-pmd-newsmlg2.html[IPTC Photo Metadata Mapping])
+
+[[iim-to-newsml-g2-field-mapping-reference]]
+IIM to NewsML-G2 Field Mapping Reference
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+IIM is organised into Records and DataSets. The DataSets that are
+embedded in image files are in the Application Record (Record Two). Each
+IIM DataSet is labelled according to the parent Record and its position
+within the Record (these numbers are not necessarily contiguous). The
+IIM Specification contains details of the record structure. 
+
+The table below shows IIM DataSets that have been (with noted
+exceptions) adopted for the IPTC Photo Metadata. Each DataSet is shown
+with its IIM name, equivalent IPTC Photo Metadata Name (if available),
+and the corresponding NewsML-G2 Property.
+
+include::{includedir}/../../GuidelinesTables/IIM-to-G2.adoc[]
+
+[[iim-to-newsml-g2-mapping-example]]
+IIM to NewsML-G2 Mapping Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The screenshot below shows fields of the IPTC Panel in Adobe Photoshop’s
+File Info dialog, containing metadata from the IPTC Core metadata
+schema. Note the neighbouring tab labelled IPTC Extension that contains
+metadata fields of the IPTC Extension schema. 
+
+image::IPTC_PM_Panel-Photoshop.png[IPTC_PM_Panel-Photoshop.png,width=633,height=383]
+
+.Figure: IPTC fields in Photoshop File Info panel (photo and metadata ©Thomson Reuters)
+
+The table below maps the IIM DataSets from the example to NewsML-G2. In the succeeding paragraphs, the mapping discussed in more detail.
+
+[cols="10m,15m,50m,25m",options="header"]
+|====
+|DataSet |IIM Name |Value |Notes
+|2:05 |Object Name |USA-CRASH/MILITARY |
+|2:10 |Urgency |4 |
+|2:15 |Category |A |No longer used. 
+|2:20 |Supplemental Category |DEF DIS |No longer used. 
+|2:25 |Keywords |US |
+|2:25 |Keywords |Military |
+|2:25 |Keywords |Aviation |
+|2:25 |Keywords |Crash |
+|2:25 |Keywords |Fire |
+|2:40 |Special Instruction |NO ARCHIVE OR WIRELESS USE |
+|2:55 |Date Created |20081208 17:30:00 |
+|2:80 |By-Line |John Smith |
+|2:85 |By-line Title |Staff Photographer |
+|2:90 |City |San Diego |
+|2:92 |Sub-location |University City |
+|2:95 |Province/State |CA |
+|2:100 |Country/Primary Location Code |USA |
+|2:101 |Country/Primary Location Name |United States |
+|2:103 |Original Transmission Reference |SAD02 |
+|2:105 |Headline |A firefighter walks past the remains of a military jet
+that crashed into homes in the University City neighborhood of San Diego |
+|2:110 |Credit |Acme/John Smith |
+|2:115 |Source |Acme News LLC |
+|2:116 |Copyright Notice |© Copyright Thomson Reuters. |
+|2:120 |Caption/Abstract |A firefighter in a flame retardant suit walks
+past the remains of a military jet that crashed into homes in the
+University City neighborhood of San Diego, California December 8, 2008.
+The military F-18 jet crashed on Monday into the California neighborhood
+near San Diego after the pilot ejected, igniting at least one home,
+officials said. |
+|2:122 |Writer/Editor |CK |
+|====
+
+[[object-name-title]]
+Object Name / Title
+^^^^^^^^^^^^^^^^^^^
+
+The <title> element is a child of <itemMeta> and is intended to be a
+human-readable identifier. The <itemMeta> block also contains some
+mandatory NewsML-G2 elements, as shown:
+
+[source,xml]
+<itemMeta>
+    <itemClass qcode="ninat:picture" />
+    <provider qcode="ex-prov:acmenews" />
+    <versionCreated>2025-10-19T02:20:00Z</versionCreated>
+    <pubStatus qcode="stat:usable" />
+    <fileName>2016-09-21T152911Z_1417736630_S1BEUCPFFZAB_USA-CRASH-MILITARY.xml</fileName>
+    <title>USA-CRASH/MILITARY</title>
+    <edNote />
+</itemMeta>
+
+Note that <fileName> contains the provider's recommended filename for this G2 Item.
+
+Some providers may additionally map this DataSet to the NewsML-G2
+<slugline> property in <contentMeta>:
+
+[source,xml]
+<slugline>USA-CRASH/MILITARY</slugline>
+
+[[urgency]]
+Urgency
+^^^^^^^
+
+The DataSet Urgency has been deprecated in the latest version of the
+IIM, and in the IPTC Photo Metadata Standard. It may still be used in
+some services, and therefore if present may be mapped to the
+corresponding NewsML-G2 property, which is a child of <contentMeta>:
+
+[source,xml]
+<urgency>4</urgency>
+
+[[keywords-1]]
+Keywords
+^^^^^^^^
+
+The semantics of keyword are somewhat open: some providers use keywords
+to denote "key" words that can be used by text-based search engines;
+some use "keyword" to categorise the content using mnemonics, amongst
+other examples. The IPTC recommends that the IIM/Photo Metadata Keywords
+property is mapped to the repeatable <keyword> element in NewsML-G2 (one
+<keyword> element per keyword)
+
+If this mapping cannot be assumed, the IPTC suggests the following rules
+when configuring a mapping of Keywords metadata:
+
+* Assess if any existing NewsML-G2 properties align to this use of
+keyword. Typical examples are
+** Genres ("Feature", "Obituary", "Portrait", etc.)
+** Media types ("Photo", "Video", "Podcast" etc.)
+** Products/services by which the content is distributed
+* If the keyword expresses the subject of the content it MAY go into the
+<subject> property with the keyword string placed in a <name> child
+element of the subject with a language tag if required.
+* If migrated to <subject>, providers should also consider:
+* Adding @type if the nature of the concept expressed by the keyword can
+be determined
+* Using a QCode if there is a corresponding concept in a controlled
+vocabulary
+* If none of the above conditions are met, then implementers should
+default to using <keyword> with a @role if possible to define the
+semantic of the keywords.
+
+The contents of the Keywords field in the example shown are intended to
+be used as natural-language "key" words that could be used by a
+text-based search engine to index the content. Therefore, they will be
+mapped to <keyword>.
+
+[source,xml]
+<keyword role="ex-krole:index">us</keyword>
+<keyword role="ex-krole:index">military</keyword>
+<keyword role="ex-krole:index">aviation</keyword>
+<keyword role="ex-krole:index">crash</keyword>
+<keyword role="ex-krole:index">fire</keyword>
+
+In IIM, the Keywords DataSet is repeatable, with each holding one
+keyword; therefore each keyword is mapped to separate <keyword>
+properties, even though they may appear as a comma-separated list in
+software application dialogs.
+
+[[special-instruction]]
+Special Instruction
+^^^^^^^^^^^^^^^^^^^
+
+The contents of this field could go into <edNote>, a child of
+<itemMeta>, which is placed after the <title> element (if present), if
+the nature of the instruction is a generic message to the receiver or
+its nature is unknown:
+
+[source,xml]
+<itemMeta>
+    ...
+    <edNote>NO ARCHIVAL OR WIRELESS USE</edNote>
+</itemMeta>
+
+If appropriate and advised by the provider, an alternative mapping for
+the contents of this field MAY be <usageTerms>, parts of the
+<rightsInfo> block:
+
+[source,xml]
+<rightsInfo>
+    <copyrightHolder qcode="ex-prov:TR">
+        <name>Thomson Reuters</name>
+    </copyrightHolder>
+    <copyrightNotice>Copyright 2025 Thomson Reuters.  </copyrightNotice>
+    <usageTerms>NO ARCHIVAL OR WIRELESS USE</usageTerms>
+</rightsInfo>
+
+[[date-created]]
+Date Created
+^^^^^^^^^^^^
+
+This maps to <contentCreated>, a child of <contentMeta>, since it refers
+to the content itself, for example:
+
+[source,xml]
+<contentMeta>
+    <contentCreated>2008-12-08</contentCreated>
+    ...
+</contentMeta>
+
+When there is a Time Created value present in the IIM Record, this
+should be merged with Date Created, as the NewsML-G2 property accepts a
+Truncated DateTime value (i.e. the value may be truncated if parts of
+the Date-Time are not available).
+
+NOTE: If present, the time part must be used in full, with time zone, and ONLY in the presence of the
+full date.
+
+[source,xml]
+<contentMeta>
+    <contentCreated>2008-12-08T17:30:00-08:00</contentCreated>
+    ...
+</contentMeta>
+
+[[by-line-credit-source]]
+By-line, Credit, Source
+^^^^^^^^^^^^^^^^^^^^^^^
+
+These three IIM DataSets are complementary, but each has a distinct
+application:
+
+* By-line is intended to identify the creator of the content
+* Credit identifies the provider of the content
+* Source holds the identity of a party having a role in the supply chain
+of the content.
+
+[[by-line]]
+By-line
++++++++
+
+The recommended mapping for By-line (IIM 2:80) is to the <creator> child
+element of <contentMeta>, rather than <by>. This is because <creator> is
+an administrative property that is intended to be machine-readable; the
+IPTC recommends that controlled vocabularies should be used if possible.
+The NewsML-G2 <by> property is a human-readable natural language
+property that is intended for display, but does not unambiguously
+identify the creator.
+
+The example below shows this identification metadata in its
+administrative context. Expressed in this way using QCodes, the metadata
+can be used for administration and search. Using a CV, the photographer
+can be uniquely and unambiguously identified. The optional <name> is
+shown, and the <creator> property also allows the use of the child
+element <related> which in this case is used to express the
+photographer’s job title, again using a QCode, from IIM DataSet 2:85
+(By-line Title)
+
+[source,xml]
+<creator qcode="ex-pers:JS001">
+    <name>John Smith</name>
+    <related rel="ex-personrel:jobtitle"qcode="ex-stafftitles:photo">
+        <name>Staff Photographer</name>
+    </related>
+</creator>
+
+[[credit]]
+Credit
+++++++
+
+Credit should be mapped to the <creditline> child property of
+<contentMeta>. There is a <provider> property of <itemMeta>, but the
+Credit does necessarily reflect the provider. Many picture providers use
+IIM Credit to display the name of the person, organisation, or both, who
+should be credited when the picture is used. In this context,
+<creditline> is appropriate because it is a natural-language label that
+is intended to be displayed.
+
+[source,xml]
+<creditline>Acme/John Smith</creditline>
+
+[[source-1]]
+Source
+++++++
+
+In the original IIM specification up to 4.1, Source refers to the
+initial holder of the copyright. In IIM 4.2, the semantics of Source
+were changed to be "_…a person or party who has a role in the content
+supply chain. This could be an agency, a member of an agency, an
+individual or a combination. Source could be different from Creator and
+from the entities in the Copyright Notice._". This more "open"
+definition reflects current usage by the broad range of users and aligns
+with the Photo Metadata Standard.
+
+In some distribution systems, the original owner of the copyright (as
+distinct from the current owner) is important, and some providers use
+the Source field for this information. This was the original intention
+of the IIM Specification which used Source for the Original Owner, and
+the Copyright Notice (DataSet 2:116) to hold the copyright statement
+which includes the Current Owner.
+
+Using the current definition of Source, the recommended mapping to
+NewsML-G2 is the <infoSource> element, a child of <contentMeta> (OR if
+the source is the original copyright owner +
+<rightsInfo> (with @validto time delimiter) with a <copyrightHolder>
+child element).
+
+In this case, the original copyright holder is Thomson Reuters, and the
+Source of the content (an image in this example) is Acme News. The following uses a controlled value to indicate
+the @role of the party named as the Information Source:
+
+[source,xml]
+<contentMeta>
+    ...
+    <infoSource role="cpprole:imgSupplier">
+        <name>Acme News LLC</name>
+    </infoSource>
+    ...
+
+For more on this topic, see xref:identifying-sources-and-workflow-actors[Identifying Sources and Workflow Actors]
+
+[[city-provincestate-and-country]]
+City, Province/State and Country
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As discussed in xref:quick-start-pictures-and-graphics[Pictures and Graphics],
+geographical metadata in images may have different contexts:
+
+* The location from which the content originates, i.e. where the camera
+was located. NewsML-G2 has a <located> property to express this.
+* The location shown in the picture – in NewsML-G2 this is a <subject>
+property of the picture.
+
+Although for the majority of pictures, these are effectively the same
+spot, one can envisage situations where these two semantically distinct
+locations are not in the same place: a picture of Mount Fuji taken from
+downtown Tokyo is one example which is often quoted.
+
+When mapping from IIM or IIM-based Photoshop fields, we assume that the
+intention of the provider is to express the location shown in the image,
+as this is the more customary use of these fields. (Be aware that
+specific providers may have their own convention, and receivers are
+advised to check).
+
+The location shown in the example image may be expressed using a single
+<subject> property for the location, linked to an <assert> block:
+
+[source,xml]
+<contentMeta>
+    ...
+    <subject type="cpnat:poi" literal="int001" />
+    ...
+</contentMeta>
+<assert literal="int001">
+    <POIDetails>
+        <address>
+            <line>University City</line>
+            <locality qcode="ex-city:int002" type="ex-cpnatexp:geoAreaCity">
+                <name>San Diego</name>
+            </locality>
+            <area qcode="ex-state:int003" type="ex-cpnatexp:geoAreaProvState">
+                <name>California</name>
+            </area>
+            <country qcode="iso3166-1a2:US" type="ex-cpnatexp:geoAreaCountry">
+                <name>United States</name>
+            </country>
+        </address>
+    </POIDetails>
+</assert>
+
+Using <assert> in this way can be an advantage if a concept is used more
+than once in the NewsML-G2 Item. For example if both the Location Shown
+and the Location Created are the same place, all of the required concept
+details can be grouped in one <assert> and shared by both properties,
+for example:
+
+[source,xml]
+<located type="cpnat:poi" literal="int001" />
+    <!-- Camera location -->
+    ...
+<subject type="cpnat:poi" literal="int001" />
+    <!-- Subject of picture -->
+    ...
+<assert literal="int001">
+    <POIDetails>
+    ...
+
+[[original-transmission-reference]]
+Original Transmission Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is defined in IIM as "a code representing the location of original
+transmission", but in common usage this DataSet has a broader use as an
+identifier for the purpose of improved workflow handling (IPTC Photo
+Metadata: Job ID). These uses include:
+
+* As an identifier for the picture (perhaps on some content management
+system)
+* As an identifier for a series of pictures, of which this one is part,
+e.g. a group of pictures of the same event.
+
+The first use should be mapped to the NewsML-G2 property <altId>, a
+child of <contentMeta>. <altId> has two
+attributes: @type indicates the context of the identifier using a QCode,
+and @environment indicates the business environment in which the
+identifier can be used. This is expressed using one or more QCodes
+(QCode List).
+
+[source,xml]
+<altId type="ex-idtype:systemRef" environment="ex-acmesys:mdn ex-acmesys:iim">SAD02</altId>
+
+If the DataSet represents a Job ID, the recommended mapping is to the
+NewsML-G2 <memberOf> property, a child of <itemMeta>:
+
+[source,xml]
+<memberOf type="ex-ref:jobref">
+    <name>SAD02</name>
+</memberOf>
+
+[[headline-1]]
+Headline
+^^^^^^^^
+
+Maps to the <headline> child of <contentMeta>, a block type element:
+
+[source,xml]
+<headline xml:lang="en-US">A firefighter walks past the remains of a military jet that crashed into homes in the University City neighborhood of San Diego
+</headline>
+
+Note the use of @xml:lang to declare the language and variant "en-US".
+
+[[copyright-notice]]
+Copyright Notice
+^^^^^^^^^^^^^^^^
+
+These fields correspond to the <copyrightNotice> element, a child of the
+<rightsInfo> block.
+
+[source,xml]
+<copyrightNotice>
+    Copyright 2025 Thomson Reuters
+</copyrightNotice>
+
+[[captionabstract]]
+Caption/Abstract
+^^^^^^^^^^^^^^^^
+
+The contents of this field are placed in the <description> element, part
+of <contentMeta> with a @role attribute to denote that the description
+is a picture caption:
+
+[source,xml]
+<description xml:lang="en-US" role="drol:caption">
+    A firefighter in a flameproof suit walks past the remains of a military jet that crashed 
+    into homes in the University City neighborhood of San Diego, California December 8, 2008. 
+    The military F-18 jet crashed on Monday into the California neighborhood near San Diego 
+    after the pilot ejected, igniting at least one home, officials said.
+</description>
+
+[[writereditor]]
+Writer/Editor
+^^^^^^^^^^^^^
+
+The caption writer is often a different person to the photographer, so
+aligns with the NewsML-G2 <contributor> property, a child of
+<contentMeta>. If possible, use a QCode value to unambiguously identify
+the contributing person and a @role to describe their role in the
+workflow. This property may be extended to include contact
+details and other information such as job title.
+
+[source,xml]
+<contributor role="cpprole:descrWriter" qcode="ex-pers:CK" />
+
+[[_Ref435560678]]
+
+.LISTING 22: Embedded photo metadata fields mapped to NewsML-G2
+
+The listing below combines the examples above into a complete listing.
+The following options have been used:
+
+* <usageTerms> used for Special Instructions, instead of <edNote>
+* <assert> used in conjunction with <subject> to express the location
+shown in the image.
+* <altId> used for the Original Transmission Reference (instead of
+<memberOf>)
++
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies, except for the following alias values (note that they
+are prefixed "ex-" to aid readability):
+_ex-acmesystem_, _ex-cat_, _ex-city_, _ex-cpnatexp_, _ex-idtype_,
+_ex-krole_, _ex-pers_, _ex-personrel_, _ex-prov_, _ex-stafftitles_,
+_ex-suppcat_ and _ex-state_.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_22_Embedded_photo_metadata_fields_mapped_to_NewsML-G2.xml[]
+----
+
+[[reconciling-newsml-g2-with-embedded-metadata]]
+Reconciling NewsML-G2 with embedded metadata
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Where equivalent properties exist in both NewsML-G2 metadata and
+embedded (XMP or EXIF) metadata, the IPTC recommends that embedded
+administrative metadata, such as <located>, MAY take precedence over
+NewsML-G2 metadata, subject to guidance from the provider, and always
+with caution.
+
+For example, a picture may have GPS metadata embedded by the camera,
+which may be different from the <located> property entered by a
+journalist.
+
+The difference may be one of precision: the GPS co-ordinates may be
+precise, but hardly useful to the ultimate consumer. Even if a
+human-readable value is derived from the GPS data, would this be better
+than the information, if accurate, provided by the journalist? If the
+difference is due to inaccuracy, the receiver would have no way of
+knowing whether the journalist has made a mistake, or whether the camera
+is incorrectly set.
+
+[[_Ref243449648]][[_Ref222818269]]
+

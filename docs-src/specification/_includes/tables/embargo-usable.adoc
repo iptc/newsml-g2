@@ -1,0 +1,29 @@
+[%autowidth,options="header"]
+|===
+|<embargoed>|<pubStatus>|How to Process
+
+|Element is absent.
+|Usable
+|Item is usable and not embargoed.
+
+|Element exists, provides a Date/Time value.
+|Usable
+|The embargo on the item ends at the given date and time.
+
+|Element exists, but is empty.
+|Usable
+|The item is embargoed as long as a condition applies which is described in an editorial note.
+
+|Corresponding edNote exists.
+|
+|The edNote should be formulated like this: <edNote @role="noteRole:embargo">Until end of speech</edNote>
+
+|Element exists, but is empty.
+|Usable
+|The item is embargoed indefinitely. This may be overridden by a contractual agreement between the provider and the client.
+
+|No corresponding edNote exists.
+| 
+| 
+
+|===

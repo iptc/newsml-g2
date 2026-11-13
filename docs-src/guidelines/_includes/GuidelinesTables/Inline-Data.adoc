@@ -1,0 +1,28 @@
+[%autowidth,options="header"]
+|===
+|Name |Definition
+
+|Simplest example a|
+[source, xml]
+<inlineData contentType=”text/plain”>
+  Any text using utf-8 encoding and XML entities such as &lt; or <![CDATA[ < ]]> to escape special characters as required.
+</inlineData>
+
+|Markdown a|
+[source, xml]
+<inlineData contentType=”text/markdown”>
+  = Heading 1 *Here* is a markdown example. 4 &lt; 5.
+</inlineData>
+
+|Embedded GIF a|
+[source, xml]
+<inlineData contentType=”image/gif” encoding=”base64”>6ABC467F324379DE=</inlineData>
+
+|HTML5 embedded widget a|
+[source, xml]
+<inlineData rendition="rnd:web" contenttype="text/html">
+  <![CDATA[<div  class="ftb-widget" data-height="350" data-href="" data-widget-id="hHgHq3OqYhD" data-width="600"></div><script async="async" src="https://s.graphiq.com/rx/widgets.js"></script>]]>
+</inlineData>
+|===
+
+
