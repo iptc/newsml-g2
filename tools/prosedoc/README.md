@@ -31,13 +31,25 @@ because the splitter reads Asciidoctor's HTML; upgrade it deliberately and
 check the output. Any Asciidoctor warning, such as an include or image that
 does not resolve, fails the build.
 
-## Still to do
+## Old links into the single-page books
 
-**Old links into the single-page books.** Outside documents link to section
-anchors on the single-page books — the ninjs Guidelines link to
-`specification/#introduction-to-eventsml-g2` — and once split, that section is
-on its own page. Publishing needs a redirect from each old `#anchor` to the
-chapter page that now holds it.
+Outside documents link to section anchors on the single-page books — the
+ninjs Guidelines link to `specification/#introduction-to-eventsml-g2` — and
+once split, that section is on its own page. The fragment never reaches the
+web server, so this cannot be a server redirect. Instead each book folder gets
+an `index.html` holding the book's anchor map, which sends the reader on to
+the chapter page with the anchor: `specification/#introduction-to-eventsml-g2`
+becomes `specification/introduction-to-eventsml-g2.html#introduction-to-eventsml-g2`.
+An anchor the map does not know lands on the Preface.
+
+Every anchor in the published 2.36 Specification and 2.35 Guidelines is in the
+map, apart from the old page's own chrome (`#toc`, `#header` and so on), and
+lands on a page that has it. For the old URLs to reach these pages,
+`/std/NewsML-G2/specification/` and `/guidelines/` must serve the new book
+folders when the site is published; today the Specification URL is a server
+redirect to the versioned single-page file, which keeps the fragment.
+
+## Still to do
 
 **The layout is a review harness, not a design.** The published site is a
 Phase 3 decision and will use the IPTC design system. What is worth settling

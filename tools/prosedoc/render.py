@@ -18,6 +18,7 @@ the information architecture, which is renderer-independent.
 from __future__ import annotations
 
 import html
+import json
 import os
 
 # Relative to a chapter page. The books and the schema reference are written
@@ -178,3 +179,37 @@ def write_pages(chapters, output_dir, docname, version='', stem=''):
             handle.write(page)
         written.append(path)
     return written
+
+
+# The hash never reaches the server, so the old single-page links can only be
+# redirected in the browser. Anchors not in the map (the old page's own chrome,
+# such as #toc) land on the first chapter.
+INDEX_SCRIPT = """var pages=%s,anchor=location.hash.slice(1),page=pages[anchor];
+try{if(!page)page=pages[decodeURIComponent(anchor)]}catch(e){}
+location.replace((page||%s)+'.html'+(page&&anchor?'#'+anchor:''));"""
+
+
+def write_index(chapters, anchors, output_dir, docname):
+    """
+    Write the book's index.html, which forwards links into the old single page.
+
+    `anchors` is the book's anchor map (split.anchor_map). A link such as
+    `specification/#introduction-to-eventsml-g2` was written for the single-page
+    book; that section is now on its own chapter page, and this sends the reader
+    there. Without script, it lists the chapters.
+    """
+    pages = json.dumps(anchors, separators=(',', ':'), sort_keys=True)
+    links = ''.join('<li><a href="%s.html">%s</a></li>'
+                    % (chapter['file'], html.escape(chapter['title']))
+                    for chapter in chapters)
+    page = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
+            '<title>NewsML-G2 %s</title><script>%s</script></head>'
+            '<body><h1>NewsML-G2 %s</h1><ul>%s</ul></body></html>'
+            % (html.escape(docname),
+               INDEX_SCRIPT % (pages.replace('</', '<\\/'),
+                               json.dumps(chapters[0]['file'])),
+               html.escape(docname), links))
+    path = os.path.join(output_dir, 'index.html')
+    with open(path, 'w', encoding='utf-8') as handle:
+        handle.write(page)
+    return path

@@ -14,8 +14,8 @@ Assemble the Specification, Guidelines and schema reference into one site.
 The result is flat static HTML with only relative links between its parts:
 
     index.html              redirects to the Specification
-    specification/*.html    one page per chapter
-    guidelines/*.html       one page per chapter
+    specification/*.html    one page per chapter, plus an index.html that
+    guidelines/*.html       forwards old single-page #anchor links
     reference/*.html        one page per element, datatype and attribute group,
                             plus the search index and the Structure Matrix
 
