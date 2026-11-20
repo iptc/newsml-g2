@@ -205,3 +205,40 @@ def book_version(path):
     with open(path, encoding='utf-8') as handle:
         match = REVNUMBER.search(handle.read())
     return match.group(1) if match else ''
+
+
+HEADING = {'h1', 'h2', 'h3', 'h4', 'h5', 'h6'}
+
+
+def search_entries(chapters, snippet=500):
+    """
+    One search entry per chapter and section heading.
+
+    `u` is the link, `t` the numbered heading, `s` the chapter it is in and
+    `x` the start of the text under the heading, which is matched as well as
+    shown. Collected in document order up to the next heading, rather than from
+    the heading's enclosing div, because the Preface folds several sections
+    into one page without their wrappers.
+    """
+    entries = []
+    for chapter in chapters:
+        root = LH.fragment_fromstring(chapter['body'], create_parent='div')
+        current = {'u': chapter['file'] + '.html', 't': chapter['title'],
+                   's': '', 'x': []}
+        entries.append(current)
+        for el in root.iter():
+            if not isinstance(el.tag, str):
+                continue
+            if el.tag in HEADING and el.get('id'):
+                current = {'u': '%s.html#%s' % (chapter['file'], el.get('id')),
+                           't': ' '.join(el.text_content().split()),
+                           's': chapter['title'], 'x': []}
+                entries.append(current)
+                continue
+            if any(a.tag in HEADING for a in el.iterancestors()):
+                continue
+            if sum(len(part) for part in current['x']) < snippet:
+                current['x'].extend(filter(None, (el.text, el.tail)))
+    for entry in entries:
+        entry['x'] = ' '.join(' '.join(entry['x']).split())[:snippet]
+    return entries

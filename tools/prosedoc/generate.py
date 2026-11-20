@@ -18,6 +18,7 @@ into chapters, and written with the images it uses. Needs asciidoctor on PATH.
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import shutil
 import subprocess
@@ -107,6 +108,10 @@ def build_books(books, output, verbose=False):
         output_dir = os.path.join(output, folder)
         written = render.write_pages(chapters, output_dir, name, version, stem)
         render.write_index(chapters, maps[folder], output_dir, name)
+        with open(os.path.join(output_dir, 'search-index.json'), 'w',
+                  encoding='utf-8') as handle:
+            json.dump(split.search_entries(chapters), handle,
+                      ensure_ascii=False, separators=(',', ':'))
         copy_images(chapters, source_dir, output_dir)
         print('%-14s %2d chapters -> %s'
               % (name, len(written), os.path.relpath(output_dir, REPO_ROOT)))

@@ -24,7 +24,10 @@ chapters, and written with the images it uses. Cross-references are rewritten
 as the books are split: `#the-data-model` becomes
 `introduction.html#the-data-model`, and links to the published books on
 iptc.org become links to the local pages. Chapters with STEM (maths) content
-get the book's MathJax scripts back, which splitting would otherwise drop.
+get the book's MathJax scripts back, which splitting would otherwise drop. Each
+book also gets a `search-index.json` of its section headings and the start of
+the text under each; the search box on every chapter page searches both books
+and the schema reference together.
 
 Needs `asciidoctor` on PATH. CI pins the version (see `.github/workflows/ci.yml`),
 because the splitter reads Asciidoctor's HTML; upgrade it deliberately and
@@ -95,6 +98,6 @@ first of them.
 
 | File | Purpose |
 |---|---|
-| `split.py` | Parse a rendered book into chapters; fold front matter; find images and STEM |
+| `split.py` | Parse a rendered book into chapters; fold front matter; find images and STEM; build the search entries |
 | `render.py` | Emit the page shell, navigation and styling |
 | `generate.py` | Render the master documents; command line entry point |

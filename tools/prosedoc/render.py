@@ -50,8 +50,25 @@ header.top nav{display:flex;gap:16px;flex:1;justify-content:flex-end;overflow-x:
 header.top nav a{color:#c9d8ec;text-decoration:none;white-space:nowrap;font-size:14px;
 padding:4px 2px;border-bottom:2px solid transparent}
 header.top nav a.here{color:#fff;border-bottom-color:#5b9bd5}
+header.top .search{position:relative}
 header.top .search input{width:300px;padding:6px 10px;border-radius:5px;
 border:1px solid #2c456b;background:#1a3358;color:#fff;font-size:13px}
+header.top .search input::placeholder{color:#8fa6c4}
+.results{position:absolute;top:36px;right:0;width:420px;max-height:60vh;overflow:auto;
+background:#fff;color:var(--fg);border:1px solid var(--rule);border-radius:6px;
+box-shadow:0 8px 28px rgba(16,35,61,.18);display:none}
+.results.open{display:block}
+.results a{display:block;padding:8px 12px;text-decoration:none;color:var(--fg);
+border-bottom:1px solid #f0f3f7;font-size:14px;line-height:1.4}
+.results a:last-child{border-bottom:0}
+.results a:hover,.results a.sel{background:var(--accent-soft)}
+.results .t{font-weight:600;color:var(--accent)}
+.results .kind{float:right;font-size:10px;text-transform:uppercase;
+letter-spacing:.06em;color:var(--muted);background:var(--code);
+padding:1px 6px;border-radius:9px;margin-left:8px}
+.results .x{font-size:12px;color:var(--muted);display:block;
+overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.results .none{padding:12px;color:var(--muted);font-size:13px}
 .shell{display:grid;grid-template-columns:270px minmax(0,1fr) 235px;align-items:start}
 aside.left,nav.toc{position:sticky;top:52px;max-height:calc(100vh - 52px);overflow-y:auto}
 aside.left{border-right:1px solid var(--rule);background:var(--sidebar);padding:16px 0 40px}
@@ -99,15 +116,76 @@ padding-top:18px;border-top:1px solid var(--rule);font-size:14px}
 
 
 
+# Searches the whole site: both books' section headings and the text under
+# them, and the schema reference's elements and attributes. Each part's index
+# is fetched on the first keystroke; a part that is missing (a book built on
+# its own) is skipped. Matches in a heading or name rank above matches in text.
+SEARCH_PARTS = (
+    ('specification', 'Specification'),
+    ('guidelines', 'Guidelines'),
+    ('reference', None),
+)
+
+JS = """(function(){
+var box=document.getElementById('q'),out=document.getElementById('r'),idx=null,sel=-1;
+if(!box)return;
+var parts=%s;
+function load(){if(idx)return idx;
+idx=Promise.all(parts.map(function(p){
+return fetch('../'+p[0]+'/search-index.json').then(function(r){return r.ok?r.json():[]})
+.catch(function(){return []}).then(function(d){return d.map(function(e){
+return {u:'../'+p[0]+'/'+e.u,t:e.t,s:e.s||'',x:e.x||'',b:e.b||'',
+k:p[1]||(e.k==='a'?'attribute':'element')}})})})).then(function(all){
+return [].concat.apply([],all)});return idx}
+function esc(s){return s.replace(/[&<>"]/g,function(c){
+return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function run(){var q=box.value.trim().toLowerCase();
+if(q.length<2){out.classList.remove('open');out.innerHTML='';sel=-1;return}
+load().then(function(d){
+if(box.value.trim().toLowerCase()!==q)return;
+var hits=[];
+d.forEach(function(e){var t=e.t.toLowerCase().replace(/^[\\d.]+\\s*/,'').replace(/^[<@]/,''),
+p=t.indexOf(q);
+if(p>-1)hits.push({e:e,s:p===0?0:1});
+else if(e.x.toLowerCase().indexOf(q)>-1||e.b.indexOf(q)>-1||e.s.toLowerCase().indexOf(q)>-1)
+hits.push({e:e,s:2})});
+hits.sort(function(a,b){return a.s-b.s||a.e.t.length-b.e.t.length});
+hits=hits.slice(0,30);sel=-1;
+if(!hits.length){out.innerHTML='<div class="none">No match for &ldquo;'+esc(q)+'&rdquo;</div>';
+out.classList.add('open');return}
+out.innerHTML=hits.map(function(h){var e=h.e;
+return '<a href="'+esc(e.u)+'" title="'+esc(e.t+(e.s?' — '+e.s:''))+'">'+
+'<span class="kind">'+esc(e.k)+'</span><span class="t">'+esc(e.t)+'</span>'+
+'<span class="x">'+esc(e.s||e.x.slice(0,100))+'</span></a>'}).join('');
+out.classList.add('open')})}
+box.addEventListener('input',run);
+box.addEventListener('keydown',function(e){
+var links=out.querySelectorAll('a');
+if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();
+if(!links.length)return;
+if(sel>-1)links[sel].classList.remove('sel');
+sel=e.key==='ArrowDown'?(sel+1)%%links.length:(sel<=0?links.length-1:sel-1);
+links[sel].classList.add('sel');links[sel].scrollIntoView({block:'nearest'})}
+else if(e.key==='Enter'){var go=links[sel>-1?sel:0];if(go){e.preventDefault();go.click()}}
+else if(e.key==='Escape'){out.classList.remove('open');box.blur()}});
+document.addEventListener('click',function(e){
+if(!e.target.closest('.search'))out.classList.remove('open')});
+document.addEventListener('keydown',function(e){
+if(e.key==='/'&&document.activeElement!==box){e.preventDefault();box.focus()}});
+})();""" % json.dumps(SEARCH_PARTS)
+
+
 def _top_bar(docname, version):
     links = ''.join(
         '<a href="%s"%s>%s</a>'
         % (href, ' class="here"' if label == docname else '', label)
         for label, href in TOP_LINKS)
     return ('<header class="top"><div class="brand">NewsML-G2 <span>%s</span></div>'
-            '<nav>%s</nav><div class="search"><input type="search" '
-            'placeholder="Press / to search the %s"></div></header>'
-            % (html.escape(version), links, docname.lower()))
+            '<nav>%s</nav><div class="search"><input id="q" type="search" '
+            'placeholder="Press / to search the documentation" autocomplete="off" '
+            'spellcheck="false" aria-label="Search the documentation">'
+            '<div class="results" id="r"></div></div></header>'
+            % (html.escape(version), links))
 
 
 def _left_index(chapters, current, docname):
@@ -171,8 +249,9 @@ def write_pages(chapters, output_dir, docname, version='', stem=''):
                    _pager(chapters, index), _right_toc(chapter)))
         page = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
                 '<meta name="viewport" content="width=device-width,initial-scale=1">'
-                '<title>%s</title><style>%s</style></head><body>%s%s</body></html>'
-                % (html.escape(chapter['title']), CSS, body,
+                '<title>%s</title><style>%s</style></head><body>%s<script>%s</script>%s'
+                '</body></html>'
+                % (html.escape(chapter['title']), CSS, body, JS,
                    stem if chapter.get('stem') else ''))
         path = os.path.join(output_dir, chapter['file'] + '.html')
         with open(path, 'w', encoding='utf-8') as handle:
