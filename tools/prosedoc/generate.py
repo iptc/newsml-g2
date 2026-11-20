@@ -30,6 +30,7 @@ try:
 except ImportError:                                   # run as a script
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from prosedoc import render, split
+import sitestyle                                                       # noqa: E402
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -118,6 +119,7 @@ def build_books(books, output, verbose=False):
         if verbose:
             for chapter in chapters:
                 print('   %-46s %s' % (chapter['file'] + '.html', chapter['title']))
+    sitestyle.write_assets(output)
     return maps
 
 

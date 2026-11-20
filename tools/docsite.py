@@ -14,6 +14,7 @@ Assemble the Specification, Guidelines and schema reference into one site.
 The result is flat static HTML with only relative links between its parts:
 
     index.html              redirects to the Specification
+    assets/                 the shared stylesheet, script, fonts and logo
     specification/*.html    one page per chapter, plus an index.html that
     guidelines/*.html       forwards old single-page #anchor links
     reference/*.html        one page per element, datatype and attribute group,
@@ -44,7 +45,7 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COMMITTED_MATRICES = os.path.join(REPO_ROOT, 'documentation', 'structure-matrix')
 SPEC_CHAPTER = os.path.join(REPO_ROOT, 'docs-src', 'specification', '_includes',
                             'chapters', '14_Specification_Reference.adoc')
-PARTS = ('specification', 'guidelines', 'reference')
+PARTS = ('specification', 'guidelines', 'reference', 'assets')
 IMG_SRC_RE = re.compile(r'(?<=<img )src="([^"]+)"')
 
 INDEX = """<!doctype html>

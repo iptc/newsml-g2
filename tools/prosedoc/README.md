@@ -54,11 +54,6 @@ redirect to the versioned single-page file, which keeps the fragment.
 
 ## Still to do
 
-**The layout is a review harness, not a design.** The published site is a
-Phase 3 decision and will use the IPTC design system. What is worth settling
-now is the information architecture — how chapters divide, what each
-navigation level carries — because that is renderer-independent.
-
 **No link check.** The build fails on a broken include or image, but nothing
 yet checks the links in the finished site. A dozen cross-references are
 already broken in the sources (e.g. `#_bookmark911` in §14).
@@ -99,5 +94,5 @@ first of them.
 | File | Purpose |
 |---|---|
 | `split.py` | Parse a rendered book into chapters; fold front matter; find images and STEM; build the search entries |
-| `render.py` | Emit the page shell, navigation and styling |
+| `render.py` | Emit the chapter pages in the shared frame (`tools/sitestyle`) and the anchor-forwarding `index.html` |
 | `generate.py` | Render the master documents; command line entry point |
