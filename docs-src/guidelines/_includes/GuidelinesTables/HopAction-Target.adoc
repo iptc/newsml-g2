@@ -1,0 +1,11 @@
+[%autowidth,options="header"]
+|===
+|Code|Definition
+
+|metadata
+|Any metadata associated with the content of the object.
+
+|content
+|The content of the object, which could be present in different renditions.
+
+|===

@@ -1,0 +1,17 @@
+[%autowidth,options="header"]
+|===
+|Subject|Description
+
+|NML-BR
+|IPTC NewsML 2 Business Requirements: http://www.iptc.org/std/NewsML/2.0/specification/NewsML_2.0-spec-BusinessRequirements_1.pdf[http://www.iptc.org/std/NewsML/2.0/specification/NewsML_2.0-specBusinessRequirements_1.pdf]
+
+|EventsML-G2
+|Specifications for EventsML-G2: http://www.iptc.org/std/NewsML-G2/2.28/specification/
+
+|NewsML-G2
+|Specifications for NewsML-G2: http://www.iptc.org/std/NewsML-G2/2.28/specification/
+
+|IPTC NewsCodes
+|All IPTC codes to categorise content or to express functional features can be obtained as NewsCodes from: http://www.newscodes.org/[http://www.newscodes.org]
+
+|===

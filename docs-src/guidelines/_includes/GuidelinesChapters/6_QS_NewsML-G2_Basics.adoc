@@ -1,0 +1,948 @@
+[[quick-start-guide-to-newsml-g2-basics]]
+NewsML-G2 Basics
+----------------
+
+[[about-the-quick-start-guides]]
+[[Basics]]
+[[introduction-2]]
+Introduction
+~~~~~~~~~~~~
+
+The basic structure of a NewsML-G2 Item document is common to all
+applications. The available types of Item are:
+
+* News Item: for all kinds of news content.
+* Package Item: for structured collections of news content.
+* Concept Item: for expressing knowledge about entities, abstract
+concepts, and events.
+* Knowledge Item: for collections of concepts, often grouped for a
+specific purpose such as Controlled Vocabularies.
+* Planning Item: for exchanging information about news coverage and
+fulfilment.
+* Catalog Item: for managing references to Controlled Vocabularies.
+
+[[item-structure]]
+Item structure
+~~~~~~~~~~~~~~~
+
+The building blocks of a NewsML-G2 Item are shown in the diagram below:
+
+image:BasicItemStructure.png[]
+
+.Figure: All NewsML-G2 Items share this basic container structure
+
+All have a root element that is specific to the type of Item that
+contains identification, version and some basic information to initiate
+the NewsML-G2 processor.
+
+The Catalog information is required to resolve QCodes, a fundamental
+feature of NewsML-G2 that enables partners to guarantee that codes used
+within an Item are globally unique.
+
+The Rights Information block allow publishers to assert fine-grained
+information about copyright and usage terms as human-readable
+statements, or by inclusion of a machine-readable rights expression
+language such as RightsML.
+
+The Item Metadata wrapper contains metadata about the Item as a whole,
+and this is followed by metadata about whole of the content
+<contentMeta>, and optionally by the <partMeta> wrapper, which enables
+publishers to express metadata about specific parts of the content.
+
+Optional "helper" structures are available for specialised processing
+needs.
+
+Each type of NewsML-G2 Item has a specific wrapper element for content,
+shown in the diagram below that also shows the basic top level elements
+common to all NewsML-G2 Items. The colours of the wrapper elements in
+the diagram are repeated in the code example in order to highlight the
+relevant sections of the News Item:
+
+image:ExpandedItemStructure.png[]
+
+.Figure: The basic XML elements associated with each part of a NewsML-G2 Item
+
+This example uses a News Item with text content to illustrate the basic
+principles in action. The following chapters walk through other basic
+implementations specific to <<quick-start-text,Text>>,
+<<quick-start-pictures-and-graphics,Pictures>>,
+<<quick-start-video,Video>> and <<quick-start-packages,Packages>>.
+
+.LISTING 1: A NewsML-G2 News Item with Text
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_1_A_NewsML-G2_News_Item.xml[]
+----
+
+[[root-element-newsitem]]
+Root element <newsItem>
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Each NewsML-G2 Item Type uses a specific root element name as shown in
+the diagram above. In the example News Item the root element is
+<newsItem> (note camel case spelling).
+
+[[root-element-attributes]]
+Root element attributes
+^^^^^^^^^^^^^^^^^^^^^^^
+
+[[item-identifier]]
+Item Identifier
++++++++++++++++
+
+All NewsML-G2 Items must have a @guid, an identifier that should be
+globally unique for all time and independent of location. The IPTC has
+registered a URN namespace for the purpose of creating GUIDs for
+NewsML-G2 Items using a specification based on RFC3085. The syntax for a
+@guid using this scheme is:
+
+[source,xml]
+guid="urn:newsml:[ProviderId]:[DateId]:[NewsItemId]"
+
+Use an internet domain name owned by your organisation as a ProviderId,
+for example:
+
+[source,xml]
+<newsItem guid= "urn:newsml:acmenews.com:20161018:US-FINANCE-FED"
+
+WARNING: Do not try to "reverse engineer" the DateId part of a GUID to create a time-stamp. This may
+have unintended consequences and result in errors. Use the appropriate
+NewsML-G2 timestamp property instead.
+
+[[version]]
+Version
++++++++
+
+A simple indicator of the version of the Item:
+
+[source,xml]
+----
+version="18"
+----
+
+Version numbers need not be consecutive, but must START at 1. A new version number must be a higher than the previous version number, and all version numbers for a given Item must be unique. If the version number is missing, the value is assumed to be 1. See <<implied-values-of-newsml-g2>>
+
+[[standard]]
+Standard
+++++++++
+
+A string denoting the IPTC Standard, in this case "NewsML-G2".
+
+[source,xml]
+----
+standard="NewsML-G2"
+----
+
+[[standard-version]]
+Standard Version
+++++++++++++++++
+
+A string denoting the major and minor version of the Standard being
+used:
+
+[source,xml]
+----
+standardversion="2.35"
+----
+
+[[conformance]]
+Conformance
++++++++++++
+
+The Conformance of all versions of NewsML-G2 since 2.24 is "power" and MUST be declared:
+
+[source,xml]
+----
+conformance="power"
+----
+
+[[language]]
+Language
+++++++++
+
+Setting the default language of XML elements with text content in
+NewsML-G2 is UK English:
+
+[source,xml]
+----
+xml:lang="en-GB"
+----
+
+[[iptc-namespace]]
+IPTC namespace
+++++++++++++++
+
+Sets the default namespace for elements:
+
+[source,xml]
+----
+xmlns="http://iptc.org/std/nar/2006-10-01/"
+----
+
+Putting this together, the required root element attributes are:
+
+[source, xml]
+----
+<newsItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    guid="urn:newsml:acmenews.com:20161018:US-FINANCE-FED"
+    version="18"
+    standard="NewsML-G2"
+    standardversion="2.35"
+    conformance="power"
+    xml:lang="en-GB">
+----
+
+[[validating-code]]
+Validating code
+^^^^^^^^^^^^^^^
+
+When developing a NewsML-G2 processing application, implementers will
+need to validate the generated NewsML-G2 code against the appropriate
+schema. To validate code against the latest version of 
+NewsML-G2 covered by these Guidelines (2.35) add the following code to the <newsItem>
+element:
+
+[source,xml]
+<newsItem
+    //...
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/
+http://www.iptc.org/std/NewsML-G2/2.27/specification/NewsML-G2_2.35-spec-All-Power.xsd"
+
+WARNING: The IPTC does NOT permit validation of production documents against the XML
+Schema files hosted by the IPTC.
+
+[[catalog-wrapper-catalogref]]
+Catalog wrapper <catalogRef>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Codes, short mnemonics used to express the value of properties such as Category, are a long-established feature of news exchange. QCodes are the NewsML-G2 mechanism that enables partners in news exchange to guarantee that codes are globally unique. NewsML-G2 processors use the News Item <catalog> to resolve QCodes, and guarantee their uniqueness by mapping the QCode to a globally-unique URI. (It is recommended that this URI locates a web resource.) For a detailed explanation of the QCode mechanism, see xref:how-qcodes-work[How QCodes Work]. 
+
+One of the few mandatory NewsML-G2 elements, <itemClass>, uses QCodes
+issued by the IPTC to identify the business intention of the Item. For a
+News Item, the scheme is News Item Nature, with a recommended Scheme
+Alias of "ninat". Values from the scheme include (not limited to)
+"ninat:text" and "ninat:picture". The catalog reference is:
+
+[source,xml]
+<catalog>
+    <scheme alias="ninat" uri="http://cv.iptc.org/newscodes/ninature/" />
+</catalog>
+
+Other types of NewsML-G2 Item use specific schemes for the <itemClass>
+property.
+
+All Scheme Aliases used in the example listing indicate IPTC NewsCodes vocabularies, except for the following alias values (note that they are prefixed "ex-" to aid readability):
+_ex-cptype_, _ex-geo_, _ex-prov_ and _ex-svc_.
+
+As the CVs used by a provider are usually quite consistent across the
+NewsML-G2 Items they publish, the IPTC recommends that the <catalog>
+references are aggregated into a stand-alone file which is made
+available as a web resource referenced by <catalogRef>. This is how the
+IPTC publishes its Catalogs:
+
+[source,xml]
+<catalogRef
+    href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_41.xml"
+/>
+
+The use of stand-alone web resources is preferable because all of the
+QCode mappings are shared across many NewsML-G2 Items; a local <catalog>
+can only be used by the single Item.
+
+It’s likely that provider-specific catalogs will be needed to resolve
+QCodes used in the Item, for example:
+
+[source,xml]
+<catalogRef
+    href="http://www.example.com/newsml-g2/catalog.enews_2.xml" />
+
+Adding the Catalog information to the example results in the following:
+
+[source,xml]
+<newsItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    guid="urn:newsml:acmenews.com:20161018:US-FINANCE-FED"
+    version="18"
+    standard="NewsML-G2"
+    standardversion="2.35"
+    conformance="power"
+    xml:lang="en-GB">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_41.xml"
+         />
+     <catalogRef
+          href="http://www.example.com/newsml-g2/catalog.enews_2.xml" 
+         />
+
+See also xref:use-of-uris-in-place-of-qcodes[Use of URIs in place of QCodes]
+
+[[rights-information-wrapper-rightsinfo]]
+Rights information wrapper <rightsInfo>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The optional <rightsInfo> wrapper holds copyright information and usage
+terms, such as the following example:
+
+[source,xml]
+<rightsInfo>
+    <copyrightHolder uri="http://www.example.com/about.html#copyright">
+        <name>Example Enews LLP</name>
+    </copyrightHolder>
+    <copyrightNotice>
+        Copyright 2025 Example Enews LLP, all rights reserved
+    </copyrightNotice>
+     <usageTerms>Not for use outside the United States</usageTerms>
+</rightsInfo>
+
+[[item-metadata-itemmeta]]
+Item Metadata <itemMeta>
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[mandatory-properties]]
+Mandatory Properties
+^^^^^^^^^^^^^^^^^^^^
+
+The mandatory <itemMeta> section has four mandatory elements, present in
+the following order:
+
+[[item-class]]
+Item Class
+++++++++++
+
+As previously mentioned, the <itemClass> property describes the type of
+content conveyed by the Item. It is mandatory to use one of the IPTC
+News Item Nature NewsCodes (recommended Scheme Alias: "ninat") for the
+Item Class of News Items and Package Items, expressed as a QCode:
+
+[source,xml]
+<itemClass qcode="ninat:text" />
+
+Other possible values from this scheme include (not limited to)
+"ninat:picture", "ninat:video" and "ninat:audio".
+
+[[provider]]
+Provider
+++++++++
+
+Can be represented by a QCode, or a URI. If the value of this property
+is NOT taken from a controlled vocabulary, the @qcode or @uri will be
+omitted and the child <name> element used to give a human-readable value
+for the property. The IPTC recommends using a QCode with the Provider
+NewsCodes, a controlled vocabulary of providers registered with the IPTC
+with recommended Scheme Alias of "nprov":
+
+[source,xml]
+<provider qcode="nprov:REUTERS" />
+
+[[version-created]]
+Version Created
++++++++++++++++
+
+This contains the date, time and time zone (or UTC) that _this version_
+of the NewsML-G2 _Item_ was created. The value must be expressed as XML
+Schema datetime: +
+YYYY-MM-DDThh:mm:ss±hh:mm
+
+[source,xml]
+<versionCreated>2025-10-21T16:25:32-05:00</versionCreated>
+
+The -05:00 denotes U.S. Eastern Standard Time offset from UTC
+
+[[publication-status]]
+Publication Status
+++++++++++++++++++
+
+Every NewsML-G2 Item must have a publication status. The value defaults
+to "usable", which permits the <pubStatus> property to be omitted,
+however it is recommended that a value is explicitly included:
+
+[source,xml]
+<pubStatus qcode="stat:usable" />
+
+Publication status is highly likely to be used by most news agencies,
+because the ability to explicitly signal the status of news is
+essential. The use of the IPTC Publishing Status NewsCodes is mandatory.
+Its recommended alias is "stat". Other values permitted by the scheme
+are:
+
+* stat:canceled (note U.S. spelling) means that the content of the
+newsItem must not be used, ever.
+* stat:withheld means the content must not be used until further notice.
+
+When an Item is cancelled, it must never be used, but an Item that has
+been withheld may subsequently have its status updated to "usable". 
+
+[[use-of-uris-in-place-of-qcodes]]
+Use of URIs in place of QCodes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The original NewsML-G2 developers wanted to use URIs as the preferred
+way to identify concepts, as this would enable the resulting concept
+identifiers to be globally unique and optionally to be a reference to a
+web resource. The constraints on network bandwidth (compared to today)
+led the developers to propose QCodes to represent URIs, because:
+
+* they are lightweight and economise file sizes,
+* although they are designed to reference web resources, the delivery of
+data in response to requesting QCodes that are resolved to full URIs is
+optional; the codes may be used "as is" without de-referencing to the
+full URI.
+
+Later, some providers asked for flexibility to use full URIs in property
+values, so from NewsML-G2 v2.11 this feature was added enabling @uri to
+be used in place of, or in parallel with, @qcode. (If a @qcode and @uri are both present, they MUST refer to the same semantic concept, and the resolved @qcode SHOULD be the same as the @uri). The <pubStatus> assertion:
+
+[source,xml]
+<pubStatus qcode="stat:usable" />
+
+could be expressed using a URI as:
+
+[source,xml]
+<pubStatus uri="http://cv.iptc.org/newscodes/pubstatusg2/usable" />
+
+Further, in NewsML-G2 v2.18 onwards, other properties with QCode Type
+values had "URI siblings" added, for example properties with @role may
+now have a value expressed as @roleuri. In NewsML-G2 v2.20, properties
+with a mandatory @qcode were changed so that @uri may be used instead.
+
+NOTE: The elements <catalog> and <catalogRef> are now OPTIONAL so that implementers who wish to use URI identifiers exclusively do not have to reference schemes that are unused.
+
+[[optional-properties]]
+Optional Properties
+^^^^^^^^^^^^^^^^^^^
+
+The following optional properties are frequently used by NewsML-G2
+providers.
+
+[[first-created]]
+First Created
++++++++++++++
+
+The <firstCreated> element indicates when the first version of the Item
+(not the content) was created.
+
+[source,xml]
+<firstCreated>2016-10-18T13:12:21-05:00</firstCreated>
+
+[[embargoed]]
+Embargoed
+++++++++++
+
+Business-to-business news organisations often use an _embargo_ to
+release information in advance, on the strict understanding that it may
+not be released into the public domain until after the _embargo time_
+has expired, or until some other form of permission has been given.
+
+Embargoed is NOT the same as the Publishing Status; embargoed content
+should have a publishing status of "usable".
+
+[source,xml]
+<embargoed>2025-10-23T12:00:00Z</embargoed>
+
+It is not required to give any further information about the embargo
+conditions, but some providers may provide a natural language <edNote>,
+see below.
+
+[[service]]
+Service
++++++++
+
+The <service> element allows the provider to declare which of its
+services delivered this package, using a Controlled Vocabulary:
+
+[source,xml]
+<service qcode="ex-svc:uknews">
+    <name>UK News Service</name>
+</service>
+
+[[editorial-note]]
+Editorial Note
+++++++++++++++
+
+The <edNote> element contains a note that is intended to be read by
+internal staff at the receiving organisation, but not published to the
+end-user; in this example it conveys some optional information about the
+release condition imposed by the <embargoed> element:
+
+[source,xml]
+<edNote>
+ Note to editors: STRICTLY EMBARGOED. Not for public release until 12noon
+ on Wednesday, October 23, 2025.
+</edNote>
+
+[[signal]]
+Signal
+++++++
+
+Additional processing instructions can be given using <signal> and its
+@qcode. This example uses the IPTC Signal NewsCodes (recommended Scheme
+Alias "sig") that advises the end-user that this Item updates a previous
+versions of the Item:
+
+[source,xml]
+<signal qcode="sig:update" />
+
+The other value in the Signal scheme is "correction". There is further
+NewsML-G2 functionality for expressing fine-grained information about the
+reason and impact of updates and also for applying signals to different parts of an Item’s
+content.
+
+[[link]]
+Link
+++++
+
+The <link> element has two basic purposes:
+
+* To assert relationships to other Items, such as a previous version of
+an Item
+* To create a navigable link from an Item to some supporting or
+additional resource.
+
+This example provides a "see also" link to a resource on the Web that
+end-users can view to get further information about the event. @rel is
+used to denote the reason that the link is provided. In this example,
+the QCode uses the recommended IPTC Item Relation NewsCodes with a
+recommended Scheme Alias of "irel" and the code value is "seeAlso":
+
+[source,xml]
+<link rel="irel:seeAlso" href="http://www.example.com/video/20081222-PNN-1517-407624/index.html"/>
+
+[[completed-item-metadata]]
+Completed Item Metadata
++++++++++++++++++++++++
+
+[source,xml]
+<itemMeta>
+    <itemClass qcode="ninat:text" />
+    <provider qcode="nprov:REUTERS" />
+    <versionCreated>2025-10-21T16:25:32-05:00</versionCreated>
+     <firstCreated>2016-10-18T13:12:21-05:00</firstCreated>
+     <embargoed>2025-10-23T12:00:00Z</embargoed>
+    <pubStatus qcode="stat:usable" />
+    <service qcode="ex-svc:uknews">
+        <name>UK News Service</name>
+    </service>
+    <edNote>
+        Note to editors: STRICTLY EMBARGOED. Not for public release until 12noon
+        on Wednesday, October 23, 2025.
+    </edNote>
+    <signal qcode="sig:update" />
+    <link rel="irel:seeAlso" href="http://www.example.com/video/20081222-PNN-1517-407624/index.html"/>
+</itemMeta>
+
+[[content-metadata-contentmeta]]
+Content Metadata <contentMeta>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Conceptually, there are two kinds of content metadata: Administrative
+and Descriptive.
+
+[[administrative-metadata]]
+Administrative Metadata
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This is information about the content that cannot necessarily be deduced
+by examining it, for example: when it was created and/or modified.
+Administrative properties that are widely used by implementers of
+NewsML-G2 for editorial content are:
+
+* Timestamps (Created, Modified)
+* Story location (Located)
+* Creator
+* Information Source
+
+[[timestamps]]
+Timestamps
+++++++++++
+
+The <contentCreated> timestamp corresponds to a "Created on" field of
+the story. It is expressed in NewsML-G2 as Truncated DateTime data type,
+meaning that the date-time elements may optionally be stripped, starting
+from the right. If required, the <contentModified> property may also be
+used to contain the "Last Edit" timestamp. This must be later than the
+Created timestamp.
+
+[source,xml]
+<contentCreated>2016-10-21T15:21:06-05:00</contentCreated>
+<contentModified>2025-10-21T16:22:45-05:00</contentModified>
+
+[[located]]
+Located
++++++++
+
+The place that the content was created uses the <located> element. Note
+that this is not necessarily the place of the event or subject. For
+example, for a UK story written in the London office, <located> would be
+"London"; a picture of Mount Fuji taken from downtown Tokyo would have a
+<located> value of "Tokyo".
+
+The semantics of <located> are similar to the natural-language location
+carried in the dateline that often prefaces news (such as "BERLIN,
+October 24") but can be conveyed more precisely, and in terms that may
+be more readily processed by software, using a @qcode or @uri:
+
+[source,xml]
+<located type="loctyp:City" qcode="ex-geo:345678">
+    <name>Berlin</name>
+</located>
+
+The optional @type uses a controlled vocabulary to indicate the nature
+of the location being expressed; in the example this indicates that
+<located> refers to a city.
+
+[[broader-narrower]]
+Broader, Narrower
++++++++++++++++++
+
+Both Located and Subject (below) contain child elements that express a
+specific relationship between entities or concepts. For example, the
+content originated in the city of Berlin and the <located> element shows
+that the city of Berlin has a "broader" relationship – that is a
+child-to-parent relationship – to Berlin the state, and to Germany the
+country:
+
+[source,xml]
+    <located type="loctyp:City" qcode="ex-geo:345678">
+        <name>Berlin</name>
+            <broader type="ex-cptype:statprov" qcode="ex-prov:2365">
+                <name>Berlin</name>
+            </broader>
+            <broader type="ex-cptype:country" qcode="iso3166-1a2:DE">
+                <name>Germany</name>
+            </broader>
+    </located>
+
+[[creator]]
+Creator
++++++++
+
+The writer, photographer or other party (person or organisation) who created the content is expressed using the <creator> element:
+
+[source,xml]
+<creator uri="http://www.example.com/staff/mjameson">
+    <name>Meredith Jameson</name>
+</creator>
+
+[[information-source]]
+Information Source
+++++++++++++++++++
+
+The <infoSource> element, together with its optional @role, enables
+finely-grained identification of the various parties who provided
+information used to create and develop an item of news. If absent, the
+default value of @role is the originator of the information used to
+create or enhance the content.
+
+[source,xml]
+<infoSource uri="http://www.example.com/pressreleases/201610/newproducts.html"/>
+
+[[descriptive-metadata]]
+Descriptive Metadata
+^^^^^^^^^^^^^^^^^^^^^
+
+These properties set the context of news content in relation to other
+news by describing and classifying it. Information that has historically
+been carried within the content itself, such as the headline and by-line
+(for text) or embedded metadata (for pictures) may also be specified as
+metadata. The practical benefit is that the end user no longer needs to
+scan or retrieve the actual content in order to process it. None of the
+Descriptive Metadata elements are mandatory, but the following feature
+frequently in NewsML-G2 implementations.
+
+[[subject]]
+Subject
++++++++
+
+The subject matter of content uses the <subject> element. When the value
+of the Subject is taken from a Controlled Vocabulary, this is identified
+using either a @qcode or @uri:
+
+[source,xml]
+<subject type="cpnat:abstract" qcode="medtop:20000523" />
+<subject uri="http://cv.iptc.org/newscodes/mediatopic/20000523" />
+
+For concepts not taken from a CV, the identifier is omitted and the name
+of the concept is given in the child <name> element, for example:
+
+[source,xml]
+<subject>
+    <name>Labour Market</name>
+</subject>
+
+The optional @type uses the IPTC "nature of the concept" NewsCodes
+(recommended scheme alias "cpnat") to indicate the type of concept being
+expressed, for example, an abstract concept, that is a concept that does
+not represent a real-world entity, but something like an idea, or news
+category.
+
+[source,xml]
+<subject type="cpnat:abstract" qcode="medtop:04000000">
+    <name xml:lang="en-GB">economy, business and finance</name>
+</subject>
+
+The above example uses a concept from the IPTC Media Topic NewsCodes.
+Also note the use of the W3C XML attribute xml:lang that expresses the
+language used for the element’s value. It is also possible to add
+relationships to related concepts, as shown above in <located>. For
+example:
+
+[source,xml]
+<subject type="cpnat:abstract" qcode="medtop:04000000">
+    <name xml:lang="en-GB">economy, business and finance</name>
+</subject>
+<subject type="cpnat:abstract" qcode="medtop:20000523">
+    <name xml:lang="en-GB">labour market</name>
+    <name xml:lang="de">Arbeitsmarkt</name>
+    <broader qcode="medtop:04000000" /> relationship property
+</subject>
+
+The IPTC highly recommends that providers use the Media Topic NewsCodes
+unless there is an over-riding requirement to use proprietary codes.
+This promotes inter-operability and standardisation in news exchange. It
+is also recommended that if a <name> is used in conjunction with a
+QCode, then the value of the <name> agrees with the value in the Scheme
+for the language specified in xml:lang. IPTC NewsCodes are provided in
+UK English (en-GB) and translations in French and German have been
+provided by IPTC members.
+
+The "medtop" code prefix is the recommended Scheme Alias for the Codes,
+which is resolved via the IPTC Catalog (see xref:catalog-wrapper-catalogref[Catalog wrapper <catalogRef>], above) to the Scheme URI http://cv.iptc.org/newscodes/mediatopic/ This is guaranteed
+to be globally unique because it is part of the Internet Domain
+controlled by the IPTC. Appending the code "04000000" to the Scheme URI
+forms the Concept URI _http://cv.iptc.org/newscodes/mediatopic/04000000_
+that cannot be confused with a concept with the same code _04000000_
+from another source.
+
+When using @type to indicate the nature of the concept, the possible
+values from the IPTC Concept Nature NewsCodes are:
+
+* Abstract: a concept that does not represent a real-world entity
+* Event
+* geoArea: a geo-political area
+* Object: A real-world object, such as a painting; an aircraft
+* Organisation
+* Person
+* Point of Interest
+
+NOTE: For advanced features beyond those offered by <subject>, consider the <assert> wrapper. This also enables rich structured information to be stored within the NewsML-G2 Item, rather than referenced remotely. See xref:the-assert-wrapper[The Assert Wrapper] for implementation details.
+
+[[genre]]
+Genre
++++++
+
+The <genre> element indicates a nature, intellectual or journalistic characteristic of the news content. The element can be repeated to describe multiple aspects of the content.
+
+In the below example, "interview" expresses a property of the content that is distinct from one that would indicate its subject matter. This genre of the content is indicated by the IPTC Genre NewsCodes value "interview":
+
+[source,xml]
+<genre qcode="genre:interview">
+    <name xml:lang="en-GB">Interview</name>
+</genre>
+<!-- URI alternative -->
+<genre uri="http://cv.iptc.org/newscodes/genre/interview">
+    <name xml:lang="en-GB">Interview</name>
+</genre>
+
+The URI of the IPTC Genre NewsCodes is http://cv.iptc.org/newscodes/genre/ and the recommended Scheme Alias for use with a QCode is "genre".
+
+[[slugline]]
+Slugline
+++++++++
+
+Some news services implemented in NewsML-G2 retain the <slugline>
+property as a human-readable index for legacy reasons; therefore
+receivers may sometimes see this property. However, it has never been a
+completely reliable identifier, and it is recommended that more
+purposeful identifiers that are also machine-readable are implemented in
+its place.
+
+[source,xml]
+<slugline>US-Finance-Fed</slugline>
+
+[[headline]]
+Headline
+++++++++
+
+Even if the Headline is carried inline in text content, it is useful
+also to place it explicitly in metadata so that it can more easily be
+identified and extracted by the end-user:
+
+[source,xml]
+<headline> Fed to halt QE to avert "bubble"</headline>
+
+[[completed-content-metadata]]
+Completed Content Metadata
+++++++++++++++++++++++++++
+
+[source,xml]
+<contentMeta>
+    <contentCreated>2016-10-21T15:21:06-05:00</contentCreated>
+    <contentModified>2025-10-21T16:22:45-05:00</contentModified>
+    <located type="loctyp:City" qcode="ex-geo:345678">
+        <name>Berlin</name>
+        <broader type="loctyp:Sublocation" qcode="ex-prov:2365">
+            <name>Berlin</name>
+        </broader>
+        <broader type="loctyp:Country" qcode="iso3166-1a2:DE">
+            <name>Germany</name>
+        </broader>
+    </located>
+    <creator uri="http://www.example.com/staff/mjameson">
+        <name>Meredith Jameson</name>
+    </creator>
+    <infoSource uri="http://www.example.com" />
+    <subject type="cpnat:abstract" qcode="medtop:04000000">
+        <name xml:lang="en-GB">economy, business and finance</name>
+    </subject>
+    <subject type="cpnat:abstract" qcode="medtop:20000523">
+        <name xml:lang="en-GB">labour market</name>
+        <name xml:lang="de">Arbeitsmarkt</name>
+        <broader qcode="medtop:04000000" />
+    </subject>
+    <genre qcode="genre:interview">
+        <name xml:lang="en-GB">Interview</name>
+    </genre>
+    <slugline>US-Finance-Fed</slugline>
+    <headline> Fed to halt QE to avert "bubble"</headline>
+</contentMeta>
+
+[[content-contentset]]
+Content <contentSet>
+~~~~~~~~~~~~~~~~~~~~
+
+The content of a NewsML-G2 document varies according to its Item type:
+the example below shows a News Item with a <contentSet> wrapper
+containing a trivial text payload. Following this code example are
+skeletal examples showing the other options for conveying content in
+NewsML-G2 News Items and Package Items:
+
+[[news-content-options-for-news-items-and-package-items]]
+News Content options for News Items and Package Items
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The News Item <contentSet> contains a single logical piece of content,
+but allows alternative renditions of the SAME content to be carried in a
+single NewsML-G2 Item:
+
+[source,xml]
+<contentSet>
+    <inlineXML contenttype="application/nitf+xml"><!-- A VALID MEDIA TYPE -->
+        <!-- Inline XML must contain well-formed XML such as NITF or XHTML -->
+    </inlineXML>
+</contentSet>
+
+or
+
+[source,xml]
+<contentSet>
+    <inlineData>
+        <!-- Inline Data contains plain text -->
+    </inlineData>
+</contentSet>
+
+or
+
+[source,xml]
+<contentSet>
+    <!-- Remote Content contains a reference to a binary asset such as -->
+    <!—-a PDF or image file -->
+    <remoteContent rendition="rnd:one" />
+    <remoteContent rendition="rnd:two" />
+    <remoteContent rendition="rnd:three" />
+</contentSet>
+
+Package Item content is wrapped by the <groupSet> element, which can
+contain one or more <group> children. Each Group contains references to
+Items that make up the News Package, using the <itemRef> element. A
+Group can also reference other Groups via the <groupRef> element.
+
+[source,xml]
+<groupSet ... >
+    <group ...>
+        <itemRef ... >
+        <!-- Properties extracted from the packaged Item -->
+        </itemRef>
+        <groupRef />
+        </group>
+    <group ... >
+        //...
+    </group>
+</groupSet>
+
+[[summary-and-next-steps]]
+Summary and Next Steps
+~~~~~~~~~~~~~~~~~~~~~~
+
+This chapter has covered the basic structure that is common to all
+NewsML-G2 Items, and also outlined properties that are commonly used for
+news content. The following chapters show how to build upon this
+foundation:
+
+The *xref:quick-start-text[Text]* chapter takes an example news story and shows how the
+information on an editor’s screen would be implemented in NewsML-G2.
+
+*xref:quick-start-pictures-and-graphics[Pictures and Graphics]* takes an example image and its embedded
+metadata and converts this to a NewsML-G2 properties with several image
+renditions carried in a single NewsML-G2 Item. The guide also shows how
+to express the various technical characteristics of images using
+NewsML-G2 properties.
+
+The *xref:quick-start-video[Video]* chapter is split into two sections: the first covers a
+simple case of a standalone video file with various technical renditions
+expressed in NewsML-G2; the second uses a more comprehensive structure
+that separates the metadata for multiple segments of a video, using the
+<partMeta> wrapper.
+
+The *xref:quick-start-packages[Packages]* chapter shows how NewsML-G2 Items and other kinds of
+content can be assembled into Packages of managed objects with an
+explicit structure.
+
+[[implied-values-of-newsml-g2]]
+Implied Values of NewsML-G2 Properties
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are some default values set by the specification which allow an
+element or attribute to be omitted and the default assumed. The list
+below shows NewsML-G2 elements and attributes which may be absent from
+an Item but for which an implied value or status exists.
+
+[[all-newsml-g2-items]]
+All NewsML-G2 items
+^^^^^^^^^^^^^^^^^^^
+
+* @version of the root element = "1"
+* <embargoed> = no embargo
+* <pubStatus> = "usable"
+* <catalog> and <catalogRef> = one is required; many of either, or a mix
+of both may be used
+* @scope of <hash> = "content". Hash value is a message digest included
+in the Item for security purposes. A hash scope of "content" indicates
+that the hash value was derived by hashing some/all of the content only.
+* @why (attribute of many elements) = "direct". The attribute value
+indicates that the value is directly related to the content.
+* @how (attribute of many elements) = "person". The attribute indicates
+how the value was extracted from the content: by a person. (See xref:why-and-how-metadata-has-been-added-why-and-how[How and Why Metadata has been added] for essential guidance on the
+use of @why and @how.)
+* @custom (attribute of many elements) = "false". The attribute
+indicates that the property was added specifically for a customer or
+group of customers
+* @dir (many elements) = "ltr". The directionality of the script of the
+language of the property is left to right.
+
+[[news-items-only]]
+News Items only
+^^^^^^^^^^^^^^^
+
+* @timeunit (when @duration is used) = "seconds"
+* @dimensionunit (when @width/@height is used) = (for example) pixels
+for a still picture. See the <<quick-start-pictures-and-graphics>> chapter for details.
+
+[[package-item-only]]
+Package Item only
+^^^^^^^^^^^^^^^^^
+
+* @mode of the <group> = "bag" – an unordered collection of
+complementary components
+

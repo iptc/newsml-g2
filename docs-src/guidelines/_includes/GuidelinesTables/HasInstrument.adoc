@@ -1,0 +1,53 @@
+[%autowidth,options="header"]
+|===
+|Definition|Name|Cardinality|Datatype|Example/Notes
+
+|A symbol for the financial instrument
+|symbol
+|-1
+|String
+|symbol="RIO"
+
+|The source of the financial instrument symbol
+|symbolsrc
+|(0..1)
+|QCodeType
+|symbolsrc="ex-symsrc:MDNA"
+
+|A venue in which this financial instrument is traded
+|market
+|(0..1)
+|QCodeType
+|market="mic:XLON"
+
+|
+|
+|
+|
+|The scheme alias “mic” refers to the ISO-supported Market Identification Code scheme
+
+|The label used for the market
+|marketlabel
+|(0..1)
+|String
+|marketlabel="LSE"
+
+|The source of the market label
+|marketlabelsrc
+|(0..1)
+|QCodeType
+|marketlabelsrc="ex-mlsrc:MDNA"
+
+|The type(s) of the financial instrument
+|type
+|(0..1)
+|QCodeListType
+|type="ex-instrtype:share"
+
+|The rank of the associated financial instrument symbol amongst other symbols
+|rank
+|(0..1)
+|NonNegativeInteger
+|rank=1
+
+|===

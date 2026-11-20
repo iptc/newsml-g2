@@ -1,0 +1,14 @@
+[%autowidth,options="header"]
+|===
+|NewsML-G2 version|Rule
+
+|Up to 2.11
+|A QCode is mandatory for the affected attributes.
+
+|2.11 to 2.19
+|A QCode AND a full URI MAY be used. The QCode is mandatory. (from 2.18, some URI Sibling attributes were constrained by this rule.)
+
+|2.20 onwards
+|A QCode OR a full URI MUST be used for the affected properties. A QCode AND a URI MAY be used together but this is not recommended and in this case the QCode value takes precedence.
+
+|===

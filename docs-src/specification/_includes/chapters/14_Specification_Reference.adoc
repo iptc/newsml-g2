@@ -1,0 +1,1262 @@
+[[specification-reference]]
+Specification Reference
+-----------------------
+
+This section provides specifications to be combined with the NewsML-G2 XML Schema. How to access the XML Schemas is defined in the Full Set of link:#_bookmark2[Specification Documents].
+
+[[introduction-to-the-common-components]]
+Introduction to the Common Components
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+News exchange formats share many metadata properties as they are about the same data: something newsworthy to be exchanged. For that reason the family of IPTC NewsmL-G2 Standards shares a large set of properties which are common to all family members and this common data model and set of specifications is called the IPTC News Architecture (NAR).
+
+This Specification Reference section provides a mix of specifications coming from the NAR and additionally from this NewsML-G2 Standard.
+
+The components specified in this Specification Reference can be split into these three groups:
+
+. Fine grained components, called a datatype. A datatype has no specific business meaning or semantics of its own and only takes on business meaning when used as the data type of a property. For NewsML-G2 the names of datatypes end with a “Type” suffix (e.g. QCodeType). Datatypes fall in two groups:
+
+.. Simple data types are primitive data types, as found in software languages or XML schema definitions (e.g.. integer, string). Some restriction may be imposed, such as Int100Type where an integer has been restricted to a value range of 0 to 100.
+.. Complex data types are simple data types extended to add further information in order to correctly represent the value. Such ancillary information takes the form of attributes. For example a LabelType supports mixed content and is extended with language and role attributes.
+
+. Medium grained components, called basic component or property. A property represents a single piece of business information and uses an existing data type or defines it own local datatype to provide its content model. It is capable of being used independently or as part of a group. Like a complex data type, a basic component can be qualified by ancillary data if required to complete its meaning. For example, a `slugline` element of data type string supports an additional _separator_ attribute.
+. Coarse grained components, called aggregate component. It is a collection of properties that together is more than the sum of its constituent parts. The properties composing the whole can be properties or aggregate components. An aggregate component may be designed so it supports an extension point where news providers can extend its usage. For example, a descriptive component is defined as a group of properties like title and subject, and a person component is defined as a group of properties like name and date of birth.
+
+[[general-specifications]]
+General Specifications
+~~~~~~~~~~~~~~~~~~~~~~
+
+[[XML_Namespaces]][[_bookmark121]]
+
+XML Namespaces
+^^^^^^^^^^^^^^
+
+_Table 12. XML Namespace_ 
+
+include::{includedir}/../../tables/namespaces.adoc[]
+
+[[Media_Types]][[_bookmark122]]
+
+Media Types
+^^^^^^^^^^^
+
+_Table 13. IANA Media Types (sometimes known as MIME Types)_
+
+include::{includedir}/../../tables/mime-types.adoc[]
+
+All these Media Types are registered with IANA, see http://www.iana.org/assignments/media-types/
+
+[[Extension_Points_in_XML]][[_bookmark123]]
+
+Extension Points in XML
+^^^^^^^^^^^^^^^^^^^^^^^
+
+For attributes: each element of a G2-Standard allows to add provider specific attributes from any other link:#_bookmark121[XML namespace] than the News Architecture for G2 namespace.
+
+For elements: Some elements which have child elements allow to add provider specific elements from any namespace other than the News Architecture for G2 namespace. A few elements allow adding any element from any XML namespace including the News Architecture for G2 namespace but this is a special case only, see below.
+
+[[Hint_and_Extension_Points_in_XML]][[_bookmark124]]
+
+Hint and Extension Points in XML
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To act as an Extension Point, properties from any other XML namespace than the News Architecture (NAR) namespace may be added.
+
+To act as a Hint Point, properties from the NAR namespace may be added.
+
+The purpose of properties from the NAR namespace is to add a set of hints, i.e. properties which have to comply with the structure of the NewsML-G2 Item target resource but do not have to be extracted from it. These properties must be added this way:
+
+* Immediate child properties of <itemMeta>, <contentMeta>, or <concept> optionally with their descendants may be used directly under the extension point
+* All other properties require the full path excluding only the item's root element.
+
+[[implementation-design-rules]]
+Implementation Design Rules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These design rules were applied while developing NewsML-G2. Some apply to all kinds of technical implementations, other only to one specific implementation.
+
+* Each element supports a set of common attributes.
+* Each element has an extension point at the attribute level (XML implementation only).
+* Each element containing an international string supports i18 attributes.
+* Each ancestor of an element containing an international string supports i18 attributes.
+* Children of wrapper elements: mandatory children come first, they are in a specific order, optional (and in most case multiple) elements follow, they can be inserted in an arbitrary order (XML implementation only).
+* Each wrapper element has an extension point as its last child element (XML implementation only).
+
+[[processing-model-terminology]]
+Processing Model Terminology
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For many components of NewsML-G2 this specification provides also a processing model. Find below how these processing instructions should be read.
+
+* A Processing Model provides rules for the proper processing of metadata properties and their values. Each rule may be divided into steps.
+* Each rule gets an integer number assigned, steps for this rules are indicated as decimals to this number. Example: rule 12, step 3 = 12.3
+* Many rules can be considered like a function in programming, hence as a sequence of processing steps in the scope of a block. These terms will be used for defining the rules and are based on this basic layout:
+** “quit” = the processing of this function stops at this step and quits the current context to the calling context.
+** “quit and return ...” = see “quit”, plus: a value of “...” is returned to the calling context.
+** “if ... :” = a condition is expressed and right to the colon the processing that results from meeting this condition.
+** If the condition is NOT met the default processing is “proceed to the next step of this processing rule”. A specific processing for this case is preceded by the term “otherwise”.
+
+[[Component_Structure_Format]][[_bookmark127]]
+
+[[use-of-concept-identifiers]]
+Use of Concept Identifiers
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When a concept is from a controlled vocabulary, it MUST be identified by a _qcode_ or a _uri_, optionally both MAY be used. If both are present, the resolved _qcode_ MUST be the same as the _uri_.
+
+The attributes _literal_ and _value_ identify concepts from an uncontrolled vocabulary.
+
+All of _qcode_, _uri_, _literal_, AND _value_ MAY be omitted. This defines a blank node as used in the semantic web.
+
+[[element-specifications]]
+Element specifications
+~~~~~~~~~~~~~~~~~~~~~~
+
+All XML elements of NewsML-G2 and their structure are defined by the NewsML-G2 Schema (see The Full Set of link:#_bookmark2[Specification Documents]. This section adds information for some elements, such as User Notes, Implementation Notes or recommended Controlled Vocabularies, which are not in the NewsML-G2 XML Schema version 2.36. +
+Elements not requiring such additional information are not listed here.
+
+[[accountable-person-accountable]][[_bookmark137]]
+
+Accountable Person – accountable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: This property answers to a legal issue. In some countries (e.g. Germany, Sweden) it is
+needed to designate a person accountable for any legal issue related to the published
+content. The full translation from the German term is: accountable person in terms of the
+press law (For reference in German: Verantwortlich im Sinne des Presserechts -acronym = ViSdP), in Swedish it is called “Ansvarig utgivare”. In practice today, a news provider may send out a message each day which indicates the "accountable person". This may work for traditional feed services, but fails with profiled services (content selections) which filter such messages. The solution is to include this information in the Items themselves.
+
+[[action-in-hop-history-action]]
+Action in Hop History – action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Updated in NewsML-G2 2.36 with two additional attributes to allow i/ indicating additional details relating to the action, and ii/ pointing to associated markup resulting from the action:
+
+* _detailrefs_ (xs:IDREFS) Additional details relating to this action.
+* _targetrefs_ (xs:IDREFS) Element(s) that have been manipulated by this action.
+
+The recommended IPTC NewsCodes CV for the _target_ attribute is http://cv.iptc.org/newscodes/hopactiontarget/
+
+
+[[ai-information-aiinfo]]
+
+AI Information - aiInfo
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Information about the AI used to create or enhance the content is a member of the AdministrativeMetadataGroup.
+
+AdministrativeMetadataGroup is supported in:
+
+* ContentMetadataAcDType: contentMeta: conceptItem, knowledgeItem, planningItem
+* ContentMetadataAfDType: contentMeta: newsItem, packageItem 
+* regionDelim
+
+[[alternative-identifier-altid]]
+
+Alternative Identifier – altId
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If there is more than one alternative identifier, they SHOULD be qualified using the type qualifier to distinguish between different identification schemes.
+
+[[alternative-locator---altloc]]
+
+Alternative Locator - altLoc
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If there is more than one alternative locator, they SHOULD be qualified using the type attribute to distinguish between different identification schemes.
+
+[[alternative-representation---altrep]]
+
+Alternative Representation - altRep
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This property is particularly useful if the Item is available in different formats (for example NewsML 1, IIM or NITF) or with different levels of details (for instance with different granularity of metadata). See also link:#origrep[Original Representation]
+
+[[assertion---assert]]
+
+Assertion - assert
+^^^^^^^^^^^^^^^^^^
+
+The assertion about the concept may be used to merge multiple occurrences of concept details in properties into a single place or to extend the details of an assertion beyond the limited details other properties can provide. 
+
+When adding NewsML-G2 properties to an Assertion, _immediate_ child elements from <itemMeta>, <contentMeta> or <concept> may be added directly to the Assert without the parent element; all other elements MUST be wrapped by their parent element(s), excluding the root element.
+
+[[assignedto]]
+
+Assigned To - assignedTo
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implementation note: this optional, repeatable child of <newsCoverage> and <planning> has optional attributes of _coversfrom_ and _coversto_ which express the date and optionally the time that the assigned resource will be available. 
+
+Bag Item – bit
+^^^^^^^^^^^^^^
+
+User Note: The significance attribute attribute is assigned to a special use case of a bag with subject properties: the bag includes one bit representing an event and one or more other bits representing entities
+which are related to this event. Only in this case the significance attribute may be used 
+to express the significance of this event to the concept of the bit carrying this attribute.
+
+If the bag includes more than one event, any significance attribute of bits in the bag SHALL be ignored.
+
+Example 1:
+
+A merger of two companies which is differently significant to the two parties of the merger: the significance of the merger for the small company is high while it is low to the global player company.
+
+[source, xml]
+----
+<bag>
+    <bit type="cpnat:event" qcode=" abevents:Merger123AB"/>
+    <bit type="cpnat:organisation" qcode="isin:TinyCompany" significance="100"/>
+    <bit type="cpnat:organisation" qcode="isin:GlobalPlayerCompany" significance="10"/>
+</bag>
+----
+
+[[broader-broader]]
+
+Broader – broader
+^^^^^^^^^^^^^^^^^
+
+User Note: The _rank_ attribute of broader is suitable for use in a Knowledge Item representing a scheme. It is used when it is important that the Child Elements of a particular term are displayed in a user interface in a predefined order.  For example, the major currencies could be given a rank of “1”, while all other currencies could be given a rank of “2”. Terms of the same rank are ordered alphabetically by name if this is available. If the name is not available, the terms are ordered by code value.  Terms without a rank are treated as if they all have the same rank, which is higher than the rank of all other terms.  The same concept may have different ranks in different concept trees. A lower rank results in a placement earlier in a display.
+
+[[by---by]]
+
+By - by
+^^^^^^^
+
+User Note: The _by_ label provides a natural-language statement of the author/creator information (commonly called the byline); it may include a byline title, i.e. the author's job title.  Examples of bylines are RUPAK DE CHOWDHURI (a person), isotype.com (a provider) or STR (a stringer). It is up to the provider to decide if the label starts with a word like “By”.
+
+[[channel-for-news-message-channel]]
+
+Channel for News Message – channel
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: A channel identifier is used to provide recipients with information for selecting, routing, or handling otherwise the content of the message. The channels represent streams in a multiplex: a message may be sent on different channels – e.g. one for text, one for pictures – and each reception point will be able to filter on channel values. The structure of this string is not specified by the IPTC.
+
+For rules on concept identifiers, see link:#use-of-concept-identifiers[Use of Concept Identifiers]
+
+[[circle-circle]]
+
+Circle – circle
+^^^^^^^^^^^^^^^
+
+User Note: The position element defines the centre of the circle.
+
+Example:
+
+[source, xml]
+----
+<geoAreaDetails>
+    <circle radius="1.335" radunit="dimensionunit:km">
+    <position ...>
+    </circle>
+</geoAreaDetail>
+----
+
+[[concept-definition-definition]]
+
+Concept Definition – definition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: A natural-language definition of the semantics of the concept. This definition is normative only for the scope of the use of this concept.
+
+[[concept-name-name]]
+
+Concept Name – name
+^^^^^^^^^^^^^^^^^^^
+
+Recommended IPTC NewsCodes CV for the _part_ attribute: http://cv.iptc.org/newscodes/namepart/
+
+[[confirmation-confirmation]]
+
+Event Confirmation
+^^^^^^^^^^^^^^^^^^
+
+The `confirmation` element is deprecated from NewsML-G2 version 2.24 onwards and replaced by the attribute _confirmationstatus_ (with URI sibling _confirmationstatusuri_), added to `start`, `end` and `duration`, the child elements of `eventDetails/dates`.
+
+Recommended IPTC NewsCodes: http://cv.iptc.org/newscodes/eventdateconfirm/
+
+[[contact-information-contactinfo]]
+
+Contact Information – contactInfo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: The _role_ attribute addresses the role of the full set of contact information with regards to the entity defined by the concept. Examples: “privateOffice” vs “companyOffice” or “GlobalHeadquarters” vs “localHeadquarterUK”.
+
+Recommended IPTC NewsCodes for the "role" of an event's contact information: http://cv.iptc.org/newscodes/eventcontactinforole/
+
+[[contributor]]
+
+Contributor – contributor
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A party (person or organisation) which modified or enhanced the content, preferably the
+name of a person.
+
+User Note: One may specify the role the party plays in the creation of the content (e.g. a caption
+writer for photos) at the PCL.
+
+Recommended IPTC NewsCodes: http://cv.iptc.org/newscodes/contentprodpartyrole/ with recommended Scheme Alias _cpprole_.
+
+NOTE: This property previously used the Contributor Role CV http://cv.iptc.org/newscodes/contributorrole/. The concept (Description Writer) in this CV has been set to retired, with a change note about the new Content Production Party Role CV and a `skos:exactMatch` link to the corresponding concept of the new CV.
+
+
+[[creator]]
+
+Creator – creator
+^^^^^^^^^^^^^^^^^
+
+Element `creator`, child of `contentMeta`. A party (person or organisation) which created the resource.
+
+User Note: One may specify the role the party plays in the creation of the content (e.g. a caption
+writer for photos) at the PCL.
+
+Attribute _creator_ (and _creatoruri_), for elements in the Common Power Attributes group.  If the element value is not defined, _creator_ specifies which entity (person, organisation or system) will edit the element value - expressed by a QCode. If the element value is defined, _creator_ specifies which entity (person, organisation or system) has edited the element value.
+
+[[creditline-creditline]]
+
+Creditline – creditline
+^^^^^^^^^^^^^^^^^^^^^^^
+
+A free-text expression of the credit(s) for the content.
+
+[[date-first-created---firstcreated]]
+
+Date Item First Created - firstCreated
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The creation date of the first version of the NewsML-G2 Item expressed as a date/time value in the format “YYYY-MM-DDTHH:MM:SS[+-]HH:MM”. 
+
+[[date-version-created---versioncreated]]
+
+Date Version Created - versionCreated
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The use of versionCreated is mandatory. If the expressed date/time value does not follow the format “YYYY-MM-DDTHH:MM:SS[+-]HH:MM” then the full NewsML-G2 Item MUST be considered void. 
+
+[[date-content-created---contentcreated]]
+
+Date Content Created - contentCreated
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: In the case of a photo or live footage for audio and video, this date (and time) is always the same as the date (and time) of the event covered by the content. In the case of text and any audio and video report about an event, this date (and time) can be different from the date (and time) of the event covered by the content. This date (and time) may also be different from the date (and time) of the creation of an Item holding the content.
+
+[[date-content-modified-contentmodified]]
+
+Date Content Modified – contentModified
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: The value of this property should be updated each time the content is modified in any manner, but should not be updated if only metadata are changed.
+
+[[date-item-embargo-ends-embargoed]]
+
+Date Item Embargo Ends – embargoed
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The date and time (with the time zone) before which all versions of the Item are embargoed.
+If the element is absent, the Item is not embargoed.
+If the element exists but is empty the end of the embargo is defined by the language in
+an link:#editorial-note[edNote] element.
+
+[[date-of-transmission-sent]]
+
+Date of Transmission – sent
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: May not be updated in case of retransmission of the message.
+
+[[dateline-dateline]]
+
+Dateline – dateline
+^^^^^^^^^^^^^^^^^^^
+
+User Note: The dateline provides a natural-language statement of the date and/or place of the news content creation, to be displayed in situations where an abstract of the content is shown (case of search results) or the content is remote.
+
+Traditionally a dateline indicates when and where news content is created, not necessarily the time and place relative to the news event.
+
+As an example a dateline BAGHDAD, March 26, 2007 (AFP) could head a story about blast in Mosul, because the story was actually written in Baghdad. Also, by tradition a dateline will follow the stylebook of the information provider and possibly leave out certain time and location information that could be useful for specifying searches of a database.  Editorial policy dictates the dateline; it is not automatically derivable from other markup (location, date, etc.). The dateline should not end with a separating character (of the kind that separates the dateline from the first sentence in a traditional wire story).
+
+[[deliverableof]]
+
+Deliverable Of – deliverableOf
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A reference to the Planning Item and to one of its newsCoverage properties under which
+control this item has been published.
+
+[[description-description]]
+
+Description – description
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A free-form textual description of the content of the Item.
+(For a Knowledge Item the content is its set of concepts as a whole.)
+
+Recommended IPTC NewsCodes for the _role_ attribute: http://cv.iptc.org/newscodes/descriptionrole/
+
+[[destination-destination]]
+
+Destination – destination
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: In a broadcast delivery system, the destination is a group of reception points (using a provider-specific syntax, often geographically oriented). This is a way to address customers.  Examples are “England”, “USA”, “Austria/Vienna”, “France/Paris/LeParisien”.  The structure of this string is not specified by the IPTC.
+
+For rules on concept identifiers, see link:#use-of-concept-identifiers[Use of Concept Identifiers]
+
+[[digitalsourcetype]]
+
+Digital Source Type - digitalSourceType
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The <digitalSourceType> element, child of <contentMeta> and <partMeta>, represents that content has been created or enhanced by a machine. It is a Flexible Property Type, taking the attrbutes _qcode_, _uri_, and _literal_. The recommended NewsCodes are http://cv.iptc.org/newscodes/digitalsourcetype (recommended scheme alias "digsrctype").
+
+[[editorial-note]]
+
+Editorial Note – edNote
+^^^^^^^^^^^^^^^^^^^^^^^
+A note addressed to the editorial people receiving and processing the Item. If `edNote` is
+a child element to `plannedCoverage` this property provides additional
+natural language information about the planned coverage.
+
+[[editorial-service-service]]
+
+Editorial Service – service
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: The values of this property are defined by each provider, and are often associated with the notion of a desk or a feed. Some examples are a “French wire service”, an “international picture service” or a “mobile news service”.
+
+[[event-event]]
+
+Event – event
+^^^^^^^^^^^^^
+
+Implementation Note: This event structure is used within an events wrapper to be plugged into an inlineXML property of a News Item.
+
+[[events-events]]
+
+Events – events
+^^^^^^^^^^^^^^^
+
+Implementation Note: This events wrapper is made to be plugged into an inlineXML property of a News Item.
+
+[[eventstatus]]
+
+Event Status – eventStatus
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Introduced in v2.35, an optional, non-repeatable child element of `eventDetails` to indicate the status of an event, for example "this event is in progress" or "this event happened and is now in the past", using a QCode and (optional) `name` child element.
+
+For inter-operability, it is highly recommended to use the IPTC Event Status NewsCodes (http://cv.iptc.org/newscodes/eventstatus/, recommended scheme alias "eventstatus").
+
+[[expires]]
+
+Expires - expires
+^^^^^^^^^^^^^^^^^
+
+The date and time after which the News Item is no longer considered valid by its publisher.
+
+[[filename]]
+
+File Name – fileName
+^^^^^^^^^^^^^^^^^^^^
+
+The recommended file name for this Item.
+
+[[g2-content-type-g2contenttype]]
+
+G2 Content Type – g2contentType
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Any of the NewsML-G2 specific IANA Media Types like application/vnd.iptc.g2.*item+xml.
+
+See: http://www.iana.org/assignments/media-types/application/
+
+[[generator-tool-generator]]
+
+Generator Tool – generator
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: Where a _role_ IS NOT specified, the Generator Tool applies to the most recent Item generation stage.  Where a _role_ IS specified, the Generator Tool applies to the Item generation stage identified by the _role_.
+
+[[genre-genre]]
+
+Genre – genre
+^^^^^^^^^^^^^
+
+A nature, intellectual or journalistic form of the news content.
+
+[[geographic-position-position]]
+
+Geographic Position – position
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: These properties follow the syntax used by the major geocoders on the Web.  Latitudes north of the equator shall be designated by use of the plus sign (`+`), latitudes south of the equator shall be designated by use of the minus sign (`-`). The equator shall be designated by use of the plus sign (`+`).
+
+Longitudes east of Greenwich shall be designated by use of the plus sign (`+`), longitudes west of Greenwich shall be designated by use of the minus sign (`-`). The Prime Meridian shall be designated by use of the plus sign (`+`). The 180th meridian shall be designated by use of the minus sign (`-`).
+
+The altitude is given in meters. A positive integer means a position above the zero elevation, a negative value below the zero elevation. In the absence of the gpsdatum attribute, WGS84 is the default system
+
+[[group-group]]
+
+Group – group
+^^^^^^^^^^^^^
+
+User Note: Group Mode: By default the group is “complementary and unordered”. The following modes are supported:
+
+* Complementary and Unordered: To be used for any kind of supporting content that does not require a sequence to be specified.  
+
+* Complementary and Ordered: The group starts with the first child of the group.  To be used for any kind of content which must be displayed or consumed in a particular sequence, expressed by the order of the child elements of the group.  The semantics of the _role_ attribute value determine the required processing.
+  
+* Alternatives: To be used if a group contains equivalent pieces of content (e.g.  translations of the same news story into different languages). The recipient may pick one or more of these.  
+
+* Group References and Item References: Can be included in any order, and this order may be relevant or not, depending the value of the _mode_ attribute. Each link aggregates an external resource (Item or Web resource) to the package. Optionally, it indicates the relationship between the group and the target resource plus some additional hints about the resource itself.
+
+[[hashvalue]]
+
+Hash Value – hash
+^^^^^^^^^^^^^^^^^
+
+A hash value of parts of an item as defined by the _scope_ attribute
+
+[[has-financial-instrument-hasinstrument]]
+
+Has Financial Instrument – hasInstrument
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: The _symbolsrc_ and _symbol_ attributes are a pair of values which define the authority which issued a symbol and the issued symbol.  The market can be defined in two ways: either by the market attribute which requires an identifier from a controlled vocabulary; or by a pair of _marketlabelsrc_ and _marketlabel_ values which define the authority which issued the Market Label and the issued Market Label
+
+[[headline-headline]]
+
+Headline – headline
+^^^^^^^^^^^^^^^^^^^
+
+A brief and snappy introduction to the news content, designed to catch the reader's
+attention.
+
+[[hierarchy-info-hierarchyinfo]]
+
+Hierarchy Info – hierarchyInfo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: Represents the position of a concept in a hierarchical taxonomy tree by a sequence of QCode tokens representing the ancestor concepts and this concept.
+
+Example: From the Media Topic NewsCodes (`alias="mtp"`) using assumed codes:
+
+The concept "adoption" has QCode `mtp:2788`
+
+Its parent is the concept "family" with the QCode `mtp:2780`
+
+The parent of "family" is the top level concept "society" with the QCode `mtp:1400`
+
+The resulting Hierarchy Info value is
+
+[source, xml]
+----
+<hierarchyInfo>mtp:1400 mtp:2780 mtp:2788</hierarchyInfo>
+----
+
+[[hop-hop]]
+
+Hop – hop
+^^^^^^^^^
+
+User Note: The timestamp of the `hop` element reflects the time of forwarding the object while the timestamp of an action reflects the time of performing that individual action.
+
+[[incomingfeedid]]
+
+Feed Identifier – incomingFeedId
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The identifier of an incoming feed. A feed identifier may be defined by (i) the provider of the feed and/or (ii) the processor of the feed.
+
+[[inline-data-inlinedata]]
+
+Inline Data – inlineData
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implementation Note: The _encoding_ attribute is optional, to be used if the content conveyed in the inlineData element is in a different encoding to the full XML document. At the CCL the only permitted alternative encoding is base64.
+
+[[instance-of]]
+
+Instance Of - instanceOf
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+A frequently updated information object of which this Item is an instance.
+
+[[instant-messaging-address-im]]
+
+Instant Messaging Address – im
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: The _tech_ attribute indicates the provider of the service (for example Twitter, WhatsApp, and so on).
+
+[[information-source-infosource]]
+
+Information Source – infoSource
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: If no _role_ is applied the information source provided some information used to create or enhance the content and played no other role. Omitting _role_ is equivalent to applying http://cv.iptc.org/newscodes/contentprodpartyrole/originfo as the only _role_ value.
+  
+If a party did anything other than originate information a _role_ attribute with one or more roles must be applied. The recommended vocabulary is the IPTC Content Production Party Role NewsCodes at http://cv.iptc.org/newscodes/contentprodpartyrole/
+
+To indicate that a party has modified or enhanced the content use the `contributor` property.
+
+If an entity plays more than one role, the different values of _role_ should be added to the `infoSource` element as a qcode list. 
+
+Recommended IPTC NewsCodes for the _role_ attribute: http://cv.iptc.org/newscodes/contentprodpartyrole/ with recommended Scheme Alias _cpprole_.
+
+NOTE: This property previously used the Information Source Role CV http://cv.iptc.org/newscodes/infosourcerole/. All concepts in this CV have been set to retired, with a change note about the new Content Production Party Role CV and a `skos:exactMatch` link to the corresponding concept of the new CV.
+
+[[item-class-itemclass]]
+
+Item Class – itemClass
+^^^^^^^^^^^^^^^^^^^^^^
+
+Mandatory IPTC NewsCodes for News Items or Package Items: http://cv.iptc.org/newscodes/ninature/
+
+Mandatory IPTC NewsCodes for Concept Items, Knowledge Items or Package Items: http://cv.iptc.org/newscodes/cinature/
+
+Mandatory IPTC NewsCodes for Catalog Items: http://cv.iptc.org/newscodes/catinature/
+
+User Note: This property gives a hint on the nature of the Item. IPTC values for News Items correspond to the media type of the original content component, i.e. “text”, “photo”, etc. Concept Items adopt the static value _concept_. The class of a Package Item reflects the nature of the items it contains, i.e. either one of the values above or the value “composite” which indicates that the package handles Items of different natures. A recipient system may use this information to make a coarse selection of Items, based on their nature, without having to inspect the structure.
+
+[[item-set---itemset]]
+
+Item Set - itemSet
+^^^^^^^^^^^^^^^^^^
+
+XML Schema Notes: To allow the validation of the structure beyond the root elements of the different items the extension point “any” for the nar XML namespace is the only child element. This allows schema based validation of the content of the Items as the validation of the extension point is set to “lax”.
+
+[[keyword-keyword]]
+
+Keyword – keyword
+^^^^^^^^^^^^^^^^^
+
+User Note: This property may be used in parallel with other properties that describe content such as `subject` or `genre`, which use QCodes or literals to identify an assigned concept.  Providers should define if and how the values of `keyword` properties contained in their Items complement, or overlap with, the values of properties such as subject or genre.
+
+Implementation Note(s) Be aware of the lexical space restrictions for an XML Schema Normalized String type. See XML Schema specifications.
+  
+[[language-language]]
+
+Language – language
+^^^^^^^^^^^^^^^^^^^
+
+_tag_ values must be valid link:https://tools.ietf.org/html/bcp47[BCP 47] language tags.
+
+Recommended IPTC NewsCodes for the _role_ attribute: http://cv.iptc.org/newscodes/languagerole/
+
+[[line-of-geoarea-line]]
+
+Line (of geoArea) – line
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implementation Notes: Order of positions has to be considered, a minimum of two position elements is mandatory
+
+[[link-link]]
+
+Link – link
+^^^^^^^^^^^
+
+User Note: They are different variants of links:
+
+Links may allow for navigation from a newsItem to another related Item or a Web resource, and its title be displayed as supplemental information to the final user. Example: a News Item representing a section of a transcript (a “take” in the news language) may be linked to the previous and next take; an article about a person may be linked to the biography of this person.
+
+Links may express a parent-child relationship. Example: a News Item representing an article may be linked to the article it is a translation of; a wrap-up may be linked to the previous stories used as source material for the article; a cropped picture may be linked to its source picture.
+
+Links may express dependency on external Items which are required in order to fully present the composite content of the Item. If some target Items are not retrievable, then the recipient processor should fail gracefully. The most obvious example is a newsItem representing an illustrated article. The textual content of the News Item (usually formatted as NITF or XHTML) includes a reference to a photo which is represented by another News Item. As the NAR recipient processor is content agnostic, it cannot infer this dependency from processing the content. A dependency link from the article to the picture indicates that the recipient processor must retrieve the target newsItem before the article can be fully displayed.
+
+Pointing at the latest version of an Item while exposing content metadata may lead to unwanted display or selection criteria if these metadata were subsequently modified; therefore only the stable content properties should be exposed in a link.
+
+[[located-located]]
+
+Located – located
+^^^^^^^^^^^^^^^^^
+
+User Note: This information applies especially to news, and may also be expressed as free text in the “dateline” of a story, along with a date of content creation and the name of the content provider. The rules for determining the location are provider-dependent. The location is typically determined differently for different types of content:
+
+*_Text:_* The practices of news providers either identify the location the content relates to or the location the content was created by a reporter or a writer. If a correspondent is resident in town A but writes about an event in town B the name of town A or B can be used. But the provider's policy should be available as written document.
+
+*_Photo:_* The location of origin of content is the place shown in the photo image.  
+
+*_Graphics_* The location of origin of content should be the editorial office from where this graphics are distributed.
+
+*_Audio and video:_* In the case of raw footage the location of origin of the content should be the place of event, if people can be heard/are shown from different places the news provider can decide by its own policy, but this policy should be available as written document.
+
+[[member-of]]
+
+Member Of – memberOf
+^^^^^^^^^^^^^^^^^^^^
+
+A set of Items around the same theme of which this Item is a part.
+
+[[metadatacreator]]
+
+Metadata Creator – metadataCreator
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Specifies the entity (person, organisation or system) which has edited the metadata properties of this Item; an individual metadata property’s creator may be explicitly overridden using the property’s _creator_ attribute.
+
+[[news-message-header-header]]
+
+News Message Header – header
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implementation Notes: If any QCode is used within the News Message header then a catalog and/or a catalogRef element MUST be included in the header. The scope of the scheme elements of the local and/or remote catalog(s) is limited to the header element and its descendants.
+
+[[news-content-characteristics-newscontentcharacteristics]]
+
+News Content Characteristics – newsContentCharacteristics
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Mandatory IPTC NewsCodes: http://cv.iptc.org/newscodes/dimensionunit/
+
+[[news-coverage-of-concept-item-newscoverage]]
+
+News Coverage (of Concept Item) – newsCoverage
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implementation Note: Be aware that in EventsML-G2 version 1.6 this element was classified as LEGACY. From that version on a standalone Planning Item is available to hold an even extended set of information about planned coverage. Its major advantage is that coverage can be planned without having to update and version Concept Items for event concepts.
+
+[[newscoverage-of-planning-item-newscoverage]]
+
+NewsCoverage (of Planning Item) – newsCoverage
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: A new `newsCoverage` property must be created for each set of planning details which contains different values. Different would be typically the `g2contentType` and/or the `itemClass`; or one or more of the descriptive metadata properties for the planned Items. 
+ 
+[[news-coverage-status-newscoveragestatus]]
+
+News Coverage Status – newsCoverageStatus
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: Indicating a decision of coverage:
+
+If a specific coverage was agreed by the news provider the `newsCoverageStatus` value should be set to “int” (coverage intended) and at least one newsCoverage element with coverage details MUST be added to the `eventDetails`.
+
+For inter-operability, it is highly recommended to use the IPTC News Coverage Status NewsCodes: http://cv.iptc.org/newscodes/newscoveragestatus/, with recommended scheme alias "ncostat"
+
+[[occur-status]]
+
+Occur Status – occurStatus
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Optional, non-repeatable child element of `eventDetails` to indicate the provider’s confidence that the event will occur. For inter-operability, it is highly recommended to use the IPTC Event Occurrence Status NewsCodes scheme (http://cv.iptc.org/newscodes/eventoccurstatus/, recommended scheme alias "eocstat").
+
+[[origin-origin]]
+
+Origin – origin
+^^^^^^^^^^^^^^^
+
+User Note: This string's structure is not specified by the IPTC.
+
+For rules on concept identifiers, see link:#use-of-concept-identifiers[Use of Concept Identifiers]
+
+[[origrep]]
+
+Original Representation - origRep
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+An IRI which, upon dereferencing, provides the original representation of the Item. The IRI should be persistent.
+
+[[organiser-organiser]]
+
+Organiser – organiser
+^^^^^^^^^^^^^^^^^^^^^
+
+Recommended IPTC NewsCodes for the _role_ attribute: http://cv.iptc.org/newscodes/eventorganiserrole/
+
+[[participant-participant]]
+
+Participant – participant
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Recommended IPTC NewsCodes for _role_ attribute: http://cv.iptc.org/newscodes/eventparticipantrole/
+
+[[phone-number-phone]]
+
+Phone Number – phone
+^^^^^^^^^^^^^^^^^^^^
+
+User Note: The _tech_ attribute indicates a land-line, cellular or other service.
+
+[[polygon-polygon]]
+
+Polygon – polygon
+^^^^^^^^^^^^^^^^^
+
+Implementation Note: Order of positions has to be considered, a minimum of three position elements is mandatory
+
+[[postal-address]]
+
+Postal Address
+^^^^^^^^^^^^^^
+
+User Note: A special value of the _role_ attribute may indicate that this information is not used to make contacts but e.g. is the registered address of a company.
+
+[[postal-address-of-a-point-of-interest-address-in-poi-structure]]
+
+Postal Address of a Point of Interest – address (in POI structure)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: This address may be different from an address required to contact the Point Of Interest or the organisation running or maintaining it, that address is provided under a `contactInfo` element.
+
+[[profile-profile]]
+
+Profile – profile
+^^^^^^^^^^^^^^^^^
+
+User Note: This property provides information about the structure of an Item, e.g. a simple package or an article with one picture.
+
+[[prompt-information]]
+
+Prompt used in AI Information - promptInfo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The textual information for an AI prompt. Any details such as User vs. System prompt information is included in this property (child of `aiInfo`. See also link:#ai-information-aiinfo[AI Information]).
+
+[[prompt-writer]]
+
+Prompt Writer in AI Information - promptWriter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A party (person or organisation) which created the AI prompt information. (Child of `aiInfo`. See also link:#ai-information-aiinfo[AI Information])
+
+[[provider-provider]]
+
+Provider of the Item - provider
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A mandatory child element of Item Metadata (`itemMeta`). The recommended IPTC NewsCodes CV is at http://cv.iptc.org/newscodes/newsprovider/ with a recommended alias of "nprov".
+
+As of NewsML-G2 2.36, the provider element may also be used as a child of `system` to reference the provider of an AI system or model. For this use case, the NewsCodes recommendation (above) does not apply.
+
+[[publish-status-pubstatus]]
+
+Publish Status – pubStatus
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Mandatory IPTC NewsCodes: http://cv.iptc.org/newscodes/pubstatusg2/
+
+[[rating-rating]]
+
+Rating – rating
+^^^^^^^^^^^^^^^
+
+User Note: On the _raters_ attribute:
+
+. If _raters_ is not present the number of raters defaults to 1
+
+. _raters_ does not require that the count indicates distinct persons.
+
+Implementation Note: on _valcalctype_:
+
+A CV for the calculation type should include: mean, median, sum, unknown
+
+[[recurrence-group]]
+
+Recurrence Group
+^^^^^^^^^^^^^^^^
+
+This group of properties defines the information required to specify a recurrence set. The recurrence set is the complete set of recurrence instances for a `dates` component. The model follows the link:https://icalendar.org/[iCalendar] specification link:https://www.ietf.org/rfc/rfc2445.txt[RFC2445].
+
+Recurrence properties are optional children of `dates/start` or `dates/end` If used, at least one _rDate_ OR _rRule_ element MUST be present. These elements MUST come first in the group.  Then the _exDate_ and _exRule_ elements MAY be inserted in any order.
+
+This group includes these elements:
+
+* Recurrence Date – `rDate`
+* Recurrence Rule – `rRule`
+* Exclusion Date – `exDate`
+* Exclusion Rule – `exRule`
+
+[[registration---registration]]
+
+Registration – registration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Recommended IPTC NewsCodes: http://cv.iptc.org/newscodes/eventregrole/
+
+[[remote-content-remotecontent]]
+
+Remote Content – remoteContent
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: To identify the remote resource either the _residref_ attribute or the _href_ attribute MUST be set, optionally both MAY be used in parallel. The _residref_ attribute identifies a managed remote resource by its globally unique identifier (if the resource has such an identifier), while the _href_ attribute identifies the location of the remote resource in e.g. a (remote) file system. If the remote resource is managed like an Item and consequently  _residref_ is used, a _version_ attribute MAY indicate the resource's version; in the absence of version information, the remote resource is the latest version available.
+
+A provider MAY explicitly express the format of _residref_ using the _residerefformat_ attribute with a QCode (or as a URI using its sibling _residrefformaturi_) in conjunction with the recommended IPTC Value Format NewsCodes (recommended scheme alias "valfmt") at http://cv.iptc.org/newscodes/valueformat/.
+
+The _width_ and _height_ may be specified when appropriate to the target resource, and MAY be accompaied by a _dimensionunit_ that takes the following values, taken from an IPTC defined controlled vocabulary: lines, pixels, points (more units are defined by this CV, check the most recent version).
+
+Mandatory IPTC NewsCodes: http://cv.iptc.org/newscodes/dimensionunit/
+
+If _dimensionunit_ is absent, the default units for each content type are:
+
+include::{includedir}/../../tables/dimension-unit-defaults.adoc[]
+
+[[role-in-the-content-stream-role]]
+
+Role in the Content Stream – role
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: This property may indicate the `role` of the content part in a piece of streaming media.
+
+Examples (video): “sting”, “slate”, etc.
+
+[[role-in-the-workflow-role]]
+
+Role in the Workflow – role
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: Among other possibilities this property may indicate the importance of the Item in a feed by concepts like “flash”, “bulletin”, “alert”, “urgent”, “newsbreak”, and so on.
+
+[[ruby-ruby]]
+
+Ruby – ruby
+^^^^^^^^^^^
+
+Implementation Note: This implementation aligns with the Simple Ruby markup with and without parentheses of the W3C (see http://www.w3.org/TR/ruby/#simple-ruby1).
+
+XML Schema Note: The alternative simple Ruby markup with and without parentheses is expressed by the use of either a single `rt` element or a single <rp> - <rt> - <rp> sequence of elements. Ruby parentheses (<rp>, empty elements) must be used as a pair: either both are present or none is present.
+
+[[sameas-for-a-scheme---sameas]]
+
+SameAs for a Scheme - sameAs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implementation Note: This element SHOULD NOT be used in NewsML-G2 2.11 and higher, the element `sameAsScheme` should be used instead.
+
+[[sameas-scheme-sameasscheme]]
+
+SameAs Scheme – sameAsScheme
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implementation Note: This element replaces the `sameAs` element as child of a `scheme` element.
+
+[[sender-sender]]
+Sender – sender
+^^^^^^^^^^^^^^^
+
+User Note: The structure of this string is not specified by the IPTC. Best practice is to identify a sender by its domain name.
+
+For rules on concept identifiers, see link:#use-of-concept-identifiers[Use of Concept Identifiers]
+
+[[signal-signal]]
+
+Signal – signal
+^^^^^^^^^^^^^^^
+
+User Note: This property might indicate major rewriting of the content, important correction, urgent handling etc. The processor might be required to perform specific actions, depending on the contract between the provider and the recipient. Users should be alerted of the reception of an Item containing a signal by some UI mechanism (sound or display). An editorial note (edNote) may be used to convey additional natural language information related to the processing of the content.
+
+[[slugline-slugline]]
+
+Slugline – slugline
+^^^^^^^^^^^^^^^^^^^
+
+User Note on _separator_. Providers may choose to use more complex separation rules. In such a case the meaning of the separators must be conveyed by some other means.
+
+[[subject-subject]]
+
+Subject – subject
+^^^^^^^^^^^^^^^^^
+
+An important topic of the content; what the content is about. For a Knowledge Item the
+content is the set of concepts, for an event the content is the event as such.
+
+[[system-system]]
+
+System in AI Information - system
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The name of the AI system or model used to generate or enhance the content (for example, as a child of `aiInfo`. See also link:#ai-information-aiinfo[AI Information]).
+
+* Optional attribute _versioninfo_: the version of the system.
+
+* Optional child element `provider`: the provider of the system.
+
+[[time-delimiter-timedelim]]
+
+Time Delimiter – timeDelim
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: The time unit may take the following values, taken from an IPTC defined controlled vocabulary:
+
+_timecode_: An SMPTE timecode containing a string encoded identification. Timestamp format: hh:mm:ss:ff (ff for frames).
+
+_timeCodeDropFrame_: An SMPTE timecode containing a string encoded identification.
+
+Timestamp format: hh:mm:ss:ff (ff for frames). The drop frame flag should be set.
+
+_editUnit_: The editUnit is the amount of time per video frame (1s / number of frames per second) or the amount of time per audio sample (1s / number of samples per second), for which the video frame rate or audio sample rate must be known. Timestamp format: long unsigned integer.
+
+_normalPlayTime_: Indicates the position relative to the beginning of the presentation.  Timestamp format: hh:mm:ss.mmm (mmm for milliseconds). See also: link:https://www.ietf.org/rfc/rfc2326.txt[RFC 2326].
+
+_seconds_: Time given in full seconds. Timestamp format: long unsigned integer.
+
+_milliseconds_: Time given in full milliseconds. Timestamp format: long unsigned integer.
+
+Implementation Note: If a time unit IS NOT present, the value _editUnit_ MUST be assumed.  Any timestamps MUST be formatted appropriately for the time unit (as detailed above).  All timestamps SHOULD be zero-padded from the left as applicable, e.g. a normalPlayTime value starting at 12 seconds would be represented as ‘00:00:12.000’.
+
+Mandatory IPTC NewsCodes: http://cv.iptc.org/newscodes/timeunit/
+
+[[item-title]]
+
+Item Title – title
+^^^^^^^^^^^^^^^^^^
+A short, natural-language name for the Item.
+
+[[transmission-identifier-transmitid]]
+
+Transmission Identifier – transmitId
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: This string's structure is not specified by the IPTC. No two News Messages sent by the same sender on the same date may have the same identifier. In case of retransmission it is not required to update this identifier.
+
+[[urgency-urgency]]
+
+Urgency – urgency
+^^^^^^^^^^^^^^^^^
+
+The editorial urgency of the content. A value of 1 corresponds to the highest urgency, a
+value of 9 to the lowest.
+
+[[usage-terms-usageterms]]
+
+Usage Terms – usageTerms
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: This property includes the type of usage to which the rights apply, the geographical area or areas to which specified usage rights pertain, the indication of the rights holder, restrictions on the use of the content and the time period over which the stated rights apply. If no usage terms are specified, then no specific restrictions on use of the content beyond contractual ones are being asserted.
+
+[[userinteraction-userinteraction]]
+
+User Interaction - userInteraction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Element expressing the number of times that end-users have interacted with content in the form of "Likes", votes, tweets and other metrics. If the element is used, it has two mandatory attributes:
+
+* interactions: the count of executed interactions (expressed as a non-negative integer)
+* interactiontype: a QCode indicating the type of interaction.
+
+[[datatype-specifications]]
+Datatype specifications
+~~~~~~~~~~~~~~~~~~~~~~~
+
+All XML data types of NewsML-G2 are defined by the NewsML-G2 Schema see how to get them in the The Full Set of Specification Documents section.
+
+This section only adds for some data types' User Notes, Implementation Notes or recommended Controlled Vocabularies which are not in the NewsML-G2 XML Schema version 2.36. +
+Data types not having such additional information are not listed here.
+
+[[ai-information-type]]
+
+AIInfoType
+^^^^^^^^^^
+
+Added in NewsML-G2 2.36, the type for a set of properties representing the AI used to create or enhance the content.
+
+[[approximatedatetimeproptype]]
+
+ApproximateDateTimePropType
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: If a _start_ and/or _end_ attribute exists, then the date is approximate, else it is defined precisely by the property's date. If only the approximation start date is provided the range ends with the property value; if only the approximation end date is provided the approximation range starts with the property value.
+
+[[audiencetype]]
+
+AudienceType
+^^^^^^^^^^^^
+
+User Note:
+
+_significance_: 1 – corresponds to the highest significance.
+
+_significance_: 9 – corresponds to the lowest significance.
+
+[[blocktype]]
+
+BlockType
+^^^^^^^^^
+
+User Note: Blocks are primarily used for notes, comments or instructions created by a news provider for use by recipient editorial teams.
+
+[[conceptidtype]]
+
+ConceptIdType
+^^^^^^^^^^^^^
+
+For rules on concept identifiers, see link:#use-of-concept-identifiers[Use of Concept Identifiers]
+
+[[dateopttimeproptype-and-dateopttimetype]]
+
+DateOptTimePropType and DateOptTimeType
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: The time may be expressed in Universal Time Coordinates (UTC), or in local time together with a time zone offset in hours and minutes
+
+[[flexproptype-multiple]]
+FlexPropType (multiple)
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Included: Flex1PropType, Flex1ConceptPropType, FlexLocationPropType, FlexOrganisationPropType, FlexPartyPropType, FlexPersonPropType, FlexPropType, FlexProp2Type, FlexSystemPropType
+
+For rules on concept identifiers, see link:#use-of-concept-identifiers[Use of Concept Identifiers]
+
+User note for Flex1ConceptPropType: If a `mainConcept` element is used by an element of Flex1ConceptPropType (`subject`, `genre` or `eventDetails\subject`) this indicates that the value of the property is a faceted concept. In this case a _qcode_ or _uri_ attribute must NOT be used, a _literal_ attribute may be used only in the scope of this Item (for example in order to reference an `assert` element).
+
+[[label1type]]
+
+Label1Type
+^^^^^^^^^^
+
+User Note: Labels are assertions expressed as natural language strings intended to be consumed by human beings. They are typically displayed alongside the content of an Item or in place of Items in a list, providing a means of selection among them.
+
+[[link1type]]
+
+Link1Type
+^^^^^^^^^
+
+User Note: To identify the target resource either the _residref_ attribute or the _href_ attribute MUST be set, optionally both MAY be used in parallel. The _residref_ attribute identifies the target resource by its globally unique identifier (if the resource has such an identifier), while the _href_ attribute identifies the location of the target resource in e.g. a (remote) file system. If the target resource is an Item and the _residref_ attribute is used, a _version_ attribute MAY indicate the target Item version; in the absence of version information, the target resource is the latest version available.
+
+[[truncateddatetimeproptype-and-truncateddatetimetype]]
+
+TruncatedDateTimePropType and TruncatedDateTimeType
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Implementation Note: TruncatedDateTimePropType is used as a property datatype.
+
+Example valid values:
+
+YYYY-MM-DD"T"hh:mm:ss.sssTZ
+
+YYYY-MM-DD"T"hh:mm:ssTZ
+
+YYYY-MM-DD
+
+YYYY-MM
+
+YYYY
+
+[[attribute-group-specifications]]
+
+Attribute (Group) Specifications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+All XML attributes and groups of attributes of NewsML-G2 elements are defined by the NewsML-G2 Schema (see The Full Set of link:#_bookmark2[Specification Documents]).
+
+This section only adds for some attributes User Notes, Implementation Notes or recommended Controlled Vocabularies which are not in the NewsML-G2 XML Schema version 2.36. +
+All attributes not having such additional information are not listed here.
+
+[[internationalization-attributes---i18nattributes]]
+
+Internationalization Attributes - i18nAttributes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Notes:
+
+* _xml:lang_ values MUST follow RFC 4646 and RFC 4647 (as both replace RFC 3066) or its successor. See also IETF BCP47.
+* The _dir_ qualifier specifies the directionality of scripted text: left-to-right (“ltr”, the default) or right-toleft (“rtl”). Its definition follows the XHTML 1.0 production. Directionality – left-to-right or right-to-left – is assigned to characters in Unicode, in order to allow the text to be rendered properly. For example, while English characters are presented left-to-right, Hebrew characters are presented right-to-left. Unicode defines a bidirectional algorithm that must be applied whenever a document contains right-to-left characters. While this algorithm usually gives the proper presentation, some situations leave directionally neutral text and require the dir attribute to specify the base directionality.
+
+[[ranking-attributes---rankingattributes]]
+
+Ranking Attributes - rankingAttributes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Processing rules for the _rank_ attribute:
+
+Properties with a lower value of the _rank_ attribute have a higher importance than properties with a higher value of this attribute. All properties with the same value of _rank_ have the same importance.
+
+All properties *without* a _rank_ have the same importance, which is lower than the importance of all properties with this attribute.
+
+If relative importance is being used to determine display order, then:
+
+* Properties with a lower value of _rank_ should be displayed before properties with a higher value of this attribute.
+
+* Properties with the same value of _rank_ should be ordered within this rank alphabetically by their names if these are available. If some or all of the names are available in multiple languages, the order of the properties will depend on the language chosen.
+
+* All properties without a _rank_ should be displayed after all properties with this attribute.
+
+Examples (using _rank_ with the `language` property):
+
+[source, xml]
+----
+<<!-Rank as: all equal (implicit) -->
+
+<language tag="en"/>
+
+<language tag="fr"/>
+
+<language tag="es"/>
+
+<language tag="de"/>
+
+<!-Rank as: en, then any others -->
+
+<language tag="en" rank="1"/>
+
+<language tag="fr"/>
+
+<language tag="es"/>
+
+<language tag="de"/>
+
+<!-Rank as: en, then fr, then es, then de -->
+
+<language tag="en" rank="1"/>
+
+<language tag="fr" rank="2"/>
+
+<language tag="es" rank="3"/>
+
+<language tag="de" rank="4"/>
+
+<!-Rank as: en, then fr, then any others -->
+
+<language tag="en" rank="1"/>
+
+<language tag="fr" rank="2"/>
+
+<language tag="es"/>
+
+<language tag="de"/>
+
+<!-Rank as: en and fr, then any others -->
+
+<language tag="en" rank="1"/>
+
+<language tag="fr" rank="1"/>
+
+<language tag="es"/>
+
+<language tag="de"/>
+----
+
+[[quantify-attributes---quantifyattributes]]
+
+Quantify Attributes - quantifyAttributes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Notes:
+
+* An indication of _confidence_ is usually obtained by automatic categorization means. 100 is the highest value.
+* A high _relevance_ indicates that this piece of metadata truly expresses what the piece of news is about, while a low _relevance_ indicates a low correlation between the metadata and the essence of the piece of news.
+* _why_ indicates whether the metadata is directly extracted from the content by a tool and/or by a person, whether it is an ancestor of some other concept directly associated with the content (e.g. the concepts France and Europe are ancestors of the concept Paris), or whether it is derived by look-up in a thesaurus (e.g. the entity Merck may be associated with the concept Pharmaceutical Industry Sector).
+
+[[recurrence-rule-attributes---recurrenceruleattributes]]
+
+Recurrence Rule Attributes - recurrenceRuleAttributes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+User Note: The different datatypes of the attributes in this attribute group correspond to iCalendar datatypes and enumerations.
+
+[[orientation-attribute---orientation]]
+
+Orientation Attribute - orientation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The table below enumerates the allowed values for the link:#_bookmark911[orientation] attribute. The values are integers from 1 to 8 and reflect the TIFF 6.0 and Exif 2.3 specification. Orientation 1 is considered as default value.
+
+Remark on the Definition column: by the Exif specification the "0th row" is the first row which has been scanned for the digital image and the "0th column" the first column. The hint describes how a picture of this orientation has to be flipped and/or rotated to show as the default orientation 1.
+
+The column "Visual example" shows a picture of the character F having an orientation aligning with the value. The letters T(op), L(eft), R(ight) and B(ottom) represent the visual aligment of the image with orientation 1.
+
+[[_bookmark913]]
+
+_Table 14. Image Orientation Values_
+
+include::{includedir}/../../tables/orientation-values.adoc[]
+
+

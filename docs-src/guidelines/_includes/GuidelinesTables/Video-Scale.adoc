@@ -1,0 +1,23 @@
+[%autowidth,options="header"]
+|===
+|Code|Definition
+
+|unscaled
+|no scaling applied
+
+|mixed
+|two or more different aspect ratios are used in the video over the timeline
+
+|pillarboxed
+|bars to the left and right
+
+|letterboxed
+|bars to the top and bottom
+
+|windowboxed
+|pillar boxed plus letter boxed
+
+|zoomed
+|scaling to avoid any borders
+
+|===

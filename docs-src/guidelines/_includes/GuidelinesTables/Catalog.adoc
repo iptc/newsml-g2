@@ -1,0 +1,35 @@
+[%autowidth,options="header"]
+|===
+|Definition|Name|Cardinality|Child properties
+
+|Catalog
+|catalogRef  catalog
+|1..n
+|As per all NewsML-G2 Items
+
+|Hop History
+|hopHistory
+|0..1
+|As per all NewsML-G2 Items
+
+|Rights Information
+|rightsInfo
+|0..n
+|As per all NewsML-G2 Items
+
+|Item Metadata
+|itemMeta
+|1
+|As per all NewsML-G2 Items
+
+|Content Metadata
+|contentMeta
+|0..1
+|- contentCreated (0..1)  - contentModified (0..1)  - creator (0..1)  - contributor (0..1)  - altId (0..1)
+
+|Catalog Container
+|catalogContainer
+|1
+|catalog (1)
+
+|===

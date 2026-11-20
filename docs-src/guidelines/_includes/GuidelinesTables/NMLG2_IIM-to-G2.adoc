@@ -1,0 +1,115 @@
+[%autowidth,options="header"]
+|===
+|DataSet|IIM Name|IPTC Photo Metadata Name|NewsML-G2 Property
+
+|2:05
+|Object Name
+|Title
+|itemMeta/title
+
+|2:10
+|Urgency
+|(Deprecated)
+|contentMeta/urgency
+
+|2:15
+|Category
+|(Deprecated)
+|contentMeta/subject
+
+|2:20
+|Supplemental Category
+|(Deprecated)
+|contentMeta/subject
+
+|2:25
+|Keywords
+|Keywords
+|contentMeta/keyword
+
+|2:40
+|Special Instruction
+|Instructions
+|itemMeta/edNote Alternative: rightsInfo/usageTerms
+
+|2:55
+|Date Created
+|Date Created
+|contentMeta/contentCreated
+
+|3:20
+|By-Line
+|Creator
+|contentMeta/creator/name
+
+|3:25
+|By-line Title
+|Creator’s Jobtitle
+|contentMeta/creator/related
+
+|3:30
+|City
+|City (legacy)
+|if interpreted as city of the location the photo was taken contentMeta/located/POIDetails/address/locality/name OR if interpreted as city of the location shown contentMeta/subject -→ assert/POIDetails/address/locality/name
+
+|3:32
+|Sub-location
+|Sublocation (legacy)
+|if interpreted as sublocation of the location the photo was taken contentMeta/located/POIDetails/address/line OR if interpreted as sublocation of the location shown contentMeta/subject -→ assert/POIDetails/address/line
+
+|3:35
+|Province/State
+|Province or State (legacy)
+|if interpreted as province of the location the photo was taken contentMeta/located/POIDetails/address/area/name OR if interpreted as province of the location shown contentMeta/subject -→ assert/POIDetails/address/area/name
+
+|3:40
+|Country/Primary Location Code
+|Country Code (legacy)
+|if interpreted as country of the location the photo was taken contentMeta/located/POIDetails/address/country/@uri OR if interpreted as country of the location shown contentMeta/subject -→ assert/POIDetails/address/country/@uri
+
+|3:41
+|Country/Primary Location Name
+|Country (legacy)
+|if interpreted as country of the location the photo was taken contentMeta/located/POIDetails/address/country/name OR if interpreted as country of the location shown contentMeta/subject -→ assert/POIDetails/address/country/name
+
+|3:43
+|Original Transmission Reference
+|Job ID
+|itemMeta/altId If the reference is a Job ID use itemMeta/ memberOf
+
+|3:45
+|Headline
+|Headline
+|contentMeta/headline
+
+|3:50
+|Credit
+|Credit Line
+|contentMeta/creditline
+
+|3:55
+|Source
+|Source
+|contentMeta/infoSource
+
+|3:56
+|Copyright Notice
+|Copyright Notice
+|rightsInfo/copyrightNotice
+
+|4:00
+|Caption/Abstract
+|Description
+|contentMeta/description
+
+|4:02
+|Writer/Editor
+|Description Writer
+|contentMeta/contributor (with @role to indicate the role of the contributor
+
+|Note: deprecated properties are no longer supported in IPTC Photo Metadata
+| 
+| 
+| 
+
+|===

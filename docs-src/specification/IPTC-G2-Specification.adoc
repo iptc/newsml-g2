@@ -1,0 +1,61 @@
+= image:iptc_sv_gradient_70x70.jpg[IPTC logo] NewsML-G2 2.36 Specification 
+keywords: iptc, newsml-g2, xml, format, news, multimedia, multi-media, metadata, standard
+:doctype: book
+:imagesdir: ./images
+:includedir: ./_includes
+:stylesdir: stylesheets/
+:stylesheet: asciidoctor-iptc-stds-02.css
+:source-highlighter: coderay
+:source-language: asciidoc
+:icons: font
+:stem:
+:author: Kelvin Holland, Michael Steidl, Scott Meltzer
+:email: office@iptc.org
+:version-label: Standard Version
+:revnumber: 2.36
+:revremark: Revised 2026-11-05
+:toc: left
+:toclevels: 3
+:nofooter:
+:sectanchors:
+:sectnumlevels: 3
+
+include::{includedir}/chapters/Preface.adoc[]
+
+:sectnums:
+
+include::{includedir}/chapters/1_Introduction.adoc[]
+
+include::{includedir}/chapters/2_News_Item.adoc[]
+
+include::{includedir}/chapters/3_Intro_to_EventsML.adoc[]
+
+include::{includedir}/chapters/4_Events.adoc[]
+
+include::{includedir}/chapters/5_Representing_Concepts.adoc[]
+
+include::{includedir}/chapters/6_Manage_Concepts.adoc[]
+
+include::{includedir}/chapters/7_Knowledge_Item.adoc[]
+
+include::{includedir}/chapters/8_Package_Item.adoc[]
+
+include::{includedir}/chapters/9_Planning_Item.adoc[]
+
+include::{includedir}/chapters/10_Controlled_Values.adoc[]
+
+include::{includedir}/chapters/11_Catalog_Item.adoc[]
+
+include::{includedir}/chapters/12_Labels_and_Blocks.adoc[]
+
+include::{includedir}/chapters/13_News_Message.adoc[]
+
+include::{includedir}/chapters/14_Specification_Reference.adoc[]
+
+include::{includedir}/chapters/15_Glossary.adoc[]
+
+include::{includedir}/chapters/16_References.adoc[]
+
+include::{includedir}/chapters/Contact_Information.adoc[]
+
+

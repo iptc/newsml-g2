@@ -1,0 +1,55 @@
+[[managing-catalogs---catalogitem]]
+Managing Catalogs - catalogItem
+-------------------------------
+
+An XML Schema file corresponding to the specifications for this Item is available (see The Full Set of link:#_bookmark2[Specification Documents]).
+
+[[description-4]]
+Description
+~~~~~~~~~~~
+
+Catalogs have a vital role for all the different NewsML-G2 Item types as they provide the mapping between scheme URIs and scheme aliases, a key resource for resolving QCodes to the URIs that identify concepts. This is explained in depth in link:#processing-catalogs[Processing Catalogs].
+
+In this context some providers may wish to use the same basic means for managing a Catalog as are available for news content, concepts, editorial planning and so on. This purpose is covered by the Catalog Item which has been introduced in NewsML-G2 2.15.
+
+A Catalog Item enables the NewsML-G2 user to explicitly manage catalogs:
+
+* A specific set of Scheme Declaration elements is considered to form a catalog.
+* This catalog is made available by a single `catalog` element which may appear in a stand-alone file as web resource or which may be included in a NewsML-G2 Item.
+* A single catalog element MAY be managed and conveyed by a Catalog Item.
+* The scheme elements of this catalog may be changed (modified or a new one added), but by the general rules of NewsML-G2 this requires a new version of the Catalog Item to be published.
+
+[[structure-of-a-catalog-item]]
+Structure of a Catalog Item
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The model of a Catalog Item is very similar to the other NewsML-G2 Items: It shares the indicators of compliance with a Standard and a Conformance Level, Identification and Versioning, Signature, Rights Information, Item Metadata and Item links. Please review link:#representing-news---newsitem[Representing News - newsItem] for more information.
+
+[[item-class-4]]
+
+Item Class
+^^^^^^^^^^
+
+The IPTC provides a mandatory standardised scheme applicable to the itemClass property of a catalogItem, identified by the URI http://cv.iptc.org/newscodes/catinature/.
+
+[[catalog-related-metadata]]
+
+Catalog Related Metadata
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The set of metadata related to the catalog content is listed below. All properties are optional. The order of the properties in this set is flexible: the non-repeatable properties MUST come first and then the repeatable properties may be inserted in any order.
+
+_Table 11. Content Metadata Elements_
+
+include::{includedir}/../../tables/catalog-contentmeta.adoc[]
+
+Each provider may add a set of metadata properties which have to be defined in a non-IPTC-G2 namespace. See also link:#_bookmark121[XML Namespaces] and link:#_bookmark123[Extension Points in XML].
+
+[[catalog-item-content]]
+
+Catalog Item Content
+^^^^^^^^^^^^^^^^^^^^
+
+A Catalog Item includes a mandatory `catalogContainer` element which contains a single mandatory `catalog` element as the content of the Item.
+
+

@@ -1,0 +1,33 @@
+[%autowidth,options="header"]
+|===
+|NITF element|NewsML-G2 equivalent|Comment
+
+|<title>
+|<title>
+|The properties are equivalent in NITF and NewsML-G2
+
+|<meta>
+|<itemClass>
+|<itemClass> uses the IPTC News Item Nature NewsCodes to identify the type of content.
+
+|<tobject>
+|<subject>
+|This is part of NewsML-G2 <contentMeta>
+
+|<iim>
+|None
+|Deprecated in NITF, no NewsML-G2 equivalent
+
+|<docdata>
+|Various
+|A container for detailed metadata for the document. contains child elements as tabled in 21.2.2.1below
+
+|<pubdata>
+|None
+|NewsML-G2 contains no direct equivalent of Publication Metadata. In NITF, the property has many attributes intended to convey information about print publications
+
+|<revision-history>
+|
+|Attributes can express the date and reason for the revision, the name and job title of the person who made the revision
+
+|===

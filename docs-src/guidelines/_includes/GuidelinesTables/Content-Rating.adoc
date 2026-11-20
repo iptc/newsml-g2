@@ -1,0 +1,53 @@
+[%autowidth,options="header"]
+|===
+|Definition|Name|Cardinality|Datatype|Notes
+
+|The rating of the content expressed as decimal value
+|value
+|-1
+|Decimal
+| 
+
+|How the value is calculated such as median, sum
+|valcalctype
+|(0..1)
+|QCodeType
+|Proposed IPTC CV (see below).
+
+|Minimum rating value.
+|scalemin
+|-1
+|Decimal;
+|The value representing the lowest, or worst, rating that can be given
+
+|Maximum rating value.
+|scalemax
+|-1
+|Decimal;
+|The value representing the highest, or best, rating that can be given
+
+|Rating units
+|scaleunit
+|-1
+|QCodeType
+|Two values in the proposed IPTC CV are “star” and “numeric”.(see below)
+
+|The number of parties who contributed a rating.
+|raters
+|(0..1)
+|NonNegativeInteger
+|If not present, defaults to 1.
+
+|The type of the rating parties.
+|ratertype
+|(0..1)
+|QCodeType
+|Proposed IPTC CV (see below).
+
+|Full definition of the rating.
+|ratingtype
+|(0..1)
+|QCodeType
+|The rating engine or method used, for example Amazon star rating or Survey Monkey.
+
+|===

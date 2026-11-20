@@ -1,0 +1,40 @@
+[%autowidth,options="header"]
+|===
+|Property Name|Element|Type|Notes
+
+|Email Address
+|<email>
+|Electronic Address
+|An “Electronic Address” type allows the expression of @role (QCode) to qualify the information, for example:  <email role=“addressrole:office”>      info@ecb.eu  </email>
+
+|Instant Message Address
+|<im>
+|Electronic Address
+| <im role=“imsrvc:reuters”>      jc.trichet.ecb.eu@reuters.net  </im>
+
+|Phone Number
+|<phone>
+|Electronic Address
+| 
+
+|Fax Number
+|<fax>
+|Electronic Address
+| 
+
+|Web site
+|<web>
+|IRI
+| <web role=“webrole:corporate”>      www.ecb.eu   </web>
+
+|Postal Address
+|<address>
+|Address
+|The Address may have a @role to denote the type of address is contains (e.g. work, home) and may be repeated as required to express each address @role.
+
+|Other information
+|<note>
+|Block
+|Any other contact-related information, such as “annual vacation during August”
+
+|===

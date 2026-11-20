@@ -1,0 +1,25 @@
+[%autowidth,options="header"]
+|===
+|Element Title|Element Name|Card
+
+|Date Content Created
+|link:#date-content-created---contentcreated[contentCreated]
+|(0..1)
+
+|Date Content Modified
+|link:#date-content-modified-contentmodified[contentModified]
+|(0..1)
+
+|Creator
+|link:#creator[creator]
+|(0..unbounded)
+
+|Contributor
+|link:#contributor[contributor]
+|(0..unbounded)
+
+|Alternative Identifier
+|link:#alternative-identifier-altid[altId]
+|(0..unbounded)
+
+|===

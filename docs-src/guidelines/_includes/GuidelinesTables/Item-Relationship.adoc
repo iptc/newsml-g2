@@ -1,0 +1,54 @@
+[%autowidth,options="header"]
+|===
+|Relationship|Code|Definition
+
+|See Also
+|seeAlso
+|The related resource can be used as additional information. Full rendering of this Item does NOT depend on the retrieval of the related item or resource
+
+|Depends On
+|dependsOn
+|Full rendering of this Item depends on the retrieval of the related item or resource.
+
+|Derived From
+|derivedFrom
+|This item was derived from the related resource
+
+|Associated With
+|associatedWith
+|This Item is associated with the related resource
+
+|Associated Stream
+|associatedStream
+|The related resource contains streaming data associated with this Item
+
+|Previous Version
+|previousVersion
+|The related Item is the previously published version of this Item
+
+|Translated From
+|translatedFrom
+|This Item was translated from the related resource
+
+|Translated From Root
+|translatedFromRoot
+|The related resource contains the content from which this item was translated, either directly or indirectly via one or more other translations
+
+|Cropped From
+|croppedFrom
+|The visual content of this item was cropped from the related resource
+
+|Evolved From
+|evolvedFrom
+|This item has evolved from the related resource. Typical use is for stories evolving over time, including corrections.
+
+|Processed From
+|processedFrom
+|The content of this item has been processed from the content of the related item or resource. Do not use in the case of cropping (see croppedFrom).
+
+|Was Packaged In
+|wasPackagedIn
+|Indicates that this Item was included in the target package
+
+|===
+

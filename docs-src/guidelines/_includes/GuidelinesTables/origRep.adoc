@@ -1,0 +1,21 @@
+[%autowidth,options="header"]
+|===
+|Name|Cardinality|Definition
+
+|Common Power
+|-
+|Inherited attribute group
+
+|Time Validity
+|-
+|Inherited attribute group
+
+|accesstype or accesstypeuri
+|0..1
+|A qualifier that indicates the technical variant for accessing this item (for example communication protocols like “http”) - expressed by a QCode or URI
+
+|reposrole or reposroleuri
+|0..1
+|A qualifier which indicates the role of the stated repository - expressed by a QCode or URI.
+
+|===

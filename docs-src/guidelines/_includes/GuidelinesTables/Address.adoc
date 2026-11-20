@@ -1,0 +1,35 @@
+[%autowidth,options="header"]
+|===
+|Property Name|Element|Type|Notes/Example
+
+|Address Line
+|<line>
+|Internationalized string
+|As many as are needed
+
+|Locality
+|<locality>
+|Flexible Property
+|May be a URI, QCode or Literal value, or no value with a <name> child element
+
+|Area
+|<area>
+|Flexible Property
+| 
+
+|Country
+|<country>
+|Flexible Property
+| 
+
+|Postal Code
+|<postalCode>
+| 
+| 
+
+|World Region
+|<worldRegion>
+|Flexible Property
+| 
+
+|===

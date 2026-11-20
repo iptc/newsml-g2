@@ -1,0 +1,97 @@
+[%autowidth,options="header"]
+|===
+|Element Title|Element Name|Cardinality
+
+|Item Class
+|link:#item-class-itemclass[itemClass]
+|-1
+
+|Content Provider
+|link:#provider-provider[provider]
+|-1
+
+|Date Item Version Created
+|link:#date-version-created---versioncreated[versionCreated]
+|-1
+
+|Date Item First Created
+|link:#date-first-created---firstcreated[firstCreated]
+|(0..1)
+
+|Date Item Embargo Ends
+|link:#date-item-embargo-ends-embargoed[embargoed]
+|(0..1)
+
+|Publish Status
+|link:#publish-status-pubstatus[pubStatus]
+|(0..1)
+
+|Role in the Workflow
+|link:#role-in-the-workflow-role[role]
+|(0..1)
+
+|File Name
+|link:#filename[filename]
+|(0..1)
+
+|Generator Tool
+|link:#generator-tool-generator[generator]
+|(0..1)
+
+|Profile
+|link:#profile-profile[profile]
+|(0..1)
+
+|Editorial Service
+|link:#editorial-service-service[service]
+|(0..unbounded)
+
+|Item Title
+|link:#item-title[title \{itemMeta}]
+|(0..unbounded)
+
+|Editorial Note
+|link:#editorial-note[edNote]
+|(0..unbounded)
+
+|Member Of
+|link:#member-of[memberOf]
+|(0..unbounded)
+
+|Instance Of
+|link:#instance-of[instanceOf]
+|(0..unbounded)
+
+|Signal
+|link:#signal-signal[signal]
+|(0..unbounded)
+
+|Alternative Representation
+|link:#alternative-representation---altrep[altRep]
+|(0..unbounded)
+
+|Deliverable Of
+|link:#deliverableof[deliverableOf]
+|(0..1)
+
+|Hash Value
+|link:#hashvalue[hash]
+|(0..unbounded)
+
+|Expires
+|link:#expires[expires]
+|(0..unbounded)
+
+|Original Representation
+|link:#origrep[origRep]
+|(0..unbounded)
+
+|Incoming Feed ID
+|link:#incomingfeedid[incomingFeedId]
+|(0..unbounded)
+
+|Metadata Creator
+|link:#metadata-creator[Attribution of metadata creation] 
+|(0..unbounded)
+
+|===

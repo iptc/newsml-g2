@@ -1,0 +1,10 @@
+# Note: for version 2.37 beware that the global replace of 2.36 to 2.37
+# will erroneously change the descriptions of properties introduced in 2.36
+# Therefore we should append the the global change with...
+# s/Added in NewsML-G2 2.37/Added in NewsML-G2 2.36/
+# s/Updated in NewsML-G2 2.37/Updated in NewsML-G2 2.36/
+# s/As of NewsML-G2 2.37/As of NewsML-G2 2.36/
+# This will revert the global change to the correct assigned version number
+#
+s/2.35/2.36/g
+s/2025 IPTC/2026 IPTC/

@@ -1,0 +1,25 @@
+[%autowidth,options="header"]
+|===
+|Code|Name|Definition
+
+|interviewee
+|Interviewee
+|A person who granted an interview
+
+|mediaOffice
+|Media Office
+|The media relationships office of a person, organisation or company.
+
+|origcont
+|Content Originator
+|A party which originated the content of this item.
+
+|originfo
+|information originator
+|A party which provided some information used to create or enhance the content of this item.
+
+|spokesperson
+|Spokesperson
+|The spokesperson of a person, organisation or company
+
+|===

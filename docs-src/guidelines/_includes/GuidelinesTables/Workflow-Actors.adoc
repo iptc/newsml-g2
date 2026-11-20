@@ -1,0 +1,65 @@
+[%autowidth,options="header"]
+|===
+|Property|Location in an Item|Usage notes
+
+|*_News Message_*
+| 
+| 
+
+|Message Sender
+|header/sender
+|Party sending the itemsin the message, which may be an organisation or a person. Best practice is to identify a sender by a domain name.
+
+|*_Item_*
+| 
+| 
+
+|Hop History
+|hopHistory
+|Identifies the actions and sequence of actions by parties who created, enhanced or transformed the content and/or metadata of the Item.(See Transaction History <hopHistory> below)
+
+|Copyright Holder
+|rightsInfo/copyrightHolder
+|Party claiming, or responsible for, the intellectual property for the content.
+
+|Copyright Notice
+|rightsInfo/copyrightNotice
+|The appropriate copyright text claiming the intellectual property for the content. The copyright notice may be refined by the Usage Terms.
+
+|Item Provider
+|itemMeta/provider
+|The party responsible for the management and the release of the NewsML-G2 Item. This corresponds to the publisher of the Item.
+
+|Item Generator
+|itemMeta/generator
+|The name and version of the system or application that generated the NewsML-G2 Item. Where a role IS NOT specified, the Generator Tool applies to the most recent item generation stage.
+
+|Incoming Feed Identifier
+|itemMeta/incomingFeedId
+|The incoming feed identifier may be defined by i/ the provider of the feed and/or ii/ the processor of the feed. (See Incoming Feed Identifier <incomingFeedId>, below)
+
+|*_Content_*
+| 
+| 
+
+|Content Creator
+|contentMeta/creator
+|The party (person or organisation) that created the content. This MAY also be indicated textually in <by>
+
+|Information Sources
+|contentMeta/infoSource
+|Person or organisation which originated, modified, enhanced, distributed, aggregated or supplied the content or provided some information used to create or enhance the content, qualified by @role, for example role="cpprole:origcont" indicates the original content owner using the Content Production Party Role NewsCodes.
+
+|Content Contributors
+|contentMeta/contributor
+|Person or organization that modified or enhanced the content, preferably the name of a person. Typical contributor types represented by @role: The Editor of the content. An additional Reporter of the content.
+
+|Creditline
+|contentMeta/creditline
+|Free-text expression of the credit(s) for the content;
+
+|Byline
+|contentMeta/by
+|Free-text expression of the person or organisation that created the content– see also Content Creator above.
+
+|===

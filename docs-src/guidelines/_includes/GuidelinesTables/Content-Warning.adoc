@@ -1,0 +1,20 @@
+[%autowidth,options="header"]
+|===
+|Code|Definition
+
+|death
+|The content could be perceived as offensive due to the discussion or display of death.
+
+|language
+|The content could be perceived as offensive due to the language used..
+
+|nudity
+|The content could be perceived as offensive due to nudity.
+
+|sexuality
+|The content could be perceived as offensive due to the discussion or display of sexuality.
+
+|violence
+|The content could be perceived as offensive due to the discussion or display of violence.
+
+|===

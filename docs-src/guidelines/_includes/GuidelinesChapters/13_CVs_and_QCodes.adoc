@@ -1,0 +1,1500 @@
+[[controlled-vocabularies-and-qcodes]]
+Controlled Vocabularies and QCodes
+----------------------------------
+
+[[introduction-10]]
+Introduction
+~~~~~~~~~~~~
+
+One of the fundamental ideas underpinning NewsML-G2 is the use of
+Controlled Vocabularies (CVs) or taxonomies to enable two basic
+operations:
+
+* To restrict the allowed values of certain properties in order to
+maintain the consistency and inter-operability of machine-readable
+information – supplying data to populate menus, for example.
+* To provide a concise method of unambiguously identifying any abstract
+notion (e.g. subject classification) or real-world entity (person,
+organisation, place etc.) present in, or associated with, an item. This
+enables links to be made to external resources that can provide the
+consumer with further information or processing options.
+
+A Controlled Vocabulary (CV) is a set of concepts usually controlled by
+an authority which is responsible for its maintenance, i.e. adding and
+removing vocabulary entries. In NewsML-G2, CVs are also known as
+Schemes. The person or organisation responsible for maintaining a Scheme
+is the Scheme Authority.
+
+Examples of CVs include the set of country codes maintained by the
+International Standards Organisation, and the NewsCodes maintained by
+the IPTC. An application of a CV could be a drop-down list of countries
+in an application interface.
+
+Many CVs are dedicated to a specific metadata property, for example
+there are CVs for <subject> and for <genre>. Other CVs are dedicated to a
+specific attribute that refines a property such as the CV for the @role of
+<description>.
+
+In news distributions that use NewsML-G2, it is recommended that
+Controlled Vocabularies are exchanged as Knowledge Items, with members
+of the CV contained in individual <concept> structures.
+
+Members of a Scheme are each identified by a concept identifier
+expressed as a QCode (note capitalisation), which is resolved via the
+Catalog information in the NewsML-G2 Item to form a URI that is globally
+unique.
+
+[[business-case]]
+Business Case
+~~~~~~~~~~~~~
+
+Controlled Vocabularies are needed in information exchange because they
+establish a common ground for understanding content that is
+language-independent. Schemes and QCodes enable CVs to be exchanged and
+referenced using Web technology, and provides a lightweight, flexible
+and reliable model for sharing concepts and information about concepts
+
+For example, the IPTC Media Topics Scheme is a language-independent
+taxonomy for classifying the subject matter of news. A consumer
+receiving news classified using this scheme can discover the meaning of
+this classification, using a publicly-accessible URL.
+
+Examples abound of non-IPTC CVs in everyday use: IANA Media Types, ISO
+Country Codes or ISO Currency Codes to name but three.
+
+News providers use CVs to add value to their content:
+
+* News can be accurately processed by software if it adheres to known
+(i.e. controlled) parameters expressed as a CV, for example the
+publishing status of a news item
+* by establishing CVs of people, places and organisations, the identity
+of entities in the news can be unambiguously affirmed;
+* CVs can be extended to store further information about entities in the
+news, for example biographies of people, contact details for
+organisations.
+
+[[how-qcodes-work]]
+How QCodes work
+~~~~~~~~~~~~~~~
+
+A QCode is a string with three parts, all of which MUST be present:
+
+* Schema Alias: the prefix, for example "stat"
+* Scheme-Code Separator: a separator, which MUST be a colon ":" (ASCII
+58~dec~ = 003A~hex~)
+* Code Value: the suffix, for example "usable"
+
+This produces a complete QCode of "stat:usable" represented in XML as
+
+[source,xml]
+qcode="stat:usable"
+
+[[scheme-alias-to-scheme-uri]]
+Scheme Alias to Scheme URI
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The key to resolving scheme aliases is the Catalog information, a child
+of the root element of every NewsML-G2 Item. A scheme alias may be
+resolved directly using the <catalog> element:
+
+[source,xml]
+<catalog>
+    <scheme alias="stat" uri="http://cv.iptc.org/newscodes/pubstatusg2/" />
+</catalog>
+
+Using the information in <catalog>, a processor now has a _Scheme URI_
+that can be used as the next step in resolving the QCode.
+
+[[catalogs]]
+Catalogs
+++++++++
+
+The <catalog> element may contain many <scheme> components. Catalog
+information can be stored in one of two ways:
+
+* directly in a NewsML-G2 Item using the <catalog> element, or
+* remotely in a file containing the catalog information, referenced by
+the @href of a <catalogRef> element.
+
+There is likely to be more than one <catalogRef> in an Item:
+
+[source,xml]
+<catalogRef
+    href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_41.xml" />
+<catalogRef
+    href="http://www.xmlteam.com/specification/xts-SportsCodesCatalog_1.xml"/>
+
+These remote catalogs are hosted by specific authorities, in this case
+by the IPTC, and by the information provider XML Team. Each remote
+catalog file will contain a <catalog> element and a series of <scheme>
+components that map the scheme aliases used in the item to their scheme
+URIs. For a more detailed description of managing Catalogs, see Creating
+and Managing Catalogs.
+
+[[concept-uri]]
+Concept URI
+^^^^^^^^^^^
+
+Appending the QCode Code Value to the Scheme URI produces the _Concept
+URI_.
+
+`http://cv.iptc.org/newscodes/pubstatusg2/usable`
+
+The IPTC recommends that Scheme/Concept URIs can be resolved to a Web
+resource that contains information in both machine-readable and
+human-readable form (This is also a recommendation for the Semantic
+Web), i.e. they are URLs. The concept resolution mechanism used by the
+IPTC is http-based, and the NewsML-G2 Specification describes how an
+http-URL should be resolved.
+
+Entering the above Concept URI in a web browser results in the following
+page being displayed:
+
+image::concept-uri-in-browser.png[Concept URI displayed in browser]
+
+.Figure: Human-readable browser page of a Concept URI
+
+A question often asked by implementers is: "What happens if I receive
+files from two providers who inadvertently have a clash of scheme
+aliases?"
+
+The scenarios they envisage are either:
+
+* Provider A and Provider B use the same scheme alias to represent
+different schemes. For example the alias "pers" is used by both
+providers to represent their own proprietary CVs of people, or
+* Provider A and Provider B use a different scheme alias to represent
+the same scheme. For example, A uses "subj" to represent the IPTC
+Subject NewsCodes, and B uses "tema" to represent the same CV.
+
+The answer is "everything works fine!"; QCode to Concept URI mappings
+must be unique only within the scope of each document in which they
+appear.
+
+A processor should correctly process two files with different aliases to
+the same Concept URI:
+
+[source,xml]
+<!-- First Document – scheme alias "subj" -->
+<catalog>
+    <scheme alias="subj" uri="http://cv.iptc.org/newscodes/subjectcode/" />
+    ...
+</catalog>
+    <subject type="cpnat:abstract" qcode="subj:1500000" />
+<!-- Second Document – scheme alias "ex-tema" -->
+<catalog>
+    <scheme alias="ex-tema" uri="http://cv.iptc.org/newscodes/subjectcode/" />
+    ...
+</catalog>
+    <subject type="cpnat:abstract" qcode="ex-tema:1500000" />
+
+This is because the concept resolution process is local to each
+document. The processor can unambiguously resolve the QCode to a Concept
+URI via the <catalog> in each case.
+
+The following example does NOT work because the same alias is mapped to
+two different URIs within the same document and the processor is unable
+to resolve the QCode to a single Concept URI:
+
+[source,xml]
+<catalog>
+    <scheme alias="ex-subject" uri="http://cv.iptc.org/newscodes/subjectcode/" />
+...
+    <scheme alias="ex-subject" uri="http://cv.example.com/subjectcodes/codelist/" />
+</catalog>
+...
+    <subject type="cpnat:abstract" qcode="ex-subject:1500000" />
+...
+
+But the following is CORRECT because it is possible to have different
+aliases within the same document pointing to the same URI and the
+processor can resolve both QCodes:
+
+[source,xml]
+<catalog>
+    <scheme alias="ex-subject" uri="http://cv.iptc.org/newscodes/subjectcode/" />
+...
+    <scheme alias="subj" uri="http://cv.iptc.org/newscodes/subjectcode/" />
+</catalog>
+...
+    <subject type="cpnat:abstract" qcode="ex-subject:1500000" />
+...
+    <subject type="cpnat:abstract" qcode="subj:1500000" />
+
+In this document, there are many references to IPTC NewsCodes and their
+scheme aliases. From the above, it will be obvious that these specific
+alias values are not mandatory, although the IPTC recommends the
+consistent use of scheme alias values by implementers.
+
+[[qcodes-and-taxonomies]]
+QCodes and Taxonomies
+~~~~~~~~~~~~~~~~~~~~~
+
+Taxonomies, also known as thesauri, knowledge bases and so on, are
+repositories of information about notions or ideas, and about real-world
+"things" such as people, companies and places.
+
+For example, a processor might encounter the following XML in a
+NewsML-G2 document:
+
+[source,xml]
+<subject type="cpnat:person" qcode="ex-pol:rus12345">
+
+The subject property shown here has two QCodes, one for @type, and the
+other as @qcode. The "cpnat" alias is for a controlled vocabulary of
+allowed categories of concept, which includes values of "person",
+"organisation", "poi" (point of interest). Using @type in this way
+enables further processing such as "find all of the people identified in
+the document".
+
+The second QCode encountered in the subject is "ex-pol:rus12345". Resolving
+this (fictional) scheme alias and suffix might result in the following
+concept URI:
+
+`http://www.example.com/knowledgebase/people/political_leaders/rus12345`
+
+Fetching the information at the above resource, may return the following
+information:
+
+[cols=",",options="header",]
+|=======================================================================
+|PUTIN, Vladimir – President of the Russian Federation|
+|Name (FAMILY, Given) |PUTIN, Vladimir Vladimirovitch
+
+|Name (known as) |Vladimir Vladimirovitch Putin
+
+|Summary |Former Soviet intelligence officer who has served terms as
+Russian president and prime minister.
+
+|Background |Born 7 October 1952
+
+|Place of birth |Leningrad (St Petersburg)
+
+|Other |German-speaker
+|=======================================================================
+
+The IPTC recommends that providers should make schemes containing
+concepts such as the above available to recipients as Knowledge Items.
+It should include at least a name; the amount of further knowledge about
+the concepts could be different for different customer classes and
+depend on contracts.
+
+[[managing-controlled-vocabularies-as-newsml-g2-schemes]]
+Managing Controlled Vocabularies as NewsML-G2 Schemes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[knowledge-items-1]]
+Knowledge Items
+^^^^^^^^^^^^^^^
+
+In a workflow where partners are exchanging news information using
+NewsML-G2, Knowledge Items are the most compliant method of distributing
+a new CV: first by creating a Scheme (see xref:creating-a-new-scheme[Creating a New Scheme]) and next creating a Knowledge Item from a set of existing Concept Items (see xref:creating-a-new-knowledge-item-for-distributing-as-a-cv[Creating a new Knowledge Item for distributing as a CV]) for
+distribution to customers and partners.
+
+Knowledge Items do not necessarily contain all of the information that a
+provider possesses about any given set of concepts. This, after all, may
+be commercially valuable information that the provider makes available
+on a per-subscriber basis. For example, a lower fee might entitle the
+subscriber to basic information about a concept, say a person, while a
+higher fee might give access to full biographical details and pictures.
+
+It is not mandatory that information about CVs be stored or distributed
+in the technical format of a Knowledge Item. It is sufficient, for the
+correct processing of a NewsML-G2 Item, only that a Scheme Alias/Code
+Value pair (defining the Concept URI) is unambiguous. The IPTC makes the
+following recommendations about CVs:
+
+* Knowledge Items SHOULD be used to distribute CVs. Other means such as
+paper, fax or email are permissible but at the price of less efficient
+automated processing.
+* Concept URIs SHOULD resolve to a Web resource; this is a requirement
+for the Semantic Web.
+* In the case where a Scheme Authority does not make the concepts of a
+CV available as a Web resource, the Scheme URI SHOULD resolve to a Web
+resource, such as a human-readable Web page giving information about the
+purpose of the CV, and where details of the Scheme can be obtained.
+
+[[creating-a-new-scheme]]
+Creating a new Scheme
+^^^^^^^^^^^^^^^^^^^^^
+
+A NewsML-G2 controlled vocabulary is a set of concepts. To create a CV
+as a NewsML-G2 Scheme:
+
+* Assign a Scheme URI which must be an http URL for the Semantic Web
+(example: `http://cv.example.org/schemeA/`) and a Scheme Alias (example:
+abc)
+
+
+Add this Scheme Alias and URI to the catalog:
+
+[source,xml]
+<catalog>
+    <scheme alias="abc" uri="http://cv.example.org/schemeA/" />
+</catalog>
+
+If using a remote catalog, change the catalog URI to reflect a new
+version of the catalog (so that recipients know that they should add
+this to their cache of catalogs) and ensure that all NewsML-G2 Items
+using the new Scheme refer to the new version of the remote catalog.
+
+
+* Create Concepts as required. You must use the Scheme Alias of the new
+scheme with the identifier of this new concept. For example:
+
+[source,xml]
+<concept> +
+<conceptId created="2009-09-22" qcode="ex-abc:concept-x" +
+...
+
+The above Concept Identifier resolves to the Concept URI
+`http://cv.example.org/schemeA/concept-x`
+
+[[creating-a-new-knowledge-item-for-distributing-as-a-cv]]
+Creating a new Knowledge Item for distributing as a CV
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Chapter on <<knowledge-items>> shows an example Controlled Vocabulary
+expressed in XML. A Knowledge Item contains concepts from one or more
+Schemes. The steps to begin creating a KI are:
+
+* Identify the set of Concept Items that contain the concepts that will
+be part of the Knowledge Item, which may be only from this new CV or
+also from other CVs.
+* Create the metadata properties for the Knowledge Item that express the
+rules used to create it, for example, a <title> and <description> such
+as "Concepts extracted from Schemes A and B based on criteria X and Y".
+* For each Concept: Copy all or part of the selected concept details
+(the <concept> wrapper and associated properties) into the Knowledge
+Item.
+
+[[managing-schemes]]
+Managing Schemes
+^^^^^^^^^^^^^^^^
+
+[[changes-to-schemes]]
+Changes to Schemes
+++++++++++++++++++
+
+Scheme URIs MUST persist over time, and any changes to a Scheme which
+involve the creation or deprecation of concepts MUST be backwardly
+compatible with existing concepts. (For example, the code of a retired
+Concept MUST NOT be reused for a new and different concept.)
+
+Scheme Authorities can indicate that a member of a CV should no longer
+be applied as a new value. This must be expressed by adding a @retired
+attribute to the <conceptId> of the Concept that is no longer to be
+used.
+
+Both @created and @retired attributes are of datatype Date with optional
+Time and Time Zone (DateOptTime) and their use is optional. The @retired
+date can be a date in the future when a Scheme Authority knows that the
+Concept ID should no longer be used for new NewsML-G2 Items.
+
+Example of a retired concept:
+
+[source,xml]
+<conceptId created="2006-09-01" retired="2009-12-31"
+qcode="ex-foo:bar" />
+
+* Concepts MUST NOT be deleted from a Scheme; this could cause
+processing errors for NewsML-G2 Items that pre-date the changes. Use of
+@retired ensures that Items that pre-date a CV change will continue to
+correctly resolve "legacy" concept identifiers.
+* For the same reason, Concept IDs MUST NOT be re-cycled, i.e. the same
+identifier MUST NOT be used for a different concept.
+* Schemes themselves MUST NOT be deleted, as archived content is likely
+to use the concepts contained in a retired CV.
+
+See also xref:scheme-properties[<scheme> properties] below in this chapter.
+
+[[recommendations-for-non-complying-schemes]]
+Recommendations for non-complying Schemes
++++++++++++++++++++++++++++++++++++++++++
+
+Some Scheme Authorities may fail to comply with the NewsML-G2
+Specification, and this could be beyond the control of the end-user or
+the provider. Guidelines for handling various scenarios are:
+
+1.  _The authority of the vocabulary governs the scheme URI and the code
+– but does not comply with the NewsML-G2 Specification_ +
+Reusing a Concept URI which was assigned to one concept with another
+concept is a breach of the NewsML-G2 specifications. If there are
+requirements that drive the authority to do so, the authority should
+give a clear and warning notification about that fact to all receivers
+at the time of the publication of the reused Concept URI.
+2.  _The authority of the vocabulary governs only the code but not the
+scheme URI_ +
+This may be the case for Controlled Vocabularies of codes only and if a
+news provider assigns a scheme URI of its own domain to enable the CV to
+be used with NewsML-G2. A good example are the scheme URIs defined by
+the IPTC for the ISO vocabularies for country names or currencies – see
+http://cvx.iptc.org +
+The party who assigned the scheme URI has the responsibility of making
+users of this scheme URI together with the vocabulary aware of any reuse
+cases – and should post a generic warning about the potential threat of
+reused codes. +
+In addition the party who assigned the scheme URI may consider changing
+the scheme URI in the case of the reuse of a code. This would avoid
+having the same Concept URI for different concepts but would require
+careful management of the vocabularies as actually a completely new
+Controlled Vocabulary is created by the use of the new scheme URI.
+3.  _Another code is assigned to the same concept or a very likely
+similar concept_ +
+This use case does not violate the NewsML-G2 specifications. But care
+should be taken for establishing relationships between Concept URIs: +
+- If a new code is assigned to the same concept a sameAs or a SKOS
+exactMatch relationship of this new URI should be established pointing
+to all other existing URIs identifying this concept. +
+- If a slightly modified concept is created and gets a new Concept URI
+it may be considered to establish a closeMatch relationship from SKOS
+[http://www.w3.org/TR/skos-reference/#mapping]
+
+[[scheme-authority-status]]
+Scheme Authority Status
++++++++++++++++++++++++
+
+Most schemes have a related Authority, as defined by scheme/@authority. However, there are circumstances when this cannot apply:
+
+* No single Authority, for example "tickers" such as "AAPL" (identifying Apple Inc. in financial markets) are used by many different authorities.
+* No current Authority, for example the National Newspaper Association, which once managed the ANPA 1312 standard for news category codes, no longer exists although the codes themselves are still used.
+* Country-specific Authority, for example International Securities Identification Numbers (ISINs), which identify financial instruments, are owned and managed on a per-country basis.
+
+The @authoritystatus attribute and its equivalent @authoritystatusuri may be used with <scheme>, <schemeMeta> and <catalog> to express the Authority Status of a Scheme when the @authority attribute is not present.
+
+Note that if @authority IS present, it should be understood as valid and active. When an Authority is NOT given, the Authority Status SHOULD be used.
+
+The recommended scheme is: http://cv.iptc.org/newscodes/authoritystatus (recommended scheme alias "authoritystatus").
+
+[[creating-and-managing-catalogs]]
+Creating and Managing Catalogs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As previously described, Catalogs are essential to the resolution of
+NewsML-G2 Controlled Vocabularies and constituent QCodes.
+
+[[the-catalog-element]]
+The <catalog> element
+^^^^^^^^^^^^^^^^^^^^^
+
+Each QCode Scheme Alias that is used in a NewsML-G2 Item must have a
+reference in the Item’s <catalog> to the Controlled Vocabulary in which
+it is included. A <catalog> contains the Scheme Alias and the Scheme
+URI:
+
+[source,xml]
+<catalog>
+    <scheme alias="timeunit" uri="http://cv.iptc.org/newscodes/timeunit/" />
+</catalog>
+
+[[remote-catalogs]]
+Remote Catalogs
+^^^^^^^^^^^^^^^
+
+As the CVs used by a provider are usually quite consistent across the
+NewsML-G2 Items they publish, the IPTC recommends that the <catalog>
+references are aggregated into a stand-alone file which is made
+available as a web resource: known as a Remote Catalog. This file is
+referenced by a <catalogRef> in the Item:
+
+[source,xml]
+<catalogRef
+    href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_41.xml" />
+
+Note: the <catalog> element in such a stand-alone file needs an XML
+namespace definition:
+
+[source,xml]
+<catalog xmlns="http://iptc.org/std/nar/2006-10-01/">
+
+The use of stand-alone web resources is preferable because all of the
+QCode mappings are shared across many NewsML-G2 Items; the local
+<catalog> can only be used by the single Item.
+
+[[managing-catalog-files]]
+Managing Catalog files
+^^^^^^^^^^^^^^^^^^^^^^
+
+Simple management of Remote Catalogs over time is relatively
+straightforward: whenever a new scheme is added or the alias or the uri
+of any of the existing schemes are changed, a new Catalog must be
+published with a new URL. This URL may reflect a version number of the
+catalog. This is the method that the IPTC uses to maintain the
+NewsCodes, simply by increasing the file suffix digit as required:
+
+[source,xml]
+href="..Standards_40.xml" --> href="..Standards_41.xml"
+
+Note that ALL versions of a Remote Catalog must continue to be available
+as a web resource, otherwise existing NewsML-G2 Items and QCodes that
+reference it will not be able to resolve related Scheme Aliases to
+Scheme URIs.
+
+Receiving applications MUST use the catalog information contained in the
+NewsML-G2 document being processed. If a provider updates a catalog,
+this is likely to be because new schemes have been added. Using a
+catalog other than that indicated in the document could cause errors or
+unintended results.
+
+[[additional-catalog-features]]
+Additional <catalog> features
+++++++++++++++++++++++++++++++
+
+The management of Catalogs is enhanced by the following optional attributes:
+
+* @url defines the location of the Catalog as a remote resource. (This
+must be the same as the URL used with the href attribute of a catalogRef
+in NewsML-G2 Items that use this Catalog.)
+* @authority uses a URI to define the company or organisation
+controlling this Catalog.
+* @authoritystatus (or @authoritystatusuri) may be used in place of @authority where the Scheme Authority is unclear or unknown. See See xref:scheme-authority-status[Scheme Authority Status]
+* @guid is a globally unique identifier, expressed as a URI, for this
+kind of Catalog as managed by a provider. (This must be the @guid of the
+Catalog Item, see below, that manages this Catalog) If present, the
+version attribute should also be used.
+* @version is the version of the @guid as a non-negative integer; a
+version attribute must always be accompanied by a guid attribute.
+
+[[scheme-properties]]
+<scheme> properties
++++++++++++++++++++
+
+Further information about schemes is expressed using the <scheme> child
+elements <name>, <definition>, and <note>. 
+
+Additionally, @roleuri allows the role of the element to be
+defined using a full URI instead of a QCode used by the existing @role
+attribute).
+
+@roleuri simplifies processing by avoiding the situation where a QCode
+used in a Catalog relies on an alias defined in some other Catalog,
+making resolution difficult or impossible.
+
+Changes to a scheme may be expressed using the <scheme> attributes `schemecreated`, `schememodified` and `schemeretired` as follows:
+
+[cols="20,10,20,50",options="header",]
+|=======================================================================
+|Property|Cardinality |Type  |Definition
+|schemecreated a|0..1 a|DateOptTimeType a|The date (and, optionally, the time) when the scheme was created. This must not be later than the creation timestamp of any concepts in the scheme.
+|schememodified a|0..1  a|DateOptTimeType a|The date (and, optionally, the time) when the scheme was last modified. The initial value is the date (and, optionally, the time) of creation of the scheme.
+|schemeretired a|0..1 a|DateOptTimeType a|The date (and, optionally, the time) after which the scheme should not be used anymore. If a scheme is marked as retired, then all Concept Identifiers in that scheme (identified by the scheme @uri) must also be retired.
+
+|=======================================================================
+
+See also <<changes-to-schemes>> in this chapter.
+
+Note that using the <schemeMeta> element in a Knowledge
+Item enables the metadata previously expressed in the <scheme>
+elements of a Catalog to be added directly to a Knowledge Item that
+conveys all the concepts in a Scheme (aka Controlled Vocabulary). See xref:scheme-metadata[Scheme Metadata]
+
+[[catalog-item]]
+Catalog Item
+^^^^^^^^^^^^
+
+For providers who wish to use the same basic means for managing a
+Catalog as are available for news content, the Catalog Item inherits the
+additions and changes to <catalog> and <scheme> described above. The
+example below shows how a Scheme Authority (in this example, the IPTC)
+might distribute its catalog to subscribers.
+
+The Catalog Item shares the generic identification and processing
+instruction attributes associated with all NewsML-G2 items, for example:
+
+[source,xml]
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    guid="urn:newsml:iptc.org:20160517:catalog"
+    version="41"
+    standard="NewsML-G2"
+    standardversion="2.35"
+    conformance="power"
+    xml:lang="en-GB">
+
+The child properties of Catalog Item are restricted to a basic set of
+essentials required for Catalog management:
+
+include::{includedir}/../../GuidelinesTables/Catalog.adoc[]
+
+The catalogRef, rights information and itemMeta elements follow normal
+practice. Note that the Item Class is set to "catinat:catalog"; this
+uses the link:http://cv.iptc.org/newscodes/catinature/[IPTC Catalog Item Nature NewsCodes], recommended Scheme Alias "catinat":
+
+[source,xml]
+<catalogRef
+    href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_41.xml" />
+<rightsInfo>
+    <copyrightHolder uri="http://www.iptc.org">
+        <name>IPTC</name>
+    </copyrightHolder>
+</rightsInfo>
+<itemMeta>
+    <itemClass qcode="catinat:catalog" />
+    <provider qcode="nprov:IPTC">
+        <name>International Press Telecommunications Council </name>
+    </provider>
+    <versionCreated>2025-05-17T12:00:00Z</versionCreated>
+    <pubStatus qcode="stat:usable" />
+</itemMeta>
+
+The Catalog information conveyed by the Item is wrapped in the
+<catalogContainer> element, which must contain one and only one
+<catalog>. The Catalog contains one or more <scheme> elements, as
+previously described:
+
+[source,xml]
+<catalogContainer>
+    <catalog xmlns="http://iptc.org/std/nar/2006-10-01/"
+        additionalInfo="http://www.iptc.org/goto?G2cataloginfo">
+        <scheme alias="app" uri="http://cv.iptc.org/newscodes/application/">
+        <definition xml:lang="en-GB">Indicates how the metadata
+            value was applied.</definition>
+            <name xml:lang="en-GB">Application of Metadata Values</name>
+        </scheme>
+    </catalog>
+</catalogContainer>
+
+[[_Ref374636609]]
+
+.LISTING 13: Complete Catalog Item
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes vocabularies.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_13_Complete_Catalog_Item.xml[]
+----
+
+[[processing-catalogs-and-cvs]]
+Processing Catalogs and CVs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In practice, from a receiver’s point of view, it makes no sense to look
+up the contents of CVs over the network every time a document is
+processed, since this would consume considerable computing and network
+resources and probably degrade performance. Also, as discussed, some
+providers might not make a scheme or its contents available at all.
+
+The NewsML-G2 Specification requires that remote Catalogs – the file(s)
+that map Scheme Aliases to Scheme URIs – are retrieved by processors. However, the IPTC makes NewsML-G2 resources, including the IPTC Catalog, available on its public web servers on an "as is" basis; 24/7 availability of these resources is not guaranteed. Therefore all versions of the IPTC Catalog must be cached at the receiver’s site. They may be cached indefinitely because the contents of a catalog referenced by a catalog URI must remain unchanged over time. Whenever Schemes are created or
+deleted, an updated catalog must be provided under a new URI. This
+ensures that Items that pre-date the catalog changes can continue to be
+processed using the previous catalog. 
+
+Controlled Vocabularies (_IPTC NewsCodes_) referenced as Scheme URIs in the IPTC Catalog may be retrieved and cached daily; their contents are subject to change as IPTC Schemes are updated and this happens not more frequently than daily.
+
+See also the NewsML-G2 Specification section on processing remote catalogs and in this document link:#use-of-iptc-web-resources[Use of IPTC web resources]. 
+
+[[resolving-scheme-aliases]]
+Resolving Scheme Aliases
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some NewsML-G2 properties are important for the correct processing of an
+Item, for example the Item Class property tells a receiving application
+the type of content being conveyed by a NewsML-G2 Item: a processor may
+expect to apply some rule according to the value present in the
+<itemClass>, for example to route all pictures to the Picture Desk.
+
+Other CVs may be important for correctly processing an Item, for example
+the presence of specific subject codes could cause an Item’s content to
+be routed to certain staff or departments in a workflow.
+
+The schemes used by <itemClass> property are mandatory, and the IPTC
+recommends that implementers use the scheme aliases appropriate to the
+Item Type, for example "ninat" for News item Nature or "cinat" for
+Concept Item Nature. Note that the use of these specific alias values is
+NOT mandatory; they could already being used by a provider as aliases
+for other CVs.
+
+This illustrates the flexibility of the NewsML-G2 model: consistency of
+scheme aliases between different providers – or even by the same
+provider – cannot be guaranteed, and in NewsML-G2 they do not have to be
+guaranteed. For this reason it would be unwise for NewsML-G2 processor
+implementers to assume that a given scheme alias can be "hard coded"
+into their applications.
+
+However, this flexibility does not mean that these "needed for
+processing" CVs must be accessed every time an Item is processed. This
+could be an unnecessary overhead and performance burden.
+
+Processing rules such as those described above would be based on acting
+in response to expected values. In the case of the News Item Nature
+Scheme, these values include "text, "picture", "audio" etc. The problem
+is not in obtaining the contents of the CV in real time, but in
+verifying that it is the correct CV.
+
+For example:
+
+* A receiver knows that providers use the IPTC Media Topic NewsCodes for
+classifying news content by subject matter, and that the scheme URI for
+these NewsCodes is `http://cv.iptc.org/newscodes/mediatopic/`
+* The business requires that incoming content is routed to the
+appropriate department, according to the Media Topic NewsCodes found in
+the Items,
+* A routing table is set up in the processor with a configurable rule
+"all items with a Media Topic NewsCode `04000000` to be routed to the
+Business News department".
+
+How does the processor "know" that a <subject> property with a QCode
+containing `04000000` is an IPTC Media Topic NewsCode? The processor
+should not rely on the scheme alias "medtop"; it could be an alias to
+another CV, or the provider may use another alias:
+
+[source,xml]
+<subject type="cpnat:abstract" qcode="ex-sc:04000000" />
+
+By following the IPTC advice to retrieve all catalog information used by
+Items, and cache the information indefinitely, CVs can be processed
+without reference to external resources.
+
+In the example, the catalog used by the Item resolves the scheme alias
+"ex-sc" contained in the QCode. The Item contains the line pointing to the
+catalog file:
+
+[source,xml]
+<catalogRef href="http://www.example.org/std/catalog/catalog.example_10.xml" />
+
+The processor should have retrieved and cached the contents of the file
+at this URL, and would have in memory the mapping of this alias to the
+Scheme URI:
+
+[source,xml]
+<scheme alias="ex-sc" uri="http://cv.iptc.org/newscodes/mediatopic/" />
+
+...this verifies that the QCode value is from the Media Topic NewsCodes
+scheme. A rule "all items with a Media Topic NewsCode of `04000000` to
+be routed to the Business News department" is satisfied and the
+NewsML-G2 Item processed appropriately.
+
+[[resolving-concept-uris]]
+Resolving Concept URIs
+^^^^^^^^^^^^^^^^^^^^^^
+
+The IPTC recommends that Schemes SHOULD resolve to a Web resource, and
+that Scheme Authorities who disseminate news using NewsML-G2 should make
+their Schemes available as Knowledge Items.
+
+[[access-models]]
+Access Models
++++++++++++++
+
+Making a CV available as a Web resource does not mean it must be
+accessible on the public Web; only that Web technology should be used to
+access it. The resource may be on the public Web, on a VPN, or internal
+network.
+
+Providers may also wish to use Schemes to add value to content, using a
+subscription model. In this case, the contents of a Scheme may not be
+available to non-subscribers, but they could continue to resolve the
+QCodes to a unique and persistent Concept URI.
+
+[[concept-resolution-provider-view]]
+Concept Resolution: Provider View
++++++++++++++++++++++++++++++++++
+
+In following the IPTC recommendation that CVs should be accessible as a
+Web resource, providers may be concerned about the implications for
+providing sufficient access capacity and reliability guarantees. If
+receivers were to interrogate CVs each time they processed a NewsML-G2
+document that could act like a Denial of Service attack.
+
+The IPTC makes no recommendations about this issue other than to advise
+the use of industry-standard methods of mitigating these risks.
+Organisations hosting CVs could also define an acceptable use policy
+that places limits on the load that individual subscribers can place on
+the service.
+
+[[concept-resolution-receiver-view]]
+Concept Resolution: Receiver View
++++++++++++++++++++++++++++++++++
+
+As the IPTC recommends that CVs should be available as Web resources, it
+follows that the Scheme Authority may host its Schemes as Knowledge
+Items on a Web server. However, a Scheme Authority does not guarantee
+the availability and capacity of connections to its hosted Knowledge
+Items.
+
+In addition, from the receiver's point of view, it could be unwise for
+business-critical news applications to rely on a third-party system
+beyond the receiver's control.
+
+Processors are therefore recommended to retrieve and cache the contents
+of third-party Knowledge Items. Providers should advise their customers
+on the recommended frequency for refreshing the third-party cached
+Knowledge Items.
+
+[[handling-updates-to-knowledge-items-using-modified]]
+Handling updates to Knowledge Items using @modified
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The receiver can get information about _which_ concepts have been
+modified (when cached concepts are synchronized with those in the latest
+received Knowledge Item) using the modified attribute of <concept>
+
+[[use-case-and-example]]
+
+[discrete]
+===== Use Case and Example
+
+1.       A news site is using a CV maintained by a third-party Scheme
+Authority, for example a CV maintained by the IPTC.
+
+2.       The site retrieves a Knowledge Item about the concepts in the
+CV from the third-party Scheme Authority’s web server and stores them
+within its internal cache.
+
+3.       Sometime later the site wants to check the validity of the
+cache. It again downloads or receives a Knowledge Item from the
+third-party Scheme Authority, containing the relevant concepts which may
+have been updated in the meantime.
+
+4.       The site’s NewsML-G2 processor checks the @modified timestamp
+(date-time) of each concept conveyed within the Knowledge Item against
+the modification timestamp of the corresponding cached concept. Any
+concepts within the Knowledge Item with a modification timestamp later
+than the corresponding cached concept’s modification timestamp are
+processed as updates to the cache. (Note: this assumes that the Scheme
+Authority always flags Concepts conveyed within a Knowledge Item with a
+modification timestamp, see below.)
+
+[[updates-processing-notes]]
+
+[discrete]
+===== Updates Processing Notes
+
+In the above use case, it was assumed that the Scheme Authority always
+flags Concepts with a modification timestamp. In cases where
+modification timestamps are missing from some or all or the concepts,
+either in the KI or in the cache, a receiver can be less certain about
+whether or not a concept has been modified. The following matrix
+outlines the IPTC recommendations for processing updates for each
+individual concept in the KI:
+
+include::{includedir}/../../GuidelinesTables/KI-Updates.adoc[]
+
+The code snippet below shows how the Scheme Authority would inform
+receivers that the concepts in a Knowledge Item have been updated using
+the @modified attribute value informing receivers of the timestamp
+(date-time) of the change.
+
+[source,xml]
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledgeItem ...>
+    ...
+    <itemMeta>
+    ...
+    </itemMeta>
+    <contentMeta>
+    ...
+    </contentMeta>
+    <conceptSet>
+        <concept modified="2025-01-28T13:00:00Z">
+            <conceptId qcode="ex-access:easy" />
+            ...
+        </concept>
+        <concept modified="2025-01-28T13:00:00Z">
+            <conceptId qcode="ex-access:difficult" />
+            ...
+        </concept>
+        <concept modified="2025-11-23T13:00:00Z">
+            <conceptId qcode="ex-access:restricted" />
+            ...
+        </concept>
+    </conceptSet>
+</knowledgeItem>
+
+[[notifying-receivers-of-changes-to-knowledge-items]]
+
+[discrete]
+===== Notifying receivers of changes to Knowledge Items
+
+This issue is not necessarily specific to NewsML-G2 news exchange: Most
+news providers have CVs that pre-date NewsML-G2, for example those CVs
+typically used with IPTC 7901. Channels and conventions for advising
+customers of changes to CVs will already exist. Generally, providers
+notify customers in advance about changes to CVs, especially if it is
+likely that a CV is used for content processing.
+
+The IPTC hosts and maintains a large number of CVs and provides an RSS
+feed that notifies of changes to the IPTC Schemes. Details at
+http://www.iptc.org[www.iptc.org].
+
+[[private-versions-and-extensions-of-cvs]]
+Private versions and extensions of CVs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+News providers are encouraged to use pre-existing or well-known CVs,
+such as those maintained by the IPTC, where possible to promote
+interoperability and standardisation of the exchange of news. Sometimes
+a provider will use a CV that is maintained by some other Scheme
+Authority (e.g. the IPTC), but may need to add its own information. The
+following are typical potential business cases:
+
+* Case 1: A national news agency wishes to use all of the codes in a CV
+that is maintained by the IPTC, without alteration, except to provide
+local language versions of names and definitions.
+* Case 2: An organisation receives news objects from information
+partners and uses a CV that defines the stages in a shared workflow. The
+CV is maintained by a third-party organisation (the Scheme Authority),
+but the receiver needs to add further workflow stages for its own
+internal purposes.
+
+[[use-schemesameas-to-provide-a-local-language-version-of-a-well-known-cv]]
+Use <sameAsScheme> to provide a local language version of a well-known CV
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some useful and well-known CVs do not have the values of properties such
+as name and definition in the local language of a news provider. For
+example, although some IPTC NewsCodes contain concept information in
+several languages, the IPTC does not have the resources to provide
+concept details in every language being used by news providers.
+
+Yet some NewsCodes schemes are recommended or mandatory. How can a
+provider use a local language version of these NewsCodes AND conform to
+the NewsML-G2 Specification?
+
+Using the <sameAsScheme> property, a news provider can create its own
+CV, containing all of the NewsCodes it wishes to use with local language
+names and definitions, while making it clear to receivers that these
+codes identify the same concepts as the original IPTC Scheme.
+
+For example, the IPTC Item Relation NewsCodes `irel:seeAlso` resolves
+via the Catalog to a Concept URI `http://cv.iptc.org/newscodes/itemrelation/seeAlso` which hosts the
+following information about the seeAlso concept:
+
+[source,xml]
+<concept>
+    <conceptId created="2008-01-29T00:00:00+00:00" qcode="irel:seeAlso" />
+    <type qcode="cpnat:abstract" />
+    <name xml:lang="en-GB">See also</name>
+    <definition xml:lang="en-GB">
+        The related resource can be used as additional information.
+    </definition>
+    ...
+</concept>
+
+A provider wishes to provide this same information in the Czech
+language. As a first step, it creates a new Controlled Vocabulary
+containing the required concepts from the original scheme with
+translated name and definition, for example:
+
+[source,xml]
+<concept>
+    <conceptId created="2010-01-29T00:00:00+00:00" qcode="irel:seeAlso" />
+    <type qcode="cpnat:abstract" />
+    <name xml:lang="cs">Viz také</name>
+    <definition xml:lang="cs">
+        Související zdroj lze použít jako další informace.
+    </definition>
+    ...
+</concept>
+
+The provider then creates a Catalog file, or a new version of an
+existing Catalog file, containing a Scheme Alias and Scheme URI for the
+new CV, thus:
+
+[source,xml]
+<catalog>
+    <scheme alias="irel" uri="http://cv.example.org/codes/itemrelation/">
+        <sameAsScheme>http://cv.iptc.org/newscodes/itemrelation/</sameAsScheme>
+    </scheme>
+</catalog>
+
+This asserts that the ALL of the codes in the private scheme identified
+by the Scheme URI are semantically the "same as" the corresponding codes
+in the original scheme indicated by the <sameAsScheme> child element of
+<scheme>.
+
+NOTE: In this example the provider MUST give the new CV a Scheme
+Alias – here it is "irel" – that is different to the recommended
+Scheme Alias "irel" of the IPTC Scheme. This is because some IPTC
+schemes are mandatory, so a reference to the IPTC catalog would always
+be present in the Item. When there is no reference to an original
+scheme, there is no need to use a different Scheme Alias for the private
+scheme.
+
+Finally, the provider adds a reference to the new Catalog file to
+NewsML-G2 Items that it publishes.
+
+By using the <sameAsScheme> element to the Catalog, the provider is able
+apply a _Same As_ relationship at the level of a set of Concepts. So for
+example, this code:
+
+[source,xml]
+<link
+    rel="irel:seeAlso"
+    contenttype="image/jpeg"
+    residref="tag:acmenews.com,2008:TX-PAR:20090529:JYC90"
+/>
+
+can be efficiently resolved: a processor does not have to search for a
+Same As relationship at the individual concept level but can map this
+relationship directly from the @rel value’s scheme (alias "irel") to
+the scheme identified by the <sameAsScheme> property.
+
+[[rules-for-sameasscheme]]
+Rules for <sameAsScheme>
+++++++++++++++++++++++++
+
+The semantics of <sameAsScheme> are:
+
+_"all of the concepts in the scheme identified by the private
+scheme/@uri have a ‘same as’ relationship to concepts with the same code
+in the original scheme identified by the URI in the <sameAsScheme>
+element."_
+
+So in the example:
+
+[source,xml]
+<scheme alias="irel" uri="http://cv.example.org/codes/itemrelation/">
+    <sameAsScheme>http://cv.iptc.org/newscodes/itemrelation/</sameAsScheme>
+</scheme>
+
+In practice, this means:
+
+* The Scheme identified by scheme/@uri (the _provider’s_ private scheme)
+must NOT use a code that does not exist in ALL of the _original_ Schemes
+identified by the <sameAsScheme> elements. In other words, a provider
+cannot add new concepts to its private Scheme that have the effect of
+extending the set of concepts of the original Scheme(s).
+* Some codes and concepts of the original Scheme MAY not exist in the
+provider’s private Scheme. This could happen if for example the original
+Scheme has new terms added which the provider has not yet included in
+the private Scheme.
+* Each concept identified by a code in the provider’s private Scheme
+MUST be semantically equivalent to its corresponding concept in the
+original Scheme(s), and MUST be identified by the same code as in the
+original Scheme(s).
+
+The <sameAsScheme> property was introduced to solve some issues that
+news providers had encountered, such as adding translations of free-text
+properties (for example name, definition, note), which are not available
+within the original scheme, or adding additional information, e.g. usage
+notes.
+
+[[adding-further-concepts-to-a-well-known-cv]]
+Adding further concepts to a well-known CV
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A news provider needs to add concepts to a workflow role CV which is
+shared with information partners, but is maintained by some other
+organisation (the Scheme Authority).
+
+The news provider would have two courses of action:
+
+a.  Ask the Scheme Authority to add the new concepts to the CV. For
+example, IPTC members are entitled to request the addition and/or
+retirement of terms in IPTC Schemes with the agreement of other members.
+b.  Create a new scheme that complements the original scheme, but uses
+properties such as <broader> and <sameAs> to link the concepts in the
+new scheme to concepts in the original scheme. A concept is the Same As
+another concept if their semantics are the same, but it MAY contain more
+details, such as a translation in another language. A concept with a
+Broader relationship to another concept is a new concept with semantics
+narrower than those of the broader concept.
+
+[[example-using-a-new-scheme]]
+Example using a new scheme
+++++++++++++++++++++++++++
+
+Using the shared workflow role example, the original scheme contains
+three concepts for defined roles in a workflow:
+
+[source,xml]
+<conceptSet>
+    <concept>
+        <conceptId qcode="ex-wflow:draft" />
+        ...
+    </concept>
+    <concept>
+        <conceptId qcode="ex-wflow:review" />
+        ...
+    </concept>
+    <concept>
+        <conceptId qcode="ex-wflow:release" />
+        ...
+    </concept>
+</conceptSet>
+
+Properties that use this scheme are resolved through the <catalog> in
+the Item in which they appear, e.g. the Item contains the following
+property in <itemMeta>:
+
+[source,xml]
+<role qcode="ex-wflow:release"
+
+and the catalog statement:
+
+[source,xml]
+<catalog>
+    <scheme alias="ex-wflow" uri="http://cv.example.org/schemes/wfroles/" />
+</catalog>
+
+The receiver needs to add an intermediate role in the workflow,
+representing a "final review" stage. Thus the private scheme in Case 2
+is extending the original scheme. Unlike Case 1, where the codes in the
+private scheme were identical to codes contained in the original scheme,
+In Case 2, the concepts in the private scheme use a <sameAs> property at
+the level of each code in the new private scheme.
+
+[source,xml]
+<conceptSet>
+    <concept>
+        <conceptId qcode="ex-iwf:draft" />
+        <sameAs qcode="ex-wflow:draft" />
+        ...
+    </concept>
+    <concept>
+        <conceptId qcode="ex-iwf:review" />
+        <sameAs qcode="ex-wflow:review" />
+        ...
+    </concept>
+    <concept>
+        <conceptId qcode="ex-iwf:finalreview" />
+        ...
+    </concept>
+    <concept>
+        <conceptId qcode="ex-iwf:release" />
+        <sameAs qcode="ex-wflow:release" />
+        ...
+    </concept>
+</conceptSet>
+
+G2 Items that use this scheme must use a <catalog> statement to enable
+the processor to resolve both the private "ex-iwf" scheme alias and the
+original "ex-wflow" scheme alias:
+
+[source,xml]
+<catalog>
+    <scheme alias="ex-iwf" uri="http://support.myorg.com/cv/workflow/" />
+    <scheme alias="ex-wflow" uri="http://cv.example.org/schemes/wfroles/" />
+</catalog
+
+A Knowledge Item containing <sameAs>, <broader>, or <narrower>
+properties like the above must also contain a <catalog> allowing the
+QCodes to be resolved, in this case:
+
+[source,xml]
+<catalog>
+    <scheme alias="ex-wflow" uri="http://cv.example.org/schemes/wfroles/" />
+</catalog>
+
+[[best-practice-in-qcode-exchange]]
+Best Practice in QCode exchange
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+NewsML-G2 specifies that concepts must be identified by a full URI
+conforming to RFC 3986. The IPTC also recommends that a URI identifying
+a scheme and concept should resolve to a resource providing information
+about the scheme or the concept and which is either human or machine
+readable. In other words, a Concept URI should be a URL.
+
+The unreserved characters that are permitted in a URL are:
+
+`A B C D E F G H I J K L M N O P Q R S T U V W X Y Z +
+a b c d e f g h i j k l m n o p q r s t u v w x y z +
+0 1 2 3 4 5 6 7 8 9 - _ . ~`
+
+the reserved characters are:
+
+`! * ' ( ) ; : @ & = + $ , / ? % # [ ]`
+
+In order to promote unambiguous processing of QCodes, the IPTC defines
+that it is the responsibility of providers to encode Concept URIs as
+they are intended to be valid for a system which resolves them and not
+to rely on end-users applying per-cent encoding rules for URI
+processing. Therefore:
+
+* Providers should decide whether or not to per-cent encode reserved
+characters used in QCodes distributed to customers in NewsML-G2
+documents.
+* Receivers should not perform per-cent encoding/decoding, when
+resolving QCodes according to the rules outlined below.
+
+The reason for the recommendation is illustrated by the following
+example of a provider distributing a document containing:
+
+[source,xml]
+<subject qcode="fc:3#FTSE" />
+
+The catalog entry for a parent Scheme is (say):
+
+[source,xml]
+<scheme alias="fc" uri="http://cv.example.org/schemes/fc/" />
+
+The receiver could transform this QCode literally to this URI:
+
+`http://cv.example.org/schemes/fc/3#FTSE`
+
+Or the receiver could percent-encode the # (%23), yielding:
+
+`http://cv.example.org/schemes/fc/3%23FTSE`
+
+The resources identified by these two URIs are both valid by RFC 3986
+but they are different!
+
+Following the IPTC definition, the provider must include the per-cent
+encoding into the QCode of the first example if this is required by the
+system resolving the URIs:
+
+[source,xml]
+<subject qcode="fc:3%23FTSE" />
+
+[[non-ascii-characters]]
+Non-ASCII characters
+^^^^^^^^^^^^^^^^^^^^
+
+The encoding described above assumes that the character(s) to be
+per-cent encoded are from the US-ASCII character set (consisting of 94
+printable characters plus the space).
+
+If a code contains non-ASCII characters, for example accented
+characters, the Unicode encoding UTF-8 must be used, in line with normal
+practice.
+
+For example, the UTF-8 encoding of the `å` character is a two-byte value
+of `C3~hex~ A5~hex~` which would be percent-coded as `%C3%A5`.
+
+[[white-space-in-codes]]
+White Space in Codes
+^^^^^^^^^^^^^^^^^^^^
+
+Codes in controlled vocabularies which have been created with no regards
+to the NewsML-G2 specifications may contain spaces. As the NewsML-G2
+Specification does not allow white space characters in Codes, this
+section recommends a workaround.
+
+Whitespace characters in Codes - in practice, only spaces (`20~hex~`) -
+are replaced by a sequence of one or more unreserved characters that is
+reused for this purpose according to the practices of the provider; it
+is recommended that such a sequence is not part of the any of the codes
+used by the provider.
+
+For example, if a code contains a space, the space character might be
+replaced by `~~`. Receivers would be informed to translate this string
+back to a space character in order to match the QCode against a list of
+codes that contain spaces.
+
+[[syntactic-processing-of-qcodes]]
+Syntactic Processing of QCodes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section provides a summary of the processing model. Please also see
+the NewsML-G2 Specification for a full technical description. (This can
+be downloaded by visiting
+http://www.newsml-g2.org/spec[www.newsml-g2.org/spec].)
+
+[[creating-qcodes-from-scheme-aliases-and-codes]]
+Creating QCodes from Scheme Aliases and Codes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[[scheme-aliases]]
+Scheme Aliases
+++++++++++++++
+
+These do not have to be encoded as they will never be part of the full
+Concept URI. A Scheme Alias may contain any character except a colon
+(`3A~hex~`) or white space characters (`20~hex~` or `09 ~hex~` or `0D ~hex~` or
+`0A ~hex~`)
+
+[[processing-received-codes]]
+Processing Received Codes
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To resolve a QCode received in an Item to a Concept URI, use the
+following steps:
+
+1.  Apply any XML decoding to the string (this should be performed by
+your XML processor)
+2.  Retrieve the QCode value from the document +
+example: `fôô:bår`
+3.  Identify the first colon starting from the left; the string on left
+of the colon is the scheme alias, the string on the right of the colon
+is the code. If there is no colon, the QCode is invalid. In the example,
+therefore: +
+Scheme Alias = `fôô` +
+Code Value = `bår`
+4.  Check whether the alias is defined in a catalog. If not, the QCode
+is invalid. +
+example: `<scheme alias="fôô" uri="http://cv.example.org/cv/somecodes/"
+/>`
+5.  Append the Code Value to the Scheme URI to make the full Concept
+URI: +
+example: `http://cv.example.org/cv/somecodes/bår`
+6.  It is highly recommended to use only full Concept URIs to compare
+identifiers of concepts.
+
+[[a-generic-way-to-express-concept-identifiers-as-uris]]
+A generic way to express concept identifiers as URIs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When NewsML-G2 was originally designed, communication capacity
+constraints drove implementers to find a compact way to express the
+typically long globally unique identifier (URI) of a concept; this led
+to the creation of the compact QCode notation. 
+
+These capacity constraints are no longer considered to be an issue, and the @uri attribute may now be used for properties having a concept identifier value type (@qcode or @literal), allowing providers to express the full URI if required. Example:
+
+[source,xml]
+<subject uri="http://example.com/people?id=12345&group=223" />
+
+The same flexibility is available to properties with QCode or
+QCodeList attribute types. "URI sibling" attributes
+(IRIType) are added to these properties by appending "uri" to the QCode
+name. For example @rendition has a @renditionuri sibling, such that:
+
+[source,xml]
+<remoteContent rendition="rnd:highRes"
+... />
+
+may now be alternatively expressed as:
+
+[source,xml]
+<remoteContent renditionuri="http://cv.iptc.org/newscodes/rendition/highRes"
+... />
+
+Implementers are advised NOT use both QCode and URI type attributes for
+the same property; however, if a @qcode and @uri are both present, they MUST refer to the same semantic concept, and the resolved @qcode SHOULD be the same as the @uri. The following extract shows how the
+<contentSet> of the code listing from the <<quick-start-pictures-and-graphics>> chapter
+would use the URI sibling properties:
+
+[source,xml]
+<contentSet>
+    <remoteContent renditionuri="http://cv.iptc.org/newscodes/rendition/highRes"
+        href="./GYI0062134533.jpg"
+        version="1"
+        size="346071"
+        contenttype="image/jpeg"
+        width="1500"
+        height="1001" 
+        colourspaceuri="http://cv.iptc.org/newscodes/colorspace/AdobeRGB" 
+        orientation="1"
+        layoutorientationuri="http://cv.iptc.org/newscodes/layoutorientation/horizontal">
+        <altId type="ex-gyiid:masterID">105864332</altId>
+        ...
+</contentSet>
+
+This code is listed in full in the file _LISTING 3A Photo in NewsML-G2
+(URI sibling attributes).xml_, which is part of the set of code examples
+in the Guidelines download package.
+
+For a full list of QCode type attributes and their URI siblings see
+the table xref:full-list-of-the-qcode-type-attributes-and-their-uri-siblings[List of QCode attributes and their URI siblings] below
+
+[[change-to-cardinality-of-qcode-type-attributes]]
+Change to cardinality of QCode Type attributes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After the introduction of @uri and later the "URI Sibling" attributes, a
+@qcode and other QCodeType attributes (collectively termed "QCode")
+remained mandatory for some properties. From v2.20 this constraint is
+lifted and the cardinality of QCode attributes in these properties is
+changed from (1) to (0..1) in order to allow @uri and "URI sibling"
+attributes to be used on their own. The table xref:properties-affected-by-changed-cardinality-of-qcode-attributes[Properties affected by changed cardinality of QCode attributes] below lists the
+properties affected by lifting the mandatory use of QCodes. The rules
+are now as follows, according to the version of NewsML-G2 being used:
+
+include::{includedir}/../../GuidelinesTables/QCode-Rules.adoc[]
+
+[[literal-identifiers]]
+Literal Identifiers
+~~~~~~~~~~~~~~~~~~~
+
+The NewsML-G2 Standard recognises that it is not always possible to use
+a QCode or URI as an identifier, therefore the NewsML-G2 Flexible
+Property type allows a @literal identifier or no identifier at all. For
+example, a CV may be understood by both receivers and providers, but the
+mapping of identifiers to concepts is managed and communicated outside
+NewsML-G2. Many long-established CVs such as these pre-date NewsML-G2.
+In other circumstances, the identifier may add no value, because only
+some basic property, such as <name> needs to be conveyed.
+
+A @literal is an identifier which is intended to be processed by
+software; it is not intended to be a natural-language label. If the name
+of a concept identified by @literal is intended for display, the IPTC
+recommends that providers SHOULD add the <name> child element for
+inter-operability and language-independent processing. If no
+human-readable property is available, receivers MAY use the @literal
+value for display purposes.
+
+[[use-of-literal-in-a-newsml-g2-item]]
+Use of @literal in a NewsML-G2 Item
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Literals may be used as in the following cases:
+
+1.  
+As an identifier for linking with an assert element inside a NewsML-G2
+document. In this case the literal value could be a random one. If a
+literal value is used with an assert element then all instances of that
+literal value in that item must identify the same concept.
+
+2.  
+When a code from a vocabulary which is known to the provider and the
+recipient is used without a reference to the vocabulary. The details of
+the vocabulary are, in this case, communicated outside NewsML-G2. Such a
+contract could express that a specific vocabulary of literals is used
+with a specific property.
+
+3. 
+When importing metadata which may contain codes which have not yet been
+checked to be from an identified vocabulary: the code values are
+represented as literals until the vocabulary is identified; thereafter,
+a controlled identifier can be used.
+
+The following rules govern the use of @literal:
+
+* A @literal value can only be used to identify a concept within the
+local scope of an Item.
+* The use of @literal and a controlled identifier (either @qcode, @uri
+or both) is mutually exclusive.
+* There can be no guarantee that all instances of a @literal value used
+in an Item identify the same concept. However, when @literal is used
+with an assert element, providers MUST ensure all instances of that
+literal value in the Item identify the same concept. If the provider
+uses the same literal value for different concepts, an assert element
+using this literal value MUST NOT be used, as the concept is
+indeterminate.
+
+[[properties-with-no-identifier]]
+Properties with no identifier
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It is permissible for a NewsML-G2 element with a Flexible Property type
+to have no concept identifier:
+
+[source,xml]
+<provider>
+    <name>Getty Images North America</name>
+</provider>
+
+As a special case, when a <bag> child element is used with a property to
+create a composite concept, a concept identifier MUST NOT be used with
+the parent property (neither @qcode, nor @uri nor @literal). The new
+composite concept is created by the multiple existing concepts
+identified by a @qcode in each <bit> element of the <bag>:
+
+[source,xml]
+<subject>
+    <name>Bread</name>
+    <bag>
+        <bit qcode="ex-ingredient:flour"/>
+        <bit qcode="ex-ingredient:water"/>
+        <bit qcode="ex-ingredient:yeast"/>
+    </bag>
+</subject>
+
+[[full-list-of-the-qcode-type-attributes-and-their-uri-siblings]]
+Full list of the QCode type attributes and their URI siblings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+include::{includedir}/../../GuidelinesTables/URI-Siblings.adoc[]
+
+[[properties-affected-by-changed-cardinality-of-qcode-attributes]]
+Properties affected by changed cardinality of QCode attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+(The mandatory use of the QCode Attribute was lifted.)
+
+include::{includedir}/../../GuidelinesTables/Cardinality.adoc[]

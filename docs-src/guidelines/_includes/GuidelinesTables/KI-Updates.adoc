@@ -1,0 +1,21 @@
+[%autowidth,options="header"]
+|===
+|Concept in local cache|Concept received in KI|Processor should:
+
+|No modification timestamp
+|No modification timestamp
+|Update cache from KI
+
+|No modification timestamp
+|Has modification timestamp
+|Update cache from KI, now the concept in the cache has a modification timestamp!
+
+|Has modification timestamp
+|No modification timestamp
+|Update cache from KI, now the concept in the cache has lost its modification timestamp!
+
+|Has modification timestamp
+|Has modification timestamp
+|Compare timestamps and update the concept in the cache IF the timestamp from the KI is later.
+
+|===

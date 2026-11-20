@@ -1,0 +1,25 @@
+[%autowidth,options="header"]
+|===
+|NewsCode|Name|Definition
+
+|fblike
+|Facebook Like
+|Indicates that the user interaction was measured by Facebook's I Like feature.
+
+|googleplus
+|Google +1
+|Indicates that the user interaction was measured by Google's +1 feature.
+
+|retweets
+|Twitter re-tweets
+|Indicates that the user interaction was measured by re-tweets of a Twitter tweet.
+
+|tweets
+|Twitter tweets
+|Indicates that the user interaction was measured by tweets which mention the subject of the content.
+
+|pageviews
+|Page views
+|Indicates that the user interaction was measured by the number of page views of the content.
+
+|===

@@ -1,0 +1,84 @@
+[%autowidth,options="header"]
+|===
+|iCalendar Event Component (Alphabetically)|Corresponding NewsML-G2 or EventsML-G2 Solution
+
+|attach
+|`link` element
+
+|attendee
+|`participant`  element
+
+|categories
+|`subject`  element
+
+|class
+|Access management functionality, no direct equivalence in EventsML-G2
+
+|comment
+|`note`  (child element of `event` for news and `concept` for a concept)
+
+|contact
+|`contactInfo`  (child element of `eventDetails`)
+
+|created
+|`contentCreated`  (child element of `contentMeta` of an Item for news or a concept)
+
+|description
+|`definition`  (child element of `event` for news and `concept` for a concept)
+
+|dtend
+|`end`  (child element of `eventDetails/dates`) Note that while `dtend` is exclusive in iCalendar, the `end` property is inclusive for the NewsML-G2 Standard. For example, for an event taking place on July 1 and 2, the `dtend` value in iCalendar would be July 3, whereas in NewsML-G2, the value of `end` would be July 2.
+
+
+|dtstamp
+|`contentCreated`  (child element of `contentMeta` of an Item for news or a concept)
+
+|dtstart
+|`start`  (child element of eventDetails/dates)
+
+|duration
+|`duration`  (child element of eventDetails/dates)
+
+|exdate
+|`exDate`  (child element of eventDetails/dates)
+
+|exrule
+|`exRule`  (child element of eventDetails/dates)
+
+|geo
+|`position`  (child element of eventDetails/location/geoAreaDetails)
+
+|last-mod
+|`contentModified`  (child element of `contentMeta` of a G2-item for news or a concept)
+
+|location
+|`location`  (child element of `eventDetails`)
+
+|organizer
+|`organiser`  (child element of `eventDetails`)
+
+|priority
+|As this iCalendar property reflects the priority for a calendar of an individual no equivalent exists in EventsML-G2.
+
+|rdate
+|`rDate`  (child element of `eventDetails/dates`)
+
+|recurid
+|No direct equivalence in EventsML-G2, but functionality can be reproduced by NewsML-G2
+
+|related
+|No direct equivalence, but relationships can be expressed by NewsML-G2
+
+|resources
+|Not covered by EventsML-G2 1.0, planned for future versions
+
+|rrule
+|`rRule`  (child element of `eventDetails/dates`)
+
+|rstatus
+|Scheduling protocol functionality is not covered by EventsML-G2
+
+|seq
+|_version_ attribute of the NewsML-G2 Item root element
+
+|===

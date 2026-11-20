@@ -1,0 +1,34 @@
+
+[[new-in-2.35]]
+What is New in NewsML-G2 2.35
+-----------------------------
+
+Verson 2.35 contains the following change from 2.34:
+ 
+[[add-eventstatus]]
+Event Status
+~~~~~~~~~~~~
+
+The Event Details wrapper already supports a number of status values, including Occur Status, News Coverage Status and Access Status. The addition of a new property <eventStatus> gives implementers a standard way to indicate (for example) "this event is in progress" or "this event happened and is now in the past". This also aligns NewsML-G2 with the property now supported in ninjs 3.0. 
+
+This change also includes aligning the Event Details extension point to be consistent with other extension points in NewsML-G2 by setting its processContents attribute (in the NewsML-G2 schema) to "lax".
+
+The recommended vocabulary to be used with Event Status is the IPTC Event Status NewsCodes https://cv.iptc.org/newscodes/eventstatus/ with a recommended alias of "eventstatus" as per the example below:
+
+
+[source, xml]
+----
+<!-- The status of an event is "scheduled" -->
+
+<eventDetails> 
+  ...
+  <eventStatus qcode="eventstatus:scheduled"/>
+  ... 
+</eventDetails> 
+
+----
+
+Note that the @qcode may be replaced with a @uri attribute.
+
+(A full change history of NewsML-G2 is documented in xref:changes-to-newsml-g2-and-related-standards[Changes to NewsML-G2 and related Standards]).
+

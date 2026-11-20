@@ -1,0 +1,162 @@
+[[news-industry-text-format-nitf]]
+News Industry Text Format (NITF)
+--------------------------------
+
+[[introduction-15]]
+Introduction
+~~~~~~~~~~~~
+
+NOTE: This Guide refers to NITF v 3.5. A new version 3.6 was released in January 2012. Please visit
+https://iptc.org/standards/[www.iptc.org/standards] and follow the link
+to NITF for further details of NITF and to download a package of the new
+version and its documentation
+
+NITF is an XML-based standard for marking up text articles that includes
+the ability both to create a structure for the content, and to provide a
+clear separation of content and metadata.
+
+NITF differs from NewsML-G2:
+
+* NITF provides a mark-up structure for text; NewsML-G2 is a container
+for news, is content-agnostic and has no mark-up for text content.
+* NITF expresses a single piece of content and does not support, for
+example, alternative renditions or different parts of the same content.
+* NITF properties have tightly-defined meanings; NewsML-G2 makes more
+use of generic structures that can be adapted for different uses.
+Therefore there may not be a direct equivalent in NewsML-G2 for a given
+NITF property, but a generic structure may be used to express the
+provider’s intention equally effectively.
+
+The following table summarises the major differences between the two
+standards.
+
+[%autowidth,options="header",]
+|============================
+|Feature |NITF |NewsML-G2
+|Content mark-up |icon:check[role="green"]| icon:close[role="red"]
+|Content structure |icon:check[role="green"] |icon:close[role="red"]
+|Extensible |icon:close[role="red"] |icon:check[role="green"]
+|Any content |icon:close[role="red"] |icon:check[role="green"]
+|Management metadata |icon:check[role="green"] |icon:check[role="green"]
+|Administrative metadata |icon:check[role="green"] |icon:check[role="green"]
+|Descriptive metadata |icon:check[role="green"] |icon:check[role="green"]
+|Packages |icon:close[role="red"] |icon:check[role="green"]
+|Alternative renditions |icon:close[role="red"] |icon:check[role="green"]
+|Concepts/Relationships |icon:close[role="red"] |icon:check[role="green"]
+|============================
+
+NITF is a popular and valid choice for the management and mark-up of
+text in a news environment. This Chapter assumes that organisations wish
+to continue to use NITF for the mark-up of text, but to migrate to
+NewsML-G2 as a management container. There are three basic migration
+paths:
+
+* Minimum migration: retain NITF and all of its structures in place, and
+use a minimal NewsML-G2 News Item as a container for NITF documents.
+NewsML-G2 would convey the complete original NITF document.
+* Partial migration: copy or move some of NITF’s metadata structures to
+the equivalent NewsML-G2 properties, retaining some or all NITF metadata
+structures and structural mark-up of the text content.
+* Complete migration: move the NITF metadata to the NewsML-G2
+equivalents, using NewsML-G2 to convey a text document with NITF content
+mark-up.
+
+For a minimum migration, implementers need only to refer to the
+xref:quick-start-guide-to-newsml-g2-basics[NewsML-G2 Basics] and
+xref:quick-start-text[Text] chapters.
+
+For partial or complete migration, the starting point is a consideration
+of how the structure of NITF relates to NewsML-G2, to form a high-level
+view of which NITF properties are to be migrated, and where they fit in
+NewsML-G2 framework.
+
+[[overview-of-nitf-and-newsml-g2-equivalents]]
+Overview of NITF and NewsML-G2 equivalents
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+NITF documents are composed of the following components:
+
+* The root element: <nitf>
+* <head>, a container for metadata about the document as a whole
+* <body> a container for content and metadata which is intended for
+display to the user. The <body> component is further split into:
+* <body-head> Metadata about the content
+* <body-content> The content itself
+* <body-end>Information that is intended to appear at the end of the
+article.
+
+[[root-element-nitf]]
+Root element <nitf>
+^^^^^^^^^^^^^^^^^^^
+
+The root element may uniquely identify the document using @uno, which is
+equivalent to NewsML-G2 @guid.
+
+[[document-metadata-head]]
+Document metadata <head>
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+<head> may have a @id attribute, a local identifier for the element.
+Most of the child elements of <head> have equivalents in the NewsML-G2
+<itemMeta> component, with exceptions noted in the following table:
+
+include::{includedir}/../../GuidelinesTables/NITF-head.adoc[]
+
+[[docdata-child-elements]]
+<docdata> child elements
+++++++++++++++++++++++++
+
+These convey detailed management information about the document.
+
+include::{includedir}/../../GuidelinesTables/NITF-docdata.adoc[]
+
+[[content-metadata-body.head]]
+Content metadata <body.head>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The contents of <body.head> a broadly equivalent to those of
+<contentMeta>, although this is not universally true. The following
+table lists the child elements of <body.head> and their NewsML-G2
+equivalents.
+
+When conveying NITF in a NewsML-G2 document, some properties of
+<body.head> may be retained in the NITF document, since they may be part
+of the structural content of the article, such as <hedline> (note
+spelling) and <byline>. These properties may optionally be copied into
+their NewsML-G2 equivalents.
+
+include::{includedir}/../../GuidelinesTables/NITF-body-head.adoc[]
+
+[[body-content-body.-content]]
+Body Content <body. content>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+NewsML-G2 has no specific mark-up for text, and NITF is a valid choice
+for marking up text to be conveyed by NewsML-G2 <inlineXML>.
+  
+[[_Ref222628059]]
+
+.LISTING 21: An NITF marked-up article conveyed in <inlineXML>
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_21_An_NITF_marked-up_article_conveyed_in_inlineXML.xml[]
+----
+
+[[end-of-body-body.end]]
+End of Body <body.end>
+~~~~~~~~~~~~~~~~~~~~~~
+
+There is no formal equivalent to the <body.end> container in NewsML-G2.
+It’s placement at the end of <body.content> expresses its significance
+in the format of an article. So it is possible that they would need to
+be retained in the NITF content conveyed in <inlineXML>, or expressed in
+another mark-up language.
+
+The NewsML-G2 equivalent of <tagline> would be <by> with a @role if
+necessary to refine its use. <bibliography> may be expressed using
+NewsML-G2 <description> with a @role. Their placement relative to the
+parent text is a processing issue – NewsML-G2 is format-agnostic.
+
+[[_Ref245987373]][[_Ref246074246]][[_Ref243449256]][[_Ref243662286]][[_Ref243662315]][[_Ref244665369]]
+

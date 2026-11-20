@@ -1,0 +1,11 @@
+[%autowidth,options="header"]
+|===
+|Name|Datatype
+
+|xml:lang
+|XML Schema language
+
+|dir
+|XML Schema string Enumeration ltr, rtl
+
+|===

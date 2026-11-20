@@ -1,0 +1,534 @@
+[[rights-metadata]]
+Rights Metadata
+---------------
+
+Rights-related metadata has become increasingly important, and feedback
+to the IPTC from the news industry pointed to the need for a more
+granular design of applying <rightsInfo> to the item and/or content.
+
+The IPTC has taken over responsibility for the management of the ACAP
+(Automated Content Access Protocol), the publisher-led project to
+develop tools for the communication of copyright permissions information
+on web sites. As a next step a news content specific Profile for Open
+Digital Rights Language  (ODRL) version 2.0 has been defined, branded
+RightsML, which identifies those features of ODRL 2.0 that can most
+usefully be employed in news syndication and defines additional
+vocabulary for expressing the usage permissions and constraints that are
+particular to the news industry. RightsML enables a wide range of usage
+policies to be expressed in NewsML-G2. See the RightsML web site
+http://www.rightsml.org/[www.rightsml.org] for further details.
+
+While the NewsML-G2 <rightsInfo> wrapper and its properties are
+machine-readable, the assertion of rights within the NewsML-G2
+properties is expressed in natural-language terms. However, the
+Extension Point of <rightsInfo> enables properties from another
+namespace to be added, and this would include ODRL and the RightsML
+Profile. A description of this implementation is outside the scope of
+these Guidelines.
+
+Machine-reading of <rightsInfo> by a processor is targeted at being able
+to determine the following:
+
+* To which element(s) inside an item does a specific <rightsInfo>
+wrapper apply? (rights holder’s view)
+* Which is/are the <rightsInfo> wrapper(s) that apply to a specific
+element? (content user’s view)
+
+[[rights-info-simple]]
+Rights Info - core implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The <rightsInfo> wrapper has child elements of
+
+* accountable (0..1) The person responsible for legal issues regarding
+the content (in some jurisdictions)
+* copyrightHolder (0..1) The person or organisation claiming
+intellectual property ownership of the content
+* copyrightNotice (0..unbounded) The formal statement claiming the
+Intellectual Property Ownership (IPO)
+* usageTerms (0..unbounded) A natural-language statement of how the
+content may be used.
+* dataMining (0..1) An expression of permissions or prohibitions of using the content in data mining operations.
+
+A simple Rights Expression example
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[source,xml]
+<rightsInfo>
+    <copyrightHolder qcode="nprov:AcmeNews">
+        <name>Reuters</name>
+    </copyrightHolder>
+    <copyrightNotice>Copyright 2025 Reuters. Click For
+        Restrictions - http://about.reuters.com/fulllegal.asp
+    </copyrightNotice>
+    <usageTerms xml:lang="en">NO ARCHIVAL OR WIRELESS USE</usageTerms>
+</rightsInfo>
+
+[[link-to-an-external-rights-information-resource]]
+Link to an external Rights Information resource
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A provider may need to refer to an external resource containing rights
+information and instructions. This can be accomplished using the <link>
+element of <rightsInfo>:
+
+[source,xml]
+<rightsInfo>
+    <copyrightHolder uri="http://www.acmenews.com" />
+    <copyrightNotice>Copyright 2025 Acme Newswire</copyrightNotice>
+        <link
+            href="http://acmenews.com/rights/rightspolicy123.xml"
+            contenttype="text/xml"
+        />
+</rightsInfo>
+
+[[data-mining-rights]]
+Expression of Data Mining rights using the <dataMining> element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Data mining permissions and constraints may optionally be expressed using the `dataMining` element, using the recommended vocabulary of values defined by the PLUS Coalition at https://ns.useplus.org/LDF/ldf-XMPSpecification#DataMining. The following examples illustrate its use:
+
+Simple case
++++++++++++
+
+[source, xml]
+----
+	<rightsInfo>
+		<dataMining qcode="plusvocab:DMI-PROHIBITED-AIMLTRAINING"/>
+	</rightsInfo>
+----
+
+Complex case
+++++++++++++
+
+In a more complex use case, the Data Mining property references the content of the Usage Terms property. 
+
+[source, xml]
+----
+	<rightsInfo>
+		<usageTerms>
+			Data mining allowed for non-commercial purposes only.
+		</usageTerms>
+		<dataMining qcode="plusvocab:DMI-PROHIBITED-SEECONSTRAINT"/>
+	</rightsInfo>
+----
+			
+Complex case with multiple languages
+++++++++++++++++++++++++++++++++++++
+
+[source, xml]
+----
+	<rightsInfo>
+		<usageTerms xml:lang="en">
+			Data mining allowed for non-commercial purposes only.
+		</usageTerms>
+		<usageTerms xml:lang="fr">
+			«Data mining» est autorisée uniquement à des fins non commerciales.
+		</usageTerms>
+		<dataMining qcode="plusvocab:DMI-PROHIBITED-SEECONSTRAINT"/>
+	</rightsInfo>
+----
+			 
+Example using RightsML
+++++++++++++++++++++++
+The Data Mining property value references the contents of a RightsML expression.
+
+[source, xml]
+----
+	<rightsInfo>
+               <rightsExpressionXML langid="http://www.w3.org/ns/odrl/2/">
+                        <!-- Insert RightsML here... -->
+		</rightsExpressionXML>
+		<dataMining qcode="plusvocab:DMI-PROHIBITED-SEEEMBEDDEDRIGHTSEXPR"/>
+	</rightsInfo>
+----
+
+Note that in the above examples, the @qcode may be replaced with a @uri attribute. 
+
+[[advanced-rights-information]]
+Advanced Rights Information implementations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+More advanced Rights metadata may be added to <rightsInfo>:
+
+* By asserting rights separately to different parts and/or different
+aspects of the NewsM-G2 Item, for example by separating rights to the
+metadata from the content rights.
+* By using <rightsExpressionXML> and/or <rightsExpressionData> to assert
+rights using other rights expression languages and encodings.
+* Via the Extension Point to <rightsInfo>, but only as an XML-encoded
+structure.
+
+[[asserting-separate-rights-to-parts-or-aspects-of-an-item]]
+Asserting separate rights to parts or aspects of an Item
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[[business-reasons]]
+Business Reasons
++++++++++++++++++
+
+* Business users potentially need to assert different rights to
+different parts of a News Item. For example, a photo library may not own
+the copyright to a picture, but does want to assert intellectual
+property ownership of the keywords (i.e. the metadata). This leads to
+the need to distinguish between rights to the _content_, and rights to
+_metadata_, or _parts of the metadata_. End users need a simple
+mechanism for addressing a whole group of XML elements as being governed
+by a <rightsInfo> expression.
+* Implementers need a clear set of rules for expressing rights to XML
+elements identified by an @id. The <partMeta> wrapper is an existing
+NewsML-G2 construct for this purpose and in order to have a consistent
+processing model, the <rightsInfo> wrapper expresses rights via
+<partMeta> to the target element, rather than directly to the target
+element.
+
+[[expressing-scope-and-aspect-properties-of-rightsinfo]]
+Expressing Scope and Aspect properties of <rightsInfo>
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Two attributes enable implementers to define the scope of a rights
+expression and assert the aspect of the intellectual property rights
+that are being claimed:
+
+* scope; (0..1), QCodeListType; allows a provider to indicate whether
+the rights expression is about the content, the metadata, or both. If
+the attribute is not present then<rightsInfo> applies to all parts of
+the Item. There is a mandatory NewsCodes scheme for the values, see
+below. The CV contains two values: "content" and "metadata".
+* aspect; (0..1), QCodeListType; allows the provider to assert rights to
+a specific intellectual effort. In terms of metadata, this can express
+rights to the actual metadata values used, and/or it can express rights
+to the work in applying metadata values. @aspect also enables providers
+to assert rights to the structure of content, for example the structure
+of a package of news. If the attribute does not exist then <rightsInfo>
+applies to all aspects. There is a mandatory NewsCodes scheme for the
+values, see below. The CV contains three values: "values", "selection"
+and "structure".
+
+The optional @idrefs attribute is defined as:
+
+"Reference(s) to the part(s) of an Item to which the <rightsInfo>
+element applies. When referencing part(s) of the content of an Item,
+@idrefs _must_ include the @partid value of a _partMeta_ element which
+in turn references the part of the content."
+
+[[rights-info-scope-newscodes]]
+Rights Info Scope NewsCodes
++++++++++++++++++++++++++++
+
+Scheme URI: http://cv.iptc.org/newscodes/riscope/ +
+Recommended scheme alias: riscope
+
+include::{includedir}/../../GuidelinesTables/RightsInfo-scope.adoc[]
+
+[[rights-aspect-newscodes]]
+Rights Aspect NewsCodes
++++++++++++++++++++++++
+
+Scheme URI: http://cv.iptc.org/newscodes/riaspect/ +
+Recommended scheme alias: raspect
+
+include::{includedir}/../../GuidelinesTables/RightsInfo-aspect.adoc[]
+
+[[use-cases-for-scope-and-aspect]]
+Use cases for @scope and @aspect
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[[separating-rights-for-content-and-metadata]]
+Separating rights for "content" and "metadata"
+++++++++++++++++++++++++++++++++++++++++++++++
+
+A photo library sends a customer a picture. The Intellectual Property
+(IP) in the picture itself (the content) is owned by a third party. The
+photo library wants to assert the rights to the metadata that
+accompanies the picture. This is expressed by the following <rightsInfo>
+blocks:
+
+[source,xml]
+<newsItem> 
+    ...
+    <!-- Content: Third Party -->
+    <rightsInfo scope="riscope:content">
+        <copyrightHolder>
+            <name>Example Pictures</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2025 Example Pictures Ltd. Click For
+            Restrictions - http://about.example.com/legal.asp
+        </copyrightNotice>
+        <usageTerms xml:lang="en">MUST COURTESY PARAMOUNT PICTURES
+            FOR USE OF "THE CURIOUS CASE OF BENJAMIN BUTTON" WITH NO ARCHIVAL USE
+        </usageTerms>
+    </rightsInfo>
+    <!-- Metadata: Photo Library -->
+    <rightsInfo scope="riscope:metadata">
+        <copyrightHolder>
+            <name>The Picture Library</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2025 The Picture Library Ltd.
+        </copyrightNotice>
+    </rightsInfo>
+
+[[separating-rights-for-part-of-the-metadata]]
+Separating rights for part of the metadata
+++++++++++++++++++++++++++++++++++++++++++
+
+The photo library sends a third-party picture (the
+content), but wishes to express rights to only a specific part of the
+metadata. The properties representing this part are identified by
+@idrefs, and the scope has been omitted, since the targets are the
+values of the specific referenced elements.
+
+[source,xml]
+<newsItem>
+    ...
+    <!-- All: Third Party -->
+    <rightsInfo>
+        <copyrightHolder>
+            <name>Example Pictures</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2025 Example Pictures Ltd. Click For
+            Restrictions - http://about.example.com/legal.asp
+        </copyrightNotice>
+        <usageTerms xml:lang="en">MUST COURTESY PARAMOUNT PICTURES
+            FOR USE OF "THE CURIOUS CASE OF BENJAMIN BUTTON" WITH NO ARCHIVAL USE
+        </usageTerms>
+    </rightsInfo>
+    <!-- Part of the Metadata: Picture Library -->
+    <rightsInfo idrefs="id001 id002 id003 id004 id005">
+        <copyrightHolder>
+            <name>The Picture Library</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2025 The Picture Library Ltd.
+        </copyrightNotice>
+    </rightsInfo>
+    ...
+    <contentMeta>
+        ...
+        <keyword id="id001" role="ex-krole:index">us</keyword>
+        <keyword id="id002" role="ex-krole:index">military</keyword>
+        <keyword id="id003" role="ex-krole:index">aviation</keyword>
+        <keyword id="id004" role="ex-krole:index">crash</keyword>
+        <keyword id="id005" role="ex-krole:index">fire</keyword>
+        ...
+    </contentMeta>
+    ...
+
+[[separating-rights-for-aspects-of-part-of-the-metadata]]
+Separating rights for aspects of part of the metadata
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The photo library sends a third-party picture (the
+_content_), expressing rights to _part of the metadata_. Since the IP of
+the scheme being used belongs to another party, the picture library
+expresses its ownership of rights associated with _applying_ the
+metadata to the picture, and also acknowledges the Scheme Authority’s
+rights to the code values themselves.
+
+[source,xml]
+<newsItem>
+    ...
+    <!-- All: Third Party -->
+    <rightsInfo>
+        <copyrightHolder>
+            <name>Example Pictures</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2025 Example Pictures Ltd. Click For
+            Restrictions - http://about.example.com/legal.asp
+        </copyrightNotice>
+        <usageTerms xml:lang="en">MUST COURTESY PARAMOUNT PICTURES
+            FOR USE OF "THE CURIOUS CASE OF BENJAMIN BUTTON" WITH NO ARCHIVAL USE
+        </usageTerms>
+    </rightsInfo>
+    <!-- Part of the Metadata Values: Another Party -->
+    <rightsInfo idrefs="id001 id002" aspect="riaspect:values">
+        <copyrightHolder>
+            <name>International Press Telecommunications Council</name>
+        </copyrightHolder>
+        <copyrightNotice>
+            Copyright 2025 International Press Telecommunications Council.
+        </copyrightNotice>
+    </rightsInfo>
+    <!-- Part of the Metadata Selection: Picture Library -->
+    <rightsInfo idrefs="id001 id002" aspect="riaspect:selection">
+        <copyrightHolder>
+	    <name>The Picture Library</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2025 The Picture Library Ltd.
+        </copyrightNotice>
+    </rightsInfo>
+    ...
+    <contentMeta>
+    ...
+	<subject id="id001" type"cpnat:abstract" qcode="medtop:20000106" />
+        <subject id="id002" type"cpnat:abstract" qcode="medtop:02000000" />
+    ...
+    </contentMeta>
+...
+
+[[expressing-rights-to-different-parts-of-content]]
+Expressing rights to different parts of content
++++++++++++++++++++++++++++++++++++++++++++++++
+
+A news agency sends a text article (the _content_) that includes a
+substantial _extract of content_ owned by another party. The overall
+rights to both the content and metadata of the article are expressed
+using a <rightsInfo> wrapper with no attributes. The rights owned by the
+third party to the extract are "carved out" by using a separate
+<rightsInfo> wrapper that references the extract within the article via
+<partMeta>:
+
+[source,xml]
+<newsItem>
+    ...
+    <!-- All: News Agency -->
+    <rightsInfo>
+        <copyrightHolder>
+            <name>Example News</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2025 Example News Ltd. Click For
+            Restrictions - http://about.example.com/legal.asp
+        </copyrightNotice>
+        <usageTerms xml:lang="en">
+            REGIONAL PRESS ONLY. NO BROADCAST OR WEB USE
+        </usageTerms>
+    </rightsInfo>
+    <!-- Part of the Content: Another Party -->
+    <rightsInfo idrefs="id001">
+        <copyrightHolder qcode="nprov:reuters">
+            <name>Thomson Reuters</name>
+        </copyrightHolder>
+        <copyrightNotice>Copyright 2025 Thomson Reuters.
+        </copyrightNotice>
+    </rightsInfo>
+    <contentMeta>
+    ...
+    </contentMeta>
+    <partMeta partid="id001" contentrefs="p001"/>
+    <inlineXML>
+    ...
+        <p>...still the aftershocks of the banking crisis continue to rumble,
+        With many analysts noting big changes in the role of sovereign wealth
+        funds.
+        ... </p>
+        <p>According to a recent special report by Thomson Reuters: <br />
+        <span id="p001">"Dubai's crisis prompted a shift of power to the rulers in Abu
+        Dhabi, the wealthiest of the seven states that make up the United Arab
+        Emirates.Now a chastened Dubai is recovering some of its confidence as it
+        seeks to convince international investors it can deliver now where last
+        year it failed."</span></p>
+    ...
+    </inlineXML>
+</newsItem>
+
+[[expressing-rights-to-aspects-of-content]]
+Expressing rights to aspects of content
++++++++++++++++++++++++++++++++++++++++
+
+A news provider operates a distribution platform where third-party
+companies can sign up to provide their own news and information packages
+to the subscriber base. The platform provider has created standard
+package templates using NewsML-G2, which the other companies populate
+with their chosen topics. The provider asserts its right to the
+_structure_ of the news packages, whilst the rights to the _selection_
+of the news belong to the third party, as shown:
+
+[source,xml]
+<packageItem>
+    <!-- A Package Item is a selection of references to NewsML-G2 Items organised -->
+    <!-- into a structure of Groups, each with a @role, within a Group Set.  -->
+    ...
+    <!-- Structure: News Provider -->
+    <rightsInfo scope="riscope:content" aspect="riaspect:structure">
+        <copyrightHolder>
+            <name>The News Provider</name>
+        </copyrightHolder>
+        <copyrightNotice>
+            Copyright asserted to the structure of the package<groupSet>
+        </copyrightNotice>
+        <usageTerms xml:lang="en">
+            Usage terms in natural language
+        </usageTerms>
+    </rightsInfo>
+    <!-- Selection: Third Party -->
+    <rightsInfo scope="riscope:content" aspect="riaspect:selection">
+        <copyrightHolder>
+            <name>The News Selector</name>
+        </copyrightHolder>
+        <copyrightNotice>
+            Copyright asserted to the selection of the Item References.
+        </copyrightNotice>
+        <usageTerms xml:lang="en">
+            Usage terms in natural language
+        </usageTerms>
+    </rightsInfo>
+    <!-- Metadata: News Provider -->
+    <rightsInfo scope="riscope:metadata">
+        <copyrightHolder>
+            <name>The News Provider</name>
+        </copyrightHolder>
+        <copyrightNotice>
+            Copyright to the package metadata asserted here.
+        </copyrightNotice>
+    </rightsInfo>
+    ...
+    <groupSet root="root">
+        <group id="root" role="ex-group:root" mode="pgrmod:bag">
+            <groupRef idref="grp1" />
+            <groupRef idref="grp2" />
+        </group>
+        <group id="grp1" role="ex-group:main">
+            <itemRef ...>
+            ...
+            </itemRef>
+            <itemRef ...>
+            ...
+            </itemRef>
+        </group>
+        <group id="grp2" role="ex-group:sidebar">
+            <itemRef ...>
+            ...
+            </itemRef>
+            <itemRef ...>
+            ...
+            </itemRef>
+        </group>
+    </groupSet>
+</packageItem>
+
+Note that the rights expressed about the package _content_ selection and
+_structure_ are NOT inherited by the Items referenced by the package in
+each <itemRef>.
+
+[[using-other-machine-readable-rights-expression-languages]]
+Using other machine-readable rights expression languages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[[xml-serialised-rights-expressions-rightsexpressionxml]]
+XML-serialised rights expressions <rightsExpressionXML>
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The optional element <rightsExpressionXML> may be repeated within the
+<rightsInfo> wrapper and indicates a rights expression as defined by a
+rights expression language and serialised using XML encoding. The
+mandatory @langid identifies for the rights expression language using a
+URI.
+
+[[other-serialised-non-xml-rights-expressions-rightsexpressiondata]]
+Other serialised (non-XML) rights expressions <rightsExpressionData>
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+<rightsExpressionData> is also an optional, repeatable element
+indicating a rights expression encoded using any non-XML serialisation
+and qualified by two mandatory attributes: @langid uses a URI to
+identify the rights expression language, and @enctype identifies the
+type of encoding (for example JSON). The IPTC recommends that this is
+expressed using an IANA Media Type.
+
+[[processing-models-for-extended-rights-info]]
+Processing models for extended Rights Info
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Please see the Rights Information chapter of the NewsML-G2 Specification
+at http://www.newsml-g2.org/spec[www.newsml-g2.org/spec] and also
+https://iptc.org/standards/rightsml/[www.iptc.org/standards/rightsml]
+

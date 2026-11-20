@@ -1,0 +1,14 @@
+[%autowidth,options="header"]
+|===
+|Code|Definition
+
+|values
+|The <rightsInfo> element makes an assertion about metadata values including the details of concepts. This aspect applies only to the Rights Info Scope of “metadata”.
+
+|selection
+|The <rightsInfo> element makes an assertion about selecting and applying metadata values or selecting and applying item references in a Package Item. This aspect applies a) to the Rights Info Scope of “metadata” and b) to the Rights Info Scope of “content” for Package Items.
+
+|structure
+|The <rightsInfo> element makes an assertion about the design of the structure of the content, e.g. the structure of a Package Item. This aspect applies only to the Rights Info Scope of “content”.
+
+|===

@@ -95,3 +95,19 @@ Steps to create and release an update to the standard:
 2.  Update the `tests/run-tests.py` script to refer to the new version.
 3.  Make a new folder in `tests/unit_test_files` with the new version number
     and put new test files there.
+
+## Editing the Specification and Guidelines
+
+The AsciiDoc sources of both books are in `docs-src/` (moved from the
+`newsml-g2-specification` and `newsml-g2-guidelines` repositories in November
+2026). Edit them there, on a branch, like any other change.
+
+- `tools/docsite.py` builds the whole documentation site, both books and the
+  schema reference, into `build/site/`. CI runs the same build on every pull
+  request and fails on any Asciidoctor warning; the built site is kept as a
+  GitHub Actions artifact, so reviewers can read a change as rendered pages.
+- `tools/xsdref/generate.py --check` (also in CI) checks that every §14 note in
+  the Specification still names an element, attribute or datatype in the
+  schema.
+- For a new version, the annual version-bump helpers
+  (`NML-G2-annual-maint.sh` with its `sed-script`) are in each book's folder.

@@ -1,0 +1,23 @@
+[%autowidth,options="header"]
+|===
+|Subject|Description
+
+|RFC2119
+|Key words for use in RFCs to Indicate Requirement Levels http://www.ietf.org/rfc/rfc2119.txt
+
+|XMLSCHEMA-1.0 XSD
+|W3C XML Schema 1.0 specifications at: http://www.w3.org/XML/Schema
+
+|XMLDSIG
+|XML-Signature Syntax and Processing: http://www.w3.org/TR/xmldsig-core/
+
+|RDF
+|Resource Description Framework (RDF): http://www.w3.org/RDF/
+
+|BCP47
+|Tags for Identifying Languages, IETF: http://www.rfc-editor.org/rfc/bcp/bcp47.txt
+
+|iCalendar
+|iCalendar as specified by RFC 2445: http://www.ietf.org/rfc/rfc2445.txt
+
+|===

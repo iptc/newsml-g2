@@ -1,0 +1,81 @@
+= image:iptc_sv_gradient_70x70.jpg[IPTC logo] NewsML-G2 Guidelines 
+keywords: iptc, newsml-g2, xml, format, news, multimedia, multi-media, metadata, standard
+:doctype: book
+:imagesdir: ./images
+:includedir: ./_includes
+:stylesdir: stylesheets/
+:stylesheet: asciidoctor-iptc-stds-02.css
+:source-highlighter: coderay
+:source-language: asciidoc
+:icons: font
+:author: IPTC NewsML-G2 Working Group
+:email: office@iptc.org
+:version-label: Standard Version
+:revnumber: 2.35
+:revremark: Revised 2026-10-09
+:toc: left
+:toclevels: 3
+:nofooter:
+:sectanchors:
+:sectnumlevels: 3
+
+include::{includedir}/GuidelinesChapters/Introduction.adoc[]
+
+:sectnums:
+
+include::{includedir}/GuidelinesChapters/1_How-To_Index.adoc[]
+
+include::{includedir}/GuidelinesChapters/2_What_is_New.adoc[]
+
+include::{includedir}/GuidelinesChapters/3_Executive_Summary.adoc[]
+
+include::{includedir}/GuidelinesChapters/4_About_the_IPTC.adoc[]
+
+include::{includedir}/GuidelinesChapters/5_How_News_Happens.adoc[]
+
+include::{includedir}/GuidelinesChapters/6_QS_NewsML-G2_Basics.adoc[]
+
+include::{includedir}/GuidelinesChapters/7_QS_Text.adoc[]
+
+include::{includedir}/GuidelinesChapters/8_QS_Pictures.adoc[]
+
+include::{includedir}/GuidelinesChapters/9_QS_Video.adoc[]
+
+include::{includedir}/GuidelinesChapters/10_QS_Packages.adoc[]
+
+include::{includedir}/GuidelinesChapters/11_Concepts.adoc[]
+
+include::{includedir}/GuidelinesChapters/12_Knowledge_Items.adoc[]
+
+include::{includedir}/GuidelinesChapters/13_CVs_and_QCodes.adoc[]
+
+include::{includedir}/GuidelinesChapters/14_Events.adoc[]
+
+include::{includedir}/GuidelinesChapters/15_Planning.adoc[]
+
+include::{includedir}/GuidelinesChapters/16_News_Messages.adoc[]
+
+include::{includedir}/GuidelinesChapters/17_Migrating_IPTC7901.adoc[]
+
+include::{includedir}/GuidelinesChapters/18_NewsML-G2_from_Scratch.adoc[]
+
+include::{includedir}/GuidelinesChapters/19_Migrating_from_NITF.adoc[]
+
+include::{includedir}/GuidelinesChapters/20_Migrating_from_IIM.adoc[]
+
+include::{includedir}/GuidelinesChapters/21_Rights.adoc[]
+
+include::{includedir}/GuidelinesChapters/22_Financial_Information.adoc[]
+
+include::{includedir}/GuidelinesChapters/23_Advanced_Techniques.adoc[]
+
+include::{includedir}/GuidelinesChapters/24_Generic_Processes_and_Conventions.adoc[]
+
+include::{includedir}/GuidelinesChapters/25_Identifying_Workflow_Actors.adoc[]
+
+include::{includedir}/GuidelinesChapters/26_Changes_to_Standard.adoc[]
+
+:sectnums!:
+
+include::{includedir}/GuidelinesChapters/Additional_Resources.adoc[]
+

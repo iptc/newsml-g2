@@ -1,0 +1,21 @@
+[%autowidth,options="header"]
+|===
+|Duration|XML Schema|iCalendar
+
+|D(ays)
+|icon:check[role="green"]
+|icon:check[role="green"]
+
+|W(eeks)
+|icon:close[role="red"]
+|icon:check[role="green"]
+
+|M(onths)
+|icon:check[role="green"]
+|icon:close[role="red"]
+
+|Y(ears)
+|icon:check[role="green"]
+|icon:close[role="red"]
+
+|===

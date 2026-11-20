@@ -1,0 +1,672 @@
+[[quick-start-video]]
+Video
+-----
+
+[[introduction-5]]
+Introduction
+~~~~~~~~~~~~
+
+Now that streamed media is part of everyone’s day-to-day experience on
+the Web, organisations with little or no tradition of "broadcast media"
+production need to be able to process audio and video.
+
+NewsML-G2 allows all media organisations, whether traditional
+broadcasters or not, to access and exchange audio and video in a
+professional workflow, by providing features and Extension Points that
+enable proprietary formats to be "mapped" to Newsml-G2 to achieve
+freedom of exchange amongst a wider circle of information partners.
+
+This chapter is split into two parts:
+
+* Part I deals with a video that is available in multiple different
+renditions and the example focuses on expressing the technical
+characteristics of each rendition of the content.
+* Part II shows an example of video content has been assembled from
+multiple sources, each with distinct metadata.
+
+TIP: We recommend reading the chapter on <<quick-start-guide-to-newsml-g2-basics,NewsML-G2 Basics>> +
+before this guide to implementing video.
+
+[[part-i-multiple-renditions-of-a-single-video]]
+Part I – Multiple Renditions of a Single Video
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following example is based on a sample NewsML-G2 video item from
+Agence France Presse (but is not a guide to processing AFP’s NewsML-G2
+news services).
+ 
+[[DdeLink4364_1660453449]][[DdeLink4364_16604534491]][[_Ref468979309]]
+
+.LISTING 4: Multiple Renditions of a Video in NewsML-G2
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies, except for _ex-afpdescRole_.
+
+[source,xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_4_Multiple_Renditions_of_a_Video_in_NewsML-G2.xml[]
+----
+
+[[document-structure-2]]
+Document structure
+^^^^^^^^^^^^^^^^^^^
+
+The building blocks of the NewsML-G2 Item are the <newsItem> root
+element, with additional wrapping elements for metadata about the News
+Item (itemMeta), metadata about the content (contentMeta) and the
+content itself (contentSet).
+
+The root <newsItem> attributes are:
+
+[source,xml]
+<newsItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    guid="urn:newsml:afp.com:20160131:CNG.3424d3807bc.391@video_1359566"
+    version="18"
+    standard="NewsML-G2"
+    standardversion="2.35"
+    conformance="power"
+    xml:lang="en-US">
+
+This is followed by Catalog references:
+
+[source,xml]
+<catalogRef
+    href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_41.xml"
+/> 
+<catalogRef
+    href="http://cv.afp.com/std/catalog/catalog.AFP-IPTC-G2_3.xml" />
+
+[[item-metadata-itemmeta-3]]
+Item Metadata <itemMeta>
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The <itemClass> property uses a QCode from the IPTC News Item Nature
+NewsCodes to denote that the Item conveys a picture. Note that
+<provider> uses the recommended IPTC Provider NewsCodes, a controlled
+vocabulary of providers registered with the IPTC, recommended scheme
+alias "nprov":
+
+[source,xml]
+<itemMeta>
+    <itemClass qcode="ninat:video" />
+    <provider qcode="nprov:AFP" />
+    <versionCreated>2025-01-31T11:37:23+01:00 </versionCreated>
+    <firstCreated>2016-01-30T13:29:38+00:00</firstCreated>
+    <pubStatus qcode="stat:usable" />
+</itemMeta>
+
+[[content-metadata-contentmeta-3]]
+Content Metadata <contentMeta>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The <icon> element tells receivers how to retrieve an image to use as an
+iconic image for the content, for example a still image extracted from
+the video. It’s possible to have multiple icons to suit different
+applications, each qualified by @rendition.
+
+Two <description> elements are qualified by @role: first a summary,
+second a more detailed shotlist:
+
+[source,xml]
+<contentMeta>
+    <icon contenttype="image/jpeg" height="62"
+    href="http://spar-iris-p-sco-http-int-vip.afp.com/components/9601ac3"
+    rendition="rnd:thumbnail" width="110" />
+    <creditline>AFP</creditline>
+    <description role="ex-afpdescRole:synthe">- Amir Hussein Abdullahian,
+    foreign ministry's undersecretary for Arab and African affairs -
+    Panos Moumtzis (man), UNHCR regional coordinator for Syrian refugees
+    </description>
+    <description role="ex-afpdescRole:script">SHOTLIST: KUWAIT. JANUARY 30,
+        \2016. SOURCE: AFPTV -VAR inside the conference room -VAR of Ban
+        Ki-moon -MS of King Abdullah II of Jordan -MS of Michel Sleiman,
+        president of Lebanon -MS of Tunisian president Moncef Marzouki
+        SOUNDBITE 1 - Amir Hussein Abdullahian (man), Iranian foreign
+        ministry's undersecretary for Arab and African affairs (Farsi, 10
+        sec): "Those who send arms to Syria are behind the daily killings
+        there." SOUNDBITE 2 - Amir Hussein Abdullahian (man), Iranian foreign
+        ministry's undersecretary for Arab and African affairs (Farsi, 9
+        sec): "We regret that some countries, such as the United States, have
+        created a very high level of extremism in Syria." SOUNDBITE 3 - Panos
+        Moumtzis (man), UNHCR regional coordinator for Syrian refugees
+        (Arabic, 12 sec): "The United Nations is providing humanitarian
+        assistance to more than four million people inside Syria, two million
+        of them displaced." SOUNDBITE 4 - Panos Moumtzis (man), UNHCR
+        regional coordinator for Syrian refugees (Arabic, 17 sec): "The
+        funding will first go to UN relief organizations, who are working
+        inside Syria and in neighbouring countries."
+    </description>
+    <language tag="en" />
+</contentMeta>
+
+[[video-content]]
+Video Content
+^^^^^^^^^^^^^
+
+Video is conveyed within the NewsML-G2 <contentSet> using the
+<remoteContent> element; where there are multiple alternate renditions
+of SAME content, <remoteContent> can be repeated for each rendition
+within the same Item.
+
+The <remoteContent> element references binary objects that exist
+independently of the current NewsML-G2 document. In this example there
+is an instance of <remote Content> for each of three renditions of the
+video.
+
+Each remote content instance contains attributes that can conceptually
+be split into three groups:
+
+* *Target resource attributes* enable the receiver to accurately
+identify the remote resource, its content type and size;
+* *Content attributes* enable the processor to distinguish the different
+business purposes of the content using @rendition;
+* *Content Characteristics* contain technical metadata such as
+dimensions, duration and format.
+
+Frequently used attributes from these groups are described below, but
+note that the NewsML-G2 XML structure that delimits the groups may not
+be visible in all XML editors. For a detailed description of these
+attribute groups, see the NewsML-G2 Specification (This can be
+downloaded by visiting
+http://www.newsml-g2.org/spec[www.newsml-g2.org/spec] and following the
+link to NewsML-G2.)
+
+[[target-resource-attributes-1]]
+Target Resource Attributes
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This group of attributes express administrative metadata, such as
+identification and versioning, for the referenced content, which could
+be a file on a mounted file system, a Web resource, or an object within
+a content management system. NewsML-G2 flexibly supports alternative
+methods of identifying and locating the externally-stored content.
+
+The two attributes of <remoteContent> that identify and optionally
+locate the content are Hyperlink (@href) and Resource Identifier
+Reference (@residref). Either one MUST be used to identify the target
+resource. They MAY optionally be used together.
+
+Although @href and @resideref are superficially similar, their intended
+use is:
+
+* @href _locates_ any resource, using an IRI.
+* @residref _identifies_ a _managed_ resource, using an identifier that
+may be globally unique. 
+
+[[hyperlink-href-1]]
+Hyperlink (@href)
++++++++++++++++++
+
+An IRI, for example:
+
+[source,xml]
+<remoteContent href="http://components.afp.com/ab652af034e5f7acc131f8f122b274a5ef8ee37e.mpg"
+
+[[resource-identifier-reference-residref-1]]
+Resource Identifier Reference (@residref)
++++++++++++++++++++++++++++++++++++++++++
+
+An XML Schema string e.g.
+
+[source,xml]
+<remoteContent residref="tag:example.com,2008:PIX:FOO20081220098658"
+
+The provider may use _residrefformat_ or _residrefformaturi_ to specify the format of the @residref. The recommended CV to be used is http://cv.iptc.org/newscodes/valueformat/ with a recommended scheme alias of "valfmt":
+
+[source,xml]
+<remoteContent residref="tag:example.com,2008:PIX:FOO20081220098658"
+    residrefformat="valfmt:uri"
+
+
+[[version-2]]
+Version
+++++++++
+
+An XML Schema positive integer denoting the version of the target
+resource. In the absence of this attribute, recipients should assume
+that the target is the latest available version
+
+[source,xml]
+version="18"
+
+[[content-type-1]]
+Content Type
+++++++++++++
+
+The Media Type of the target resource
+
+[source,xml]
+contenttype=" video/3gpp"
+
+[[format]]
+Format
+++++++
+
+A refinement of a Content Type using a value from a controlled
+vocabulary:
+
+[source,xml]
+format="frmt:MPEG"
+
+[[content-type-variant-contenttypevariant]]
+Content Type Variant (@contenttypevariant)
+++++++++++++++++++++++++++++++++++++++++++
+
+A refinement of a Content Type using a string:
+
+[source,xml]
+contenttype="video/3gpp"
+contenttypevariant="MPEG-4 Simple Profile"
+
+[[size-1]]
+Size
+++++
+
+Indicates the size of the target resource in bytes.
+
+[source,xml]
+size="54593540"
+
+[[news-content-attributes-1]]
+News Content Attributes
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This group of attributes of <remoteContent> enables a processor or human
+operator to distinguish between different components; in this case the
+alternative resolutions of the video.
+
+[[rendition-1]]
+Rendition
++++++++++
+
+The rendition attribute MUST use a QCode. Providers may have their own
+schemes, or use the IPTC NewsCodes for rendition, which has a Scheme URI
+of http://cv.iptc.org/newscodes/rendition/ and recommended Scheme Alias
+of "rnd". This example uses a fictional provider-specific scheme with a
+Scheme Alias of "ex-vidrnd":
+
+[source,xml]
+<remoteContent rendition="ex-vidrnd:dvd"
+
+To avoid processing ambiguity, each specific rendition value should be
+used only once per News Item, except when the same rendition is
+available from multiple remote locations. In this case, the same value
+of rendition may be given to several Remote Content elements.
+
+[[news-content-characteristics-1]]
+News Content Characteristics
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This third a group of attributes of <remoteContent> is provided to
+enable further efficiencies in processing and describes physical
+characteristics of the referenced object specific its media type. Text,
+for example, may use @wordcount; Audio and video are provided with
+attributes appropriate to streamed media, such as @audiobitrate,
+@videoframerate. The appropriate attributes for video are described
+below.
+
+[[duration-duration-and-durationunit]]
+Duration (@duration and @durationunit)
+++++++++++++++++++++++++++++++++++++++
+
+Indicates the duration of the content in seconds by default, but can be
+expressed by some other measure of temporal reference (e.g. frames) when
+using the optional @durationunit. From NewsML-G2 2.14, the data-type of
+@duration is a string; earlier versions use non-negative integer. The
+reason for the change is that video duration is often expressed using
+non-integer values.
+
+For example, expressing duration as an SMPTE time code requires the
+following NewsML-G2:
+
+[source,xml]
+duration="00:06:32:12" durationunit="timeunit:timeCode"
+
+The recommended CV for @durationunit is the IPTC Time Unit NewsCodes
+whose URI is http://cv.iptc.org/newscodes/timeunit/. The recommended
+alias for the scheme is "timeunit".
+
+[[video-codec-videocodec]]
+Video Codec (@videocodec)
++++++++++++++++++++++++++
+
+A QCode value indicating the encoding of the video – for example one of
+the encodings used in this example is MPEG-2 Video Simple Profile. This
+is indicated by the IPTC Video Codec NewsCodes with a recommended Scheme
+Alias "vcdc", and the corresponding code is "c015".
+
+[source,xml]
+videocodec="vcdc:c015"
+
+[[video-frame-rate-videoframerate]]
+Video Frame Rate (@videoframerate)
+++++++++++++++++++++++++++++++++++
+
+A decimal value indicating the rate, in frames per second [fps] at which
+the video should be played out to achieve the correct visual effect.
+Common values (in fps) are 25, 50, 60 and 29.97 (drop-frame rate):
+
+[source,xml]
+videoframerate="25"
+
+[[video-aspect-ratio-videoaspectratio]]
+Video Aspect Ratio (@videoaspectratio)
+++++++++++++++++++++++++++++++++++++++
+
+A string value, e.g. 4:3, 16:9
+
+[source,xml]
+videoaspectratio="4:3"
+
+[[video-scaling-videoscaling]]
+Video Scaling (@videoscaling)
++++++++++++++++++++++++++++++
+
+The @videoscaling attribute describes how the aspect ratio of a video
+has been changed from the original in order to accommodate a different
+display dimension:
+
+[source,xml]
+videoscaling="sov:letterboxed"
+
+The value of the property is a QCode; the recommended CV is the IPTC
+Video Scaling NewsCodes (Scheme URI:
+http://cv.iptc.org/newscodes/videoscaling/) The recommended Scheme Alias is "sov".
+
+[[video-definition-videodefinition]]
+Video Definition (@videodefinition)
++++++++++++++++++++++++++++++++++++
+
+Editors may need to know whether video content is HD or SD, as this may
+not be obvious from the technical specification ("HD", for example, is
+an umbrella term covering many different sets of technical
+characteristics). The @videodefinition attribute carries this
+information:
+
+[source,xml]
+videodefinition="videodef:sd"
+
+The value of the property can be either "hd" or "sd", as defined by the
+Video Definition NewsCodes CV. The Scheme URI is
+http://cv.iptc.org/newscodes/videodefinition/ and the recommended scheme
+alias is "videodef".
+
+[[colour-indicator-colourindicator]]
+Colour Indicator <colourindicator>
+++++++++++++++++++++++++++++++++++
+
+Indicates whether the still or moving image is coloured or black and
+white (note the UK spelling of colour). The recommended vocabulary is
+the IPTC Colour Indicator NewsCodes (Scheme URI:
+http://cv.iptc.org/newscodes/colourindicator/) with a recommended Scheme
+Alias of "colin". The value of the property is "bw" or "colour":
+
+[source,xml]
+colourindicator="colin:colour"
+
+The completed Remote Content wrapper will be:
+
+[source,xml]
+<remoteContent contenttype="video/mpeg-2"
+    href="http://components.afp.com/ab652af034e5f7acc131f8f122b274a5ef8ee37e.mpg"
+    rendition="ex-vidrnd:dvd"
+    size="54593540"
+    width="720" height="576"
+    duration="69"
+    durationunit="timeunit:seconds"
+    videocodec="vcdc:c015"
+    videoframerate="25"
+    videodefinition="videodef:sd"
+    colourindicator="colin:colour"
+    videoaspectratio="4:3"
+    videoscaling="sov:letterboxed" />
+
+[[audio-metadata]]
+Audio metadata
+^^^^^^^^^^^^^^
+
+There are specific properties for describing the technical
+characteristics of audio, for example:
+
+[[audio-bit-rate-audiobitrate]]
+Audio Bit Rate (@audiobitrate)
+++++++++++++++++++++++++++++++
+
+A positive integer indicating kilobits per second (Kbps)
+
+[source,xml]
+audiobitrate="32"
+
+[[audio-sample-rate-audiosamplerate]]
+Audio Sample Rate (@audiosamplerate)
+++++++++++++++++++++++++++++++++++++
+
+A positive integer indicating the sample rate in Hertz (Hz)
+
+[source,xml]
+audiosamplerate="44100"
+
+For a detailed description of all of the News Content Characteristics
+for Video and Audio content, see section _News Content Characteristics_
+in the NewsML-G2 Specification Document.
+
+[[part-2-multi-part-video]]
+Part 2 – Multi-part video
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TIP: We recommend reading the chapter on <<quick-start-guide-to-newsml-g2-basics,NewsML-G2 Basics>> and the
+preceding Part 1 of +
+this guide to video before reading Part 2.
+
+Audio and video, including animation, have a temporal dimension: the
+nature of the content is expected to change over its duration: in this
+example a single piece of video has been created from a number of shots
+– shorter segments of content from different creators - that
+were combined during an editing process.
+
+Note that this complies with the basic NewsML-G2 rule that "one piece of content = one
+newsItem". Although the video may be composed of material from many
+sources, it remains a single piece of journalistic content created by
+the video editor. This is analogous to a text story that is compiled by
+a single reporter or editor from several different reports.
+
+NewsML-G2 supports this by enabling the expression of metadata about separate identifiable parts of
+content using <partMeta> in addition to metadata structures that apply to the whole content.
+
+The example video is about a retrospective exhibition in Berlin of works
+by the German humourist and animator Vicco von Bülow. It consists of a
+number of shots, so provides a shotlist summarising the visual content
+of each shot, and a dopesheet, giving an editorial summary of the
+video’s content.
+
+The document structure and the NewsML-G2 properties included in the
+example have been previously described, except for the <partMeta>
+wrapper, which is described in detail below. A full code listing for the
+example is included at the end.
+
+The example is based on a sample NewsML-G2 video item from the European
+Broadcasting Union (EBU). The News Item references a multi-part
+broadcast video and contains separate metadata for each segment of the
+content, including a keyframe, and additionally describes the technical
+characteristics of the video.
+
+WARNING: Please note that it may resemble but does NOT represent the EBU’s
+NewsML-G2 implementation.
+  
+.LISTING 5: Multi-part Video in NewsML-G2
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies, except for the following: _ex-addressType_, _ex-codeorigin_,
+_ex-codesource_, _ex-cptype_, _ex-descrole_, _ex-geo_, _ex-langusecode_,
+_ex-prov_, _ex-providercode_, _ex-rolecode_, _ex-servicecode_ and _ex-vidrnd_.
+
+[source,xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_5_Multi-part_Video_in_NewsML-G2.xml[]
+----
+
+[[part-metadata]]
+Part Metadata
+^^^^^^^^^^^^^
+
+NewsML-G2 Items can have many <partMeta> wrappers, each expressing properties
+for an identifiably separate part of the content; in this example each
+of the shots, or segments, which make up the video. The properties for
+each segment include:
+
+* an ID for the segment, and a sequence number
+* a keyframe, or icon that may help to visually identify the content of
+the segment
+* the start and end positions of the segment within the content
+
+It is also possible to assert any Administrative or Descriptive Metadata
+for each <partMeta> element, if required.
+
+The id and sequence number for the shot are expressed as attributes of
+<partMeta> and the <partMeta> element is repeated for each video
+segment. Below is a complete example of a single segment:
+
+[source,xml]
+<partMeta partid="Part1_ID" seq="1">
+    <icon href=" http://www.example.com/video/Keyframes/407624.jpeg"/>
+    <timeDelim start="0" end="446" timeunit="timeunit:editUnit"/>
+    <language tag="en" role="lrol:voiceOver" />
+    <description>Vicco von Bülow entering exhibition</description>
+</partMeta>
+
+These elements of video <partMeta> are discussed below.
+
+[[add-keyframe-using-icon]]
+Add keyframe using <icon>
++++++++++++++++++++++++++
+
+A keyframe for the video segment is expressed as the child element
+<icon> with @href pointing to the keyframe image as a resource on the
+Web:
+
+[source,xml]
+<icon href="http://www.example.com/video/Keyframes/407624.jpeg"/>
+
+[[timing-metadata]]
+Timing metadata
++++++++++++++++
+
+The <timeDelim> property indicates the start and end positions of this
+segment within the video, and the units being used to express these values, as shown for example:
+
+[source,xml]
+<timeDelim start="0" end="446" timeunit="timeunit:editUnit"/>
+
+This @timeunit uses a QCode to indicate that @start and @end are expressed in 
+Edit Units, the smallest editable units of the content; in the case of video this is frames. _Edit Unit is the assumed default value of @timeunit if this attribute is not present._ It is one of the values of the IPTC Time Unit NewsCodes (recommended Scheme Alias "timeunit"), which is used in this example.
+
+The values in the scheme are:
+
+* editUnit: the time delimiter is expressed in smallest editable unit of the content: frames (video) or samples (audio) and requires the frame rate or sampling rate to be known. This must be defined by the referenced rendition of the content.
+* timeCode: the format of the timestamp is hh:mm:ss:ff (ff for frames).
+* timeCodeDropFrame: the format of the timestamp is hh:mm:ss:ff (ff for frames).
+* normalPlayTime: the format of the timestamp is hh:mm:ss.sss (milliseconds).
+* seconds.
+* milliseconds.
+
+NOTE: In the example @start and @end are expressed as integers, but their datatype is XML String, because start and end can be expressed as integers, time values, or SMPTE time codes.
+
+The value of @start expresses the _non-inclusive_ start of the segment of the timeline; the value of @end expresses the _inclusive_ end of the segment of the timeline. For example, a 30 second segment at 25 frames per second may be expressed using Edit Unit as:
+
+[source,xml]
+<timeDelim start="0" end="750" timeunit="timeunit:editUnit"/>
+
+A following 30 second segment would start at "750" and end at "1500". 
+
+The same segment would be expressed using milliseconds as:
+
+[source,xml]
+<timeDelim start="0" end="30000" timeunit="timeunit:milliseconds"/>
+
+and the following 30 second segment would start at "30000" and end at "60000"
+
+NOTE: When processing a time delimiter expressed as frames, use the +
+the following example as a guide: +
+`<timeDelim start="3" end="4" timeunit="timeunit:editUnit"/>` +
+Q: Does it mean that two frames are included, or just one frame, and which one(s) exactly? +
+A: one frame, the fourth.  
+
+When specifying the start and end points of a segment of video, be aware
+that these are unlikely to be frame-accurate for the same segment rendered
+in different technical formats; if frame-rates are different, the viewer is likely to see a different result for each rendition. 
+
+It is therefore highly recommended when expressing time delimiters using frames or timecodes that @renditionref is used to specify separate time delimiters corresponding to alternative renditions of the same shot, as follows:
+
+[source,xml]
+<partMeta....>
+    <!-- 10 seconds in frames at 25 fps = 250 frames -->
+    <timeDelim renditionref="_vidrnd:avi25" start="0" end="250" +
+        timeunit="timeunit:editUnit"/>
+    <!-- 10 seconds in frames at 30 fps = 300 frames -->
+    <timeDelim renditionref="ex-vidrnd:avi30" start="0" end="300" +
+        timeunit="timeunit:editUnit"/>
+</partMeta>
+
+Each @renditionref identifies a corresponding @rendition in
+<remoteContent>:
+
+[source,xml]
+<contentSet>
+    <remoteContent contenttype="..."
+        href="..."
+        rendition="ex-vidrnd:avi25"
+        ... />
+    <remoteContent contenttype="..."
+        href="..."
+        rendition="ex-vidrnd:avi30"
+        ... />
+</contentSet>
+
+[[description-and-language]]
+Description and Language
+++++++++++++++++++++++++
+
+The example also indicates the language being used in the shot, and the
+context in which it is used. In this case, @role uses a QCode from a
+proprietary EBU scheme to indicate that the soundtrack of the shot is a
+voiceover in English.
+
+[source,xml]
+<language tag="en" role="ex-langusecode:VoiceOver" />
+
+Implementers may also use the IPTC Language Role NewsCodes (recommended
+Scheme Alias "lrol") for this purpose.
+
+Using <description>, we can also indicate what the viewer can expect to
+see in this segment:
+
+[source,xml]
+<description>Vicco von Bülow entering exhibition</description>
+
+[[video-content-1]]
+Video Content
+^^^^^^^^^^^^^
+
+The <contentSet wrapper contains a single rendition of the video inside
+the <remoteContent> element. Note that the video frame rate is included, as this is required to calculate points in the timeline when using time delimiters based on Edit Unit:
+
+[source,xml]
+<contentSet>
+    <remoteContent href="http://www.example.com/video/407624.avi"
+        format="frmt:MPEG" 
+        duration="111" durationunit="timeunit:seconds"
+        videocodec="vcdc:c155"
+        videoframerate="25"
+        videoaspectratio="16:9" />
+</contentSet>
+
+[[further-resources]]
+Further Resources
+~~~~~~~~~~~~~~~~~
+
+The IPTC Video Metadata Hub Recommendation (VMHub) was launched in
+October 2016 as a comprehensive solution to the exchange of video
+metadata between multiple existing standards. Visit the IPTC website
+http://www.iptc.org[www.iptc.org] and follow the links to Video Metadata
+Hub.
+

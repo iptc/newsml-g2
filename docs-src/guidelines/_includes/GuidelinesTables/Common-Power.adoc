@@ -1,0 +1,49 @@
+[%autowidth,options="header"]
+|===
+|Definition|Name|Cardinality|Datatype|Notes
+
+|The local identifier of the element
+|id
+|(0..1)
+|XML Schema ID
+| 
+
+|The person, organisation or system that created or edited the property.
+|creator +
+ creatoruri
+|(0..1)
+|QCodeType +
+ IRIType
+|If the property value is not defined, specifies which entity (person, organisation or system) will edit the property value - expressed by a QCode or URI. If the property value is defined, specifies which entity (person, organisation or system) has edited the property value.
+
+|The date (and, optionally, the time) when the property was last modified. The initial value is the date (and, optionally, the time) of creation of the property.
+|modified
+|(0..1)
+|DateOptTimeType
+| 
+
+|If set to true the corresponding property was added to the NewsML-G2 Item for a specific customer or group of customers only.
+|custom
+|(0..1)
+|Boolean
+|The default value of this property is false which applies when this attribute is not used with the property.
+
+|Why the metadata has been included.
+|why  whyuri
+|(0..1)
+|QCodeType  IRIType
+|The recommended IPTC CV is http://cv.iptc.org/newscodes/whypresent/ with a scheme alias of “whypresent”
+
+|The means by which the value was extracted from the content.
+|how  howuri
+|(0..1)
+|QCodeType  IRIType
+|The recommended IPTC CV is http://cv.iptc.org/newscodes/howextracted/ with a Scheme Alias of “howextr”
+
+|One or more constraints that apply to publishing the value of the property. Each constraint also applies to all descendant elements
+|pubconstraint  pubconstrainturi
+|(0..1)
+|QCodeList  IRIListType
+|Use case: a publishable NewsML-G2 document may contain metadata, or content references that are private, or restricted to certain audiences.
+
+|===

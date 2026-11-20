@@ -1,0 +1,11 @@
+[%autowidth,options="header"]
+|===
+|Attribute|URI Sibling|Definition
+
+|role |roleuri
+|The role of this feed identifier, for example to assert that this is the originator’s identifier for the source feed that created the content.
+
+|qcode |uri
+|The unique identifier for the incoming feed.
+
+|===

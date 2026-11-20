@@ -1,0 +1,37 @@
+[%autowidth,options="header"]
+|===
+|Value|Definition and Explanation|Visual Example
+
+|1
+|The 0th row is at the visual top of the image, and the 0th column is the visual left-hand side. Hint: no action required.
+|image:image7.png[image,width=42,height=42]
+
+|2
+|The 0th row is at the visual top of the image, and the 0th column is the visual right-hand side. Hint: flip horizontal.
+|image:image8.png[image,width=42,height=42]
+
+|3
+|The 0th row is at the visual bottom of the image, and the 0th column is the visual right-hand side. Hint: rotate 180 degrees.
+|image:image9.png[image,width=42,height=42]
+
+|4
+|The 0th row is at the visual bottom of the image, and the 0th column is the visual left-hand side. Hint: flip horizontal and rotate 180 degrees.
+|image:image10.png[image,width=42,height=42]
+
+|5
+|The 0th row is the visual left-hand side of the image, and the 0th column is the visual top. Hint: flip vertical and rotate 90 degrees clockwise.
+|image:image11.png[image,width=42,height=42]
+
+|6
+|The 0th row is the visual right-hand side of the image, and the 0th column is the visual top. Hint: rotate 90 degrees counterclockwise.
+|image:image12.png[image,width=42,height=42]
+
+|7
+|The 0th row is the visual right-hand side of the image, and the 0th column is the visual bottom. Hint: flip vertical and rotate 90 degrees counterclockwise.
+|image:image13.png[image,width=42,height=42]
+
+|8
+|The 0th row is the visual left-hand side of the image, and the 0th column is the visual bottom. Hint: rotate 90 degrees clockwise.
+|image:image14.png[image,width=42,height=42]
+
+|===

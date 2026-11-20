@@ -1,0 +1,774 @@
+[[representing-news---newsitem]]
+Representing News newsItem
+--------------------------
+
+An XML Schema file corresponding to the specifications for this item is available (see link:#the-full-set-of-specification-documents[The Full Set of Specification Documents])
+
+[[description]]
+Description
+~~~~~~~~~~~
+
+A newsItem aims to convey news with the sense of the reporting of a newsworthy event or fact. Its content is gathered by journalists, presented with a journalistic style, and updated according to the progression of the story.
+
+Examples of newsItems are a news report, a picture, a graphical illustration of some event, a video clip or an illustrated biography.
+
+Typical characteristics of a newsItem are:
+
+* Its content may be of any media type or format, e.g., the thumbnail, preview and high definition renditions of a picture.
+* It can also convey more structured news information, e.g., information about companies, sports events and general events, in instances when this information is related to an event or fact.
+* Its content is of short term interest: newsItems are volatile, and interest in them fades as time passes (“nothing is older than yesterday's news”).
+* It is expressed via a set of alternative renditions of some media content.
+* It will usually be updated only for a short period of time, as long as the covered event evolves, and then may be archived.
+* It refers to an arbitrary set of concepts and entities.
+* It may be associated with other newsItems or Web resources via typed links.
+
+[[indication-of-compliance-with-a-standard-and-conformance-level]]
+Indication of Compliance with a Standard and Conformance Level
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The IPTC newsItem _standard_ attribute MUST be set to “NewsML-G2” from NewsML-G2 2.9 on. “EventsML-G2” MAY be used up to version 1.7 of the EventsML-G2 standard.
+
+The _standardversion_ attribute must reflect the version of the standard as it is implemented by the corresponding XML Schema. 
+
+The IPTC conformance level to which the newsItem conforms MAY be omitted if the conformance level is "core"; or it MUST be indicated by the _conformance_ attribute value “power” as shown in the examples below.
+
+Sample Core Conformance Level
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[source, xml]
+----
+<newsItem 
+    standard="NewsML-G2" 
+    standardversion="2.24" 
+    http://iptc.org/std/nar/2006-10-01/>
+    ...
+</newsItem>
+----
+
+Sample Power Conformance Level
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[source, xml]
+----
+<newsItem 
+    standard="NewsML-G2" 
+    standardversion="2.36" 
+    conformance=”power” 
+    http://iptc.org/std/nar/2006-10-01/>
+    ...
+</newsItem>
+----
+
+WARNING: Freezing of Core Conformance Development. The last version of NewsML-G2 that supports Core Conformance is 2.24. All features added to the standard from 2.25 onwards are supported at Power Conformance only. However, to maintain backwards compatibility with previous versions of NewsML-G2, _conformance_ of documents MUST continue to be specified as "power", even though this is implicitly the only conformance level that can apply. The _standardversion_ documented in this Specification is “2.36”.
+
+
+[[identification-and-versioning]]
+Identification and Versioning
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is possible to positively identify a newsItem as it moves through the news workflow and is transferred from place to place and from system to system.
+
+A newsItem MUST have a _guid_ attribute holding a persistent and globally unique identifier. IPTC recommends using an IRI but this is not a requirement. Any string capable of acting as a globally unique identifier may be used.
+
+NOTE: The IPTC provides the newsml-URN for this purpose, specified by a successor of RFC-3085.
+
+A newsItem MAY have a version number, and this version number MUST be increased when the Item is updated. If explicitly set, the first version number MUST be set to 1 and any subsequent version number for that Item MUST be unique. If the version number is not explicitly set, a value of 1 MUST be assumed by the recipient of the Item.
+
+Sample:
+
+[source, xml]
+----
+<newsItem 
+    standard="NewsML-G2" 
+    standardversion="2.36" 
+    conformance=”power” 
+    guid="urn:newsml:iptc.org:20071231:sample" 
+    version="2" 
+    http://iptc.org/std/nar/2006-10-01/>
+</newsItem>
+----
+
+[[catalog-of-controlled-vocabularies]]
+
+Catalog of Controlled Vocabularies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+NewsML-G2 recommends the use of controlled values for most properties. Each news provider is free to use its own taxonomies of subjects, genres, geopolitical areas, organisations etc., and to use any value link:#_bookmark939[scheme] it decides in the Items it provides. NewsML-G2 controlled values are expressed by link:#qualified-code-qcode[QCodes] or by fully-expanded URIs. When using QCode values, a provider must declare the schemes being used in the Item by means of a `catalog`, which MUST be included at the top of each Item.
+ 
+Due to the large number of the same schemes potentially used in many single Items, and knowing that bandwidth is important to the News industry, the catalog may be stored remotely and referenced by the Item using `catalogRef`
+
+NOTE: If a provider exclusively uses fully-expanded URIs in place of QCodes, `catalog` and/or `catalogRef` may be omitted.
+
+A remote catalog MUST have an _href_ attribute which contains the URL of a remote catalog. A remote catalog takes the form of an XML file with a catalog element as root. (An XML requirement is to add the NewsML-G2 namespace definition to the catalog element.)
+
+The URL of a remote catalog acts both as a locator and a global identifier, therefore:
+
+* The URL of a remote catalog MUST NOT be relative.
+* If a remote catalog is functionally changed, the URL used to access it MUST be changed. Functional changes are:
+** the addition or removal of a `scheme` declaration,
+** a change to any link:#_bookmark940[scheme alias],
+** a change to any link:#_bookmark941[scheme URI].
+** a change to any of the combinations of schema alias and scheme URI.
+
+One or more additional titles for a catalog or catalogRef MAY be provided in different languages and variants.
+
+To extend the information about the catalog some optional attributes of the catalog element may be used:
+
+* _url_: defines the location of the catalog as remote resource.
+* _authority_: defines the authority controlling this catalog
+* _guid_: a Globally Unique Identifier for this kind of catalog as managed by a provider
+* _version_: version corresponding to the guid of the catalog
+
+In general, a given provider will define a unique catalog of all used schemes, store it in a central repository and reference it from all Items it provides. A provider MAY declare several catalogs in the same Item. This may be especially useful for an aggregator who uses property values from different sources, but requires a way to avoid scheme alias clashes. In this case, catalog and remote catalog elements MAY appear in any order, and their order is not relevant.
+
+The main reason for using a `sameAsScheme` indicator for a scheme in the catalog is speeding up QCode processing: a NewsML-G2 processor does not have to check the individual concept for its sameAs relationships but can apply this relationship directly to a concept if the scheme identifier of this concept (used as property value) matches the scheme identifier in the sameAsScheme child in the catalog.
+
+Another reason for establishing a sameAsScheme relationship between a scheme A of a provider and a referenced scheme B is to provide additional information about concepts; this could be identical information from scheme B in a different language or deeper information in the same language(s) as available with scheme B.
+
+Detailed information on the structure of catalogs and their processing is given in link:#dealing-with-controlled-values[Dealing with Controlled Values].
+
+Sample:
+
+[source, xml]
+----
+<newsItem 
+    standard="NewsML-G2" 
+    standardversion="2.36"
+    guid="urn:newsml:iptc.org:20071231:sample" 
+    version="2" 
+    xmlns="http://iptc.org/std/nar/2006-10-01/">
+    <catalogRef href="http://aprovider.com/cv/newsml-g2-catalog-4.xml"/>
+</newsItem>
+----
+
+[[signature-information]]
+Signature Information
+~~~~~~~~~~~~~~~~~~~~~
+
+A digital `signature` may be associated with a whole Item or only parts of it. For example, it is possible to sign each individual news content component of a newsItem using their local identifiers as a local reference.
+
+A digital signature is a unique seal placed on data. It is difficult to forge and assures that any change made to the signed data cannot go undetected.
+
+This specification supports the model and syntax defined by the W3C in [XMLDSIG], and introduced by the following: “XML Signatures provide integrity, message authentication, and/or signer authentication services for data of any type, whether located within the XML that includes the signature or elsewhere”.
+
+This specification model excludes two functionalities defined by the W3C XML-Signature Processing Recommendation. These are: “Signed content included within an XML Signature Construct” and “Detached Signatures”.
+
+Therefore this specification offers the following features:
+
+* A Signature MUST be “enveloped” (the Signature Component is contained within the Item being signed).
+
+* A Signature MUST sign the Item containing the Signature component or child components of the Item containing the Signature.
+
+* The Signature MUST NOT be “enveloping” (it cannot sign content found within the signature itself).
+
+* A Signature MUST NOT be “detached” (a detached Signature Component would not be contained within the Item being signed and could be external to the containing document).
+
+* A Signature MUST NOT be related to Items and Components external to the enclosing document (via references).
+
+[[rights-information]]
+Rights Information
+~~~~~~~~~~~~~~~~~~
+
+The content of a newsItem is bound to a set of copyrights and licensing information.
+
+A `rightsInfo` wrapper element acts as a container for a set of properties related to rights, which offer a basic expression of the copyright and usage conditions associated with an Item.
+
+This available properties are link:#_bookmark137[accountable] person, a `copyrightHolder`, a set of `copyrightNotice` elements, `usageTerms`, and `dataMining` rights. The optional dataMining element expresses data mining permissions and constraints, using the recommended vocabulary of values defined by the PLUS Coalition at https://ns.useplus.org/LDF/ldf-XMPSpecification#DataMining. 
+
+The order of the properties is flexible: The non-repeatable properties MUST come first, then the repeatable properties MAY be inserted in any order.
+
+The expression of rights can be verbose, and the volume of information exchanged or stored may suffer from the repetition of such information. Therefore each property provides an _href_ attribute as an alternative locator of a remote expression of rights. In the case where both inline and remote expression of rights is indicated, the inline expression MUST take precedence.
+
+In some situations, different parts of the content are associated with different sets of rights; the rightsInfo element is therefore repeatable.
+
+Each set of rights provides a set of optional attributes (_idrefs_, _scope_, _aspect_), which indicate which part of the content is bound to these rights. Please review the comprehensive Processing Model below.
+
+The rightsInfo element also provides optional time validity attributes (_validfrom_ and _validto_) which express the date and time between which the set of rights properties apply.
+
+Each provider may add a set of metadata properties which have to be defined in a non-IPTC-G2 namespace. See also link:#_bookmark121[XML Namespaces] and link:#_bookmark123[Extension Points in XML].
+
+[[Processing_Model]]
+Processing Model
+^^^^^^^^^^^^^^^^
+
+.Rights Use Case 1 of 3: Rules for adding rightsInfo expressions taking the News Provider View
+
+To be answered: How to apply rightsInfo elements referencing only a part of a NewsML-G2 Item?
+
+image:rights1of3.png[image,width=573,height=627]
+
+. How a rightsInfo element applies to an Item can be refined in two ways: 
+
+.. making a statement about the scope, i.e. whether this rightsInfo element applies to the whole or part(s) of the Item, and 
+
+.. making a statement about the rights-related aspect of the Item or part(s) of the Item to which rightsInfo applies.
+
+. There are two ways to express the scope:
+
+.. In a general way: all elements of an Item are split into either the set of metadata properties or the content. Thus it can be expressed that
+
+* rightsInfo is about the Item as a whole by not having a _scope_ attribute
+
+* rightsInfo is about the metadata properties only by adding a _scope_ attribute with a value of +
+"riscope:metadata"
+
+* rightsInfo is about the content only by adding a _scope_ attribute with a value of "riscope:content" To see which parts of an Item fall under the content-scope, and which parts under the metadatascope, check the definition in the Rights Info Scope NewsCodes.
+
+* When making a statement about the scope in this general way an _idrefs_ attribute MUST NOT be present on this rightsInfo element (else the scope will only apply to the element(s) with a corresponding _id_). 
+
+.. In a specific way: by adding the ID(s) of XML element(s) to the _idrefs_ attribute this rightsInfo applies only to all element(s) which have a corresponding _id_. This specific addressing of elements overrides rightsInfo expressions which use the general addressing mechanism.
++
+The application of rightsInfo is not inherited by the children of itemMeta and contentMeta if these wrapper elements are targeted using their IDs. Therefore their IDs should not be added to _idrefs_. If the referenced XML element is a partMeta element then:
+
+* If a _scope_ attribute is not present then rightsInfo applies to both the content described by this partMeta element and to the metadata children of this partMeta element.
+* If a _scope_ attribute is present its value(s) determines whether rightsInfo applies to the content described by this partMeta element or to the metadata children of this partMeta element.
++
+In compliance with the specification of the _idrefs_ attribute, IDs of only the following XML elements may be included into the list of values of _idrefs_:
+
+* all metadata properties as per the definition of the Rights Info NewsCode for "riscope:metadata".
+
+* the child elements inlineXML, inlineData and remoteContent of contentSet of a News Item as they provide renditions of the full content, the child element concept of conceptSet of a Knowledge Item and the child element group of groupSet of a Package Item.
++
+Explicitly excluded are all child elements of inlineXML of a News Item as they contain only parts of the content. In this case a partMeta element must be used to describe this part and the value of the _partid_ attribute of this partMeta element must be added to the list of values of the _idrefs_ attribute of the rightsInfo element.
+[start=3]
+. The _scope_ and _idrefs_ attributes allow one to determine to which XML elements a rightsInfo element applies. In some cases it is necessary to associate a rightsInfo element with a particular aspect of an XML element. For example, a keyword element may contain a term associated with a photograph. 
++
+One aspect of the keyword element to which a rightsInfo element may apply is the term itself. Another aspect to which a rightsInfo element may apply is the selection and application of this term to this photograph. Rights on these two aspects could be different. The _aspect_ attribute allows one to determine to which rights-related aspects the rightsInfo element applies.
+
+* If an _aspect_ attribute is not present then all aspects from the Rights Aspect NewsCodes apply.
+
+* If an _aspect_ attribute is present then only the aspects from the Rights Aspect NewsCodes listed in the attribute apply.
+
+* If a target does not support a specific aspect which is listed in the _aspect_ attribute then this aspect should be ignored for this target.
+
+.Rights Use Case 2 of 3: How to detect all parts of an Item which are governed by a specific rightsInfo expression taking the Copyright Holder View
+
+To be answered: To which markup does this specific rightsInfo apply?
+
+image:rights2of3.png[image,width=642,height=736]
+
+. The goal of the processing: the result will be multiple sets of elements and/or parts of content which all are governed by a rightsInfo expression. Each of the sets corresponds to one of the Rights Aspect NewsCodes, and MAY be empty after the processing if no corresponding parts of an item are found.
+
+. Select the rightsInfo element to be processed; this is the "base" for all subsequent processing steps.
+
+. If no _idrefs_ attribute exists in the base:
+
+.. If a _scope_ attribute is not present: all the content and all metadata properties of this item are governed by the base's rights expression; they all should be included into a temporary result set. Continue with step 5.
+
+.. If a _scope_ attribute is present:
+
+* If its value is "riscope:metadata": only metadata properties are in the scope of this rightsInfo element, add only all metadata elements of this item to a temporary result set. Continue with step 5.
+
+* If its value is "riscope:content": only content is in the scope of this rightsInfo element, add only all content of this item to a temporary result set. Continue with step 5.
+
+. If an _idrefs_ attribute is present in the base, iterate over each of the IDs listed by the _idrefs_ attribute and find the referenced element:
+
+.. If the referenced element is a partMeta element then check if a _scope_ attribute is present in the base:
+
+... If a _scope_ attribute is not present: a) the partMeta content and b) all the partMeta metadata properties are governed by the base's rights expression; they all should be included into a temporary result set. Continue with step 5.
+
+... If a _scope_ attribute is present:
+
+* If its value is "riscope:metadata": only metadata properties are in the scope of this rightsInfo element, add only the metadata elements of this partMeta element to a temporary result set. Continue with step 5.
+
+* If its value is "riscope:content": only content is in the scope of this rightsInfo element, add only the content described by this partMeta element to a temporary result set. Continue with step 5.
+
+.. If the referenced element is not a partMeta element: add the referenced element to a temporary result set. In this case the scope is implied by the element that is referenced and any _scope_ attribute should be ignored. Continue with step 5.
+
+. Check the base for an _aspect_ attribute:
+
+.. If an _aspect_ attribute is not present then all members of the temporary result set should be copied to each of the result sets for the different Rights Aspects.
+
+.. If an _aspect_ attribute is present then all members of the temporary result set should be copied only to the result sets corresponding to the Rights Aspects which are present in the _aspect_ list.
+
+. Final step: iterate over the result sets for the different Rights Aspects and interpret the included parts of the content or metadata elements according to the associated aspect. Some members of the result set may not be in a scope specified in the definition of the aspect; such members should be excluded from the result set.
+
+.Rights Use Case 3 of 3: How to detect the rightsInfo expression(s) that apply to a specific part of an Item taking the Content/Metadata User View
+
+To be answered: For a specific element, which rightsInfo is applicable?
+
+image:rights3of3.png[image,width=643,height=737]
+
+. The goal of the processing: the result will be multiple sets of rightsInfo elements, all of which will apply to this part of the Item. Each of the sets correspond to one of the Rights Aspect NewsCodes, and MAY be empty after the processing if no corresponding rightsInfo elements were found.
+
+. Select the part of the Item for which the corresponding rightsInfo expression(s) should be determined, this part is the "target" for all subsequent processing steps.
++
+This part must be:
+* the full content, or
+* one of the renditions of the content as a whole, or
+* a part of the content which is described by a partMeta element, or 
+* a single metadata property. The metadata wrappers itemMeta or contentMeta should NOT be selected as a target of this processing.
+
+. Define into which scope of rightsInfo elements the target falls:
++
+Match the target against the definitions of corresponding parts for "riscope:content" and "riscope:metadata" of the Rights Info Scope NewsCodes and determine to which scope the target belongs.
++
+Be aware that partMeta elements fall under BOTH scopes.
+
+. Iterate over each rightsInfo element which has no _idrefs_ attribute:
+
+.. If a _scope_ attribute is not present in the rightsInfo element then check the rightsInfo element against the rules of step 6 and add it to result sets as defined. Mark the added rightsInfo element as "generic scope rightsInfo". Continue with step 7.
+
+.. If a _scope_ attribute is present and the target falls in the scope of the attribute's value (see step 3) then check the rightsInfo element against the rules of step 6 and add it to result sets as defined. Earmark the added rightsInfo element as "generic scope rightsInfo". Continue with step 7.
+
+. Iterate over each rightsInfo element which has an _idrefs_ attribute that includes the ID of the target:
+
+.. If a _scope_ attribute is not present then check this rightsInfo element against the rules of step 6. 
++
+Be aware that a rightsInfo element which is referencing the target by _idrefs_ overrules rightsInfo elements which reference the target by _scope_. For that reason if the target should be added to the result set then first delete any rightsInfo element which is marked as "generic scope rightsInfo" from the result set, and then add this rightsInfo element. Continue with step 7.
+
+.. If a _scope_ attribute is present and the target falls in the scope of the attribute's value (see step 3) then check the rightsInfo element against the rules of step 6. 
++
+Be aware that a rightsInfo element which is referencing the target by _idrefs_ overrules rightsInfo elements which reference the target by _scope_. For that reason if the target should be added to the result set then first delete any rightsInfo element which is marked as "generic scope rightsInfo" from the result set, and then add this rightsInfo element. Continue with step 7.
+
+. Check any _aspect_ attribute of a rightsInfo element:
+
+.. If an _aspect_ attribute is not present then the rightsInfo element should be added to the result sets corresponding to each of the Rights Aspect Newscodes.
+
+.. If an _aspect_ attribute is present then the rightsInfo element should be added only to the result sets corresponding to the Rights Aspects which are present in the _aspect_ list.
+
+. Final step: iterate over the result sets for the different Rights Aspects and interpret the included parts of the content or metadata elements according to the associated aspect. Some members of the result set may not be in a scope specified in the definition of the aspect; such members should be excluded from the result set.
+
+[[item-metadata]]
+Item Metadata
+~~~~~~~~~~~~~
+
+Such information is wrapped in the mandatory `itemMeta` wrapper element and split between news management metadata and Item links.
+
+[[Management_Metadata]][[_bookmark17]]
+
+Management Metadata
+^^^^^^^^^^^^^^^^^^^
+
+Management metadata is bound to the Item as a whole and reflects its processing in a professional workflow.
+
+The order of the properties in this set is imposed by the W3C XML Schema.
+
+_Table 1. Item Management Group Elements_
+
+include::{includedir}/../../tables/item-management.adoc[]
+
+The IPTC provides a mandatory standardised scheme applicable to the `itemClass` property of a newsItem, identified by the URI http://cv.iptc.org/newscodes/ninature/[http://cv.iptc.org/newscodes/ninature/].
+
+Each provider may add a set of metadata properties which have to be defined in a non-IPTC-G2 namespace. See also link:#_bookmark121[XML Namespaces] and link:#_bookmark123[Extension Points in XML].
+
+[[Processing_the_Publish_Status_of_a]][[_bookmark18]]
+
+Processing the Publish Status of an Item
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The IPTC makes these values normative for the exchange of Items between a provider and its customers:
+
+* _usable_: The Item MAY be published without restriction.
+* _withheld_: Until further notice, the Item MUST NOT be made public by whatever means. If the Item has been published the publisher MUST take immediate action to withdraw or retract it.
+* _canceled_: (note: U.S. spelling) The Item MUST NOT be made public by whatever means. If the Item has been published the publisher MUST take immediate action to withdraw or retract it.
+
+Embargoes are managed by the `embargoed` property. At the level of the data model the embargoed element could be linked now to an `edNote` element if the existing embargoed is empty (<embargoed />).
+
+Details are described in the Processing model below.
+
+_State Transition Diagram_
+
+This depicts the state transition diagram reflecting the ways in which the `pubStatus` values are intended to be used. Thus, upon creation of an Item, allowed statuses are usable and withheld. It is possible to withhold a usable document; it is possible to release a withheld document; it is possible to cancel a usable or withheld document. Once an Item has had its status set to canceled, it has reached a final state.
+
+image:image4.png[image,width=483,height=171]
+Figure 1. State Transition Diagram
+
+.Reliability of Items with a status of Withheld or Canceled
+
+The use of Withheld or Canceled indicates that parts of the previous version of the Item were not correct (and in the case of Canceled, cannot be corrected), and therefore cannot be considered as reliable information. This raises the issue as to which parts of the Item version with a publish status of Withheld or Canceled should be considered as correct and reliable. 
+
+These attributes and elements MUST be considered as correct and reliable: the Item _guid_ and _version_, the `pubStatus` element including the _qcode_ and/or _uri_ attributes. The `edNote` element SHOULD be considered as reliable. All other metadata properties of the Item MAY be considered as reliable, but the element(s) conveying the content of the Item SHOULD NOT be considered as reliable.
+
+.Use Cases Associated with a Status of Withheld
+
+. A provider distributes a story as a newsItem (version 1) with the status _usable_. At a later stage he learns that there may be a problem with the information included in the Item. He sends a new version of the newsItem (version 2) with a status set to _withheld_. All recipients systems must display a warning on this newsItem, and recipient publishers must postpone the publication of the information contained in the newsItem until further notice. The news provider has confirmation that the information is false and decides to set the status to _canceled_ (version 3).
+
+. An eCommerce system proposes a large collection of illustrated articles managed as news items. The publisher managing the system sees that the information included in a newsItem (version 1) is not up to date, and decides to hide this Item from its customers until it is properly revised. He sets its status to _withheld_ (version 2), edits the newsItem and set its status back to _usable_ (version 3).
+
+.Processing Model on the Recipient Side
+
+Here is the processing model on the recipient side and relies on the `pubStatus` and embargoed properties:
+
+. Test pubStatus = _canceled_:
++
+The Item must not be used, ever. Any usage of the Item must be prohibited, if needed by the way of alerts.
++
+Else: next
+
+. Test pubStatus = _withheld_:
++
+The Item must not be used until further notice. Any usage of the Item must be prohibited, if needed by the way of alerts.
++
+Else: next
+
+. Test pubStatus = _usable_:
++
+Test `embargoed` as described in the table below:
+
+[[_bookmark19]]
+_Table 2. Test pubStatus = Usable_
+
+include::{includedir}/../../tables/embargo-usable.adoc[]
+
+[[Processing_of_versionCreated]][[_bookmark20]]
+
+Processing of versionCreated
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If the value provided by any date/time field does not conform to the appropriate syntax (e.g. format “YYYY-MM-DDTHH:MM:SS[+-]HH:MM”) it MUST be considered as being not existent.
+
+In the case of the mandatory link:#date-version-created---versioncreated[versionCreated] property the full Item MUST be considered as being void.
+
+[[Best_Practice_for_expressing_an_up]][[_bookmark21]]
+
+Best Practice for expressing an update or correction of an item
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+An Update is expressed by using the concept URI http://cv.iptc.org/newscodes/signal/update (as QCode with the recommended scheme alias: sig:update) as value of the link:#signal-signal[signal] property under the Item Meta of an Item. This signal indicates that some part of the item has been updated. This implies that this version of the item is not the inital version.
+
+A Correction is expressed by using the concept URI http://cv.iptc.org/newscodes/signal/correction (as QCode with the recommended scheme alias: sig:correction) as value of the signal property under the Item Meta of an Item. This signal indicates that some part of the item has been corrected. This implies that this version of the item is not the inital version. This Correction signal does not indicate in which version(s) of the item the corrected error existed.
+
+In addition a concept from the Severity NewsCodes (http://cv.iptc.org/newscodes/severity/)[http://cv.iptc.org/newscodes/severity/]) may be used as a refinement of how severe the impact of this update or change is. The IPTC acknowledges that the rules for applying the severity are set by the news provider of the item.
+
+Further the Editorial Note (edNote) property under Item Meta may be used to provide details about the update or correction like pointing at a name in the text which has been corrected of if paragraph with updated information has been added to the text.
+
+[[Best_Practice_for_issuing_a_conten]][[_bookmark22]]
+
+Best Practice for issuing a content warning
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A Content Warning is expressed by using a QCode for the concept URI http://cv.iptc.org/newscodes/signal/cwarn with the link:#signal-signal[signal] property. (With the recommended alias the QCode is “sig:cwarn”.) This signal indicates that the content of the item should be reviewed as it may be perceived as being offensive.
+
+In addition, refinement of the reason(s) for the content warning MAY be expressed by using concept(s) from the Content Warning NewsCodes http://cv.iptc.org/newscodes/contentwarning/ with the `exclAudience` property.
+
+Examples:
+
+.Content Warning signal without specific Content Warning NewsCodes
+
+[source, xml]
+----
+<signal qcode="sig:cwarn"/>
+----
+
+.Content Warning signal with specific Content Warning NewsCodes (relating to nudity and language)
+
+[source, xml]
+----
+<signal qcode="sig:cwarn"/>
+<exclAudience qcode="cwarn:nudity"/>
+<exclAudience qcode="cwarn:language"/>
+----
+
+[[item-links]]
+
+Item Links
+~~~~~~~~~~
+
+A powerful feature of NewsML-G2 is the capability to associate Items via links. It is therefore possible to create a network of news resources, for management and navigation purposes.
+
+The link:#link-link[link] element offers a generic mechanism for linking Items within the NAR framework as well as creating links from Items to other Web resources.
+
+The semantic of the link MAY be refined via a relationship attribute (_rel_). In the absence of such indicator, the implied meaning of the link is "see also" (i.e. a navigation link).
+
+The IPTC provides a recommended scheme of link relationships identified by the URI http://cv.iptc.org/newscodes/itemrelation/.
+
+To identify the target resource either the _residref_ attribute or the _href_ attribute MUST be set, optionally both MAY be used in parallel. The _residref_ attribute identifies the target resource by its globally unique identifier (if the resource has such an identifier), while the _href_ attribute identifies the location of the target resource in e.g. a (remote) file system. If the target resource is an Item and the _residref_ attribute is used, a _version_ attribute MAY indicate the target Item version; in the absence of version information, the target resource is the latest version available.
+
+A provider MAY explicitly express the format of _residref_ using the _residerefformat_ attribute with a QCode (or as a URI using its sibling _residrefformaturi_) in conjunction with the recommended IPTC Value Format NewsCodes (recommended scheme alias "valfmt") at http://cv.iptc.org/newscodes/valueformat/.
+
+The content type, a.k.a. IANA Media Type of the target resource MAY be indicated by the _contenttype_ attribute. It MAY be complemented by a _format_ attribute to refine the Media Type information.
+
+In order to ease the processing of a linked resource, the _size_ in bytes of the target resource MAY be indicated. This feature is useful if the target on the link is a Web resource. If the target resource is an Item, the size which is given here MUST be the size of the XML representation of the Item.
+
+A _rank_ attribute may represent the rank of the link among other links.
+
+This property also provides `timeValidityAttributes` (_validfrom_ and _validto_) which express the date and time between which the link is valid.
+
+Supplemental metadata extracted from the target resource (usually an Item) may be added to the linking information as child elements. Such information is not constrained by the data model. It may be part of the target Item Metadata (e.g. Publish Status, Alternative Location ...), Content Metadata (e.g. Intended Audience, Subject, Genre …) or Characteristics of the content (e.g. Size, Content Type, Format, or specific characteristics like the Height and Width of a picture). Different sets of characteristics may be provided, corresponding to specialized content components.
+
+All properties SHOULD be included directly under the link property (see the details for this inclusion in the link:#Hint_and_Extension_Points_in_XML[Hint and Extension Point] section).
+
+[[Processing_Links]][[_bookmark24]]
+
+Processing Links
+^^^^^^^^^^^^^^^^
+
+.Link processing rules:
+
+. Processor on the consumer side: If a _guid_ and a _version_ are provided, check whether the specific version of the Item is accessible using this information.
+
+. Processor on the provider side: If a _guid_ and a _version_ are provided deliver only the item version with the requested version number.
+
+. Processor on the consumer side: If only a _guid_ is available and no _version_, check whether an item is delivered by the provider. Consider a delivered version of the item as being the latest one.
+
+. Processor on the provider side: if only a _guid_ is requested and not _version_, check if any version of the item exists, and if yes provide the one with the highest version number.
+
+. Check whether the value of the _href_ attribute allows some direct retrieval of the target resource via the Web (e.g. if the scheme is http: or ftp:), or an implicit resolution mechanism (e.g. DOI).
+
+. Check whether an Alternative Representation (link:#alternative-representation---altrep[altRep]) is exposed in the link. This information may complement the _href_ attribute and provide an immediate URI resolution mechanism for Items. Multiple locations may be given, as allowed in the Item Metadata component. In such a case the processor will use the _role_ qualifier and URL scheme for choosing the most appropriate resource.
+
+. Signal an error or ignore the link.
+
+[[news-content-metadata]]
+
+News Content Metadata
+~~~~~~~~~~~~~~~~~~~~~
+
+News Content Metadata is directly associated with the news information conveyed by the Item, independently of the processing of the Item in a professional workflow. Such information which applies to the whole content of the Item is wrapped in the `contentMeta` wrapper element and split between administrative and descriptive metadata. Be aware that some NewsML-G2 Items adopt only a subset of the metadata properties listed below. Informtion about a part of the content is wrapped by link:#part-of-content-metadata[Part of Content Metadata].
+
+[[Administrative_Metadata]][[_bookmark26]]
+
+Administrative Metadata
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This is a set of properties associated with the administrative facet of content, i.e. data that cannot be inferred from “consuming” (reading, listening to, watching) the content.
+
+All properties are optional. The order of the properties in this set is flexible: the non-repeatable properties MUST come first and then the repeatable properties may be inserted in any order.
+
+_Table 3. Administrative Metadata Group Elements_
+
+include::{includedir}/../../tables/administrative-metadata.adoc[]
+
+Dates Processing Model
+++++++++++++++++++++++
+
+Two optional dates are associated with the content of an Item.
+
+link:#date-content-created---contentcreated[contentCreated] and link:#date-content-modified-contentmodified[contentModified] processing rules:
+
+.Date Value Rules
+
+. If the value provided by any date/time field does not conform to the appropriate syntax (e.g. format “YYYY-MM-DDTHH:MM:SS[+-]HH:MM”) it MUST be considered as being not existent.
+
+. If contentCreated is present it MUST NOT be later than link:#date-version-created---versioncreated[versionCreated].
++
+Error handling if it is later: at the creator's site an error alert should be issued, on the receiver's site it should be set to versionCreated.
+
+. If contentModified is present contentCreated SHOULD be present as well. In this case contentModified MUST NOT be earlier than contentCreated.
++
+Error handling if it is earlier: at the creator's site an error alert should be issued, on the receiver's site it should be set to contentCreated
+
+. If contentModified is present it MUST NOT be later than versionCreated.
++
+Error handling if it is later: at the creator's site an error alert should be issued, on the receiver's site it should be set to versionCreated.
+
+.Date Processing Rules
+
+. The recipient processor MUST first check if a contentModified element is present. 
+
+. If not it MUST check if a contentCreated element is present.
+
+. If a contentCreated element is not present the processor SHOULD assume that the content was created at the time indicated by versionCreated element in itemMeta.
+
+Audience Processing Model
+++++++++++++++++++++++++ 
+
+Audience processing may be used to form ad hoc groups of recipients for which the Item is particularly significant or to filter out some users from the list of intended recipients of an Item.
+
+The audience is expressed as a set of “positive” values (`audience`)and a set of “negative” values (`exclAudience`). The logic is to make the content easy to find to the audience identified by the positive values, but keep this content away from the audience identified by the negative values. An attribute of each property may indicate the expected significance of the content for this specific audience, and acts as a threshold for recipient filters.
+
+The model for the audience processing is only a part of the overall filter that is used to determine whether a particular recipient is entitled to have access to the Item. It could be combined with the processing of other properties to further narrow the number of Items that match the recipient profile.
+
+The processing rule has to be considered as a function which returns TRUE to indicate the recipient is entitled to receive the content, FALSE in case he is not entitled and NULL if the item does not contain any audience statements that apply to the Recipient.
+
+.Audience processing rules
+
+. If any of the exclAudience properties applies to the recipient: return FALSE 
+
+. If any of the audience properties applies to the recipient: return TRUE. 
+
+. Return NULL.
+
+[[Descriptive_Metadata]][[_bookmark27]]
+
+Descriptive Metadata
+^^^^^^^^^^^^^^^^^^^^
+
+This is a set of properties associated with the descriptive facet of news content, i.e. data that can be inferred from “consuming” (reading, listening to, watching) the news.
+
+All properties are optional, repeatable and may be inserted in any order.
+
+_Table 4. Descriptive Metadata Group Elements_
+
+include::{includedir}/../../tables/descriptive-metadata.adoc[]
+
+[[Other_Content_Metadata]][[_bookmark28]]
+
+Other Content Metadata
+^^^^^^^^^^^^^^^^^^^^^^
+
+Each provider may add a set of metadata properties which have to be defined in a non-IPTC-G2 namespace. See also link:#_bookmark121[XML Namespaces] and link:#_bookmark123[Extension Points in XML].
+
+[[part-of-content-metadata]]
+Part of Content Metadata
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Streamed content may be split into different sections (called “shots” in the video world). Images may also be split in regions.
+
+A specific set of metadata MAY be associated with any individual content part. Such metadata is wrapped in a `partMeta` element, which is repeatable in the newsItem and MUST be inserted after contentMeta.
+
+Each part MAY have a part identifier (_partid_) and a sequence number (_seq_).
+
+Each part MAY be illustrated by an `icon` e.g. a keyframe of a video clip which takes the form of an IRI. It is not mandatory for such icon to be a pure extraction of the content. If multiple icon elements are present they MUST represent the same visual content, only differentiated by rendition, contentType or format.
+
+A section of a stream MAY be defined by a link:#time-delimiter-timedelim[timeDelim] element. The time scope is expressed as _start_ and _end_ timestamp attributes plus an additional time unit (_timeunit_) attribute. Both timestamp values MUST be within the overall content duration.
+
+The _start_ timestamp is the start time of the part in a timeline. The expressed value is *excluded* from the timeline. Using Edit Unit requires the frame rate or sampling rate to be known, this must be defined by the referenced _rendition_ of the content.
+
+The _end_ timestamp is the end time of the part in a timeline. The expressed value is *included*. Using the Edit Unit requires the frame rate or sampling rate to be known, this must be defined by the referenced _rendition_ of the content.  
+
+A region of an image MAY be defined by a `regionDelim` element. Currently regions are limited to rectangles defined by {x, y, width, height} coordinates in pixels expressed as a set of attributes.
+
+The role of this part in a stream of content MAY be defined by the link:#role-in-the-content-stream-role[role] property.
+
+If, during the processing of the content, it appears that part delimiters do not correspond to any physical content, then the corresponding set of metadata MUST be discarded.
+
+News Administrative and Descriptive Metadata may be applied to each part, in complement to the administrative and descriptive metadata applicable to the whole content.
+
+Each provider may add a set of metadata properties which have to be defined in a non NewsML-G2 namespace. See also link:#_bookmark121[XML Namespaces] and link:#_bookmark123[Extension Points in XML].
+
+[[Edit_Units_and_Time_Codes]][[_bookmark30]]
+
+Edit Units and Time Codes
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It is recommended that time and durations are expressed in “Edit Units” (_editUnit_), which represent the smallest editable portion of content, i.e. a video frame or an audio sample.
+
+stem:[Edit Unit = 1 div(Edit Rate)].
+
+For video, the Edit Rate is the Frame Rate (frames per second). For audio, the Edit Rate is the Sample Rate (Hz).
+
+The use of Edit Unit is independent of the mode of representation of time (e.g. timecode) in editing devices. The timecode associates one value to each video frame or audio sample.
+
+For video, the usual timecode format is HH:MM:SS:FF (Hours:Minutes:Seconds:Frames).
+
+In the case of simple frame rates (e.g. 25 fps, 30 fps, 50 fps or 60 fps), the conversion of a number of EditUnits to timecode is simple.
+
+However, there exist other frame rates (e.g. 29.97 fps, 59.94fps) for which this calculation requires more attention. A precise calculation would consist of replacing e.g. 29.97 fps by its exact value 1.001/30 fps and multiplying the number of Edit Units by 1.001 before conversion on the basis of 30 fps. Another method consists of calculating the timecode using the drop frame method defined in SMPTE 12M. The drop frame method is an approximation based e.g. on 29.97 fps (1.001001001/30 fps). The drop frame timecode is not systematically used, particularly if content is of a short duration with insignificant drift with the actual clock time. SMPTE 12M will evolve as it doesn't address higher frame rates with progressive scanning.
+
+For audio, the usual video timecode (HH:MM:SS:FF) is used if the content also contains video. A time restricted timecode (HH:MM:SS) is often used for audio only content.
+
+The time reference will be the one of reception or edition in the production system, which should be able to locate content in time based on the number of Edit Units.
+
+[[Time_Unit_Types]][[_bookmark31]]
+
+Time Unit Types and Start/End Timestamp Formats
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The format of the Start Timestamp (_start_) and/or End Timestamp (_end_) is implied by the associated Time Unit type (_timeunit_), see the Time Delimiter element link:time-delimiter-timedelim[timeDelim.]
+
+link:#_bookmark32[Table 5] defines the processing of values of the three related attributes but be aware: they are required by the XML Schema but may either show invalid values or be empty.
+
+[[_bookmark32]]
+_Table 5. Time Unit Type and Start/End Value Processing_
+
+include::{includedir}/../../tables/timeunit-processing.adoc[]
+
+[[assertions-about-concepts]]
+Assertions About Concepts
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When a concept is used as the value of many properties or by a property with a limited granularity of concept details, it may be useful to group supplemental information about this concept at a unique location.
+
+The optional and repeatable `assert` property provides information about a concept identified by a qualified code, a full URI or a literal value. The information is given as a set of properties providing metadata about the concept. Many assertions may be included in an Item.
+
+Any property of the concept may be included at this point, especially its name, its relationships with other concepts, its definition.
+
+NOTE: This information is only up to date at the time of last modification of the Item. Any changes applied to a concept after that time are not reflected by an assert element.
+
+[[references-to-inline-concepts]]
+References to Inline Concepts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When the same concept appears as a string in several different labels or in the textual content of a newsItem, it may be useful to group information about this concept at a unique location.
+
+The optional and repeatable `inlineRef` property provides information about a concept found in some textual content. The string associated with the concept can be tagged by any element which provides an attribute of type ID. One or more local identifiers MAY be listed as value of the _idrefs_ attribute of the inlineRef element.
+
+If the concept is taken from a controlled vocabulary it MUST be identified by a qualified code or a full URI, in any other case it SHOULD be identified by a literal value, and supplemental information MAY be given as a set of properties relative to the concept.
+
+It is possible to give values for the confidence with which the metadata has been assigned, the relevance of the metadata to the string to which it is attached, and why the metadata has been included.
+
+[[document-derivation-of-concepts]]
+Derivation of Concepts
+~~~~~~~~~~~~~~~~~~~~~~
+
+Increasingly, metadata values are not added explicitly by human interaction but by an automated derivation using some kind of knowledge network. In this case it could be valuable to indicate the concept(s) or value(s) from which a specific value of a metadata property has been derived. For this purpose the optional `derivedFrom` and `derivedFromValue` elements can be used.
+
+The _qcode_ or _uri_ attribute of the `derivedFrom` element defines the *concept* from which another concept has been derived. The _idrefs_ attribute of this element refers to the _id_ attributes of all properties in this NewsML-G2 Item whose value has been derived from the concept represented by `derivedFrom`.
+
+The `derivedFromValue` element represents the *non-Concept* value that was used for deriving the value of one or more properties in this NewsML-G2 Item. The mandatory _sourceidref_ attribute refers to the id of the element that provides the value used for the derivation; the mandatory _idrefs_ attribute refers to the ids of elements whose values have been derived from the value represented by this property.
+
+[[metadata-creator]]
+
+Attribution of metadata creation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The entity (person, organisation, system) responsible for creating metadata is expressed by the `metadataCreator` element, which is used in conjunction with the _creator_ attribute (note: NOT the `creator` element) as follows:
+
+. If an element specifies a _creator_: the Creator of the element is expressed by the value of _creator_.
+
+. If an element does not specify a _creator_ and a Metadata Creator is specified: the element's Creator is expressed by the value of the `metadataCreator` element.
+
+. If an element does not specify a _creator_ and a `metadataCreator` is not specified: the element's Creator is indeterminate.
+
+See also link:#metadatacreator[metadataCreator]
+
+
+[[newsitem-content]]
+newsItem Content
+~~~~~~~~~~~~~~~~
+
+Content may be included by value or by reference, and useful characteristics are represented along with such content, in order to facilitate its processing.
+
+Alternative renditions of the news content, i.e. different technical representation of the same logical content, are wrapped by a `contentSet` wrapper element. Their order of appearance in contentSet is of no relevance. Their presence is optional: this allows for a lightweight and extensible representation of information.
+
+Each rendition SHOULD by defined by a _rendition_ attribute.
+
+All alternative renditions SHOULD be derived from an original rendition by a software processor. For example: images in different resolutions, vector graphics and alternative bitmap images, text in different formats (e.g. NITF and PDF). The rendition from which all other renditions originate is indicated by the _original_ attribute of contentSet; this attribute takes as a value the local identifier (id) of the original content component included in the contentSet.
+
+They are three kinds of content components, Inline XML, Inline Data and Remote Content:
+
+* The `inlineXML` wrapper element holds XML content which is directly embedded in the element. 
++
+The root element of this structure must be the root element of the language. Content may belong to any XML language capable of expressing generic or specialized news information, e.g. NITF, XHTML, SportsML or XBRL. The XML vocabulary is identified by a content type attribute (_contenttype_).
+
+* The `inlineData` wrapper element holds data encoded as a string in the same encoding as the full XML document, for example utf-8. 
++
+Data not covered by this encoding, such as binary data, MUST use a special encoding resulting in a text string. In the case of binary data (images, graphics, video, audio etc) the _encoding_ attribute SHOULD be used to express the encoding used, and the media type of the data SHOULD be expressed by the _contenttype_ attribute, for example “image/jpeg”, “video/quicktime”. The _encoding_ is expressed using a QCode or URI, and it is recommended to use the IPTC Encoding NewsCodes (Scheme URI http://cv.iptc.org/newscodes/encoding/ and recommended Scheme Alias "encd") 
++
+Any characters that are not within the definition of xs:string, such as syntax characters used in HTML, MUST be escaped or placed within CDATA. and the _contenttype_ attribute SHOULD be used (for example “text/plain”, “text/markdown”, “text/html”), but the _encoding_ attribute SHOULD NOT be used.
++
+When encoding binary assets, it is highly recommended that only relatively small objects are conveyed using <inlineData>; normally the <remoteContent> wrapper should be used to convey binary assets.
+
+* The `remoteContent` wrapper element may be used for representing any kind of media and data format. 
++
+The data is stored independently of the newsItem and is referenced via a hyperlink (_href_). The _size_ in bytes of the remote content MAY be indicated. The element MAY also have  _validfrom_ and _validto_ (`timeValidityAttributes`) which express the date and time between which the reference is active. 
++
+The same rendition of content MAY be present at different remote locations. In this case alternative locators of the content are provided by link:#alternative-locator---altloc[altLoc] child elements of one remoteContent element; multiple remoteContent elements with the same rendition value SHOULD NOT be used.
+
+The description of the content in each content component MAY be complemented by a _contenttype_, a _format_ acting as an optional refinement of the content type, an indication on the software tool used to generate the content link:#generator-tool-generator[generator] and the date and time when the content was generated, plus additional link:#news-content-characteristics[News Content Characteristics].
+
+All these three types of content component elements have an _id_ attribute. For this attribute a special constraint applies: its value MUST be persistent for all versions of the Item for its entire lifecycle. The reason for this constraint is that NewsML-G2 elements referencing a target NewsML-G2 Item may further point inside this Item to reference a specific content component by its persistent _id_.
+
+[[news-content-characteristics]]
+News Content Characteristics
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+link:#news-content-characteristics-newscontentcharacteristics[newsContentCharacteristics] are the physical properties of media content like the height and width of a picture, the word count of a news story or the duration of an audio clip, that help in making selections among different renditions of the same logical news content.
+
+The characteristics defined by the IPTC are a small and typical set of properties. Individual providers may add more characteristics they consider reasonable, i.e. audio data for professional broadcasting may require a different set from audio content for a podcast.
+
+[[channels]]
+Channels
+^^^^^^^^
+
+Some binary streams support the notion of channel or track: for example DVDs are MPEG-2 encoded and provide several audio tracks in different languages. It may be important to indicate media characteristics on a per-channel level.
+
+A repeatable `channel` {News Item}] element MAY therefore be defined as a child of a link:#remote-content-remotecontent[remoteContent] element.
+
+Each logical channel MAY have a local identifier (_chnid_), an indication of the media type of the data conveyed by the channel and an indication of the _role_ the data plays in the scope of the full content, for example “voice over”.
+
+Each logical channel MAY be additionally described by the news content characteristics corresponding to the media conveyed in the channel.
+
+

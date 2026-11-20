@@ -1,0 +1,66 @@
+[[executive-summary]]
+Executive Summary
+-----------------
+
+[[why-news-exchange-standards-matter]]
+Why News Exchange standards matter
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Information is valuable. Many major financial decisions rely on split-second delivery of news about companies and markets; successful businesses have been built on the ability to target individuals and groups with information which is relevant to their needs. News organisations and information providers have also invested heavily in the people and the technology needed to gather and disseminate news to their customers.
+
+Without standards for news exchange, most of the value of this information would be lost in a confusion of customised feeds and competing formats. The huge volumes of content now being exchanged not only demand a common format, or mark-up, for the content itself but also a common framework for information about the content - the so-called metadata.
+
+[[the-purpose-of-newsml-g2]]
+The purpose of NewsML-G2
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+NewsML-G2 is an open standard for the exchange of all kinds of news information. This can be content, such as text, pictures, audio and video, or information about Events and News Planning. A sister standard, SportsML-G2 conveys rich sports information. The content can be in any format or encoding. It is conveyed with semantically-precise metadata that matches the needs of a professional news workflow and the way that content is consumed both in a B2B and B2C context.
+
+The standard is not concerned with the presentation or mark-up of the content that it conveys; this is the role of standards such as HTML5 and NITF (News Industry Text Format, an IPTC XML standard) that are used to mark up the payload of a NewsML-G2 Item. Microformats such as hNews are complementary; the IPTC has its own semantic mark-up standard rNews, which is compatible with NewsML-G2.
+
+NewsML-G2 models the way that professional news organisation work, but goes beyond this by standardising the handling of the metadata that ultimately enables all types of content to be linked, searched, and understood by end users. NewsML-G2 metadata properties are designed to be mapped to RDF, the language of the Semantic Web, enabling the development of new applications and opportunities for news organisations in evolving digital markets.
+
+[[business-drivers]]
+Business Drivers
+~~~~~~~~~~~~~~~~
+
+Many of the business challenges faced by media organisations are related to the development of the World Wide Web, which has not only increased the availability of news content, but is constantly creating new ways to consume it. These challenges are not a once-in-a-lifetime event, but a continuing fact of life.
+
+Businesses need to:
+
+* Control, and if possible reduce, the cost of developing and maintaining services.
+* Quickly develop new media-rich products and services that can exploit emerging trends and new business models.
+* Give customers access to added-value assets, including archives and metadata repositories.
+* Allow innovation by third-party vendors and partners.
+* Enhance IT investment by enabling the sharing of complex content across separate systems.
+
+[[business-requirements]]
+Business Requirements
+~~~~~~~~~~~~~~~~~~~~~
+
+In response to these business challenges, an information exchange standard needs to:
+
+* Fit an MMM strategy (Multi-media, Multi-channel, Multi-platform)
+* Handle texts, pictures, graphics, animated, audio or video news
+* Be a lightweight container for news, simple to implement and extend, yet offer powerful features for advanced applications.
+* Be useful at all stages of the lifecycle of news, from initial event planning, through content gathering, syndication, to archiving.
+
+[[design-and-benefits]]
+Design and Benefits
+~~~~~~~~~~~~~~~~~~~
+
+The NewsML-G2 standards are based on common framework – the News Architecture – that is independent of any technical implementation. It may be implemented using object-oriented software, such as Java, or in a database. 
+
+image:G2FamilyGenes.png[]
+
+.Figure: The family genes of NewsML-G2 are inherited from the News Architecture (NAR)
+
+The IPTC has implemented the NAR specification in XML Schema to create NewsML-G2 and SportsML-G2, because of the need to facilitate news exchange using W3C standards. XML provides continuity with existing standards, and also has an existing large community of experts.
+
+The standard enables all parties involved in news – providers, receivers and software vendors – to send and receive information quickly, accurately, and appropriately.
+
+* A common framework maximises the value of investments and provides a path into the future, with maximum inter-operability between different information partners.
+* Machine-readable metadata enables automation of standard processes, cutting costs, speeding delivery, and increasing quality.
+* Innovative solutions are possible because NewsML-G2 complements the work of companies working on search and navigation technologies to realise the vision of the Semantic Web.
+
+

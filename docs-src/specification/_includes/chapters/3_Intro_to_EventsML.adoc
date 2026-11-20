@@ -1,0 +1,121 @@
+[[introduction-to-eventsml-g2]]
+Introduction to EventsML-G2
+---------------------------
+
+EventsML-G2 is a member of the Family of IPTC G2-Standards which is built on a common structural and function framework called the IPTC News Architecture (NAR). The EventsML-G2 specification extends the NewsML-G2 structural specification with some event-specific details and adds well defined functionality for conveying events.
+
+[[overview]]
+Overview
+~~~~~~~~
+
+[[_What_is_EventsML-G2]][[_bookmark41]]
+
+What is EventsML-G2?
+^^^^^^^^^^^^^^^^^^^
+
+* EventsML-G2 is a standard for conveying event information in a news industry environment.
+
+* EventsML-G2 is a member of the Family of IPTC G2-Standards; this family builds on a common specification for the exchange of news items and knowledge about topics, concepts and events.
+
+* EventsML-G2 may be used for:
+
+** Receiving all facts about a specific event from the event organiser
+
+** Publishing all facts about a specific event by a news provider
+
+** Publishing all or only a subset of the facts of one to many events by event listings
+
+** Storing facts about knowledgeable events in archives to be referenced by other items
+
+[[Business_Advantages_of_Using_Event]][[_bookmark42]]
+
+Business Advantages of Using EventsML-G2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+EventsML-G2 is:
+
+* Comprehensive (many types of events may be covered).
+* Flexible (copies of substructures may be used many times, e.g. all the people appearing at an event).
+* Extensible (news provider specific data structures may be added to capture further facts about events)
+
+EventsML-G2 may express facts and information about events by concepts identified either by literal text (free text) or by codes from controlled vocabularies.
+
+EventsML-G2 provides flexible date types:
+
+* year, month, day, optionally plus time
+* year and month only or even year only
+* approximate dates or a date range
+
+EventsML-G2 reuses building blocks from the common NewsML-G2 Architecture allowing for the reuse of software components, making implementation cheaper.
+
+EventsML-G2 makes use of industry standards: allows processing with standard tools. The EventsML-G2 syntax is built on XML, the Extensible Markup Language of the W3C; furthermore, EventsML-G2 makes use of W3C XML Schema and complies with the basic notion of the Semantic Web, the Resource Description Framework (RDF). This allows an easy transfer of EventsML-G2 structures to other XML-based standards and the integration of information about an event into the Semantic Web.
+
+[[What_is_an_Event-to_be_represent]][[_bookmark43]]
+
+What is an Event – to be represented by EventsML-G2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+An event is “something that happens” by definition. For the news industry, it is “something that happens and is subject to news coverage.” All the events in a day make up a “daybook”, which can be a marketable product sold to clients or simply an internal daybook used by editors to organise their work.
+
+An event is planned or unplanned, with breaking news capable of overshadowing everything on the schedule.
+
+Automated systems need to store and exchange information about news events. This is currently done in an ad-hoc manner, leading to overly-specialized formats and incompatible data exchange. From that the IPTC learned that the industry would benefit from an event information interchange standard. Such a standard would facilitate the efficient exchange of event information, and the creation of better tools to support event management.
+
+NOTE: Information about the planned coverage of an event can be shared by using a Planning Item see link:#planning-news-coverage---planningitem[Planning news coverage - planningItem]
+
+[[definitions]]
+
+Definitions
+~~~~~~~~~~~
+
+[[Event_Information]][[_bookmark45]]
+
+Event Information
+^^^^^^^^^^^^^^^^^
+
+The event information describes a particular event in detail. This includes the “who”, “what”, “when”, and “where” information for the event along with identification and publication (news management) information. The event information also includes facilities for relating events to each other and relating news items (both complete and incomplete) to the event information.
+
+[[Coverage_Information_LEGACY]][[_bookmark46]]
+
+Coverage Information (LEGACY)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: The G2-Standards have a newer and more powerful tool for expressing and managing the planned coverage of events: link:#planning-news-coverage---planningitem[Planning news coverage - planningItem]. To provide backward compatibility the structure for coverage information as part of an event structure is still valid, but it is strongly recommended to separate out the planning information into the Planning Item, enabling event definition and planning to be decoupled.
+
+The old-style coverage information describes the plan of news coverage for this event but it is highly recommended to adopt the new-style Planning Item.
+
+[[The_Data_Model]][[_bookmark47]]
+
+The Data Model
+^^^^^^^^^^^^^^
+
+The data model for EventsML-G2 has to cover two different facets of event information which relate to a basic distinction made for all G2 standards:
+
+* Persistent Knowledge: is information which is remembered and referenced to for a long time.
+
+* Topical News: is typically volatile information in the sense of “nothing is older than yesterday's news”. For EventsML-G2 this is reflected by two different data models:
+
+** Persistent information about an event is represented by an NewsML-G2-Concept Item which is a generic NAR structure for concepts extended by a set of detailed information specific to an event. As for any other kind of Concept also this specific one for events can be referenced by its Concept Identifier.
++
+The same applies to Knowledge Items: a variant with event specific extensions is available, in particular event details are added to the concept structure inside the Knowledge Item. Knowledge Items may be used to exchange a set of event information if it should be distributed with a concept identifier.
++
+Find details about this data model in section link:#_bookmark52[An Event Concept in a Concept Item or Many Events in a Knowledge Item].
+
+** Volatile information about an event is represented by an “event” structure which is plugged into a NewsML-G2 News Item as its content. A single News Item may include one to many event structures. This kind of event information cannot be referenced as persisting information from any other Item. Find details about this data model in section link:#_bookmark53[Events in a NewsItem].
+
+The most important thing to note about the EventsML-G2 data model is that the core structures holding information about an event are identical for both the content plugged into a News Item and the extension of a Concept Item. Hence it is very easy to build a single EventsML-G2 processor for topical and persisting information about an event.
+
+[[eventsml-g2-and-icalendar]]
+
+EventsML-G2 and iCalendar
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A well known and widely used standard for events data is “iCalendar” which is specified by RFC 2445.
+
+EventsML-G2 compares very well to it as it covers virtually all features of an iCalendar Event Component:
+
+_Table 6.  iCalendar-to-EventsML-G2 Component Mapping_
+
+include::{includedir}/../../tables/icalendar.adoc[]
+
+

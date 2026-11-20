@@ -1,0 +1,121 @@
+[[representing-concept-information---concept-component]]
+Representing Concept Information - concept Component
+----------------------------------------------------
+
+[[concept-component]]
+Concept Component
+~~~~~~~~~~~~~~~~~
+
+Concepts fall in two broad categories: named entities and generic (or abstract) concepts. Generic concepts range from themes (e.g. politics, soccer) to emotions (e.g. smiling, love); they have no specific property defined, beyond generic properties. Named entities are people, organisations, geopolitical areas, points of interest and objects for which a specific set of properties is defined for the purpose of a refined definition and improved search and processing capabilities.
+
+The `concept` element provides a set of properties shared by all types of concept.
+
+A concept can be identified in different schemes by different controlled values, this is why a concept identifier must be unambiguous, but cannot be unique: for example, a company may be identified by different identifiers from different company vocabularies. In the case of abstract topics, the strict sameness of two concepts may be subject to discussion, and therefore a notion of equivalence of concepts is preferred.
+
+The properties common to all types of concepts are:
+
+A concept MUST have a concept identifier, expressed as a `conceptId` child element.
+
+The conceptId element MUST have a _qcode_ attribute. It MAY have a _created_ attribute and a _retired_ attribute which limit the usage of the concept identifier in time.
+
+A concept MAY have a `type` child element. The type of a concept reflects its nature, e.g. generic, person, organisation, geopolitical area, point of interest etc…
+
+A concept MUST have a link:#concept-name-name[name] and MAY be further defined in natural-language by a link:#concept-definition-definition[definition] or `note` and by `remoteInfo`. Definition and note are repeatable and MAY be specified in multiple languages.
+
+Different variants of a name are allowed. The _role_ attribute refines the semantics of the property and takes values like “usual”, “official”, “married” (for a person) “acronym” (for an organisation), “synonym”, “adjectival” (e.g. French for France). The _part_ attribute identifies the part of the name conveyed by the property, and takes values like “given”, “family” (for a person). Definitions and notes also support a role, which takes values like “history”, “change” (for a description), “editorial”, “scope” (for a note).
+
+The descriptive elements definition, note and remoteInfo MAY have _validfrom_ and _validto_ attributes which limit the use of the property in time.
+
+The remoteInfo element MAY be used to express any external information about the concept as such. Be aware that the `link` element in the itemMeta wrapper should only be used for linking a Concept Item as a whole to another resource, e.g. a previous version, or another ConceptItem from which this one was derived and not to resources relevant to describing the Concept.
+
+A link:#hierarchy-info-hierarchyinfo[hierarchyInfo] element MAY be used to express the location of this concept in the hierarchical tree of a taxonomy. For this purpose the hierarchyInfo holds a space separated sequence of the Concept Identifier QCodes of the ancestors of this concept, plus the Concept Identifier QCode of this concept. The sequence runs from left to right, with the top level QCode on the left, and the QCode of this concept on the right.
+
+If the same concept is also defined in a different scheme this alternative identifier MAY be expressed by a `sameAs` \{Relationship}] child element.
+
+The sameAs element MUST have either a _qcode_ or a _uri_ or a _literal_ attribute which identifies a concept, for the exact rules see the table below in the chapter link:#relationships-between-concepts[Relationships Between Concepts]. It MAY additionally have a _type_ attribute which reflects the nature of the associated concept, and MAY have one or more `name` elements (see link:#flexproptype-multiple[Flexible 1 Property Type]. _validfrom_ and _validto_ attributes MAY limit the relationship in time.)
+
+More detailed properties of a concept (e.g. that the concept "is" an artist, listed company, city, restaurant) MAY be expressed by a specific `related` property. The related property SHOULD have a _rel_ attribute which specifies the exact relationship between this concept and the target concept (for example "is a", "has a", "works for", "owns"). The IPTC provides a set of Concept Relationship NewsCodes for this purpose which is available at http://cv.iptc.org/newscodes/conceptrelation/[http://cv.iptc.org/newscodes/conceptrelation/].
+
+[[relationships-between-concepts]]
+Relationships Between Concepts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For any concept a relationship to another concept MAY be established, this may take form of a taxonomy (i.e. a hierarchy of concepts) or thesaurus (i.e. a set of concepts associated via standard relationships). A concept MAY establish a set of the most standard relationships link:#broader-broader[broader], and `narrower` and further MAY add a more flexible `related` relationship.
+
+As the properties sameAs, broader, narrower and related establish a relationship to another property it is required to identify or describe this related concept. A specific selection out of three attributes MUST be used for this purpose. The basic rule is that all of them or none of them MUST NOT be used in any case. The following table defines how the attributes MUST be used with the different properties, when establishing a relationship. (Be aware that establishing a relationship to an arbitrary value is specific to the related property only)
+
+_Table 7. Which attributes to use with relationship properties_
+
+include::{includedir}/../../tables/relationship-attributes.adoc[]
+
+Use cases for using the attributes to express the value to which the relationship should be established:
+
+. The value is a concept from a controlled vocabulary
+. The value is a concept which is not from a controlled vocabulary
+. The value is not a concept.
+
+Further the sameAs, broader, narrower and related properties MAY have a _type_ attribute which reflects the nature of the associated concept, and MAY have one or more names.
+
+The broader, narrower and related properties MAY also have _validfrom_ and _validto_ attributes which limit the relationship in time, a _rel_ attribute which details the name given to the relationship and a _rank_ attribute which specifies the rank of the current concept among concepts having a relationship to the target concept.
+
+NewsML-G2 also enables the expression of composite concepts using a `bag` and faceted concepts using `mainConcept` with `facetConcept`. See link:#composite-concepts[Composite Concepts] for details.
+
+Nesting of <related> elements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The top-level `related` element can appear in `pubHistory`/`published`, QualRelPropType, `schemeMeta`, and the ConceptRelationshipsGroup (used in `concept`, `event`, Flex1PropType, Flex1RolePropType, FlexPersonPropType, FlexOrganisationPropType, FlexGeoAreaPropType, FlexPOIPropType, FlexPartyPropType, FlexLocationPropType)
+
+The related element MAY be nested up to three levels deep, for example:
+
+[source, xml]
+----
+<subject qcode= ....>
+  <related rel= ...>        // 1st level as required
+    <related rel= ...>      // 2nd level as required
+      <related rel= .../>   // 3rd level as required
+    </related>
+  </related>
+</subject>
+---- 
+
+Note that this level of nesting is permitted in NewsML-G2 version 2.34 and up. Previous versions from v2.7 and up support two levels of nesting. Before 2.7, a single level of <related> was supported.
+
+[[details-associated-with-specific-entities]]
+Details Associated with Specific Entities
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Details associated with specific entities MAY additionally be defined. All have been chosen for their potential usefulness in the news industry:
+
+* `personDetails` include a date of birth (`born`) and date of death (`died`) a repeatable indication of `affiliation` with an organisation and contact information (`contactInfo`).
+
+* `organisationDetails` include a date of foundation (`founded`) and date of dissolution (`dissolved`), a repeatable `location`, repeatable details of any `affiliation` with other organisations, and contact information (`contactInfo`). +
+The registered `address` of an organisation is indicated as part of its contact information; if this address is used only for a formal registration and the organisations business office does not reside there it should not be used for making direct contact with this company.
+
+* `geoAreaDetails` include the geographic coordinates `position` of the place. +
+The position MUST have _latitude_ and _longitude_ attributes. It MAY have an indication of the `altitude` above the zero elevation reference level. +
+It MAY have an indication of the coordinate reference system (_gpsdatum_ attribute) expressed as a string. In the absence of this attribute, the WGS84 system is assumed.
+
+* `POIDetails` include the geographic coordinates (position) and the postal address of the place, plus practical information like `openHours`, `capacity`, `access` information, plus `details` of the location (for example room number, stair number), and contact information (`contactInfo`).
+
+* `objectDetails` include a `created` date, a `creator` and a `copyrightNotice`.
+
+[[Contact_Information]][[_bookmark58]]
+
+Contact Information
+^^^^^^^^^^^^^^^^^^^
+
+link:#contact-information-contactinfo[contactInfo] is repeatable in the definition of a person, an organisation and a Point of Interest, and each set of properties supports a _role_ attribute which makes it possible to group together all information belonging of the same nature.
+
+Contact information includes email addresses, instant messaging addresses (im), international phone numbers, international fax numbers, web addresses, postal addresses and notes. These are qualified by a _role_ attribute which specifies the nature of the address, e.g. home or work.
+
+[[Postal_Address]][[_bookmark59]]
+
+Postal Address
+^^^^^^^^^^^^^^
+
+The definition of a Postal Address (`address`) includes repeatable free-text `line` (in the format expected by a recipient postal service), the indication of a `locality` (such as city, town, village, and so on), a subdivision of a country (`area`), a `country` and a postal code (`postalCode`).
+
+A postal address is structured as a set of properties likely edited and displayed as a form. The relative order of its properties is not universal, and if used for traditional postal mail, presentation algorithms are to be developed which depend on the source and recipient countries.
+
+The city, country area and country may be indicated as a name or as a controlled value. The use of an ISO compliant country code is recommended.
+

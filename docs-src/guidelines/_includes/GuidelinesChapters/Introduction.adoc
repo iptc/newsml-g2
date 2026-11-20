@@ -1,0 +1,271 @@
+[[introduction]]
+Introduction
+------------
+
+This document is for all those interested in promoting efficient exchange and re-use of multi-media news content within their own organisations and with information partners, using open standards and technologies.
+  
+Whilst a good deal of the content of this document is aimed at technical
+architects and software writers, business influencers and
+decision-makers are encouraged to read the xref:executive-summary[Executive Summary], which
+gives a broadly non-technical justification for the use of IPTC
+Standards, and how they may be applied to solve the real-world issues of
+all organisations that create or consume news.
+
+[[purpose-and-audience]]
+Purpose and Audience
+--------------------
+
+The Guidelines are intended to provide implementers of the NewsML-G2 Standards
+with a thorough knowledge of the XML data structures used to manage and
+describe content, and an appreciation of the issues involved in
+implementing the standards in their organisation, whether they are a
+content provider, content customer, or software vendor.
+
+[[terms-of-use]]
+Terms of Use
+------------
+
+Copyright © 2025 IPTC, the International Press Telecommunications
+Council. All Rights Reserved.
+
+The Guidelines are published under the Creative Commons Attribution 4.0
+license - see the full license agreement at
+http://creativecommons.org/licenses/by/4.0/. By obtaining, using and/or
+copying this document, you (the licensee) agree that you have read,
+understood, and will comply with the terms and conditions of the
+license.
+
+This document uses materials that are either in the public
+domain or are made available by permission of their respective copyright
+holders. Permission of the copyright holder must be obtained prior to the use
+of protected material. All materials of this IPTC standard covered by
+copyright shall be licensable at no charge.
+
+If you do not agree to the Terms of Use you must cease all use of the
+NewsML-G2 specifications and materials now. If you have any questions
+about the terms, please contact the Managing Director of the
+International Press Telecommunication Council. (xref:contacting-the-iptc[Contact Details] below)
+
+While every care has been taken in creating this document, it is not
+warranted to be error-free, and is subject to change without notice.
+Check for the latest version and applicable NewsML-G2
+Standards and Documentation by visiting
+http://www.newsml-g2.org/doc[www.newsml-g2.org/doc]. The versions of the
+NewsML-G2 Standards covered by this document are listed in xref:about-the-iptc-standards[About the
+NewsML-G2 Standards].
+
+[[contacting-the-iptc]]
+Contacting the IPTC
+-------------------
+
+****
+*IPTC, International Press Telecommunications Council*
+
+Web address: https://iptc.org/[www.iptc.org]
+
+Follow us on Twitter at https://twitter.com/IPTC[@IPTC] and
+https://twitter.com/IPTCupdates[@IPTCupdates]
+
+Email: office@iptc.org
+
+Business address:
+25 Southampton Buildings +
+London WC2A 1AL +
+United Kingdom
+
+The company is registered in England at
+25 Southampton Buildings, London WC2A 1AL
+as Comité International des Télécommunications de Presse
+
+Companies House registration No. 1010968
+
+Limited by Guarantee, Not Registered for VAT
+****
+
+[[acknowledgments]]
+Acknowledgements
+----------------
+
+IPTC member delegates past and present who have contributed to this
+documentation project:
+
+[cols="%autowidth",options=“no-header",]
+|================================================================
+|BABY, Vincent |Thomson Reuters^*^
+|BEYNET, Yannick |Agence France-Presse
+|CARD, Tony |BBC Monitoring^*^
+|COMPTON, Dave |Refinitiv, an LSEG business
+|CRAIG-BENNETT, Honor |Press Association^*^
+|EVAIN, Jean-Pierre |European Broadcasting Union^*^
+|EVANS, John |Transtel Communications Ltd
+|GEBHARD, Andreas |Getty Images^*^
+|GORTAN, Philipp |APA (Austrian News Agency)^*^
+|GULIJA, Darko |HINA (Croatia News Agency)^*^
+|HARMAN, Paul |Press Association (-2014), Bloomberg (2015-)
+|HOLLAND, Kelvin|Point House Media Ltd.
+|HUSO, Trond |NTB (Norwegian News Agency)^*^
+|KELLY, Paul |XML Team (-2016), Independent (2016-)
+|LE MEUR, Laurent |Agence France-Presse^*^
+|LINDGREN, Johan |TT Nyhetsbyrån (Swedish News Agency)
+|LORENZEN, Jayson |Business Wire
+|MOUGIN, Philippe |Agence France-Presse
+|MYLES, Stuart |Associated Press^*^
+|QUINN, Brendan|IPTC
+|RATHJE, Kalle |Deutsche Presse Agentur^*^
+|SCHMIDT-NIA, Robert |Deutsche Presse Agentur^*^
+|SERGENT, Benoît |European Broadcasting Union^*^
+|STEIDL, Michael |IPTC^*^
+|WHESTON, Siobhán |BBC Monitoring^*^
+|WOLF, Misha |Thomson Reuters^*^
+|================================================================
+
+^*^ Delegate is no longer with the member company.
+
+[[about-the-newsml-g2-standards]]
+About the Guidelines
+--------------------
+
+This edition of the NewsML-G2 Implementation Guidelines covers NewsML-G2 v2.35.
+
+Guidelines author: mailto:kholland@point-house.co.uk[Kelvin Holland],
+Point House Media Ltd.
+
+[conventions-used-by-this-document]]
+Conventions used by this document
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Code examples are shown as follows:
+
+[source,xml]
+----
+<element attribute="attribute_value">Data</element>
+----
+
+In NewsML-G2, all XML elements that consist of two (or more) concatenated words are in
+lowerCamel case. For example:
+
+[source,xml]
+----
+<catalog>
+<catalogRef>
+----
+
+Where a word is normally capitalized, it remains so. Thus:
+
+[source,xml]
+----
+<inlineXML>
+----
+
+Attribute names are always all lowercase For example
+
+[source,xml]
+----
+standardversion="2.35"
+----
+
+In these Guidelines, an "Item" with capitalised "I" indicates a NewsML-G2 Item (for example  News Item, Planning Item, and so on).
+
+WARNING: Admonitions indicate especially important notes or warnings to implementers
+
+All scheme QCodes used in examples in this document that start with `ex-` are example schemes used for illustrative purposes. All other schemes relate to IPTC defined vocabularies, known as NewsCodes. These are defined in the official IPTC catalog at https://iptc.org/std/catalog/ . The values of each IPTC scheme can be viewed at http://cv.iptc.org/newscodes/ .
+
+Note on Spelling (English)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The IPTC convention for documents in English is to use UK English
+spelling, In general, U.S. English is used for property names and values
+used in IPTC XML Standards (for example, canceled, color, catalog).
+
+A common sense approach dictates that there may be exceptions to this
+convention.
+
+Terminology: MUST and SHOULD
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are few mandatory features in NewsML-G2. This document uses the
+terms MUST (NOT), SHOULD (NOT) and MAY as defined in RFC 2119. A MUST
+instruction in this document refers to mandatory actions; SHOULD refers
+to recommended actions or best practice to be used unless there is a
+very good reason not to do so; MAY refers to optional actions.
+
+Note on Time and Date-Time properties
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The XML Specification for time-based properties is based on ISO 8601 and
+permits the omission of time zone/time offset information. However,
+these values MUST be present in NewsML-G2 timestamps that express a date
+AND time, such Item Metadata timestamps, because the exchange of news
+information may cross time zones, and timing information must be
+unambiguous. The following examples comply:
+
+[source,xml]
+----
+<versionCreated>2025-11-06T12:12:12+01:00</versionCreated> // <1>
+<versionCreated>2025-11-06T12:12:12-01:00</versionCreated> // <2>
+<versionCreated>2025-11-06T12:12:12Z</versionCreated> // <3>
+----
+<1> +ve offset
+<2> -ve offest 
+<3> indicates UTC
+
+The following example does NOT comply:
+
+[source,xml]
+----
+<versionCreated>2025-11-06T12:12:12</versionCreated> <!-- invalid: no timezone offset -->
+----
+
+Administrative content metadata properties such as <contentCreated> and
+descriptive date-time properties such as <founded> and <dissolved> use a
+Truncated DateTime data type permitting parts of the data-time to be
+truncated from the right, for example:
+
+[source,xml]
+----
+<founded>2025-11-06</founded> <!-- valid TruncatedDateTime -->
+----
+
+complies, but this does not:
+
+[source,xml]
+----
+<founded>2025-11-06T12:00:00</founded> <!-- not a valid TruncatedDateTime: no timezone offset -->
+----
+
+IPTC NewsCodes vocabularies in NewsML-G2 examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The NewsML-G2 examples used in this document and in the accompanying
+files illustrate the use of QCodes and Controlled Vocabularies. Although
+the examples include IPTC NewsCodes and Scheme Aliases as defined in a
+Catalog, some other QCodes are for example only and not controlled by
+the IPTC. In each of the Listings in the document, it will be made clear
+which are NOT values from the IPTC NewsCodes vocabularies. All example
+vocabularies use scheme aliases starting with the characters `ex-`.
+
+[[use-of-iptc-web-resources]]
+
+Use of IPTC web resources
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The IPTC makes NewsML-G2 resources, including XML Schema files, IPTC Catalog and controlled vocabularies, available on its public web servers on an "as is" basis; 24/7 availability of these resources is not guaranteed.
+
+Implementers who wish to reference IPTC-hosted resources in their NewsML-G2 documents should consider the following:
+
+* Introducing dependencies on an external resource into the processing of news will break the process if that resource is temporarily unavailable
+
+* Processing performance will be throttled by the response from the IPTC server if it is overwhelmed with requests.
+
+* The IPTC may reject requests that appear to be an abuse of its service. 
+
+The following IPTC resources referenced in NewsML-G2 documents must be retrieved and cached by the implementer according to the following guidance:
+
+* The NewsML-G2 XML Schema files and the IPTC Catalog (_catalog.IPTC-G2-Standards_nn.xml_) can be cached indefinitely as the content of any version will never change.
+
+* Controlled Vocabularies (_IPTC NewsCodes_) referenced as Scheme URIs in the IPTC Catalog may be retrieved and cached daily; their contents are subject to change as IPTC Schemes are updated and this happens not more frequently than daily.
+
+The IPTC also recommends that NewsML-G2 consuming systems should gracefully handle the case where an IPTC-hosted resource is temporarily unavailable.
+
+For further information, please see the NewsML-G2 Specification section on processing remote catalogs. See also the link:#quick-start-guide-to-newsml-g2-basics[NewsML-G2 Basics] chapter and the section on <<processing-catalogs-and-cvs>> within these guidelines.
+

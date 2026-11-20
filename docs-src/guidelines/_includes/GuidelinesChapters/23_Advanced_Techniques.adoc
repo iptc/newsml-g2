@@ -1,0 +1,1062 @@
+[[advanced-metadata-techniques]]
+Advanced Metadata Techniques
+----------------------------
+
+[[introduction-17]]
+Introduction
+~~~~~~~~~~~~
+
+NewsML-G2 provides powerful tools for adding value and navigation to
+content, using the <assert> and <inlineRef> properties
+
+In the following sections, we will show how implementers can add
+features such as text mark-up to highlight people and places in the news
+and provide navigation to further resources.
+
+[[the-assert-wrapper]]
+The Assert wrapper
+~~~~~~~~~~~~~~~~~~
+
+The Assert wrapper is an optional and repeatable child of any root Item
+(<newsItem>, <conceptItem> etc.) and represents a concept that can be
+identified using either @uri, @qcode or @literal.
+
+An Assert creates a one-time instance of supplementary information about
+a concept that is local to the Item and can be referenced by the Item’s
+other properties using either a @uri, @qcode or @literal identifier.
+
+The other attributes of <assert> are (from the Edit Attributes group):
+
+include::{includedir}/../../GuidelinesTables/Assert-Edit-Attributes.adoc[]
+
+and from the Internationalization group (i18nAttributes):
+
+include::{includedir}/../../GuidelinesTables/Assert-i18n-Attributes.adoc[]
+
+The content model for <assert> allows it to contain any element from the
+IPTC’s "NAR" namespace, (and from any another namespace). To avoid
+ambiguity, the rules that MUST be followed when adding NewsML-G2
+elements to an Assert are:
+
+* Immediate child elements from <itemMeta>, <contentMeta> or <concept>
+may be added directly to the Assert without the parent element;
+* All other elements MUST be wrapped by their parent element(s),
+excluding the root element.
+
+[[reasons-for-using-asserts]]
+Reasons for using Asserts
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sometimes it is impractical, inefficient or undesirable to expect
+receivers of Items to retrieve rich structured information about
+concepts from remote resources. In these cases a sub-set of metadata
+relevant to the Item can be stored directly in the Item using Assert.
+For example:
+
+* A provider may decide that it is important to convey supplementary
+information locally within a News Item, such as how to contact an
+organisation that requires a more comprehensive property structure
+"borrowed" from the Concept wrapper.
+* A provider needs to convey a one-time transient value, such as a
+company’s latest share price, directly within the NewsML-G2 document.
+* A news organisation may wish to add value to stories using
+supplementary information about concepts that are part of controlled
+vocabularies, but does not wish to give unrestricted access to the
+knowledge bases that the information is drawn from.
+* A provider wishes to embed supplementary information about concepts
+that are NOT part of controlled vocabularies.
+* Performance or connectivity issues may restrict the ability of
+receivers to retrieve information that is stored remotely.
+
+For example, a Subject property can reference a local Assert, allowing
+the use of properties that are not directly supported by the <subject>
+element:
+
+[source, xml]
+<contentMeta>
+    ...
+    <subject type="cpnat:organisation" literal="Acme Widget">
+        <name>Acme Widget Sales Inc</name>
+    </subject>
+    ...
+</contentMeta>
+<assert literal="Acme Widget">
+    <organisationDetails>
+        <contactInfo>
+            <phone>+1 (416) 922 5834</phone>
+            <email>info@acmewidgets.com</email>
+        </contactInfo>
+    </organisationDetails>
+</assert>
+
+This example shows how a concept identified by "Acme Widget" which is a
+Subject of the Item, can be expanded locally using an Assert.
+
+It illustrates the use of @literal as an identifier whose scope is
+purely local to the Item. Both @qcode and/or @uri may be used as
+globally-unique identifiers but note that the concept information
+contained in an Assert in an Item is ALWAYS local in scope, whatever the
+type of identifier. Receivers must NOT use the information contained in
+the <assert> outside the scope of the Item providing the information,
+for example by extracting it and storing it in a cache of concepts, or
+in a knowledge base.
+
+This is because the <assert> is intended to be a single-use "snapshot"
+of information about a concept, if the information needs to used
+permanently and periodically updated, the full Concept Item or Knowledge
+Item, which also convey management metadata, should be used instead.
+
+[[merging-concept-information-that-is-used-by-multiple-properties.]]
+Merging concept information that is used by multiple properties
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+If a document, for example, has <subject> and <located> properties that
+reference a single geographical location (i.e. a picture SHOWS
+Stonehenge and was taken AT Stonehenge). The <assert> wrapper can
+provide information about this location that is shared by both
+properties.
+
+[source, xml]
+<contentMeta>
+    ...
+    <located type="ex-cpnatexp:geoAreaSublocation"
+        qcode="ex-myalias:int001" />
+    <!-- Camera location -->
+    ...
+    <subject type="ex-cpnatexp:geoAreaSublocation" qcode="ex-myalias:int001" />
+    <!-- Subject of picture -->
+    ...
+</contentMeta>
+<assert qcode="ex-myalias:int001">
+    <type qcode="ex-cpnatexp:geoAreaSublocation" />
+    <name>Stonehenge</name>
+    <broader type="ex-cpnatexp:geoAreaCity">
+        <name>Amesbury</name>
+    </broader>
+    <broader type="ex-cpnatexp:geoAreaProvState">
+        <name>Wiltshire</name>
+    </broader>
+    <broader qcode="iso3166-1a3:GBR" type="ex-cpnatexp:geoAreaCountry">
+        <name>United Kingdom</name>
+    </broader>
+</assert>
+
+[[example-merged-poi-details]]
+Example: Merged POI Details
++++++++++++++++++++++++++++
+
+In the example below an <address> wrapper has been added as an optional
+child of <POIDetails> to convey the postal address of the location of
+the POI., It is recommended that the address wrapped by <contactInfo>
+should NOT be used to express the location of the POI.
+
+[source, xml]
+<contentMeta>
+    <located qcode="ex-artven:int014" />
+    <subject type="cpnat:abstract" qcode="medtop:20000030">
+        <name>music theatre</name>
+    </subject>
+    <subject type="cpnat:poi" qcode="ex-artven:int014" />
+</contentMeta>
+<assert qcode="ex-artven:int014">
+    <name>The Metropolitan Opera House</name>
+    <definition xml:lang="en-US">
+        The Metropolitan Opera House is situated in the Lincoln Center for the +
+        Performing Arts on the Upper West Side of Manhattan, New York City.<br/> +
+        The Opera House is located at the center of the Lincoln Center Plaza, at +
+        the western end of the plaza, at Columbus Avenue between 62nd and +
+        65th Streets. <br/>
+    </definition>
+    <POIDetails>
+        <address>
+            <line>Lincoln Center</line>
+            <locality type="loctyp:City" literal="int015">
+                <name>New York</name>
+            </locality>
+            <area type="loctyp:Sublocation" literal="int016">
+                <name>New York</name>
+            </area>
+            <country literal="US">
+                <name role="nrol:display">United States</name>
+            </country>
+            <postalCode>10023</postalCode>
+        </address>
+        <contactInfo>
+            <web>http://www.themet.org</web>
+        </contactInfo>
+    </POIDetails>
+</assert>
+
+[[using-concept-details-in-assert-in-previous-versions]]
+Using concept details in <assert> in previous versions
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Up to NewsML-G2 2.4, the <concept> wrapper has
+mandatory elements of <conceptId> and <name>, and therefore omitting
+these properties would cause errors if validating against these versions
+of the schema. The workaround to avoid validation errors is to add a
+"dummy" Concept ID, using a randomly-generated code added to a dummy
+Scheme URI provided by the IPTC.
+
+Now, immediate child properties of <concept> may be used directly in
+<assert>, as is already the case for <itemMeta> and <contentMeta>, so
+the need for this workaround is removed.
+
+[[example-using-the-concept-wrapper-with-valid-id]]
+Example: Using the <concept> wrapper with valid ID
+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+In the following example, the <concept> wrapper is used, but the
+assertion is about a concept from a controlled vocabulary, so the
+concept ID makes sense. This assertion will contain supplementary
+information about a concept identified as "ex-artven:int014": used in a
+<located> and a <subject> properties of <contentMeta>. (Note that the
+scope of the information in the <assert> wrapper is LOCAL to the
+document, and may only be updated when the containing Item is modified.)
+
+The example in more detail:
+
+[source, xml]
+<contentMeta>
+    <located qcode="ex-artven:int014" />
+    <subject type="cpnat:abstract" qcode="subj:01017001">
+        <name>music theatre</name>
+    </subject>
+    <subject type="cpnat:poi" qcode="ex-artven:int014" />
+</contentMeta>
+<assert qcode="ex-artven:int014">
+    <concept>
+        <conceptId qcode="ex-artven:int014" />
+        <name>The Metropolitan Opera House</name>
+        <definition xml:lang="en-US">
+            The Metropolitan Opera House is situated in the Lincoln Center for the +
+            Performing Arts on the Upper West Side of Manhattan, New York City.<br/> +
+            The Opera House is located at the center of the Lincoln Center Plaza, at +
+            the western end of the plaza. <br/>
+        </definition>
+        <POIDetails>
+            <contactInfo>
+                <web>http://www.themet.org</web>
+                <address>
+                   <line>Lincoln Center</line>
+                   <locality type="loctyp:City">
+                       <name>New York</name>
+                   </locality>
+                   <area type="loctyp:Sublocation">
+                       <name>New York</name>
+                   </area>
+                   <country>
+                       <name role="nrol:display">United States</name>
+                   </country>
+                   <postalCode>10023</postalCode>
+                </address>
+            </contactInfo>
+        </POIDetails>
+    </concept>
+</assert>
+
+[[example-using-a-dummy-id]]
+Example: Using a "dummy" ID
++++++++++++++++++++++++++++
+
+If the <located> and <subject> properties use a @literal value and the
+concept itself is not part of a controlled vocabulary, then the Concept
+ID has no meaning. However, it is still needed for the document to be
+valid NewsML-G2.
+
+The QCode is created by generating a random string, or one that can be
+guaranteed unique within the scope of the Item, and appending this to
+the scheme alias "dummy" with the colon separator:
+
+[source, xml]
+<assert literal="int014">
+    <concept>
+        <conceptId qcode="dummy:091013121256" />
+            <name>The Metropolitan Opera House</name>
+
+The scheme alias "dummy" resolves to a scheme URI hosted for this
+purpose by the IPTC. The scheme alias is part of the IPTC remote
+catalog:
+
+[source, xml]
+<catalog ...>
+    ...
+    <scheme alias="dummy"
+        uri="http://cv.iptc.org/newscodes/dummy/"
+    />
+    ...
+
+If a provider wishes to use a different scheme alias with the scheme URI
+defined by the IPTC, they would need to create an entry in their
+catalog:
+
+[source, xml]
+<catalog ...>
+    ...
+    <scheme alias="other"
+        uri="http://cv.iptc.org/newscodes/dummy/"
+    />
+    ...
+
+[[using-assert-to-map-from-iim-or-xmp]]
+Using Assert to map from IIM or XMP
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Many media organisations use the IPTC’s IIM standard (Information
+Interchange Model), particularly for pictures. IIM has been embedded
+into professional picture workflows because it was adopted by Adobe for
+the "IPTC Header" fields in Photoshop. This has been succeeded by Adobe
+XMP and IPTC Core for XMP, (See Mapping Embedded Photo Metadata to
+NewsML-G2)
+
+When migrating IIM or IPTC Core (XMP) metadata to NewsML-G2, <assert>
+offers a convenient method for conveying the contents of some fields
+which express the location shown by a picture using machine-readable or
+human-readable values.
+
+For example, the location of the subject of a picture is conveyed using
+the NewsML-G2 <subject> property. However, <subject> cannot directly
+include detailed geographic information that may be contained in the
+embedded metadata. An Assert can be used to convey this information:
+
+[source, xml]
+<contentMeta>
+    ...
+    <subject type="cpnat:geoArea" qcode="ex-geocodes:abc" />
+    ...
+</contentMeta>
+<assert qcode="ex-geocodes:abc">
+    <type qcode="cpnat:geoArea" />
+    <geoAreaDetails>
+        <position latitude="35.689962" longitude="139.691634"/>
+    </geoAreaDetails>
+</assert>
+
+[[inline-reference]]
+Inline Reference
+~~~~~~~~~~~~~~~~
+
+The NewsML-G2 <inlineRef> element complements the <assert> property
+described above. Whereas <assert> carries supplementary information
+about concepts referred to in NewsML-G2 metadata, <inlineRef> performs a
+similar function for concepts found in the content of the document, such
+as is carried in inlineXML, and Label or Block type elements.
+
+For example, the payload of a News Item might be text in XHTML; part of
+the text may refer to the Metropolitan Opera House. That portion of the
+text can be linked to information about "The Met", by placing the
+supplementary information in an Inline Reference,
+
+An <inlineRef> wrapper refers to tags with local identifiers (XML Schema
+IDREFS). The content associated with the Inline Reference must be tagged
+by an element that supports an attribute of type ID (not necessarily
+named "id"), examples include the XHTML <span> element, and the NITF
+<org> element
+
+The <inlineRef> element is of Flex1PropType, with additional attributes of @idrefs, as
+noted above, and any members of the Quantify Attributes Group, which
+allows a provider to express, for example, the relevance of the
+supplementary information provided.
+
+[[quantify-attributes-group]]
+ Quantify Attributes Group
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+include::{includedir}/../../GuidelinesTables/Quantify-Attributes.adoc[]
+
+[[linking-text-content-to-an-inline-reference]]
+Linking text content to an Inline Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A simple example illustrates the use of <inlineRef> to provide
+supplementary information about a concept found in an XHTML press
+release. In this case, the article refers to "the Met". With 100%
+confidence, the provider declares that the name of this concept is "The
+Metropolitan Opera" (linking @id and @idrefs highlighted in bold):
+
+[source, xml]
+<inlineRef idrefs="xyz" confidence="100" <1>
+    qcode="ex-acmeorg:int020">
+    <name role="nrol:display">Metropolitan Opera</name>
+    <name xml:lang="en-US" role="nrol:full">
+        New York Metropolitan Opera
+    </name>
+</inlineRef>
+<contentSet>
+    <inlineXML contenttype="application/xhtml+xml">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+            <head>
+                <title>Free Tosca Open House Announced</title>
+            </head>
+            <body>
+                <h1>New York Met Announces Free Tosca Open House</h1>
+                <p>NEW YORK (Agencies) - On Thursday, September 17, the +
+                <span id="xyz">Met</span> will launch its fourth season of + <2>
+                free Open Houses, with the final dress rehearsal of Luc +
+                Bondy’s new staging of Puccini’s opera, starring Karita +
+                Mattila and conducted by Music Director James Levine. +
+                </p>
+                <p>Three thousand free tickets, limited to two per person,
+                will be available beginning at noon on Sunday,
+                September 13, at the Met box office only. The rehearsal
+                starts at 11am on September 17, with doors opening at 10:30am.
+                </p>
+            </body>
+        </html>
+    </inlineXML>
+</contentSet>
+
+<1> Identifier of the inline reference
+<2> The inline concept being referenced 
+
+[[using-inlineref-and-assert-together]]
+Using <inlineRef> and <assert> together
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Inline Ref can provide basic information about a concept, but more
+detailed information can be expressed by linking the concept in the
+content, via <inlineRef>, to an <assert> element, using @literal or
+@qcode.
+
+[[example-1-simple-story-mark-up]]
+Example 1: simple story mark-up
++++++++++++++++++++++++++++++++
+
+The following shows how part of a story text section is associated via
+an inlineRef to a concept for President George W Bush:
+
+[source, xml]
+<assert qcode="ex-pers:gw.bush"> <1>
+    <name>President George W. Bush</name>
+    <type qcode="cpnat:person"/>
+</assert>
+<inlineRef idrefs="x1" qcode="ex-pers:gw.bush" confidence="50"/> <2>
+    ...
+<inlineXML contenttype="application/xhtml+xml" xml:lang="en"
+    ...>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head><title/><head>
+        <body>
+            <!-- Inline2 -->
+            <p><span id="x1">President Bush</span> makes a speech about Iran <3>
+            today at 14:00.</p>
+            ...
+        </body>
+    </html>
+</inlineXML>
+
+<1> Local assertion of the concept 
+<2> The inline reference links the text to the concept with a 50% confidence that the person referred to in the text is G. W. Bush, rather than the elder President George Bush.
+<3> The part of the content referenced by <inlineRef> 
+
+[[example-2-complex-story-mark-up]]
+Example 2: complex story mark-up
+++++++++++++++++++++++++++++++++
+
+The following expands on Example 1, providing further story text section
+mark-up, and indicating the associated <inlineRef> and <assert> to the
+concepts of President George Bush and Iran.
+
+[source, xml]
+<assert qcode="ex-pers:gw.bush">
+    <name>President George W. Bush</name>
+    <type qcode="cpnat:person"/>
+</assert>
+<assert qcode="ex-pers:g.bush">
+    <name>President George Bush</name>
+    <type qcode="cpnat:person"/>
+</assert>
+<assert qcode="ex-N2:IR">
+    <name>Iran</name>
+    <type qcode="cpnat:geoArea"/>
+</assert>
+...
+<inlineRef idrefs="x1" qcode="ex-pers:gw.bush"
+confidence="50"/>    <1>
+<inlineRef idrefs="x1 x3" qcode="ex-pers:g.bush"
+confidence="70"/>    <2>
+<inlineRef idrefs="x7" qcode="ex-N2:IR" confidence="100"/>    <3>
+...
+<inlineXML contenttype="application/xhtml+xml" xml:lang="en"
+        ...>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head><title/><head>
+        <body>
+            <!-- Inline2 -->
+            <p> <span id="x1">President Bush</span> makes a speech about
+            <span id="x7">Iran</span> today at 14:00.</p>
+            <p> Later, <span id="x3">Bush</span> indicated that there were
+            still many issues to be addressed.</p>
+            ...
+        </body>
+    </html>
+</inlineXML>
+
+The mark-up associated with ‘President Bush’ implies:
+
+<1> a 50% confidence in ‘President George W. Bush’ (via
+inlineRef/@idrefs="x1"), _and_
+<2> a 70% confidence in ‘President George Bush’ (via inlineRef/@idrefs="x1
+x3").
+<3> a 100% confidence in ‘Iran’ (via inlineRef/@idrefs="x7"), indicating
+it is a concept type of Geopolitical Unit (cpnat:geoArea), refined as
+a Country (ex-geoProp:5).
+
+[[example-3-label-mark-up]]
+Example 3: label mark-up
+++++++++++++++++++++++++
+
+The following shows how a label is associated with an inlineRef (and
+therefore associated with an assert) as per Example 2:
+
+[source, xml]
+<!-- contentMeta -->
+<headline><span id="x8">President Bush</span> in
+    <span id="x7">Iran</span>.</headline>
+    ...
+<assert qcode="ex-pers:gw.bush">
+    <name>President George W. Bush</name>
+    <type qcode="cpnat:person"/>
+</assert>
+<assert qcode="ex-N2:IR">
+    <name>Iran</name>
+    <type qcode="ex-geoProp:5" />
+</assert>
+...
+<inlineRef idrefs="x8" qcode="ex-pers:gw.bush"
+    confidence="50"/>
+<inlineRef idrefs="x7" qcode="ex-N2:IR" confidence="100"/>
+    ...
+
+[[why-and-how-metadata-has-been-added-why-and-how]]
+Why and How metadata has been added: @why and @how
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If a provider needs to express reasons for the presence of particular
+metadata values, @how and @why attributes may be used with most elements
+as part of the Common Power Attributes (see table below).
+
+The @why tells the end-user what caused the corresponding property to be
+added to the Item, for example that a person added the property based on
+their editorial judgement; @how tells the end-user the means by which
+the metadata value was extracted, for example that it was looked up from
+a database.
+
+The properties are inter-dependent and used mutually exclusively: when
+the value of @why is "direct" (the default or "implied" value), meaning
+that the metadata was added by a person and/or a software tool directly
+from the content of the Item, it should be omitted and @how used to
+describe the method of extraction, as shown in the following code
+snippet illustrating its use with <subject>:
+
+[source, xml]
+<subject
+    type="cpnat:abstract"
+    qcode="ex-mysubject:JVN"
+    <!-- @why omitted, as @how only used with @why value "direct" -->
+    how="howextr:assisted>
+    <name> JOINT VENTURES</name>
+</subject>
+
+If the value of @why is other than "direct", this implies that the value
+was extracted by a tool and therefore @how should be omitted because it
+would be redundant:
+
+[source, xml]
+<subject
+    type="cpnat:abstract"
+    qcode="ex-mysubject:JVN"
+    <!-- @how omitted, as @why value "inferred" implicitly used a tool -->
+    why="why:inferred">
+    <name>JOINT VENTURES</name>
+</subject>
+
+To promote interoperability the IPTC recommends that implementers use
+the IPTC NewsCodes How Extracted
+(http://cv.iptc.org/newscodes/howextracted/) with a Scheme Alias of
+"howextr" and Why Present (http://cv.iptc.org/newscodes/whypresent/)
+with a Scheme Alias "why".
+
+The Why Present CV contains three values:
+
+* direct: the value is directly extracted from the content by a tool
+and/or by a person.
+* ancestor: the value is an ancestor of another property value already
+assigned to the content (this implies that the ancestor was derived by a
+tool)
+* inferred: the value was derived by look-up in a taxonomy/database
+(also implicitly by a tool).
+
+The How Extracted CV also contains three values, used only with a @why
+value of "direct":
+
+* assisted: the value was extracted by a person assisted by a tool.
+* person: the value was extracted by a person.
+* tool: the value was extracted by a tool.
+
+See also <<implied-values-of-newsml-g2>>
+in the chapter <<quick-start-guide-to-newsml-g2-basics,NewsML-G2 Basics>>.
+
+[[adding-customer-specific-metadata]]
+Adding customer-specific metadata
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In cases where customers have their own private metadata added by the
+provider of NewsML-G2 Items, in order to facilitate processing and/or
+routing, the provider may not want to create specific versions of the
+NewsML-G2 Item for each customer.
+
+The solution is to use @custom, available to most elements (see details
+below) in conjunction with the attributes @how and @why to add the
+custom metadata.
+
+Example: Use a customer’s rule to express <memberOf> information
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A news provider uses a customer’s metadata rules to signal to the
+customer that the content is part of a collection of news entitled
+"Greek Debt". In the code snippet below, @creator expresses that the
+client rule was used to add this metadata, and @modified contains the
+date that the property was added. The @literal contains the customer’s
+code for "Greek Debt" (also given in the name child element)
+
+When @custom is set to "1" or "true" as in this example, this is a
+signal to receivers that the metadata may NOT exist in other instances
+of a NewsML-G2 Item of the same guid and version number.
+
+The @why attribute uses the "inferred" value from the
+https://cv.iptc.org/newscodes/whypresent/[IPTC Why Present NewsCodes],
+and this defines that the property was derived by lookup in a
+taxonomy or database. The @how attribute is not used as it is implied
+that the property was extracted using a tool.
+
+[source, xml]
+<memberOf
+    literal="greek-dbt"
+    creator="ex-clientrule:r49"
+    modified="2025-01-13T16:36:00Z"
+    custom="true"
+    why="why:inferred">
+    <name xml:lang="en">Greek Debt</name>
+</memberOf>
+
+[[common-power-attributes-group]]
+Common Power Attributes group
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The @custom attribute is one of several grouped under the Common Power
+Attributes, available to ALL elements in NewsML-G2 except the root
+elements of Items, elements of Ruby mark-up and a few elements of the
+News Message that are not root elements. The following table details the
+Group:
+
+include::{includedir}/../../GuidelinesTables/Common-Power.adoc[]
+
+[[aligning-subject-and-keyword-properties]]
+Aligning Descriptive Metadata properties
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Since the <keyword> property was added to NewsML-G2 in v 2.4, we learned that its use case aligns closely with the pre-existing <subject> element. In v 2.10, the attributes @confidence and @relevance	were added to <keyword>, and @why and @how were added to both elements.
+
+From version 2.27 of the Standard onwards, @confidence and @relevance have also been added to <slugline>, <headline> and <description>, thus aligning these properties with  <subject>, <keyword> and <genre> in the Descriptive Metadata Group. With the increased use of automated metadata generation by software tools, it helps both providers and end-users to be able to express these values as an aid to processing of Items. 
+
+Relevance is a measure of the usefulness of the concept to the user who
+wants to learn more about the principal subject matter of the content. A
+high relevance indicates that the metadata truly expresses the essence
+of the content, while a low relevance indicates a low correlation
+between the metadata and the content. For example, a concept that
+references Barack Obama would be 100 per-cent relevant to an article
+that about the 2012 U.S. presidential election. This would be
+represented as:
+
+[source, xml]
+relevance="100"
+
+A concept referencing The White House would be less relevant, and might
+be represented as:
+
+[source, xml]
+relevance="60"
+
+Confidence asserts the reliability of the association between the
+concept and the content and is usually obtained by software engines that
+automatically categorise news, where "100" is the highest value and "0"
+the lowest:
+
+[source, xml]
+confidence="75"
+
+Example 1: Keyword
+++++++++++++++++++
+
+In the code snippet, the first keyword was extracted directly from the
+content by a person with 100% relevance and confidence. The second
+keyword was "inferred" from the content (@how not present as it defaults
+to "tool") with 100 per cent relevance but 75 per cent confidence.
+
+[source, xml]
+<contentMeta>
+    ...
+    <keyword
+        role="ex-keyrole:TOPIC"
+        relevance="100"
+        confidence="100"
+        how="howextr:person">
+        Armed Conflict
+    </keyword>
+    <keyword
+        role="ex-keyrole:TOPIC"
+        relevance="100"
+        confidence="75"
+        why="why:inferred">
+        Civil Unrest
+    </keyword>
+    ...
+</contentMeta>
+
+Example 2: Subject
+++++++++++++++++++
+
+In this snippet taken from an announcement by a company, the subject
+property relating to the company is clearly highly relevant and could
+trigger the inclusion of further information about the company being
+included, for example in an <assert> wrapper. However, another company
+that is only mentioned in passing is only given a relevance of 50 per
+cent.
+
+[source, xml]
+<contentMeta>
+    ...
+    <subject
+        type="cpnat:organisation"
+        relevance="100"
+        confidence="100"
+        how="howextr:assisted"
+        literal="More Widgets">
+        <name>More Widgets Corp</name>
+    </subject>
+    <!-- Secondary company - relevance < 100 -->
+    <subject
+        type="cpnat:organisation"
+        relevance="50"
+        confidence="100"
+        how="howextr:assisted"
+        literal="First Acme">
+        <name>First Acme Mercantile Bank</name>
+    </subject>
+    ...
+</contentMeta>
+
+Note that the value of @how in both cases is "assisted" and the
+confidence is 100 per cent, but the relevance is not a reflection of the
+method used to extract the metadata.
+
+[[the-derivation-of-metadata]]
+The derivation of metadata
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Although fixed taxonomies have their place in helping end-users classify
+news, there is common use of automation to "mine" news for concepts that
+can be used to create links and relationships. In such cases, it can be
+useful – in some cases essential – to create an "audit trail" of the
+derivation of metadata.
+
+For example, if a journalist adds a subject code to an article, it is
+possible to express the reason that concept was added using the
+attributes @why and @how (see above)
+
+[[the-derivedfrom-element]]
+The <derivedFrom> element
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In NewsML-G2 v 2.10, an attribute @derivedfrom was added to elements
+that supported the attribute @why. However, this restricted the
+expression of the derivation to property values expressed as QCodes: in
+fact the use case for derivation is often to give this attribution to
+metadata encoded outside the NewsML-G2 framework.
+
+In NewsML-G2 v 2.12, with an extension of @why to almost all NewsML-G2
+elements, it was decided to add a specific <derivedFrom> element to
+NewsML-G2 as a child of the root element and using IDREFS to express the
+relationship between the derivedFrom element and the referring
+property.
+NOTE: The attribute @derivedfrom is deprecated from NewsML-G2 v 2.11 on.
+
+Note the direction of the relationship, as illustrated by the following
+snippet: an article about an event in Barcelona uses the event’s Twitter
+_hashtag_ "#sgbcn" as a keyword. The editor of the article subsequently
+creates a NewsML-G2 Event with a Concept ID of "ex-myevents:SGBCN" and
+indicates by the derivedFrom element that the <keyword> with the hashtag
+was _derived from_ this concept. This is done by applying the keyword’s
+id "s1" to the idrefs of the <derivedFrom> element which represents the
+event in Barcelona:
+
+[source, xml]
+<newsItem>
+    ...
+    <contentMeta>
+        <keyword id="s1" role="drol:hashtag">#sgbcn</keyword>
+        <derivedFrom idref="s1" qcode="ex-myevents:SGBCN" />
+    </contentMeta>
+    ...
+</newsItem>
+
+Based on this it can be asserted that the value of the keyword property
+with the id "s1" has been derivedFrom the event concept identified by
+the QCode "ex-myevents:SGBCN".
+
+See also xref:hashtags[Hashtags]
+
+[[the-derivedfromvalue-element]]
+The <derivedFromValue> element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The <derivedFromValue> element, introduced in NewsML-G2 v2.28, represents the *non-Concept* value used to derive the value of one or more properties in a NewsML-G2 Item. This complements the <derivedFrom> element (above), which represents the *concept* value used to derive the value of an element.
+
+The derivedFromValue element is a child of any NewsML-G2 Item except <catalogItem> and may be inserted after <inlineRef> and <derivedFrom>. It is optional and repeatable. The mandatory attribute @sourceidref refers to the id of the element that provides the value used for the derivation; the mandatory attribute @idrefs refers to the ids of elements whose values have been derived from the value represented by this property.
+
+For example, the following <slugline> has an @id="slug1"
+
+[source,xml]
+<slugline id="slug1">MIDEAST-CRISIS/</slugline>
+
+
+The Item contains the following <subject> properties:
+
+[source,xml]
+<subject id="i314d1"  qcode="ex-G:Q" confidence="100" relevance="100" how="howextr:tool" why="why:inferred"/>
+<subject id="i314d2"  qcode="ex-M:LK" confidence="100" relevance="100" how="howextr:tool" why="why:inferred"/>
+<subject id="i314d3"  qcode="ex-M:N5" confidence="100" relevance="100" how="howextr:tool" why="why:inferred"/>
+<subject id="i314d4" qcode="ex-M:EL" confidence="100" relevance="100" how="howextr:tool" why="why:inferred"/>
+
+
+The derivedFromValue shows that the Subjects were derived from the value "MIDEAST-CRISIS" of the Slugline: 
+
+[source,xml]
+<derivedFromValue idrefs="i314d1 i314d2 i314d3 i314d4" sourceidref="slug1" />
+
+[[the-creator-of-metadata]]
+The Creator of Metadata
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Automated processing using rules or AI tools has also led to a need to attribute the creation of a set of metadata properties. The new element <metadataCreator>, an optional child element of <itemMeta> complements the existing {element}/@creator attribute of an element, as follows:
+
+. If the {element} specifies the {element}/@creator: the {element} creator is the @creator value.
+
+. If the {element} does not specify the {element}/@creator and the metadataCreator is specified: the {element} creator is the metadataCreator value.
+
+. If the {element} does not specify the {element}/@creator and the metadataCreator is not specified: the {element} creator value is indeterminate.
+
+Thus, for example:
+
+[source,xml]
+<itemMeta>
+  ...
+  <metadataCreator qcode="ex-NS:DJN" creator="ex-sys:Swift" />
+  ...
+</itemMeta>
+<contentMeta>
+  ...
+  <!-- Creator (Default): ex-NS:DJN, from the metadataCreator -->
+  <subject qcode="ex-R:TRI.TO" />
+  <!-- Creator (Overridden): ex-sys:Swift, from @creator --> 
+  <subject qcode="ex-P:4295861160" creator="ex-sys:Swift" />
+  ...
+</contentMeta>
+
+NOTE: The <creator> element is used to identify the party (person or organisation) who created the Content. 
+
+[[hints-and-extension-points-in-newsml-g2]]
+Hints and Extension Points in NewsML-G2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[adding-hints-from-the-nar-namespace]]
+Adding Hints from the NAR namespace
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Hint Points allow NewsML-G2 properties to be extracted from a target
+resource and added to the local document as an aid to processing. For
+example the caption of a remote picture may be displayed without loading
+the picture itself.
+
+Hint properties must be consistent with the target resource but do not
+have to be extracted directly from it. For example a <headline> may not
+be available for a referenced image, but it is permissible to add
+<headline> at the Hint Point.
+
+When using a property as a Hint it MUST be wrapped by its parent
+element(s) (excluding the root element), EXCEPT for the immediate child
+elements of <itemMeta>, <contentMeta> or <concept>. For example, to add
+a copyright notice Hint, the parent element <rightsInfo> must be
+supplied, as shown in the following examples of <itemRef> in a Package
+Item:
+
+[source, xml]
+<groupSet root= ...">
+    ...
+    <group id= ...>
+        <itemRef residref=...>
+            ...
+            <rightsInfo>
+                <copyrightNotice>
+                   Copyright 2025 Example Enews LLP, all rights reserved
+                </copyrightNotice>
+            </rightsInfo>
+            ...
+        </itemRef>
+    </group>
+    ...
+</groupSet>
+
+A <headline> is added directly because it is an immediate child element
+of <contentMeta>:
+
+[source, xml]
+<groupSet root= ...>
+    ...
+    <group id= ...>
+        <itemRef residref=...>
+            ...
+            <headline>
+                EU President Claude Juncker today
+            </headline>
+            ...
+        </itemRef>
+        ...
+    </group>
+</groupSet>
+
+1.  Most child elements of <partMeta> are shared with <contentMeta> or
+<itemMeta>, but they MUST be used with the <partMeta> parent element,
+and <partMeta> should include the required delimiter elements
+<timeDelim> or <regionDelim>.
+2.  When implementing Hint Points, providers are advised to the use
+NewsML-G2 version 2.23 (and up) as it is "globalised", that is all of
+the elements that may be used as Hints are defined at a global level in
+the XML schema. Using Hint properties in prior versions of NewsML-G2 MAY
+not validate correctly in some circumstances.
+
+The following elements have a Hint Point. Follow the links to see more
+information about each of them. Note that, apart from Assert, they are
+Link 1 Type properties.
+
+include::{includedir}/../../GuidelinesTables/Hint-Points.adoc[]
+
+Permitted Hint Properties
++++++++++++++++++++++++++
+
+Any of the following properties may be used at the Hint Point, subject
+to the rules outlined above.
+
+include::{includedir}/../../GuidelinesTables/Hint-Properties.adoc[]
+
+[[adding-special-use-properties]]
+Adding special-use properties
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[[adding-elements-from-other-namespaces]]
+Adding elements from other namespaces
++++++++++++++++++++++++++++++++++++++
+
+NewsML-G2 implementers will sometimes encounter a use case that does not
+fit the defined semantics of an existing NewsML-G2 metadata property.
+Using a property under an Extension Point is an option, since any
+user-defined structure may be added, but this requires the extension
+properties to be created in a different namespace. Receivers of
+proprietary properties may be unable to use a standard NewsML-G2
+property software module for processing such proprietary properties.
+
+[[adding-newsml-g2-extension-properties]]
+Adding NewsML-G2 Extension properties
++++++++++++++++++++++++++++++++++++++
+
+Most NewsML-G2 elements that wrap a group of metadata properties have a
+generic extension property named after the parent element suffixed with
+"ExtProperty", for example <rightsInfo> has <rightsInfoExtProperty>.
+This enables a special-use property to be expressed using a common type
+which includes @rel to define the relationship with the target concept,
+for example:
+
+[source, xml]
+<contentMeta>
+    ...
+    <contentMetaExtProperty
+        rel="ex-mediarel:suitableAudience"
+        value="PG"
+        valuedatatype="xs:string"
+    />
+    ...
+</contentMeta>
+
+This fictional example shows a provider-specific "audience suitability"
+property added to Content Metadata. The semantics of the extension
+property are defined using @rel, followed by the value of the property
+and its datatype.
+
+Where there are time restrictions on the
+use of the extension property, these may be expressed using @validfrom
+and @validto.
+
+Even though the property conveys proprietary _data_, such properties can
+now be processed in a consistent manner by a generic NewsML-G2
+processor.
+
+*Full list of available extension properties*
+
+include::{includedir}/../../GuidelinesTables/Extension-Props.adoc[]
+
+[[special-processing-instructions-for-metadata-about-a-part-of-the-content]]
+Special processing instructions for metadata about a part of the content
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Implementers need to be aware of how property values about the content
+as a whole are inherited by individual parts of the content.. All
+property assertions in elements such as <itemMeta> or <contentMeta> are
+inherited by any <partMeta> element and are specifically over-ridden for
+that part of the content when re-stated in a partMeta element.
+
+An example of such inheritance is the use of the <signal> element as a
+child of <itemMeta> and/or <partMeta>:
+
+The <signal> element instructs the NewsML-G2 processor to handle an Item
+or its content in a specific way. When used as a child element of
+<itemMeta> its scope is the entire Item; when used as a child of
+<remoteContent> its scope is the specific rendition of the content. By
+introducing <signal> at the <partMeta> level, providers can specify
+processing instructions for any part of the content.
+
+When used in a <partMeta> element, any processing instructions expressed
+at a higher level in the item are over-ridden for that specific part of
+the content. Thus, using <signal> as an example processing instruction:
+
+[source, xml]
+<itemMeta....>
+    <!-- A applies to the whole item, unless overridden -->
+    <signal... A/>
+</itemMeta>
+<partMeta id="_1_">
+    <!-- A does NOT apply to this content part -->
+    <!-- B applies to this content part only -->
+    <signal... B/>
+</partMeta>
+<partMeta id="_2_">
+    <!-- inherits only the signal A from Item Metadata-->
+    <!-- B does NOT apply to this content part -->
+</partMeta>
+
+Where a processing instruction (from a higher level) is NOT to be
+inherited for a specific part of the content, that processing
+instruction needs to be explicitly ‘’nulled’’ within that specific part
+of the content. Using <signal> again as an example processing
+instruction, a ‘’null’’ value is added to the content part:
+
+[source, xml]
+<partMeta id="_3_">
+    <signal qcode="gen:null" />
+        <!-- nulls inheritance of any signal(s)
+        from the Item Metadata level -->
+</partMeta>
+
+In NewsML-G2 version 2.21 the elements <link> and <edNote> from
+<itemMeta> have also been added to <partMeta>.
+

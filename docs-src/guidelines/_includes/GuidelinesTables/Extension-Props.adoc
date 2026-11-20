@@ -1,0 +1,49 @@
+[%autowidth,options="header"]
+|===
+|Wrapper|Extension Property|Affected Item(s)
+
+|rightsInfo
+|rightsInfoExtProperty
+|all
+
+|itemMeta
+|itemMetaExtProperty
+|all
+
+|contentMeta
+|contentMetaExtProperty
+|All except catalogItem
+
+|partMeta
+|partMetaExtProperty
+|All except catalogItem
+
+|remoteContent
+|remoteContentExtProperty
+|newsItem
+
+|concept
+|conceptExtProperty
+|conceptItem,  knowledgeItem
+
+|group
+|groupExtProperty
+|packageItem
+
+|newsCoverage
+|newsCoverageExtProperty
+|planningItem
+
+|planning
+|planningExtProperty
+|planningItem
+
+|header
+|headerExtProperty
+|newsMessage
+
+|schemeMeta
+|schemeMetaExtProperty
+|knowledgeItem
+
+|===

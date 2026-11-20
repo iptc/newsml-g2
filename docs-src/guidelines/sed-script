@@ -1,0 +1,42 @@
+s/(2.34)/(2.35)/
+s/NewsML-G2_2.34-spec-/NewsML-G2_2.35-spec-/
+s/standardversion="2.34"/standardversion="2.35"/
+s/IPTC-G2-Standards_40.xml/IPTC-G2-Standards_41.xml/
+s/IPTC-G2-Standards_37.xml/IPTC-G2-Standards_41.xml/
+s/href="..Standards_35.xml" -> href="..Standards_36.xml"/href="..Standards_40.xml" --> href="..Standards_41.xml"/
+s/version="17"/version="18"/
+s/version="14"/version="16"/
+s/version="35"/version="38"/
+s/version="40"/version="41"/
+s/<versionCreated>2024-/<versionCreated>2025-/
+s/<embargoed>2024-/<embargoed>2025-/
+s/, 2024./, 2025./
+s/<contentModified>2024-/<contentModified>2025-/
+s/Copyright 2024/Copyright 2025/
+s/validto="2024-/validto="2025-/
+s/coversfrom="2024-/coversfrom="2025-/
+s/coversto="2024-/coversto="2025-/
+s/<scheduled>2024-/<scheduled>2025-/
+s/<scheduled>2013-/<scheduled>2025-/
+s/modified="2021-/modified="2025-/
+s/modified="2012-/modified="2025-/
+s/modified="2015-/modified="2025-/
+s/modified="2010-/modified="2025-/
+s/modified="2009-/modified="2025-/
+s/<edNote>Picture scheduled 2024-1/<edNote>Picture scheduled 2025-1/
+s/<sent>2024-/<sent>2025-/
+s/<founded>2024-/<founded>2025-/
+s/"received">2024-/"received">2025-/
+s/"transmitted">2024-/"transmitted">2025-/
+s/timestamp="2024-/timestamp="2025-/
+s/timestamp="2018-/timestamp="2025-/
+s/2024 IPTC/2025 IPTC/
+s/IPTC Autumn Meeting 2024/IPTC Autumn Meeting 2025/
+s/<start>2024/<start>2025/
+s/<end>2024-/<end>2025-/
+s/created="2024-/created="2025-/
+s/annual-general-meeting-2024/annual-general-meeting-2025/
+s/14 October 2024/14 October 2025/
+s/|Latest edit |2024-11-21 16:22:45/|Latest edit |2025-11-21 16:22:45/
+s/|(Location) Date |(Washington) 21\/11\/2024/|(Location) Date |(Washington) 21\/11\/2025/
+s/GuidelinesCodeExamples_2024/GuidelinesCodeExamples_2025/

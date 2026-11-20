@@ -1,0 +1,25 @@
+[%autowidth,options="header"]
+|===
+|Property|Type|Cardinality|Notes
+
+|<name>
+|Intl String
+|1..n
+|The name of the event, with optional @role for each <name> used
+
+|<definition>
+|Block
+|1..n
+|A natural language definition.
+
+|<related>
+|Flexible
+|0..n
+|The nature of the event, and other information. The property is repeatable and may have a @rel attribute to indicate the relationship to the characteristic. See the examples for alternative ways to express related concepts.
+
+|<note>
+|Block
+|0..n
+|A repeatable natural language note of additional information about the event, with an optional @role.
+
+|===

@@ -1,0 +1,152 @@
+[%autowidth,options="header"]
+|===
+|Term|Definition
+
+|alias
+|See link:#_bookmark940[scheme alias].
+
+|[[_bookmark915]]anonymous controlled vocabulary
+|A link:#_bookmark921[controlled vocabulary] that is not a link:#_bookmark939[scheme].
+
+|catalog
+|A document containing information about link:#_bookmark939[scheme](s).
+
+|[[_bookmark916]]code
+|A character sequence which forms a member of a link:#_bookmark921[controlled vocabulary].
+
+|[[_bookmark917]]concept
+|Anything that one may wish to refer to, e.g. Diplomacy, Paris, the Euro, OECD, the Japanese language, the IMF, Oil, Madonna, Olympic Games. Thus concept here has a broader meaning than is usual. This is because we are dealing with the idea of Paris, rather than with Paris itself, the idea of Oil, rather than Oil itself, and so on. Concepts fall in two broad categories: link:#_bookmark931[named entity] and generic (or abstract) concepts. A concept may be defined by a Concept Item.
+
+|[[_bookmark918]]Concept Item
+|A specialised data structure containing data representing a link:#_bookmark917[concept]. An identifier for the concept is mandatory and it may, optionally, provide information such as name, definition, relationships, etc. A link:#_bookmark917[concept] defined by a Concept Item is identified by a {link:#_bookmark940[scheme] link:#_bookmark940[alias], link:#_bookmark916[code]} pair. The reverse relationship does not necessarily hold. In other words, there is no requirement that each {scheme alias, code} pair has a corresponding Concept Item. See also: link:#_bookmark937[representation of a Concept Item].
+
+|[[_bookmark919]]concept type
+|A concept type allows the logical grouping of all similar link:#_bookmark917[concept](s), regardless of the link:#_bookmark939[scheme](s) the concepts belong to. Examples of concept type might be: Person, Organisation, Language, Business Sector, News Subject or Geography. A concept type is itself a concept and, as such, is represented by a code in a scheme.
+
+|[[_bookmark920]]concept URI
+|A URI which identifies a link:#_bookmark917[concept]. A concept URI is obtained by appending the code representing this concept to the link:#_bookmark941[scheme URI] corresponding to the scheme to which the code belongs. An abbreviated notation of a concept URI is a link:#_bookmark936[Qualified code,] link:#_bookmark936[QCode].
+
+|conformance level
+|A layer of functionality defined by a standard. The link:#_bookmark932[News Architecture] power conformance level is a superset of the link:#_bookmark932[News Architecture] core conformance level, both in terms of structure and processing.
+
+|[[_bookmark921]]controlled vocabulary
+|A set of link:#_bookmark916[code](s), managed by some authority (e.g. a person or an organisation), employing some mechanism (e.g. an XML Schema, a Web page, an RFC, or link:#_bookmark927[Knowledge Item]) to maintain this set. A controlled vocabulary is either a link:#_bookmark939[scheme] or is anonymous (i.e. an link:#_bookmark915[anonymous controlled vocabulary]). Each code in a controlled vocabulary represents a link:#_bookmark917[concept].
+
+|constrained metadata container
+|A link:#_bookmark929[metadata container] which either accepts only link:#_bookmark916[code](s) of a specified link:#_bookmark919[concept type] or accepts only codes from a specified link:#_bookmark921[controlled vocabulary] (which may be an link:#_bookmark915[anonymous controlled vocabulary] or a link:#_bookmark939[scheme]).
+
+|Definition
+|A human-readable string, held within a link:#_bookmark918[Concept Item], which defines the link:#_bookmark917[concept] which the Item represents. Definitions will be implemented using link:#_bookmark924[free-form text].
+
+|[[_bookmark922]]formal metadata element
+|A metadata element designed to hold data that is not link:#_bookmark924[free-form text], e.g. link:#_bookmark916[code](s), or link:#_bookmark925[formal text]. Such data is usually consumed by software. An example of such an element with a code value is subject. An example value of subject is "nc:15062000".
+
+|[[_bookmark923]]free-form metadata element
+|A metadata element designed to hold link:#_bookmark924[free-form text]. Such data is usually consumed by humans. An example of a free-form metadata element is title. An example value of title is "Ian Thorpe makes a splash". The link:#_bookmark932[News Architecture] provides a couple of datatypes for free-form text, e.g. International String, Label or BlockText.
+
+|[[_bookmark924]]free-form text
+|Arbitrary text, i.e. text which does not consist of link:#_bookmark916[code](s) drawn from a link:#_bookmark921[controlled] link:#_bookmark921[vocabulary]. A headline or a description is an example of free-form text.
+
+|[[_bookmark925]]formal text
+|A set of one or more link:#_bookmark929[metadata container](s) for link:#_bookmark924[free-form text] to express formal information about a specific link:#_bookmark917[concept], but without identifying it. Basic properties for formal text are literal, name, definition and note. An example for formal text is the Creator property with a value of name EQ "Alfred Hitchcock", definition EQ "Suspense movie director and producer, born 1899, died 1980".
+
+|[[_bookmark926]]globally unique identifier
+|An identifier that is unique, unambiguous, and persistent. Being unique and unambiguous means that there is a 1:1 relationship between the identifier and the identified object. Being persistent means that the identifier never changes as time passes, and that it is never reused as an identifier for another object even if the original object disappears. See also link:#_bookmark935[persistent identifier], link:#_bookmark944[unambiguous identifier], and link:#_bookmark945[unique identifier].
+
+|Identifier
+|A string used to identify a specific link:#_bookmark938[resource]. See link:#_bookmark935[persistent identifier], link:#_bookmark944[unambiguous identifier], link:#_bookmark945[unique identifier], and link:#_bookmark926[globally unique identifier] (GUID).
+
+|[[_bookmark927]]Knowledge Item
+|A Knowledge Item is a set of link:#_bookmark917[concept] definitions to form a consistent structure, which is managed, protected and published as a whole. It facilitates the management and exchange of link:#_bookmark921[controlled vocabulary](ies).
+
+|Label
+|A generic term for datatypes designed to hold link:#_bookmark924[free-form text].
+
+|[[_bookmark928]]Metadata
+|Data which asserts something about some other data.
+
+|[[_bookmark929]]metadata container
+|A location (e.g. an element or an attribute) in a data structure, designed to hold link:#_bookmark928[Metadata]. In XML it may be implemented as a link:#_bookmark930[metadata element].
+
+|[[_bookmark930]]metadata element
+|An XML element, which is either a link:#_bookmark922[formal metadata element] or a link:#_bookmark923[free-form metadata element], it implements the notion of a link:#_bookmark929[metadata container].
+
+|[[_bookmark931]]named entity
+|A named entity may be a person, place, event, organization, product name, object name or any other news-related real life entity.
+
+|[[_bookmark932]]News Architecture
+|A framework of specifications common to all IPTC news exchange standards under the NewsML-G2 brand.
+
+|[[_bookmark933]]news provider
+|A provider of news content, the entity responsible for the management of news Items. May be a news agency, a syndication company, a newspaper, a magazine or a blogger.
+
+|[[_bookmark934]]ontology
+|See link:#_bookmark942[taxonomy].
+
+|[[_bookmark935]]persistent identifier
+|An identifier which is associated with the same resource for all time. See also link:#_bookmark944[unambiguous identifier], unique identifier, and link:#_bookmark926[globally unique identifier] (GUID).
+
+|processor
+|An application that supports the handling and processing of Items. Also known as a user agent.
+
+|property
+|A synonym term for a link:#_bookmark929[metadata container]. May be implemented as XML element.
+
+|provider
+|See link:#_bookmark933[news provider].
+
+|publish
+|Make available to other parties involved in the news exchange process, according to the business practices of the provider.
+
+|[[_bookmark936]]Qualified code, QCode
+|A link:#_bookmark920[concept URI] represented by a string of the form sss:ccc, where sss is a link:#_bookmark940[scheme] link:#_bookmark940[alias] and ccc is a link:#_bookmark916[code]. Examples are iso4217:USD, rfc3066:zh-Hant, nc:15062000, nasdaq:msft and cusip:594918104. A QCode is not the same as a QName (qualified name, see W3C: Namespaces in XML (http://www.w3.org/TR/REC-xml-names/)[http:/ /www.w3.org/TR/REC-xml-names/]), though there are substantial similarities. The two main differences are: (i) the code does not have to be a valid XML name (e.g. can start with a digit), and (ii) the scheme alias does not have to be declared using a namespace declaration.
+
+|representation
+|The physical form of something.
+
+|[[_bookmark937]]representation of a Concept Item
+|A manifestation of a given link:#_bookmark918[Concept Item] that is suited for some particular purpose. The various representations of a given Concept Item may differ, for example, in whether they are verbose or concise, or in which language(s) they use for name and definition.
+
+|[[_bookmark938]]resource
+|A resource is a set of data that has identity.
+
+|[[_bookmark939]]scheme
+|A link:#_bookmark921[controlled vocabulary] which is identified by a scheme URI. A scheme is not an anonymous controlled vocabulary.
+
+|[[_bookmark940]]scheme alias
+|A character sequence which is used as an abbreviation for a link:#_bookmark941[scheme URI]. A scheme alias is similar but not identical to an XML Namespace prefix.
+
+|[[_bookmark941]]scheme URI
+|The URI which identifies the link:#_bookmark939[scheme]. It is recommended to make this URI a URL and resolving it should result in retrieving information about the scheme.
+
+|synonym
+|Synonyms are link:#_bookmark920[concept URI](s) that refer from one link:#_bookmark917[concept] to another concept with equivalent semantics. Synonymy is a symmetric relationship, which means that if A is synonymous with B, then B is also synonymous with A. An example of synonyms is "cemetery" and "graveyard". In the link:#_bookmark932[News Architecture] synonyms are expressed by the link:#_bookmark693[sameAs \{Relationship}] property.
+
+|target
+|The data being described by the metadata. The IPTC has chosen to use the term target rather than subject (the term used by link:http://www.w3.org/RDF/[RDF]), as subject has a special meaning in the context of News.
+
+|[[_bookmark942]]taxonomy
+|In a broad sense, taxonomy is the science of classification, but is often taken to mean a particular classification. In the context of the link:#_bookmark932[News Architecture], a taxonomy is a collection of link:#_bookmark917[concept](s), with associated link:#_bookmark916[code](s). A taxonomy may support typed relationships between concepts. Such a taxonomy is sometimes known as an link:#_bookmark934[ontology] or link:#_bookmark943[thesaurus].
+
+|[[_bookmark943]]thesaurus
+|See link:#_bookmark942[taxonomy].
+
+|tuple
+|A set of values. The word tuple is a generalisation of the sequence: couple, triple, quadruple, quintuple, sextuple, etc. Tuples are conventionally written as a comma-separated list of items, enclosed within braces, e.g. {link:#_bookmark940[scheme alias], link:#_bookmark916[code]}.
+
+|type
+|See link:#_bookmark919[concept type].
+
+|[[_bookmark944]]unambiguous identifier
+|An identifier is unambiguous if it identifies one and only one object (but an object may have several different unambiguous identifiers). See also link:#_bookmark926[globally unique identifier].
+
+|unconstrained metadata container
+|A link:#_bookmark929[metadata container] that accepts link:#_bookmark916[code](s) from any link:#_bookmark921[controlled vocabulary] and of any link:#_bookmark919[concept type].
+
+|[[_bookmark945]]unique identifier
+|The only identifier of a resource. See also link:#_bookmark935[persistent identifier], link:#_bookmark944[unambiguous identifier], and link:#_bookmark926[globally unique identifier] (GUID)
+
+|Web resource
+|The link:#_bookmark938[resource] or data content that can be retrieved from a Web server using a Web-compliant transport protocol. 
+
+|===

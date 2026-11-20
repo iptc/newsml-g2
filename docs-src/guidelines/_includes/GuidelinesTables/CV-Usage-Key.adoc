@@ -1,0 +1,26 @@
+[%autowidth,options="header"]
+|===
+|_Key_{set:cellbgcolor:#ffffff}| 
+
+|`[red]#Red#`{set:cellbgcolor:#009900}
+|{set:cellbgcolor:#ffffff}Mandatory per specification
+
+|High{set:cellbgcolor:#00cc00}
+|Expected to be present{set:cellbgcolor:#ffffff}
+
+|Medium{set:cellbgcolor:#ffcc66}
+|May be present{set:cellbgcolor:#ffffff}
+
+|Low{set:cellbgcolor:#ff9966}
+|Rarely present{set:cellbgcolor:#ffffff}
+
+|No{set:cellbgcolor:#cccccc}
+|Available but not used{set:cellbgcolor:#ffffff}
+
+|~{set:cellbgcolor:#cccccc}
+|Unavailable or not applicable{set:cellbgcolor:#ffffff}
+
+|{set:cellbgcolor!}
+| 
+
+|===

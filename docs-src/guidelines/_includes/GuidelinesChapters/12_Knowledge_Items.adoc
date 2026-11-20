@@ -1,0 +1,432 @@
+[[knowledge-items]]
+Knowledge Items
+---------------
+
+[[introduction-9]]
+Introduction
+~~~~~~~~~~~~
+
+When news happens, the event rarely takes place in isolation. There will
+be a series of relationships between the news event and the people,
+places and organisations that are directly or indirectly involved. Many
+of these entities will be well-known, and readers of the news may expect
+to be able to navigate to further information about these entities, or
+to find other events in which they are involved. This expectation is
+heavily fostered by people’s familiarity with the Web: they expect to be
+able to click on the name of, say, a company and see more information
+about it.
+
+There will also be references to abstract notions such as subject
+classifications that enable the news event to be searched and sorted
+according to user preferences.
+
+To fully exploit the value of their services, news organisations need to
+be able to exchange this supporting information in an industry-standard
+way that can be processed using standard technology.
+
+As described in the previous chapter <<concepts-and-concept-items>>,
+NewsML-G2 has powerful features for encapsulating this detailed
+information about entities and notions, but the Concept Item can convey
+only a single concept, while the Knowledge Item is able to convey many
+of them, even a full taxonomy.
+
+For example, a profile of, say, Vladimir Putin can be
+conveyed in a Concept. By including this Concept in a set of similar
+Concepts profiling world leaders, we can create and exchange a Knowledge
+Base of political personalities that can be updated and referred to over
+time.
+
+The level of detail of information that a provider may make available in
+a Knowledge Item will depend on its business model and relationship with
+the receiving customer(s). Providers may make variable levels of
+information available according to subscription since it is clear that
+the content of their Knowledge Bases is likely to be valuable.
+
+There are also opportunities for third-party providers of specialist
+information to partner with providers and customers to create
+value-added knowledge services using a NewsML-G2 infrastructure.
+
+IPTC NewsCodes are controlled vocabularies maintained as Knowledge Items
+and are available on the IPTC web site at
+http://www.iptc.org/newscodes/. Choose View NewsCodes and follow
+instructions for downloading any of the CVs.
+
+[[example-a-knowledge-item-for-accessstatus]]
+Example: a Knowledge Item for <accessStatus>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+One of the available properties for describing a news event is
+<accessStatus> to provide information about the physical accessibility
+of the place where an event is due to occur.
+
+The property takes a QCode value:
+
+[source,xml]
+<conceptId qcode="ex-access:restricted" />
+
+As there is no IPTC NewsCodes scheme currently defined for Access
+Status, any provider wishing to include this information would need to
+create a Controlled Vocabulary.
+
+This example shows a Knowledge Item which defines a Controlled
+Vocabulary of Access Status terms. This CV would be available as a
+Knowledge Item, with names and definitions in English, French and
+German, as shown below:
+
+[cols="20,20,60",options="header",]
+|=======================================================================
+|Value |Names |Definitions
+|easy a|
+Easy +
+access
+
+Facile d'accès
+
+Der Zugang ist einfach
+
+ a|
+Unrestricted access for vehicles and equipment. Loading bays and/or
+lifts for unimpeded access to all levels
+
+Un accès sans restriction pour les véhicules et l'équipement. Les quais
+de chargement et / ou des ascenseurs pour l'accès sans entrave à tous
+les niveaux
+
+Ungehinderten Zugang für Fahrzeuge und Ausrüstung. Laderampen und / oder
+Aufzüge für den uneingeschränkten Zugang zu allen Ebenen
+
+|restricted a|
+Access is Restricted
+
+Accès Restreint
+
+Der Zugang ist eingeschränkt
+
+ a|
+Access for vehicles and equipment possible but restricted. There may be
+obstacles, height or width restrictions that will impede large or heavy
+items. Advise checking with the organizers.
+
+L'accès des véhicules et de matériel possible, mais limitée. Il y mai
+être des obstacles, la hauteur ou la largeur des restrictions qui
+empêchent les grandes ou d'objets lourds. Conseiller à la vérification
+avec les organisateurs.
+
+Zugang für Fahrzeuge und Ausrüstung möglich, aber eingeschränkt.
+Möglicherweise gibt es Hindernisse, Höhe und Breite, die Beschränkungen
+behindern große oder schwere Gegenstände. Beraten Sie mit dem
+Veranstalter in Verbindung
+
+|difficult a|
+Access is difficult
+
+L'accès est difficile
+
+Der Zugang ist schwierig
+
+ a|
+Access includes stairways with no lift or ramp available. It will not be
+possible to install bulky or heavy equipment that cannot be safely
+carried by one person
+
+Comprend l'accès aux escaliers ou la rampe sans ascenseur disponible. Il
+ne sera pas possible d'installer des équipements lourds ou volumineux
+qui ne peuvent pas être transportés en sécurité par une seule personne
+
+Access enthält Treppen ohne Fahrstuhl oder Rampe zur Verfügung. Es wird
+nicht möglich sein, installieren sperrige oder schwere Geräte, die sich
+nicht sicher befördert werden von einer Person
+
+|=======================================================================
+
+[[structure-and-properties]]
+Structure and Properties
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Knowledge Items share a common structure with News Items, Package Items
+and Concept Items.
+
+NOTE: This Chapter assumes that the reader is familiar with the chapter on
+<<concepts-and-concept-items>>.
+
+[[the-knowledgeitem-element]]
+The <knowledgeItem> element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The top level element of a Knowledge Item is <knowledgeItem>, which
+contains id, versioning and catalog information.
+
+[source,xml]
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<knowledgeItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    guid="urn:newsml:iptc.org:20090202:ncdki-accesscode"
+    version="18"
+    standard="NewsML-G2"
+    standardversion="2.35"
+    conformance="power">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_41.xml" />
+
+[[item-metadata-1]]
+Item Metadata
+^^^^^^^^^^^^^
+
+The <itemMeta> block contains management metadata for the Knowledge Item
+document. Below is a minimum set of properties.
+
+The Item Class property should use the IPTC "Nature of Concept Item"
+NewsCodes (scheme alias "cinat"). The appropriate value in the case of
+sending a CV or taxonomy is "scheme", denoting that this is a full
+scheme of concepts contained in this Knowledge Item.
+
+[source,xml]
+<itemMeta>
+    <itemClass qcode="cinat:scheme" />
+    <provider qcode="nprov:IPTC" />
+    <versionCreated>2025-11-08T00:00:00Z</versionCreated>
+    <pubStatus qcode="stat:usable" />
+</itemMeta>
+
+[[content-metadata-1]]
+Content Metadata
+^^^^^^^^^^^^^^^^
+
+The optional <contentMeta> block contains Administrative Metadata and
+Descriptive Metadata shared by the concepts conveyed by the
+<conceptSet>.
+
+[[administrative-metadata-3]]
+Administrative Metadata
++++++++++++++++++++++++
+
+This example timestamps the content:
+
+[source,xml]
+<contentMeta>
+    <contentModified>2009-01-28T13:00:00Z</contentModified>
+...
+
+More details about informing receivers about changes to Knowledge Item
+content are contained in xref:handling-updates-to-knowledge-items-using-modified[Handling Updates to Knowledge Items using @modified]
+
+[[descriptive-metadata-3]]
+Descriptive Metadata
+++++++++++++++++++++
+
+The descriptive metadata properties <subject> and <description> may be
+used by Knowledge items, in any order. They are optional and repeatable.
+This example uses the <description> element:
+
+[source,xml]
+<description xml:lang="en">
+    Classification of the ease of gaining physical access to the location of
+    a news event for the purpose of deploying personnel, vehicles and equipment.
+</description>
+<description xml:lang="fr">
+    Classification de la facilité d'obtenir un accès physique à l'emplacement d'un événement pour 
+    le déploiement de personnel, de véhicules et d'équipements.
+</description>
+<description xml:lang="de">
+    Klassifikation der physischen Zugriff auf den Standort eines News Termine für Die Zwecke der
+    Bereitstellung von Personal, Fahrzeugen und Ausrüstungen.
+</description>
+
+[[concept-set]]
+Concept Set
+^^^^^^^^^^^^
+
+A single <conceptSet> element wraps zero or more <concept> components.
+The order of the Concepts is not important. Properties of <concept> are
+optional and described in Concepts and Concept Items.
+
+Each member of the CV requires its own <concept> wrapper with a Concept
+ID and Name within the Concept Set:
+
+[source,xml]
+<conceptSet>
+    <concept>
+        <conceptId qcode="ex-access:easy" />
+        <name xml:lang="en">Easy access</name>
+    ...
+    </concept>
+    <concept>
+        <conceptId qcode="ex-access:difficult" />
+        <name xml:lang="en">Access is difficult</name>
+    ...
+    </concept>
+    <concept>
+        <conceptId qcode="ex-access:restricted" />
+        <name xml:lang="en">Access is Restricted</name>
+    ...
+    </concept>
+</conceptSet>
+
+Each Concept also has a <definition> in three languages that gives
+further details in natural language, for example the English definition:
+
+[source,xml]
+<definition xml:lang="en">
+    Access for vehicles and equipment possible but restricted. There may be
+    obstacles, height or width restrictions that will impede large or heavy
+    items. Advise checking with the organisers.
+</definition>
+
+This completes the first Concept in the <conceptSet>. The two other
+concepts in the CV are added in a similar fashion.
+
+[[scheme-metadata]]
+Scheme Metadata
+^^^^^^^^^^^^^^^
+
+The <schemeMeta> element enables a Knowledge Item to support similar properties to the <scheme> in a
+Catalog. It should be noted that <schemeMeta> is used to express metadata about the scheme being conveyed, and should ONLY be used where the Knowledge Item contains all the concepts from a _single_ scheme, as
+denoted by:
+
+[source,xml]
+<itemClass qcode="cinat:scheme"/>
+
+The <schemeMeta> element is used after <conceptSet> and contains the
+same attributes and child properties of <scheme> in a catalog, with the
+exception of @alias, but has the following additional properties:
+
+The optional child elements <related>, which enables implementers to
+express the top-level concept(s) of a scheme, a requirement of SKOS, and
+<concepttype> listing the concept types that are used within the
+Knowledge Item. Please note the IPTC recommends that if <concepttype> is
+used, ALL concept types in the scheme are listed.
+
+The attributes @authority, to indicate the party that controls the
+scheme, and @preferredalias, which indicates the scheme authority’s
+recommended scheme alias to be used with QCodes.
+
+As with <scheme>, the <schemeMeta> element has the optional attributes `schemecreated`, `schememodified` and `schemeretired` to record the date and optionally the time of changes to the scheme. 
+
+NOTE: If a scheme is marked as retired using `schemeretired`, then ALL concepts in that scheme (identified by the schemeMeta @uri) must also be retired. 
+
+[source,xml]
+<schemeMeta uri="http://cv.example.org/newscodes/ex-access/"
+    authority="http://www.example.org" preferredalias="ex-access"
+    schemecreated="2010-10-01T12:00:00.000Z"
+    schememodified="2025-09-22T12:00:00.000Z">
+    <definition xml:lang="en-GB">Classification of the ease of gaining physical access
+    to the location of a news event for the purpose of deploying personnel,
+    vehicles and equipment.</definition>
+    <name xml:lang="en-GB">Ease of Access/name>
+    <related qcode="ex-access:easy" rel="skos:hasTopConcept"/>
+    <related qcode="ex-access:difficult" rel="skos:hasTopConcept"/>
+    <related qcode="ex-access:restricted" rel="skos:hasTopConcept"/>
+<schemeMeta/>
+
+.LISTING 12: Knowledge Item for Access Codes
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies, except for _ex-access_.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_12_Knowledge_Item_for_Access_Codes.xml[]
+----
+
+[[knowledge-workflow]]
+Knowledge Workflow
+~~~~~~~~~~~~~~~~~~
+
+The diagram below shows a possible information flow for news information that
+exploits the possibilities of NewsML-G2 Concepts and Knowledge Items to
+add value to news:
+
+image::KnowledgeWorkflow.png[Knowledge Workflow]
+
+.Figure: Information Flow for Concepts and Knowledge Items
+
+Increasingly, news organisations are using entity extraction engines to
+find "things" mentioned in news objects. The results of these automated
+processes may be checked and refined by journalists. The goal is to
+classify news as richly as possible and to identify people,
+organisations, places and other entities before sending it to customers,
+in order to increase its value and usefulness.
+
+This entity extraction process will throw up exceptions – unrecognised
+and potentially new concepts – that may need to be added to the
+Knowledge Base. Some news organisations have dedicated documentation
+departments to research new concepts and maintain the Knowledge Base.
+
+When new concepts are submitted to the Knowledge Base, they are added to
+the appropriate taxonomy and may be made available to customers
+(depending on the business model adopted) either partially or fully as
+Knowledge Items.
+
+[[using-newsml-g2-knowledge-items-with-skos]]
+Using NewsML-G2 Knowledge Items with SKOS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Simple Knowledge Organisation System is a W3C standard for using
+RDF-based means to share information about knowledge organization
+systems (see http://www.w3.org/2004/02/skos/[www.w3.org/2004/02/skos/]).
+
+The IPTC Media Topic NewsCodes are a working example of how a NewsML-G2
+Knowledge Item may have features added that can align a NewsML-G2 Scheme
+to SKOS using the <related> child element of <concept> and <schemeMeta>.
+
+For example, the Media Topic for the sport of biathlon, part of the
+Media Topics scheme (http://cv.iptc.org/newscodes/mediatopic/):
+
+[source,xml]
+<concept id="medtop20000852" modified="2025-12-14T21:53:19+00:00">
+    <conceptId qcode="medtop:20000852" created="2009-10-22T02:00:00+00:00"/>
+    <type qcode="cpnat:abstract"/>
+    <name xml:lang="en-GB">biathlon</name>
+    <definition xml:lang="en-GB">A combination of cross country skiing and target
+    shooting on a 12.5 K course in a pursuit format. </definition>
+    <broader qcode="medtop:20000822"/>
+    <related qcode="medtop:20000822" rel="skos:broader"/>
+    <related qcode="subj:15009000" rel="skos:exactMatch"/>
+    <related uri="http://cv.iptc.org/newscodes/mediatopic/" rel="skos:inScheme"/>
+</concept>
+
+This uses the NewsML-G2 <broader> property to express that the
+‘’biathlon’’ topic `(medtop:20000852)` is a child of the "competition
+discipline" topic `(medtop:20000822)`, and this is complemented by the
+using a <related> to indicate the same relationship by the SKOS term
+"skos:broader". The second <related> element indicates that the legacy
+IPTC Subject Code NewsCodes `15009000` is the exact match (G2 = <sameAs>)
+for this Media Topic.
+
+The CV also contains a Scheme Metadata element as follows:
+
+[source,xml]
+<schemeMeta uri="http://cv.iptc.org/newscodes/mediatopic/"
+    authority="http://www.iptc.org" preferredalias="medtop">
+    <definition xml:lang="en-GB">Indicates a subject of an item.</definition>
+    <name xml:lang="en-GB">Media Topic</name>
+    <note xml:lang="en-GB">The Media Topic NewsCodes is IPTC's new (as of December
+        2010) 1100-term taxonomy with a focus on text. The development started with the
+        Subject Codes and extended the tree to 5 levels and reused the same 17 top
+        level terms. The terms below the top level have been revised and rearranged.
+        Each Media Topic provides a mapping back to one of the Subject Codes.
+    </note>
+    <related qcode="medtop:01000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:02000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:03000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:04000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:05000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:06000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:07000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:08000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:09000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:10000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:11000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:12000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:13000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:14000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:15000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:16000000" rel="skos:hasTopConcept"/>
+    <related qcode="medtop:17000000" rel="skos:hasTopConcept"/>
+</schemeMeta>
+
+This satisfies the SKOS requirement to indicate the top-level concepts
+of any scheme.
+
+The current structure of NewsML-G2 Knowledge Items delivered by IPTC is
+documented at http://dev.iptc.org/NewsCodes-G2-Knowledge-Items-by-IPTC[http://dev.iptc.org/NewsCodes-G2-Knowledge-Items-by-IPTC]
+

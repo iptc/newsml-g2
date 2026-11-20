@@ -1,0 +1,22 @@
+<contentMeta>
+    <contentCreated>2016-02-09T09:17:00+03:00
+    </contentCreated>
+    <located qcode="ex-city:Moscow">
+        <broader qcode="ex-cntry:Russia" />
+    </located>
+    <creator qcode="ex-web:thomsonreuters.com">
+        <name>Thomson Reuters</name>
+    </creator>
+    <language tag="en-US" />
+    <subject type="cpnat:geoArea" qcode="ex-city:Tskhinvali">
+        <broader qcode="ex-reg:SouthOssetia" >
+            <name>South Ossetia</name>
+        </broader>
+    </subject>
+    <subject type="cpnat:geoArea" qcode="ex-city:Tblisi">
+        <broader qcode="ex-cntry:Georgia" >
+            <name>Georgia</name>
+        </broader>
+    </subject>
+    <dateline>MOSCOW, Monday (Reuters)</dateline>
+</contentMeta>

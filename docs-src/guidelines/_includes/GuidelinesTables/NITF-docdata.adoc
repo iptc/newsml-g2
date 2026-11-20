@@ -1,0 +1,57 @@
+[%autowidth,options="header"]
+|===
+|NITF element|NewsML-G2 equivalent|Comment
+
+|<correction>
+|<signal>
+|Indicates that the item is a correction, identifies the previously published document and any correction instruction. NewsML-G2 <signal> contains a QCode so that processing instructions are constrained by a controlled vocabulary. The property may have a <name> child element and be accompanied by <edNote> conveying a human-readable message about the instruction.
+
+|<ev-loc>
+|<subject>
+|<ev-loc> contains information about where the news event took place. The NewsML-G2 equivalent of <subject> may use a @role to indicate that the subject is a geographic place. If used, the IPTC Concept Type NewsCodes would be either “geoArea” or “poi” (Point of Interest)
+
+|<doc-id>
+|G2 Item @guid
+|Unique persistent identifier for the document
+
+|<del-list>
+|<timestamp>
+|Audit trail of points involved in delivery of the document. May be expressed in the <timestamp> property of a NewsML-G2 News Message <header>.
+
+|< urgency>
+|< urgency>
+|Editorial urgency of the document. NITF uses values 1-8, NewsML-G2 uses 1-9. The value may also be linked to Priority <priority>in a NewsML-G2 News Message.
+
+|< fixture>
+|< instanceOf>
+|Regularly occurring and/or frequently updated content, for example “Noon Weather Report” or “Closing Stock Market Prices”. In NewsML-G2, this is a Flex1PropType property type, a template that allows the use of a controlled or uncontrolled value.
+
+|< date.issue>
+|Various
+|The default NewsML-G2 property would be <versionCreated>, but depending on the provider’s intention, <firstCreated>, <contentCreated> or <contentModified> could be used.
+
+|< date.release>
+|Various
+|NewsML-G2 does not have a direct equivalent for this property. In NITF, the default value is the time of receipt of the document. Where a provider wishes to specifically delay a release, the NewsML-G2 <embargoed> property may be used.  If the provider wishes to express a timestamp of the time that the document was released, a timestamp property such as <sent> in News Message should be used.
+
+|<date.expire>
+|@validto
+|The <remoteContent> wrapper may have a Time Validity Attribute of @validto.
+
+|<doc-scope>
+|<audience>
+|Area of interest that is not a Category, for example geographic: “of interest to people living in Toronto”. This is not the same intention as a <subject> of Toronto, which means “about” or “linked to” Toronto.  If content should be seen by “Equity Traders” but is not of the Subject “Equities”, then the NewsML-G2 <audience> property may be used.
+
+|<series>
+|<memberOf>
+|In NITF, this is intended to indicate that the article is one of a series of articles, its place in the order of the series, out of a total number of articles in the series.  The NewsML-G2 equivalent <memberOf> is a Flex1PropType which may take a controlled or uncontrolled value.
+
+|<ed-msg>
+|<edNote>
+|As with NITF, the type of message may be indicated by @role in NewsML-G2
+
+|< du-key>
+|None
+|NITF uses this property for maintaining a network of relationships to other versions of the same article. NewsML-G2 uses GUID, versioning and, if necessary, Links, to maintain this information
+
+|===

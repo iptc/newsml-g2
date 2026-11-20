@@ -1,0 +1,83 @@
+[[migrating-iptc-7901-to-newsml-g2]]
+Migrating IPTC 7901 to NewsML-G2
+---------------------------------
+
+[[introduction-13]]
+Introduction
+~~~~~~~~~~~~
+
+The text transmission standard IPTC 7901 (and ANPA1312, with which it is
+closely associated) were a mainstay of the exchange of text for 30
+years. The following tables map IPTC 7901 fields to their equivalent in
+either NewsML-G2 News Item or News Message.
+
+In some cases there is a choice of field mappings. For example there is
+only one timestamp field in IPTC 7901, but several in NewsML-G2.
+
+When providers convert to NewsML-G2, they should determine the source of
+the metadata used to populate the IPTC 7901 field. For example, if from
+an editorial system, the field label or usage may indicate the NewsML-G2
+property to which the 7901 timestamp should be mapped.
+
+Customers converting IPTC 7901 fields to NewsML-G2 properties should
+consult their providers’ documentation, or make inquiries about the
+mapping of IPTC 7901 fields in the provider’s systems.
+
+[[message-header]]
+Message Header
+~~~~~~~~~~~~~~
+
+include::{includedir}/../../GuidelinesTables/IPTC7901.adoc[]
+
+[[message-text]]
+Message Text
+~~~~~~~~~~~~
+
+If the message text is to be conveyed as plain text, then the
+<inlineData> wrapper would be used. If the migration to NewsML-G2 also
+involves migration of the text to some mark-up such as NITF or XHTML,
+this would be conveyed in the <inlineXML> wrapper.
+
+[[post-text-information]]
+Post-Text Information
+~~~~~~~~~~~~~~~~~~~~~
+
+The IPTC7901 post-text fields all relate to date-time. As previously
+recommended, providers should examine the origin of the information
+being used to fill the IPTC 7901 day and time field, and use the
+appropriate NewsML-G2 field for that information. The following are
+possibilities:
+
+* If Day and Time is populated by the transmission system, the <sent>
+property of News Message would be an appropriate mapping.
+* If the IPTC 7901 field represents the only timestamp information
+available from the provider’s system, then the provider MUST put this
+information in the <versionCreated> timestamp property of <itemMeta>
+since its use is a mandatory requirement of NewsML-G2,
+* If versioning of Items is being implemented, then the original
+timestamp may be preserved in <firstCreated>
+
+These properties are of XML date time type so must express the FULL date
+and a time with time zone:
+
+[source,xml]
+<versionCreated>2009-02-09T12:30:00Z</versionCreated>
+
+If the provider believes that the IPTC 7901 day and time is being
+populated from the timestamp on the story itself, then subject to the
+rule of <versionCreated> being followed, the appropriate properties
+would be <contentCreated> or <contentModified>.in the Management
+Metadata group of <contentMeta>.
+
+If versioning is being implemented, the original day and time may be
+preserved in <contentCreated>, If <contentModified> is used, then
+<contentCreated> SHOULD also be present
+
+Both properties use TruncatedDateTime property type, allowing the value
+to be truncated from the right.
+
+[source,xml]
+<contentCreated>2009-02-09</contentCreated>
+
+include::{includedir}/../../GuidelinesTables/IPTC7901-posttext.adoc[]
+

@@ -1,0 +1,22 @@
+# Example documents that cannot be validated against the Power schema.
+#
+# Read by both release-tools/test-newsml-examples.sh (local, uses xmllint) and
+# tests/runtests.py (CI, uses lxml), so the two cannot drift apart.
+#
+# Every other .xml file in this folder is validated. Adding an example here
+# means nothing checks it, so each entry needs a reason.
+#
+# Format: one filename per line. Blank lines and # comments are ignored.
+
+# Root element is a fragment, so there is no matching global declaration to
+# validate against.
+LISTING_7_Group_Set_example_showing_Hierarchical_Package_Structure.xml
+LISTING_8_Group_Set_example_showing_an_ALT_Package_Mode.xml
+LISTING_9_Group_Set_example_showing_a_SEQ_Package_Mode.xml
+LISTING_25_An_NITF_marked-up_article_conveyed_in_inlineXML.xml
+LISTING_28_Illustrating_Located_Subject_and_Dateline.xml
+
+# A complete <newsMessage>, but the Items it carries are deliberately elided as
+# `<newsItem guid="N1"> ..... </newsItem>` to illustrate structure, so it cannot
+# validate as written.
+LISTING_24_News_Message_conveying_a_complete_News_Package.xml

@@ -1,0 +1,11 @@
+[%autowidth,options="header"]
+|===
+|Code|Definition
+
+|content
+|Encompasses all child elements of a) <contentSet> in a News Item, b) <concept> in a Concept Item, c) <conceptSet> in a Knowledge Item and d) <groupSet> (except all children of <itemRef>) in a Package Item. Any parts of content which are described by <partMeta> elements are also included.
+
+|metadata
+|Encompasses all child elements of an item, except a) those that are in the scope of the 'content' scope indicator and b) all children of <itemRef> elements in a Package Item.
+
+|===

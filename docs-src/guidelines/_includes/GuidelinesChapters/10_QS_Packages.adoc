@@ -1,0 +1,453 @@
+[[quick-start-packages]]
+Packages
+--------
+
+TIP: We recommend reading the chapter on <<quick-start-guide-to-newsml-g2-basics,NewsML-G2 Basics>> before this guide to implementing News Packages.
+
+[[introduction-7]]
+Introduction
+~~~~~~~~~~~~
+
+The ability to package together items of news content is important to
+news organisations and customers. Using packages, different facets of
+the coverage of a news story can be viewed in a named relationship, such
+as "Main Article", "Sidebar", Background". Another frequent application
+of packages is to aggregate content for news products, for example "Top
+Ten" news packages such as that illustrated below.
+
+.A Top Ten News Package displayed on the Web
+image::Web-Top-Ten.gif[A Top Ten News package displayed on a web page,width=402,height=467]
+
+TIP: A description of how to create this type of package with ordered components can be found in xref:list-type-package-structure[List Type Package Structure], further on in this document.
+
+Packages can range from simple collections on a common theme, to rich
+hierarchical structures.
+
+NewsML-G2 is flexible in allowing a provider to package content that has
+already been published, or a package may be sent together with all of
+its content resources in a single News Message. See the Guidelines section on xref:exchanging-news-news-messages[News Messages].
+
+[[packages-and-links-the-difference]]
+Packages and Links: the difference
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The NewsML-G2 <link> property is a useful way to indicate optional
+supplementary resources that may be retrieved by the end-user when
+processing or consuming a NewsML-G2 Item. Links should not be used as a
+lightweight method of packaging news; a NewsML-G2 processor would not be
+able to distinguish between News Items with some optional resources, and
+News Items that are intended to be pseudo-packages using links. It is
+also a basic NewsML-G2 rule that a News Item only conveys one piece of
+content.
+
+By contrast, Packages:
+
+* Express structure, allowing news to be packaged as a list, or as a
+named hierarchy of content resources.
+* Have a mode property that enables the expression of a relationship
+between the components of a package group.
+
+[[package-structure]]
+Package Structure
+~~~~~~~~~~~~~~~~~
+
+A simple Package has a structure as shown in the example below. The top
+level for content of a Package Item is one and only one <groupSet>
+element, followed by at least one <group> structure containing one or
+more <ItemRef> references to content. The <group> structure may also be
+repeated, but this example has only one. The diagram below shows a
+skeleton of the XML elements in a simple package and a visualisation of
+the relationship that this structure creates:
+
+[[_Toc470002526]]
+
+image::PackageHierarchySimple.png[Simple package structure]
+
+.Figure: Top-level element view of a simple package, and (right) a visualisation of the structure
+
+[[_Ref468979372]][[_Toc403108019]]
+
+.LISTING 6: Simple NewsML-G2 Package
+
+The following NewsML-G2 document illustrates the package structure
+above.
+
+(All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies, except for the following alias values: _ex-staffjobs_,
+_ex-mystaff_, _ex-svc_ and _ex-group_.)
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_6_Simple_NewsML-G2_Package.xml[]
+----
+
+[[document-structure-3]]
+Document structure
+~~~~~~~~~~~~~~~~~~
+
+The building blocks of the Package Item are the <packageItem> root
+element, with additional wrapping elements for metadata about the
+Package (itemMeta), metadata about the content (contentMeta) and the
+package content (groupSet). The top level (root) element <packageItem>
+attributes are:
+
+[source,xml]
+<packageItem xmlns="http://iptc.org/std/nar/2006-10-01/"
+    guid="tag:example.com,2008:UK-NEWS-TOPTEN:UK20081220098658"
+    version="18">
+    standard="NewsML-G2"
+    standardversion="2.35"
+    conformance="power"
+
+This is followed by Catalog information:
+
+[source,xml]
+<catalogRef
+    href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_41.xml" />
+<catalogRef
+    href="http:/www.example.com/customer/cv/catalog4customers-1.xml" />
+
+[[item-metadata]]
+Item Metadata
+~~~~~~~~~~~~~
+
+The <itemMeta> wrapper contains properties that are aids to processing
+the package contents.
+
+[[profile]]
+Profile
+^^^^^^^
+
+The <profile> element allows a provider to indicate the structure of an Item, e.g. a simple package or an article with one picture. The @versioninfo enables a specific version of a <profile> to be referenced. Profiles are typically provider-specific.
+
+[source,xml]
+<profile versioninfo="1.0.0.2">simple_text_with_picture.xsl</profile>
+
+[[item-metadata-in-full]]
+Item Metadata in full
+^^^^^^^^^^^^^^^^^^^^^
+
+[source,xml]
+<itemMeta>
+    <itemClass qcode="ninat:composite" />
+    <provider qcode="nprov:AcmeNews" />
+    <versionCreated>2025-11-07T12:30:00Z</versionCreated>
+    <firstCreated>2008-12-20T12:25:35Z</firstCreated>
+    <pubStatus qcode="stat:usable" />
+    <profile versioninfo="1.0.0.2">simple_text_with_picture.xsl</profile>
+    <service qcode="ex-svc:uktop">
+        <name>Top UK News stories hourly</name>
+    </service>
+    <title>UK-TOPNEWS</title>
+    <edNote>Updates the previous version</edNote>
+    <signal qcode="sig:update" />
+</itemMeta>
+
+[[content-metadata]]
+Content Metadata
+~~~~~~~~~~~~~~~~
+
+The <contentMeta> wrapper in this example contains extended metadata
+about the person who compiled the package, including hours of duty and
+contact telephone number.
+
+[source,xml]
+<contentMeta>
+    <contributor jobtitle="ex-staffjobs:cpe" qcode="ex-mystaff:MDancer">
+        <name>Maurice Dancer</name>
+        <name>Chief Packaging Editor</name>
+        <definition validto="2025-11-17T17:30:00Z">Duty Packaging Editor</definition>
+        <note validto="2025-11-17T17:30:00Z">Available on +44 207 345 4567 until 17:30 GMT today</note>
+    </contributor>
+    <headline xml:lang="en">UK</headline>
+</contentMeta>
+
+[[group-set]]
+Group Set
+~~~~~~~~~
+
+The <groupSet> has a mandatory root attribute that references the
+primary child <group> element. The primary <group> element must identify
+itself using an @id that matches the @root of <groupSet>.
+
+[source,xml]
+<groupSet root="G1">
+
+[[group]]
+Group
+^^^^^
+
+Although the id attribute is optional, in practice one must be provided
+to match the mandatory root attribute of the <groupSet>, even if there
+is only one <group>. If there is more than one <group> element, one and
+only one can be identified as the root group.
+
+Group elements must also contain a role attribute to declare its role
+within the package structure. The role is a QCode, but a Scheme of Roles
+may typically contain values representing "main", "sidebar" or other
+editorial terms that express how the content is intended to be used in
+the package.
+
+[source,xml]
+<group id="G1" role="ex-group:main">
+
+[[item-reference]]
+Item Reference
+^^^^^^^^^^^^^^
+
+The <itemRef> element identifies an Item or a Web resource using @href
+and/or @residref. The IPTC recommends that Package Items should
+reference NewsML-G2 Items if they are available (typically News Items)
+rather than other types of resource, such as "raw" news objects.
+Referring to other kinds of Web-accessible resource is allowed and is a
+legitimate use-case, however it has some disadvantages. Resources
+referred to in this way cannot be managed or versioned: if one of the
+resources is changed, the entire package may need to be re-compiled and
+sent, whereas a reference to a managed object such as a <newsItem> may
+refer to the latest (or a specific) version.
+
+The example versions the referenced Items using @version, and gives
+processing or usage hints using @contenttype and @size. The @contenttype
+uses the registered IANA Media Type for a NewsML-G2 News Item:
+
+[source,xml]
+<itemRef residref="urn:newsml:iptc.org:20081007:tutorial-item-A"
+    contenttype="application/vnd.iptc.g2.newsitem+xml"
+    size="2345">
+
+The Item Reference includes properties from the referenced Item that
+have been extracted as an aid to processing:
+
+[source,xml]
+    <itemClass qcode="ninat:text" />
+    <provider qcode="nprov:AcmeNews"/>
+    <pubStatus qcode="stat:usable"/>
+    <title>Obama annonce son équipe</title>
+    <description role="drol:summary">Le rachat il y a deux ans de la
+        propriété par Alan Gerry, magnat local de la télévision câblée, a
+        permis l'investissement des 100 millions de dollars qui étaient
+        nécessaires pour le musée et ses annexes, et vise à favoriser le
+        développement touristique d'une région frappée par le chômage.
+    </description>
+</itemRef>
+
+[[hierarchical-package-structure]]
+Hierarchical Package Structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Hierarchies of Groups and Item References can be created by adding
+multiple Groups to Packages and using <groupRef>, to reference other
+Groups by @idref, as illustrated by the following diagram:
+
+image::PackageHierarchyNested.png[parent-child package]
+
+.Figure: Code outline of hierarchical package with two groups, visualising parent-child structure (right)
+
+The code listing below shows how such a hierarchical package would be
+fully expressed in XML in a NewsML-G2 Group Set:
+
+.LISTING 7: Group Set example showing Hierarchical Package Structure
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies, except for _ex-group_.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_7_Group_Set_example_showing_Hierarchical_Package_Structure.xml[]
+----
+
+In the example, the "root" group is identified as the group with
+id="G1". This group has a role of "main" and consists of a text story
+and a picture of Barack Obama. The group with id="G2" has the role of
+"sidebar" and contains a text and picture of Hillary Clinton. It is
+referenced by a <groupRef> in Group G1.
+
+[[list-type-package-structure]]
+List Type Package Structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The @mode indicates the relationship between components of a group using
+one of three values from the IPTC Package Group Mode NewsCodes
+(recommended Scheme Alias "pgrmod"):
+
+* pgrmod:bag – an unordered collection of components, for example
+different components of a web news page with no special order, as in the
+example below. This is the default @mode.
+* pgrmod:seq – denotes a sequential package group set in descending
+order, for example a "Top Ten" list: each sub-group would provide
+references to a text article and a related picture.
+* pgrmod:alt – an unordered collection. Each sub-group is an alternative
+to its peer groups in the set, for example coverage of a news event
+supplied in different languages.
+
+image::PackageHierarchyList.png[Alternative package components]
+
+.Figure: Code skeleton view of package with alternative components, with visualisation of structure
+
+The diagram above shows a package containing two Items in the root
+group, and a group reference to a "group of groups" with package mode
+set to "alt" indicating that the child groups contain alternative
+content. The example uses groups of associated video suitable for
+different Android device screen sizes as indicated by the @role of each
+group.
+
+The code overview shows the root group referencing the two Items and the
+<groupRef> element referencing the group with @id "G2". Group G2 has its
+package mode set to "alt" and its components are references to alternate
+groups G3, G4 and G5, which reference videos at the required rendition
+for each screen type.
+
+The right-hand image in the diagram is a visual representation of the
+relationship expressed through this package structure.
+
+Note the <group> that has its Mode set to "alt" – not the "main" group
+but the second group with @id "G2". The components of this group are
+alternatives: each references a group containing the video content. The
+code example below shows how this relationship is fully expressed in
+NewsML-G2:
+
+.LISTING 8: Group Set example showing an "alt" Package Mode
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies, except for _ex-group_.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_8_Group_Set_example_showing_an_ALT_Package_Mode.xml[]
+----
+
+[[a-sequential-top-ten-package]]
+A Sequential "Top Ten" Package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The screenshot at the start of this Chapter shows a "Top Ten" list of
+news items in order of importance. The package mode of "seq" indicates
+that the components are in descending order and a code skeleton and
+visual representation of the package structure is shown in the diagram
+below:
+
+image::PackageHierarchySequential.png[Sequential mode package]
+
+.Figure: Code skeleton of a sequential mode package and (right) the resulting relationship structure
+
+Note how the <group> sets the Mode for its components, in this case the
+component group references of the "main" group are sequentially ordered.
+The relationship is fully-expressed in XML in NewsML-G2 as shown below:
+
+[[group-set-example]]
+
+.LISTING 9: Group Set example showing a "seq" Package Mode
+
+All Scheme Aliases used in the listing below indicate IPTC NewsCodes
+vocabularies, except for _ex-group_.
+
+[source, xml]
+----
+include::{includedir}/../../GuidelinesCodeExamples/LISTING_9_Group_Set_example_showing_a_SEQ_Package_Mode.xml[]
+----
+
+[[package-processing-considerations]]
+Package Processing Considerations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[other-newsml-g2-items]]
+Other NewsML-G2 Items
+^^^^^^^^^^^^^^^^^^^^^
+
+In the above examples, the referenced resources in the package have been
+News Items, but <itemRef> may also refer to other Items, such as Package
+Items. The following example of <itemRef> shows how a Package Item can
+be used as part of a Package Item. This type of "Super Package" could be
+used to send a "Top Ten" package (a themed list of news) where each
+referenced item is also a package consisting of references to the text,
+picture and video coverage of each news story.
+
+The advantage of using this "package of packages" approach is that it
+promotes more efficient re-use of content. Once created, any of the
+"sub-packages" can be easily referenced by more than one
+"super-package": a package about a given story could be used by both
+"Top News This Hour" and by "Today’s Top News". If the individual News
+Items that make up a sub-package were to be referenced directly, these
+references have to be assembled each time the story is used, either by
+software or a journalist, which would be less efficient.
+
+As these sub-packages are managed objects, we use @residref to identify
+and locate the referenced items. Each referenced item may be a Package
+Item, shown by the Item Class of "composite" and the Content Type of
+"application/vnd.iptc.g2.packageitem+xml". Each <itemRef> would then
+resemble the following:
+
+[source,xml]
+<itemRef residref="tag:afp.com,2008:TX-PAR:20080529:JYC99"
+    contenttype="application/vnd.iptc.g2.packageitem+xml"
+    size="28047">
+    <itemClass qcode="ninat:composite" />
+    <provider qcode="nprov:AFP"/>
+    <pubStatus qcode="stat:usable"/>
+    <title>Tiger Woods cherche son retour</title>
+    <description role="drol:summary"> Tiger Woods lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Etiam feugiat. Pellentesque ut enim eget
+        eros volutpat consectetur. Quisque sollicitudin, tortor ut dapibus
+        porttitor, augue velit vulputate eros, in tempus orci nunc vitae nunc.
+        Nam et lacus ut leo convallis posuere. Nullam risus.
+    </description>
+</itemRef>
+
+[[facilitating-the-exchange-of-packages]]
+Facilitating the Exchange of Packages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There needs to be some consideration of how such a "Super Package"
+should be processed by the receiver. The power and flexibility inherent
+in NewsML-G2 Packages could lead to confusion and processing complexity
+unless provider and receiver agree on a method for specifying the
+structure of packages and signalling this to the receiving application.
+Processing hints such as the <profile> property (described above)
+intended to help resolve this issue.
+
+In the example below, we maintain flexibility and inter-operability with
+potential partner organisations by defining any number of standard
+package "templates" – termed Profiles – for the Package, among other
+processing hints. Partners would agree in advance on the Profiles and
+rules for processing them. All that the provider then needs to do is
+place the pre-arranged Profile name, or the name of a transformation
+script, in the <profile> property.
+
+Package profiles could be represented as diagrams like those shown
+below:
+
+image::PackageProfile.png[Package Profiles]
+
+.Figure: Diagrams of Package Profiles. The numbers in brackets indicate the required items
+
+In this example, the Profile Name is intended to be a signal to the
+processor that references to each member of the Top Ten list are placed
+in their own group, and that we create our Top Ten list in the "root"
+group of the Package Item as an ordered list of <groupRef> elements. (as
+in the "Top Ten" list profile shown in the above diagram)
+
+The properties in <itemMeta> that can be used to provide information on
+processing are:
+
+<generator>, a versioned string denoting the name of the process or
+service that created the package:
+
+[source,xml]
+<generator versioninfo="3.0">MyNews Top Ten Packager</generator>
+
+<profile>, as discussed, sets the template or transformation stylesheet
+of the package
+
+[source,xml]
+<profile versioninfo="1.0.0.2">ranked_idref_list</profile>
+
+<signal> is a flexible type property (may have a @qcode, @uri, or @literal value) that instructs the receiver to perform any required actions upon receiving the Item. An <edNote> may contain natural-language instructions, if necessary, and a <link> property denotes the previous version of the package.
+
+[source,xml]
+<signal qcode="sig:update" />
+<edNote>Updates the previous package</edNote>
+<link
+    rel="irel:previousVersion"
+    residref="tag:example.com,2008:UK-NEWS-TOPTEN:UK20081220098658"
+    version="1"
+/>
